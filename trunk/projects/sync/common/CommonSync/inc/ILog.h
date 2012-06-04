@@ -12,10 +12,14 @@
 #define SCOPED_LOG(log) const ILog::ScopedLogPtr __scopedLogPtr = log.MakeScopedLog(CURRENT_MODULE_ID, __FUNCTION__);
 
 //! Logging macros
-#define LOG_ERROR(message)		if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Error))	m_Log.Error(__FUNCTION__, message)
-#define LOG_WARNING(message)	if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Warning)) m_Log.Warning(__FUNCTION__, message)
-#define LOG_TRACE(message)		if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Trace))	m_Log.Trace(__FUNCTION__, message)
-#define LOG_DEBUG(message)		if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Debug))	m_Log.Debug(__FUNCTION__, message)
+#define LOG_ERROR(message)		if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Error))		\
+	m_Log.Error(CURRENT_MODULE_ID, __FUNCTION__, message)
+#define LOG_WARNING(message)	if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Warning))	\
+	m_Log.Warning(CURRENT_MODULE_ID, __FUNCTION__, message)
+#define LOG_TRACE(message)		if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Trace))		\
+	m_Log.Trace(CURRENT_MODULE_ID, __FUNCTION__, message)
+#define LOG_DEBUG(message)		if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Debug))		\
+	m_Log.Debug(CURRENT_MODULE_ID, __FUNCTION__, message)
 
 //! Forward declarations
 class CScopedLog;
@@ -45,8 +49,8 @@ public:
 	};
 
 	//! Open log
-	virtual void		Open(const std::string& szSource) = 0;
-	virtual void		Open(const std::wstring& szSource) = 0;
+	virtual void		Open(const std::string& szSource, unsigned int module) = 0;
+	virtual void		Open(const std::wstring& szSource, unsigned int module) = 0;
 
 	//! Close log
 	virtual void		Close() = 0;
@@ -58,23 +62,23 @@ public:
 	virtual bool		IsEnabled(unsigned int module, const Level::Enum_t level) const = 0;
 
 	//! Write text
-	virtual ILog&		Error(const std::string& text)		= 0;
-	virtual ILog&		Error(const std::wstring& text)		= 0;
-	virtual ILog&		Warning(const std::string& text)	= 0;
-	virtual ILog&		Warning(const std::wstring& text)	= 0;
-	virtual ILog&		Trace(const std::string& text)		= 0;
-	virtual ILog&		Trace(const std::wstring& text)		= 0;
-	virtual ILog&		Debug(const std::string& text)		= 0;
-	virtual ILog&		Debug(const std::wstring& text)		= 0;
+	virtual ILog&		Error(unsigned int module, const std::string& text)			= 0;
+	virtual ILog&		Error(unsigned int module, const std::wstring& text)		= 0;
+	virtual ILog&		Warning(unsigned int module, const std::string& text)		= 0;
+	virtual ILog&		Warning(unsigned int module, const std::wstring& text)		= 0;
+	virtual ILog&		Trace(unsigned int module, const std::string& text)			= 0;
+	virtual ILog&		Trace(unsigned int module, const std::wstring& text)		= 0;
+	virtual ILog&		Debug(unsigned int module, const std::string& text)			= 0;
+	virtual ILog&		Debug(unsigned int module, const std::wstring& text)		= 0;
 
-	virtual ILog&		Error(const std::string& func,	const std::string& text)		= 0;
-	virtual ILog&		Error(const std::string& func,	const std::wstring& text)		= 0;
-	virtual ILog&		Warning(const std::string& func, const std::string& text)		= 0;
-	virtual ILog&		Warning(const std::string& func, const std::wstring& text)		= 0;
-	virtual ILog&		Trace(const std::string& func,	const std::string& text)		= 0;
-	virtual ILog&		Trace(const std::string& func,	const std::wstring& text)		= 0;
-	virtual ILog&		Debug(const std::string& func,	const std::string& text)		= 0;
-	virtual ILog&		Debug(const std::string& func,	const std::wstring& text)		= 0;
+	virtual ILog&		Error(unsigned int module, const std::string& func,	const std::string& text)		= 0;
+	virtual ILog&		Error(unsigned int module, const std::string& func,	const std::wstring& text)		= 0;
+	virtual ILog&		Warning(unsigned int module, const std::string& func, const std::string& text)		= 0;
+	virtual ILog&		Warning(unsigned int module, const std::string& func, const std::wstring& text)		= 0;
+	virtual ILog&		Trace(unsigned int module, const std::string& func,	const std::string& text)		= 0;
+	virtual ILog&		Trace(unsigned int module, const std::string& func,	const std::wstring& text)		= 0;
+	virtual ILog&		Debug(unsigned int module, const std::string& func,	const std::string& text)		= 0;
+	virtual ILog&		Debug(unsigned int module, const std::string& func,	const std::wstring& text)		= 0;
 
 	//! Write formatted argument
 	virtual ILog&		operator % (const unsigned int value)	= 0;
