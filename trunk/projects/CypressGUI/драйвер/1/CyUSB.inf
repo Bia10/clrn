@@ -1,0 +1,93 @@
+; Installation INF for the Cypress Generic USB Driver for Windows 2000/XP
+;
+
+[Version]
+Signature="$CHICAGO$"
+Class=USB
+ClassGUID={36FC9E60-C465-11CF-8056-444553540000}
+provider=%CYPRESS%
+;---Uncomment and complete below to support WHQL submission---;
+;CatalogFile=cyusb.cat
+;DriverVer=mm/dd/yyyy,x.y.v.z
+;-------------------------------------------------------------;
+
+[SourceDisksNames]
+1=%CYUSB_INSTALL%,,,
+
+[SourceDisksFiles]
+CyUsb.sys = 1
+CyUsb.spt = 1
+
+[Manufacturer]
+%MfgName%=Cypress
+
+[Cypress]
+;%VID_XXXX&PID_XXXX.DeviceDesc%=CyUsb, USB\VID_XXXX&PID_XXXX
+%VID_04B4&PID_8613.DeviceDesc%=CyUsb, USB\VID_04B4&PID_8613
+%VID_0547&PID_1002.DeviceDesc%=CyUsb, USB\VID_0547&PID_1002
+;[PreCopySection]
+;HKR,,NoSetupUI,,1
+
+[DestinationDirs]
+CyUsb.Files.Ext = 10,System32\Drivers
+;-----Uncomment below to support script file processing-----;
+;CyUsb.Files.Spt = 10,System32\CyUsb
+;------------------------------------------------------------;
+
+
+[CyUsb.NT]
+CopyFiles=CyUsb.Files.Ext
+;-----Uncomment below to support script file processing-----;
+;CopyFiles=CyUsb.Files.Spt
+;------------------------------------------------------------;
+AddReg=CyUsb.AddReg
+
+[CyUsb.NT.HW]
+AddReg=CyUsb.AddReg.Guid
+
+[CyUsb.NT.Services]
+Addservice = CyUsb, 0x00000002, CyUsb.AddService
+
+[CyUsb.AddService]
+DisplayName    = %CyUsb.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\System32\Drivers\CyUsb.sys
+LoadOrderGroup = Base
+ 
+[CyUsb.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,CyUsb.sys
+
+[CyUsb.Files.Ext]
+CyUsb.sys
+
+;-----Uncomment below to support script file processing-----;
+;[CyUsb.Files.Spt]
+;CyUsb.spt
+;------------------------------------------------------------;
+
+[CyUsb.AddReg.Guid]
+HKR,,DriverGUID,,%CyUsb.GUID%
+;-----Uncomment below to support script file processing-----;
+;HKR,,DriverEXECSCRIPT,,%CyUsb.EXECSCRIPT%
+;------------------------------------------------------------;
+
+
+;---------------------------------------------------------------;
+
+[Strings]
+CYPRESS="Cypress"
+MfgName="Cypress"
+CYUSB_INSTALL="Cypress Generic USB Driver Installation Disk"
+VID_XXXX&PID_XXXX.DeviceDesc="Cypress Generic USB Device"
+VID_04B4&PID_8613.DeviceDesc="MCU CY7C68013x"
+VID_0547&PID_1002.DeviceDesc="My First USB Device"
+CyUsb.SvcDesc="Cypress Generic USB Driver"
+;------------Replace GUID below with custom GUID-------------;
+CyUsb.GUID="{AE18AA60-7F6A-11d4-97DD-00010229B959}"
+;------------------------------------------------------------;
+;-----Uncomment below to support script file processing-----;
+;CyUsb.EXECSCRIPT="\systemroot\system32\CyUsb\CyUsb.spt"
+;------------------------------------------------------------;

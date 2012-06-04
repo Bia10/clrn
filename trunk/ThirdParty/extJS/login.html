@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" dir="ltr"> 
+  <head>
+    <title>CLRN http server authorization</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  </head>
+
+  <script>
+    window.onload = function() {
+      document.forms[0].action = 'http://' + location.hostname + '/authorize';
+    };
+    
+    function Register(){
+      window.location = 'http://' + location.hostname + '/register';
+    }
+  </script>
+
+  <body>
+    <center>
+      <h2>CLRN http server authorization</h2>
+      <div style="max-width: 30em;">
+        Username and password can be any non-empty strings.
+      </div>
+      <br/>
+      <form>
+        <input type="text" name="user"></input><br/>
+        <input type="password" name="password"></input><br/>
+        <input type="submit" value="Login"></input>
+        <input type="button" value="Register" onClick="Register()"></input>
+      </form>
+    </center>
+  </body>
+</html>

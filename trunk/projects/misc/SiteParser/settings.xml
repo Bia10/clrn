@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<settings>
+ <page_expression><![CDATA[(<a name=".*?"></a>)(.*?)(<br>)]]></page_expression>
+ <item_expression><![CDATA[^(\d)?(-комн.\s)?(\S*)(,\s)?(.*?, )?(.*?эт..*?, )?(.*?/у,)?(.*?\.\s)?(Оплата\s)?((.*руб\..*?\.)?|(.*?\.)?)?((.*?ник.*?\.)?|(.*?Агентство.*?\.)?)?(\sТел.\s.*)]]></item_expression>
+</settings>

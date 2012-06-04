@@ -1,0 +1,12 @@
+<multiple mode="0">
+ <data amplitude_in="588.871277" amplitude_out="37" frequency="10000" koeff="0.25" phase="25.5597897"></data>
+ <data amplitude_in="581.090881" amplitude_out="36" frequency="1000" koeff="0.25" phase="2.39423943"></data>
+ <data amplitude_in="595.428589" amplitude_out="36" frequency="2000" koeff="0.25" phase="5.09793901"></data>
+ <data amplitude_in="596.77417" amplitude_out="36" frequency="3000" koeff="0.25" phase="7.67015791"></data>
+ <data amplitude_in="594.829285" amplitude_out="36" frequency="4000" koeff="0.25" phase="10.7711086"></data>
+ <data amplitude_in="595.686279" amplitude_out="36" frequency="5000" koeff="0.25" phase="12.3822384"></data>
+ <data amplitude_in="594.557373" amplitude_out="36" frequency="6000" koeff="0.25" phase="16.004961"></data>
+ <data amplitude_in="594.478882" amplitude_out="36" frequency="7000" koeff="0.25" phase="18.4361496"></data>
+ <data amplitude_in="592.444458" amplitude_out="36" frequency="8000" koeff="0.25" phase="21.4734287"></data>
+ <data amplitude_in="590.285706" amplitude_out="36" frequency="9000" koeff="0.25" phase="24.0902195"></data>
+</multiple>

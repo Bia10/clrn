@@ -1,0 +1,37 @@
+[12:24:08:44648984375] [3504]  ###  Logger started.
+[12:24:08:44648984375] [3504]  ###  Initial path: [d:\Dev\projects\CypressGUI\CypressGUI].
+[12:24:08:44648984375] [3504] ---> __thiscall clrn::CDevice::CDevice(class CLog &)
+[12:24:08:44648984375] [3504] <--- __thiscall clrn::CDevice::CDevice(class CLog &)
+[12:24:08:44648984375] [3504] ---> void __thiscall clrn::CDevice::RegisterOutputData(void *,enum clrn::CDevice::Data::Enum_t,class boost::mutex &)
+[12:24:08:44648984375] [3504] <--- void __thiscall clrn::CDevice::RegisterOutputData(void *,enum clrn::CDevice::Data::Enum_t,class boost::mutex &)
+[12:24:08:44648984375] [3504] ---> void __thiscall clrn::CDevice::RegisterOutputData(void *,enum clrn::CDevice::Data::Enum_t,class boost::mutex &)
+[12:24:08:44648984375] [3504] <--- void __thiscall clrn::CDevice::RegisterOutputData(void *,enum clrn::CDevice::Data::Enum_t,class boost::mutex &)
+[12:24:08:44648984375] [3504] ---> void __thiscall clrn::CDevice::RegisterOutputData(void *,enum clrn::CDevice::Data::Enum_t,class boost::mutex &)
+[12:24:08:44648984375] [3504] <--- void __thiscall clrn::CDevice::RegisterOutputData(void *,enum clrn::CDevice::Data::Enum_t,class boost::mutex &)
+[12:24:08:44648984375] [3504] ---> void __thiscall clrn::CDevice::RegisterOutputData(void *,enum clrn::CDevice::Data::Enum_t,class boost::mutex &)
+[12:24:08:44648984375] [3504] <--- void __thiscall clrn::CDevice::RegisterOutputData(void *,enum clrn::CDevice::Data::Enum_t,class boost::mutex &)
+[12:24:09:44649000000] [2576] --> void __thiscall CCypressGUIDlg::ThreadPaintFun(void)[12:24:09:44649000000] [3504] <-- int __thiscall CCypressGUIDlg::OnInitDialog(void)
+
+[12:24:10:44650203125] [3504] --> void __thiscall CCypressGUIDlg::OnBnClickedButtonconnect(void)
+[12:24:13:44653187500] [3504] ---> const int __thiscall clrn::CDevice::GetDeviceCount(void) const
+[12:24:13:44653203125] [3504] <--- const int __thiscall clrn::CDevice::GetDeviceCount(void) const
+[12:24:13:44653203125] [3504] ---> void __thiscall clrn::CDevice::Start(const enum clrn::CDevice::Mode::Enum_t,const class std::vector<struct CRange,class std::allocator<struct CRange> > &,class boost::function<void __cdecl(void)> &)
+[12:24:14:44654218750] [3504] ----> const int __thiscall clrn::CDevice::Connect(void)
+[12:24:14:44654218750] [3504]  ###  Device count: [0]
+[12:24:16:44656265625] [3504] <---- const int __thiscall clrn::CDevice::Connect(void)
+[12:24:18:44658234375] [3504]  ###  
+Catch pass [User message]
+Message:
+{Can't open file! Path: d:\Dev\projects\CypressGUI\CypressGUI\Koefficients.txt}
+[12:24:18:44658234375] [3504] <--- void __thiscall clrn::CDevice::Start(const enum clrn::CDevice::Mode::Enum_t,const class std::vector<struct CRange,class std::allocator<struct CRange> > &,class boost::function<void __cdecl(void)> &)
+[12:24:18:44658234375] [3504]  ###  
+Catch ignore [clrn::CException]
+Message:
+{
+Catch pass [User message]
+Message:
+{Can't open file! Path: d:\Dev\projects\CypressGUI\CypressGUI\Koefficients.txt}
+File: d:\dev\projects\cypressgui\cypressgui\src\device.cpp
+Line: 331
+}
+[12:24:18:44658250000] [3504] <-- void __thiscall CCypressGUIDlg::OnBnClickedButtonconnect(void)
