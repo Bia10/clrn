@@ -68,7 +68,7 @@ public:
 		CEvent hostsInsert(m_Kernel, HOSTS_TABLE_NAME);
 		hostsInsert.Subscribe(boost::bind(&Impl::LocalHostsCallback, this, _1));	
 	}
-
+	 
 	//! Settings callback
 	void SettingsCallback(const ProtoPacketPtr packet)
 	{
@@ -294,6 +294,27 @@ public:
 		// inserting data and sending host map change event
 		InsertHostMapFromPacket(packet, packetGuid, time, true);
 
+		// checking for outgoing session with this host, if not exists - signal host status event
+		if (lastStatus != status)
+		{
+			boost::mutex::scoped_lock lock(m_HostStatusesMutex);
+			const CHostPinger::Status::Enum_t outgoingStatus = m_OutgoingHostStatuses[packetGuid].status;
+
+			if (CHostPinger::Status::SessionEstablished != outgoingStatus)
+			{
+				const ProtoPacketPtr packet(new packets::Packet());
+				data::Table& resultTable = *packet->mutable_job()->add_results();
+				resultTable.set_action(data::Table_Action_Insert);
+				resultTable.set_id(data::Table_Id_HostStatusEvent);
+
+				CTable table(resultTable);
+				table.AddRow()["guid"] = packetGuid;
+
+				CEvent evnt(m_Kernel, HOST_STATUS_EVENT_NAME);
+				evnt.Signal(packet);
+			}
+		}
+
 		// check for this host existence, if not exists add it
 		BOOST_FOREACH(const CTable::Row& row, *m_pHostsTable)
 		{
@@ -374,6 +395,30 @@ public:
 				boost::mutex::scoped_lock lock(m_HostStatusesMutex);
 				m_OutgoingHostStatuses[guid] = status;
 			}
+
+			if (status == lastStatus)
+				return; // no need to update host status
+
+			// checking for incoming session with this host, if not exists - signal host status event
+			boost::mutex::scoped_lock lock(m_HostStatusesMutex);
+			const CHostPinger::Status::Enum_t incomingStatus = m_IncomingHostStatuses[guid].status;
+
+			if (packet && status == incomingStatus)
+				return;
+
+			if (!packet && status != incomingStatus)
+				return;
+
+			const ProtoPacketPtr packet(new packets::Packet());
+			data::Table& resultTable = *packet->mutable_job()->add_results();
+			resultTable.set_action(packet ? data::Table_Action_Insert : data::Table_Action_Delete);
+			resultTable.set_id(data::Table_Id_HostStatusEvent);
+
+			CTable table(resultTable);
+			table.AddRow()["guid"] = guid;
+
+			CEvent evnt(m_Kernel, HOST_STATUS_EVENT_NAME);
+			evnt.Signal(packet);
 		}
 		CATCH_IGNORE_EXCEPTIONS(m_Log, guid)
 	}
@@ -473,6 +518,21 @@ public:
 				params["from"]	= guid;
 				params["to"]	= m_LocalHostGuid;
 				proc.Execute(CProcedure::Id::HostMapDelete, params, IJob::CallBackFn());
+
+				// checking for outgoing session with this host, if not exists - signal host status event
+				if (CHostPinger::Status::SessionEstablished != m_OutgoingHostStatuses[guid].status)
+				{
+					const ProtoPacketPtr packet(new packets::Packet());
+					data::Table& resultTable = *packet->mutable_job()->add_results();
+					resultTable.set_action(data::Table_Action_Delete);
+					resultTable.set_id(data::Table_Id_HostStatusEvent);
+
+					CTable table(resultTable);
+					table.AddRow()["guid"] = guid;
+
+					CEvent evnt(m_Kernel, HOST_STATUS_EVENT_NAME);
+					evnt.Signal(packet);
+				}
 			}
 		}
 		CATCH_IGNORE_EXCEPTIONS(m_Log)

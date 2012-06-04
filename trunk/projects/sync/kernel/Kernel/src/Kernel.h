@@ -37,7 +37,7 @@ class CKernel
 		IJob::Ptr					job;
 		std::size_t					timeout;
 		std::string					host;
-	};
+	}; 
 
 	//! Type of the waiting jobs container
 	typedef std::map<std::string, WaitingJob>		WaitingJobs;
@@ -121,6 +121,9 @@ private:
 
 	//! Hosts list callback
 	void					HostListCallBack(const ProtoPacketPtr packet);
+
+	//! Host status callback
+	void					HostStatusCallBack(const ProtoPacketPtr packet);
 
 	//! Logger
 	CLog					m_Log;

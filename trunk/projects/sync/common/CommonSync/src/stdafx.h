@@ -33,7 +33,7 @@
 #pragma warning(disable : 4996)
 #include <boost/algorithm/string.hpp>
 #pragma warning(pop) 
-
+ 
 
 static const unsigned int CURRENT_MODULE_ID = COMMON_MODULE_ID;
 

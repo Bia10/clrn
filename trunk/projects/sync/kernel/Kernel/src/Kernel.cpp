@@ -77,7 +77,7 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 
 	TRY 
 	{
-		m_Log.Open("1");
+		m_Log.Open("1", CURRENT_MODULE_ID);
 
 		m_DBpath = conv::cast<std::string>(fs::FullPath(szDBpath ? szDBpath : KERNEL_DATABASE_FILE_NAME));
 		CHECK(fs::Exists(m_DBpath), m_DBpath);
@@ -86,22 +86,24 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 		m_pSettingsData.reset(new data::Table());
 		m_pSettings.reset(new CSettings(m_Log, DataBase::Instance(), *m_pSettingsData));
 		m_pSettings->Load();
-
-		std::wstring logSource;
-		m_pSettings->Get(KERNEL_MODULE_ID, logSource, "log_source");
 		
 		std::vector<ILog::Level::Enum_t> levels;
 		for (std::size_t i = 0; i <= LAST_MODULE_ID; ++i)
 		{
 			int logLevel = 0;
-			m_pSettings->Get(i, logLevel, "log_level");
+			m_pSettings->Get(i, logLevel, "log_level"); 
 			levels.push_back(static_cast<ILog::Level::Enum_t>(logLevel));
 		}
 
 		m_Log.Close();
-
 		m_Log.SetLogLevels(levels);
-		m_Log.Open(logSource.c_str());
+
+		for (std::size_t i = 0; i <= LAST_MODULE_ID; ++i)
+		{
+			std::string logSource;
+			m_pSettings->Get(i, logSource, "log_source");
+			m_Log.Open(logSource, i);
+		}	
 
 		int port = 0;
 		int threads = 0;
@@ -157,8 +159,67 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 		// subscribing to host list change event
 		CEvent hostListEvent(*this, HOSTS_TABLE_NAME);
 		hostListEvent.Subscribe(boost::bind(&CKernel::HostListCallBack, this, _1));
+
+		// subscribing to host status event
+		CEvent hostStatusEvent(*this, HOST_STATUS_EVENT_NAME);
+		hostStatusEvent.Subscribe(boost::bind(&CKernel::HostStatusCallBack, this, _1));
 	}
 	CATCH_PASS_EXCEPTIONS("Init failed.")
+}
+
+void CKernel::HostStatusCallBack(const ProtoPacketPtr packet)
+{
+	SCOPED_LOG(m_Log);
+
+	CHECK(packet);
+
+	TRY 
+	{
+		data::Table* protoTable = packet->mutable_job()->mutable_results(0);
+		CTable table(*protoTable);
+		const std::string& guid = table[0]["guid"];
+
+		if (data::Table_Action_Insert == protoTable->action())
+		{
+			LOG_WARNING("Host: [%s] has come online.") % guid;
+			return;
+		}
+
+		if (data::Table_Action_Delete != protoTable->action())
+			return;
+
+		LOG_WARNING("Host: [%s] went offline, deleting all associated jobs.") % guid;
+
+		// deleting all jobs associated with this host
+		std::vector<IJob::Ptr> jobsToErase;
+		{
+			boost::mutex::scoped_lock lock(m_WaitingJobsMutex);
+
+			WaitingJobs::const_iterator it = m_WaitingJobs.begin();
+			const WaitingJobs::const_iterator itEnd = m_WaitingJobs.end();
+			for (; it != itEnd; ++it)
+			{
+				if (it->second.host != guid)
+					continue;
+
+				jobsToErase.push_back(it->second.job);
+
+				m_WaitingJobs.erase(it);			
+				it = m_WaitingJobs.begin();
+			}
+		}
+
+		BOOST_FOREACH(const IJob::Ptr& job, jobsToErase)
+		{
+			LOG_WARNING("Job id: [%s], guid: [%s], erased due host went offline.") % job->GetId() % job->GetGUID() % job->GetGUID();
+			TRY 
+			{
+				job->HandleReply(ProtoPacketPtr());
+			}
+			CATCH_IGNORE_EXCEPTIONS(m_Log, job->GetId(), job->GetGUID(), job->GetGUID())
+		}
+	}
+	CATCH_PASS_EXCEPTIONS(*packet)
 }
 
 void CKernel::HostListCallBack(const ProtoPacketPtr packet)

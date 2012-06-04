@@ -198,7 +198,7 @@ public:
 
 	//! Delete rows
 	void			EraseRows(const data::Table& table);
-
+	 
 	//! Create index
 	void			CreateIndex(const std::string& fieldName);
 
