@@ -1,0 +1,8 @@
+D:\Programming\!Dev\temp\AutoClick\AutoClick\bin\Debug\AutoClick.exe
+D:\Programming\!Dev\temp\AutoClick\AutoClick\bin\Debug\AutoClick.pdb
+D:\Programming\!Dev\temp\AutoClick\AutoClick\obj\Debug\ResolveAssemblyReference.cache
+D:\Programming\!Dev\temp\AutoClick\AutoClick\obj\Debug\AutoClick.Form1.resources
+D:\Programming\!Dev\temp\AutoClick\AutoClick\obj\Debug\AutoClick.Properties.Resources.resources
+D:\Programming\!Dev\temp\AutoClick\AutoClick\obj\Debug\AutoClick.csproj.GenerateResource.Cache
+D:\Programming\!Dev\temp\AutoClick\AutoClick\obj\Debug\AutoClick.exe
+D:\Programming\!Dev\temp\AutoClick\AutoClick\obj\Debug\AutoClick.pdb

@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SocketServer", "SocketServer\SocketServer.vcproj", "{092D243B-310E-42CE-B01C-75ABF6B0A95E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{092D243B-310E-42CE-B01C-75ABF6B0A95E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{092D243B-310E-42CE-B01C-75ABF6B0A95E}.Debug|Win32.Build.0 = Debug|Win32
+		{092D243B-310E-42CE-B01C-75ABF6B0A95E}.Release|Win32.ActiveCfg = Release|Win32
+		{092D243B-310E-42CE-B01C-75ABF6B0A95E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

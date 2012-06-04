@@ -1,0 +1,15 @@
+<amplitude>
+ <data amplitude_out="36" frequency="1"></data>
+ <data amplitude_out="36" frequency="10"></data>
+ <data amplitude_out="36" frequency="1000"></data>
+ <data amplitude_out="37" frequency="10000"></data>
+ <data amplitude_out="40" frequency="20000"></data>
+ <data amplitude_out="43" frequency="30000"></data>
+ <data amplitude_out="48" frequency="40000"></data>
+ <data amplitude_out="54" frequency="50000"></data>
+ <data amplitude_out="60" frequency="60000"></data>
+ <data amplitude_out="65" frequency="70000"></data>
+ <data amplitude_out="71" frequency="80000"></data>
+ <data amplitude_out="78" frequency="90000"></data>
+ <data amplitude_out="85" frequency="100000"></data>
+</amplitude>

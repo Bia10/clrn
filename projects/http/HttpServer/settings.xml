@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<server>
+ <log>
+  <source>std::cout</source>
+  <level>0</level>
+ </log>
+ <host>127.0.0.1</host>
+ <port>80</port>
+ <threads>20</threads>
+ <www_root>/media/All/Dev/doc_root/</www_root>
+ <plugins path="/media/All/svn/dev/http/plugins_bin/debug/">
+  <plugin>PhpPlugin</plugin>
+  <plugin>AuthPlugin</plugin> 
+ </plugins>
+ <users_storage>userdata.xml</users_storage>
+ <email_server>smtp.gmail.com</email_server>
+ <email_port>465</email_port>
+ <server_email_box>clrnmail@gmail.com</server_email_box>
+ <server_email_box_password>šÈ•¤¢ŸTıv&lt;¢îæ</server_email_box_password>
+
+</server>

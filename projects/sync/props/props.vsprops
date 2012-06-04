@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="cmnprops_vc90"
+	OutputDirectory="../../bin/$(PlatformName)/$(ConfigurationName)"
+	IntermediateDirectory="../../tmp/$(PlatformName)/$(ConfigurationName)/$(ProjectName)"
+	BuildLogFile="$(IntDir)$(ProjectFileName).html"
+	EnableManagedIncrementalBuild="1"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalOptions="/MP -Zm116"
+		AdditionalIncludeDirectories="../../../../ThirdParty;../../../../ThirdParty/sqlite;./src;./inc;../../common/proto/inc;../../common/CommonSync/inc;../../common/DataBaseTools/inc;../../plugins"
+		PreprocessorDefinitions="_WIN32_WINNT=0x0501"
+		ProgramDataBaseFileName="../../bin/$(PlatformName)/$(ConfigurationName)/$(ProjectName).pdb"
+		WarningLevel="4"
+		DebugInformationFormat="3"
+	/>
+	<Tool
+		Name="VCLibrarianTool"
+		AdditionalLibraryDirectories="&quot;../../../../ThirdParty/lib/$(ConfigurationName)&quot;;&quot;../../bin/$(PlatformName)/$(ConfigurationName)&quot;"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		AdditionalDependencies="DataBaseTools.lib CommonSync.lib Protocols.lib libprotobuf.lib sqlite3.lib loki.lib Rpcrt4.lib"
+		LinkIncremental="1"
+		AdditionalLibraryDirectories="../../../../ThirdParty/lib;&quot;../../../../ThirdParty/lib/$(ConfigurationName)&quot;;&quot;../../bin/$(PlatformName)/$(ConfigurationName)&quot;"
+	/>
+</VisualStudioPropertySheet>

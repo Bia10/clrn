@@ -1,0 +1,29 @@
+// CypressGUI.idl : type library source for CypressGUI.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (CypressGUI.tlb).
+
+[ uuid(C3589480-AFE8-48A9-BD8F-F098BFA8C427), version(1.0) ]
+library CypressGUI
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	//  Primary dispatch interface for CCypressGUIDoc
+	
+	[ uuid(16539FDC-F9FF-4705-BC2D-490C5A90F118) ]
+	dispinterface ICypressGUI
+	{
+		properties:
+			
+		methods:
+	};
+
+	//  Class information for CCypressGUIDoc
+	
+	[ uuid(DD78B3DA-BE77-4222-B04D-5D775F5730D4) ]
+	coclass CypressGUI
+	{
+		[default] dispinterface ICypressGUI;
+	};
+};

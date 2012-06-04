@@ -1,0 +1,1 @@
+..\bin\Win32\Debug_vc110\DBCompiler.exe --db-file ./kernel.db --create-new true --script-path ./sql/ --script-file schema.sql kernel.sql

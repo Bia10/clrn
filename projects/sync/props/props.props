@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.50522.1</_ProjectFileVersion>
+    <_PropertySheetDisplayName>cmnprops_vc90</_PropertySheetDisplayName>
+    <OutDir>../../bin/$(PlatformName)/$(Configuration)\</OutDir>
+    <IntDir>../../tmp/$(PlatformName)/$(Configuration)/$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <BuildLog>
+      <Path>$(IntDir)$(ProjectFileName).html</Path>
+    </BuildLog>
+    <ClCompile>
+      <AdditionalOptions>/MP -Zm116 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>../../../../ThirdParty;../../../../ThirdParty/sqlite;./src;./inc;../../common/proto/inc;../../common/CommonSync/inc;../../common/DataBaseTools/inc;../../plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>../../bin/$(Platform)/$(Configuration)/$(ProjectName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <AdditionalLibraryDirectories>../../../../ThirdParty/lib/$(Configuration);../../bin/$(Platform)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+    <Link>
+      <AdditionalDependencies>DataBaseTools.lib;CommonSync.lib;Protocols.lib;libprotobuf.lib;sqlite3.lib;loki.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../../ThirdParty/lib;../../../../ThirdParty/lib/$(Configuration);../../bin/$(Platform)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>
