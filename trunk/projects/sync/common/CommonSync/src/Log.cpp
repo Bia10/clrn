@@ -11,7 +11,7 @@
 class CScopedLog : boost::noncopyable
 {
 public:
-	CScopedLog(ILog& Logger, const char *szFunctionName) 
+	CScopedLog(ILog& Logger, const char *szFunctionName, unsigned int module) 
 		: m_Log(Logger)
 		, m_szFunction(szFunctionName)
 #ifdef WIN32
@@ -19,6 +19,7 @@ public:
 #else
 		, m_nThreadId(pthread_self())
 #endif
+		, m_Module(module)
 	{
 		std::wstring indent;
 		{
@@ -26,7 +27,7 @@ public:
 			indent.assign(++s_mapThreads[m_nThreadId], L'-');
 		}
 
-		m_Log.Debug(L" -%s> [%s]") % indent % m_szFunction;
+		m_Log.Debug(m_Module, L" -%s> [%s]") % indent % m_szFunction;
 	}
 
 	~CScopedLog()
@@ -37,7 +38,7 @@ public:
 			indent.assign(s_mapThreads[m_nThreadId]--, L'-');
 		}
 
-		m_Log.Debug(L" <-%s [%s]") % indent % m_szFunction;
+		m_Log.Debug(m_Module, L" <-%s [%s]") % indent % m_szFunction;
 	}
 private:
 
@@ -47,16 +48,16 @@ private:
 	std::size_t				m_nThreadId;
 	static ThreadsMap		s_mapThreads;
 	static boost::mutex		s_mxMap;
+	unsigned int			m_Module;
 };
 
 CScopedLog::ThreadsMap 	CScopedLog::s_mapThreads;
 boost::mutex		 	CScopedLog::s_mxMap;
 
 CLog::CLog(void)
-	: m_pStream(0)
-	, m_IsExternalStream(false)
-	, m_CurrentLevel(Level::None)
+	: m_CurrentLevel(Level::None)
 	, m_IsOpened(false)
+	, m_CurrentModule(0)
 {
 }
 
@@ -65,28 +66,34 @@ CLog::~CLog(void)
 	Close();
 }
 
-void CLog::Open(const std::string& source)
+void CLog::Open(const std::string& source, unsigned int module)
 {
-	Open(conv::cast<std::wstring>(source));
+	Open(conv::cast<std::wstring>(source), module);
 }
 
-void CLog::Open(const std::wstring& source)
+void CLog::Open(const std::wstring& source, unsigned int module)
 {
+	if (m_Streams.size() <= module)
+	{
+		m_Streams.resize(module + 1);
+		m_CreatedStreams.resize(m_Streams.size());
+	}
+
 	if (1 == source.size())
 	{
 		switch(*source.begin())
 		{
 		case '1' :
-			m_pStream = &std::cout;
+			m_Streams[module] = &std::cout;
 			break;
 		case '2' :
-			m_pStream = &std::cerr;
+			m_Streams[module] = &std::cerr;
 			break;
 		case '3' :
-			m_pStream = &std::clog;
+			m_Streams[module] = &std::clog;
 			break;
 		}
-		m_IsExternalStream = true;
+		m_CreatedStreams[module] = true;
 	}
 	else
 	{
@@ -106,12 +113,13 @@ void CLog::Open(const std::wstring& source)
 
 		std::ofstream* stream = new std::ofstream(source.c_str(), std::ios::out);
 		CHECK(stream->is_open(), conv::cast<std::string>(source));
-		m_pStream = stream;
-		m_IsExternalStream = false;
+		m_Streams[module] = stream;
+		m_CreatedStreams[module] = false;
 	}	
 
 
 	m_Mutex.lock();
+	m_CurrentModule = module;
 	m_Format = boost::format("Logger started.");
 	Write(Level::None);
 	m_IsOpened = true;
@@ -128,11 +136,12 @@ void CLog::Close()
 	m_Format = boost::format("Logger shutted down.");
 	Write(Level::None);
 
-	if (m_IsExternalStream)
-		return;
-
-	delete m_pStream;
-	m_pStream = 0;
+	for (std::size_t i = 0 ; i < m_Streams.size(); ++i)
+	{
+		if (m_CreatedStreams[i])
+			delete m_Streams[i];
+		m_CreatedStreams[i] = false;
+	}
 }
 
 bool CLog::IsEnabled(unsigned int module, const Level::Enum_t level) const
@@ -143,11 +152,12 @@ bool CLog::IsEnabled(unsigned int module, const Level::Enum_t level) const
 	return m_Levels[module] >= level;
 }
 
-ILog& CLog::Error(const std::string& text)
+ILog& CLog::Error(unsigned int module, const std::string& text)
 {
 	m_Mutex.lock();
 	m_Format = boost::format(text);
 	m_CurrentLevel = Level::Error;
+	m_CurrentModule = module;
 
 	if (!m_Format.remaining_args())
 		Write(m_CurrentLevel);
@@ -155,16 +165,17 @@ ILog& CLog::Error(const std::string& text)
 	return *this;
 }
 
-ILog& CLog::Error(const std::wstring& text)
+ILog& CLog::Error(unsigned int module, const std::wstring& text)
 {
-	return Error(conv::cast<std::string>(text).c_str());
+	return Error(module, conv::cast<std::string>(text).c_str());
 }
 
-ILog& CLog::Error(const std::string& func, const std::string& text)
+ILog& CLog::Error(unsigned int module, const std::string& func, const std::string& text)
 {
 	m_Mutex.lock();
 	m_Format = boost::format(std::string(text) + " /* " + func + " */");
 	m_CurrentLevel = Level::Error;
+	m_CurrentModule = module;
 
 	if (!m_Format.remaining_args())
 		Write(m_CurrentLevel);
@@ -172,17 +183,18 @@ ILog& CLog::Error(const std::string& func, const std::string& text)
 	return *this;
 }
 
-ILog& CLog::Error(const std::string& func, const std::wstring& text)
+ILog& CLog::Error(unsigned int module, const std::string& func, const std::wstring& text)
 {
-	return Error(func, conv::cast<std::string>(text).c_str());
+	return Error(module, func, conv::cast<std::string>(text).c_str());
 }
 
-ILog& CLog::Warning(const std::string& text)
+ILog& CLog::Warning(unsigned int module, const std::string& text)
 {
 	m_Mutex.lock();
 
 	m_Format = boost::format(text);
 	m_CurrentLevel = Level::Warning;
+	m_CurrentModule = module;
 
 	if (!m_Format.remaining_args())
 		Write(m_CurrentLevel);
@@ -190,17 +202,18 @@ ILog& CLog::Warning(const std::string& text)
 	return *this;
 }
 
-ILog& CLog::Warning(const std::wstring& text)
+ILog& CLog::Warning(unsigned int module, const std::wstring& text)
 {
-	return Warning(conv::cast<std::string>(text).c_str());
+	return Warning(module, conv::cast<std::string>(text).c_str());
 }
 
-ILog& CLog::Warning(const std::string& func, const std::string& text)
+ILog& CLog::Warning(unsigned int module, const std::string& func, const std::string& text)
 {
 	m_Mutex.lock();
 
 	m_Format = boost::format(std::string(text) + " /* " + func + " */");
 	m_CurrentLevel = Level::Warning;
+	m_CurrentModule = module;
 
 	if (!m_Format.remaining_args())
 		Write(m_CurrentLevel);
@@ -208,17 +221,18 @@ ILog& CLog::Warning(const std::string& func, const std::string& text)
 	return *this;
 }
 
-ILog& CLog::Warning(const std::string& func, const std::wstring& text)
+ILog& CLog::Warning(unsigned int module, const std::string& func, const std::wstring& text)
 {
-	return Warning(func, conv::cast<std::string>(text).c_str());
+	return Warning(module, func, conv::cast<std::string>(text).c_str());
 }
 
-ILog& CLog::Trace(const std::string& text)
+ILog& CLog::Trace(unsigned int module, const std::string& text)
 {
 	m_Mutex.lock();
 
 	m_Format = boost::format(text);
 	m_CurrentLevel = Level::Trace;
+	m_CurrentModule = module;
 
 	if (!m_Format.remaining_args())
 		Write(m_CurrentLevel);
@@ -226,17 +240,18 @@ ILog& CLog::Trace(const std::string& text)
 	return *this;
 }
 
-ILog& CLog::Trace(const std::wstring& text)
+ILog& CLog::Trace(unsigned int module, const std::wstring& text)
 {
-	return Trace(conv::cast<std::string>(text).c_str());
+	return Trace(module, conv::cast<std::string>(text).c_str());
 }
 
-ILog& CLog::Trace(const std::string& func, const std::string& text)
+ILog& CLog::Trace(unsigned int module, const std::string& func, const std::string& text)
 {
 	m_Mutex.lock();
 
 	m_Format = boost::format(std::string(text) + " /* " + func + " */");
 	m_CurrentLevel = Level::Trace;
+	m_CurrentModule = module;
 
 	if (!m_Format.remaining_args())
 		Write(m_CurrentLevel);
@@ -244,17 +259,18 @@ ILog& CLog::Trace(const std::string& func, const std::string& text)
 	return *this;
 }
 
-ILog& CLog::Trace(const std::string& func, const std::wstring& text)
+ILog& CLog::Trace(unsigned int module, const std::string& func, const std::wstring& text)
 {
-	return Trace(func, conv::cast<std::string>(text).c_str());
+	return Trace(module, func, conv::cast<std::string>(text).c_str());
 }
 
-ILog& CLog::Debug(const std::string& text)
+ILog& CLog::Debug(unsigned int module, const std::string& text)
 {
 	m_Mutex.lock();
 
 	m_Format = boost::format(text);
 	m_CurrentLevel = Level::Debug;
+	m_CurrentModule = module;
 
 	if (!m_Format.remaining_args())
 		Write(m_CurrentLevel);
@@ -262,17 +278,18 @@ ILog& CLog::Debug(const std::string& text)
 	return *this;
 }
 
-ILog& CLog::Debug(const std::wstring& text)
+ILog& CLog::Debug(unsigned int module, const std::wstring& text)
 {
-	return Debug(conv::cast<std::string>(text).c_str());
+	return Debug(module, conv::cast<std::string>(text).c_str());
 }
 
-ILog& CLog::Debug(const std::string& func, const std::string& text)
+ILog& CLog::Debug(unsigned int module, const std::string& func, const std::string& text)
 {
 	m_Mutex.lock();
 
 	m_Format = boost::format(std::string(text) + " /* " + func + " */");
 	m_CurrentLevel = Level::Debug;
+	m_CurrentModule = module;
 
 	if (!m_Format.remaining_args())
 		Write(m_CurrentLevel);
@@ -280,9 +297,9 @@ ILog& CLog::Debug(const std::string& func, const std::string& text)
 	return *this;
 }
 
-ILog& CLog::Debug(const std::string& func, const std::wstring& text)
+ILog& CLog::Debug(unsigned int module, const std::string& func, const std::wstring& text)
 {
-	return Debug(func, conv::cast<std::string>(text).c_str());
+	return Debug(module, func, conv::cast<std::string>(text).c_str());
 }
 
 ILog& CLog::operator%(const unsigned int value)
@@ -390,10 +407,10 @@ void CLog::Write(const Level::Enum_t level)
 {
 	try
 	{
-		if (!m_pStream)
+		if (!m_Streams[m_CurrentModule])
 			return;
 
-		*m_pStream
+		*m_Streams[m_CurrentModule]
 			<< "[" << Level2String(level) << "]"
 			<< "[" << boost::posix_time::to_iso_extended_string(boost::posix_time::microsec_clock().local_time()) << "]:["
 #ifdef WIN32
@@ -417,13 +434,16 @@ ILog::ScopedLogPtr CLog::MakeScopedLog(unsigned int module, const std::string& f
 	if (!IsEnabled(module, Level::Debug))
 		return ScopedLogPtr();
 
-	return ScopedLogPtr(new CScopedLog(*this, func.c_str()));
+	return ScopedLogPtr(new CScopedLog(*this, func.c_str(), module));
 }
 
 void CLog::SetLogLevels(const std::vector<Level::Enum_t>& levels)
 {
 	m_Levels = levels;
 
+	m_Streams.resize(m_Levels.size());
+	m_CreatedStreams.resize(m_Levels.size());
+
 	for (unsigned int i = 0 ; i < m_Levels.size(); ++i)
-		Warning(__FUNCTION__, "Setting up module: [%s] log level: [%s].") % i % m_Levels[i];
+		Warning(i, __FUNCTION__, "Setting up module: [%s] log level: [%s].") % i % m_Levels[i];
 }
