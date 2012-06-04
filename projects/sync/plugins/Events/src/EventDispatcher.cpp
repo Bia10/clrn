@@ -68,7 +68,7 @@ public:
 		SCOPED_LOG(m_Log);
 
 		LOG_TRACE("Signaling event: name: [%s], data: [%s].") % name % packet->DebugString();
-
+		 
 		TRY 
 		{
 			// find event

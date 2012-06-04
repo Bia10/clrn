@@ -6,7 +6,7 @@ namespace po = boost::program_options;
 int main(int ac, char* av[])
 {
 	CLog logger;
-	logger.Open("1");
+	logger.Open("1", KERNEL_MODULE_ID);
 	std::vector<ILog::Level::Enum_t> levels(10, ILog::Level::Trace);
 
 	TRY 
@@ -22,7 +22,7 @@ int main(int ac, char* av[])
 
 		po::positional_options_description p;
 		p.add("script-file", -1);
-
+		 
 		po::variables_map vm;
 		po::store(po::command_line_parser(ac, av).options(desc).positional(p).run(), vm);
 		po::notify(vm);
@@ -54,7 +54,7 @@ int main(int ac, char* av[])
 
 			const std::string full = boost::filesystem3::system_complete(path).string();
 
-			logger.Trace(__FUNCTION__, "Executing: [%s]") % full;
+			logger.Trace(CURRENT_MODULE_ID, __FUNCTION__, "Executing: [%s]") % full;
 
 			compiler.ExecuteFile(full);
 		}
