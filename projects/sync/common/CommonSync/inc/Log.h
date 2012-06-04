@@ -5,6 +5,7 @@
 #include "Config.h"
 
 #include <ostream>
+#include <vector>
 
 #include <boost/format.hpp>
 #include <boost/scoped_ptr.hpp>
@@ -17,13 +18,20 @@
 class CLog
 	: public ILog
 {
+	//! Stream vector
+	typedef std::vector<std::ostream*>	Streams;
+
+	//! Stream open flags(created or opened)
+	typedef std::vector<bool>			StreamFlags;
+
+
 public:
 	CLog(void);
 	~CLog(void);
 
 	//! Open log
-	void		Open(const std::string& szSource);
-	void		Open(const std::wstring& szSource);
+	void		Open(const std::string& szSource, unsigned int module);
+	void		Open(const std::wstring& szSource, unsigned int module);
 
 	//! Close log
 	void		Close();
@@ -35,23 +43,23 @@ public:
 	bool		IsEnabled(unsigned int module, const Level::Enum_t level) const;
 
 	//! Write text
-	ILog&		Error(const std::string& szText);
-	ILog&		Error(const std::wstring& szText);
-	ILog&		Warning(const std::string& szText);
-	ILog&		Warning(const std::wstring& szText);
-	ILog&		Trace(const std::string& szText);
-	ILog&		Trace(const std::wstring& szText);
-	ILog&		Debug(const std::string& szText);
-	ILog&		Debug(const std::wstring& szText);
+	ILog&		Error(unsigned int module, const std::string& szText);
+	ILog&		Error(unsigned int module, const std::wstring& szText);
+	ILog&		Warning(unsigned int module, const std::string& szText);
+	ILog&		Warning(unsigned int module, const std::wstring& szText);
+	ILog&		Trace(unsigned int module, const std::string& szText);
+	ILog&		Trace(unsigned int module, const std::wstring& szText);
+	ILog&		Debug(unsigned int module, const std::string& szText);
+	ILog&		Debug(unsigned int module, const std::wstring& szText);
 
-	ILog&		Error(const std::string& szFunction, const std::string& szText);
-	ILog&		Error(const std::string& szFunction, const std::wstring& szText);
-	ILog&		Warning(const std::string& szFunction, const std::string& szText);
-	ILog&		Warning(const std::string& szFunction, const std::wstring& szText);
-	ILog&		Trace(const std::string& szFunction, const std::string& szText);
-	ILog&		Trace(const std::string& szFunction, const std::wstring& szText);
-	ILog&		Debug(const std::string& szFunction, const std::string& szText);
-	ILog&		Debug(const std::string& szFunction, const std::wstring& szText);
+	ILog&		Error(unsigned int module, const std::string& szFunction, const std::string& szText);
+	ILog&		Error(unsigned int module, const std::string& szFunction, const std::wstring& szText);
+	ILog&		Warning(unsigned int module, const std::string& szFunction, const std::string& szText);
+	ILog&		Warning(unsigned int module, const std::string& szFunction, const std::wstring& szText);
+	ILog&		Trace(unsigned int module, const std::string& szFunction, const std::string& szText);
+	ILog&		Trace(unsigned int module, const std::string& szFunction, const std::wstring& szText);
+	ILog&		Debug(unsigned int module, const std::string& szFunction, const std::string& szText);
+	ILog&		Debug(unsigned int module, const std::string& szFunction, const std::wstring& szText);
 
 	//! Write formatted argument
 	ILog&		operator % (const unsigned int value);
@@ -68,23 +76,23 @@ public:
 
 private:
 
-	//! Internal write
+	//!  Internal write
 	void								Write(const Level::Enum_t level);
 
 	//! Level to string
 	const char*							Level2String(const Level::Enum_t level) const;
 
-	//! Log output stream pointer
-	std::ostream*						m_pStream;
+	//! Log output stream pointers
+	Streams								m_Streams;
+
+	//! Stream flags
+	StreamFlags							m_CreatedStreams;
 
 	//! Log levels
 	std::vector<Level::Enum_t>			m_Levels;
 
 	//! Current message level
 	Level::Enum_t						m_CurrentLevel;
-
-	//! External stream
-	bool								m_IsExternalStream;
 
 	//! Format object
 	boost::format						m_Format;
@@ -94,6 +102,9 @@ private:
 
 	//! Open flag
 	bool								m_IsOpened;
+
+	//! Current module id
+	unsigned int						m_CurrentModule;
 
 };
 

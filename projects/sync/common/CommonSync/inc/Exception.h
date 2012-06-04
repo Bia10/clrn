@@ -67,7 +67,7 @@ template<class T>
 void Append(CExcept& e, It it, const T& arg1)
 {
 	e.Append() << "\t[" << *it << "] : [" << arg1 << "]" << std::endl;
-}
+} 
 template<class T1, class T2>
 void Append(CExcept& e, It it, const T1& arg1, const T2& arg2)
 {
@@ -136,7 +136,7 @@ catch(CMN_NAMESPACE_NAME::CExcept& e)												\
 {																					\
 	e.Append(__FILE__, __LINE__);													\
 	APPEND_ARGS(e, __VA_ARGS__);													\
-	log.Error("Ignored: %s") % e.what();											\
+	log.Error(CURRENT_MODULE_ID, __FUNCTION__, "Ignored: %s") % e.what();			\
 }
 
 #define CATCH_IGNORE_STDEXCEPT(log, ...)											\
@@ -144,7 +144,7 @@ catch(const std::exception& e)														\
 {																					\
 	CMN_NAMESPACE_NAME::CExcept except(__FILE__, __LINE__, e.what());				\
 	APPEND_ARGS(except, __VA_ARGS__);												\
-	log.Error("Ignored: %s") % except.what();										\
+	log.Error(CURRENT_MODULE_ID, __FUNCTION__, "Ignored: %s") % except.what();		\
 }
 
 #define CATCH_IGNORE_UNHANDLED(log, ...)											\
@@ -152,7 +152,7 @@ catch(...)																			\
 {																					\
 	CMN_NAMESPACE_NAME::CExcept except(__FILE__, __LINE__, "Unhandled exception.");	\
 	APPEND_ARGS(except, __VA_ARGS__);												\
-	log.Error("Ignored: %s") % except.what();										\
+	log.Error(CURRENT_MODULE_ID, __FUNCTION__, "Ignored: %s") % except.what();		\
 }
 
 #define CATCH_PASS_EXCEPTIONS(...)					\
