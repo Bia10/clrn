@@ -320,6 +320,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\Host.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\HostPinger.cpp"
 				>
 			</File>
@@ -357,6 +361,10 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath=".\src\Host.h"
+				>
+			</File>
 			<File
 				RelativePath=".\inc\HostPinger.h"
 				>
