@@ -21,7 +21,7 @@ message Job
 		SET_EVENT		= 10;
 	}
 	
-	required JobId 			id 			= 1;	// job operation id
+	optional JobId 			id 			= 1;	// job operation id
 	repeated data.Table 	params  	= 2;	// job params
 	repeated data.Table 	results  	= 3;	// job results
 }

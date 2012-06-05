@@ -106,7 +106,12 @@ void CLog::Open(const std::wstring& source, unsigned int module)
 			if (std::wstring::npos == dot)
 				dot = newPath.size() - 1;
 
-			newPath.insert(dot, boost::posix_time::to_iso_wstring(boost::posix_time::microsec_clock().local_time()));
+			std::wstring time = std::wstring(L"].") + boost::posix_time::to_iso_extended_wstring(boost::posix_time::microsec_clock().local_time());
+			boost::algorithm::replace_all(time, L":", L".");
+			boost::algorithm::replace_all(time, L"T", L"_");
+
+			newPath.insert(dot, time);
+			newPath.insert(dot - 1, L"[");
 
 			fs::Move(fs::FullPath(source), newPath);
 		}

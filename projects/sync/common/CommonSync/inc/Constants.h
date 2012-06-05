@@ -11,8 +11,10 @@ const unsigned int		SETTINGS_MODULE_ID			= 2;
 const unsigned int		DATABASE_MODULE_ID			= 3;
 //! Network module id
 const unsigned int		NETWORK_MODULE_ID			= 4;
+//! Common module id
+const unsigned int		COMMON_MODULE_ID			= 5;
 //! Network module id
-const unsigned int		LAST_MODULE_ID				= NETWORK_MODULE_ID;
+const unsigned int		LAST_MODULE_ID				= COMMON_MODULE_ID;
 //! Kernel database name
 const char				KERNEL_DATABASE_FILE_NAME[] = "../../../data/kernel.db";
 //! Modules table name

@@ -150,7 +150,7 @@ class Job : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // required .jobs.Job.JobId id = 1;
+  // optional .jobs.Job.JobId id = 1;
   inline bool has_id() const;
   inline void clear_id();
   static const int kIdFieldNumber = 1;
@@ -209,7 +209,7 @@ class Job : public ::google::protobuf::Message {
 
 // Job
 
-// required .jobs.Job.JobId id = 1;
+// optional .jobs.Job.JobId id = 1;
 inline bool Job::has_id() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }

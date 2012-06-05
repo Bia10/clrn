@@ -360,12 +360,16 @@ void CKernel::TimeoutControllerThread()
 
 			BOOST_FOREACH(const IJob::Ptr& job, jobsToErase)
 			{
-				LOG_WARNING("Job id: [%s], guid: [%s], timeout: [%s] ended.") % job->GetId() % job->GetGUID() % job->GetGUID();
+				LOG_WARNING("Job id: [%s], guid: [%s], timeout: [%s] ended.") 
+					% job->GetId() 
+					% job->GetTimeout() 
+					% job->GetGUID();
+
 				TRY 
 				{
 					job->HandleReply(ProtoPacketPtr());
 				}
-				CATCH_IGNORE_EXCEPTIONS(m_Log, job->GetId(), job->GetGUID(), job->GetGUID())
+				CATCH_IGNORE_EXCEPTIONS(m_Log, job->GetId(), job->GetTimeout(), job->GetGUID())
 			}
 		}
 		catch (const boost::thread_interrupted&)
@@ -399,10 +403,16 @@ void CKernel::WorkThread()
 					}
 					catch (const std::exception& e)
 					{
+						if (packets::Packet_PacketType_REQUEST != packet->type())
+							throw;
+
 						SendErrorReply(packet->from(), packet->guid(), e.what());
 					}
 					catch (...)
 					{
+						if (packets::Packet_PacketType_REQUEST != packet->type())
+							throw;
+
 						SendErrorReply(packet->from(), packet->guid(), "Unhandled exception.");
 					}
 				}
