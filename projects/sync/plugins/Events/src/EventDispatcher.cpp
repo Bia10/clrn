@@ -41,7 +41,7 @@ public:
 	{
 		SCOPED_LOG(m_Log);
 
-		LOG_TRACE("Subscribing to event: [%s].") % name;
+		LOG_TRACE("Subscribing to event: [%s], fn: [%s]") % name % callBack.target_type().name();
 
 		TRY 
 		{
@@ -69,7 +69,7 @@ public:
 
 		CHECK(packet);
 
-		LOG_TRACE("Signaling event: name: [%s], data: [%s].") % name % packet->DebugString();
+		LOG_TRACE("Signaling event: name: [%s], data: [%s]") % name % packet->DebugString();
 		 
 		TRY 
 		{
