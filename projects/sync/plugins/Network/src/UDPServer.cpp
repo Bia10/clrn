@@ -110,7 +110,7 @@ public:
 
 		TRY 
 		{
-			m_pIOService.reset(new boost::asio::io_service());
+			m_pIOService.reset(new boost::asio::io_service(threads));
 			m_pWork.reset(new boost::asio::io_service::work(*m_pIOService));
 	
 			for (int i = 0; i < threads; ++i)

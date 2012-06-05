@@ -58,6 +58,15 @@ public:
 	//! Handle ping request packet
 	void	HandleRequest(const ProtoPacketPtr packet);
 
+	//! Set ping interval
+	void	PingInterval(const std::size_t interval);
+
+	//! Set incoming status
+	void	IncomingStatus(const Status::Enum_t status);
+
+	//! Set outgoing status
+	void	OutgoingStatus(const Status::Enum_t status);
+
 private:
 
 	//! Implementation

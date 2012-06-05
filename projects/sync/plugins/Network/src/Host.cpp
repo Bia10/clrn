@@ -43,6 +43,26 @@ public:
 		m_NATEndpoint = ip + ":" + port;
 	}
 
+	//! Ping interval
+	void PingInterval(const std::size_t interval)
+	{
+		m_PingInterval = interval;
+	}
+
+	//! Set incoming status
+	void IncomingStatus(const Status::Enum_t status)
+	{
+		m_IncomingStatus = status;
+		SignalStatusEvent(status);
+	}
+
+	//! Set outgoing status
+	void OutgoingStatus(const Status::Enum_t status)
+	{
+		m_OutgoingStatus = status;
+		SignalStatusEvent(status);
+	}
+
 	//! Ping endpoint
 	void Ping(const std::string& ep)
 	{
@@ -83,16 +103,20 @@ public:
 	{
 		boost::mutex::scoped_lock lock(m_DataMutex);
 
-		// pinging existed EPs
-		if (!m_DirectEndpoint.empty())
+		TRY 
 		{
-			Ping(m_DirectEndpoint);
+			// pinging existed EPs
+			if (!m_DirectEndpoint.empty())
+			{
+				Ping(m_DirectEndpoint);
+			}
+	
+			if (!m_NATEndpoint.empty())
+			{
+				Ping(m_NATEndpoint);
+			}
 		}
-
-		if (!m_NATEndpoint.empty())
-		{
-			Ping(m_NATEndpoint);
-		}
+		CATCH_IGNORE_EXCEPTIONS(m_Log)
 
 		// checking incoming session
 		if (Status::SessionEstablished != m_IncomingStatus)
@@ -216,8 +240,13 @@ public:
 	void SignalStatusEvent(const Status::Enum_t status)
 	{
 		// if statuses are equal signal event
-		if (m_IncomingStatus != m_OutgoingStatus)
-			return; 
+		if (Status::SessionEstablished == status && m_IncomingStatus != m_OutgoingStatus)
+			;
+		else
+		if (Status::SessionEstablished != status && m_IncomingStatus == m_OutgoingStatus)
+			;
+		else
+			return;
 		
 		const ProtoPacketPtr packet(new packets::Packet());
 		data::Table& resultTable = *packet->mutable_job()->add_results();
@@ -285,7 +314,7 @@ private:
 	const std::string				m_LocalPort;
 
 	//! Ping interval
-	const std::size_t				m_PingInterval;
+	std::size_t						m_PingInterval;
 
 	//! Direct endpoint
 	std::string						m_DirectEndpoint;
@@ -343,4 +372,19 @@ void CHost::Ping()
 void CHost::HandleRequest(const ProtoPacketPtr packet)
 {
 	m_pImpl->HandleRequest(packet);
+}
+
+void CHost::PingInterval(const std::size_t interval)
+{
+	m_pImpl->PingInterval(interval);
+}
+
+void CHost::IncomingStatus(const Status::Enum_t status)
+{
+	m_pImpl->IncomingStatus(status);
+}
+
+void CHost::OutgoingStatus(const Status::Enum_t status)
+{
+	m_pImpl->OutgoingStatus(status);
 }
