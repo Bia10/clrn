@@ -10,7 +10,7 @@
 
 #include <boost/thread/mutex.hpp>
 
-static const unsigned int CURRENT_MODULE_ID =  KERNEL_MODULE_ID;
+static const unsigned int CURRENT_MODULE_ID =  DATABASE_MODULE_ID;
 
 #define CATCH_PASS_SQLITE_EXCEPTION(message)										\
 catch(CppSQLite3Exception& e)														\

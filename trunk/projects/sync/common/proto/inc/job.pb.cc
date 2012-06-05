@@ -81,7 +81,7 @@ void protobuf_AddDesc_job_2eproto() {
   ::data::protobuf_AddDesc_data_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\tjob.proto\022\004jobs\032\ndata.proto\"\211\002\n\003Job\022\033\n"
-    "\002id\030\001 \002(\0162\017.jobs.Job.JobId\022\033\n\006params\030\002 \003"
+    "\002id\030\001 \001(\0162\017.jobs.Job.JobId\022\033\n\006params\030\002 \003"
     "(\0132\013.data.Table\022\034\n\007results\030\003 \003(\0132\013.data."
     "Table\"\251\001\n\005JobId\022\t\n\005EMPTY\020\001\022\017\n\013GET_MODULE"
     "S\020\002\022\020\n\014GET_SETTINGS\020\003\022\020\n\014SET_SETTINGS\020\004\022"
@@ -213,7 +213,7 @@ bool Job::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .jobs.Job.JobId id = 1;
+      // optional .jobs.Job.JobId id = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -281,7 +281,7 @@ bool Job::MergePartialFromCodedStream(
 
 void Job::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .jobs.Job.JobId id = 1;
+  // optional .jobs.Job.JobId id = 1;
   if (has_id()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       1, this->id(), output);
@@ -307,7 +307,7 @@ void Job::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Job::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .jobs.Job.JobId id = 1;
+  // optional .jobs.Job.JobId id = 1;
   if (has_id()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       1, this->id(), target);
@@ -338,7 +338,7 @@ int Job::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .jobs.Job.JobId id = 1;
+    // optional .jobs.Job.JobId id = 1;
     if (has_id()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->id());
@@ -409,7 +409,6 @@ void Job::CopyFrom(const Job& from) {
 }
 
 bool Job::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
   
   return true;
 }

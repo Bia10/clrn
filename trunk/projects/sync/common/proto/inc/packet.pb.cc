@@ -990,9 +990,6 @@ void Packet::CopyFrom(const Packet& from) {
 bool Packet::IsInitialized() const {
   if ((_has_bits_[0] & 0x00000029) != 0x00000029) return false;
   
-  if (has_job()) {
-    if (!this->job().IsInitialized()) return false;
-  }
   if (has_destination()) {
     if (!this->destination().IsInitialized()) return false;
   }

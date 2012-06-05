@@ -41,7 +41,7 @@ public:
 	{
 		SCOPED_LOG(m_Log);
 
-		LOG_TRACE("Subscribing event: [%s].") % name;
+		LOG_TRACE("Subscribing to event: [%s].") % name;
 
 		TRY 
 		{
