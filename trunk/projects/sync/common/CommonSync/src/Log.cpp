@@ -93,7 +93,7 @@ void CLog::Open(const std::wstring& source, unsigned int module)
 			m_Streams[module] = &std::clog;
 			break;
 		}
-		m_CreatedStreams[module] = true;
+		m_CreatedStreams[module] = false;
 	}
 	else
 	{
@@ -114,13 +114,13 @@ void CLog::Open(const std::wstring& source, unsigned int module)
 		std::ofstream* stream = new std::ofstream(source.c_str(), std::ios::out);
 		CHECK(stream->is_open(), conv::cast<std::string>(source));
 		m_Streams[module] = stream;
-		m_CreatedStreams[module] = false;
+		m_CreatedStreams[module] = true;
 	}	
 
 
 	m_Mutex.lock();
 	m_CurrentModule = module;
-	m_Format = boost::format("Logger started.");
+	m_Format = boost::format("Logger started, module: [%s], source: [%s].") % module % conv::cast<std::string>(source);
 	Write(Level::None);
 	m_IsOpened = true;
 }
@@ -133,7 +133,7 @@ void CLog::Close()
 	m_IsOpened = false;
 
 	m_Mutex.lock();
-	m_Format = boost::format("Logger shutted down.");
+	m_Format = boost::format("Logger shutted down");
 	Write(Level::None);
 
 	for (std::size_t i = 0 ; i < m_Streams.size(); ++i)
@@ -408,7 +408,10 @@ void CLog::Write(const Level::Enum_t level)
 	try
 	{
 		if (!m_Streams[m_CurrentModule])
+		{
+			m_Mutex.unlock();
 			return;
+		}
 
 		*m_Streams[m_CurrentModule]
 			<< "[" << Level2String(level) << "]"

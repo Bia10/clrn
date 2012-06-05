@@ -67,6 +67,8 @@ public:
 	{
 		SCOPED_LOG(m_Log);
 
+		CHECK(packet);
+
 		LOG_TRACE("Signaling event: name: [%s], data: [%s].") % name % packet->DebugString();
 		 
 		TRY 
@@ -81,7 +83,7 @@ public:
 
 			(*it->second)(packet);
 		}
-		CATCH_PASS_EXCEPTIONS("Signal failed.")
+		CATCH_PASS_EXCEPTIONS("Signal failed.", name, *packet)
 	}
 
 private:
