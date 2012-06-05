@@ -96,7 +96,6 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 		}
 
 		m_Log.Close();
-		m_Log.SetLogLevels(levels);
 
 		for (std::size_t i = 0; i <= LAST_MODULE_ID; ++i)
 		{
@@ -104,6 +103,8 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 			m_pSettings->Get(i, logSource, "log_source");
 			m_Log.Open(logSource, i);
 		}	
+
+		m_Log.SetLogLevels(levels);
 
 		int port = 0;
 		int threads = 0;
