@@ -272,6 +272,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\Conversion.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Exception.cpp"
 				>
 			</File>

@@ -140,6 +140,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_vc90|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include=".\src\UDPServer.cpp" />
+    <ClCompile Include="src\Host.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\inc\HostPinger.h" />
@@ -147,6 +148,7 @@
     <ClInclude Include=".\src\OutgoingPing.h" />
     <ClInclude Include=".\src\stdafx.h" />
     <ClInclude Include=".\inc\UDPServer.h" />
+    <ClInclude Include="src\Host.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\common\CommonSync\Common.vcxproj">

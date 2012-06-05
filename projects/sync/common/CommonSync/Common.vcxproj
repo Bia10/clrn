@@ -133,6 +133,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_vc90|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include=".\src\Table.cpp" />
+    <ClCompile Include="src\Conversion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\inc\BaseJob.h" />

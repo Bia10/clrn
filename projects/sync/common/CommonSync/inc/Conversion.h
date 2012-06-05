@@ -6,11 +6,13 @@
 #include <string>
 
 #include <boost/lexical_cast.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 #pragma warning(push)
 #pragma warning(disable:4244) // 'argument' : conversion from 'boost::locale::utf::code_point' to 'const wchar_t', possible loss of data
 #include <boost/locale/encoding.hpp>
 #pragma warning(pop)
+
 
 namespace conv
 {
@@ -100,6 +102,12 @@ namespace conv
 	{
 		return detail::Caster<Target, Source>()(value);
 	}
+
+	//! Help function for time conversion
+	unsigned __int64			ToPosix64(const boost::posix_time::ptime& pt);
+
+	//! Help function for time conversion
+	boost::posix_time::ptime	FromPosix64(const unsigned __int64 time);
 
 }
 

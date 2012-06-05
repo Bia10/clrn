@@ -1,23 +1,7 @@
 #include "StdAfx.h"
 #include "HostPinger.h"
+#include "Host.h"
 
-//! Help function for time conversion
-unsigned __int64 ToPosix64(const boost::posix_time::ptime& pt)
-{
-	using namespace boost::posix_time;
-	static ptime epoch(boost::gregorian::date(2012, 1, 1));
-	time_duration diff(pt - epoch);
-	return diff.total_milliseconds();
-}
-
-//! Help function for time conversion
-boost::posix_time::ptime FromPosix64(const unsigned __int64 time)
-{
-	using namespace boost::posix_time;
-	static ptime epoch(boost::gregorian::date(2012, 1, 1));
-	epoch + boost::posix_time::milliseconds(time);
-	return epoch + boost::posix_time::milliseconds(time);
-}
 
 //! Host pinger implementation
 //!
@@ -49,6 +33,9 @@ class CHostPinger::Impl
 
 	//! Host guid to status map type
 	typedef std::map<std::string, HostInfo>	HostStatusMap;
+
+	//! Hosts map
+	typedef std::map<std::string, CHost::Ptr>		HostMap;
 
 public:
 
@@ -217,10 +204,10 @@ public:
 					params.push_back(param);
 
 					data::Table_Row* tableRow = (*param)->add_rows();
-					tableRow->add_data(conv::cast<std::string>(m_PingInterval));		// ping interval
-					tableRow->add_data(m_LocalIp);										// our ip
-					tableRow->add_data(m_LocalPort);									// our port
-					tableRow->add_data(conv::cast<std::string>(ToPosix64(timeNow)));	// time when ping sended
+					tableRow->add_data(conv::cast<std::string>(m_PingInterval));			// ping interval
+					tableRow->add_data(m_LocalIp);											// our ip
+					tableRow->add_data(m_LocalPort);										// our port
+					tableRow->add_data(conv::cast<std::string>(conv::ToPosix64(timeNow)));	// time when ping sended
 
 					m_Kernel.ExecuteJob
 					(
@@ -289,7 +276,7 @@ public:
 
 		// ping value
 		const unsigned __int64 timeStart = conv::cast<unsigned __int64>(packet->job().params(0).rows(0).data(3));
-		const boost::posix_time::ptime time = FromPosix64(timeStart);
+		const boost::posix_time::ptime time = conv::FromPosix64(timeStart);
 
 		// inserting data and sending host map change event
 		InsertHostMapFromPacket(packet, packetGuid, time, true);
@@ -409,8 +396,8 @@ public:
 			if (!packet && status != incomingStatus)
 				return;
 
-			const ProtoPacketPtr packet(new packets::Packet());
-			data::Table& resultTable = *packet->mutable_job()->add_results();
+			const ProtoPacketPtr eventPacket(new packets::Packet());
+			data::Table& resultTable = *eventPacket->mutable_job()->add_results();
 			resultTable.set_action(packet ? data::Table_Action_Insert : data::Table_Action_Delete);
 			resultTable.set_id(data::Table_Id_HostStatusEvent);
 
@@ -418,7 +405,7 @@ public:
 			table.AddRow()["guid"] = guid;
 
 			CEvent evnt(m_Kernel, HOST_STATUS_EVENT_NAME);
-			evnt.Signal(packet);
+			evnt.Signal(eventPacket);
 		}
 		CATCH_IGNORE_EXCEPTIONS(m_Log, guid)
 	}
@@ -575,6 +562,12 @@ private:
 
 	//! Host statuses mutex
 	boost::mutex				m_HostStatusesMutex;
+
+	//! Host map mutex
+	boost::mutex				m_HostMapMutex;
+
+	//! Host map
+	HostMap						m_HostMap;
 
 };
 

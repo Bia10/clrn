@@ -11,33 +11,39 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\HostPinger.cpp">
+    <ClCompile Include=".\src\HostPinger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\OutgoingPing.cpp">
+    <ClCompile Include=".\src\OutgoingPing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\stdafx.cpp">
+    <ClCompile Include=".\src\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\UDPServer.cpp">
+    <ClCompile Include=".\src\UDPServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Host.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\HostPinger.h">
+    <ClInclude Include=".\inc\HostPinger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\NetworkPlugin.h">
+    <ClInclude Include=".\src\NetworkPlugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\OutgoingPing.h">
+    <ClInclude Include=".\src\OutgoingPing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\stdafx.h">
+    <ClInclude Include=".\src\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\UDPServer.h">
+    <ClInclude Include=".\inc\UDPServer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Host.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
