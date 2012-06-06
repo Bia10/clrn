@@ -54,11 +54,6 @@ public:
 			CTable settings(*packet->mutable_job()->mutable_results(0));
 
 			m_PingInterval = conv::cast<std::size_t>(settings["name=ping_interval"]["value"]);
-
-			// get hosts
-			CProcedure script(m_Kernel);
-			CProcedure::ParamsMap params;
-			script.Execute(CProcedure::Id::HostsLoad, params, boost::bind(&Impl::LocalHostsCallback, this, _1));
 		}
 		CATCH_PASS_EXCEPTIONS(*packet)
 	}
@@ -179,6 +174,13 @@ public:
 		SCOPED_LOG(m_Log);
 
 		LOG_TRACE("CHostspinger work thread started, hosts to ping: [%s]") % m_HostMap.size();
+
+		boost::this_thread::sleep(boost::posix_time::milliseconds(1000));
+
+		// get hosts
+		CProcedure script(m_Kernel);
+		CProcedure::ParamsMap params;
+		script.Execute(CProcedure::Id::HostsLoad, params, boost::bind(&Impl::LocalHostsCallback, this, _1));
 
 		for (;;)
 		{

@@ -362,8 +362,8 @@ void CKernel::TimeoutControllerThread()
 			{
 				LOG_WARNING("Job id: [%s], guid: [%s], timeout: [%s] ended.") 
 					% job->GetId() 
-					% job->GetTimeout() 
-					% job->GetGUID();
+					% job->GetGUID()
+					% job->GetTimeout();
 
 				TRY 
 				{

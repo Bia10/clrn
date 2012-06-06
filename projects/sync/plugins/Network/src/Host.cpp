@@ -26,7 +26,7 @@ public:
 		, m_IncomingStatus(Status::Unknown)
 		, m_OutgoingStatus(Status::Unknown)
 	{
-
+		SignalStatusEvent(Status::Unreacheble);
 	}
 
 	//! Set direct ep

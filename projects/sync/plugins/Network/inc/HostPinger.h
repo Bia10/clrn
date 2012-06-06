@@ -13,18 +13,6 @@ class CHostPinger
 	//! Ctor
 	CHostPinger(ILog& logger, IKernel& kernel);
 public:
-
-	//! Host status
-	struct Status
-	{
-		enum Enum_t
-		{
-			Unknown				= 0,
-			Unreacheble			= 1,
-			SessionRequested	= 2,
-			SessionEstablished	= 3
-		};
-	};
 	
 	~CHostPinger(void);
 
