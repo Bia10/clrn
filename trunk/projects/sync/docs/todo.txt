@@ -27,6 +27,7 @@
 	+ хранить вектор указателей на стримы
 	+ передавать в каждый метод записи Id модуля
 2. Реализовать механизм коннекта
+	- 
 
 google::protobuf::RepeatedPtrField<data::Table> results = *packet->mutable_job()->mutable_results();
 

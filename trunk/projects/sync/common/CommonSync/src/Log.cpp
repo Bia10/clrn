@@ -116,7 +116,8 @@ void CLog::Open(const std::wstring& source, unsigned int module)
 			fs::Move(fs::FullPath(source), newPath);
 		}
 
-		std::ofstream* stream = new std::ofstream(source.c_str(), std::ios::out);
+		fs::CreateDirectories(source);
+		std::ofstream* stream = new std::ofstream(fs::FullPath(source).c_str(), std::ios::out);
 		CHECK(stream->is_open(), conv::cast<std::string>(source));
 		m_Streams[module] = stream;
 		m_CreatedStreams[module] = true;

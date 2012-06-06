@@ -25,6 +25,10 @@ namespace fs
 	void			Move(const std::string& src, const std::string& dst);
 	void			Move(const std::wstring& src, const std::wstring& dst);
 
+	//! Create directories
+	void			CreateDirectories(const std::string& src);
+	void			CreateDirectories(const std::wstring& src);
+
 } // namespace fs
 
 
