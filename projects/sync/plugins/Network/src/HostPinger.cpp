@@ -159,7 +159,10 @@ public:
 				const std::size_t status = conv::cast<std::size_t>(row["status"]);
 
 				if (from == m_LocalHostGuid)
+				{
 					m_HostMap[to]->OutgoingStatus(static_cast<CHost::Status::Enum_t>(status));
+					m_HostMap[to]->NATEndpoint(row["ip"], row["port"]);
+				}
 				else
 				if (to == m_LocalHostGuid)
 					m_HostMap[from]->IncomingStatus(static_cast<CHost::Status::Enum_t>(status));

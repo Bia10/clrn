@@ -41,6 +41,10 @@ public:
 	{
 		boost::mutex::scoped_lock lock(m_DataMutex);
 		m_NATEndpoint = ip + ":" + port;
+
+		// nat endpoint equal to direct, ignore it
+		if (m_NATEndpoint == m_DirectEndpoint)
+			m_NATEndpoint.clear();
 	}
 
 	//! Ping interval
@@ -68,6 +72,10 @@ public:
 	{
 		TRY 
 		{
+			// to avoid self ping(hosts endpoint may be equal on differenct PC)
+			if (ep == m_LocalIp + ":" + m_LocalPort)
+				return;
+
 			const boost::posix_time::ptime timeNow = boost::posix_time::microsec_clock::local_time();
 	
 			IJob::TableList params;
@@ -150,16 +158,13 @@ public:
 	}
 
 	//! Insert new host map record from packet
-	void InsertHostMapFromPacket
+	void InsertHostMapRecord
 	(
-		const ProtoPacketPtr packet, 
 		const boost::posix_time::ptime& timePingStarted,
 		const bool incoming,
 		const std::string& ep
 	)
 	{
-		CHECK(packet);
-
 		TRY 
 		{
 			// delimiter
@@ -191,7 +196,7 @@ public:
 
 			script.Execute(CProcedure::Id::HostMapCreate, mapParams, IJob::CallBackFn());	
 		}
-		CATCH_PASS_EXCEPTIONS(*packet)
+		CATCH_PASS_EXCEPTIONS()
 	}
 
 	//! Ping callback
@@ -227,7 +232,7 @@ public:
 		else
 		if (Status::SessionEstablished == status)
 		{
-			InsertHostMapFromPacket(packet, timePingStarted, false, endpoint);
+			InsertHostMapRecord(timePingStarted, false, endpoint);
 		}
 
 		m_OutgoingLastUpdateTime = boost::posix_time::microsec_clock::local_time();
@@ -284,7 +289,7 @@ public:
 		const boost::posix_time::ptime time = conv::FromPosix64(timeStart);
 
 		// inserting data and sending host map change event
-		InsertHostMapFromPacket(packet, time, true, packet->ep());
+		InsertHostMapRecord(time, true, packet->ep());
 
 		// checking for outgoing session with this host, if not exists - signal host status event
 		m_IncomingLastUpdateTime = boost::posix_time::microsec_clock::local_time();
