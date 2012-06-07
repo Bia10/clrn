@@ -66,6 +66,9 @@ class CUDPServer::Impl
 	//! Connections iterator range
 	typedef std::pair<ConnectionsMap::const_iterator, ConnectionsMap::const_iterator> ConnectionsRange;
 
+	//! Waiting packets map type
+	typedef std::map<std::string, std::map<std::string, ProtoPacketPtr> >	PacketsMap;
+
 public:
 
 	Impl
@@ -82,6 +85,7 @@ public:
 		, m_BufferSize(bufferSize)
 		, m_LocalGUID(guid)
 		, m_IsReceiving(false)
+		, m_PingInterval(0)
 	{
 		SCOPED_LOG(m_Log);
 		Init(port, threads);
@@ -548,15 +552,28 @@ public:
 			if (key == m_LocalGUID)
 				continue;
 
-			connection.incoming = false;
-			connection.ep.ip = row["ip"];
-			connection.ep.port = row["port"];
-			connection.ping = std::size_t(-1);
+			connection.incoming		= false;
+			connection.ep.ip		= row["ip"];
+			connection.ep.port		= row["port"];
+			connection.ping			= std::size_t(-1);
 
 			m_Connections.insert(std::make_pair(key, connection));
 		}	
 	}
 
+	//! Set ping interval
+	void SetPingInterval(const std::size_t interval)
+	{
+		boost::mutex::scoped_lock lock(m_SettingsMutex);
+		m_PingInterval = interval;
+	}
+
+	//! Delete packet by guids
+	void DeleteWaitingPacket(const std::string& host, const std::string& packet)
+	{
+
+	}
+	
 	//! Run server
 	void Run()
 	{
@@ -619,6 +636,12 @@ private:
 
 	//! Connections
 	ConnectionsMap		m_Connections;
+
+	//! Mutex for server settings
+	boost::mutex		m_SettingsMutex;
+
+	//! Ping interval
+	std::size_t			m_PingInterval;
 };
 
 CUDPServer::CUDPServer(ILog& logger, IKernel& kernel, const int port, const int threads, const int bufferSize, const std::string& guid)
@@ -668,6 +691,11 @@ void CUDPServer::RemoveHostMapping(const ProtoPacketPtr packet)
 void CUDPServer::AddHosts(const ProtoPacketPtr packet)
 {
 	m_pImpl->AddHosts(packet);
+}
+
+void CUDPServer::SetPingInterval(const std::size_t interval)
+{
+	m_pImpl->SetPingInterval(interval);
 }
 
 } // namespace net

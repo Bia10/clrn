@@ -113,6 +113,9 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 		m_pSettings->Get(KERNEL_MODULE_ID, threads,		"udp_threads");
 		m_pSettings->Get(KERNEL_MODULE_ID, bufferSize,	"udp_buffer_size");
 
+		std::size_t pingInterval = 0;
+		m_pSettings->Get(KERNEL_MODULE_ID, pingInterval, "ping_interval");
+
 		// getting hosts
 		data::Table hostsTableData;
 		DataBase::Instance().Execute((boost::format("select * from %s") % HOSTS_TABLE_NAME).str().c_str(), hostsTableData, data::Table_Id_Hosts);
@@ -133,6 +136,9 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 				m_LocalHostGuid
 			)
 		);
+
+		// setting up ping interval
+		m_pServer->SetPingInterval(pingInterval);
 
 		// setting up server endpoints
 		const ProtoPacketPtr hostList(new packets::Packet());
