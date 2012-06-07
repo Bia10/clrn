@@ -47,6 +47,9 @@ public:
 	//! Remove host mapping
 	void				RemoveHostMapping(const ProtoPacketPtr packet);
 
+	//! Set ping interval
+	void				SetPingInterval(const std::size_t interval);
+
 	//! Run server
 	void				Run();
 
