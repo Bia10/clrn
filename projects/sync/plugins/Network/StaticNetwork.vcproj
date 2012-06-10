@@ -308,6 +308,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\src\UDPHost.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\UDPServer.cpp"
 				>
 			</File>
@@ -335,6 +339,10 @@
 			</File>
 			<File
 				RelativePath=".\src\stdafx.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\UDPHost.h"
 				>
 			</File>
 			<File
