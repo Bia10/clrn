@@ -214,7 +214,10 @@ public:
 		std::string sql =
 			"SELECT h2.[guid], " 
 			"	   h1.[guid],  "
-			"	   hm.status  "
+			"	   hm.status,  "
+			"	   hm.ping,    "
+			"	   hm.ip,      "
+			"      hm.port	   "
 			"FROM   host_map hm  "
 			"	   LEFT JOIN hosts h1  "
 			"			  ON h1.[id] = hm.dst  "

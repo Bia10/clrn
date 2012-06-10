@@ -27,8 +27,11 @@ namespace net
 class CKernel
 	: public IKernel
 {
+	//! Kernel job type
+	typedef boost::function<void (void)>		KernelJob;
+
 	//! Work queue type
-	typedef CBlockingQueue<ProtoPacketPtr>		WorkQueue;
+	typedef CBlockingQueue<KernelJob>			WorkQueue;
 
 	//! Waiting executor descriptor
 	struct WaitingJob
@@ -38,6 +41,16 @@ class CKernel
 		std::size_t					timeout;
 		std::string					host;
 	}; 
+
+	//! Time event descriptor
+	struct TimeEventDsc
+	{
+		boost::posix_time::ptime			timeAdded;
+		boost::posix_time::time_duration	interval;
+		bool								periodic;
+		TimeEventCallback					callback;
+		bool operator == (const TimeEventCallback& callBack) const;
+	};
 
 	//! Type of the waiting jobs container
 	typedef std::map<std::string, WaitingJob>		WaitingJobs;
@@ -53,6 +66,9 @@ class CKernel
 
 	//! Settings pointer
 	typedef boost::scoped_ptr<CSettings>			SettingsPtr;
+
+	//! Time events container
+	typedef std::list<TimeEventDsc>					TimeEvents;
 
 public:
 	CKernel(void);
@@ -125,6 +141,15 @@ private:
 	//! Host status callback
 	void					HostStatusCallBack(const ProtoPacketPtr packet);
 
+	//! Process packet
+	void 					ProcessProtoPacket(const ProtoPacketPtr packet);
+
+	//! Time event
+	void					TimeEvent(const boost::posix_time::time_duration interval, const TimeEventCallback callBack, const bool periodic);
+
+	//! Check time events
+	void					CheckTimeEvents();
+
 	//! Logger
 	CLog					m_Log;
 
@@ -160,6 +185,12 @@ private:
 
 	//! Database path
 	std::string				m_DBpath;
+
+	//! Time events
+	TimeEvents				m_TimeEvents;
+
+	//! Time events mutex
+	boost::mutex			m_TimeEventsMutex;
 
 };
 #endif // Kernel_h__
