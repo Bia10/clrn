@@ -8,19 +8,19 @@ class ILog;
 class IKernel;
 
 //! Host pinger
-class CHostPinger
+class CHostController
 {
 	//! Ctor
-	CHostPinger(ILog& logger, IKernel& kernel);
+	CHostController(ILog& logger, IKernel& kernel);
 public:
 	
-	~CHostPinger(void);
+	~CHostController(void);
 
 	//! Create instance
 	static void					Create(ILog& logger, IKernel& kernel);
 
 	//! Single instance reference
-	static CHostPinger&			Instance();
+	static CHostController&			Instance();
 
 	//! Close instance
 	static void					Shutdown();
@@ -35,6 +35,6 @@ private:
 	boost::scoped_ptr<Impl>					m_pImpl;
 
 	//! Single instance
-	static boost::scoped_ptr<CHostPinger>	s_pInstance;
+	static boost::scoped_ptr<CHostController>	s_pInstance;
 };
 #endif // HostPinger_h__

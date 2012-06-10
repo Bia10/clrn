@@ -151,7 +151,7 @@ void CSettings::Set(const int module, const std::wstring& value, const std::stri
 
 void CSettings::Get(const int module, unsigned int& value, const std::string& path)
 {
-	m_pImpl->Set(module, value, path);
+	m_pImpl->Get(module, value, path);
 }
 
 void CSettings::Get(const int module, int& value, const std::string& path)

@@ -1,17 +1,17 @@
 #include "StdAfx.h"
-#include "HostPinger.h"
-#include "Host.h"
+#include "HostController.h"
+#include "PingHost.h"
 
 
 //! Host pinger implementation
 //!
-//! \class CHostPinger::Impl
+//! \class CHostController::Impl
 //!
-class CHostPinger::Impl
+class CHostController::Impl
 {
 
 	//! Hosts map
-	typedef std::map<std::string, CHost::Ptr>		HostMap;
+	typedef std::map<std::string, CPingHost::Ptr>		HostMap;
 
 public:
 
@@ -73,7 +73,7 @@ public:
 			if (m_HostMap.end() == it)
 			{
 				it = m_HostMap.insert(std::make_pair(guid, 
-						CHost::Ptr(new CHost(
+						CPingHost::Ptr(new CPingHost(
 							m_Kernel,
 							m_Log,
 							m_LocalHostGuid,
@@ -160,12 +160,12 @@ public:
 
 				if (from == m_LocalHostGuid)
 				{
-					m_HostMap[to]->OutgoingStatus(static_cast<CHost::Status::Enum_t>(status));
+					m_HostMap[to]->OutgoingStatus(static_cast<CPingHost::Status::Enum_t>(status));
 					m_HostMap[to]->NATEndpoint(row["ip"], row["port"]);
 				}
 				else
 				if (to == m_LocalHostGuid)
-					m_HostMap[from]->IncomingStatus(static_cast<CHost::Status::Enum_t>(status));
+					m_HostMap[from]->IncomingStatus(static_cast<CPingHost::Status::Enum_t>(status));
 			}		
 		}
 		CATCH_PASS_EXCEPTIONS(*packet)
@@ -271,34 +271,34 @@ private:
 };
 
 
-boost::scoped_ptr<CHostPinger> CHostPinger::s_pInstance;
+boost::scoped_ptr<CHostController> CHostController::s_pInstance;
 
-CHostPinger::CHostPinger(ILog& logger, IKernel& kernel)
+CHostController::CHostController(ILog& logger, IKernel& kernel)
 	: m_pImpl(new Impl(logger, kernel))
 {
 
 }
 
-CHostPinger::~CHostPinger(void)
+CHostController::~CHostController(void)
 {
 }
 
-CHostPinger& CHostPinger::Instance()
+CHostController& CHostController::Instance()
 {
 	return *s_pInstance;
 }
 
-void CHostPinger::Create(ILog& logger, IKernel& kernel)
+void CHostController::Create(ILog& logger, IKernel& kernel)
 {
-	s_pInstance.reset(new CHostPinger(logger, kernel));
+	s_pInstance.reset(new CHostController(logger, kernel));
 }
 
-void CHostPinger::Shutdown()
+void CHostController::Shutdown()
 {
 	s_pInstance.reset();
 }
 
-void CHostPinger::OnRemotePingReceived(const ProtoPacketPtr packet)
+void CHostController::OnRemotePingReceived(const ProtoPacketPtr packet)
 {
 	m_pImpl->OnRemotePingReceived(packet);
 }

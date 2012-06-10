@@ -162,22 +162,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include=".\src\dllmain.cpp" />
-    <ClCompile Include=".\src\HostPinger.cpp" />
     <ClCompile Include=".\src\OutgoingPing.cpp" />
     <ClCompile Include=".\src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_vc110|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_vc90|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include=".\src\UDPServer.cpp" />
-    <ClCompile Include="src\Host.cpp" />
+    <ClCompile Include="src\HostController.cpp" />
+    <ClCompile Include="src\PingHost.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include=".\inc\HostPinger.h" />
     <ClInclude Include=".\src\NetworkPlugin.h" />
     <ClInclude Include=".\src\OutgoingPing.h" />
     <ClInclude Include=".\src\stdafx.h" />
     <ClInclude Include=".\inc\UDPServer.h" />
-    <ClInclude Include="src\Host.h" />
+    <ClInclude Include="inc\HostController.h" />
+    <ClInclude Include="src\PingHost.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\common\CommonSync\Common.vcxproj">

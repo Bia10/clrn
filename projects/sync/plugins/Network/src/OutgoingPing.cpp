@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "OutgoingPing.h"
-#include "HostPinger.h"
+#include "HostController.h"
 
 COutgoingPing::COutgoingPing(IKernel& kernel, ILog& logger)
 	: CBaseJob(kernel, logger)
@@ -59,7 +59,7 @@ void COutgoingPing::Execute(const ProtoPacketPtr packet)
 
 	TRY 
 	{
-		CHostPinger::Instance().OnRemotePingReceived(packet);
+		CHostController::Instance().OnRemotePingReceived(packet);
 
 		const std::string& host = packet->from();
 		packet->set_type(packets::Packet_PacketType_REPLY);
