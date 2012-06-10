@@ -1,8 +1,8 @@
 #include "StdAfx.h"
-#include "Host.h"
+#include "PingHost.h"
 
 //! Host implementation
-class CHost::Impl : boost::noncopyable
+class CPingHost::Impl : boost::noncopyable
 {
 public:
 
@@ -344,7 +344,7 @@ private:
 };
 
 
-CHost::CHost(IKernel& kernel, 
+CPingHost::CPingHost(IKernel& kernel, 
 			 ILog& log, 
 			 const std::string& localGuid,
 			 const std::string& remoteGuid,
@@ -355,41 +355,41 @@ CHost::CHost(IKernel& kernel,
 {
 }
 
-CHost::~CHost(void)
+CPingHost::~CPingHost(void)
 {
 }
 
-void CHost::DirectEndpoint(const std::string& ip, const std::string& port)
+void CPingHost::DirectEndpoint(const std::string& ip, const std::string& port)
 {
 	m_pImpl->DirectEndpoint(ip, port);
 }
 
-void CHost::NATEndpoint(const std::string& ip, const std::string& port)
+void CPingHost::NATEndpoint(const std::string& ip, const std::string& port)
 {
 	m_pImpl->NATEndpoint(ip, port);
 }
 
-void CHost::Ping()
+void CPingHost::Ping()
 {
 	m_pImpl->Ping();
 }
 
-void CHost::HandleRequest(const ProtoPacketPtr packet)
+void CPingHost::HandleRequest(const ProtoPacketPtr packet)
 {
 	m_pImpl->HandleRequest(packet);
 }
 
-void CHost::PingInterval(const std::size_t interval)
+void CPingHost::PingInterval(const std::size_t interval)
 {
 	m_pImpl->PingInterval(interval);
 }
 
-void CHost::IncomingStatus(const Status::Enum_t status)
+void CPingHost::IncomingStatus(const Status::Enum_t status)
 {
 	m_pImpl->IncomingStatus(status);
 }
 
-void CHost::OutgoingStatus(const Status::Enum_t status)
+void CPingHost::OutgoingStatus(const Status::Enum_t status)
 {
 	m_pImpl->OutgoingStatus(status);
 }

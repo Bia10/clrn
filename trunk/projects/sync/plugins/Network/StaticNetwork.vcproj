@@ -272,15 +272,19 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\src\Host.cpp"
+				RelativePath=".\src\dllmain.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\src\HostPinger.cpp"
+				RelativePath=".\src\HostController.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\src\OutgoingPing.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\PingHost.cpp"
 				>
 			</File>
 			<File
@@ -314,11 +318,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\src\Host.h"
-				>
-			</File>
-			<File
-				RelativePath=".\inc\HostPinger.h"
+				RelativePath=".\inc\HostController.h"
 				>
 			</File>
 			<File
@@ -327,6 +327,10 @@
 			</File>
 			<File
 				RelativePath=".\src\OutgoingPing.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\PingHost.h"
 				>
 			</File>
 			<File

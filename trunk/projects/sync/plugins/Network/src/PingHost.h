@@ -13,12 +13,12 @@ class IKernel;
 class ILog;
 
 //! Host implementation
-class CHost : boost::noncopyable
+class CPingHost : boost::noncopyable
 {
 public:
 
 	//! Pointer type
-	typedef boost::shared_ptr<CHost> Ptr;
+	typedef boost::shared_ptr<CPingHost> Ptr;
 
 	//! Host status
 	struct Status
@@ -33,7 +33,7 @@ public:
 	};
 
 	//! Ctor
-	CHost
+	CPingHost
 	(
 		IKernel& kernel, 
 		ILog& log, 
@@ -44,7 +44,7 @@ public:
 		const std::size_t pingInterval
 	);
 
-	~CHost(void);
+	~CPingHost(void);
 
 	//! Set direct ep
 	void	DirectEndpoint(const std::string& ip, const std::string& port);

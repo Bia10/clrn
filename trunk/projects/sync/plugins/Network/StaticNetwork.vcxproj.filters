@@ -11,9 +11,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include=".\src\HostPinger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include=".\src\OutgoingPing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -23,14 +20,17 @@
     <ClCompile Include=".\src\UDPServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Host.cpp">
+    <ClCompile Include="src\dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HostController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PingHost.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include=".\inc\HostPinger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include=".\src\NetworkPlugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -43,7 +43,10 @@
     <ClInclude Include=".\inc\UDPServer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Host.h">
+    <ClInclude Include="inc\HostController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PingHost.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -15,7 +15,7 @@ insert into settings(module, name, value) values(0, 'udp_threads', '4');
 insert into settings(module, name, value) values(0, 'udp_buffer_size', '4096');
 insert into settings(module, name, value) values(0, 'kernel_threads', '4');
 insert into settings(module, name, value) values(0, 'plugins_path', './');
-insert into settings(module, name, value) values(3, 'ping_interval', '5000');
+insert into settings(module, name, value) values(0, 'ping_interval', '5000');
 
 insert into plugins values(1, 'Events');
 insert into plugins values(2, 'Settings');

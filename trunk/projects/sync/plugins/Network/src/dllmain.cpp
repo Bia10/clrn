@@ -7,7 +7,7 @@
 #include "job.pb.h"
 
 #include "OutgoingPing.h"
-#include "HostPinger.h"
+#include "HostController.h"
 
 #ifdef __cplusplus
 extern "C" 
@@ -26,12 +26,12 @@ void Init(CJobFactory& factory, ILog& logger, IKernel& kernel)
 {
 	factory.Register<COutgoingPing>(jobs::Job_JobId_PING_HOST);
 	
-	CHostPinger::Create(logger, kernel);
+	CHostController::Create(logger, kernel);
 }
 
 void Shutdown(CJobFactory& factory)
 {
-	CHostPinger::Shutdown();
+	CHostController::Shutdown();
 
 	factory.Unregister(jobs::Job_JobId_PING_HOST);
 }

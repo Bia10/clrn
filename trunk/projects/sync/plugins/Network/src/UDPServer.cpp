@@ -67,7 +67,7 @@ class CUDPServer::Impl
 	typedef std::pair<ConnectionsMap::const_iterator, ConnectionsMap::const_iterator> ConnectionsRange;
 
 	//! Waiting packets map type
-	typedef std::map<std::string, std::map<std::string, ProtoPacketPtr> >	PacketsMap;
+	typedef std::map<std::string, std::map<std::string, BufferPtr> >	PacketsMap;
 
 public:
 
@@ -232,7 +232,7 @@ public:
 					% client->address().to_string() 
 					% client->port();
 
-				HandlePacket(packet, client);
+				HandlePacket(socket, packet, client);
 			}
 			else 
 			if (size == m_BufferSize)
@@ -242,28 +242,65 @@ public:
 	}
 
 	//! Handle new packet
-	void HandlePacket(const PacketPtr packet, const EndpointPtr client)
+	void HandlePacket(const SocketPtr socket, const PacketPtr packet, const EndpointPtr client)
 	{
 		SCOPED_LOG(m_Log);
 
-		HostInfo host;
-		host.ip = client->address().to_string();
-		host.port = conv::cast<std::string>(client->port());
-		const HostMap::const_iterator it = m_Hosts.find(host);
-		if (m_Hosts.end() == it)
+		CHECK(packet);
+
+		TRY 
 		{
-			boost::mutex::scoped_lock lock(m_HostMutex);
-			m_Hosts.insert(std::make_pair(host, EndpointPtr(new Endpoint(*client))));
+			// checking packet type
+			if (packets::Packet_PacketType_ACK == packet->type())
+			{
+				DeleteWaitingPacket(packet->from(), packet->guid(), "delivered");
+				return;
+			}
+	
+			HostInfo host;
+			host.ip = client->address().to_string();
+			host.port = conv::cast<std::string>(client->port());
+			const HostMap::const_iterator it = m_Hosts.find(host);
+			if (m_Hosts.end() == it)
+			{
+				boost::mutex::scoped_lock lock(m_HostMutex);
+				m_Hosts.insert(std::make_pair(host, EndpointPtr(new Endpoint(*client))));
+			}
+	
+			// getting sender endpoint
+			const std::string ep = host.ip + ":" + host.port;
+	
+			// setting up packet field
+			packet->set_ep(ep);
+	
+			// handle packet by kernel
+			m_Kernel.HandleNewPacket(packet);
+	
+			// sending ACK
+			const PacketPtr ack(new packets::Packet());
+			ack->set_from(m_LocalGUID);
+			ack->set_guid(packet->guid());
+			ack->set_type(packets::Packet_PacketType_ACK);
+	
+			const BufferPtr buffer(new std::vector<char>(ack->ByteSize()));
+			ack->SerializeToArray(&buffer->front(), buffer->size());
+	
+			socket->async_send_to
+			(
+				boost::asio::buffer(*buffer), 
+				*client, 
+				boost::bind
+				(
+					&Impl::SendHandler,
+					this,
+					boost::asio::placeholders::error,
+					boost::asio::placeholders::bytes_transferred,
+					client,
+					buffer
+				)
+			);	
 		}
-
-		// getting sender endpoint
-		const std::string ep = host.ip + ":" + host.port;
-
-		// setting up packet field
-		packet->set_ep(ep);
-
-		// handle packet by kernel
-		m_Kernel.HandleNewPacket(packet);
+		CATCH_PASS_EXCEPTIONS(*packet)
 	}
 
 	//! Get endpoint
@@ -273,8 +310,12 @@ public:
 
 		boost::mutex::scoped_lock lock(m_ConnectionsMutex);
 
+		CHECK(m_Connections.count(dest));
+
 		// find connection by guid, sort by ping
 		const ConnectionsRange range = m_Connections.equal_range(dest);
+
+		CHECK(m_Connections.end() != range.first && range.first != range.second);
 
 		std::vector<Connection> connections;
 		for (ConnectionsMap::const_iterator it = range.first; it != range.second; ++it)
@@ -321,8 +362,42 @@ public:
 		return it->second;
 	}
 
+	//! Send buffer
+	void SendBuffer(const BufferPtr buffer, const EndpointPtr ep, bool receiveSocket)
+	{
+		SCOPED_LOG(m_Log);
+
+		CHECK(buffer);
+
+		TRY 
+		{
+			const SocketPtr socket = receiveSocket ? m_pReceiveSocket : m_pSendSocket;
+			socket->async_send_to
+			(
+				boost::asio::buffer(*buffer), 
+				*ep, 
+				boost::bind
+				(
+					&Impl::SendHandler,
+					this,
+					boost::asio::placeholders::error,
+					boost::asio::placeholders::bytes_transferred,
+					ep,
+					buffer
+				)
+			);	
+
+			if (!m_IsReceiving && !receiveSocket)
+			{
+				m_IsReceiving = true;
+				StartReceiving(m_pSendSocket);
+			}
+		}
+		CATCH_PASS_EXCEPTIONS("SendBuffer failed.")
+	}
+
 	//! Send packet
-	void Send(const std::string& destination, const ProtoPacketPtr packet)
+	void Send(const std::string destination, const ProtoPacketPtr packet)
 	{
 		SCOPED_LOG(m_Log);
 
@@ -340,21 +415,11 @@ public:
 			const BufferPtr buffer(new std::vector<char>(packet->ByteSize()));
 			packet->SerializeToArray(&buffer->front(), buffer->size());
 
-			const SocketPtr socket = receiveSocket ? m_pReceiveSocket : m_pSendSocket;
-			socket->async_send_to
-			(
-				boost::asio::buffer(*buffer), 
-				*ep, 
-				boost::bind
-				(
-					&Impl::SendHandler,
-					this,
-					boost::asio::placeholders::error,
-					boost::asio::placeholders::bytes_transferred,
-					ep,
-					buffer
-				)
-			);	
+			// actually send
+			SendBuffer(buffer, ep, receiveSocket);
+
+			// setup timers for delete/resend this data
+			RegisterPacket(destination, packet->guid(), buffer);
 
 			if (!m_IsReceiving && !receiveSocket)
 			{
@@ -404,20 +469,8 @@ public:
 			const BufferPtr buffer(new std::vector<char>(packet->ByteSize()));
 			packet->SerializeToArray(&buffer->front(), buffer->size());
 
-			m_pSendSocket->async_send_to
-			(
-				boost::asio::buffer(*buffer), 
-				*ep, 
-				boost::bind
-				(
-					&Impl::SendHandler,
-					this,
-					boost::asio::placeholders::error,
-					boost::asio::placeholders::bytes_transferred,
-					ep,
-					buffer
-				)
-			);	
+			// actual send
+			SendBuffer(buffer, ep, false);
 
 			if (!m_IsReceiving)
 			{
@@ -569,9 +622,59 @@ public:
 	}
 
 	//! Delete packet by guids
-	void DeleteWaitingPacket(const std::string& host, const std::string& packet)
+	void DeleteWaitingPacket(const std::string& host, const std::string& packet, const std::string& reason)
 	{
+		boost::mutex::scoped_lock lock(m_PacketsMutex);
 
+		if (!m_OutgoingPackets.count(host))
+			return;
+
+		if (!m_OutgoingPackets[host].count(packet))
+			return;
+
+		LOG_TRACE("Deleting packet: [%s], to: [%s], reason: [%s]") % packet % host % reason;
+		m_OutgoingPackets[host].erase(packet);
+	}
+
+	//! Resend packet
+	void ResendPacket(const std::string& host, const std::string& packet)
+	{
+		TRY 
+		{
+			boost::mutex::scoped_lock lock(m_PacketsMutex);
+	
+			if (!m_OutgoingPackets.count(host))
+				return;
+	
+			if (!m_OutgoingPackets[host].count(packet))
+				return;
+
+			LOG_TRACE("Resending packet: [%s], to: [%s]") % packet % host;
+	
+			bool incoming = false;
+			const EndpointPtr ep = GetEndpoint(host, incoming);
+	
+			SendBuffer(m_OutgoingPackets[host][packet], ep, incoming);
+
+			boost::asio::deadline_timer timer(*m_pIOService, boost::posix_time::milliseconds(m_PingInterval));
+			timer.async_wait(boost::bind(&Impl::ResendPacket, this, host, packet));
+		}
+		CATCH_PASS_EXCEPTIONS(host)
+	}
+
+	//! Register outgoing packet
+	void RegisterPacket(const std::string& host, const std::string& packet, const BufferPtr buffer)
+	{
+		boost::mutex::scoped_lock lock(m_PacketsMutex);
+		m_OutgoingPackets[host][packet] = buffer;
+
+		// setup timer for resend this data
+		boost::asio::deadline_timer resendTimer(*m_pIOService, boost::posix_time::milliseconds(m_PingInterval));
+		resendTimer.async_wait(boost::bind(&Impl::ResendPacket, this, host, packet));
+
+		// setting up timer to delete this packet
+		boost::asio::deadline_timer deleteTimer(*m_pIOService, boost::posix_time::milliseconds(m_PingInterval * 6));
+		deleteTimer.async_wait(boost::bind(&Impl::DeleteWaitingPacket, this, host, packet, "timed out"));
 	}
 	
 	//! Run server
@@ -642,6 +745,12 @@ private:
 
 	//! Ping interval
 	std::size_t			m_PingInterval;
+
+	//! Outgoing packets
+	PacketsMap			m_OutgoingPackets;
+	
+	//! Outgoing packets mutex
+	boost::mutex		m_PacketsMutex;
 };
 
 CUDPServer::CUDPServer(ILog& logger, IKernel& kernel, const int port, const int threads, const int bufferSize, const std::string& guid)

@@ -13,7 +13,7 @@
 #include "StreamHelpers.h"
 #include "Settings/inc/Settings.h"
 #include "Network/inc/UDPServer.h"
-#include "Network/inc/HostPinger.h"
+#include "Network/inc/HostController.h"
 #include "DataBase/inc/Procedure.h"
 #include "Events/inc/Event.h"
 
