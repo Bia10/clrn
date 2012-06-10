@@ -271,7 +271,8 @@ private:
 
 		TRY 
 		{
-			StartReceiving(socket);
+			if (socket == m_pSrvSocket)
+				StartReceiving(socket);
 
 			if (e)
 			{
