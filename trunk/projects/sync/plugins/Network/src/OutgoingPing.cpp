@@ -18,6 +18,7 @@ void COutgoingPing::Invoke(const TableList& params, const std::string& host)
 		const data::Table& table = **params.front();
 	
 		m_TimeOut = conv::cast<std::size_t>(table.rows(0).data(0));
+		const std::string& endpoint = table.rows(0).data(1);
 	
 		// generating packet
 		ProtoPacketPtr request(new packets::Packet());
@@ -40,15 +41,15 @@ void COutgoingPing::Invoke(const TableList& params, const std::string& host)
 			m_Kernel.AddToWaiting(shared_from_this(), host);
 
 		// delimiter
-		const std::string::size_type delimiter = host.find(':');
+		const std::string::size_type delimiter = endpoint.find(':');
 
-		CHECK(std::string::npos != delimiter, host);
+		CHECK(std::string::npos != delimiter, endpoint);
 
-		const std::string ip = host.substr(0, delimiter);
-		const std::string port = host.substr(delimiter + 1);
+		const std::string ip = endpoint.substr(0, delimiter);
+		const std::string port = endpoint.substr(delimiter + 1);
 
 		// this job directly sends to endpoint
-		m_Kernel.Send(ip, port, request);
+		m_Kernel.Send(host, ip, port, request);
 	}
 	CATCH_PASS_EXCEPTIONS(host)
 }

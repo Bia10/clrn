@@ -170,6 +170,7 @@
     <ClCompile Include=".\src\UDPServer.cpp" />
     <ClCompile Include="src\HostController.cpp" />
     <ClCompile Include="src\PingHost.cpp" />
+    <ClCompile Include="src\UDPHost.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\src\NetworkPlugin.h" />
@@ -178,6 +179,7 @@
     <ClInclude Include=".\inc\UDPServer.h" />
     <ClInclude Include="inc\HostController.h" />
     <ClInclude Include="src\PingHost.h" />
+    <ClInclude Include="src\UDPHost.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\common\CommonSync\Common.vcxproj">

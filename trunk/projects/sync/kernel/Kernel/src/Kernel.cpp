@@ -286,7 +286,7 @@ void CKernel::Send(const std::string& destination, const ProtoPacketPtr packet)
 	CATCH_PASS_EXCEPTIONS(destination, *packet)
 }
 
-void CKernel::Send(const std::string& ip, const std::string& port, const ProtoPacketPtr packet)
+void CKernel::Send(const std::string& destination, const std::string& ip, const std::string& port, const ProtoPacketPtr packet)
 {
 	SCOPED_LOG(m_Log);
 
@@ -295,7 +295,7 @@ void CKernel::Send(const std::string& ip, const std::string& port, const ProtoPa
 	TRY 
 	{
 		LOG_DEBUG("%s") % packet->DebugString();
-		m_pServer->Send(ip, port, packet);
+		m_pServer->Send(destination, ip, port, packet);
 	}
 	CATCH_PASS_EXCEPTIONS(ip, port, *packet)
 }

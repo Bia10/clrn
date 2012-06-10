@@ -72,7 +72,7 @@ public:
 	{
 		TRY 
 		{
-			// to avoid self ping(hosts endpoint may be equal on differenct PC)
+			// to avoid self ping(hosts endpoint may be equal on different PC)
 			if (ep == m_LocalIp + ":" + m_LocalPort)
 				return;
 
@@ -84,6 +84,7 @@ public:
 	
 			data::Table_Row* tableRow = (*param)->add_rows();
 			tableRow->add_data(conv::cast<std::string>(m_PingInterval));			// ping interval
+			tableRow->add_data(ep);													// endpoint
 			tableRow->add_data(m_LocalIp);											// our ip
 			tableRow->add_data(m_LocalPort);										// our port
 			tableRow->add_data(conv::cast<std::string>(conv::ToPosix64(timeNow)));	// time when ping sended
@@ -92,7 +93,7 @@ public:
 			(
 				jobs::Job_JobId_PING_HOST, 
 				params, 
-				ep, 
+				m_RemoteHostGuid, 
 				boost::bind
 				(
 					&Impl::PingCallBack, 
@@ -285,7 +286,7 @@ public:
 		}
 
 		// ping value
-		const unsigned __int64 timeStart = conv::cast<unsigned __int64>(packet->job().params(0).rows(0).data(3));
+		const unsigned __int64 timeStart = conv::cast<unsigned __int64>(packet->job().params(0).rows(0).data(4));
 		const boost::posix_time::ptime time = conv::FromPosix64(timeStart);
 
 		// inserting data and sending host map change event

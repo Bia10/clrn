@@ -29,6 +29,9 @@
     <ClCompile Include="src\PingHost.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\UDPHost.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\src\NetworkPlugin.h">
@@ -47,6 +50,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\PingHost.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UDPHost.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

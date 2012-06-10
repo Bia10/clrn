@@ -227,8 +227,8 @@ public:
 			return;
 		}
 
-		const std::string ip = packet->job().params(0).rows(0).data(1);		// ping ip
-		const std::string port = packet->job().params(0).rows(0).data(2);	// ping port
+		const std::string ip = packet->job().params(0).rows(0).data(2);		// ping ip
+		const std::string port = packet->job().params(0).rows(0).data(3);	// ping port
 
 		// add this host
 		CProcedure script(m_Kernel);

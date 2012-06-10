@@ -36,7 +36,7 @@ public:
 	void				Send(const std::string& destination, const ProtoPacketPtr packet);
 	
 	//! Send to ep
-	void				Send(const std::string& ip, const std::string& port, const ProtoPacketPtr packet);
+	void				Send(const std::string& destination, const std::string& ip, const std::string& port, const ProtoPacketPtr packet);
 
 	//! Add hosts
 	void				AddHosts(const ProtoPacketPtr packet);
