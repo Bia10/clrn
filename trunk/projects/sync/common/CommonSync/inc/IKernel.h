@@ -9,6 +9,7 @@
 
 #include <boost/shared_ptr.hpp>
 #include <boost/function.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 //! Kernel interface
 //!
@@ -20,6 +21,9 @@ public:
 
 	//! List of proto table ptrs
 	typedef std::list<ProtoTablePtr>				TablesList;
+
+	//! Time event callback
+	typedef boost::function<void (void)>			TimeEventCallback;
 
 	//! Handle new proto packet
 	virtual void				HandleNewPacket(const ProtoPacketPtr packet) = 0;
@@ -50,6 +54,11 @@ public:
 
 	//! Database path
 	virtual const std::string&	DbPath() const = 0;
+
+	//! Subscribe to time event
+	virtual void				TimeEvent(const boost::posix_time::time_duration interval, 
+										const TimeEventCallback callBack,
+										const bool periodic) = 0;
 
 	//! Destructor
 	virtual ~IKernel() {}

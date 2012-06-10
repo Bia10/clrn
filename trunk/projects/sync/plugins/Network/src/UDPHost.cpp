@@ -13,13 +13,20 @@ class CUDPHost::Impl : boost::noncopyable
 	//! Buffer descriptor
 	struct BufferDsc
 	{
-		BufferPtr	buffer;
-		SocketPtr	socket;
-		EndpointPtr ep;
+		BufferPtr					buffer;
+		SocketPtr					socket;
+		EndpointPtr					ep;
+		boost::posix_time::ptime	time;
 	};
 
 	//! Waiting packets map type
 	typedef std::map<std::string, BufferDsc> 					PacketsMap;
+
+	//! Resend ratio
+	enum														{RESEND_RATIO = 3};
+
+	//! Delete ratio
+	enum														{DELETE_RATIO = 6};
 
 public:
 	Impl
@@ -49,7 +56,7 @@ public:
 	
 	void Send(const ProtoPacketPtr packet)
 	{
-		if (m_OutgoingPing < m_IncomingPing)
+		if (m_OutgoingPing < m_IncomingPing || !m_IncomingEP)
 			Send2Outgoing(packet);
 		else
 			Send2Incoming(packet);
@@ -99,7 +106,7 @@ public:
 			// checking packet type
 			if (packets::Packet_PacketType_ACK == packet->type())
 			{
-				DeleteWaitingPacket(packet->guid(), "delivered");
+				//DeleteWaitingPacket(packet->guid(), "delivered");
 				return;
 			}
 		
@@ -182,15 +189,14 @@ private:
 				dsc.buffer = buffer;
 				dsc.ep = ep;
 				dsc.socket = socket;
+				dsc.time = boost::posix_time::microsec_clock::local_time();
 			}
 
 			// setup timer for resend this data
-			boost::asio::deadline_timer resendTimer(m_IOService, boost::posix_time::milliseconds(m_PingInterval));
-			resendTimer.async_wait(boost::bind(&Impl::ResendPacket, this, guid));
+			m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval * RESEND_RATIO), boost::bind(&Impl::ResendPacket, this, guid), false);
 
 			// setting up timer to delete this packet
-			boost::asio::deadline_timer deleteTimer(m_IOService, boost::posix_time::milliseconds(m_PingInterval * 6));
-			deleteTimer.async_wait(boost::bind(&Impl::DeleteWaitingPacket, this, guid, "timed out"));
+			m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval * DELETE_RATIO), boost::bind(&Impl::DeleteWaitingPacket, this, guid, "timed out"), false);
 		}
 		CATCH_PASS_EXCEPTIONS("SendBuffer failed.", guid, ignoreACK)
 	}
@@ -300,10 +306,13 @@ private:
 	//! Send to outgoing channel
 	void Send2Outgoing(const ProtoPacketPtr packet, bool ignoreACK = false, const EndpointPtr ep = EndpointPtr())
 	{
+		const EndpointPtr endpoint = ep ? ep : m_OutgoingEP;
+		CHECK(endpoint);
+
 		LOG_TRACE("Sending to: [%s], as [OUT], ep:[%s]:[%s], data: [%s]") 
 			% m_RemoteGuid 
-			% m_OutgoingEP->address().to_string() 
-			% m_OutgoingEP->port() 
+			% endpoint->address().to_string() 
+			% endpoint->port() 
 			% packet->ShortDebugString();
 
 		// create socket if not exists and send data
@@ -313,7 +322,7 @@ private:
 			m_pOutgoingSocket->open(boost::asio::ip::udp::v4());
 		}
 
-		SendBuffer(Serialize(packet), packet->guid(), ep ? ep : m_OutgoingEP, m_pOutgoingSocket, ignoreACK);
+		SendBuffer(Serialize(packet), packet->guid(), endpoint, m_pOutgoingSocket, ignoreACK);
 
 		// starting to receive from this socket
 		StartReceiving(m_pOutgoingSocket);
@@ -322,6 +331,8 @@ private:
 	//! Send to incoming channel
 	void Send2Incoming(const ProtoPacketPtr packet)
 	{
+		CHECK(m_IncomingEP);
+
 		LOG_TRACE("Sending to: [%s], as [IN], ep:[%s]:[%s], data: [%s]") 
 			% m_RemoteGuid 
 			% m_IncomingEP->address().to_string() 
@@ -340,7 +351,15 @@ private:
 		if (!m_WaitingPackets.count(packet))
 			return;
 
-		LOG_TRACE("Deleting packet: [%s], to: [%s], reason: [%s]") % packet % m_LocalGuid % reason;
+		const boost::posix_time::time_duration td = boost::posix_time::microsec_clock::local_time() - 
+			m_WaitingPackets[packet].time;
+
+		LOG_TRACE("Deleting packet: [%s], to: [%s], reason: [%s], millisec: [%s]") 
+			% packet 
+			% m_LocalGuid 
+			% reason 
+			% static_cast<std::size_t>(td.total_milliseconds());
+
 		m_WaitingPackets.erase(packet);
 	}
 
@@ -359,6 +378,9 @@ private:
 			LOG_TRACE("Resending packet: [%s], to: [%s]") % packet % m_LocalGuid;
 
 			SendBuffer(dsc.buffer, packet, dsc.ep, dsc.socket, true);
+
+			// setup timer for resend this data
+			m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval * RESEND_RATIO), boost::bind(&Impl::ResendPacket, this, packet), false);
 		}
 		CATCH_PASS_EXCEPTIONS(m_LocalGuid, packet)
 	}

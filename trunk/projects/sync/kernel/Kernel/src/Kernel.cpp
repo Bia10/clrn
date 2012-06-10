@@ -336,7 +336,9 @@ void CKernel::TimeoutControllerThread()
 	{
 		TRY 
 		{
-			boost::this_thread::sleep(boost::posix_time::milliseconds(500));
+			boost::this_thread::sleep(boost::posix_time::milliseconds(100));
+
+			CheckTimeEvents();
 
 			const boost::posix_time::ptime now = boost::posix_time::microsec_clock::local_time();
 		
@@ -393,59 +395,62 @@ void CKernel::WorkThread()
 
 	for (;;)
 	{
-		ProtoPacketPtr packet;
 		TRY 
 		{
-			packet = m_WorkQueue.PopFront();
-
-			switch(packet->type())
-			{
-			case packets::Packet_PacketType_REQUEST:
-				{
-					try
-					{
-						const IJob::Ptr job = m_Factory.Create(packet->job().id(), *this, m_Log);
-						job->Execute(packet);
-					}
-					catch (const std::exception& e)
-					{
-						if (packets::Packet_PacketType_REQUEST != packet->type())
-							throw;
-
-						SendErrorReply(packet->from(), packet->guid(), e.what());
-					}
-					catch (...)
-					{
-						if (packets::Packet_PacketType_REQUEST != packet->type())
-							throw;
-
-						SendErrorReply(packet->from(), packet->guid(), "Unhandled exception.");
-					}
-				}
-				break;
-			case packets::Packet_PacketType_REPLY:
-			case packets::Packet_PacketType_ERR:	
-				{
-					const IJob::Ptr job = GetWaitingJob(packet->guid());
-					job->HandleReply(packet);
-				}
-				break;
-			default:
-				assert(false);
-			}
+			const KernelJob job = m_WorkQueue.PopFront();
+			job();
 		}
 		catch (const boost::thread_interrupted&)
 		{
 			LOG_WARNING("Work thread interrupted.");
 			break;
 		}
-		CATCH_IGNORE_EXCEPTIONS(m_Log, "WorkThread failed.", packet ? *packet : packets::Packet())
+		CATCH_IGNORE_EXCEPTIONS(m_Log, "WorkThread failed.")
+	}
+}
+
+void CKernel::ProcessProtoPacket(const ProtoPacketPtr packet)
+{
+	switch(packet->type())
+	{
+	case packets::Packet_PacketType_REQUEST:
+		{
+			try
+			{
+				const IJob::Ptr job = m_Factory.Create(packet->job().id(), *this, m_Log);
+				job->Execute(packet);
+			}
+			catch (const std::exception& e)
+			{
+				if (packets::Packet_PacketType_REQUEST != packet->type())
+					throw;
+
+				SendErrorReply(packet->from(), packet->guid(), e.what());
+			}
+			catch (...)
+			{
+				if (packets::Packet_PacketType_REQUEST != packet->type())
+					throw;
+
+				SendErrorReply(packet->from(), packet->guid(), "Unhandled exception.");
+			}
+		}
+		break;
+	case packets::Packet_PacketType_REPLY:
+	case packets::Packet_PacketType_ERR:	
+		{
+			const IJob::Ptr job = GetWaitingJob(packet->guid());
+			job->HandleReply(packet);
+		}
+		break;
+	default:
+		assert(false);
 	}
 }
 
 void CKernel::HandleNewPacket(const ProtoPacketPtr packet)
 {
-	m_WorkQueue.PushBack(packet);
+	m_WorkQueue.PushBack(boost::bind(&CKernel::ProcessProtoPacket, this, packet));
 }
 
 void CKernel::ExecuteJob(const jobs::Job_JobId id, const IJob::TableList& params, const std::string& host /*= ""*/, const IJob::CallBackFn& callBack /*= IJob::CallBackFn()*/)
@@ -516,4 +521,61 @@ void CKernel::SendErrorReply(const std::string& destination, const std::string& 
 		Send(destination, packet);		
 	}
 	CATCH_IGNORE_EXCEPTIONS(m_Log, "CKernel::SendErrorReply failed.", destination, guid, text)
+}
+
+void CKernel::TimeEvent(const boost::posix_time::time_duration interval, const TimeEventCallback callBack, const bool periodic)
+{
+	boost::mutex::scoped_lock lock(m_TimeEventsMutex);
+
+	TimeEventDsc e;
+	e.timeAdded = boost::posix_time::microsec_clock::local_time();
+	e.interval = interval;
+	e.periodic = periodic;
+	e.callback = callBack;
+
+	const TimeEvents::iterator it = std::find(m_TimeEvents.begin(), m_TimeEvents.end(), callBack);
+	if (m_TimeEvents.end() != it)
+		*it = e;
+	else
+		m_TimeEvents.push_back(e);
+}
+
+void CKernel::CheckTimeEvents()
+{
+	TRY 
+	{
+		boost::mutex::scoped_lock lock(m_TimeEventsMutex);
+
+		const boost::posix_time::ptime now = boost::posix_time::microsec_clock::local_time();
+
+		TimeEvents::iterator it = m_TimeEvents.begin();
+		const TimeEvents::const_iterator itEnd = m_TimeEvents.end();
+		for (; it != itEnd;)
+		{
+			TimeEventDsc& e = *it;
+			if (e.timeAdded + e.interval < now)
+			{
+				// timeout expired, add this item to work queue
+				m_WorkQueue.PushBack(e.callback);
+
+				if (e.periodic)
+				{
+					e.timeAdded = now;
+				}
+				else
+				{
+					it = m_TimeEvents.erase(it);
+					continue;
+				}
+			}
+
+			++it;
+		}
+	}
+	CATCH_IGNORE_EXCEPTIONS(m_Log)
+}
+
+bool CKernel::TimeEventDsc::operator == (const TimeEventCallback& that) const
+{
+	return callback.target_type() == that.target_type();
 }

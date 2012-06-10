@@ -19,11 +19,13 @@ class CLog
 	: public ILog
 {
 	//! Stream vector
-	typedef std::vector<std::ostream*>	Streams;
+	typedef std::vector<std::ostream*>			Streams;
 
 	//! Stream open flags(created or opened)
-	typedef std::vector<bool>			StreamFlags;
+	typedef std::vector<bool>					StreamFlags;
 
+	//! Stream path to index container
+	typedef std::map<std::wstring, std::size_t> StreamIndexes;
 
 public:
 	CLog(void);
@@ -106,6 +108,8 @@ private:
 	//! Current module id
 	unsigned int						m_CurrentModule;
 
+	//! Stream indexes
+	StreamIndexes						m_StreamIndexes;
 };
 
 #endif // Log_h__

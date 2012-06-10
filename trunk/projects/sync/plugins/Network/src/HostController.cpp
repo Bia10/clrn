@@ -32,14 +32,13 @@ public:
 		CEvent hostsInsert(m_Kernel, HOSTS_TABLE_NAME);
 		hostsInsert.Subscribe(boost::bind(&Impl::LocalHostsCallback, this, _1));	
 
-		// starting work thread
-		m_WorkThread = boost::thread(boost::bind(&Impl::WorkLoop, this));
+		// get hosts
+		CProcedure::ParamsMap params;
+		script.Execute(CProcedure::Id::HostsLoad, params, boost::bind(&Impl::LocalHostsCallback, this, _1));
 	}
 
 	~Impl()
 	{
-		m_WorkThread.interrupt();
-		m_WorkThread.join();
 	}
 	 
 	//! Settings callback
@@ -54,6 +53,9 @@ public:
 			CTable settings(*packet->mutable_job()->mutable_results(0));
 
 			m_PingInterval = conv::cast<std::size_t>(settings["name=ping_interval"]["value"]);
+				
+			// starting work loop
+			m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval),  boost::bind(&Impl::WorkLoop, this), true);
 		}
 		CATCH_PASS_EXCEPTIONS(*packet)
 	}
@@ -171,42 +173,22 @@ public:
 		CATCH_PASS_EXCEPTIONS(*packet)
 	}
 
-	//! Work thread
+	//! Work loop method
 	void WorkLoop()
 	{	
 		SCOPED_LOG(m_Log);
 
-		LOG_TRACE("CHostspinger work thread started, hosts to ping: [%s]") % m_HostMap.size();
-
-		boost::this_thread::sleep(boost::posix_time::milliseconds(1000));
-
-		// get hosts
-		CProcedure script(m_Kernel);
-		CProcedure::ParamsMap params;
-		script.Execute(CProcedure::Id::HostsLoad, params, boost::bind(&Impl::LocalHostsCallback, this, _1));
-
-		for (;;)
+		TRY 
 		{
-			TRY 
-			{
-				// sleep for ping interval
-				boost::this_thread::sleep(boost::posix_time::milliseconds(m_PingInterval));
+			boost::mutex::scoped_lock lock(m_HostMapMutex);
 
-				boost::mutex::scoped_lock lock(m_HostMapMutex);
-
-				// pinging each host
-				BOOST_FOREACH(const HostMap::value_type& host, m_HostMap)
-				{
-					host.second->Ping();
-				}
-			}
-			catch (const boost::thread_interrupted&)
+			// pinging each host
+			BOOST_FOREACH(const HostMap::value_type& host, m_HostMap)
 			{
-				LOG_TRACE("CHostspinger work thread stopped.");
-				break;
+				host.second->Ping();
 			}
-			CATCH_IGNORE_EXCEPTIONS(m_Log, "WorkLoop failed.")
 		}
+		CATCH_IGNORE_EXCEPTIONS(m_Log, "WorkLoop failed.")	
 	}	
 
 	//! Remote host pinged us
@@ -246,9 +228,6 @@ private:
 
 	//! Kernel
 	IKernel&					m_Kernel;
-
-	//! Work thread 
-	boost::thread				m_WorkThread;
 
 	//! Local host guid
 	std::string					m_LocalHostGuid;

@@ -97,30 +97,41 @@ void CLog::Open(const std::wstring& source, unsigned int module)
 	}
 	else
 	{
-		if (fs::Exists(source))
+		if (m_StreamIndexes.count(source))
 		{
-			// file exists, need to save it first
-			std::wstring newPath = fs::FullPath(source);
-
-			std::wstring::size_type dot = newPath.rfind('.');
-			if (std::wstring::npos == dot)
-				dot = newPath.size() - 1;
-
-			std::wstring time = std::wstring(L"].") + boost::posix_time::to_iso_extended_wstring(boost::posix_time::microsec_clock().local_time());
-			boost::algorithm::replace_all(time, L":", L".");
-			boost::algorithm::replace_all(time, L"T", L"_");
-
-			newPath.insert(dot, time);
-			newPath.insert(dot - 1, L"[");
-
-			fs::Move(fs::FullPath(source), newPath);
+			// this stream already opened
+			m_Streams[module] = m_Streams[m_StreamIndexes[source]];
+			m_CreatedStreams[module] = false;
 		}
+		else
+		{
 
-		fs::CreateDirectories(source);
-		std::ofstream* stream = new std::ofstream(fs::FullPath(source).c_str(), std::ios::out);
-		CHECK(stream->is_open(), conv::cast<std::string>(source));
-		m_Streams[module] = stream;
-		m_CreatedStreams[module] = true;
+			if (fs::Exists(source))
+			{
+				// file exists, need to save it first
+				std::wstring newPath = fs::FullPath(source);
+
+				std::wstring::size_type dot = newPath.rfind('.');
+				if (std::wstring::npos == dot)
+					dot = newPath.size() - 1;
+
+				std::wstring time = std::wstring(L"].") + boost::posix_time::to_iso_extended_wstring(boost::posix_time::microsec_clock().local_time());
+				boost::algorithm::replace_all(time, L":", L".");
+				boost::algorithm::replace_all(time, L"T", L"_");
+
+				newPath.insert(dot, time);
+				newPath.insert(dot - 1, L"[");
+
+				fs::Move(fs::FullPath(source), newPath);
+			}
+
+			fs::CreateDirectories(source);
+			std::ofstream* stream = new std::ofstream(fs::FullPath(source).c_str(), std::ios::out);
+			CHECK(stream->is_open(), conv::cast<std::string>(source));
+			m_Streams[module] = stream;
+			m_CreatedStreams[module] = true;
+			m_StreamIndexes[source] = module;
+		}
 	}	
 
 
@@ -420,8 +431,8 @@ void CLog::Write(const Level::Enum_t level)
 		}
 
 		*m_Streams[m_CurrentModule]
-			<< "[" << Level2String(level) << "]"
-			<< "[" << boost::posix_time::to_iso_extended_string(boost::posix_time::microsec_clock().local_time()) << "]:["
+			<< "[" << Level2String(level) << "][" << m_CurrentModule
+			<< "][" << boost::posix_time::to_iso_extended_string(boost::posix_time::microsec_clock().local_time()) << "]:["
 #ifdef WIN32
 			<< conv::cast<std::string>(GetCurrentThreadId())
 #else

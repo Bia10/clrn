@@ -187,9 +187,8 @@ public:
 			const ProtoPacketPtr packet(new packets::Packet());
 			if (packet->ParseFromArray(&buffer->front(), size))
 			{
-				LOG_TRACE("Received from: [%s], socket: [%s], ep: [%s]:[%s]") 
+				LOG_TRACE("Received from: [%s], socket: [IN], ep: [%s]:[%s]") 
 					% packet->from()
-					% (socket == m_pReceiveSocket ? "receive" : "send")
 					% client->address().to_string() 
 					% client->port();
 
@@ -352,9 +351,9 @@ public:
 			}
 
 			if (incoming)
-				it->second->SetIncomingEP(row["ip"], row["port"], conv::cast<std::size_t>(row["ping"]));
+				it->second->SetIncomingEP(row["ip"], row["port"], std::size_t(-1));
 			else
-				it->second->SetOutgoingEP(row["ip"], row["port"], conv::cast<std::size_t>(row["ping"]));
+				it->second->SetOutgoingEP(row["ip"], row["port"], std::size_t(-1));
 		}	
 	}
 

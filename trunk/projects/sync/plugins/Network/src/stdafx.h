@@ -20,12 +20,12 @@
 #include <boost/function.hpp>
 #include <boost/exception_ptr.hpp>
 #include <boost/scoped_ptr.hpp>
-#include <boost/thread.hpp>
 #include <boost/bind.hpp>
 #include <boost/foreach.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/format.hpp>
 #include <boost/asio.hpp>
+#include <boost/thread.hpp>
 
 static const unsigned int CURRENT_MODULE_ID =  NETWORK_MODULE_ID;
 
