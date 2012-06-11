@@ -8,7 +8,10 @@ namespace net
 class CUDPHost::Impl : boost::noncopyable
 {
 	//! Buffer type
-	typedef boost::shared_ptr< std::vector<char> >				BufferPtr;
+	typedef std::vector<char>									Buffer;
+
+	//! Buffer ptr type
+	typedef boost::shared_ptr<Buffer>							BufferPtr;
 
 	//! Buffer descriptor
 	struct BufferDsc
@@ -27,6 +30,9 @@ class CUDPHost::Impl : boost::noncopyable
 
 	//! Delete ratio
 	enum														{DELETE_RATIO = 6};
+
+	//! Minimum waiting incoming threads
+	enum														{INCOMING_THREADS_COUNT = 4};		
 
 public:
 	Impl
@@ -50,6 +56,7 @@ public:
 		, m_pSrvSocket(srvSocket)
 		, m_OutgoingPing(std::numeric_limits<std::size_t>::max())
 		, m_IncomingPing(std::numeric_limits<std::size_t>::max())
+		, m_WaitingThreads(0)
 	{
 
 	}
@@ -106,7 +113,7 @@ public:
 			// checking packet type
 			if (packets::Packet_PacketType_ACK == packet->type())
 			{
-				//DeleteWaitingPacket(packet->guid(), "delivered");
+				DeleteWaitingPacket(packet->guid(), "delivered");
 				return;
 			}
 		
@@ -125,7 +132,8 @@ public:
 			ack->set_guid(packet->guid());
 			ack->set_type(packets::Packet_PacketType_ACK);
 	
-			const BufferPtr buffer(new std::vector<char>(ack->ByteSize()));
+			const BufferPtr buffer(new Buffer());
+			buffer->resize(ack->ByteSize());
 			ack->SerializeToArray(&buffer->front(), buffer->size());
 	
 			socket->async_send_to
@@ -208,7 +216,8 @@ private:
 		packet->set_from(m_LocalGuid);
 
 		// sending
-		const BufferPtr buffer(new std::vector<char>(packet->ByteSize()));
+		const BufferPtr buffer(new Buffer());
+		buffer->resize(packet->ByteSize());
 		packet->SerializeToArray(&buffer->front(), buffer->size());
 
 		return buffer;
@@ -221,7 +230,16 @@ private:
 
 		TRY 
 		{
-			const BufferPtr buffer(new std::vector<char>());	
+			if (socket == m_pOutgoingSocket)
+			{
+				boost::mutex::scoped_lock lock(m_WaitingThreadsMutex);
+				if (m_WaitingThreads >= INCOMING_THREADS_COUNT)
+					return;
+					
+				++m_WaitingThreads;
+			}
+
+			const BufferPtr buffer(new Buffer());	
 			ContinueReceiving(buffer, socket);
 		}
 		CATCH_PASS_EXCEPTIONS("StartReceiving failed.")
@@ -273,6 +291,16 @@ private:
 		{
 			if (socket == m_pSrvSocket)
 				StartReceiving(socket);
+			else 
+			{
+				{
+					boost::mutex::scoped_lock lock(m_WaitingThreadsMutex);
+					if (m_WaitingThreads)
+						--m_WaitingThreads;
+				}
+
+				StartReceiving(socket);
+			}
 
 			if (e)
 			{
@@ -430,6 +458,12 @@ private:
 
 	//! Mutex for waiting packets
 	boost::mutex						m_PacketsMutex;
+
+	//! Waiting for incoming connection threads count 
+	std::size_t							m_WaitingThreads;
+
+	//! Waiting threads mutex
+	boost::mutex						m_WaitingThreadsMutex;
 };
 
 CUDPHost::CUDPHost
