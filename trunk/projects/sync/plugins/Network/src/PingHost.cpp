@@ -188,8 +188,16 @@ public:
 			CProcedure script(m_Kernel);
 			CProcedure::ParamsMap mapParams;
 
-			mapParams["guid"]		= m_RemoteHostGuid;
-			mapParams["incoming"]	= conv::cast<std::string>(incoming);
+			if (incoming)
+			{
+				mapParams["from"]	= m_RemoteHostGuid;
+				mapParams["to"]		= m_LocalHostGuid;
+			}
+			else
+			{
+				mapParams["from"]	= m_LocalHostGuid;
+				mapParams["to"]		= m_RemoteHostGuid;
+			}
 			mapParams["status"]		= conv::cast<std::string>(Status::SessionEstablished);
 			mapParams["ping"]		= ping;
 			mapParams["ip"]			= ip;

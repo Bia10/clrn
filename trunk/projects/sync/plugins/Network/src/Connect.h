@@ -15,9 +15,6 @@ class CConnect :
 public:
 	CConnect(IKernel& kernel, ILog& logger);
 
-	//! Invoke job
-	void						Invoke(const TableList& params, const std::string& host);
-
 	//! Execute job
 	void						Execute(const ProtoPacketPtr packet);
 

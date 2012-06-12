@@ -5,53 +5,7 @@
 CConnect::CConnect(IKernel& kernel, ILog& logger)
 	: CBaseJob(kernel, logger)
 {
-	m_Id = jobs::Job_JobId_PING_HOST;
-}
-
-void CConnect::Invoke(const TableList& params, const std::string& host)
-{
-	TRY 
-	{
-		// getting ping timeout
-		CHECK(1 == params.size());
-	
-		const data::Table& table = **params.front();
-	
-		m_TimeOut = conv::cast<std::size_t>(table.rows(0).data(0));
-		const std::string& endpoint = table.rows(0).data(1);
-	
-		// generating packet
-		ProtoPacketPtr request(new packets::Packet());
-		request->set_type(packets::Packet_PacketType_REQUEST);	
-	
-		// packet GUID
-		request->set_guid(m_GUID);
-		request->set_timeout(m_TimeOut);
-	
-		jobs::Job* job = request->mutable_job();
-		job->set_id(GetId());
-	
-		BOOST_FOREACH(const IJob::TablePtr& table, params)
-		{
-			google::protobuf::RepeatedPtrField<data::Table>& field = *job->mutable_params();
-			field.AddAllocated(table->release());
-		}
-	
-		if (m_TimeOut)
-			m_Kernel.AddToWaiting(shared_from_this(), host);
-
-		// delimiter
-		const std::string::size_type delimiter = endpoint.find(':');
-
-		CHECK(std::string::npos != delimiter, endpoint);
-
-		const std::string ip = endpoint.substr(0, delimiter);
-		const std::string port = endpoint.substr(delimiter + 1);
-
-		// this job directly sends to endpoint
-		m_Kernel.Send(host, ip, port, request);
-	}
-	CATCH_PASS_EXCEPTIONS(host)
+	m_Id = jobs::Job_JobId_CONNECT;
 }
 
 void CConnect::Execute(const ProtoPacketPtr packet)
@@ -60,12 +14,26 @@ void CConnect::Execute(const ProtoPacketPtr packet)
 
 	TRY 
 	{
-		CHostController::Instance().OnRemotePingReceived(packet);
+		// this job executes when some host want to connect to other host.
+		// we will add host_map data according to this job params.
+		const std::string& targetHost = packet->job().params(0).rows(0).data(0);
 
+		// host which want to connect
 		const std::string& host = packet->from();
-		packet->set_type(packets::Packet_PacketType_REPLY);
 
-		m_Kernel.Send(host, packet);
+		// insert data to host map
+		CProcedure proc(m_Kernel);
+		
+		CProcedure::ParamsMap params;
+
+// 		const std::string& guid		= GetParam(params, "guid");
+// 		const std::string& ip		= GetParam(params, "ip");;
+// 		const std::string& port		= GetParam(params, "port");	
+// 		const std::string& status	= GetParam(params, "status");	
+// 		const std::string& ping		= GetParam(params, "ping");	
+// 		const bool incoming			= conv::cast<bool>(GetParam(params, "incoming"));	
+
+		proc.Execute(CProcedure::Id::HostMapCreate, params, IJob::CallBackFn());
 	}
 	CATCH_PASS_EXCEPTIONS("CBaseJob::Execute failed.", *packet)
 }
