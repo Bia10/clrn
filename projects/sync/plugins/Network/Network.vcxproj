@@ -168,6 +168,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_vc90|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include=".\src\UDPServer.cpp" />
+    <ClCompile Include="src\Connect.cpp" />
     <ClCompile Include="src\ConnectionEstablisher.cpp" />
     <ClCompile Include="src\HostController.cpp" />
     <ClCompile Include="src\PingHost.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include=".\src\stdafx.h" />
     <ClInclude Include=".\inc\UDPServer.h" />
     <ClInclude Include="inc\HostController.h" />
+    <ClInclude Include="src\Connect.h" />
     <ClInclude Include="src\ConnectionEstablisher.h" />
     <ClInclude Include="src\PingHost.h" />
     <ClInclude Include="src\UDPHost.h" />
