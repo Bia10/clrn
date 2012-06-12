@@ -9,16 +9,16 @@ message Job
 	// job identification
 	enum JobId
 	{
-		EMPTY			= 1;
-		GET_MODULES 	= 2;
-		GET_SETTINGS 	= 3;
-		SET_SETTINGS 	= 4;	
-		EXEC_SCRIPT		= 5;
-		EXEC_PROCEDURE	= 6;
-		PING_HOST		= 7;
-		GET_PACKET		= 8;
-		GET_EVENT		= 9;
-		SET_EVENT		= 10;
+		EMPTY				= 1;
+		GET_MODULES 		= 2;
+		GET_SETTINGS 		= 3;
+		SET_SETTINGS 		= 4;	
+		EXEC_SCRIPT			= 5;
+		EXEC_PROCEDURE		= 6;
+		PING_HOST			= 7;
+		GET_EVENT			= 8;
+		SET_EVENT			= 9;
+		CONNECT				= 10;
 	}
 	
 	optional JobId 			id 			= 1;	// job operation id

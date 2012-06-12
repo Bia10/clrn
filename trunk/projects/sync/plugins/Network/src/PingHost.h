@@ -12,7 +12,7 @@
 class IKernel;
 class ILog;
 
-//! Host implementation
+//! Pingable host implementation
 class CPingHost : boost::noncopyable
 {
 public:

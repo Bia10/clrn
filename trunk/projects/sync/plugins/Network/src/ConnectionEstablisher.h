@@ -25,7 +25,13 @@ public:
 	typedef boost::scoped_ptr<CConnectionEstablisher>	Ptr;
 
 	//! Ctor
-	CConnectionEstablisher(IKernel& kernel, ILog& log);
+	CConnectionEstablisher
+	(
+		IKernel& kernel, 
+		ILog& log, 
+		const std::string& localHostGuid,
+		const std::size_t pingInterval
+	);
 	~CConnectionEstablisher(void);
 
 private:

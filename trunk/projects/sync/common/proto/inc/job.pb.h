@@ -43,13 +43,13 @@ enum Job_JobId {
   Job_JobId_EXEC_SCRIPT = 5,
   Job_JobId_EXEC_PROCEDURE = 6,
   Job_JobId_PING_HOST = 7,
-  Job_JobId_GET_PACKET = 8,
-  Job_JobId_GET_EVENT = 9,
-  Job_JobId_SET_EVENT = 10
+  Job_JobId_GET_EVENT = 8,
+  Job_JobId_SET_EVENT = 9,
+  Job_JobId_CONNECT = 10
 };
 bool Job_JobId_IsValid(int value);
 const Job_JobId Job_JobId_JobId_MIN = Job_JobId_EMPTY;
-const Job_JobId Job_JobId_JobId_MAX = Job_JobId_SET_EVENT;
+const Job_JobId Job_JobId_JobId_MAX = Job_JobId_CONNECT;
 const int Job_JobId_JobId_ARRAYSIZE = Job_JobId_JobId_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* Job_JobId_descriptor();
@@ -124,9 +124,9 @@ class Job : public ::google::protobuf::Message {
   static const JobId EXEC_SCRIPT = Job_JobId_EXEC_SCRIPT;
   static const JobId EXEC_PROCEDURE = Job_JobId_EXEC_PROCEDURE;
   static const JobId PING_HOST = Job_JobId_PING_HOST;
-  static const JobId GET_PACKET = Job_JobId_GET_PACKET;
   static const JobId GET_EVENT = Job_JobId_GET_EVENT;
   static const JobId SET_EVENT = Job_JobId_SET_EVENT;
+  static const JobId CONNECT = Job_JobId_CONNECT;
   static inline bool JobId_IsValid(int value) {
     return Job_JobId_IsValid(value);
   }
