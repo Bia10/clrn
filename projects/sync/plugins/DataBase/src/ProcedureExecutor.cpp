@@ -147,33 +147,38 @@ public:
 	//! Host map create
 	void HostMapCreate(const CProcedure::ParamsMap& params, data::Table& /*result*/)
 	{
-		const std::string& guid		= GetParam(params, "guid");
-		const std::string& ip		= GetParam(params, "ip");;
+		const std::string& from		= GetParam(params, "from");
+		const std::string& to		= GetParam(params, "to");
+		const std::string& ip		= GetParam(params, "ip");
 		const std::string& port		= GetParam(params, "port");	
 		const std::string& status	= GetParam(params, "status");	
 		const std::string& ping		= GetParam(params, "ping");	
-		const bool incoming			= conv::cast<bool>(GetParam(params, "incoming"));	
 
-		std::string sql;
-		if (!incoming)
-			sql = "insert into host_map select 1, id, :STATUS, :PING, :IP, :PORT from hosts where guid = ':GUID'";
-		else
-			sql = "insert into host_map select id, 1, :STATUS, :PING, :IP, :PORT from hosts where guid = ':GUID'";
+		std::string sql = 
+			"INSERT INTO host_map "
+			"SELECT h1.id, "
+			"	    h2.id, "
+			"		:STATUS, "
+			"		:PING, "
+			"		:IP, "
+			"		:PORT "
+			"FROM   hosts h1, "
+			"	   hosts h2 "
+			"WHERE  h1.[guid] = ':FROM' "
+			"	   AND h2.[guid] = ':TO' ";
 
 		boost::algorithm::replace_all(sql, ":STATUS",	status);
 		boost::algorithm::replace_all(sql, ":PING",		ping);
 		boost::algorithm::replace_all(sql, ":IP",		!ip.empty() ? (std::string("'") + ip + "'") : "NULL");
 		boost::algorithm::replace_all(sql, ":PORT",		port);
-		boost::algorithm::replace_all(sql, ":GUID",		guid);
+		boost::algorithm::replace_all(sql, ":FROM",		from);
+		boost::algorithm::replace_all(sql, ":TO",		to);
 
 		// inserting data
 		if ( !DataBase::Instance().Execute(sql.c_str()) )
 			return;
 
-		// selecting data and raising event
-		data::Table temp;
-		DataBase::Instance().Execute("select guid from hosts where id = 1", temp);
-		const std::string& localGuid = temp.rows(0).data(0);
+		// raising event
 
 		// event packet
 		const ProtoPacketPtr packet(new packets::Packet());
@@ -182,19 +187,10 @@ public:
 		result->set_id(data::Table_Id_HostMapEvent);
 
 		CTable resultTable(*result);
-
 		CTable::Row& row = resultTable.AddRow();
 
-		if (incoming)
-		{
-			row["from"]		= guid;
-			row["to"]		= localGuid;
-		}
-		else
-		{
-			row["from"]		= localGuid;
-			row["to"]		= guid;
-		}
+		row["from"]		= from;
+		row["to"]		= to;
 		row["status"]	= status;
 		row["ping"]		= ping;
 		row["ip"]		= ip;
