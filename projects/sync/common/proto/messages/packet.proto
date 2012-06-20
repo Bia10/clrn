@@ -13,7 +13,6 @@ message Packet
 		REPLY 			= 2;
 		ERR				= 3;
 		ACK				= 4;
-		SYN				= 5;
 	}
 	
 	// packet destination description

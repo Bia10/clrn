@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "OutgoingPing.h"
 #include "HostController.h"
+#include "PingHost.h"
 
 COutgoingPing::COutgoingPing(IKernel& kernel, ILog& logger)
 	: CBaseJob(kernel, logger)
@@ -17,7 +18,7 @@ void COutgoingPing::Invoke(const TableList& params, const std::string& host)
 	
 		const data::Table& table = **params.front();
 	
-		m_TimeOut = conv::cast<std::size_t>(table.rows(0).data(0));
+		m_TimeOut = conv::cast<std::size_t>(table.rows(0).data(0)) * CPingHost::TIMEOUT_PING_RATIO;
 		const std::string& endpoint = table.rows(0).data(1);
 	
 		// generating packet

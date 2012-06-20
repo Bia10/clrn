@@ -139,7 +139,7 @@ public:
 
 		const __int64 millisecondSinceLastUpdate = td.total_milliseconds();
 
-		if (millisecondSinceLastUpdate > m_PingInterval * 5)
+		if (millisecondSinceLastUpdate > m_PingInterval * TIMEOUT_PING_RATIO)
 		{
 			// incoming host session timed out
 
@@ -224,7 +224,7 @@ public:
 			const __int64 millisecSinceLastUpdate = 
 				boost::posix_time::time_duration(boost::posix_time::microsec_clock::local_time() - m_OutgoingLastUpdateTime).total_milliseconds();
 
-			if (millisecSinceLastUpdate < m_PingInterval * 3)
+			if (millisecSinceLastUpdate < m_PingInterval * HOST_MAP_REFRESH_RATIO)
 				return;
 		}
 
@@ -289,7 +289,7 @@ public:
 			const __int64 millisecSinceLastUpdate = 
 				boost::posix_time::time_duration(boost::posix_time::microsec_clock::local_time() - m_IncomingLastUpdateTime).total_milliseconds();
 
-			if (millisecSinceLastUpdate < m_PingInterval * 3)
+			if (millisecSinceLastUpdate < m_PingInterval * HOST_MAP_REFRESH_RATIO)
 				return;
 		}
 

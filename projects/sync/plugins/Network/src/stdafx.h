@@ -26,6 +26,10 @@
 #include <boost/format.hpp>
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
+#pragma warning(push)
+#pragma warning(disable : 4996)
+#include <boost/algorithm/string.hpp>
+#pragma warning(pop) 
 
 static const unsigned int CURRENT_MODULE_ID =  NETWORK_MODULE_ID;
 

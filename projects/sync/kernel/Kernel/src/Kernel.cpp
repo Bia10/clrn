@@ -535,9 +535,15 @@ void CKernel::TimeEvent(const boost::posix_time::time_duration interval, const T
 
 	const TimeEvents::iterator it = std::find(m_TimeEvents.begin(), m_TimeEvents.end(), callBack);
 	if (m_TimeEvents.end() != it)
-		*it = e;
-	else
-		m_TimeEvents.push_back(e);
+	{
+		if (interval.total_milliseconds())
+			*it = e; // change callback
+		else
+			m_TimeEvents.erase(it); // remove event
+	}
+	else 
+	if (interval.total_milliseconds())
+		m_TimeEvents.push_back(e); // add new event
 }
 
 void CKernel::CheckTimeEvents()

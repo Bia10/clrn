@@ -21,17 +21,24 @@ void CConnect::Execute(const ProtoPacketPtr packet)
 		// host which want to connect
 		const std::string& host = packet->from();
 
+		// invoker host endpoint
+		const std::string& ep = packet->ep();
+
+		std::vector<std::string> IPAndPort;
+		boost::algorithm::split(IPAndPort, ep, boost::algorithm::is_any_of(":"));
+
+
 		// insert data to host map
 		CProcedure proc(m_Kernel);
 		
 		CProcedure::ParamsMap params;
 
-// 		const std::string& guid		= GetParam(params, "guid");
-// 		const std::string& ip		= GetParam(params, "ip");;
+// 		const std::string& from		= GetParam(params, "from");
+// 		const std::string& to		= GetParam(params, "to");
+// 		const std::string& ip		= GetParam(params, "ip");
 // 		const std::string& port		= GetParam(params, "port");	
 // 		const std::string& status	= GetParam(params, "status");	
 // 		const std::string& ping		= GetParam(params, "ping");	
-// 		const bool incoming			= conv::cast<bool>(GetParam(params, "incoming"));	
 
 		proc.Execute(CProcedure::Id::HostMapCreate, params, IJob::CallBackFn());
 	}
