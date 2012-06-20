@@ -32,6 +32,13 @@ public:
 		};
 	};
 
+	//! Host timed out if pinginterval * TIMEOUT_PING_RATIO expired
+	enum {TIMEOUT_PING_RATIO	= 5};
+
+	//! Host map status refresh ration
+	//! refresh host_map table only if if pinginterval * HOST_MAP_REFRESH_RATIO expired
+	enum {HOST_MAP_REFRESH_RATIO = 3};
+
 	//! Ctor
 	CPingHost
 	(

@@ -39,6 +39,8 @@ public:
 
 	~Impl()
 	{
+		// removing subscribe to time event
+		m_Kernel.TimeEvent(boost::posix_time::milliseconds(0),  boost::bind(&Impl::WorkLoop, this), true);
 	}
 	 
 	//! Settings callback

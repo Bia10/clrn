@@ -35,6 +35,13 @@ public:
 		m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::HostControlTimeEvent, this), true);
 	}
 
+	//! Dtor
+	~Impl()
+	{
+		// removing time event
+		m_Kernel.TimeEvent(boost::posix_time::milliseconds(0), boost::bind(&Impl::HostControlTimeEvent, this), true);
+	}
+
 	//! Hosts status event call back(local)
 	void LocalHostStatusCallBack(const ProtoPacketPtr packet)
 	{
@@ -113,13 +120,12 @@ public:
 					m_RemoteMapping[to] = from;
 			}
 			else
-			if (CPingHost::Status::SessionRequested == status)
+			if (CPingHost::Status::SessionRequested == status && to == m_LocalHostGuid)
 			{
 				// process incoming request
-				if (to == m_LocalHostGuid)
-				{
-					// signal host_map event with incoming session request params here
-				}
+
+				// signal host_map event with incoming session request params here
+				
 			}
 		}
 	}
@@ -127,7 +133,7 @@ public:
 	//! Host control time event
 	void HostControlTimeEvent()
 	{
-
+		// check hosts and generate CONNECT jobs here
 	}
 
 private:
