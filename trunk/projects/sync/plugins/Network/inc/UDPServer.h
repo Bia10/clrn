@@ -5,10 +5,18 @@
 #include "ProtoPacketPtr.h"
 
 #include <boost/scoped_ptr.hpp>
+#include <boost/noncopyable.hpp>
 
 //! Forward declarations
 class IKernel;
 
+namespace boost
+{
+	namespace asio
+	{
+		class io_service;
+	}
+}
 
 namespace net
 {
@@ -17,13 +25,14 @@ namespace net
 //! 
 //! \class CUDPServer
 //!
-class CUDPServer
+class CUDPServer : private boost::noncopyable
 {
 public:
 	CUDPServer(ILog& logger, 
 				IKernel& kernel,
-				const int port, 
+				boost::asio::io_service& srvc,
 				const int threads,
+				const int port, 
 				const int bufferSize,
 				const std::string& guid);
 
@@ -49,12 +58,6 @@ public:
 
 	//! Set ping interval
 	void				SetPingInterval(const std::size_t interval);
-
-	//! Run server
-	void				Run();
-
-	//! Stop server
-	void				Stop();
 
 private:
 

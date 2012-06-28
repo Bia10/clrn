@@ -3,6 +3,8 @@
 
 
 CKernel::CKernel()
+	: m_ServiceWork(m_Service)
+	, m_TimeoutTimer(m_Service)
 { 
 
 }
@@ -13,21 +15,29 @@ CKernel::~CKernel(void)
 
 	DataBase::Shutdown();
 
-	if (m_pServer)
-		m_pServer->Stop();
 	m_Log.Close();
 }
 
 void CKernel::Run()
 {
 	SCOPED_LOG(m_Log);
-	CHECK(m_pServer);
+	m_Service.run();
+}
 
-	m_pServer->Run();
+const std::string& CKernel::DbPath() const
+{
+	return m_DBpath;
+}
 
-	// shutdown initiated
+void CKernel::Stop()
+{
+	SCOPED_LOG(m_Log);
+
+	LOG_WARNING("Stopping kernel...");
+
 	m_PluginLoader->Shutdown();
-	m_WorkPool.interrupt_all();
+
+	m_Service.stop();
 	m_WorkPool.join_all();
 
 	{
@@ -37,12 +47,9 @@ void CKernel::Run()
 
 	m_PluginLoader->Unload();
 	m_pSettings.reset();
-	m_WorkQueue.Clear();
-}
+	m_pServer.reset();
 
-const std::string& CKernel::DbPath() const
-{
-	return m_DBpath;
+	LOG_WARNING("Kernel stopped.");
 }
 
 void CKernel::LoadPlugins()
@@ -107,14 +114,15 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 		m_Log.SetLogLevels(levels);
 
 		int port = 0;
-		int threads = 0;
 		int bufferSize = 0;
 		m_pSettings->Get(KERNEL_MODULE_ID, port,		"udp_port");
-		m_pSettings->Get(KERNEL_MODULE_ID, threads,		"udp_threads");
 		m_pSettings->Get(KERNEL_MODULE_ID, bufferSize,	"udp_buffer_size");
 
 		std::size_t pingInterval = 0;
 		m_pSettings->Get(KERNEL_MODULE_ID, pingInterval, "ping_interval");
+
+		int workPoolSize = 0;
+		m_pSettings->Get(KERNEL_MODULE_ID, workPoolSize, "kernel_threads");
 
 		// getting hosts
 		data::Table hostsTableData;
@@ -130,27 +138,36 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 			(
 				m_Log, 
 				*this, 
+				m_Service,
+				workPoolSize,
 				port, 
-				threads, 
 				bufferSize,
 				m_LocalHostGuid
 			)
 		);
 
-		// setting up ping interval
-		m_pServer->SetPingInterval(pingInterval);
-
 		// setting up server endpoints
 		const ProtoPacketPtr hostList(new packets::Packet());
 		*hostList->mutable_job()->add_results() = hostsTableData;
 		HostListCallBack(hostList);
+	
+		m_TimeoutTimer.expires_from_now(boost::posix_time::milliseconds(100));
+		m_TimeoutTimer.async_wait(boost::bind(&CKernel::TimeoutControllerThread, this));
 
-		int workPoolSize = 0;
-		m_pSettings->Get(KERNEL_MODULE_ID, workPoolSize, "kernel_threads");
-		for (int i = 0; i < workPoolSize; ++i)
-			m_WorkPool.create_thread(boost::bind(&CKernel::WorkThread, this));
+		// Creating signal set
+		m_pSignals.reset(new boost::asio::signal_set(m_Service));
 
-		m_WorkPool.create_thread(boost::bind(&CKernel::TimeoutControllerThread, this));
+		m_pSignals->add(SIGINT);
+		m_pSignals->add(SIGTERM);
+
+#if defined(SIGQUIT)
+		m_pTerminationSignals->add(SIGQUIT);
+#endif // defined(SIGQUIT)
+
+		m_pSignals->async_wait(boost::bind(&CKernel::Stop, this));
+
+		// setting up ping interval
+		m_pServer->SetPingInterval(pingInterval);
 
 		// load plugins
 		LoadPlugins();
@@ -170,6 +187,9 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 		// subscribing to host status event
 		CEvent hostStatusEvent(*this, HOST_STATUS_EVENT_NAME);
 		hostStatusEvent.Subscribe(boost::bind(&CKernel::HostStatusCallBack, this, _1));
+
+		for (int i = 0; i < workPoolSize; ++i)
+			m_WorkPool.create_thread(boost::bind(&boost::asio::io_service::run, &m_Service));
 	}
 	CATCH_PASS_EXCEPTIONS("Init failed.")
 }
@@ -218,12 +238,12 @@ void CKernel::HostStatusCallBack(const ProtoPacketPtr packet)
 
 		BOOST_FOREACH(const IJob::Ptr& job, jobsToErase)
 		{
-			LOG_WARNING("Job id: [%s], guid: [%s], erased due host went offline.") % job->GetId() % job->GetGUID() % job->GetGUID();
+			LOG_WARNING("Job id: [%s], guid: [%s], erased due host went offline.") % job->GetId() % job->GetGUID();
 			TRY 
 			{
 				job->HandleReply(ProtoPacketPtr());
 			}
-			CATCH_IGNORE_EXCEPTIONS(m_Log, job->GetId(), job->GetGUID(), job->GetGUID())
+			CATCH_IGNORE_EXCEPTIONS(m_Log, job->GetId(), job->GetGUID())
 		}
 	}
 	CATCH_PASS_EXCEPTIONS(*packet)
@@ -332,125 +352,106 @@ void CKernel::TimeoutControllerThread()
 {
 	SCOPED_LOG(m_Log);
 
-	for (;;)
+	TRY 
 	{
-		TRY 
-		{
-			boost::this_thread::sleep(boost::posix_time::milliseconds(100));
+		CheckTimeEvents();
 
-			CheckTimeEvents();
-
-			const boost::posix_time::ptime now = boost::posix_time::microsec_clock::local_time();
+		const boost::posix_time::ptime now = boost::posix_time::microsec_clock::local_time();
 		
-			std::vector<IJob::Ptr> jobsToErase;
+		std::vector<IJob::Ptr> jobsToErase;
+		{
+			boost::mutex::scoped_lock lock(m_WaitingJobsMutex);
+
+			WaitingJobs::const_iterator it = m_WaitingJobs.begin();
+			const WaitingJobs::const_iterator itEnd = m_WaitingJobs.end();
+			for (; it != itEnd; ++it)
 			{
-				boost::mutex::scoped_lock lock(m_WaitingJobsMutex);
+				const std::size_t timeout = it->second.timeout;
+				if (std::size_t(-1) == timeout)
+					continue; // infinite timeout
 
-				WaitingJobs::const_iterator it = m_WaitingJobs.begin();
-				const WaitingJobs::const_iterator itEnd = m_WaitingJobs.end();
-				for (; it != itEnd; ++it)
-				{
-					const std::size_t timeout = it->second.timeout;
-					if (std::size_t(-1) == timeout)
-						continue; // infinite timeout
+				boost::posix_time::time_duration td = now - it->second.timeAdded;
 
-					boost::posix_time::time_duration td = now - it->second.timeAdded;
+				if (td.total_milliseconds() < timeout)
+					continue;
 
-					if (td.total_milliseconds() < timeout)
-						continue;
+				jobsToErase.push_back(it->second.job);
 
-					jobsToErase.push_back(it->second.job);
-
-					m_WaitingJobs.erase(it);			
-					it = m_WaitingJobs.begin();
-				}
-			}
-
-			BOOST_FOREACH(const IJob::Ptr& job, jobsToErase)
-			{
-				LOG_WARNING("Job id: [%s], guid: [%s], timeout: [%s] ended.") 
-					% job->GetId() 
-					% job->GetGUID()
-					% job->GetTimeout();
-
-				TRY 
-				{
-					job->HandleReply(ProtoPacketPtr());
-				}
-				CATCH_IGNORE_EXCEPTIONS(m_Log, job->GetId(), job->GetTimeout(), job->GetGUID())
+				m_WaitingJobs.erase(it);			
+				it = m_WaitingJobs.begin();
 			}
 		}
-		catch (const boost::thread_interrupted&)
-		{
-			LOG_WARNING("TimeoutControllerThread interrupted.");
-			break;
-		}
-		CATCH_IGNORE_EXCEPTIONS(m_Log, "TimeoutControllerThread failed.")
-	}
-}
 
-void CKernel::WorkThread()
-{
-	SCOPED_LOG(m_Log);
+		BOOST_FOREACH(const IJob::Ptr& job, jobsToErase)
+		{
+			LOG_WARNING("Job id: [%s], guid: [%s], timeout: [%s] ended.") 
+				% job->GetId() 
+				% job->GetGUID()
+				% job->GetTimeout();
 
-	for (;;)
-	{
-		TRY 
-		{
-			const KernelJob job = m_WorkQueue.PopFront();
-			job();
+			TRY 
+			{
+				job->HandleReply(ProtoPacketPtr());
+			}
+			CATCH_IGNORE_EXCEPTIONS(m_Log, job->GetId(), job->GetTimeout(), job->GetGUID())
 		}
-		catch (const boost::thread_interrupted&)
-		{
-			LOG_WARNING("Work thread interrupted.");
-			break;
-		}
-		CATCH_IGNORE_EXCEPTIONS(m_Log, "WorkThread failed.")
 	}
+	CATCH_IGNORE_EXCEPTIONS(m_Log, "TimeoutControllerThread failed.")
+	
+	m_TimeoutTimer.expires_from_now(boost::posix_time::milliseconds(100));
+	m_TimeoutTimer.async_wait(boost::bind(&CKernel::TimeoutControllerThread, this));
 }
 
 void CKernel::ProcessProtoPacket(const ProtoPacketPtr packet)
 {
-	switch(packet->type())
+	if (!packet)
+		return;
+
+	TRY 
 	{
-	case packets::Packet_PacketType_REQUEST:
+		switch(packet->type())
 		{
-			try
+		case packets::Packet_PacketType_REQUEST:
 			{
-				const IJob::Ptr job = m_Factory.Create(packet->job().id(), *this, m_Log);
-				job->Execute(packet);
+				try
+				{
+					const IJob::Ptr job = m_Factory.Create(packet->job().id(), *this, m_Log);
+					job->Execute(packet);
+				}
+				catch (const std::exception& e)
+				{
+					if (packets::Packet_PacketType_REQUEST != packet->type())
+						throw;
+	
+					SendErrorReply(packet->from(), packet->guid(), e.what());
+				}
+				catch (...)
+				{
+					if (packets::Packet_PacketType_REQUEST != packet->type())
+						throw;
+	
+					SendErrorReply(packet->from(), packet->guid(), "Unhandled exception.");
+				}
 			}
-			catch (const std::exception& e)
+			break;
+		case packets::Packet_PacketType_REPLY:
+		case packets::Packet_PacketType_ERR:	
 			{
-				if (packets::Packet_PacketType_REQUEST != packet->type())
-					throw;
-
-				SendErrorReply(packet->from(), packet->guid(), e.what());
+				const IJob::Ptr job = GetWaitingJob(packet->guid());
+				if (job)
+					job->HandleReply(packet);
 			}
-			catch (...)
-			{
-				if (packets::Packet_PacketType_REQUEST != packet->type())
-					throw;
-
-				SendErrorReply(packet->from(), packet->guid(), "Unhandled exception.");
-			}
+			break;
+		default:
+			assert(false);
 		}
-		break;
-	case packets::Packet_PacketType_REPLY:
-	case packets::Packet_PacketType_ERR:	
-		{
-			const IJob::Ptr job = GetWaitingJob(packet->guid());
-			job->HandleReply(packet);
-		}
-		break;
-	default:
-		assert(false);
 	}
+	CATCH_IGNORE_EXCEPTIONS(m_Log, "ProcessProtoPacket failed.", *packet)
 }
 
 void CKernel::HandleNewPacket(const ProtoPacketPtr packet)
 {
-	m_WorkQueue.PushBack(boost::bind(&CKernel::ProcessProtoPacket, this, packet));
+	m_Service.post(boost::bind(&CKernel::ProcessProtoPacket, this, packet));
 }
 
 void CKernel::ExecuteJob(const jobs::Job_JobId id, const IJob::TableList& params, const std::string& host /*= ""*/, const IJob::CallBackFn& callBack /*= IJob::CallBackFn()*/)
@@ -562,7 +563,7 @@ void CKernel::CheckTimeEvents()
 			if (e.timeAdded + e.interval < now)
 			{
 				// timeout expired, add this item to work queue
-				m_WorkQueue.PushBack(e.callback);
+				m_Service.post(e.callback);
 
 				if (e.periodic)
 				{

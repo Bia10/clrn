@@ -116,6 +116,8 @@ public:
 				DeleteWaitingPacket(packet->guid(), "delivered");
 				return;
 			}
+
+			CHECK(!packet->from().empty(), "Host didn't send GUID, ignore packet.")
 		
 			// getting sender endpoint
 			const std::string ep = client->address().to_string() + ":" + conv::cast<std::string>(client->port());

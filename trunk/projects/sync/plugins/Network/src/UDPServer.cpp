@@ -7,18 +7,12 @@ namespace net
 
 //! UDP server implementation
 //! 
-//! \class CUDPServer
+//! \class CUDPServer::Impl
 //!
-class CUDPServer::Impl
+class CUDPServer::Impl : boost::noncopyable
 {
-	//! Type of the pointer to the boost::asio service
-	typedef boost::shared_ptr<boost::asio::io_service> 			ServicePtr;
-
-	//! Type of the work IO service pointer
-	typedef boost::shared_ptr<boost::asio::io_service::work> 	WorkPtr;
-
-	//! Type of the boost::asio signal set pointer
-	typedef boost::scoped_ptr<boost::asio::signal_set> 			SignalSetPtr;
+	//! Service type
+	typedef boost::asio::io_service								Service;
 
 	//! Server receive endpoint
 	typedef boost::asio::ip::udp::endpoint						Endpoint;
@@ -41,13 +35,15 @@ public:
 	(
 		ILog& logger, 
 		IKernel& kernel,
-		const int port, 
+		Service& srvc,
 		const int threads,
+		const int port, 
 		const int bufferSize,
 		const std::string& guid
 	)
 		: m_Log(logger)
 		, m_Kernel(kernel)
+		, m_Service(srvc)
 		, m_BufferSize(bufferSize)
 		, m_LocalGUID(guid)
 		, m_PingInterval(0)
@@ -71,46 +67,21 @@ public:
 		m_BufferSize = size;
 	}
 
-	void Init(const int port, const int threads)
+	void Init(const int port, const std::size_t threads)
 	{
 		SCOPED_LOG(m_Log);
 		
-		LOG_TRACE("Port: [%s], threads: [%s], buffer: [%s]") % port % threads % m_BufferSize;
+		LOG_TRACE("Port: [%s], buffer: [%s]") % port % m_BufferSize;
 
 		TRY 
 		{
-			m_pIOService.reset(new boost::asio::io_service(threads));
-			m_pWork.reset(new boost::asio::io_service::work(*m_pIOService));
-	
-			for (int i = 0; i < threads; ++i)
-			{
-				m_ThreadPool.create_thread(boost::bind(&boost::asio::io_service::run, m_pIOService));
-			}
-	
-			// Creating signal set
-			m_pSignals.reset(new boost::asio::signal_set(*m_pIOService));
-	
-			boost::asio::ip::udp::resolver resolver(*m_pIOService);
-		
 			// receive socket
-			m_pReceiveSocket.reset(new boost::asio::ip::udp::socket(*m_pIOService, Endpoint(boost::asio::ip::udp::v4(), conv::cast<unsigned short>(port))));
+			m_pReceiveSocket.reset(new boost::asio::ip::udp::socket(m_Service, Endpoint(boost::asio::ip::udp::v4(), conv::cast<unsigned short>(port))));
 	
-			// Register to handle the signals that indicate when the server should exit.
-			// It is safe to register for the same signal multiple times in a program,
-			// provided all registration for the specified signal is made through Asio.
-			m_pSignals->add(SIGINT);
-			m_pSignals->add(SIGTERM);
-	
-	#if defined(SIGQUIT)
-			m_pTerminationSignals->add(SIGQUIT);
-	#endif // defined(SIGQUIT)
-	
-			m_pSignals->async_wait(boost::bind(&Impl::Stop, this));
-
-			for (std::size_t i = 0; i < m_ThreadPool.size(); ++i)
+			for (std::size_t i = 0; i < threads; ++i)
 				StartReceiving(m_pReceiveSocket);
 		}
-		CATCH_PASS_EXCEPTIONS("Init failed.", port, threads)
+		CATCH_PASS_EXCEPTIONS("Init failed.", port)
 	}
 
 	//! Start receiving
@@ -269,17 +240,6 @@ public:
 		CATCH_PASS_EXCEPTIONS("Send failed.", ip, port, *packet)	
 	}
 
-
-	//! Send handler
-	void SendHandler(const boost::system::error_code e, const std::size_t size, const EndpointPtr ep, const BufferPtr /*sendBuffer*/)
-	{
-		if (e)
-		{
-			LOG_ERROR("Send error. Size: [%s], error: [%s]") % size % e.message();
-			return;
-		}
-	}
-
 	//! Add host mapping from host map event
 	void AddHostMapping(const ProtoPacketPtr packet)
 	{
@@ -385,7 +345,7 @@ public:
 	{
 		return CUDPHost::Ptr(new CUDPHost
 		(
-			*m_pIOService,
+			m_Service,
 			m_Kernel,
 			m_Log,
 			m_BufferSize,
@@ -403,22 +363,6 @@ public:
 		m_PingInterval = interval;
 	}
 	
-	//! Run server
-	void Run()
-	{
-		m_ThreadPool.join_all();
-	}
-
-	//! Stop server
-	void Stop()
-	{
-		SCOPED_LOG(m_Log);
-			
-		m_pIOService->stop();
-		m_ThreadPool.interrupt_all();
-		m_ThreadPool.join_all();
-	}
-
 private:
 
 	//! Logger
@@ -427,20 +371,11 @@ private:
 	//! Kernel
 	IKernel&			m_Kernel;
 
+	//! Service
+	Service&			m_Service;
+
 	//! Buffer size
 	std::size_t			m_BufferSize;
-
-	//! IO service
-	ServicePtr			m_pIOService;
-
-	//! IO service dummy work
-	WorkPtr				m_pWork;
-
-	//! Thread pool
-	boost::thread_group	m_ThreadPool;
-
-	//! Signals
-	SignalSetPtr		m_pSignals;
 
 	//! Server receive socket
 	SocketPtr			m_pReceiveSocket;
@@ -462,8 +397,8 @@ private:
 
 };
 
-CUDPServer::CUDPServer(ILog& logger, IKernel& kernel, const int port, const int threads, const int bufferSize, const std::string& guid)
-	: m_pImpl(new Impl(logger, kernel, port, threads, bufferSize, guid))
+CUDPServer::CUDPServer(ILog& logger, IKernel& kernel, boost::asio::io_service& srvc, const int threads, const int port, const int bufferSize, const std::string& guid)
+	: m_pImpl(new Impl(logger, kernel, srvc, threads, port, bufferSize, guid))
 {
 }
 
@@ -474,16 +409,6 @@ CUDPServer::~CUDPServer(void)
 void CUDPServer::SetBufferSize(const int size)
 {
 	m_pImpl->SetBufferSize(size);
-}
-
-void CUDPServer::Run()
-{
-	m_pImpl->Run();
-}
-
-void net::CUDPServer::Stop()
-{
-	m_pImpl->Stop();
 }
 
 void CUDPServer::Send(const std::string& destination, const ProtoPacketPtr packet)

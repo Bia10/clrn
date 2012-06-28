@@ -245,6 +245,10 @@ public:
 		}
 
 		m_OutgoingLastUpdateTime = boost::posix_time::microsec_clock::local_time();
+
+		if (status == m_OutgoingStatus)
+			return;
+
 		m_OutgoingStatus = status;
 
 		SignalStatusEvent(status);
