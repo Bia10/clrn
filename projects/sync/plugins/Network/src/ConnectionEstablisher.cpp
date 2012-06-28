@@ -134,6 +134,7 @@ public:
 	void HostControlTimeEvent()
 	{
 		// check hosts and generate CONNECT jobs here
+		boost::this_thread::sleep(boost::posix_time::microseconds(100000));
 	}
 
 private:

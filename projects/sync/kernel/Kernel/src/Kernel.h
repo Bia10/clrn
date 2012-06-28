@@ -7,14 +7,18 @@
 #include "BlockingQueue.h"
 #include "JobFactory.h"
 #include "Log.h"
-#include "PluginLoader.h"
 #include "ProtoTablePtr.h"
 
 #include <map>
 
+#include <boost/asio.hpp>
 #include <boost/thread.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/scoped_ptr.hpp>
+
+#include "PluginLoader.h"
+
+namespace ba = boost::asio;
 
 //! Forward declarations
 class CSettings;
@@ -27,12 +31,6 @@ namespace net
 class CKernel
 	: public IKernel
 {
-	//! Kernel job type
-	typedef boost::function<void (void)>		KernelJob;
-
-	//! Work queue type
-	typedef CBlockingQueue<KernelJob>			WorkQueue;
-
 	//! Waiting executor descriptor
 	struct WaitingJob
 	{
@@ -70,6 +68,9 @@ class CKernel
 	//! Time events container
 	typedef std::list<TimeEventDsc>					TimeEvents;
 
+	//! Type of the boost::asio signal set pointer
+	typedef boost::scoped_ptr<ba::signal_set> 		SignalSetPtr;
+
 public:
 	CKernel(void);
 	~CKernel(void);
@@ -79,6 +80,9 @@ public:
 
 	//! Run kernel
 	void					Run();
+
+	//! Stop kernel
+	void					Stop();
 
 	//! Handle new proto packet
 	void					HandleNewPacket(const ProtoPacketPtr packet);
@@ -156,9 +160,6 @@ private:
 	//! Server guid
 	std::string				m_LocalHostGuid;
 
-	//! Active queue
-	WorkQueue				m_WorkQueue;
-
 	//! Jobs factory
 	CJobFactory				m_Factory;
 
@@ -191,6 +192,18 @@ private:
 
 	//! Time events mutex
 	boost::mutex			m_TimeEventsMutex;
+
+	//! Service
+	ba::io_service			m_Service;
+
+	//! Service work
+	ba::io_service::work	m_ServiceWork;
+
+	//! Timeout control timer
+	ba::deadline_timer		m_TimeoutTimer;
+
+	//! Signals
+	SignalSetPtr			m_pSignals;
 
 };
 #endif // Kernel_h__

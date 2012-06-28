@@ -11,9 +11,8 @@ insert into settings(module, name, value) values(3, 'log_source', '1');
 insert into settings(module, name, value) values(4, 'log_source', '1');
 insert into settings(module, name, value) values(5, 'log_source', '1');
 insert into settings(module, name, value) values(0, 'udp_port', '5000');
-insert into settings(module, name, value) values(0, 'udp_threads', '4');
 insert into settings(module, name, value) values(0, 'udp_buffer_size', '4096');
-insert into settings(module, name, value) values(0, 'kernel_threads', '4');
+insert into settings(module, name, value) values(0, 'kernel_threads', '8');
 insert into settings(module, name, value) values(0, 'plugins_path', './');
 insert into settings(module, name, value) values(0, 'ping_interval', '5000');
 
