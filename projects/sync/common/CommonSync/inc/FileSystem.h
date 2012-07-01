@@ -29,6 +29,18 @@ namespace fs
 	void			CreateDirectories(const std::string& src);
 	void			CreateDirectories(const std::wstring& src);
 
+	//! Get file name
+	std::string		GetFileName(const std::string& path);
+	std::wstring	GetFileName(const std::wstring& path);
+
+	//! Get directory
+	std::string		GetDirectory(const std::string& path);
+	std::wstring	GetDirectory(const std::wstring& path);
+
+	//! Get extension
+	std::string		GetExtension(const std::string& path);
+	std::wstring	GetExtension(const std::wstring& path);
+
 } // namespace fs
 
 

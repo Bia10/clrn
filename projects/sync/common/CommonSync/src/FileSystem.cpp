@@ -114,4 +114,64 @@ void CreateDirectories(const std::wstring& src)
 	CATCH_PASS_EXCEPTIONS(conv::cast<std::string>(src))
 }
 
+std::string GetFileName(const std::string& path)
+{
+	TRY 
+	{
+		bfs::path filePath(path);
+		return filePath.filename().string();
+	}
+	CATCH_PASS_EXCEPTIONS(path)
+}
+
+std::wstring GetFileName(const std::wstring& path)
+{
+	TRY 
+	{
+		bfs::path filePath(path);
+		return filePath.filename().wstring();
+	}
+	CATCH_PASS_EXCEPTIONS(conv::cast<std::string>(path))
+}
+
+std::string GetDirectory(const std::string& path)
+{
+	TRY 
+	{
+		bfs::path filePath(path);
+		return filePath.parent_path().string();
+	}
+	CATCH_PASS_EXCEPTIONS(conv::cast<std::string>(path))
+}
+
+std::wstring GetDirectory(const std::wstring& path)
+{
+	TRY 
+	{
+		bfs::path filePath(path);
+		return filePath.parent_path().wstring();
+	}
+	CATCH_PASS_EXCEPTIONS(conv::cast<std::string>(path))
+}
+
+std::string GetExtension(const std::string& path)
+{
+	TRY 
+	{
+		bfs::path filePath(path);
+		return filePath.extension().string();
+	}
+	CATCH_PASS_EXCEPTIONS(conv::cast<std::string>(path))
+}
+
+std::wstring GetExtension(const std::wstring& path)
+{
+	TRY 
+	{
+		bfs::path filePath(path);
+		return filePath.extension().wstring();
+	}
+	CATCH_PASS_EXCEPTIONS(conv::cast<std::string>(path))
+}
+
 } // namespace fs

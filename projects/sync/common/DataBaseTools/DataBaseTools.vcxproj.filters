@@ -11,18 +11,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\CppSQLite3.cpp">
+    <ClCompile Include=".\src\CppSQLite3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SQLiteDB.cpp">
+    <ClCompile Include=".\src\SQLiteDB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\CppSQLite3.h">
+    <ClInclude Include=".\inc\CppSQLite3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\SQLiteDB.h">
+    <ClInclude Include=".\inc\SQLiteDB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

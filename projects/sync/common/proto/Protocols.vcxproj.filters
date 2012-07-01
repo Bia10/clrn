@@ -14,51 +14,45 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="inc\data.pb.cc">
+    <ClCompile Include=".\inc\data.pb.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="inc\job.pb.cc">
+    <ClCompile Include=".\inc\job.pb.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="inc\packet.pb.cc">
+    <ClCompile Include=".\inc\packet.pb.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\StreamHelpers.cpp">
+    <ClCompile Include=".\src\StreamHelpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\data.pb.h">
+    <ClInclude Include=".\inc\data.pb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\job.pb.h">
+    <ClInclude Include=".\inc\job.pb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\packet.pb.h">
+    <ClInclude Include=".\inc\packet.pb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\ProtoJobPtr.h">
+    <ClInclude Include=".\inc\ProtoJobPtr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\ProtoPacketPtr.h">
+    <ClInclude Include=".\inc\ProtoPacketPtr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\ProtoTablePtr.h">
+    <ClInclude Include=".\inc\ProtoTablePtr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\StreamHelpers.h">
+    <ClInclude Include=".\inc\StreamHelpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="messages\data.proto">
-      <Filter>Messages</Filter>
-    </CustomBuild>
-    <CustomBuild Include="messages\job.proto">
-      <Filter>Messages</Filter>
-    </CustomBuild>
-    <CustomBuild Include="messages\packet.proto">
-      <Filter>Messages</Filter>
-    </CustomBuild>
+    <CustomBuild Include=".\messages\data.proto" />
+    <CustomBuild Include=".\messages\job.proto" />
+    <CustomBuild Include=".\messages\packet.proto" />
   </ItemGroup>
 </Project>
