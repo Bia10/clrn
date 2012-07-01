@@ -109,18 +109,16 @@ void CLog::Open(const std::wstring& source, unsigned int module)
 			if (fs::Exists(source))
 			{
 				// file exists, need to save it first
-				std::wstring newPath = fs::FullPath(source);
-
-				std::wstring::size_type dot = newPath.rfind('.');
-				if (std::wstring::npos == dot)
-					dot = newPath.size() - 1;
+				std::wstring newPath = fs::GetDirectory(fs::FullPath(source));
 
 				std::wstring time = std::wstring(L"].") + boost::posix_time::to_iso_extended_wstring(boost::posix_time::microsec_clock().local_time());
 				boost::algorithm::replace_all(time, L":", L".");
 				boost::algorithm::replace_all(time, L"T", L"_");
 
-				newPath.insert(dot, time);
-				newPath.insert(dot - 1, L"[");
+				newPath += L"\\[";
+				newPath +=  fs::GetFileName(source);
+				newPath += time;
+				newPath += fs::GetExtension(source);
 
 				fs::Move(fs::FullPath(source), newPath);
 			}
