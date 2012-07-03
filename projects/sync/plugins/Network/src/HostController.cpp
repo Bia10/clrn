@@ -18,7 +18,7 @@ public:
 	Impl(ILog& logger, IKernel& kernel)
 		: m_Log(logger)
 		, m_Kernel(kernel)
-		, m_PingInterval(0)
+		, m_PingInterval(5000)
 	{
 		// get settings
 		CProcedure script(m_Kernel);
@@ -35,12 +35,13 @@ public:
 		// get hosts
 		CProcedure::ParamsMap params;
 		script.Execute(CProcedure::Id::HostsLoad, params, boost::bind(&Impl::LocalHostsCallback, this, _1));
+
+		// starting work loop
+		m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval),  boost::bind(&Impl::WorkLoop, this));
 	}
 
 	~Impl()
 	{
-		// removing subscribe to time event
-		m_Kernel.TimeEvent(boost::posix_time::milliseconds(0),  boost::bind(&Impl::WorkLoop, this), true);
 	}
 	 
 	//! Settings callback
@@ -55,9 +56,6 @@ public:
 			CTable settings(*packet->mutable_job()->mutable_results(0));
 
 			m_PingInterval = conv::cast<std::size_t>(settings["name=ping_interval"]["value"]);
-				
-			// starting work loop
-			m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval),  boost::bind(&Impl::WorkLoop, this), true);
 		}
 		CATCH_PASS_EXCEPTIONS(*packet)
 	}
@@ -182,6 +180,9 @@ public:
 
 		TRY 
 		{
+			// starting work loop
+			m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval),  boost::bind(&Impl::WorkLoop, this));
+
 			boost::mutex::scoped_lock lock(m_HostMapMutex);
 
 			// pinging each host

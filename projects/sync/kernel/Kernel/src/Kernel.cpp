@@ -4,7 +4,6 @@
 
 CKernel::CKernel()
 	: m_ServiceWork(m_Service)
-	, m_TimeoutTimer(m_Service)
 { 
 
 }
@@ -146,13 +145,8 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 			)
 		);
 
-		// setting up server endpoints
-		const ProtoPacketPtr hostList(new packets::Packet());
-		*hostList->mutable_job()->add_results() = hostsTableData;
-		HostListCallBack(hostList);
-	
-		m_TimeoutTimer.expires_from_now(boost::posix_time::milliseconds(100));
-		m_TimeoutTimer.async_wait(boost::bind(&CKernel::TimeoutControllerThread, this));
+		// timeouts
+		TimeEvent(boost::posix_time::milliseconds(100), boost::bind(&CKernel::TimeoutControllerThread, this));
 
 		// Creating signal set
 		m_pSignals.reset(new boost::asio::signal_set(m_Service));
@@ -168,6 +162,11 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 
 		// setting up ping interval
 		m_pServer->SetPingInterval(pingInterval);
+
+		// setting up server endpoints
+		const ProtoPacketPtr hostList(new packets::Packet());
+		*hostList->mutable_job()->add_results() = hostsTableData;
+		HostListCallBack(hostList);
 
 		// load plugins
 		LoadPlugins();
@@ -352,10 +351,10 @@ void CKernel::TimeoutControllerThread()
 {
 	SCOPED_LOG(m_Log);
 
+	TimeEvent(boost::posix_time::milliseconds(100), boost::bind(&CKernel::TimeoutControllerThread, this));
+
 	TRY 
 	{
-		CheckTimeEvents();
-
 		const boost::posix_time::ptime now = boost::posix_time::microsec_clock::local_time();
 		
 		std::vector<IJob::Ptr> jobsToErase;
@@ -397,9 +396,6 @@ void CKernel::TimeoutControllerThread()
 		}
 	}
 	CATCH_IGNORE_EXCEPTIONS(m_Log, "TimeoutControllerThread failed.")
-	
-	m_TimeoutTimer.expires_from_now(boost::posix_time::milliseconds(100));
-	m_TimeoutTimer.async_wait(boost::bind(&CKernel::TimeoutControllerThread, this));
 }
 
 void CKernel::ProcessProtoPacket(const ProtoPacketPtr packet)
@@ -524,65 +520,20 @@ void CKernel::SendErrorReply(const std::string& destination, const std::string& 
 	CATCH_IGNORE_EXCEPTIONS(m_Log, "CKernel::SendErrorReply failed.", destination, guid, text)
 }
 
-void CKernel::TimeEvent(const boost::posix_time::time_duration interval, const TimeEventCallback callBack, const bool periodic)
+void CKernel::TimeEvent(const boost::posix_time::time_duration interval, const TimeEventCallback callBack)
 {
-	boost::mutex::scoped_lock lock(m_TimeEventsMutex);
-
-	TimeEventDsc e;
-	e.timeAdded = boost::posix_time::microsec_clock::local_time();
-	e.interval = interval;
-	e.periodic = periodic;
-	e.callback = callBack;
-
-	const TimeEvents::iterator it = std::find(m_TimeEvents.begin(), m_TimeEvents.end(), callBack);
-	if (m_TimeEvents.end() != it)
-	{
-		if (interval.total_milliseconds())
-			*it = e; // change callback
-		else
-			m_TimeEvents.erase(it); // remove event
-	}
-	else 
-	if (interval.total_milliseconds())
-		m_TimeEvents.push_back(e); // add new event
+	const TimerPtr timer(new ba::deadline_timer(m_Service));
+	timer->expires_from_now(interval);
+	timer->async_wait(boost::bind(&CKernel::TimerCallBack, this, ba::placeholders::error, callBack, timer));
 }
 
-void CKernel::CheckTimeEvents()
+void CKernel::TimerCallBack(const boost::system::error_code& e, const TimeEventCallback callback, const TimerPtr timer)
 {
 	TRY 
 	{
-		boost::mutex::scoped_lock lock(m_TimeEventsMutex);
-
-		const boost::posix_time::ptime now = boost::posix_time::microsec_clock::local_time();
-
-		TimeEvents::iterator it = m_TimeEvents.begin();
-		const TimeEvents::const_iterator itEnd = m_TimeEvents.end();
-		for (; it != itEnd;)
-		{
-			TimeEventDsc& e = *it;
-			if (e.timeAdded + e.interval < now)
-			{
-				// timeout expired, add this item to work queue
-				m_Service.post(e.callback);
-
-				if (e.periodic)
-				{
-					e.timeAdded = now;
-				}
-				else
-				{
-					it = m_TimeEvents.erase(it);
-					continue;
-				}
-			}
-
-			++it;
-		}
+		CHECK(callback);
+		CHECK(!e, e.message(), callback.target_type().name());
+		m_Service.post(callback);
 	}
-	CATCH_IGNORE_EXCEPTIONS(m_Log)
-}
-
-bool CKernel::TimeEventDsc::operator == (const TimeEventCallback& that) const
-{
-	return callback.target_type() == that.target_type();
+	CATCH_IGNORE_EXCEPTIONS(m_Log, "TimerCallBack failed", boost::posix_time::to_iso_extended_string(timer->expires_at()))
 }

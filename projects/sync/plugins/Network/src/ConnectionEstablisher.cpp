@@ -32,14 +32,12 @@ public:
 		hostStatusEvent.Subscribe(boost::bind(&Impl::LocalHostStatusCallBack, this, _1));
 
 		// subscribe to time event
-		m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::HostControlTimeEvent, this), true);
+		m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::HostControlTimeEvent, this));
 	}
 
 	//! Dtor
 	~Impl()
 	{
-		// removing time event
-		m_Kernel.TimeEvent(boost::posix_time::milliseconds(0), boost::bind(&Impl::HostControlTimeEvent, this), true);
 	}
 
 	//! Hosts status event call back(local)
@@ -133,8 +131,11 @@ public:
 	//! Host control time event
 	void HostControlTimeEvent()
 	{
+		m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::HostControlTimeEvent, this));
+
 		// check hosts and generate CONNECT jobs here
 		boost::this_thread::sleep(boost::posix_time::microseconds(100000));
+
 	}
 
 private:

@@ -40,16 +40,6 @@ class CKernel
 		std::string					host;
 	}; 
 
-	//! Time event descriptor
-	struct TimeEventDsc
-	{
-		boost::posix_time::ptime			timeAdded;
-		boost::posix_time::time_duration	interval;
-		bool								periodic;
-		TimeEventCallback					callback;
-		bool operator == (const TimeEventCallback& callBack) const;
-	};
-
 	//! Type of the waiting jobs container
 	typedef std::map<std::string, WaitingJob>		WaitingJobs;
 
@@ -65,11 +55,11 @@ class CKernel
 	//! Settings pointer
 	typedef boost::scoped_ptr<CSettings>			SettingsPtr;
 
-	//! Time events container
-	typedef std::list<TimeEventDsc>					TimeEvents;
-
 	//! Type of the boost::asio signal set pointer
 	typedef boost::scoped_ptr<ba::signal_set> 		SignalSetPtr;
+
+	//! Timer pointer
+	typedef boost::shared_ptr<ba::deadline_timer>	TimerPtr;
 
 public:
 	CKernel(void);
@@ -149,10 +139,12 @@ private:
 	void 					ProcessProtoPacket(const ProtoPacketPtr packet);
 
 	//! Time event
-	void					TimeEvent(const boost::posix_time::time_duration interval, const TimeEventCallback callBack, const bool periodic);
+	void					TimeEvent(const boost::posix_time::time_duration interval, const TimeEventCallback callBack);
 
-	//! Check time events
-	void					CheckTimeEvents();
+	//! Timer callback
+	void					TimerCallBack(const boost::system::error_code& e, 
+										const TimeEventCallback callback, 
+										const TimerPtr timer);
 
 	//! Logger
 	CLog					m_Log;
@@ -187,20 +179,11 @@ private:
 	//! Database path
 	std::string				m_DBpath;
 
-	//! Time events
-	TimeEvents				m_TimeEvents;
-
-	//! Time events mutex
-	boost::mutex			m_TimeEventsMutex;
-
 	//! Service
 	ba::io_service			m_Service;
 
 	//! Service work
 	ba::io_service::work	m_ServiceWork;
-
-	//! Timeout control timer
-	ba::deadline_timer		m_TimeoutTimer;
 
 	//! Signals
 	SignalSetPtr			m_pSignals;

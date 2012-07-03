@@ -57,8 +57,7 @@ public:
 
 	//! Subscribe to time event
 	virtual void				TimeEvent(const boost::posix_time::time_duration interval, 
-										const TimeEventCallback callBack,
-										const bool periodic) = 0;
+										const TimeEventCallback callBack) = 0;
 
 	//! Destructor
 	virtual ~IKernel() {}
