@@ -203,10 +203,10 @@ private:
 			}
 
 			// setup timer for resend this data
-			m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval * RESEND_RATIO), boost::bind(&Impl::ResendPacket, this, guid), false);
+			m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval * RESEND_RATIO), boost::bind(&Impl::ResendPacket, this, guid));
 
 			// setting up timer to delete this packet
-			m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval * DELETE_RATIO), boost::bind(&Impl::DeleteWaitingPacket, this, guid, "timed out"), false);
+			m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval * DELETE_RATIO), boost::bind(&Impl::DeleteWaitingPacket, this, guid, "timed out"));
 		}
 		CATCH_PASS_EXCEPTIONS("SendBuffer failed.", guid, ignoreACK)
 	}
@@ -411,7 +411,7 @@ private:
 			SendBuffer(dsc.buffer, packet, dsc.ep, dsc.socket, true);
 
 			// setup timer for resend this data
-			m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval * RESEND_RATIO), boost::bind(&Impl::ResendPacket, this, packet), false);
+			m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval * RESEND_RATIO), boost::bind(&Impl::ResendPacket, this, packet));
 		}
 		CATCH_PASS_EXCEPTIONS(m_LocalGuid, packet)
 	}

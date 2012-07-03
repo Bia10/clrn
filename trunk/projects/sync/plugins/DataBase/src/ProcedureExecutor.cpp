@@ -279,6 +279,8 @@ CProcedureExecutor::~CProcedureExecutor(void)
 
 CProcedureExecutor& CProcedureExecutor::Instance(IKernel& kernel)
 {
+	static boost::mutex mx;
+	boost::mutex::scoped_lock lock(mx);
 	static CProcedureExecutor executor(kernel);
 	return executor;
 }

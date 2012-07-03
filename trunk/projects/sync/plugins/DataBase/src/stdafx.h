@@ -23,6 +23,7 @@
 #include <boost/foreach.hpp>
 #include <boost/format.hpp>
 #include <boost/bind.hpp>
+#include <boost/thread/mutex.hpp>
 #pragma warning(push)
 #pragma warning(disable : 4996)
 #include <boost/algorithm/string.hpp>
