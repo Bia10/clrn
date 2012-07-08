@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "HostController.h"
 #include "PingHost.h"
+#include "ConnectionEstablisher.h"
 
 
 //! Host pinger implementation
@@ -113,6 +114,9 @@ public:
 				m_LocalHostGuid = hosts["id=1"]["guid"];
 				m_LocalIp		= hosts["id=1"]["ip"];
 				m_LocalPort		= hosts["id=1"]["port"];
+
+				// init connection establisher
+				m_pConnectionEstablisher.reset(new CConnectionEstablisher(m_Kernel, m_Log, m_LocalHostGuid, m_PingInterval));
 			}
 
 			if (data::Table_Action_Insert == data.action())
@@ -225,6 +229,9 @@ private:
 
 	//! Host map
 	HostMap						m_HostMap;
+
+	//! Connection establisher
+	CConnectionEstablisher::Ptr	m_pConnectionEstablisher;
 
 };
 
