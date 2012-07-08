@@ -44,7 +44,7 @@
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				UsePrecompiledHeader="2"
+				UsePrecompiledHeader="0"
 				WarningLevel="4"
 				DebugInformationFormat="3"
 			/>
@@ -59,7 +59,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="StaticEvents.lib"
+				AdditionalDependencies="StaticDatabase.lib StaticEvents.lib"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -131,7 +131,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="StaticEvents.lib"
+				AdditionalDependencies="StaticDatabase.lib StaticEvents.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -189,7 +189,7 @@
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				UsePrecompiledHeader="2"
+				UsePrecompiledHeader="0"
 				WarningLevel="4"
 				DebugInformationFormat="3"
 			/>
@@ -204,7 +204,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="StaticEvents.lib"
+				AdditionalDependencies="StaticDatabase.lib StaticEvents.lib"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -276,7 +276,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="StaticEvents.lib"
+				AdditionalDependencies="StaticDatabase.lib StaticEvents.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -317,72 +317,6 @@
 			>
 			<File
 				RelativePath=".\src\dllmain.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\ExecuteProcedure.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\ExecuteScript.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\Procedure.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\ProcedureExecutor.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\stdafx.cpp"
-				>
-				<FileConfiguration
-					Name="Debug_vc90|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug_vc110|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="1"
-					/>
-				</FileConfiguration>
-			</File>
-		</Filter>
-		<Filter
-			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
-			>
-			<File
-				RelativePath=".\src\DataBasePlugin.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\ExecuteProcedure.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\ExecuteScript.h"
-				>
-			</File>
-			<File
-				RelativePath=".\inc\Procedure.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\ProcedureExecutor.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\stdafx.h"
 				>
 			</File>
 		</Filter>
