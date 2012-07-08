@@ -148,7 +148,7 @@ void CLog::Close()
 	m_IsOpened = false;
 
 	m_Mutex.lock();
-	m_Format = boost::format("Logger shutted down");
+	m_Format = boost::format("Logger stopped.");
 	Write(Level::None);
 
 	for (std::size_t i = 0 ; i < m_Streams.size(); ++i)
