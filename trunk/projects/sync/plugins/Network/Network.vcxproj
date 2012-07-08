@@ -91,12 +91,14 @@
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
     </ClCompile>
     <Link>
-      <AdditionalDependencies>StaticDataBase.lib;StaticEvents.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>StaticDatabase.lib;StaticNetwork.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -109,12 +111,14 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NETWORK_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader />
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
     </ClCompile>
     <Link>
-      <AdditionalDependencies>StaticDataBase.lib;StaticEvents.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>StaticDatabase.lib;StaticNetwork.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -129,13 +133,15 @@
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
     </ClCompile>
     <Link>
-      <AdditionalDependencies>StaticDataBase.lib;StaticEvents.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>StaticDatabase.lib;StaticNetwork.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -151,12 +157,14 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NETWORK_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader />
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
     </ClCompile>
     <Link>
-      <AdditionalDependencies>StaticDataBase.lib;StaticEvents.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>StaticDatabase.lib;StaticNetwork.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -166,28 +174,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include=".\src\dllmain.cpp" />
-    <ClCompile Include=".\src\OutgoingPing.cpp" />
-    <ClCompile Include=".\src\stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_vc110|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_vc90|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include=".\src\UDPServer.cpp" />
-    <ClCompile Include="src\Connect.cpp" />
-    <ClCompile Include="src\ConnectionEstablisher.cpp" />
-    <ClCompile Include="src\HostController.cpp" />
-    <ClCompile Include="src\PingHost.cpp" />
-    <ClCompile Include="src\UDPHost.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include=".\src\NetworkPlugin.h" />
-    <ClInclude Include=".\src\OutgoingPing.h" />
-    <ClInclude Include=".\src\stdafx.h" />
-    <ClInclude Include=".\inc\UDPServer.h" />
-    <ClInclude Include="inc\HostController.h" />
-    <ClInclude Include="src\Connect.h" />
-    <ClInclude Include="src\ConnectionEstablisher.h" />
-    <ClInclude Include="src\PingHost.h" />
-    <ClInclude Include="src\UDPHost.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\common\CommonSync\Common.vcxproj">

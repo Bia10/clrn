@@ -44,7 +44,7 @@
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				UsePrecompiledHeader="2"
+				UsePrecompiledHeader="0"
 				WarningLevel="4"
 				DebugInformationFormat="3"
 			/>
@@ -59,7 +59,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="StaticDataBase.lib StaticEvents.lib"
+				AdditionalDependencies="StaticNetwork.lib StaticDataBase.lib StaticEvents.lib"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -131,7 +131,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="StaticDataBase.lib StaticEvents.lib"
+				AdditionalDependencies="StaticNetwork.lib StaticDataBase.lib StaticEvents.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -189,7 +189,7 @@
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				UsePrecompiledHeader="2"
+				UsePrecompiledHeader="0"
 				WarningLevel="4"
 				DebugInformationFormat="3"
 			/>
@@ -204,7 +204,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="StaticDataBase.lib StaticEvents.lib"
+				AdditionalDependencies="StaticNetwork.lib StaticDataBase.lib StaticEvents.lib"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -276,7 +276,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="StaticDataBase.lib StaticEvents.lib"
+				AdditionalDependencies="StaticNetwork.lib StaticDataBase.lib StaticEvents.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -316,97 +316,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\src\Connect.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\ConnectionEstablisher.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\dllmain.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\HostController.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\OutgoingPing.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\PingHost.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\stdafx.cpp"
-				>
-				<FileConfiguration
-					Name="Debug_vc90|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug_vc110|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="1"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\src\UDPHost.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\UDPServer.cpp"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
-			>
-			<File
-				RelativePath=".\src\Connect.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\ConnectionEstablisher.h"
-				>
-			</File>
-			<File
-				RelativePath=".\inc\HostController.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\NetworkPlugin.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\OutgoingPing.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\PingHost.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\stdafx.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\UDPHost.h"
-				>
-			</File>
-			<File
-				RelativePath=".\inc\UDPServer.h"
 				>
 			</File>
 		</Filter>

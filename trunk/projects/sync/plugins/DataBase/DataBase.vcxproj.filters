@@ -14,40 +14,5 @@
     <ClCompile Include=".\src\dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include=".\src\ExecuteProcedure.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".\src\ExecuteScript.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".\src\Procedure.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".\src\ProcedureExecutor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".\src\stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include=".\src\DataBasePlugin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include=".\src\ExecuteProcedure.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include=".\src\ExecuteScript.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include=".\inc\Procedure.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include=".\src\ProcedureExecutor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include=".\src\stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

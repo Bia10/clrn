@@ -45,7 +45,7 @@
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				UsePrecompiledHeader="2"
+				UsePrecompiledHeader="0"
 				WarningLevel="4"
 				DebugInformationFormat="3"
 			/>
@@ -60,6 +60,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="StaticSettings.lib"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -131,6 +132,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="StaticSettings.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -189,7 +191,7 @@
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				UsePrecompiledHeader="2"
+				UsePrecompiledHeader="0"
 				WarningLevel="4"
 				DebugInformationFormat="3"
 			/>
@@ -204,6 +206,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="StaticSettings.lib"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -275,6 +278,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="StaticSettings.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -315,64 +319,6 @@
 			>
 			<File
 				RelativePath=".\src\dllmain.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\GetSettings.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\SetSettings.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\Settings.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\stdafx.cpp"
-				>
-				<FileConfiguration
-					Name="Debug_vc90|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug_vc110|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="1"
-					/>
-				</FileConfiguration>
-			</File>
-		</Filter>
-		<Filter
-			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
-			>
-			<File
-				RelativePath=".\src\GetSettings.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\SetSettings.h"
-				>
-			</File>
-			<File
-				RelativePath=".\inc\Settings.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\SettingsPlugin.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\stdafx.h"
 				>
 			</File>
 		</Filter>
