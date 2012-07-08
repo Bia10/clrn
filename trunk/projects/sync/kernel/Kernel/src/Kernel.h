@@ -34,9 +34,7 @@ class CKernel
 	//! Waiting executor descriptor
 	struct WaitingJob
 	{
-		boost::posix_time::ptime	timeAdded;
 		IJob::Ptr					job;
-		std::size_t					timeout;
 		std::string					host;
 	}; 
 
@@ -74,11 +72,10 @@ public:
 	//! Stop kernel
 	void					Stop();
 
+private:
+
 	//! Handle new proto packet
 	void					HandleNewPacket(const ProtoPacketPtr packet);
-
-	//! Create job
-	IJob::Ptr				CreateJob(const jobs::Job_JobId id);
 
 	//! Add job to the list of waiting for reply executors
 	void					AddToWaiting(const IJob::Ptr job, const std::string& host);
@@ -104,8 +101,6 @@ public:
 	//! Database path
 	const std::string&		DbPath() const;
 
-private:
-
 	//! Work loop
 	void					WorkThread();
 
@@ -119,9 +114,6 @@ private:
 	void					JobCallBack(ProtoPacketPtr packet, 
 										const MutexPtr mutex, 
 										TablesList& results);
-
-	//! Timeout controller thread
-	void					TimeoutControllerThread();
 
 	//! Send error packet
 	void					SendErrorReply(const std::string& destination, const std::string& guid, const std::string& text);
@@ -145,6 +137,9 @@ private:
 	void					TimerCallBack(const boost::system::error_code& e, 
 										const TimeEventCallback callback, 
 										const TimerPtr timer);
+
+	//! Waiting job timeout callback
+	void					WaitingJobTimeoutCallback(const std::string& jobGuid);
 
 	//! Logger
 	CLog					m_Log;
