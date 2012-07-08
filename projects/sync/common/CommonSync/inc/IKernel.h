@@ -52,8 +52,8 @@ public:
 	//! Database path
 	virtual const std::string&	DbPath() const = 0;
 
-	//! Subscribe to time event
-	virtual void				TimeEvent(const boost::posix_time::time_duration interval, 
+	//! Set up timer
+	virtual void				Timer(const boost::posix_time::time_duration interval, 
 										const TimeEventCallback callBack) = 0;
 
 	//! Destructor
