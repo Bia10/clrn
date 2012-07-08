@@ -27,6 +27,9 @@ public:
 		, m_OutgoingStatus(Status::Unknown)
 	{
 		SignalStatusEvent(Status::Unreacheble);
+
+		// start to ping
+		m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::Ping, this));
 	}
 
 	//! Set direct ep
@@ -75,6 +78,9 @@ public:
 			// to avoid self ping(hosts endpoint may be equal on different PC)
 			if (ep == m_LocalIp + ":" + m_LocalPort)
 				return;
+
+			// start to ping
+			m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::Ping, this));
 
 			const boost::posix_time::ptime timeNow = boost::posix_time::microsec_clock::local_time();
 	

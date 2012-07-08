@@ -28,9 +28,6 @@ public:
 		CProcedure::ParamsMap params;
 		script.Execute(CProcedure::Id::HostsLoad, params, boost::bind(&Impl::LocalHostsCallback, this, _1));
 
-		// starting work loop
-		m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval),  boost::bind(&Impl::WorkLoop, this));
-
 		// subscribe to settings change event
 		CEvent settings(m_Kernel, SETTINGS_TABLE_NAME);
 		settings.Subscribe(boost::bind(&Impl::SettingsCallback, this, _1));
@@ -172,27 +169,6 @@ public:
 		}
 		CATCH_PASS_EXCEPTIONS(*packet)
 	}
-
-	//! Work loop method
-	void WorkLoop()
-	{	
-		SCOPED_LOG(m_Log);
-
-		TRY 
-		{
-			// starting work loop
-			m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval),  boost::bind(&Impl::WorkLoop, this));
-
-			boost::mutex::scoped_lock lock(m_HostMapMutex);
-
-			// pinging each host
-			BOOST_FOREACH(const HostMap::value_type& host, m_HostMap)
-			{
-				host.second->Ping();
-			}
-		}
-		CATCH_IGNORE_EXCEPTIONS(m_Log, "WorkLoop failed.")	
-	}	
 
 	//! Remote host pinged us
 	void OnRemotePingReceived(const ProtoPacketPtr packet)
