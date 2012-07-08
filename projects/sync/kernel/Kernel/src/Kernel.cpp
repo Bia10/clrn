@@ -145,9 +145,6 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 			)
 		);
 
-		// timeouts
-		TimeEvent(boost::posix_time::milliseconds(100), boost::bind(&CKernel::TimeoutControllerThread, this));
-
 		// Creating signal set
 		m_pSignals.reset(new boost::asio::signal_set(m_Service));
 
@@ -319,18 +316,15 @@ void CKernel::Send(const std::string& destination, const std::string& ip, const 
 	CATCH_PASS_EXCEPTIONS(ip, port, *packet)
 }
 
-IJob::Ptr CKernel::CreateJob(const jobs::Job_JobId id)
-{
-	return m_Factory.Create(id, *this, m_Log);
-}
-
 void CKernel::AddToWaiting(const IJob::Ptr job, const std::string& host)
 {
 	WaitingJob descriptor;
-	descriptor.job			= job;
-	descriptor.timeAdded	= boost::posix_time::microsec_clock::local_time();
-	descriptor.timeout		= job->GetTimeout();
-	descriptor.host			= host;
+	descriptor.job				= job;
+	descriptor.host				= host;
+	const std::size_t timeout	= job->GetTimeout();
+
+	if (timeout && timeout != std::numeric_limits<std::size_t>::max())
+		TimeEvent(boost::posix_time::milliseconds(timeout), boost::bind(&CKernel::WaitingJobTimeoutCallback, this, job->GetGUID()));
 
 	boost::mutex::scoped_lock lock(m_WaitingJobsMutex);
 	m_WaitingJobs.insert(std::make_pair(job->GetGUID(), descriptor));
@@ -342,60 +336,10 @@ IJob::Ptr CKernel::GetWaitingJob(const std::string& guid)
 
 	const WaitingJobs::const_iterator it = m_WaitingJobs.find(guid);
 	CHECK(m_WaitingJobs.end() != it, guid);
+
 	const IJob::Ptr job = it->second.job;
 	m_WaitingJobs.erase(it);
 	return job;
-}
-
-void CKernel::TimeoutControllerThread()
-{
-	SCOPED_LOG(m_Log);
-
-	TimeEvent(boost::posix_time::milliseconds(100), boost::bind(&CKernel::TimeoutControllerThread, this));
-
-	TRY 
-	{
-		const boost::posix_time::ptime now = boost::posix_time::microsec_clock::local_time();
-		
-		std::vector<IJob::Ptr> jobsToErase;
-		{
-			boost::mutex::scoped_lock lock(m_WaitingJobsMutex);
-
-			WaitingJobs::const_iterator it = m_WaitingJobs.begin();
-			const WaitingJobs::const_iterator itEnd = m_WaitingJobs.end();
-			for (; it != itEnd; ++it)
-			{
-				const std::size_t timeout = it->second.timeout;
-				if (std::size_t(-1) == timeout)
-					continue; // infinite timeout
-
-				boost::posix_time::time_duration td = now - it->second.timeAdded;
-
-				if (td.total_milliseconds() < timeout)
-					continue;
-
-				jobsToErase.push_back(it->second.job);
-
-				m_WaitingJobs.erase(it);			
-				it = m_WaitingJobs.begin();
-			}
-		}
-
-		BOOST_FOREACH(const IJob::Ptr& job, jobsToErase)
-		{
-			LOG_WARNING("Job id: [%s], guid: [%s], timeout: [%s] ended.") 
-				% job->GetId() 
-				% job->GetGUID()
-				% job->GetTimeout();
-
-			TRY 
-			{
-				job->HandleReply(ProtoPacketPtr());
-			}
-			CATCH_IGNORE_EXCEPTIONS(m_Log, job->GetId(), job->GetTimeout(), job->GetGUID())
-		}
-	}
-	CATCH_IGNORE_EXCEPTIONS(m_Log, "TimeoutControllerThread failed.")
 }
 
 void CKernel::ProcessProtoPacket(const ProtoPacketPtr packet)
@@ -536,4 +480,31 @@ void CKernel::TimerCallBack(const boost::system::error_code& e, const TimeEventC
 		m_Service.post(callback);
 	}
 	CATCH_IGNORE_EXCEPTIONS(m_Log, "TimerCallBack failed", boost::posix_time::to_iso_extended_string(timer->expires_at()))
+}
+
+void CKernel::WaitingJobTimeoutCallback(const std::string& jobGuid)
+{
+	IJob::Ptr job;
+
+	{
+		boost::mutex::scoped_lock lock(m_WaitingJobsMutex);
+		const WaitingJobs::const_iterator it = m_WaitingJobs.find(jobGuid);
+		if (m_WaitingJobs.end() == it)
+			return;
+
+		job = it->second.job;
+
+		m_WaitingJobs.erase(jobGuid);
+	}
+
+	LOG_WARNING("Job id: [%s], guid: [%s], timeout: [%s] ended.") 
+		% job->GetId() 
+		% job->GetGUID()
+		% job->GetTimeout();
+
+	TRY 
+	{
+		job->HandleReply(ProtoPacketPtr());
+	}
+	CATCH_IGNORE_EXCEPTIONS(m_Log, job->GetId(), job->GetTimeout(), job->GetGUID())
 }

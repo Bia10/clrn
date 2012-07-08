@@ -28,9 +28,6 @@ public:
 	//! Handle new proto packet
 	virtual void				HandleNewPacket(const ProtoPacketPtr packet) = 0;
 
-	//! Create job
-	virtual IJob::Ptr			CreateJob(const jobs::Job_JobId id) = 0;
-
 	//! Add executor to the list of waiting for reply executors
 	virtual void				AddToWaiting(const IJob::Ptr job, const std::string& host) = 0;
 
