@@ -24,6 +24,13 @@ public:
 		CProcedure script(m_Kernel);
 		script.Execute(boost::format("select * from %s") % SETTINGS_TABLE_NAME, boost::bind(&Impl::SettingsCallback, this, _1));
 
+		// get hosts
+		CProcedure::ParamsMap params;
+		script.Execute(CProcedure::Id::HostsLoad, params, boost::bind(&Impl::LocalHostsCallback, this, _1));
+
+		// starting work loop
+		m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval),  boost::bind(&Impl::WorkLoop, this));
+
 		// subscribe to settings change event
 		CEvent settings(m_Kernel, SETTINGS_TABLE_NAME);
 		settings.Subscribe(boost::bind(&Impl::SettingsCallback, this, _1));
@@ -31,13 +38,6 @@ public:
 		// subscribe to hosts change events
 		CEvent hostsInsert(m_Kernel, HOSTS_TABLE_NAME);
 		hostsInsert.Subscribe(boost::bind(&Impl::LocalHostsCallback, this, _1));	
-
-		// get hosts
-		CProcedure::ParamsMap params;
-		script.Execute(CProcedure::Id::HostsLoad, params, boost::bind(&Impl::LocalHostsCallback, this, _1));
-
-		// starting work loop
-		m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval),  boost::bind(&Impl::WorkLoop, this));
 	}
 
 	~Impl()
@@ -160,13 +160,13 @@ public:
 				const std::string& to		= row["to"];
 				const std::size_t status = conv::cast<std::size_t>(row["status"]);
 
-				if (from == m_LocalHostGuid)
+				if (from == m_LocalHostGuid && m_HostMap.count(to))
 				{
 					m_HostMap[to]->OutgoingStatus(static_cast<CPingHost::Status::Enum_t>(status));
 					m_HostMap[to]->NATEndpoint(row["ip"], row["port"]);
 				}
 				else
-				if (to == m_LocalHostGuid)
+				if (to == m_LocalHostGuid && m_HostMap.count(from))
 					m_HostMap[from]->IncomingStatus(static_cast<CPingHost::Status::Enum_t>(status));
 			}		
 		}

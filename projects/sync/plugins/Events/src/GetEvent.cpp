@@ -55,6 +55,12 @@ void CGetEvent::HandleReply(const ProtoPacketPtr packet)
 	if (packet)
 		m_Kernel.AddToWaiting(shared_from_this(), m_RequestPacketHost);
 
-	if (m_CallBackFn)
+	if (!m_CallBackFn)
+		return;
+
+	TRY 
+	{
 		m_CallBackFn(packet);
+	}
+	CATCH_IGNORE_EXCEPTIONS(m_Log, "Event callback failed.")
 }

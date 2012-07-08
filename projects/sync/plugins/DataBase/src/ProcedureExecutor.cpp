@@ -31,11 +31,11 @@ public:
 	{
 		m_Procedures.resize(CProcedure::Id::ProceduresSize);
 
-		m_Procedures[CProcedure::Id::HostsLoad]				= boost::bind(&Impl::HostsLoad, this, _1, _2);
-		m_Procedures[CProcedure::Id::HostsCreate]			= boost::bind(&Impl::HostsCreate, this, _1, _2);
-		m_Procedures[CProcedure::Id::HostsDelete]			= boost::bind(&Impl::HostsDelete, this, _1, _2);
+		m_Procedures[CProcedure::Id::HostsLoad]				= boost::bind(&Impl::HostsLoad,		this, _1, _2);
+		m_Procedures[CProcedure::Id::HostsCreate]			= boost::bind(&Impl::HostsCreate,	this, _1, _2);
+		m_Procedures[CProcedure::Id::HostsDelete]			= boost::bind(&Impl::HostsDelete,	this, _1, _2);
 
-		m_Procedures[CProcedure::Id::HostMapLoad]			= boost::bind(&Impl::HostMapLoad, this, _1, _2);
+		m_Procedures[CProcedure::Id::HostMapLoad]			= boost::bind(&Impl::HostMapLoad,	this, _1, _2);
 		m_Procedures[CProcedure::Id::HostMapCreate]			= boost::bind(&Impl::HostMapCreate, this, _1, _2);
 		m_Procedures[CProcedure::Id::HostMapDelete]			= boost::bind(&Impl::HostMapDelete, this, _1, _2);
 	}
