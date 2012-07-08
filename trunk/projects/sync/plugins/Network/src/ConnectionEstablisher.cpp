@@ -40,7 +40,7 @@ public:
 	{
 	}
 
-	//! Hosts status event call back(local)
+	//! Hosts status event callback(local)
 	void LocalHostStatusCallBack(const ProtoPacketPtr packet)
 	{
 		CHECK(packet);
