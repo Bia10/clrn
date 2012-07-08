@@ -131,7 +131,7 @@ private:
 	void 					ProcessProtoPacket(const ProtoPacketPtr packet);
 
 	//! Time event
-	void					TimeEvent(const boost::posix_time::time_duration interval, const TimeEventCallback callBack);
+	void					Timer(const boost::posix_time::time_duration interval, const TimeEventCallback callBack);
 
 	//! Timer callback
 	void					TimerCallBack(const boost::system::error_code& e, 

@@ -25,6 +25,8 @@ void Init(CJobFactory& factory, ILog& logger, IKernel& kernel)
 		factory.Register<CExecuteScript>(jobs::Job_JobId_EXEC_SCRIPT); 
 		factory.Register<CExecuteProcedure>(jobs::Job_JobId_EXEC_PROCEDURE); 
 
+		CProcedureExecutor::Create(kernel);
+
 		return;
 	} 
 	CATCH_IGNORE_EXCEPTIONS(logger, "Init failed.")

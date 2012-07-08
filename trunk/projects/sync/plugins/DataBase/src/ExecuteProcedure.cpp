@@ -40,7 +40,7 @@ void CExecuteProcedure::Execute(const ProtoPacketPtr packet)
 
 			data::Table* resultTable = packet->mutable_job()->add_results();
 
-			CProcedureExecutor::Instance(m_Kernel).Execute(id, paramsMap, *resultTable);
+			CProcedureExecutor::Instance().Execute(id, paramsMap, *resultTable);
 		}
 
 		CBaseJob::Execute(packet);

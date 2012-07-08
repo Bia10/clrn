@@ -267,6 +267,7 @@ private:
 	IKernel&				m_Kernel;
 };
 
+std::auto_ptr<CProcedureExecutor> CProcedureExecutor::s_pInstance;
 CProcedureExecutor::CProcedureExecutor(IKernel& kernel)
 	: m_pImpl(new Impl(kernel))
 {
@@ -277,15 +278,17 @@ CProcedureExecutor::~CProcedureExecutor(void)
 
 }
 
-CProcedureExecutor& CProcedureExecutor::Instance(IKernel& kernel)
+CProcedureExecutor& CProcedureExecutor::Instance()
 {
-	static boost::mutex mx;
-	boost::mutex::scoped_lock lock(mx);
-	static CProcedureExecutor executor(kernel);
-	return executor;
+	return *s_pInstance;
 }
 
 void CProcedureExecutor::Execute(const CProcedure::Id::Enum_t id, const CProcedure::ParamsMap& params, data::Table& result)
 {
 	m_pImpl->Execute(id, params, result);
+}
+
+void CProcedureExecutor::Create(IKernel& kernel)
+{
+	s_pInstance.reset(new CProcedureExecutor(kernel));
 }

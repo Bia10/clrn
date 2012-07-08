@@ -324,7 +324,7 @@ void CKernel::AddToWaiting(const IJob::Ptr job, const std::string& host)
 	const std::size_t timeout	= job->GetTimeout();
 
 	if (timeout && timeout != std::numeric_limits<std::size_t>::max())
-		TimeEvent(boost::posix_time::milliseconds(timeout), boost::bind(&CKernel::WaitingJobTimeoutCallback, this, job->GetGUID()));
+		Timer(boost::posix_time::milliseconds(timeout), boost::bind(&CKernel::WaitingJobTimeoutCallback, this, job->GetGUID()));
 
 	boost::mutex::scoped_lock lock(m_WaitingJobsMutex);
 	m_WaitingJobs.insert(std::make_pair(job->GetGUID(), descriptor));
@@ -464,7 +464,7 @@ void CKernel::SendErrorReply(const std::string& destination, const std::string& 
 	CATCH_IGNORE_EXCEPTIONS(m_Log, "CKernel::SendErrorReply failed.", destination, guid, text)
 }
 
-void CKernel::TimeEvent(const boost::posix_time::time_duration interval, const TimeEventCallback callBack)
+void CKernel::Timer(const boost::posix_time::time_duration interval, const TimeEventCallback callBack)
 {
 	const TimerPtr timer(new ba::deadline_timer(m_Service));
 	timer->expires_from_now(interval);

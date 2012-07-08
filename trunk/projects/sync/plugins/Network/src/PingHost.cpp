@@ -29,7 +29,7 @@ public:
 		SignalStatusEvent(Status::Unreacheble);
 
 		// start to ping
-		m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::Ping, this));
+		m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::Ping, this));
 	}
 
 	//! Set direct ep
@@ -80,7 +80,7 @@ public:
 				return;
 
 			// start to ping
-			m_Kernel.TimeEvent(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::Ping, this));
+			m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::Ping, this));
 
 			const boost::posix_time::ptime timeNow = boost::posix_time::microsec_clock::local_time();
 	
@@ -194,16 +194,8 @@ public:
 			CProcedure script(m_Kernel);
 			CProcedure::ParamsMap mapParams;
 
-			if (incoming)
-			{
-				mapParams["from"]	= m_RemoteHostGuid;
-				mapParams["to"]		= m_LocalHostGuid;
-			}
-			else
-			{
-				mapParams["from"]	= m_LocalHostGuid;
-				mapParams["to"]		= m_RemoteHostGuid;
-			}
+			mapParams["from"]		= incoming ? m_RemoteHostGuid : m_LocalHostGuid;
+			mapParams["to"]			= incoming ? m_LocalHostGuid : m_RemoteHostGuid;
 			mapParams["status"]		= conv::cast<std::string>(Status::SessionEstablished);
 			mapParams["ping"]		= ping;
 			mapParams["ip"]			= ip;
