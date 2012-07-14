@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "Kernel.h"
 
+#include <boost/asio/ip/host_name.hpp>
 
 CKernel::CKernel()
 	: m_ServiceWork(m_Service)
+	, m_WorkPoolSize(0)
 { 
 
 }
@@ -32,7 +34,7 @@ void CKernel::Stop()
 {
 	SCOPED_LOG(m_Log);
 
-	LOG_WARNING("Stopping kernel...");
+	LOG_WARNING("Stop signal catched. Stopping kernel...");
 
 	m_PluginLoader->Shutdown();
 
@@ -49,6 +51,77 @@ void CKernel::Stop()
 	m_pServer.reset();
 
 	LOG_WARNING("Kernel stopped.");
+}
+
+void CKernel::InitLog()
+{
+	TRY 
+	{
+		std::vector<ILog::Level::Enum_t> levels;
+		for (std::size_t i = 0; i <= LAST_MODULE_ID; ++i)
+		{
+			int logLevel = 0;
+			m_pSettings->Get(i, logLevel, "log_level"); 
+			levels.push_back(static_cast<ILog::Level::Enum_t>(logLevel));
+		}
+	
+		m_Log.Close();
+	
+		for (std::size_t i = 0; i <= LAST_MODULE_ID; ++i)
+		{
+			std::string logSource;
+			m_pSettings->Get(i, logSource, "log_source");
+			m_Log.Open(logSource, i);
+		}	
+	
+		m_Log.SetLogLevels(levels);
+	}
+	CATCH_PASS_EXCEPTIONS("Failed to init log")
+}
+
+void CKernel::InitUdpServer()
+{
+	TRY 
+	{
+		int port = 0;
+		int bufferSize = 0;
+		m_pSettings->Get(KERNEL_MODULE_ID, port,		"udp_port");
+		m_pSettings->Get(KERNEL_MODULE_ID, bufferSize,	"udp_buffer_size");
+	
+		std::size_t pingInterval = 0;
+		m_pSettings->Get(KERNEL_MODULE_ID, pingInterval, "ping_interval");
+		m_pSettings->Get(KERNEL_MODULE_ID, m_WorkPoolSize, "kernel_threads");
+		
+		m_pServer.reset
+		(
+			new net::CUDPServer
+			(
+				m_Log, 
+				*this, 
+				m_Service,
+				m_WorkPoolSize,
+				port, 
+				bufferSize,
+				m_LocalHostGuid
+			)
+		);
+	
+		// Creating signal set
+		m_pSignals.reset(new boost::asio::signal_set(m_Service));
+	
+		m_pSignals->add(SIGINT);
+		m_pSignals->add(SIGTERM);
+	
+	#if defined(SIGQUIT)
+		m_pTerminationSignals->add(SIGQUIT);
+	#endif // defined(SIGQUIT)
+	
+		m_pSignals->async_wait(boost::bind(&CKernel::Stop, this));
+	
+		// setting up ping interval
+		m_pServer->SetPingInterval(pingInterval);
+	}
+	CATCH_PASS_EXCEPTIONS("Failed to init udp server")
 }
 
 void CKernel::LoadPlugins()
@@ -92,36 +165,15 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 		m_pSettingsData.reset(new data::Table());
 		m_pSettings.reset(new CSettings(m_Log, DataBase::Instance(), *m_pSettingsData));
 		m_pSettings->Load();
-		
-		std::vector<ILog::Level::Enum_t> levels;
-		for (std::size_t i = 0; i <= LAST_MODULE_ID; ++i)
-		{
-			int logLevel = 0;
-			m_pSettings->Get(i, logLevel, "log_level"); 
-			levels.push_back(static_cast<ILog::Level::Enum_t>(logLevel));
-		}
 
-		m_Log.Close();
+		// init log
+		InitLog();
 
-		for (std::size_t i = 0; i <= LAST_MODULE_ID; ++i)
-		{
-			std::string logSource;
-			m_pSettings->Get(i, logSource, "log_source");
-			m_Log.Open(logSource, i);
-		}	
+		// local host name
+		const std::string localHostName = ba::ip::host_name();
 
-		m_Log.SetLogLevels(levels);
-
-		int port = 0;
-		int bufferSize = 0;
-		m_pSettings->Get(KERNEL_MODULE_ID, port,		"udp_port");
-		m_pSettings->Get(KERNEL_MODULE_ID, bufferSize,	"udp_buffer_size");
-
-		std::size_t pingInterval = 0;
-		m_pSettings->Get(KERNEL_MODULE_ID, pingInterval, "ping_interval");
-
-		int workPoolSize = 0;
-		m_pSettings->Get(KERNEL_MODULE_ID, workPoolSize, "kernel_threads");
+		// update host map table
+		DataBase::Instance().Execute((boost::format("update %s set ip = '%s' where id = 1") % HOSTS_TABLE_NAME % localHostName).str().c_str());
 
 		// getting hosts
 		data::Table hostsTableData;
@@ -131,34 +183,10 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 		// getting local host guid
 		m_LocalHostGuid = hostsTable["id=1"]["guid"];
 
-		m_pServer.reset
-		(
-			new net::CUDPServer
-			(
-				m_Log, 
-				*this, 
-				m_Service,
-				workPoolSize,
-				port, 
-				bufferSize,
-				m_LocalHostGuid
-			)
-		);
+		LOG_TRACE("Local host name: [%s], GUID: [%s]") % localHostName % m_LocalHostGuid;
 
-		// Creating signal set
-		m_pSignals.reset(new boost::asio::signal_set(m_Service));
-
-		m_pSignals->add(SIGINT);
-		m_pSignals->add(SIGTERM);
-
-#if defined(SIGQUIT)
-		m_pTerminationSignals->add(SIGQUIT);
-#endif // defined(SIGQUIT)
-
-		m_pSignals->async_wait(boost::bind(&CKernel::Stop, this));
-
-		// setting up ping interval
-		m_pServer->SetPingInterval(pingInterval);
+		// init udp server
+		InitUdpServer();
 
 		// setting up server endpoints
 		const ProtoPacketPtr hostList(new packets::Packet());
@@ -184,7 +212,7 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 		CEvent hostStatusEvent(*this, HOST_STATUS_EVENT_NAME);
 		hostStatusEvent.Subscribe(boost::bind(&CKernel::HostStatusCallBack, this, _1));
 
-		for (int i = 0; i < workPoolSize; ++i)
+		for (int i = 0; i < m_WorkPoolSize; ++i)
 			m_WorkPool.create_thread(boost::bind(&boost::asio::io_service::run, &m_Service));
 	}
 	CATCH_PASS_EXCEPTIONS("Init failed.")
@@ -391,6 +419,7 @@ void CKernel::ProcessProtoPacket(const ProtoPacketPtr packet)
 
 void CKernel::HandleNewPacket(const ProtoPacketPtr packet)
 {
+	LOG_DEBUG("Queuing new packet: [%s].") % packet->DebugString();
 	m_Service.post(boost::bind(&CKernel::ProcessProtoPacket, this, packet));
 }
 

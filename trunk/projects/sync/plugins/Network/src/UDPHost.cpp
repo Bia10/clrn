@@ -71,19 +71,14 @@ public:
 
 	void SendPingPacket(const ProtoPacketPtr packet, const std::string& ip, const std::string& port)
 	{
-		boost::asio::ip::udp::resolver resolver(m_IOService);
-		const boost::asio::ip::udp::resolver::query addressQuery(ip, port);
-		const EndpointPtr ep(new Endpoint(*resolver.resolve(addressQuery)));
-		Send2Outgoing(packet, true, ep);
+		Send2Outgoing(packet, true, MakeEndpoint(ip, port));
 	}
 
 	void SetOutgoingEP(const std::string& ip, const std::string& port, const std::size_t ping)
 	{
 		TRY 
 		{
-			boost::asio::ip::udp::resolver resolver(m_IOService);
-			const boost::asio::ip::udp::resolver::query addressQuery(ip, port);
-			m_OutgoingEP.reset(new Endpoint(*resolver.resolve(addressQuery)));
+			m_OutgoingEP = MakeEndpoint(ip, port);
 			m_OutgoingPing = ping;
 		}
 		CATCH_PASS_EXCEPTIONS(ip, port, ping)
@@ -93,9 +88,7 @@ public:
 	{
 		TRY 
 		{
-			boost::asio::ip::udp::resolver resolver(m_IOService);
-			const boost::asio::ip::udp::resolver::query addressQuery(ip, port);
-			m_IncomingEP.reset(new Endpoint(*resolver.resolve(addressQuery)));
+			m_IncomingEP = MakeEndpoint(ip, port);
 			m_IncomingPing = ping;
 		}
 		CATCH_PASS_EXCEPTIONS(ip, port, ping)
@@ -156,6 +149,29 @@ public:
 	}
 
 private:
+
+	//! Make endpoint
+	EndpointPtr MakeEndpoint(const std::string& ip, const std::string& port)
+	{
+		boost::asio::ip::udp::resolver resolver(m_IOService);
+
+		boost::asio::ip::udp::resolver::query query(ip, port);
+		boost::asio::ip::udp::resolver::iterator endpointIterator = resolver.resolve(query);
+		boost::asio::ip::udp::resolver::iterator end;
+
+		boost::system::error_code error = boost::asio::error::host_not_found;
+		while(error && endpointIterator != end)
+		{
+			if (boost::asio::ip::udp::v4() == endpointIterator->endpoint().protocol())
+			{
+				return EndpointPtr(new Endpoint(*endpointIterator));
+			}
+			++endpointIterator;
+		}
+
+		CHECK(!ip.empty(), "Failed to find endpoint", ip, port, error.message());
+		return EndpointPtr();
+	}
 	
 	//! Send handler
 	void SendHandler(const boost::system::error_code e, const std::size_t size, const BufferPtr /*sendBuffer*/)
@@ -226,7 +242,7 @@ private:
 	}
 
 	//! Start receiving
-	void StartReceiving(const SocketPtr socket)
+	void StartReceiving(const SocketPtr socket, BufferPtr buffer = BufferPtr())
 	{
 		SCOPED_LOG(m_Log);
 
@@ -241,7 +257,9 @@ private:
 				++m_WaitingThreads;
 			}
 
-			const BufferPtr buffer(new Buffer());	
+			if (!buffer)
+				buffer.reset(new Buffer(m_BufferSize));
+
 			ContinueReceiving(buffer, socket);
 		}
 		CATCH_PASS_EXCEPTIONS("StartReceiving failed.")
@@ -254,13 +272,10 @@ private:
 
 		TRY 
 		{
-			const std::size_t received = buffer->size();
-			buffer->resize(received + m_BufferSize);
-
 			const EndpointPtr ep(new Endpoint);
 			socket->async_receive_from
 			(
-				boost::asio::buffer(&buffer->at(received), buffer->size() - received), 
+				boost::asio::buffer(*buffer), 
 				*ep,
 				boost::bind
 				(
@@ -277,11 +292,28 @@ private:
 		CATCH_PASS_EXCEPTIONS("StartReceiving failed.")
 	}
 
+	//! Check and continue receiving
+	void CheckAndContinueReceiving(const SocketPtr socket, const BufferPtr buffer)
+	{
+		if (socket == m_pSrvSocket)
+			StartReceiving(socket, buffer);
+		else 
+		{
+			{
+				boost::mutex::scoped_lock lock(m_WaitingThreadsMutex);
+				if (m_WaitingThreads)
+					--m_WaitingThreads;
+			}
+
+			StartReceiving(socket, buffer);
+		}
+	}
+
 	//! Receive data handle
 	void ReceiveHandle
 	(
 		const boost::system::error_code e, 
-		std::size_t size, 
+		const std::size_t size, 
 		const BufferPtr buffer, 
 		const EndpointPtr client,
 		const SocketPtr socket
@@ -291,30 +323,12 @@ private:
 
 		TRY 
 		{
-			if (socket == m_pSrvSocket)
-				StartReceiving(socket);
-			else 
+			if (e || !size)
 			{
-				{
-					boost::mutex::scoped_lock lock(m_WaitingThreadsMutex);
-					if (m_WaitingThreads)
-						--m_WaitingThreads;
-				}
-
-				StartReceiving(socket);
-			}
-
-			if (e)
-			{
-				LOG_ERROR("Received: [%s], size: [%s], error: [%s]") % &buffer->front() % size % e.message();
+				LOG_ERROR("Received size: [%s], error: [%s]") % size % e.message();
+				CheckAndContinueReceiving(socket, buffer);
 				return;
 			}
-
-			if (!size)
-				return;
-
-			if (buffer->size() > m_BufferSize)
-				size += m_BufferSize;
 
 			const ProtoPacketPtr packet(new packets::Packet());
 			if (packet->ParseFromArray(&buffer->front(), size))
@@ -327,9 +341,8 @@ private:
 
 				HandlePacket(socket, packet, client);
 			}
-			else 
-			if (size == m_BufferSize)
-				ContinueReceiving(buffer, socket);
+
+			CheckAndContinueReceiving(socket, buffer);
 		}
 		CATCH_IGNORE_EXCEPTIONS(m_Log, "ReceiveHandle failed.")	
 	}
