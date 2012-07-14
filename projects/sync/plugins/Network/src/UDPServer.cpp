@@ -91,7 +91,7 @@ public:
 
 		TRY 
 		{
-			const BufferPtr buffer(new std::vector<char>());	
+			const BufferPtr buffer(new std::vector<char>(m_BufferSize));	
 			ContinueReceiving(buffer, socket);
 		}
 		CATCH_PASS_EXCEPTIONS("StartReceiving failed.")
@@ -104,13 +104,10 @@ public:
 
 		TRY 
 		{
-			const std::size_t received = buffer->size();
-			buffer->resize(received + m_BufferSize);
-
 			const EndpointPtr ep(new Endpoint);
 			socket->async_receive_from
 			(
-				boost::asio::buffer(&buffer->at(received), buffer->size() - received), 
+				boost::asio::buffer(*buffer), 
 				*ep,
 				boost::bind
 				(
@@ -131,7 +128,7 @@ public:
 	void ReceiveHandle
 	(
 		const boost::system::error_code e, 
-		std::size_t size, 
+		const std::size_t size, 
 		const BufferPtr buffer, 
 		const EndpointPtr client,
 		const SocketPtr socket
@@ -141,19 +138,13 @@ public:
 
 		TRY 
 		{
-			StartReceiving(socket);
-
-			if (e)
+			if (e || !size)
 			{
-				LOG_ERROR("Received: [%s], size: [%s], error: [%s]") % &buffer->front() % size % e.message();
+				LOG_ERROR("Received size: [%s], error: [%s]") % size % e.message();
+				ContinueReceiving(buffer, socket);
 				return;
 			}
 
-			if (!size)
-				return;
-
-			if (buffer->size() > m_BufferSize)
-				size += m_BufferSize;
 
 			const ProtoPacketPtr packet(new packets::Packet());
 			if (packet->ParseFromArray(&buffer->front(), size))
@@ -165,9 +156,8 @@ public:
 
 				HandlePacket(socket, packet, client);
 			}
-			else 
-			if (size == m_BufferSize)
-				ContinueReceiving(buffer, socket);
+
+			ContinueReceiving(buffer, socket);
 		}
 		CATCH_IGNORE_EXCEPTIONS(m_Log, "ReceiveHandle failed.")	
 	}

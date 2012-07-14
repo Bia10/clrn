@@ -74,6 +74,12 @@ public:
 
 private:
 
+	//! Init log
+	void					InitLog();
+
+	//! Init UDP server
+	void					InitUdpServer();
+
 	//! Handle new proto packet
 	void					HandleNewPacket(const ProtoPacketPtr packet);
 
@@ -182,6 +188,9 @@ private:
 
 	//! Signals
 	SignalSetPtr			m_pSignals;
+
+	//! Work pool size
+	int						m_WorkPoolSize;
 
 };
 #endif // Kernel_h__
