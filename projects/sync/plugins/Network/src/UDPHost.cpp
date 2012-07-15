@@ -63,7 +63,7 @@ public:
 		, m_Kernel(kernel)
 		, m_Log(log)
 		, m_BufferSize(kernel.Settings().BufferSize())
-		, m_PingInterval(kernel.Settings().BufferSize())
+		, m_PingInterval(kernel.Settings().PingInterval())
 		, m_RemoteGuid(remoteGuid)
 		, m_LocalGuid(kernel.Settings().LocalGuid())
 		, m_LocalHostName(ba::ip::host_name())
