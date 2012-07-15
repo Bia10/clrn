@@ -101,9 +101,6 @@ private:
 										const IJob::TableList& params,
 										const std::string& host = "");
 
-	//! Database path
-	const std::string&		DbPath() const;
-
 	//! Work loop
 	void					WorkThread();
 
@@ -144,6 +141,9 @@ private:
 	//! Waiting job timeout callback
 	void					WaitingJobTimeoutCallback(const std::string& jobGuid);
 
+	//! Settings interface
+	ISettings&				Settings();
+
 	//! Logger
 	CLog					m_Log;
 
@@ -174,9 +174,6 @@ private:
 	//! Plugin loader ptr
 	PluginLoaderPtr			m_PluginLoader;
 
-	//! Database path
-	std::string				m_DBpath;
-
 	//! Service
 	ba::io_service			m_Service;
 
@@ -185,9 +182,6 @@ private:
 
 	//! Signals
 	SignalSetPtr			m_pSignals;
-
-	//! Work pool size
-	int						m_WorkPoolSize;
 
 };
 #endif // Kernel_h__

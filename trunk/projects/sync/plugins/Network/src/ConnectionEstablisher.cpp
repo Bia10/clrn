@@ -24,11 +24,11 @@ class CConnectionEstablisher::Impl : boost::noncopyable
 public:
 
 	//! Ctor
-	Impl(IKernel& kernel, ILog& log, const std::string& localHostGuid, const std::size_t pingInterval)
+	Impl(IKernel& kernel, ILog& log)
 		: m_Kernel(kernel)
 		, m_Log(log)
-		, m_LocalHostGuid(localHostGuid)
-		, m_PingInterval(pingInterval)
+		, m_LocalHostGuid(kernel.Settings().LocalGuid())
+		, m_PingInterval(kernel.Settings().PingInterval())
 	{
 		// subscribe to host status event
 		CEvent hostStatusEvent(m_Kernel, HOST_STATUS_EVENT_NAME);
@@ -173,11 +173,9 @@ private:
 CConnectionEstablisher::CConnectionEstablisher
 (
 	IKernel& kernel, 
-	ILog& log, 
-	const std::string& localHostGuid, 
-	const std::size_t pingInterval
+	ILog& log
 )
-	: m_pImpl(new Impl(kernel, log, localHostGuid, pingInterval))
+	: m_pImpl(new Impl(kernel, log))
 {
 }
 

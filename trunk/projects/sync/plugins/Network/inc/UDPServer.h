@@ -30,11 +30,7 @@ class CUDPServer : private boost::noncopyable
 public:
 	CUDPServer(ILog& logger, 
 				IKernel& kernel,
-				boost::asio::io_service& srvc,
-				const int threads,
-				const int port, 
-				const int bufferSize,
-				const std::string& guid);
+				boost::asio::io_service& srvc);
 
 	~CUDPServer(void);
 

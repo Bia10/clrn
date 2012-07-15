@@ -3,6 +3,7 @@
 
 #include "ILog.h"
 #include "ProtoTablePtr.h"
+#include "ISettings.h"
 
 #include <string>
 #include <memory>
@@ -18,7 +19,7 @@ class CDataTable;
 //!
 //! \class CSettings
 //!
-class CSettings
+class CSettings : public ISettings
 {
 public: 
 	CSettings(ILog& logger, DataBase& dataBase, data::Table& data);
@@ -43,7 +44,26 @@ public:
 	void				Get(const int module, double& value, const std::string& path);
 	void				Get(const int module, std::string& value, const std::string& path);
 	void				Get(const int module, std::wstring& value, const std::string& path);
-	
+
+	//!	Set local guid
+	void				SetLocalGuid(const std::string& guid);
+
+	//! Set DB path
+	void				SetDBpath(const std::string& path);
+
+	const std::string&	DbPath() const;
+
+	const std::string&	LocalGuid() const;
+
+	const std::size_t	PingInterval() const;
+
+	const std::size_t	ThreadsCount() const;
+
+	const std::size_t	UDPPort() const;
+
+	const std::size_t	BufferSize() const;
+
+
 private:
 
 	//! Implementation

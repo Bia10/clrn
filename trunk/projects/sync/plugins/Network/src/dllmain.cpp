@@ -6,6 +6,9 @@
 #include "FileSystem.h"
 #include "job.pb.h"
 
+#include "Connect.h"
+#include "ConnectionEstablisher.h"
+
 #ifdef __cplusplus
 extern "C" 
 {
@@ -18,19 +21,19 @@ extern "C"
 } 
 #endif
 
-CJobFactory* g_Factory;
+std::auto_ptr<net::CConnectionEstablisher> g_pConnector;
 void Init(CJobFactory& factory, ILog& logger, IKernel& kernel)
 {
-// 	factory.Register<COutgoingPing>(jobs::Job_JobId_PING_HOST);
-// 	
-// 	CHostController::Create(logger, kernel);
+ 	factory.Register<CConnect>(jobs::Job_JobId_CONNECT);
+ 	
+ 	g_pConnector.reset(new net::CConnectionEstablisher(kernel, logger));
 }
 
 void Shutdown(CJobFactory& factory)
 {
-// 	CHostController::Shutdown();
-// 
-// 	factory.Unregister(jobs::Job_JobId_PING_HOST);
+	g_pConnector.reset();
+
+	factory.Unregister(jobs::Job_JobId_CONNECT);
 }
 
 

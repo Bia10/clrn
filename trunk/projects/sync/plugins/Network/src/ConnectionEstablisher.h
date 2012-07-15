@@ -31,9 +31,7 @@ public:
 	CConnectionEstablisher
 	(
 		IKernel& kernel, 
-		ILog& log, 
-		const std::string& localHostGuid,
-		const std::size_t pingInterval
+		ILog& log
 	);
 	~CConnectionEstablisher(void);
 

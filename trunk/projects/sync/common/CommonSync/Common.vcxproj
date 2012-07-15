@@ -156,6 +156,7 @@
     <ClInclude Include=".\inc\IJob.h" />
     <ClInclude Include=".\inc\IKernel.h" />
     <ClInclude Include=".\inc\ILog.h" />
+    <ClInclude Include="inc\ISettings.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\proto\Protocols.vcxproj">

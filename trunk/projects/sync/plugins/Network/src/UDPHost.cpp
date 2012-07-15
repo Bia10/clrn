@@ -54,22 +54,18 @@ class CUDPHost::Impl : boost::noncopyable
 public:
 	Impl
 	(
-		boost::asio::io_service& srvc, 
 		IKernel& kernel, 
 		ILog& log, 
-		const std::size_t bufferSize,
-		const std::size_t pingInterval,
 		const std::string& remoteGuid,
-		const std::string& localGuid, 
 		const SocketPtr srvSocket
 	)
-		: m_IOService(srvc)
+		: m_IOService(srvSocket->get_io_service())
 		, m_Kernel(kernel)
 		, m_Log(log)
-		, m_BufferSize(bufferSize)
-		, m_PingInterval(pingInterval)
+		, m_BufferSize(kernel.Settings().BufferSize())
+		, m_PingInterval(kernel.Settings().BufferSize())
 		, m_RemoteGuid(remoteGuid)
-		, m_LocalGuid(localGuid)
+		, m_LocalGuid(kernel.Settings().LocalGuid())
 		, m_LocalHostName(ba::ip::host_name())
 		, m_pSrvSocket(srvSocket)
 		, m_OutgoingPing(std::numeric_limits<std::size_t>::max())
@@ -676,16 +672,12 @@ private:
 
 CUDPHost::CUDPHost
 (
-	boost::asio::io_service& srvc, 
 	IKernel& kernel, 
 	ILog& log, 
-	const std::size_t bufferSize,
-	const std::size_t pingInterval,
 	const std::string& remoteGuid,
-	const std::string& localGuid, 
 	const SocketPtr srvSocket
 )
-	: m_pImpl(new Impl(srvc, kernel, log, bufferSize, pingInterval, remoteGuid, localGuid, srvSocket))
+	: m_pImpl(new Impl(kernel, log, remoteGuid, srvSocket))
 {
 
 }
