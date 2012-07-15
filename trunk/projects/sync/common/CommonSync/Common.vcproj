@@ -393,6 +393,10 @@
 				RelativePath=".\inc\ILog.h"
 				>
 			</File>
+			<File
+				RelativePath=".\inc\ISettings.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>
