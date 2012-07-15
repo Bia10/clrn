@@ -35,21 +35,17 @@ public:
 	(
 		ILog& logger, 
 		IKernel& kernel,
-		Service& srvc,
-		const int threads,
-		const int port, 
-		const int bufferSize,
-		const std::string& guid
+		Service& srvc
 	)
 		: m_Log(logger)
 		, m_Kernel(kernel)
 		, m_Service(srvc)
-		, m_BufferSize(bufferSize)
-		, m_LocalGUID(guid)
-		, m_PingInterval(0)
+		, m_BufferSize(kernel.Settings().BufferSize())
+		, m_LocalGUID(kernel.Settings().LocalGuid())
+		, m_PingInterval(kernel.Settings().PingInterval())
 	{
 		SCOPED_LOG(m_Log);
-		Init(port, threads);
+		Init(m_Kernel.Settings().UDPPort(), m_Kernel.Settings().ThreadsCount());
 	}
 
 	~Impl()
@@ -318,13 +314,9 @@ public:
 	{
 		return CUDPHost::Ptr(new CUDPHost
 		(
-			m_Service,
 			m_Kernel,
 			m_Log,
-			m_BufferSize,
-			m_PingInterval,
 			guid,
-			m_LocalGUID,
 			m_pReceiveSocket
 		));
 	}
@@ -389,8 +381,8 @@ private:
 
 };
 
-CUDPServer::CUDPServer(ILog& logger, IKernel& kernel, boost::asio::io_service& srvc, const int threads, const int port, const int bufferSize, const std::string& guid)
-	: m_pImpl(new Impl(logger, kernel, srvc, threads, port, bufferSize, guid))
+CUDPServer::CUDPServer(ILog& logger, IKernel& kernel, boost::asio::io_service& srvc)
+	: m_pImpl(new Impl(logger, kernel, srvc))
 {
 }
 

@@ -20,7 +20,7 @@ void Init(CJobFactory& factory, ILog& logger, IKernel& kernel)
 
 	TRY 
 	{
-		DataBase::Create(logger, kernel.DbPath().c_str());
+		DataBase::Create(logger, kernel.Settings().DbPath().c_str());
 	
 		factory.Register<CExecuteScript>(jobs::Job_JobId_EXEC_SCRIPT); 
 		factory.Register<CExecuteProcedure>(jobs::Job_JobId_EXEC_PROCEDURE); 

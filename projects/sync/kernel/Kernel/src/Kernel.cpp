@@ -5,7 +5,6 @@
 
 CKernel::CKernel()
 	: m_ServiceWork(m_Service)
-	, m_WorkPoolSize(0)
 { 
 
 }
@@ -23,11 +22,6 @@ void CKernel::Run()
 {
 	SCOPED_LOG(m_Log);
 	m_Service.run();
-}
-
-const std::string& CKernel::DbPath() const
-{
-	return m_DBpath;
 }
 
 void CKernel::Stop()
@@ -51,6 +45,11 @@ void CKernel::Stop()
 	m_pServer.reset();
 
 	LOG_WARNING("Kernel stopped.");
+}
+
+ISettings& CKernel::Settings()
+{
+	return *m_pSettings;
 }
 
 void CKernel::InitLog()
@@ -83,26 +82,13 @@ void CKernel::InitUdpServer()
 {
 	TRY 
 	{
-		int port = 0;
-		int bufferSize = 0;
-		m_pSettings->Get(KERNEL_MODULE_ID, port,		"udp_port");
-		m_pSettings->Get(KERNEL_MODULE_ID, bufferSize,	"udp_buffer_size");
-	
-		std::size_t pingInterval = 0;
-		m_pSettings->Get(KERNEL_MODULE_ID, pingInterval, "ping_interval");
-		m_pSettings->Get(KERNEL_MODULE_ID, m_WorkPoolSize, "kernel_threads");
-		
 		m_pServer.reset
 		(
 			new net::CUDPServer
 			(
 				m_Log, 
 				*this, 
-				m_Service,
-				m_WorkPoolSize,
-				port, 
-				bufferSize,
-				m_LocalHostGuid
+				m_Service
 			)
 		);
 	
@@ -117,10 +103,7 @@ void CKernel::InitUdpServer()
 	#endif // defined(SIGQUIT)
 	
 		m_pSignals->async_wait(boost::bind(&CKernel::Stop, this));
-	
-		// setting up ping interval
-		m_pServer->SetPingInterval(pingInterval);
-	}
+		}
 	CATCH_PASS_EXCEPTIONS("Failed to init udp server")
 }
 
@@ -158,13 +141,14 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 	{
 		m_Log.Open("1", CURRENT_MODULE_ID);
 
-		m_DBpath = conv::cast<std::string>(fs::FullPath(szDBpath ? szDBpath : KERNEL_DATABASE_FILE_NAME));
-		CHECK(fs::Exists(m_DBpath), m_DBpath);
-		DataBase::Create(m_Log, m_DBpath.c_str());
+		const std::string dbPath = conv::cast<std::string>(fs::FullPath(szDBpath ? szDBpath : KERNEL_DATABASE_FILE_NAME));
+		CHECK(fs::Exists(dbPath), dbPath);
+		DataBase::Create(m_Log, dbPath.c_str());
 
 		m_pSettingsData.reset(new data::Table());
 		m_pSettings.reset(new CSettings(m_Log, DataBase::Instance(), *m_pSettingsData));
 		m_pSettings->Load();
+		m_pSettings->SetDBpath(dbPath);
 
 		// init log
 		InitLog();
@@ -182,6 +166,7 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 
 		// getting local host guid
 		m_LocalHostGuid = hostsTable["id=1"]["guid"];
+		m_pSettings->SetLocalGuid(m_LocalHostGuid);
 
 		LOG_TRACE("Local host name: [%s], GUID: [%s]") % localHostName % m_LocalHostGuid;
 
@@ -212,7 +197,8 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 		CEvent hostStatusEvent(*this, HOST_STATUS_EVENT_NAME);
 		hostStatusEvent.Subscribe(boost::bind(&CKernel::HostStatusCallBack, this, _1));
 
-		for (int i = 0; i < m_WorkPoolSize; ++i)
+		const std::size_t size = m_pSettings->ThreadsCount();
+		for (std::size_t i = 0; i < size; ++i)
 			m_WorkPool.create_thread(boost::bind(&boost::asio::io_service::run, &m_Service));
 	}
 	CATCH_PASS_EXCEPTIONS("Init failed.")

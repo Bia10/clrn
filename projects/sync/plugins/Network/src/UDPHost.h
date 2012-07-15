@@ -45,13 +45,9 @@ public:
 
 	CUDPHost
 	(
-		boost::asio::io_service& srvc, 
 		IKernel& kernel, 
 		ILog& log, 
-		const std::size_t bufferSize,
-		const std::size_t pingInterval,
 		const std::string& remoteGuid,
-		const std::string& localGuid,
 		const SocketPtr srvSocket
 	);
 

@@ -99,6 +99,26 @@ public:
 		CATCH_PASS_EXCEPTIONS("Load failed.")
 	}
 
+	void SetLocalGuid(const std::string& guid)
+	{
+		m_LocalGuid = guid;
+	}
+
+	void SetDBpath(const std::string& path)
+	{
+		m_DBPath = path;
+	}
+
+	const std::string& DbPath() const
+	{
+		return m_DBPath;
+	}
+
+	const std::string& LocalGuid() const
+	{
+		return m_LocalGuid;
+	}
+
 private:
 
 	//! Logger reference 
@@ -112,6 +132,12 @@ private:
 
 	//! Table wrapper
 	boost::scoped_ptr<CTable>	m_pTableWrapper;
+
+	//! DB path
+	std::string					m_DBPath;
+
+	//! Local guid
+	std::string					m_LocalGuid;
 };
 
 CSettings::CSettings(ILog& logger, DataBase& dataBase, data::Table& data)
@@ -182,4 +208,52 @@ void CSettings::Save()
 void CSettings::Load()
 {
 	m_pImpl->Load();
+}
+
+void CSettings::SetLocalGuid(const std::string& guid)
+{
+	m_pImpl->SetLocalGuid(guid);
+}
+
+void CSettings::SetDBpath(const std::string& path)
+{
+	m_pImpl->SetDBpath(path);
+}
+
+const std::string& CSettings::DbPath() const
+{
+	return m_pImpl->DbPath();
+}
+
+const std::string& CSettings::LocalGuid() const
+{
+	return m_pImpl->LocalGuid();
+}
+
+const std::size_t CSettings::PingInterval() const
+{
+	std::size_t pingInterval = 0;
+	m_pImpl->Get(KERNEL_MODULE_ID, pingInterval, "ping_interval");
+	return pingInterval;
+}
+
+const std::size_t CSettings::ThreadsCount() const
+{
+	std::size_t cnt = 0;
+	m_pImpl->Get(KERNEL_MODULE_ID, cnt, "kernel_threads");
+	return cnt;
+}
+
+const std::size_t CSettings::UDPPort() const
+{
+	std::size_t port = 0;
+	m_pImpl->Get(KERNEL_MODULE_ID, port, "udp_port");
+	return port;
+}
+
+const std::size_t CSettings::BufferSize() const
+{
+	std::size_t size = 0;
+	m_pImpl->Get(KERNEL_MODULE_ID, size, "udp_buffer_size");
+	return size;
 }

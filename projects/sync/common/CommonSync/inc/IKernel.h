@@ -3,6 +3,7 @@
 
 #include "IJob.h"
 #include "ProtoTablePtr.h"
+#include "ISettings.h"
 
 #include <string>
 #include <list>
@@ -46,12 +47,12 @@ public:
 											const IJob::TableList& params,
 											const std::string& host = "") = 0;
 
-	//! Database path
-	virtual const std::string&	DbPath() const = 0;
-
 	//! Set up timer
 	virtual void				Timer(const boost::posix_time::time_duration interval, 
 										const TimeEventCallback callBack) = 0;
+
+	//! Settings interface
+	virtual ISettings&			Settings() = 0;
 
 	//! Destructor
 	virtual ~IKernel() {}
