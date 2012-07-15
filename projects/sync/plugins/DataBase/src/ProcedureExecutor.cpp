@@ -56,6 +56,8 @@ public:
 			const std::size_t index = static_cast<std::size_t>(id);
 			CHECK(index < m_Procedures.size(), id, m_Procedures.size());
 	
+			static boost::mutex mx;
+			boost::mutex::scoped_lock lock(mx);
 			m_Procedures[index](params, result);
 		}
 		CATCH_PASS_EXCEPTIONS(params)
@@ -178,7 +180,7 @@ public:
 		if ( !DataBase::Instance().Execute(sql.c_str()) )
 			return;
 
-		// raising event
+		// raising host map event
 
 		// event packet
 		const ProtoPacketPtr packet(new packets::Packet());
@@ -199,6 +201,34 @@ public:
 		// signal event
 		CEvent evnt(m_Kernel, HOSTMAP_EVENT_NAME);
 		evnt.Signal(packet);
+
+		// checking for host map status event 
+		sql = 
+			"SELECT Count(1) "
+			"FROM   host_map hm "
+			"	   LEFT JOIN hosts h1 "
+			"			  ON h1.[id] = hm.dst "
+			"	   LEFT JOIN hosts h2 "
+			"			  ON h2.[id] = hm.src "
+			"WHERE  h1.[guid] IN ( ':FROM', " 
+			"					  ':TO' )";
+
+		boost::algorithm::replace_all(sql, ":FROM",		from);
+		boost::algorithm::replace_all(sql, ":TO",		to);
+
+		data::Table rowsResult;
+		DataBase::Instance().Execute(sql.c_str(), rowsResult);
+		const std::size_t rows = conv::cast<std::size_t>(rowsResult.rows(0).data(0));
+
+		if (1 == rows)
+		{
+			// this is first record about hosts, signal host status event
+			const std::string& localGuid = LocalHostGuid();
+			if (localGuid == from)
+				SignalHostStatusEvent(to, data::Table_Action_Insert);
+			else
+				SignalHostStatusEvent(from, data::Table_Action_Insert);
+		}
 	}
 
 	//! Host map delete
@@ -255,8 +285,72 @@ public:
 		// signal event
 		CEvent evnt(m_Kernel, HOSTMAP_EVENT_NAME);
 		evnt.Signal(packet);
+
+		// checking for host status event
+		sql = 
+			"SELECT Count(1) "
+			"FROM   host_map hm "
+			"	   LEFT JOIN hosts h1 "
+			"			  ON h1.[id] = hm.dst "
+			"	   LEFT JOIN hosts h2 "
+			"			  ON h2.[id] = hm.src "
+			"WHERE  h1.[guid] IN ( ':FROM', " 
+			"					  ':TO' )";
+
+		boost::algorithm::replace_all(sql, ":FROM",		from);
+		boost::algorithm::replace_all(sql, ":TO",		to);
+
+		data::Table rowsResult;
+		DataBase::Instance().Execute(sql.c_str(), rowsResult);
+		const std::size_t rows = conv::cast<std::size_t>(rowsResult.rows(0).data(0));
+
+		if (0 == rows)
+		{
+			// this was last record about hosts, signal host status event
+			const std::string& localGuid = LocalHostGuid();
+			if (localGuid == from)
+				SignalHostStatusEvent(to, data::Table_Action_Delete);
+			else
+				SignalHostStatusEvent(from, data::Table_Action_Delete);
+		}
 	}
 
+	//! Signal host status event
+	void SignalHostStatusEvent(const std::string& host, const data::Table_Action action)
+	{
+		const ProtoPacketPtr packet(new packets::Packet());
+		data::Table& resultTable = *packet->mutable_job()->add_results();
+		resultTable.set_action(action);
+		resultTable.set_id(data::Table_Id_HostStatusEvent);
+
+		CTable table(resultTable);
+		table.AddRow()["guid"] = host;
+
+		CEvent evnt(m_Kernel, HOST_STATUS_EVENT_NAME);
+		evnt.Signal(packet);
+	}
+
+	//! Get local host guid
+	const std::string& LocalHostGuid()
+	{
+		static std::string guid;
+		static boost::mutex hostMutex;
+		boost::mutex::scoped_lock lock(hostMutex);
+		if (!guid.empty())
+			return guid;
+
+		static const char* sql = 
+			"SELECT guid "
+			"FROM hosts"
+			"		WHERE id = 1";
+
+		data::Table result;
+		DataBase::Instance().Execute(sql, result);
+
+		guid = result.rows(0).data(0);
+
+		return guid;
+	}
 
 private:
 

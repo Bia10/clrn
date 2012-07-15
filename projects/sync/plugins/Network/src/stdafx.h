@@ -12,6 +12,7 @@
 #include "Events/inc/Event.h"
 #include "Conversion.h"
 #include "StreamHelpers.h"
+#include "GUID.h"
 
 #include <list>
 #include <map>

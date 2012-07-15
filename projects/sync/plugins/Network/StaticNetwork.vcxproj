@@ -137,7 +137,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include=".\src\OutgoingPing.cpp" />
     <ClCompile Include=".\src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_vc110|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_vc90|Win32'">Create</PrecompiledHeader>
@@ -146,19 +145,14 @@
     <ClCompile Include="src\Connect.cpp" />
     <ClCompile Include="src\ConnectionEstablisher.cpp" />
     <ClCompile Include="src\dllmain.cpp" />
-    <ClCompile Include="src\HostController.cpp" />
-    <ClCompile Include="src\PingHost.cpp" />
     <ClCompile Include="src\UDPHost.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\src\NetworkPlugin.h" />
-    <ClInclude Include=".\src\OutgoingPing.h" />
     <ClInclude Include=".\src\stdafx.h" />
     <ClInclude Include=".\inc\UDPServer.h" />
-    <ClInclude Include="inc\HostController.h" />
     <ClInclude Include="src\Connect.h" />
     <ClInclude Include="src\ConnectionEstablisher.h" />
-    <ClInclude Include="src\PingHost.h" />
     <ClInclude Include="src\UDPHost.h" />
   </ItemGroup>
   <ItemGroup>

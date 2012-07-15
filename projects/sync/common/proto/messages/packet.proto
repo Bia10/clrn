@@ -12,7 +12,8 @@ message Packet
 		REQUEST 		= 1;
 		REPLY 			= 2;
 		ERR				= 3;
-		ACK				= 4;
+		PING			= 4;
+		ACK				= 5;
 	}
 	
 	// packet destination description
@@ -38,5 +39,5 @@ message Packet
 	required bytes			guid			= 4;					// packet guid
 	optional uint32			timeout			= 5;					// packet reply wait timeout(milliseconds)
 	required bytes			from			= 6;					// sender instance guid
-	optional bytes			ep				= 7;					// sender endpoint(sets up on receiver side)
+	optional bytes			ep				= 7;					// sender endpoint
 }

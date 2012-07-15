@@ -60,7 +60,8 @@ enum Packet_PacketType {
   Packet_PacketType_REQUEST = 1,
   Packet_PacketType_REPLY = 2,
   Packet_PacketType_ERR = 3,
-  Packet_PacketType_ACK = 4
+  Packet_PacketType_PING = 4,
+  Packet_PacketType_ACK = 5
 };
 bool Packet_PacketType_IsValid(int value);
 const Packet_PacketType Packet_PacketType_PacketType_MIN = Packet_PacketType_REQUEST;
@@ -278,6 +279,7 @@ class Packet : public ::google::protobuf::Message {
   static const PacketType REQUEST = Packet_PacketType_REQUEST;
   static const PacketType REPLY = Packet_PacketType_REPLY;
   static const PacketType ERR = Packet_PacketType_ERR;
+  static const PacketType PING = Packet_PacketType_PING;
   static const PacketType ACK = Packet_PacketType_ACK;
   static inline bool PacketType_IsValid(int value) {
     return Packet_PacketType_IsValid(value);

@@ -15,10 +15,9 @@ message Job
 		SET_SETTINGS 		= 4;	
 		EXEC_SCRIPT			= 5;
 		EXEC_PROCEDURE		= 6;
-		PING_HOST			= 7;
-		GET_EVENT			= 8;
-		SET_EVENT			= 9;
-		CONNECT				= 10;
+		GET_EVENT			= 7;
+		SET_EVENT			= 8;
+		CONNECT				= 9;
 	}
 	
 	optional JobId 			id 			= 1;	// job operation id

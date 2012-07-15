@@ -80,14 +80,13 @@ void protobuf_AddDesc_job_2eproto() {
 
   ::data::protobuf_AddDesc_data_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\tjob.proto\022\004jobs\032\ndata.proto\"\206\002\n\003Job\022\033\n"
+    "\n\tjob.proto\022\004jobs\032\ndata.proto\"\367\001\n\003Job\022\033\n"
     "\002id\030\001 \001(\0162\017.jobs.Job.JobId\022\033\n\006params\030\002 \003"
     "(\0132\013.data.Table\022\034\n\007results\030\003 \003(\0132\013.data."
-    "Table\"\246\001\n\005JobId\022\t\n\005EMPTY\020\001\022\017\n\013GET_MODULE"
+    "Table\"\227\001\n\005JobId\022\t\n\005EMPTY\020\001\022\017\n\013GET_MODULE"
     "S\020\002\022\020\n\014GET_SETTINGS\020\003\022\020\n\014SET_SETTINGS\020\004\022"
     "\017\n\013EXEC_SCRIPT\020\005\022\022\n\016EXEC_PROCEDURE\020\006\022\r\n\t"
-    "PING_HOST\020\007\022\r\n\tGET_EVENT\020\010\022\r\n\tSET_EVENT\020"
-    "\t\022\013\n\007CONNECT\020\n", 294);
+    "GET_EVENT\020\007\022\r\n\tSET_EVENT\020\010\022\013\n\007CONNECT\020\t", 279);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "job.proto", &protobuf_RegisterTypes);
   Job::default_instance_ = new Job();
@@ -120,7 +119,6 @@ bool Job_JobId_IsValid(int value) {
     case 7:
     case 8:
     case 9:
-    case 10:
       return true;
     default:
       return false;
@@ -134,7 +132,6 @@ const Job_JobId Job::GET_SETTINGS;
 const Job_JobId Job::SET_SETTINGS;
 const Job_JobId Job::EXEC_SCRIPT;
 const Job_JobId Job::EXEC_PROCEDURE;
-const Job_JobId Job::PING_HOST;
 const Job_JobId Job::GET_EVENT;
 const Job_JobId Job::SET_EVENT;
 const Job_JobId Job::CONNECT;

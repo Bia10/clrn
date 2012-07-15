@@ -9,6 +9,9 @@
 class IKernel;
 class ILog;
 
+namespace net
+{
+
 //! Connection establishment implementation
 //!		Purposes:
 //! 1. Monitor remote host events(hosts, host_map) 
@@ -39,5 +42,7 @@ private:
 	class Impl;
 	std::auto_ptr<Impl> m_pImpl;
 };
+
+} // namespace net
 
 #endif // ConnectionEstablisher_h__

@@ -6,9 +6,6 @@
 #include "FileSystem.h"
 #include "job.pb.h"
 
-#include "OutgoingPing.h"
-#include "HostController.h"
-
 #ifdef __cplusplus
 extern "C" 
 {
@@ -24,16 +21,16 @@ extern "C"
 CJobFactory* g_Factory;
 void Init(CJobFactory& factory, ILog& logger, IKernel& kernel)
 {
-	factory.Register<COutgoingPing>(jobs::Job_JobId_PING_HOST);
-	
-	CHostController::Create(logger, kernel);
+// 	factory.Register<COutgoingPing>(jobs::Job_JobId_PING_HOST);
+// 	
+// 	CHostController::Create(logger, kernel);
 }
 
 void Shutdown(CJobFactory& factory)
 {
-	CHostController::Shutdown();
-
-	factory.Unregister(jobs::Job_JobId_PING_HOST);
+// 	CHostController::Shutdown();
+// 
+// 	factory.Unregister(jobs::Job_JobId_PING_HOST);
 }
 
 

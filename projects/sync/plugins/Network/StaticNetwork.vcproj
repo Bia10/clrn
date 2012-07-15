@@ -284,18 +284,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\HostController.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\OutgoingPing.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\PingHost.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\stdafx.cpp"
 				>
 				<FileConfiguration
@@ -338,19 +326,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\inc\HostController.h"
-				>
-			</File>
-			<File
 				RelativePath=".\src\NetworkPlugin.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\OutgoingPing.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\PingHost.h"
 				>
 			</File>
 			<File

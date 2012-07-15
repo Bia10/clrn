@@ -34,9 +34,6 @@ public:
 	//! Send packet
 	virtual void				Send(const std::string& destination, const ProtoPacketPtr packet) = 0;
 
-	//! Send packet
-	virtual void				Send(const std::string& destination, const std::string& ip, const std::string& port, const ProtoPacketPtr packet) = 0;
-
 	//! Execute job 
 	virtual void				ExecuteJob(const jobs::Job_JobId id, 
 											const IJob::TableList& params, 

@@ -89,9 +89,6 @@ private:
 	//! Send packet
 	void					Send(const std::string& destination, const ProtoPacketPtr packet);
 
-	//! Send packet
-	void					Send(const std::string& destination, const std::string& ip, const std::string& port, const ProtoPacketPtr packet);
-	
 	//! Execute job 
 	void					ExecuteJob(const jobs::Job_JobId id, 
 										const IJob::TableList& params, 

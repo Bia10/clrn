@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "UDPHost.h"
 
+namespace ba = boost::asio;
+
 namespace net
 {
 
@@ -20,6 +22,7 @@ class CUDPHost::Impl : boost::noncopyable
 		SocketPtr					socket;
 		EndpointPtr					ep;
 		boost::posix_time::ptime	time;
+		packets::Packet_PacketType	type;
 	};
 
 	//! Waiting packets map type
@@ -33,6 +36,20 @@ class CUDPHost::Impl : boost::noncopyable
 
 	//! Minimum waiting incoming threads
 	enum														{INCOMING_THREADS_COUNT = 4};		
+
+	//! Host map status refresh ratio
+	//! refresh host_map table only if if pinginterval * HOST_MAP_REFRESH_RATIO expired
+	enum														{HOST_MAP_REFRESH_RATIO = 3};
+
+	//! Packet delete reason
+	struct DeleteReason
+	{
+		enum Enum_t 
+		{
+			Delivered	= 0,
+			TimedOut	= 1
+		};
+	};
 
 public:
 	Impl
@@ -53,14 +70,20 @@ public:
 		, m_PingInterval(pingInterval)
 		, m_RemoteGuid(remoteGuid)
 		, m_LocalGuid(localGuid)
+		, m_LocalHostName(ba::ip::host_name())
 		, m_pSrvSocket(srvSocket)
 		, m_OutgoingPing(std::numeric_limits<std::size_t>::max())
 		, m_IncomingPing(std::numeric_limits<std::size_t>::max())
 		, m_WaitingThreads(0)
+		, m_OutgoigStatusLastUpdateTime(boost::posix_time::microsec_clock::local_time())
+		, m_IncomingStatusLastUpdateTime(boost::posix_time::microsec_clock::local_time())
+		, m_IncomingStatus(Status::Unknown)
+		, m_LastOutgoingSend(boost::posix_time::microsec_clock::local_time())
 	{
-
+		 m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::IncomingStatusTimerCallback, this));
+		 m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::PingHost, this));
 	}
-	
+
 	void Send(const ProtoPacketPtr packet)
 	{
 		if (m_OutgoingPing < m_IncomingPing || !m_IncomingEP)
@@ -69,9 +92,30 @@ public:
 			Send2Incoming(packet);
 	}
 
-	void SendPingPacket(const ProtoPacketPtr packet, const std::string& ip, const std::string& port)
+	void PingHost()
 	{
-		Send2Outgoing(packet, true, MakeEndpoint(ip, port));
+		m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::PingHost, this));
+
+		const boost::posix_time::ptime now = boost::posix_time::microsec_clock::local_time();
+
+		{
+			boost::mutex::scoped_lock lock(m_LastSendMutex);
+			boost::posix_time::time_duration td(now - m_LastOutgoingSend);
+			if (td.total_milliseconds() < m_PingInterval)
+				return;
+
+			m_LastOutgoingSend = now;
+		}
+
+		// sending ping packet to remote host
+		const ProtoPacketPtr packet(new packets::Packet());
+		packet->set_from(m_LocalGuid);
+		packet->set_type(packets::Packet_PacketType_PING);
+		packet->set_guid(CGUID::Generate());
+		packet->set_timeout(static_cast<std::size_t>(conv::ToPosix64(boost::posix_time::microsec_clock::local_time())));
+		packet->set_ep(m_LocalHostName + ":" + conv::cast<std::string>(m_pSrvSocket->local_endpoint().port()));
+
+		Send2Outgoing(packet);
 	}
 
 	void SetOutgoingEP(const std::string& ip, const std::string& port, const std::size_t ping)
@@ -106,7 +150,7 @@ public:
 			// checking packet type
 			if (packets::Packet_PacketType_ACK == packet->type())
 			{
-				DeleteWaitingPacket(packet->guid(), "delivered");
+				DeleteWaitingPacket(packet->guid(), DeleteReason::Delivered);
 				return;
 			}
 
@@ -117,10 +161,19 @@ public:
 	
 			// setting up packet field
 			packet->set_ep(ep);
-	
-			// handle packet by kernel
-			m_Kernel.HandleNewPacket(packet);
-	
+
+			// checking packet type
+			if (packets::Packet_PacketType_PING == packet->type())
+			{
+				IncomingPingReceived(packet);
+				m_IncomingEP = client;
+			}
+			else
+			{
+				// handle packet by kernel
+				m_Kernel.HandleNewPacket(packet);
+			}
+		
 			// sending ACK
 			const ProtoPacketPtr ack(new packets::Packet());
 			ack->set_from(m_LocalGuid);
@@ -183,7 +236,14 @@ private:
 	}
 
 	//! Send buffer
-	void SendBuffer(const BufferPtr buffer, const std::string& guid, const EndpointPtr ep, const SocketPtr socket, bool ignoreACK)
+	void SendBuffer
+	(
+		const BufferPtr buffer, 
+		const std::string& guid, 
+		const EndpointPtr ep, 
+		const SocketPtr socket, 
+		const packets::Packet_PacketType type
+	)
 	{
 		SCOPED_LOG(m_Log);
 
@@ -205,9 +265,6 @@ private:
 				)
 			);	
 
-			if (ignoreACK)
-				return;
-
 			// saving packet until ACK received or timeout expired
 			{
 				boost::mutex::scoped_lock lock(m_PacketsMutex);
@@ -216,15 +273,17 @@ private:
 				dsc.ep = ep;
 				dsc.socket = socket;
 				dsc.time = boost::posix_time::microsec_clock::local_time();
+				dsc.type = type;
 			}
 
 			// setup timer for resend this data
-			m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval * RESEND_RATIO), boost::bind(&Impl::ResendPacket, this, guid));
+			if (packets::Packet_PacketType_PING != type)
+				m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval * RESEND_RATIO), boost::bind(&Impl::ResendPacket, this, guid));
 
 			// setting up timer to delete this packet
-			m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval * DELETE_RATIO), boost::bind(&Impl::DeleteWaitingPacket, this, guid, "timed out"));
+			m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval * DELETE_RATIO), boost::bind(&Impl::DeleteWaitingPacket, this, guid, DeleteReason::TimedOut));
 		}
-		CATCH_PASS_EXCEPTIONS("SendBuffer failed.", guid, ignoreACK)
+		CATCH_PASS_EXCEPTIONS("SendBuffer failed.", guid, type)
 	}
 
 	//! Serialize buffer
@@ -348,15 +407,20 @@ private:
 	}
 
 	//! Send to outgoing channel
-	void Send2Outgoing(const ProtoPacketPtr packet, bool ignoreACK = false, const EndpointPtr ep = EndpointPtr())
+	void Send2Outgoing(const ProtoPacketPtr packet)
 	{
-		const EndpointPtr endpoint = ep ? ep : m_OutgoingEP;
-		CHECK(endpoint);
+		if (!m_OutgoingEP)
+			return;
+
+		{
+			boost::mutex::scoped_lock lock(m_LastSendMutex);
+			m_LastOutgoingSend = boost::posix_time::microsec_clock::local_time();
+		}
 
 		LOG_TRACE("Sending to: [%s], as [OUT], ep:[%s]:[%s], data: [%s]") 
 			% m_RemoteGuid 
-			% endpoint->address().to_string() 
-			% endpoint->port() 
+			% m_OutgoingEP->address().to_string() 
+			% m_OutgoingEP->port() 
 			% packet->ShortDebugString();
 
 		// create socket if not exists and send data
@@ -366,7 +430,7 @@ private:
 			m_pOutgoingSocket->open(boost::asio::ip::udp::v4());
 		}
 
-		SendBuffer(Serialize(packet), packet->guid(), endpoint, m_pOutgoingSocket, ignoreACK);
+		SendBuffer(Serialize(packet), packet->guid(), m_OutgoingEP, m_pOutgoingSocket, packet->type());
 
 		// starting to receive from this socket
 		StartReceiving(m_pOutgoingSocket);
@@ -384,27 +448,54 @@ private:
 			% packet->ShortDebugString();
 
 		// send through server incoming socket
-		SendBuffer(Serialize(packet), packet->guid(), m_IncomingEP, m_pSrvSocket, false);
+		SendBuffer(Serialize(packet), packet->guid(), m_IncomingEP, m_pSrvSocket, packet->type());
 	}
 
 	//! Delete packet by guid
-	void DeleteWaitingPacket(const std::string& packet, const std::string& reason)
+	void DeleteWaitingPacket(const std::string& packet, const DeleteReason::Enum_t reason)
 	{
 		boost::mutex::scoped_lock lock(m_PacketsMutex);
 
 		if (!m_WaitingPackets.count(packet))
 			return;
 
-		const boost::posix_time::time_duration td = boost::posix_time::microsec_clock::local_time() - 
-			m_WaitingPackets[packet].time;
+		const BufferDsc dsc = m_WaitingPackets[packet];
+
+		const boost::posix_time::time_duration ping = boost::posix_time::microsec_clock::local_time() - dsc.time;
 
 		LOG_TRACE("Deleting packet: [%s], to: [%s], reason: [%s], millisec: [%s]") 
 			% packet 
 			% m_LocalGuid 
-			% reason 
-			% static_cast<std::size_t>(td.total_milliseconds());
+			% (reason == DeleteReason::Delivered ? "delivered"  : "timeout")
+			% static_cast<std::size_t>(ping.total_milliseconds());
 
 		m_WaitingPackets.erase(packet);
+
+		if (packets::Packet_PacketType_PING != dsc.type)
+			return;
+
+		m_OutgoingPing = static_cast<std::size_t>(ping.total_milliseconds());
+
+		// checking up refresh timeout
+		const boost::posix_time::ptime now = boost::posix_time::microsec_clock::local_time();
+		const boost::posix_time::time_duration td(now - m_OutgoigStatusLastUpdateTime);
+		if (td.total_milliseconds() < m_PingInterval * HOST_MAP_REFRESH_RATIO)
+			return;
+
+		m_OutgoigStatusLastUpdateTime = now;
+
+		// checking for host timeout
+		if (DeleteReason::TimedOut == reason)
+		{
+			// outgoing channel to host is timed out
+			DeleteHostMapRecord(false);
+		}
+		else
+		if (DeleteReason::Delivered == reason)
+		{
+			// outgoing channel to host established
+			InsertHostMapRecord(false);
+		}
 	}
 
 	//! Resend packet
@@ -412,21 +503,105 @@ private:
 	{
 		TRY 
 		{
-			boost::mutex::scoped_lock lock(m_PacketsMutex);
+			BufferDsc dsc;
 
-			if (!m_WaitingPackets.count(packet))
-				return;
+			{
+				boost::mutex::scoped_lock lock(m_PacketsMutex);
 
-			const BufferDsc& dsc = m_WaitingPackets[packet];
+				if (!m_WaitingPackets.count(packet))
+					return;
+
+				dsc = m_WaitingPackets[packet];
+			}
 
 			LOG_TRACE("Resending packet: [%s], to: [%s]") % packet % m_LocalGuid;
 
-			SendBuffer(dsc.buffer, packet, dsc.ep, dsc.socket, true);
+			SendBuffer(dsc.buffer, packet, dsc.ep, dsc.socket, dsc.type);
 
 			// setup timer for resend this data
 			m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval * RESEND_RATIO), boost::bind(&Impl::ResendPacket, this, packet));
 		}
 		CATCH_PASS_EXCEPTIONS(m_LocalGuid, packet)
+	}
+
+	//! Insert new host map record from packet
+	void InsertHostMapRecord(const bool incoming)
+	{
+		TRY 
+		{
+			const EndpointPtr ep = incoming ? m_IncomingEP : m_OutgoingEP;
+
+			CHECK(ep);
+
+			const std::string ip = ep->address().to_string();
+			const std::string port = conv::cast<std::string>(ep->port());
+
+			const std::string ping = conv::cast<std::string>(incoming ? m_IncomingPing : m_OutgoingPing);
+
+			// insert host map
+			CProcedure script(m_Kernel);
+			CProcedure::ParamsMap mapParams;
+
+			mapParams["from"]		= incoming ? m_RemoteGuid : m_LocalGuid;
+			mapParams["to"]			= incoming ? m_LocalGuid : m_RemoteGuid;
+			mapParams["status"]		= conv::cast<std::string>(Status::SessionEstablished);
+			mapParams["ping"]		= ping;
+			mapParams["ip"]			= ip;
+			mapParams["port"]		= port;	
+
+			script.Execute(CProcedure::Id::HostMapCreate, mapParams, IJob::CallBackFn());	
+		}
+		CATCH_PASS_EXCEPTIONS(incoming)
+	}
+
+	//! Delete host map record
+	void DeleteHostMapRecord(const bool incoming)
+	{
+		TRY 
+		{
+			// erasing host map data
+			CProcedure proc(m_Kernel);
+			CProcedure::ParamsMap params;
+			params["from"]	= incoming ? m_RemoteGuid : m_LocalGuid;
+			params["to"]	= incoming ? m_LocalGuid : m_RemoteGuid;
+			proc.Execute(CProcedure::Id::HostMapDelete, params, IJob::CallBackFn());	
+		}
+		CATCH_PASS_EXCEPTIONS(incoming)
+	}
+
+	//! Incoming ping received
+	void IncomingPingReceived(const ProtoPacketPtr packet)
+	{
+		boost::mutex::scoped_lock lock(m_PacketsMutex);
+
+		const boost::posix_time::ptime time = conv::FromPosix64(packet->timeout());
+
+		const boost::posix_time::time_duration td(boost::posix_time::microsec_clock::local_time() - time);
+		m_IncomingPing = static_cast<std::size_t>(td.total_milliseconds());
+
+		m_IncomingStatus = Status::SessionEstablished;
+	}
+
+	//! Incoming status control callback
+	void IncomingStatusTimerCallback()
+	{
+		m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::IncomingStatusTimerCallback, this));
+
+		boost::mutex::scoped_lock lock(m_PacketsMutex);
+
+		// checking up refresh timeout
+		const boost::posix_time::ptime now = boost::posix_time::microsec_clock::local_time();
+		const boost::posix_time::time_duration td(now - m_IncomingStatusLastUpdateTime);
+		if (td.total_milliseconds() < m_PingInterval * HOST_MAP_REFRESH_RATIO)
+			return;
+
+		m_IncomingStatusLastUpdateTime = now;
+
+		// update status
+		if (Status::SessionEstablished == m_IncomingStatus)
+			InsertHostMapRecord(true);
+		else
+			DeleteHostMapRecord(true);
 	}
 
 	//! Asio service
@@ -449,6 +624,9 @@ private:
 
 	//! Local host guid
 	const std::string					m_LocalGuid;
+
+	//! Local host name
+	const std::string					m_LocalHostName;
 
 	//! Server socket
 	const SocketPtr						m_pSrvSocket;
@@ -479,6 +657,21 @@ private:
 
 	//! Waiting threads mutex
 	boost::mutex						m_WaitingThreadsMutex;
+
+	//! Outgoing status last update time
+	boost::posix_time::ptime			m_OutgoigStatusLastUpdateTime;
+
+	//! Outgoing status last update time
+	boost::posix_time::ptime			m_IncomingStatusLastUpdateTime;
+
+	//! Incoming ping status
+	Status::Enum_t						m_IncomingStatus;
+
+	//! Last send to outgoing channel
+	boost::posix_time::ptime			m_LastOutgoingSend;
+
+	//! Last outgoing send mutex
+	boost::mutex						m_LastSendMutex;
 };
 
 CUDPHost::CUDPHost
@@ -520,11 +713,6 @@ void CUDPHost::SetIncomingEP(const std::string& ip, const std::string& port, con
 void CUDPHost::HandlePacket(const SocketPtr socket, const ProtoPacketPtr packet, const EndpointPtr client)
 {
 	m_pImpl->HandlePacket(socket, packet, client);
-}
-
-void CUDPHost::SendPingPacket(const ProtoPacketPtr packet, const std::string& ip, const std::string& port)
-{
-	m_pImpl->SendPingPacket(packet, ip, port);
 }
 
 } // namespace net
