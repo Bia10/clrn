@@ -42,10 +42,9 @@ enum Job_JobId {
   Job_JobId_SET_SETTINGS = 4,
   Job_JobId_EXEC_SCRIPT = 5,
   Job_JobId_EXEC_PROCEDURE = 6,
-  Job_JobId_PING_HOST = 7,
-  Job_JobId_GET_EVENT = 8,
-  Job_JobId_SET_EVENT = 9,
-  Job_JobId_CONNECT = 10
+  Job_JobId_GET_EVENT = 7,
+  Job_JobId_SET_EVENT = 8,
+  Job_JobId_CONNECT = 9
 };
 bool Job_JobId_IsValid(int value);
 const Job_JobId Job_JobId_JobId_MIN = Job_JobId_EMPTY;
@@ -123,7 +122,6 @@ class Job : public ::google::protobuf::Message {
   static const JobId SET_SETTINGS = Job_JobId_SET_SETTINGS;
   static const JobId EXEC_SCRIPT = Job_JobId_EXEC_SCRIPT;
   static const JobId EXEC_PROCEDURE = Job_JobId_EXEC_PROCEDURE;
-  static const JobId PING_HOST = Job_JobId_PING_HOST;
   static const JobId GET_EVENT = Job_JobId_GET_EVENT;
   static const JobId SET_EVENT = Job_JobId_SET_EVENT;
   static const JobId CONNECT = Job_JobId_CONNECT;

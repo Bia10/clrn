@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "ConnectionEstablisher.h"
-#include "PingHost.h"
+#include "UDPHost.h"
+
+namespace net
+{
 
 //! Establisher implementation
 class CConnectionEstablisher::Impl : boost::noncopyable
@@ -9,7 +12,7 @@ class CConnectionEstablisher::Impl : boost::noncopyable
 	struct Host
 	{
 		boost::posix_time::ptime	wentOffline;
-		CPingHost::Status::Enum_t	status;
+		CUDPHost::Status::Enum_t	status;
 	};
 
 	//! Hosts descriptors type
@@ -59,14 +62,14 @@ public:
 
 			// registering this host data
 			boost::mutex ::scoped_lock lock(m_HostsMutex);
-			m_Hosts[guid].status = CPingHost::Status::SessionEstablished;
+			m_Hosts[guid].status = CUDPHost::Status::SessionEstablished;
 		}
 		else
 		if (data::Table_Action_Delete == table.action())
 		{
 			// registering this host data
 			boost::mutex ::scoped_lock lock(m_HostsMutex);
-			m_Hosts[guid].status = CPingHost::Status::Unreacheble;
+			m_Hosts[guid].status = CUDPHost::Status::Unreacheble;
 			m_Hosts[guid].wentOffline = boost::posix_time::microsec_clock::local_time();
 		}
 	}
@@ -101,13 +104,13 @@ public:
 
 		BOOST_FOREACH(const CTable::Row& row, table)
 		{
-			const CPingHost::Status::Enum_t status = static_cast<CPingHost::Status::Enum_t>(conv::cast<std::size_t>(row["status"]));
+			const CUDPHost::Status::Enum_t status = static_cast<CUDPHost::Status::Enum_t>(conv::cast<std::size_t>(row["status"]));
 
 			// getting host map params
 			const std::string& from = row["from"];
 			const std::string& to = row["to"];
 
-			if (CPingHost::Status::SessionEstablished == status)
+			if (CUDPHost::Status::SessionEstablished == status)
 			{
 				// processing only direct connections
 				boost::mutex::scoped_lock lock(m_HostMapMutex);
@@ -118,7 +121,7 @@ public:
 					m_RemoteMapping[to] = from;
 			}
 			else
-			if (CPingHost::Status::SessionRequested == status && to == m_LocalHostGuid)
+			if (CUDPHost::Status::SessionRequested == status && to == m_LocalHostGuid)
 			{
 				// process incoming request
 
@@ -182,3 +185,5 @@ CConnectionEstablisher::CConnectionEstablisher
 CConnectionEstablisher::~CConnectionEstablisher(void)
 {
 }
+
+} // namespace net

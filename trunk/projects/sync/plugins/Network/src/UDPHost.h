@@ -16,6 +16,18 @@ class CUDPHost : boost::noncopyable
 {
 public:
 
+	//! Host status
+	struct Status
+	{
+		enum Enum_t
+		{
+			Unknown				= 0,
+			Unreacheble			= 1,
+			SessionRequested	= 2,
+			SessionEstablished	= 3
+		};
+	};
+
 	//! Host ptr type
 	typedef boost::shared_ptr<CUDPHost>		Ptr;
 
@@ -47,9 +59,6 @@ public:
 
 	//! Send data packet to host
 	void	Send(const ProtoPacketPtr packet);
-
-	//! Send ping data packet
-	void	SendPingPacket(const ProtoPacketPtr packet, const std::string& ip, const std::string& port);
 
 	//! Set host outgoing endpoint
 	void	SetOutgoingEP(const std::string& ip, const std::string& port, const std::size_t ping);

@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Connect.h"
-#include "HostController.h"
 
 CConnect::CConnect(IKernel& kernel, ILog& logger)
 	: CBaseJob(kernel, logger)

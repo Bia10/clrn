@@ -145,7 +145,6 @@ public:
 				return;
 			}
 
-
 			const ProtoPacketPtr packet(new packets::Packet());
 			if (packet->ParseFromArray(&buffer->front(), size))
 			{
@@ -177,7 +176,13 @@ public:
 				boost::mutex::scoped_lock lock(m_HostsMutex);
 				it = m_Hosts.find(packet->from());
 				if (m_Hosts.end() == it)
+				{
+					// checking for this host existence, create if needed
+					const std::string ep = packet->ep().empty() ? client->address().to_string(), conv::cast<std::string>(client->port()) : packet->ep();
+
+					CreateNewHost(packet->from(), ep);
 					it = m_Hosts.insert(std::make_pair(packet->from(), CreateHost(packet->from()))).first;
+				}
 			}
 
 			it->second->HandlePacket(socket, packet, client);		
@@ -206,28 +211,6 @@ public:
 			it->second->Send(packet);		
 		}
 		CATCH_PASS_EXCEPTIONS("Send failed.", destination, *packet)
-	}
-
-	//! Send packet to endpoint
-	void Send(const std::string& destination, const std::string& ip, const std::string& port, const ProtoPacketPtr packet)
-	{
-		SCOPED_LOG(m_Log);
-
-		CHECK(packet);
-
-		TRY 
-		{
-			// send by host
-			HostsMap::iterator it;
-			{
-				boost::mutex::scoped_lock lock(m_HostsMutex);
-				it = m_Hosts.find(destination);
-			}
-			CHECK(m_Hosts.end() != it);
-
-			it->second->SendPingPacket(packet, ip, port);		
-		}
-		CATCH_PASS_EXCEPTIONS("Send failed.", ip, port, *packet)	
 	}
 
 	//! Add host mapping from host map event
@@ -352,7 +335,26 @@ public:
 		boost::mutex::scoped_lock lock(m_SettingsMutex);
 		m_PingInterval = interval;
 	}
-	
+
+	//! Check for new host
+	void CreateNewHost(const std::string& guid, const std::string& ep)
+	{
+		const std::string::size_type delimiter = ep.find(':');
+
+		CHECK(std::string::npos != delimiter);
+
+		// insert host
+		CProcedure script(m_Kernel);
+		CProcedure::ParamsMap mapParams;
+
+		mapParams["guid"]		= guid;
+		mapParams["ip"]			= ep.substr(0, delimiter);
+		mapParams["port"]		= &ep[delimiter + 1];	
+
+		script.Execute(CProcedure::Id::HostsCreate, mapParams, IJob::CallBackFn());	
+	}
+
+
 private:
 
 	//! Logger
@@ -404,11 +406,6 @@ void CUDPServer::SetBufferSize(const int size)
 void CUDPServer::Send(const std::string& destination, const ProtoPacketPtr packet)
 {
 	m_pImpl->Send(destination, packet);
-}
-
-void CUDPServer::Send(const std::string& destination, const std::string& ip, const std::string& port, const ProtoPacketPtr packet)
-{
-	m_pImpl->Send(destination, ip, port, packet);
 }
 
 void CUDPServer::AddHostMapping(const ProtoPacketPtr packet)
