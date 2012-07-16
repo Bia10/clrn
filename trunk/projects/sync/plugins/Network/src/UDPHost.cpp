@@ -73,11 +73,24 @@ public:
 		, m_WaitingThreads(0)
 		, m_OutgoigStatusLastUpdateTime(boost::posix_time::microsec_clock::local_time())
 		, m_IncomingStatusLastUpdateTime(boost::posix_time::microsec_clock::local_time())
+		, m_IncomingStatusLastInsertTime(boost::posix_time::microsec_clock::local_time())
 		, m_IncomingStatus(Status::Unknown)
 		, m_LastOutgoingSend(boost::posix_time::microsec_clock::local_time())
 	{
 		 m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::IncomingStatusTimerCallback, this));
 		 m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::PingHost, this));
+
+		 // signal status event
+		 const ProtoPacketPtr packet(new packets::Packet());
+		 data::Table& resultTable = *packet->mutable_job()->add_results();
+		 resultTable.set_action(data::Table_Action_Delete);
+		 resultTable.set_id(data::Table_Id_HostStatusEvent);
+
+		 CTable table(resultTable);
+		 table.AddRow()["guid"] = m_RemoteGuid;
+
+		 CEvent evnt(m_Kernel, HOST_STATUS_EVENT_NAME);
+		 evnt.Signal(packet);
 	}
 
 	void Send(const ProtoPacketPtr packet)
@@ -86,32 +99,6 @@ public:
 			Send2Outgoing(packet);
 		else
 			Send2Incoming(packet);
-	}
-
-	void PingHost()
-	{
-		m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::PingHost, this));
-
-		const boost::posix_time::ptime now = boost::posix_time::microsec_clock::local_time();
-
-		{
-			boost::mutex::scoped_lock lock(m_LastSendMutex);
-			boost::posix_time::time_duration td(now - m_LastOutgoingSend);
-			if (td.total_milliseconds() < m_PingInterval)
-				return;
-
-			m_LastOutgoingSend = now;
-		}
-
-		// sending ping packet to remote host
-		const ProtoPacketPtr packet(new packets::Packet());
-		packet->set_from(m_LocalGuid);
-		packet->set_type(packets::Packet_PacketType_PING);
-		packet->set_guid(CGUID::Generate());
-		packet->set_timeout(static_cast<std::size_t>(conv::ToPosix64(boost::posix_time::microsec_clock::local_time())));
-		packet->set_ep(m_LocalHostName + ":" + conv::cast<std::string>(m_pSrvSocket->local_endpoint().port()));
-
-		Send2Outgoing(packet);
 	}
 
 	void SetOutgoingEP(const std::string& ip, const std::string& port, const std::size_t ping)
@@ -143,29 +130,28 @@ public:
 
 		TRY 
 		{
-			// checking packet type
-			if (packets::Packet_PacketType_ACK == packet->type())
-			{
-				DeleteWaitingPacket(packet->guid(), DeleteReason::Delivered);
-				return;
-			}
-
-			CHECK(!packet->from().empty(), "Host didn't send GUID, ignore packet.")
-		
 			// getting sender endpoint
 			const std::string ep = client->address().to_string() + ":" + conv::cast<std::string>(client->port());
-	
+
 			// setting up packet field
 			packet->set_ep(ep);
 
 			// checking packet type
-			if (packets::Packet_PacketType_PING == packet->type())
+			switch (packet->type())
 			{
+			case packets::Packet_PacketType_ACK:
+				DeleteWaitingPacket(packet->guid(), DeleteReason::Delivered);
+				return;
+
+			case packets::Packet_PacketType_PING:
 				IncomingPingReceived(packet);
 				m_IncomingEP = client;
-			}
-			else
-			{
+				break;
+
+			case packets::Packet_PacketType_CONNECT:
+				return; // no need to send ACK
+
+			default:
 				// handle packet by kernel
 				m_Kernel.HandleNewPacket(packet);
 			}
@@ -198,6 +184,33 @@ public:
 	}
 
 private:
+
+	//! Send ping packet to host
+	void PingHost()
+	{
+		m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::PingHost, this));
+
+		const boost::posix_time::ptime now = boost::posix_time::microsec_clock::local_time();
+
+		{
+			boost::mutex::scoped_lock lock(m_LastSendMutex);
+			boost::posix_time::time_duration td(now - m_LastOutgoingSend);
+			if (td.total_milliseconds() < m_PingInterval)
+				return;
+
+			m_LastOutgoingSend = now;
+		}
+
+		// sending ping packet to remote host
+		const ProtoPacketPtr packet(new packets::Packet());
+		packet->set_from(m_LocalGuid);
+		packet->set_type(packets::Packet_PacketType_PING);
+		packet->set_guid(CGUID::Generate());
+		packet->set_timeout(static_cast<std::size_t>(conv::ToPosix64(boost::posix_time::microsec_clock::local_time())));
+		packet->set_ep(m_LocalHostName + ":" + conv::cast<std::string>(m_pSrvSocket->local_endpoint().port()));
+
+		Send2Outgoing(packet);
+	}
 
 	//! Make endpoint
 	EndpointPtr MakeEndpoint(const std::string& ip, const std::string& port)
@@ -571,11 +584,13 @@ private:
 		boost::mutex::scoped_lock lock(m_PacketsMutex);
 
 		const boost::posix_time::ptime time = conv::FromPosix64(packet->timeout());
+		const boost::posix_time::ptime now = boost::posix_time::microsec_clock::local_time();
 
-		const boost::posix_time::time_duration td(boost::posix_time::microsec_clock::local_time() - time);
+		const boost::posix_time::time_duration td(now - time);
 		m_IncomingPing = static_cast<std::size_t>(td.total_milliseconds());
 
 		m_IncomingStatus = Status::SessionEstablished;
+		m_IncomingStatusLastUpdateTime = now;
 	}
 
 	//! Incoming status control callback
@@ -585,13 +600,19 @@ private:
 
 		boost::mutex::scoped_lock lock(m_PacketsMutex);
 
-		// checking up refresh timeout
 		const boost::posix_time::ptime now = boost::posix_time::microsec_clock::local_time();
-		const boost::posix_time::time_duration td(now - m_IncomingStatusLastUpdateTime);
+
+		// checking up status
+		const boost::posix_time::time_duration timeout(now - m_IncomingStatusLastUpdateTime);
+		if (timeout.total_milliseconds() > m_PingInterval * DELETE_RATIO)
+			m_IncomingStatus = Status::Unreacheble;
+
+		// checking up refresh timeout
+		const boost::posix_time::time_duration td(now - m_IncomingStatusLastInsertTime);
 		if (td.total_milliseconds() < m_PingInterval * HOST_MAP_REFRESH_RATIO)
 			return;
 
-		m_IncomingStatusLastUpdateTime = now;
+		m_IncomingStatusLastInsertTime = now;
 
 		// update status
 		if (Status::SessionEstablished == m_IncomingStatus)
@@ -659,6 +680,9 @@ private:
 
 	//! Outgoing status last update time
 	boost::posix_time::ptime			m_IncomingStatusLastUpdateTime;
+
+	//! Outgoing status last insert time
+	boost::posix_time::ptime			m_IncomingStatusLastInsertTime;
 
 	//! Incoming ping status
 	Status::Enum_t						m_IncomingStatus;

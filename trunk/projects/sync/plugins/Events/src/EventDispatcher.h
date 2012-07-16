@@ -37,6 +37,13 @@ public:
 		const IJob::CallBackFn& callBack
 	);
 
+	//! Unsubscribe
+	void						UnSubscribe
+	(
+		const std::string& name,
+		const IJob::CallBackFn& callBack
+	);
+
 	//! Signal event
 	void						Signal
 	(

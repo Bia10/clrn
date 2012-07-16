@@ -173,11 +173,6 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 		// init udp server
 		InitUdpServer();
 
-		// setting up server endpoints
-		const ProtoPacketPtr hostList(new packets::Packet());
-		*hostList->mutable_job()->add_results() = hostsTableData;
-		HostListCallBack(hostList);
-
 		// load plugins
 		LoadPlugins();
 
@@ -196,6 +191,10 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 		// subscribing to host status event
 		CEvent hostStatusEvent(*this, HOST_STATUS_EVENT_NAME);
 		hostStatusEvent.Subscribe(boost::bind(&CKernel::HostStatusCallBack, this, _1));
+
+		// setting up server endpoints
+		CProcedure hostList(*this);
+		hostList.Execute(CProcedure::Id::HostsLoad, CProcedure::ParamsMap(), boost::bind(&CKernel::HostListCallBack, this, _1));
 
 		const std::size_t size = m_pSettings->ThreadsCount();
 		for (std::size_t i = 0; i < size; ++i)

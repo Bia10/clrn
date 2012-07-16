@@ -210,8 +210,7 @@ public:
 			"			  ON h1.[id] = hm.dst "
 			"	   LEFT JOIN hosts h2 "
 			"			  ON h2.[id] = hm.src "
-			"WHERE  h1.[guid] IN ( ':FROM', " 
-			"					  ':TO' )";
+			"WHERE  h1.[guid] IN ( ':FROM', ':TO' )";
 
 		boost::algorithm::replace_all(sql, ":FROM",		from);
 		boost::algorithm::replace_all(sql, ":TO",		to);
@@ -288,14 +287,13 @@ public:
 
 		// checking for host status event
 		sql = 
-			"SELECT Count(1) "
-			"FROM   host_map hm "
-			"	   LEFT JOIN hosts h1 "
-			"			  ON h1.[id] = hm.dst "
-			"	   LEFT JOIN hosts h2 "
-			"			  ON h2.[id] = hm.src "
-			"WHERE  h1.[guid] IN ( ':FROM', " 
-			"					  ':TO' )";
+			"SELECT Count(1) FROM host_map "
+			"WHERE  src IN (SELECT id  "
+			"			   FROM   hosts  "
+			"			   WHERE  guid = ':TO')  "
+			"	   AND dst IN (SELECT id  "
+			"				   FROM   hosts " 
+			"				   WHERE  guid = ':FROM') ";
 
 		boost::algorithm::replace_all(sql, ":FROM",		from);
 		boost::algorithm::replace_all(sql, ":TO",		to);

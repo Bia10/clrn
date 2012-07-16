@@ -57,7 +57,7 @@ public:
 
 			// connect callback to slot
 			EventSignal& signal = *it->second;
-			signal.connect(callBack);
+			signal.connect(callBack);			
 		}
 		CATCH_PASS_EXCEPTIONS("Subscribe failed.")
 	}
@@ -85,6 +85,32 @@ public:
 		}
 		CATCH_PASS_EXCEPTIONS("Signal failed.", name, *packet)
 	}
+
+	//! Unsubscribe
+	void UnSubscribe(const std::string& name, const IJob::CallBackFn& callBack)
+	{
+		SCOPED_LOG(m_Log);
+
+		CHECK(callBack);
+
+		LOG_TRACE("Unsubscribing from event: [%s], fn: [%s]") % name % callBack.target_type().name();
+
+		TRY 
+		{
+			boost::mutex::scoped_lock lock(m_EventsMutex);
+
+			// find or create new signal
+			EventsMap::iterator it = m_Events.find(name);
+			if (m_Events.end() == it)
+				return;
+
+			// disconnect callback from slot
+			EventSignal& signal = *it->second;
+			signal.disconnect(callBack);			
+		}
+		CATCH_PASS_EXCEPTIONS("UnSubscribe failed.")
+	}
+
 
 private:
 
@@ -137,4 +163,9 @@ void CEventDispatcher::Subscribe(const std::string& name, const IJob::CallBackFn
 void CEventDispatcher::Signal(const std::string& name, const ProtoPacketPtr packet)
 {
 	m_pImpl->Signal(name, packet);
+}
+
+void CEventDispatcher::UnSubscribe(const std::string& name, const IJob::CallBackFn& callBack)
+{
+	m_pImpl->UnSubscribe(name, callBack);
 }

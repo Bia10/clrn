@@ -280,9 +280,9 @@ public:
 			}
 
 			if (incoming)
-				it->second->SetIncomingEP(row["ip"], row["port"], std::size_t(-1));
+				it->second->SetIncomingEP(row["ip"], row["port"], std::numeric_limits<std::size_t>::max());
 			else
-				it->second->SetOutgoingEP(row["ip"], row["port"], std::size_t(-1));
+				it->second->SetOutgoingEP(row["ip"], row["port"], std::numeric_limits<std::size_t>::max());
 		}	
 	}
 
@@ -305,7 +305,7 @@ public:
 					it = m_Hosts.insert(std::make_pair(key, CreateHost(key))).first;
 			}
 
-			it->second->SetOutgoingEP(row["ip"], row["port"], std::size_t(-1));
+			it->second->SetOutgoingEP(row["ip"], row["port"], std::numeric_limits<std::size_t>::max());
 		}	
 	}
 

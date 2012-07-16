@@ -7,7 +7,13 @@ CGetEvent::CGetEvent(IKernel& kernel, ILog& logger)
 	: CBaseJob(kernel, logger)
 {
 	m_Id = jobs::Job_JobId_GET_EVENT;
-	m_TimeOut = std::size_t(-1);
+	m_TimeOut = std::numeric_limits<std::size_t>::max();
+}
+
+CGetEvent::~CGetEvent()
+{
+	// removing subscribe
+	//CEventDispatcher::Instance().
 }
 
 void CGetEvent::EventCallBack(const ProtoPacketPtr packet)
