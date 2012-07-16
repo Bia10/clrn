@@ -61,11 +61,12 @@ enum Packet_PacketType {
   Packet_PacketType_REPLY = 2,
   Packet_PacketType_ERR = 3,
   Packet_PacketType_PING = 4,
-  Packet_PacketType_ACK = 5
+  Packet_PacketType_ACK = 5,
+  Packet_PacketType_CONNECT = 6
 };
 bool Packet_PacketType_IsValid(int value);
 const Packet_PacketType Packet_PacketType_PacketType_MIN = Packet_PacketType_REQUEST;
-const Packet_PacketType Packet_PacketType_PacketType_MAX = Packet_PacketType_ACK;
+const Packet_PacketType Packet_PacketType_PacketType_MAX = Packet_PacketType_CONNECT;
 const int Packet_PacketType_PacketType_ARRAYSIZE = Packet_PacketType_PacketType_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* Packet_PacketType_descriptor();
@@ -281,6 +282,7 @@ class Packet : public ::google::protobuf::Message {
   static const PacketType ERR = Packet_PacketType_ERR;
   static const PacketType PING = Packet_PacketType_PING;
   static const PacketType ACK = Packet_PacketType_ACK;
+  static const PacketType CONNECT = Packet_PacketType_CONNECT;
   static inline bool PacketType_IsValid(int value) {
     return Packet_PacketType_IsValid(value);
   }

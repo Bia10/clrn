@@ -11,7 +11,12 @@ class CGetEvent :
 	public CBaseJob
 {
 public:
+
+	//! Ctor
 	CGetEvent(IKernel& kernel, ILog& logger);
+
+	//! Dtor
+	~CGetEvent();
 
 	//! Execute job
 	void			Execute(const ProtoPacketPtr packet);

@@ -7,7 +7,7 @@
 
 //! Outgoing connection establishment job
 //!
-//! \class COutgoingPing
+//! \class CConnect
 //!
 class CConnect :
 	public CBaseJob
@@ -17,6 +17,9 @@ public:
 
 	//! Execute job
 	void						Execute(const ProtoPacketPtr packet);
+
+	//! Invoke connect job
+	void						Invoke(const TableList& params, const std::string& host);
 
 };
 

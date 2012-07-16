@@ -17,6 +17,7 @@
 #include <list>
 #include <map>
 #include <limits>
+#include <set>
 
 #include <boost/function.hpp>
 #include <boost/exception_ptr.hpp>

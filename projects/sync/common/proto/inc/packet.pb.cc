@@ -111,7 +111,7 @@ void protobuf_AddDesc_packet_2eproto() {
 
   ::jobs::protobuf_AddDesc_job_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\014packet.proto\022\007packets\032\tjob.proto\"\213\003\n\006P"
+    "\n\014packet.proto\022\007packets\032\tjob.proto\"\230\003\n\006P"
     "acket\022(\n\004type\030\001 \002(\0162\032.packets.Packet.Pac"
     "ketType\022\026\n\003job\030\002 \001(\0132\t.jobs.Job\0220\n\013desti"
     "nation\030\003 \001(\0132\033.packets.Packet.Destinatio"
@@ -120,8 +120,9 @@ void protobuf_AddDesc_packet_2eproto() {
     "pe\030\001 \002(\0162 .packets.Packet.Destination.Ty"
     "pe:\003ONE\022\014\n\004from\030\002 \001(\r\022\n\n\002to\030\003 \001(\005\022\016\n\006fil"
     "ter\030\004 \001(\014\"#\n\004Type\022\007\n\003ONE\020\001\022\t\n\005RANGE\020\002\022\007\n"
-    "\003ALL\020\003\"@\n\nPacketType\022\013\n\007REQUEST\020\001\022\t\n\005REP"
-    "LY\020\002\022\007\n\003ERR\020\003\022\010\n\004PING\020\004\022\007\n\003ACK\020\005", 432);
+    "\003ALL\020\003\"M\n\nPacketType\022\013\n\007REQUEST\020\001\022\t\n\005REP"
+    "LY\020\002\022\007\n\003ERR\020\003\022\010\n\004PING\020\004\022\007\n\003ACK\020\005\022\013\n\007CONN"
+    "ECT\020\006", 445);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "packet.proto", &protobuf_RegisterTypes);
   Packet::default_instance_ = new Packet();
@@ -152,6 +153,7 @@ bool Packet_PacketType_IsValid(int value) {
     case 3:
     case 4:
     case 5:
+    case 6:
       return true;
     default:
       return false;
@@ -164,6 +166,7 @@ const Packet_PacketType Packet::REPLY;
 const Packet_PacketType Packet::ERR;
 const Packet_PacketType Packet::PING;
 const Packet_PacketType Packet::ACK;
+const Packet_PacketType Packet::CONNECT;
 const Packet_PacketType Packet::PacketType_MIN;
 const Packet_PacketType Packet::PacketType_MAX;
 const int Packet::PacketType_ARRAYSIZE;
