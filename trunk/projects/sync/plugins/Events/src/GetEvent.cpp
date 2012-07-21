@@ -13,7 +13,7 @@ CGetEvent::CGetEvent(IKernel& kernel, ILog& logger)
 CGetEvent::~CGetEvent()
 {
 	// removing subscribe
-	//CEventDispatcher::Instance().
+	CEventDispatcher::Instance().UnSubscribe(m_EventName, boost::bind(&CGetEvent::EventCallBack, this, _1));
 }
 
 void CGetEvent::EventCallBack(const ProtoPacketPtr packet)
@@ -41,10 +41,12 @@ void CGetEvent::Execute(const ProtoPacketPtr packet)
 	TRY 
 	{
 		// getting event params
-		const std::string& name = packet->job().params(0).rows(0).data(0);
+		m_EventName = packet->job().params(0).rows(0).data(0);
+
+		CHECK(!m_EventName.empty());
 
 		// subscribe to event
-		CEventDispatcher::Instance().Subscribe(name, boost::bind(&CGetEvent::EventCallBack, this, _1));
+		CEventDispatcher::Instance().Subscribe(m_EventName, boost::bind(&CGetEvent::EventCallBack, this, _1));
 
 		// saving request packet params
 		m_RequestPacketGuid = packet->guid();
