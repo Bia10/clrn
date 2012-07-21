@@ -21,12 +21,25 @@ class CEventDispatcher::Impl
 	//! Events map type
 	typedef std::map<std::string, EventSignalPtr>		EventsMap;
 
+	//! Callback comparer
+	struct CallbackCmp
+	{
+		bool operator () (const IJob::CallBackFn& lhs, const IJob::CallBackFn& rhs) const
+		{
+			return lhs.target<IJob::CallBackFn>() < rhs.target<IJob::CallBackFn>();
+		}
+
+	};
+
+	//! Callbacks indexes map
+	typedef std::map<IJob::CallBackFn, std::size_t, CallbackCmp> CallbackIndexMap;
 
 public:
 
 	Impl(ILog& logger, IKernel& kernel)
 		: m_Log(logger)
 		, m_Kernel(kernel)
+		, m_CurrentCallbackIndex(0)
 	{
 		SCOPED_LOG(m_Log);
 	}
@@ -57,7 +70,19 @@ public:
 
 			// connect callback to slot
 			EventSignal& signal = *it->second;
-			signal.connect(callBack);			
+
+			boost::mutex::scoped_lock lockCallback(m_CallbackMutex);
+
+			const CallbackIndexMap::const_iterator itCallback = m_CallbackIndexes.find(callBack);
+			if (m_CallbackIndexes.end() != itCallback)
+			{
+				// delete previous record
+				signal.disconnect(itCallback->second);
+				m_CallbackIndexes.erase(itCallback);
+			}
+
+			signal.connect(++m_CurrentCallbackIndex, callBack);			
+			m_CallbackIndexes[callBack] = m_CurrentCallbackIndex;
 		}
 		CATCH_PASS_EXCEPTIONS("Subscribe failed.")
 	}
@@ -106,9 +131,15 @@ public:
 
 			// disconnect callback from slot
 			EventSignal& signal = *it->second;
-			signal.disconnect(callBack);			
+
+			boost::mutex::scoped_lock lockCallback(m_CallbackMutex);
+
+			const CallbackIndexMap::const_iterator itCallback = m_CallbackIndexes.find(callBack);
+			CHECK(m_CallbackIndexes.end() != itCallback, callBack.target_type().name());
+			signal.disconnect(itCallback->second);			
+			m_CallbackIndexes.erase(itCallback);
 		}
-		CATCH_PASS_EXCEPTIONS("UnSubscribe failed.")
+		CATCH_PASS_EXCEPTIONS("UnSubscribe failed.", name)
 	}
 
 
@@ -125,6 +156,15 @@ private:
 
 	//! Events mutex
 	boost::mutex			m_EventsMutex;
+
+	//! Callback indexes map
+	CallbackIndexMap		m_CallbackIndexes;
+
+	//! Current callback index
+	std::size_t				m_CurrentCallbackIndex;
+
+	//! Callback indexes mutes
+	boost::mutex			m_CallbackMutex;
 };
 
 
