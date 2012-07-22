@@ -351,13 +351,13 @@ IJob::Ptr CKernel::GetWaitingJob(const std::string& guid)
 
 void CKernel::ProcessProtoPacket(const ProtoPacketPtr packet)
 {
-	TRACE_PACKET(packet);
-
 	if (!packet)
 		return;
 
 	TRY 
 	{
+		TRACE_PACKET(packet);
+
 		switch(packet->type())
 		{
 		case packets::Packet_PacketType_REQUEST:

@@ -448,7 +448,6 @@ private:
 			}
 
 			const ProtoPacketPtr packet(new packets::Packet());
-			TRACE_PACKET(packet);
 			if (packet->ParseFromArray(&buffer->front(), size))
 			{
 				LOG_TRACE("Received from: [%s], socket: [%s], ep: [%s]:[%s]") 
@@ -457,6 +456,7 @@ private:
 					% client->address().to_string() 
 					% client->port();
 
+				TRACE_PACKET(packet);
 				HandlePacket(socket, packet, client);
 			}
 
