@@ -134,6 +134,8 @@ public:
 
 		CHECK(packet);
 
+		TRACE_PACKET(packet);
+
 		TRY 
 		{
 			// getting sender endpoint
@@ -155,6 +157,8 @@ public:
 				break;
 
 			case packets::Packet_PacketType_CONNECT:
+				// handle packet by kernel
+				m_Kernel.HandleNewPacket(packet);
 				return; // no need to send ACK
 
 			default:
@@ -202,8 +206,6 @@ private:
 		TRACE_PACKET(packet);
 
 		const std::size_t count = conv::cast<std::size_t>(packet->job().results(0).rows(0).data(0));
-
-		boost::this_thread::interruptible_wait(1000);
 
 		// signal status event
 		const ProtoPacketPtr eventPacket(new packets::Packet());
