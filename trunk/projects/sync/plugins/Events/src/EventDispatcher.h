@@ -31,9 +31,11 @@ public:
 	static void					Shutdown();
 
 	//! Subscribe to event
-	void						Subscribe
+	std::string					Subscribe
 	(
 		const std::string& name,
+		const std::string& host,
+		const std::string& caller,
 		const IJob::CallBackFn& callBack
 	);
 
@@ -41,7 +43,7 @@ public:
 	void						UnSubscribe
 	(
 		const std::string& name,
-		const IJob::CallBackFn& callBack
+		const std::string& hash
 	);
 
 	//! Signal event

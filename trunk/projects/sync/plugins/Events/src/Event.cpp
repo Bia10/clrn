@@ -24,6 +24,7 @@ void CEvent::Subscribe(const IJob::CallBackFn& callback, const std::string& host
 	
 		data::Table_Row* row = (*param)->add_rows();
 		row->add_data(conv::cast<std::string>(m_Name)); // event name
+		row->add_data(callback.target_type().name());	// caller handler name
 		m_Kernel.ExecuteJob(jobs::Job_JobId_GET_EVENT, params, host, callback);
 	}
 	CATCH_PASS_EXCEPTIONS(host)

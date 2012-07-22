@@ -221,7 +221,7 @@ public:
 	//! To debug string
 	std::string ToString() const
 	{
-		return m_Table.DebugString();
+		return m_Table.ShortDebugString();
 	}
 
 	//! To sql string

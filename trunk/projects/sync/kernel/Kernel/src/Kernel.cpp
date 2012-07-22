@@ -209,11 +209,15 @@ void CKernel::HostStatusCallBack(const ProtoPacketPtr packet)
 
 	CHECK(packet);
 
+	TRACE_PACKET(packet);
+
 	TRY 
 	{
 		data::Table* protoTable = packet->mutable_job()->mutable_results(0);
 		CTable table(*protoTable);
 		const std::string& guid = table[0]["guid"];
+
+		LOG_TRACE("Catched host status event, action: [%s]. Guid: [%s]") % protoTable->action() % guid;
 
 		if (data::Table_Action_Insert == protoTable->action())
 		{
@@ -264,6 +268,8 @@ void CKernel::HostListCallBack(const ProtoPacketPtr packet)
 
 	CHECK(packet);
 
+	TRACE_PACKET(packet);
+
 	TRY 
 	{
 		m_pServer->AddHosts(packet);
@@ -276,6 +282,8 @@ void CKernel::HostMapCallBack(const ProtoPacketPtr packet)
 	SCOPED_LOG(m_Log);
 
 	CHECK(packet);
+
+	TRACE_PACKET(packet);
 	
 	TRY 
 	{
@@ -302,7 +310,7 @@ void CKernel::Send(const std::string& destination, const ProtoPacketPtr packet)
 
 	TRY 
 	{
-		LOG_DEBUG("%s") % packet->DebugString();
+		LOG_DEBUG("%s") % packet->ShortDebugString();
 		
 		if (destination.empty() || destination == m_LocalHostGuid)
  		{
@@ -343,6 +351,8 @@ IJob::Ptr CKernel::GetWaitingJob(const std::string& guid)
 
 void CKernel::ProcessProtoPacket(const ProtoPacketPtr packet)
 {
+	TRACE_PACKET(packet);
+
 	if (!packet)
 		return;
 
@@ -390,7 +400,9 @@ void CKernel::ProcessProtoPacket(const ProtoPacketPtr packet)
 
 void CKernel::HandleNewPacket(const ProtoPacketPtr packet)
 {
-	LOG_DEBUG("Queuing new packet: [%s].") % packet->DebugString();
+	CHECK(packet);
+	LOG_DEBUG("Queuing new packet: [%s].") % packet->ShortDebugString();
+	TRACE_PACKET(packet);
 	m_Service.post(boost::bind(&CKernel::ProcessProtoPacket, this, packet));
 }
 
@@ -455,6 +467,8 @@ void CKernel::SendErrorReply(const std::string& destination, const std::string& 
 	TRY 
 	{
 		const ProtoPacketPtr packet(new packets::Packet());
+		TRACE_PACKET(packet);
+
 		packet->mutable_job()->add_results()->add_rows()->add_data(text);
 		packet->set_type(packets::Packet_PacketType_ERR);
 		packet->set_guid(guid);

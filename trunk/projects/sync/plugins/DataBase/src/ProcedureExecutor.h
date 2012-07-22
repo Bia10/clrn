@@ -16,7 +16,7 @@ class CProcedureExecutor : boost::noncopyable
 	friend class std::auto_ptr<CProcedureExecutor>;
 
 	//! Ctor
-	CProcedureExecutor(IKernel& kernel);
+	CProcedureExecutor(IKernel& kernel, ILog& log);
 
 	//! Dtor
 	~CProcedureExecutor(void);
@@ -27,7 +27,7 @@ public:
 	void						Execute(const CProcedure::Id::Enum_t id, const CProcedure::ParamsMap& params, data::Table& result);
 	
 	//! Init
-	static void					Create(IKernel& kernel);
+	static void					Create(IKernel& kernel, ILog& log);
 
 	//! Instance reference
 	static CProcedureExecutor&	Instance();

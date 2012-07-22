@@ -32,7 +32,8 @@ public:
 			HostMapLoad		= 3,
 			HostMapCreate	= 4,
 			HostMapDelete	= 5,
-			ProceduresSize	= HostMapDelete + 1
+			HostMapCount	= 6,
+			ProceduresSize	= HostMapCount + 1
 		};
 	};
 

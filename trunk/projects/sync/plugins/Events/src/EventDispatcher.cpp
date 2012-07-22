@@ -2,8 +2,6 @@
 #include "EventDispatcher.h"
 
 
-#include <limits>
-
 //! Event dispatcher implementation
 //!
 //! \class CEventDispatcher::Impl
@@ -21,18 +19,8 @@ class CEventDispatcher::Impl
 	//! Events map type
 	typedef std::map<std::string, EventSignalPtr>		EventsMap;
 
-	//! Callback comparer
-	struct CallbackCmp
-	{
-		bool operator () (const IJob::CallBackFn& lhs, const IJob::CallBackFn& rhs) const
-		{
-			return lhs.target<IJob::CallBackFn>() < rhs.target<IJob::CallBackFn>();
-		}
-
-	};
-
 	//! Callbacks indexes map
-	typedef std::map<IJob::CallBackFn, std::size_t, CallbackCmp> CallbackIndexMap;
+	typedef std::map<std::string, std::size_t>			CallbackIndexMap;
 
 public:
 
@@ -50,15 +38,15 @@ public:
 	}
 
 	//! Subscribe to event
-	void Subscribe(const std::string& name, const IJob::CallBackFn& callBack)
+	std::string Subscribe(const std::string& name, const std::string& host, const std::string& caller, const IJob::CallBackFn& callBack)
 	{
 		SCOPED_LOG(m_Log);
 
-		LOG_TRACE("Subscribing to event: [%s], fn: [%s]") % name % callBack.target_type().name();
+		LOG_TRACE("Subscribing to event: [%s], host: [%s], caller: [%s].") % name % host % caller;
 
 		TRY 
 		{
-			boost::mutex::scoped_lock lock(m_EventsMutex);
+			boost::recursive_mutex::scoped_lock lock(m_EventsMutex);
 
 			// find or create new signal
 			EventsMap::iterator it = m_Events.find(name);
@@ -71,18 +59,20 @@ public:
 			// connect callback to slot
 			EventSignal& signal = *it->second;
 
-			boost::mutex::scoped_lock lockCallback(m_CallbackMutex);
+			boost::recursive_mutex::scoped_lock lockCallback(m_CallbackMutex);
+			const std::string hash = GetHash(name, host, caller);
 
-			const CallbackIndexMap::const_iterator itCallback = m_CallbackIndexes.find(callBack);
+			const CallbackIndexMap::const_iterator itCallback = m_CallbackIndexes.find(hash);
 			if (m_CallbackIndexes.end() != itCallback)
 			{
-				// delete previous record
-				signal.disconnect(itCallback->second);
-				m_CallbackIndexes.erase(itCallback);
+				// unsubscribe first
+				UnSubscribe(name, hash);
 			}
 
 			signal.connect(++m_CurrentCallbackIndex, callBack);			
-			m_CallbackIndexes[callBack] = m_CurrentCallbackIndex;
+			m_CallbackIndexes[hash] = m_CurrentCallbackIndex;
+
+			return hash;
 		}
 		CATCH_PASS_EXCEPTIONS("Subscribe failed.")
 	}
@@ -94,7 +84,7 @@ public:
 
 		CHECK(packet);
 
-		LOG_TRACE("Signaling event: name: [%s], data: [%s]") % name % packet->DebugString();
+		LOG_TRACE("Signaling event: name: [%s], data: [%s]") % name % packet->ShortDebugString();
 		 
 		TRY 
 		{
@@ -102,7 +92,7 @@ public:
 			const EventsMap::const_iterator it = m_Events.find(name);
 			if (m_Events.end() == it)
 			{
-				LOG_WARNING("Event: name: [%s], data: [%s], don't have any subscribers, ignored.") % name % packet->DebugString();
+				LOG_WARNING("Event: name: [%s], data: [%s], don't have any subscribers, ignored.") % name % packet->ShortDebugString();
 				return;
 			}
 
@@ -112,38 +102,43 @@ public:
 	}
 
 	//! Unsubscribe
-	void UnSubscribe(const std::string& name, const IJob::CallBackFn& callBack)
+	void UnSubscribe(const std::string& name, const std::string& hash)
 	{
 		SCOPED_LOG(m_Log);
 
-		CHECK(callBack);
-
-		LOG_TRACE("Unsubscribing from event: [%s], fn: [%s]") % name % callBack.target_type().name();
+		LOG_TRACE("Unsubscribing from event hash: [%s].") % hash;
 
 		TRY 
 		{
-			boost::mutex::scoped_lock lock(m_EventsMutex);
+			boost::recursive_mutex::scoped_lock lock(m_EventsMutex);
 
-			// find or create new signal
+			// find signal
 			EventsMap::iterator it = m_Events.find(name);
 			if (m_Events.end() == it)
 				return;
 
+			boost::recursive_mutex::scoped_lock lockCallback(m_CallbackMutex);
+
+			const CallbackIndexMap::const_iterator itCallback = m_CallbackIndexes.find(hash);
+			CHECK(m_CallbackIndexes.end() != itCallback);
+
 			// disconnect callback from slot
 			EventSignal& signal = *it->second;
-
-			boost::mutex::scoped_lock lockCallback(m_CallbackMutex);
-
-			const CallbackIndexMap::const_iterator itCallback = m_CallbackIndexes.find(callBack);
-			CHECK(m_CallbackIndexes.end() != itCallback, callBack.target_type().name());
+			
 			signal.disconnect(itCallback->second);			
 			m_CallbackIndexes.erase(itCallback);
 		}
-		CATCH_PASS_EXCEPTIONS("UnSubscribe failed.", name)
+		CATCH_PASS_EXCEPTIONS("UnSubscribe failed.", name, hash)
 	}
 
 
 private:
+
+	//! Generate hash
+	std::string				GetHash(const std::string& name, const std::string& host, const std::string& caller)
+	{
+		return (boost::format("[%s][%s][%s]") % name % host % caller).str();
+	}
 
 	//! Logger
 	ILog&					m_Log;
@@ -155,7 +150,7 @@ private:
 	EventsMap				m_Events;
 
 	//! Events mutex
-	boost::mutex			m_EventsMutex;
+	boost::recursive_mutex	m_EventsMutex;
 
 	//! Callback indexes map
 	CallbackIndexMap		m_CallbackIndexes;
@@ -164,7 +159,7 @@ private:
 	std::size_t				m_CurrentCallbackIndex;
 
 	//! Callback indexes mutes
-	boost::mutex			m_CallbackMutex;
+	boost::recursive_mutex	m_CallbackMutex;
 };
 
 
@@ -195,17 +190,17 @@ void CEventDispatcher::Shutdown()
 	s_pInstance.reset();
 }
 
-void CEventDispatcher::Subscribe(const std::string& name, const IJob::CallBackFn& callBack)
-{
-	m_pImpl->Subscribe(name, callBack);
-}
-
 void CEventDispatcher::Signal(const std::string& name, const ProtoPacketPtr packet)
 {
 	m_pImpl->Signal(name, packet);
 }
 
-void CEventDispatcher::UnSubscribe(const std::string& name, const IJob::CallBackFn& callBack)
+void CEventDispatcher::UnSubscribe(const std::string& name, const std::string& hash)
 {
-	m_pImpl->UnSubscribe(name, callBack);
+	m_pImpl->UnSubscribe(name, hash);
+}
+
+std::string CEventDispatcher::Subscribe(const std::string& name, const std::string& host, const std::string& caller, const IJob::CallBackFn& callBack)
+{
+	return m_pImpl->Subscribe(name, host, caller, callBack);
 }

@@ -257,3 +257,8 @@ const std::size_t CSettings::BufferSize() const
 	m_pImpl->Get(KERNEL_MODULE_ID, size, "udp_buffer_size");
 	return size;
 }
+
+const std::size_t CSettings::JobTimeout() const
+{
+	return 10 * 1000;
+}

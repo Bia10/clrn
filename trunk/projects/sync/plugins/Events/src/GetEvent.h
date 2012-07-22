@@ -37,5 +37,8 @@ private:
 
 	//! Event name
 	std::string				m_EventName;
+
+	//! Event id
+	std::string				m_EventHash;
 };
 #endif // GetEvent_h__

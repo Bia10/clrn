@@ -33,6 +33,12 @@ message Packet
 		optional int32		to				= 3;					// end of the range
 		optional bytes		filter			= 4;					// specific filter
 	}
+	
+	// packet trace record
+	message Trace
+	{
+		required bytes 		info			= 1;					// trace record info
+	}
 
 	required PacketType		type 			= 1;					// data packet type
 	optional jobs.Job		job				= 2;					// packet job
@@ -41,4 +47,5 @@ message Packet
 	optional uint32			timeout			= 5;					// packet reply wait timeout(milliseconds)
 	required bytes			from			= 6;					// sender instance guid
 	optional bytes			ep				= 7;					// sender endpoint
+	repeated Trace			trace			= 8;					// packet trace records
 }

@@ -8,7 +8,7 @@ CGetSettings::CGetSettings(IKernel& kernel, ILog& logger)
 	: CBaseJob(kernel, logger)
 {
 	m_Id = jobs::Job_JobId_GET_SETTINGS;
-	m_TimeOut = 1000;
+	m_TimeOut = m_Kernel.Settings().JobTimeout();
 }
 
 void CGetSettings::Execute(const ProtoPacketPtr packet)
@@ -17,6 +17,8 @@ void CGetSettings::Execute(const ProtoPacketPtr packet)
 
 	TRY 
 	{
+		TRACE_PACKET(packet);
+
 		std::string query = "select * from settings";
 
 		if (packet->job().params(0).rows_size())

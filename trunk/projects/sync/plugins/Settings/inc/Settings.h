@@ -63,6 +63,8 @@ public:
 
 	const std::size_t	BufferSize() const;
 
+	const std::size_t	JobTimeout() const;
+
 
 private:
 

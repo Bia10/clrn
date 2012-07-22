@@ -31,6 +31,8 @@ void CBaseJob::Execute(const ProtoPacketPtr packet)
 		jobs::Job& job = *packet->mutable_job();
 		job.clear_params();
 		
+		TRACE_PACKET(packet, host);
+
 		m_Kernel.Send(host, packet);
 	}
 	CATCH_PASS_EXCEPTIONS("CBaseJob::Execute failed.", *packet)
@@ -62,6 +64,8 @@ void CBaseJob::Invoke(const TableList& params, const std::string& host)
 		if (m_TimeOut)
 			m_Kernel.AddToWaiting(shared_from_this(), host);
 
+		TRACE_PACKET(request, m_TimeOut, host);
+
 		m_Kernel.Send(host, request);
 	}
 	CATCH_PASS_EXCEPTIONS("CBaseJob::Invoke failed.", host)
@@ -74,6 +78,8 @@ void CBaseJob::SetCallBack(const CallBackFn& callBack)
 
 void CBaseJob::HandleReply(const ProtoPacketPtr packet)
 {
+	TRACE_PACKET(packet);
+
 	if (m_CallBackFn)
 		m_CallBackFn(packet);
 }

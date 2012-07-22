@@ -26,8 +26,9 @@ class CProcedureExecutor::Impl : boost::noncopyable
 public:
 
 	//! Ctor
-	Impl(IKernel& kernel)
+	Impl(IKernel& kernel, ILog& log)
 		: m_Kernel(kernel)
+		, m_Log(log)
 	{
 		m_Procedures.resize(CProcedure::Id::ProceduresSize);
 
@@ -36,8 +37,9 @@ public:
 		m_Procedures[CProcedure::Id::HostsDelete]			= boost::bind(&Impl::HostsDelete,	this, _1, _2);
 
 		m_Procedures[CProcedure::Id::HostMapLoad]			= boost::bind(&Impl::HostMapLoad,	this, _1, _2);
-		m_Procedures[CProcedure::Id::HostMapCreate]			= boost::bind(&Impl::HostMapCreate, this, _1, _2);
-		m_Procedures[CProcedure::Id::HostMapDelete]			= boost::bind(&Impl::HostMapDelete, this, _1, _2);
+		m_Procedures[CProcedure::Id::HostMapCreate]			= boost::bind(&Impl::HostMapCreate,	this, _1, _2);
+		m_Procedures[CProcedure::Id::HostMapDelete]			= boost::bind(&Impl::HostMapDelete,	this, _1, _2);
+		m_Procedures[CProcedure::Id::HostMapCount]			= boost::bind(&Impl::HostMapCount,	this, _1, _2);
 	}
 
 	//! Get parameter
@@ -90,6 +92,7 @@ public:
 
 		// event packet
 		const ProtoPacketPtr packet(new packets::Packet());
+		TRACE_PACKET(packet);
 		data::Table* result = packet->mutable_job()->add_results();
 
 		DataBase::Instance().Execute(sql.c_str(), *result, data::Table_Id_Hosts);
@@ -110,6 +113,7 @@ public:
 
 		// event packet
 		const ProtoPacketPtr packet(new packets::Packet());
+		TRACE_PACKET(packet);
 		data::Table* result = packet->mutable_job()->add_results();
 
 		DataBase::Instance().Execute(sql.c_str(), *result, data::Table_Id_HostMap);
@@ -176,6 +180,8 @@ public:
 		boost::algorithm::replace_all(sql, ":FROM",		from);
 		boost::algorithm::replace_all(sql, ":TO",		to);
 
+		const std::size_t countBefore = CountHostMapping(from, to);
+
 		// inserting data
 		if ( !DataBase::Instance().Execute(sql.c_str()) )
 			return;
@@ -184,6 +190,7 @@ public:
 
 		// event packet
 		const ProtoPacketPtr packet(new packets::Packet());
+		TRACE_PACKET(packet);
 		data::Table* result = packet->mutable_job()->add_results();
 		result->set_action(data::Table_Action_Insert);
 		result->set_id(data::Table_Id_HostMapEvent);
@@ -203,23 +210,9 @@ public:
 		evnt.Signal(packet);
 
 		// checking for host map status event 
-		sql = 
-			"SELECT Count(1) "
-			"FROM   host_map hm "
-			"	   LEFT JOIN hosts h1 "
-			"			  ON h1.[id] = hm.dst "
-			"	   LEFT JOIN hosts h2 "
-			"			  ON h2.[id] = hm.src "
-			"WHERE  h1.[guid] IN ( ':FROM', ':TO' )";
+		const std::size_t countAfter = CountHostMapping(from, to);
 
-		boost::algorithm::replace_all(sql, ":FROM",		from);
-		boost::algorithm::replace_all(sql, ":TO",		to);
-
-		data::Table rowsResult;
-		DataBase::Instance().Execute(sql.c_str(), rowsResult);
-		const std::size_t rows = conv::cast<std::size_t>(rowsResult.rows(0).data(0));
-
-		if (1 == rows)
+		if (!countBefore && countAfter)
 		{
 			// this is first record about hosts, signal host status event
 			const std::string& localGuid = LocalHostGuid();
@@ -256,6 +249,7 @@ public:
 
 		// event packet
 		const ProtoPacketPtr packet(new packets::Packet());
+		TRACE_PACKET(packet);
 		data::Table* result = packet->mutable_job()->add_results();
 		result->set_action(data::Table_Action_Delete);
 
@@ -278,6 +272,8 @@ public:
 		boost::algorithm::replace_all(sql, ":FROM",	from);
 		boost::algorithm::replace_all(sql, ":TO",	to);
 
+		const std::size_t countBefore = CountHostMapping(from, to);
+
 		// delete data
 		CHECK(DataBase::Instance().Execute(sql.c_str()));
 
@@ -286,23 +282,9 @@ public:
 		evnt.Signal(packet);
 
 		// checking for host status event
-		sql = 
-			"SELECT Count(1) FROM host_map "
-			"WHERE  src IN (SELECT id  "
-			"			   FROM   hosts  "
-			"			   WHERE  guid = ':TO')  "
-			"	   AND dst IN (SELECT id  "
-			"				   FROM   hosts " 
-			"				   WHERE  guid = ':FROM') ";
+		const std::size_t countAfter = CountHostMapping(from, to);
 
-		boost::algorithm::replace_all(sql, ":FROM",		from);
-		boost::algorithm::replace_all(sql, ":TO",		to);
-
-		data::Table rowsResult;
-		DataBase::Instance().Execute(sql.c_str(), rowsResult);
-		const std::size_t rows = conv::cast<std::size_t>(rowsResult.rows(0).data(0));
-
-		if (0 == rows)
+		if (countBefore && !countAfter)
 		{
 			// this was last record about hosts, signal host status event
 			const std::string& localGuid = LocalHostGuid();
@@ -313,10 +295,35 @@ public:
 		}
 	}
 
+	//! Count host mapping procedure
+	void HostMapCount(const CProcedure::ParamsMap& params, data::Table& result)
+	{
+		const std::string& from	= GetParam(params, "from");
+		const std::string& to	= GetParam(params, "to");
+
+		std::string sql = 
+			"SELECT Count(1) "
+			"FROM   host_map "
+			"WHERE  src IN (SELECT id "
+			"			   FROM   hosts "
+			"			   WHERE  guid IN( ':FROM', "
+			"							   ':TO' ))"
+			"	   AND dst IN(SELECT id "
+			"				  FROM   hosts "
+			"				  WHERE  guid IN( ':FROM', "
+			"								  ':TO' ))";
+
+		boost::algorithm::replace_all(sql, ":FROM",		from);
+		boost::algorithm::replace_all(sql, ":TO",		to);
+
+		DataBase::Instance().Execute(sql.c_str(), result);
+	}
+
 	//! Signal host status event
 	void SignalHostStatusEvent(const std::string& host, const data::Table_Action action)
 	{
 		const ProtoPacketPtr packet(new packets::Packet());
+		TRACE_PACKET(packet);
 		data::Table& resultTable = *packet->mutable_job()->add_results();
 		resultTable.set_action(action);
 		resultTable.set_id(data::Table_Id_HostStatusEvent);
@@ -350,6 +357,20 @@ public:
 		return guid;
 	}
 
+	//! Count host mapping
+	std::size_t CountHostMapping(const std::string& from, const std::string& to)
+	{
+		data::Table result;
+		CProcedure::ParamsMap params;
+		params["from"] = from;
+		params["to"] = to;
+		HostMapCount(params, result);
+		
+		LOG_TRACE("Count is: [%s]") % result.rows(0).data(0);
+
+		return conv::cast<std::size_t>(result.rows(0).data(0));
+	}
+
 private:
 
 	//! Procedures
@@ -357,11 +378,14 @@ private:
 
 	//! Kernel reference
 	IKernel&				m_Kernel;
+
+	//! Logger reference
+	ILog&					m_Log;
 };
 
 std::auto_ptr<CProcedureExecutor> CProcedureExecutor::s_pInstance;
-CProcedureExecutor::CProcedureExecutor(IKernel& kernel)
-	: m_pImpl(new Impl(kernel))
+CProcedureExecutor::CProcedureExecutor(IKernel& kernel, ILog& log)
+	: m_pImpl(new Impl(kernel, log))
 {
 }
 
@@ -380,7 +404,7 @@ void CProcedureExecutor::Execute(const CProcedure::Id::Enum_t id, const CProcedu
 	m_pImpl->Execute(id, params, result);
 }
 
-void CProcedureExecutor::Create(IKernel& kernel)
+void CProcedureExecutor::Create(IKernel& kernel, ILog& log)
 {
-	s_pInstance.reset(new CProcedureExecutor(kernel));
+	s_pInstance.reset(new CProcedureExecutor(kernel, log));
 }

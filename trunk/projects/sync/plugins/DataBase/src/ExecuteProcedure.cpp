@@ -6,7 +6,7 @@ CExecuteProcedure::CExecuteProcedure(IKernel& kernel, ILog& logger)
 	: CBaseJob(kernel, logger)
 {
 	m_Id = jobs::Job_JobId_EXEC_PROCEDURE;
-	m_TimeOut = 1000;
+	m_TimeOut = m_Kernel.Settings().JobTimeout();
 }
 
 void CExecuteProcedure::Execute(const ProtoPacketPtr packet)
@@ -15,11 +15,13 @@ void CExecuteProcedure::Execute(const ProtoPacketPtr packet)
 
 	CHECK(packet);
 
+	TRACE_PACKET(packet);
+
 	TRY 
 	{
 		// first line: 0 - procedure id
 		// second line: param names
-		// next line: param values
+		// next lines: param values
 
 		CHECK(packet->job().params(0).rows_size() > 2);
 

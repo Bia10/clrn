@@ -77,24 +77,26 @@ public:
 		, m_IncomingStatus(Status::Unknown)
 		, m_LastOutgoingSend(boost::posix_time::microsec_clock::local_time())
 	{
-		 m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::IncomingStatusTimerCallback, this));
-		 m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::PingHost, this));
 
-		 // signal status event
-		 const ProtoPacketPtr packet(new packets::Packet());
-		 data::Table& resultTable = *packet->mutable_job()->add_results();
-		 resultTable.set_action(data::Table_Action_Delete);
-		 resultTable.set_id(data::Table_Id_HostStatusEvent);
+		SCOPED_LOG(m_Log);
 
-		 CTable table(resultTable);
-		 table.AddRow()["guid"] = m_RemoteGuid;
+		m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::IncomingStatusTimerCallback, this));
+		m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::PingHost, this));
 
-		 CEvent evnt(m_Kernel, HOST_STATUS_EVENT_NAME);
-		 evnt.Signal(packet);
+		// get host map count
+		CProcedure count(m_Kernel);
+		CProcedure::ParamsMap params;
+		params["from"] = m_LocalGuid;
+		params["to"] = m_RemoteGuid;
+		count.Execute(CProcedure::Id::HostMapCount, params, boost::bind(&Impl::HostMapCountCallback, this, _1));
 	}
 
 	void Send(const ProtoPacketPtr packet)
 	{
+		SCOPED_LOG(m_Log);
+
+		TRACE_PACKET(packet);
+
 		if (m_OutgoingPing < m_IncomingPing || !m_IncomingEP)
 			Send2Outgoing(packet);
 		else
@@ -103,6 +105,8 @@ public:
 
 	void SetOutgoingEP(const std::string& ip, const std::string& port, const std::size_t ping)
 	{
+		SCOPED_LOG(m_Log);
+
 		TRY 
 		{
 			m_OutgoingEP = MakeEndpoint(ip, port);
@@ -113,6 +117,8 @@ public:
 
 	void SetIncomingEP(const std::string& ip, const std::string& port, const std::size_t ping)
 	{
+		SCOPED_LOG(m_Log);
+
 		TRY 
 		{
 			m_IncomingEP = MakeEndpoint(ip, port);
@@ -158,6 +164,7 @@ public:
 		
 			// sending ACK
 			const ProtoPacketPtr ack(new packets::Packet());
+			TRACE_PACKET(ack);
 			ack->set_from(m_LocalGuid);
 			ack->set_guid(packet->guid());
 			ack->set_type(packets::Packet_PacketType_ACK);
@@ -185,9 +192,38 @@ public:
 
 private:
 
+	//! Host map count callback
+	void HostMapCountCallback(const ProtoPacketPtr packet)
+	{
+		SCOPED_LOG(m_Log);
+
+		CHECK(packet);
+
+		TRACE_PACKET(packet);
+
+		const std::size_t count = conv::cast<std::size_t>(packet->job().results(0).rows(0).data(0));
+
+		boost::this_thread::interruptible_wait(1000);
+
+		// signal status event
+		const ProtoPacketPtr eventPacket(new packets::Packet());
+		TRACE_PACKET(eventPacket);
+		data::Table& resultTable = *eventPacket->mutable_job()->add_results();
+		resultTable.set_action(count ? data::Table_Action_Insert : data::Table_Action_Delete);
+		resultTable.set_id(data::Table_Id_HostStatusEvent);
+
+		CTable table(resultTable);
+		table.AddRow()["guid"] = m_RemoteGuid;
+
+		CEvent evnt(m_Kernel, HOST_STATUS_EVENT_NAME);
+		evnt.Signal(eventPacket);
+	}
+
 	//! Send ping packet to host
 	void PingHost()
 	{
+		SCOPED_LOG(m_Log);
+
 		m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::PingHost, this));
 
 		const boost::posix_time::ptime now = boost::posix_time::microsec_clock::local_time();
@@ -203,6 +239,7 @@ private:
 
 		// sending ping packet to remote host
 		const ProtoPacketPtr packet(new packets::Packet());
+		TRACE_PACKET(packet);
 		packet->set_from(m_LocalGuid);
 		packet->set_type(packets::Packet_PacketType_PING);
 		packet->set_guid(CGUID::Generate());
@@ -215,6 +252,8 @@ private:
 	//! Make endpoint
 	EndpointPtr MakeEndpoint(const std::string& ip, const std::string& port)
 	{
+		SCOPED_LOG(m_Log);
+
 		boost::asio::ip::udp::resolver resolver(m_IOService);
 
 		boost::asio::ip::udp::resolver::query query(ip, port);
@@ -238,6 +277,8 @@ private:
 	//! Send handler
 	void SendHandler(const boost::system::error_code e, const std::size_t size, const BufferPtr /*sendBuffer*/)
 	{
+		SCOPED_LOG(m_Log);
+
 		if (e)
 		{
 			LOG_ERROR("Send error. Size: [%s], error: [%s]") % size % e.message();
@@ -298,6 +339,10 @@ private:
 	//! Serialize buffer
 	BufferPtr Serialize(const ProtoPacketPtr packet)
 	{
+		SCOPED_LOG(m_Log);
+
+		TRACE_PACKET(packet);
+
 		// setting up guid
 		packet->set_from(m_LocalGuid);
 
@@ -357,12 +402,14 @@ private:
 				)
 			);
 		}
-		CATCH_PASS_EXCEPTIONS("StartReceiving failed.")
+		CATCH_PASS_EXCEPTIONS("ContinueReceiving failed.")
 	}
 
 	//! Check and continue receiving
 	void CheckAndContinueReceiving(const SocketPtr socket, const BufferPtr buffer)
 	{
+		SCOPED_LOG(m_Log);
+
 		if (socket == m_pSrvSocket)
 			StartReceiving(socket, buffer);
 		else 
@@ -399,6 +446,7 @@ private:
 			}
 
 			const ProtoPacketPtr packet(new packets::Packet());
+			TRACE_PACKET(packet);
 			if (packet->ParseFromArray(&buffer->front(), size))
 			{
 				LOG_TRACE("Received from: [%s], socket: [%s], ep: [%s]:[%s]") 
@@ -418,6 +466,10 @@ private:
 	//! Send to outgoing channel
 	void Send2Outgoing(const ProtoPacketPtr packet)
 	{
+		SCOPED_LOG(m_Log);
+
+		TRACE_PACKET(packet);
+
 		if (!m_OutgoingEP)
 			return;
 
@@ -448,6 +500,10 @@ private:
 	//! Send to incoming channel
 	void Send2Incoming(const ProtoPacketPtr packet)
 	{
+		SCOPED_LOG(m_Log);
+
+		TRACE_PACKET(packet);
+
 		CHECK(m_IncomingEP);
 
 		LOG_TRACE("Sending to: [%s], as [IN], ep:[%s]:[%s], data: [%s]") 
@@ -463,6 +519,8 @@ private:
 	//! Delete packet by guid
 	void DeleteWaitingPacket(const std::string& packet, const DeleteReason::Enum_t reason)
 	{
+		SCOPED_LOG(m_Log);
+
 		boost::mutex::scoped_lock lock(m_PacketsMutex);
 
 		if (!m_WaitingPackets.count(packet))
@@ -510,6 +568,8 @@ private:
 	//! Resend packet
 	void ResendPacket(const std::string& packet)
 	{
+		SCOPED_LOG(m_Log);
+
 		TRY 
 		{
 			BufferDsc dsc;
@@ -536,6 +596,8 @@ private:
 	//! Insert new host map record from packet
 	void InsertHostMapRecord(const bool incoming)
 	{
+		SCOPED_LOG(m_Log);
+
 		TRY 
 		{
 			const EndpointPtr ep = incoming ? m_IncomingEP : m_OutgoingEP;
@@ -566,6 +628,8 @@ private:
 	//! Delete host map record
 	void DeleteHostMapRecord(const bool incoming)
 	{
+		SCOPED_LOG(m_Log);
+
 		TRY 
 		{
 			// erasing host map data
@@ -581,6 +645,10 @@ private:
 	//! Incoming ping received
 	void IncomingPingReceived(const ProtoPacketPtr packet)
 	{
+		SCOPED_LOG(m_Log);
+
+		TRACE_PACKET(packet);
+
 		boost::mutex::scoped_lock lock(m_PacketsMutex);
 
 		const boost::posix_time::ptime time = conv::FromPosix64(packet->timeout());
@@ -596,6 +664,8 @@ private:
 	//! Incoming status control callback
 	void IncomingStatusTimerCallback()
 	{
+		SCOPED_LOG(m_Log);
+
 		m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval), boost::bind(&Impl::IncomingStatusTimerCallback, this));
 
 		boost::mutex::scoped_lock lock(m_PacketsMutex);
