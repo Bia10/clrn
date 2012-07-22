@@ -14,6 +14,7 @@
 
 #include <list>
 #include <map>
+#include <limits>
 
 #include <boost/function.hpp>
 #include <boost/exception_ptr.hpp>
@@ -26,6 +27,7 @@
 #pragma warning(disable:4512) // 'boost::signals::detail::bound_objects_visitor' : assignment operator could not be generated
 #include <boost/signals.hpp>
 #pragma warning(pop)
+#include <boost/format.hpp>
 
 static const unsigned int CURRENT_MODULE_ID = EVENTS_MODULE_ID;
 

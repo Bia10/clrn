@@ -23,6 +23,7 @@ void CSetEvent::Invoke(const TableList& params, const std::string& /*host*/)
 
 		// signal this event
 		const ProtoPacketPtr resultPacket(new packets::Packet());
+		TRACE_PACKET(resultPacket);
 		
 		google::protobuf::RepeatedPtrField<data::Table>& packetTables = *resultPacket->mutable_job()->mutable_results();
 

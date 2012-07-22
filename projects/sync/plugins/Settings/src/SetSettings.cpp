@@ -6,12 +6,14 @@ CSetSettings::CSetSettings(IKernel& kernel, ILog& logger)
 	: CBaseJob(kernel, logger)
 {
 	m_Id = jobs::Job_JobId_SET_SETTINGS;
-	m_TimeOut = 1000;
+	m_TimeOut = m_Kernel.Settings().JobTimeout();
 }
 
 void CSetSettings::Execute(const ProtoPacketPtr packet)
 {
 	SCOPED_LOG(m_Log);
+
+	TRACE_PACKET(packet);
 
 	TRY 
 	{	

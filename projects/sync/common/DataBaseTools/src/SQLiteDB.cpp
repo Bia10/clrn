@@ -83,7 +83,7 @@ public:
 			}
 
 			LOG_TRACE("Sql: [%s], rows received: [%s]") % sql % result.rows_size();
-			LOG_DEBUG("Table: [%s]") % result.DebugString();
+			LOG_DEBUG("Table: [%s]") % result.ShortDebugString();
 		}
 		CATCH_PASS_SQLITE_EXCEPTIONS(sql)
 	}

@@ -16,6 +16,7 @@ void CConnect::Invoke(const TableList& params, const std::string& host)
 	{
 		// generating packet
 		ProtoPacketPtr request(new packets::Packet());
+		TRACE_PACKET(request);
 		request->set_type(packets::Packet_PacketType_CONNECT);	
 
 		// packet GUID
@@ -39,6 +40,8 @@ void CConnect::Invoke(const TableList& params, const std::string& host)
 void CConnect::Execute(const ProtoPacketPtr packet)
 {
 	CHECK(packet);
+
+	TRACE_PACKET(packet);
 
 	TRY 
 	{

@@ -25,6 +25,9 @@ public:
 
 	//! Get Buffer size
 	virtual const std::size_t		BufferSize() const = 0;
+
+	//! Get default job timeout
+	virtual const std::size_t		JobTimeout() const = 0;
 };
 
 #endif // ISettings_h__

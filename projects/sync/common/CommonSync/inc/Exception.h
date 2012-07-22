@@ -173,4 +173,16 @@ catch(...)																			\
 		throw except;																	\
 	}
 
+#ifdef _DEBUG
+#define TRACE_PACKET(packet, ...)														\
+{																						\
+	if (packet){																		\
+	CMN_NAMESPACE_NAME::CExcept e(__FILE__, __LINE__, __FUNCTION__);					\
+	APPEND_ARGS(e, __VA_ARGS__);														\
+	packet->add_trace()->set_info(e.what());}											\
+}
+#else
+#define TRACE_PACKET(packet, ...)
+#endif // _DUBUG
+
 #endif // Exception_h__

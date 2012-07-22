@@ -29,6 +29,8 @@ public:
 		, m_LocalHostGuid(kernel.Settings().LocalGuid())
 		, m_PingInterval(kernel.Settings().PingInterval())
 	{
+		SCOPED_LOG(m_Log);
+
 		// subscribe to host status event
 		CEvent hostStatusEvent(m_Kernel, HOST_STATUS_EVENT_NAME);
 		hostStatusEvent.Subscribe(boost::bind(&Impl::LocalHostStatusCallBack, this, _1));
@@ -40,17 +42,24 @@ public:
 	//! Dtor
 	~Impl()
 	{
+		SCOPED_LOG(m_Log);
 	}
 
 	//! Hosts status event callback(local)
 	void LocalHostStatusCallBack(const ProtoPacketPtr packet)
 	{
+		SCOPED_LOG(m_Log);
+
 		CHECK(packet);
+
+		TRACE_PACKET(packet);
 
 		TRY 
 		{
 			const data::Table& table = packet->job().results(0);
 			const std::string& guid = table.rows(0).data(0);
+
+			LOG_TRACE("Catched host status event, action: [%s]. Guid: [%s]") % table.action() % guid;
 	
 			if (data::Table_Action_Insert == table.action())
 			{
@@ -79,7 +88,12 @@ public:
 	//! Remote hosts callback
 	void RemoteHostsCallBack(const ProtoPacketPtr packet)
 	{
-		CHECK(packet);
+		SCOPED_LOG(m_Log);
+
+		if (!packet)
+			return; // host went offline
+
+		TRACE_PACKET(packet);
 
 		TRY 
 		{
@@ -103,7 +117,10 @@ public:
 	//! Remote host_map callback
 	void RemoteHostMapCallBack(const ProtoPacketPtr packet, const std::string& hostGuid)
 	{
-		CHECK(packet);
+		SCOPED_LOG(m_Log);
+
+		if (!packet)
+			return; // host went offline
 
 		TRY 
 		{
@@ -162,6 +179,8 @@ public:
 	//! Host control time event
 	void HostControlTimeEvent()
 	{
+		SCOPED_LOG(m_Log);
+
 		m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval * HOST_CONNECT_TIMEOUT_RATIO), boost::bind(&Impl::HostControlTimeEvent, this));
 
 		// check hosts, find unavailable
@@ -190,6 +209,8 @@ public:
 	//! Send connect job
 	void SendConnect(const std::string& server, const std::string& target)
 	{
+		SCOPED_LOG(m_Log);
+
 		TRY 
 		{
 			IJob::TableList params;

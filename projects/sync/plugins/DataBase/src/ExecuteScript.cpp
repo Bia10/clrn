@@ -6,7 +6,7 @@ CExecuteScript::CExecuteScript(IKernel& kernel, ILog& logger)
 	: CBaseJob(kernel, logger)
 {
 	m_Id = jobs::Job_JobId_EXEC_SCRIPT;
-	m_TimeOut = 1000;
+	m_TimeOut = m_Kernel.Settings().JobTimeout();
 }
 
 void CExecuteScript::Execute(const ProtoPacketPtr packet)
@@ -14,6 +14,8 @@ void CExecuteScript::Execute(const ProtoPacketPtr packet)
 	SCOPED_LOG(m_Log);
 
 	CHECK(packet);
+
+	TRACE_PACKET(packet);
 
 	TRY 
 	{	

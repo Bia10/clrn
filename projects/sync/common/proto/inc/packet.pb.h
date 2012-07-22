@@ -35,6 +35,7 @@ void protobuf_ShutdownFile_packet_2eproto();
 
 class Packet;
 class Packet_Destination;
+class Packet_Trace;
 
 enum Packet_Destination_Type {
   Packet_Destination_Type_ONE = 1,
@@ -222,6 +223,92 @@ class Packet_Destination : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
+class Packet_Trace : public ::google::protobuf::Message {
+ public:
+  Packet_Trace();
+  virtual ~Packet_Trace();
+  
+  Packet_Trace(const Packet_Trace& from);
+  
+  inline Packet_Trace& operator=(const Packet_Trace& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Packet_Trace& default_instance();
+  
+  void Swap(Packet_Trace* other);
+  
+  // implements Message ----------------------------------------------
+  
+  Packet_Trace* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Packet_Trace& from);
+  void MergeFrom(const Packet_Trace& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // required bytes info = 1;
+  inline bool has_info() const;
+  inline void clear_info();
+  static const int kInfoFieldNumber = 1;
+  inline const ::std::string& info() const;
+  inline void set_info(const ::std::string& value);
+  inline void set_info(const char* value);
+  inline void set_info(const void* value, size_t size);
+  inline ::std::string* mutable_info();
+  inline ::std::string* release_info();
+  
+  // @@protoc_insertion_point(class_scope:packets.Packet.Trace)
+ private:
+  inline void set_has_info();
+  inline void clear_has_info();
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  ::std::string* info_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_packet_2eproto();
+  friend void protobuf_AssignDesc_packet_2eproto();
+  friend void protobuf_ShutdownFile_packet_2eproto();
+  
+  void InitAsDefaultInstance();
+  static Packet_Trace* default_instance_;
+};
+// -------------------------------------------------------------------
+
 class Packet : public ::google::protobuf::Message {
  public:
   Packet();
@@ -275,6 +362,7 @@ class Packet : public ::google::protobuf::Message {
   // nested types ----------------------------------------------------
   
   typedef Packet_Destination Destination;
+  typedef Packet_Trace Trace;
   
   typedef Packet_PacketType PacketType;
   static const PacketType REQUEST = Packet_PacketType_REQUEST;
@@ -369,6 +457,18 @@ class Packet : public ::google::protobuf::Message {
   inline ::std::string* mutable_ep();
   inline ::std::string* release_ep();
   
+  // repeated .packets.Packet.Trace trace = 8;
+  inline int trace_size() const;
+  inline void clear_trace();
+  static const int kTraceFieldNumber = 8;
+  inline const ::packets::Packet_Trace& trace(int index) const;
+  inline ::packets::Packet_Trace* mutable_trace(int index);
+  inline ::packets::Packet_Trace* add_trace();
+  inline const ::google::protobuf::RepeatedPtrField< ::packets::Packet_Trace >&
+      trace() const;
+  inline ::google::protobuf::RepeatedPtrField< ::packets::Packet_Trace >*
+      mutable_trace();
+  
   // @@protoc_insertion_point(class_scope:packets.Packet)
  private:
   inline void set_has_type();
@@ -395,9 +495,10 @@ class Packet : public ::google::protobuf::Message {
   ::std::string* guid_;
   ::std::string* from_;
   ::std::string* ep_;
+  ::google::protobuf::RepeatedPtrField< ::packets::Packet_Trace > trace_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(8 + 31) / 32];
   
   friend void  protobuf_AddDesc_packet_2eproto();
   friend void protobuf_AssignDesc_packet_2eproto();
@@ -534,6 +635,68 @@ inline ::std::string* Packet_Destination::release_filter() {
   } else {
     ::std::string* temp = filter_;
     filter_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+
+// -------------------------------------------------------------------
+
+// Packet_Trace
+
+// required bytes info = 1;
+inline bool Packet_Trace::has_info() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Packet_Trace::set_has_info() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Packet_Trace::clear_has_info() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void Packet_Trace::clear_info() {
+  if (info_ != &::google::protobuf::internal::kEmptyString) {
+    info_->clear();
+  }
+  clear_has_info();
+}
+inline const ::std::string& Packet_Trace::info() const {
+  return *info_;
+}
+inline void Packet_Trace::set_info(const ::std::string& value) {
+  set_has_info();
+  if (info_ == &::google::protobuf::internal::kEmptyString) {
+    info_ = new ::std::string;
+  }
+  info_->assign(value);
+}
+inline void Packet_Trace::set_info(const char* value) {
+  set_has_info();
+  if (info_ == &::google::protobuf::internal::kEmptyString) {
+    info_ = new ::std::string;
+  }
+  info_->assign(value);
+}
+inline void Packet_Trace::set_info(const void* value, size_t size) {
+  set_has_info();
+  if (info_ == &::google::protobuf::internal::kEmptyString) {
+    info_ = new ::std::string;
+  }
+  info_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* Packet_Trace::mutable_info() {
+  set_has_info();
+  if (info_ == &::google::protobuf::internal::kEmptyString) {
+    info_ = new ::std::string;
+  }
+  return info_;
+}
+inline ::std::string* Packet_Trace::release_info() {
+  clear_has_info();
+  if (info_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = info_;
+    info_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
     return temp;
   }
 }
@@ -817,6 +980,31 @@ inline ::std::string* Packet::release_ep() {
     ep_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
     return temp;
   }
+}
+
+// repeated .packets.Packet.Trace trace = 8;
+inline int Packet::trace_size() const {
+  return trace_.size();
+}
+inline void Packet::clear_trace() {
+  trace_.Clear();
+}
+inline const ::packets::Packet_Trace& Packet::trace(int index) const {
+  return trace_.Get(index);
+}
+inline ::packets::Packet_Trace* Packet::mutable_trace(int index) {
+  return trace_.Mutable(index);
+}
+inline ::packets::Packet_Trace* Packet::add_trace() {
+  return trace_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::packets::Packet_Trace >&
+Packet::trace() const {
+  return trace_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::packets::Packet_Trace >*
+Packet::mutable_trace() {
+  return &trace_;
 }
 
 

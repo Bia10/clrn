@@ -142,6 +142,7 @@ public:
 			}
 
 			const ProtoPacketPtr packet(new packets::Packet());
+			TRACE_PACKET(packet);
 			if (packet->ParseFromArray(&buffer->front(), size))
 			{
 				LOG_TRACE("Received from: [%s], socket: [IN], ep: [%s]:[%s]") 
@@ -212,6 +213,8 @@ public:
 	//! Add host mapping from host map event
 	void AddHostMapping(const ProtoPacketPtr packet)
 	{
+		TRACE_PACKET(packet);
+
 		CTable table(*packet->mutable_job()->mutable_results(0));
 
 		BOOST_FOREACH(const CTable::Row& row, table)
@@ -250,6 +253,8 @@ public:
 	//! Erase host mapping from host map event
 	void RemoveHostMapping(const ProtoPacketPtr packet)
 	{
+		TRACE_PACKET(packet);
+
 		CTable table(*packet->mutable_job()->mutable_results(0));
 
 		BOOST_FOREACH(const CTable::Row& row, table)
@@ -289,6 +294,8 @@ public:
 	//! Add host mapping from hosts list
 	void AddHosts(const ProtoPacketPtr packet)
 	{
+		TRACE_PACKET(packet);
+
 		CTable table(*packet->mutable_job()->mutable_results(0));
 
 		BOOST_FOREACH(const CTable::Row& row, table)
