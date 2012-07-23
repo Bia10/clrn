@@ -2,6 +2,7 @@
 #define ILog_h__
 
 #include "Config.h"
+#include "ProtoPacketPtr.h"
 
 #include <string>
 #include <vector>
@@ -20,6 +21,19 @@
 	m_Log.Trace(CURRENT_MODULE_ID, __FUNCTION__, message)
 #define LOG_DEBUG(message)		if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Debug))		\
 	m_Log.Debug(CURRENT_MODULE_ID, __FUNCTION__, message)
+
+#ifdef _DEBUG
+void TracePacket(const ProtoPacketPtr, const char* text);
+#define TRACE_PACKET(packet, ...)														\
+{																						\
+	if (packet){																		\
+	CMN_NAMESPACE_NAME::CExcept e(__FILE__, __LINE__, __FUNCTION__);					\
+	APPEND_ARGS(e, __VA_ARGS__);														\
+	TracePacket(packet, e.what());}														\
+}
+#else
+#define TRACE_PACKET(packet, ...)
+#endif // _DUBUG
 
 //! Forward declarations
 class CScopedLog;
@@ -89,6 +103,9 @@ public:
 
 	virtual ILog&		operator % (const std::string& value)	= 0;
 	virtual ILog&		operator % (const std::wstring& value)	= 0;
+
+	//! Attach packet
+	virtual ILog&		operator << (const ProtoPacketPtr packet) = 0;
 
 	//! Make scoped log
 	virtual ScopedLogPtr MakeScopedLog(unsigned int module, const std::string& func)	= 0;

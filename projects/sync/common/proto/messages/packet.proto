@@ -41,5 +41,5 @@ message Packet
 	optional uint32			timeout			= 5;					// packet reply wait timeout(milliseconds)
 	required bytes			from			= 6;					// sender instance guid
 	optional bytes			ep				= 7;					// sender endpoint
-	repeated bytes			trace			= 8;					// packet trace records
+	optional bytes			trace			= 8;					// packet trace records
 }

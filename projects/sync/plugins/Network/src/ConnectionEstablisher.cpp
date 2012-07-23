@@ -59,7 +59,7 @@ public:
 			const data::Table& table = packet->job().results(0);
 			const std::string& guid = table.rows(0).data(0);
 
-			LOG_TRACE("Catched host status event, action: [%s]. Guid: [%s]") % table.action() % guid;
+			LOG_TRACE("Catched host status event, action: [%s]. Guid: [%s]") % table.action() % guid << packet;;
 	
 			if (data::Table_Action_Insert == table.action())
 			{

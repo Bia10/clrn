@@ -369,21 +369,16 @@ class Packet : public ::google::protobuf::Message {
   inline ::std::string* mutable_ep();
   inline ::std::string* release_ep();
   
-  // repeated bytes trace = 8;
-  inline int trace_size() const;
+  // optional bytes trace = 8;
+  inline bool has_trace() const;
   inline void clear_trace();
   static const int kTraceFieldNumber = 8;
-  inline const ::std::string& trace(int index) const;
-  inline ::std::string* mutable_trace(int index);
-  inline void set_trace(int index, const ::std::string& value);
-  inline void set_trace(int index, const char* value);
-  inline void set_trace(int index, const void* value, size_t size);
-  inline ::std::string* add_trace();
-  inline void add_trace(const ::std::string& value);
-  inline void add_trace(const char* value);
-  inline void add_trace(const void* value, size_t size);
-  inline const ::google::protobuf::RepeatedPtrField< ::std::string>& trace() const;
-  inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_trace();
+  inline const ::std::string& trace() const;
+  inline void set_trace(const ::std::string& value);
+  inline void set_trace(const char* value);
+  inline void set_trace(const void* value, size_t size);
+  inline ::std::string* mutable_trace();
+  inline ::std::string* release_trace();
   
   // @@protoc_insertion_point(class_scope:packets.Packet)
  private:
@@ -401,6 +396,8 @@ class Packet : public ::google::protobuf::Message {
   inline void clear_has_from();
   inline void set_has_ep();
   inline void clear_has_ep();
+  inline void set_has_trace();
+  inline void clear_has_trace();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
@@ -411,7 +408,7 @@ class Packet : public ::google::protobuf::Message {
   ::std::string* guid_;
   ::std::string* from_;
   ::std::string* ep_;
-  ::google::protobuf::RepeatedPtrField< ::std::string> trace_;
+  ::std::string* trace_;
   
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(8 + 31) / 32];
@@ -836,48 +833,62 @@ inline ::std::string* Packet::release_ep() {
   }
 }
 
-// repeated bytes trace = 8;
-inline int Packet::trace_size() const {
-  return trace_.size();
+// optional bytes trace = 8;
+inline bool Packet::has_trace() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void Packet::set_has_trace() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void Packet::clear_has_trace() {
+  _has_bits_[0] &= ~0x00000080u;
 }
 inline void Packet::clear_trace() {
-  trace_.Clear();
+  if (trace_ != &::google::protobuf::internal::kEmptyString) {
+    trace_->clear();
+  }
+  clear_has_trace();
 }
-inline const ::std::string& Packet::trace(int index) const {
-  return trace_.Get(index);
+inline const ::std::string& Packet::trace() const {
+  return *trace_;
 }
-inline ::std::string* Packet::mutable_trace(int index) {
-  return trace_.Mutable(index);
+inline void Packet::set_trace(const ::std::string& value) {
+  set_has_trace();
+  if (trace_ == &::google::protobuf::internal::kEmptyString) {
+    trace_ = new ::std::string;
+  }
+  trace_->assign(value);
 }
-inline void Packet::set_trace(int index, const ::std::string& value) {
-  trace_.Mutable(index)->assign(value);
+inline void Packet::set_trace(const char* value) {
+  set_has_trace();
+  if (trace_ == &::google::protobuf::internal::kEmptyString) {
+    trace_ = new ::std::string;
+  }
+  trace_->assign(value);
 }
-inline void Packet::set_trace(int index, const char* value) {
-  trace_.Mutable(index)->assign(value);
+inline void Packet::set_trace(const void* value, size_t size) {
+  set_has_trace();
+  if (trace_ == &::google::protobuf::internal::kEmptyString) {
+    trace_ = new ::std::string;
+  }
+  trace_->assign(reinterpret_cast<const char*>(value), size);
 }
-inline void Packet::set_trace(int index, const void* value, size_t size) {
-  trace_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* Packet::add_trace() {
-  return trace_.Add();
-}
-inline void Packet::add_trace(const ::std::string& value) {
-  trace_.Add()->assign(value);
-}
-inline void Packet::add_trace(const char* value) {
-  trace_.Add()->assign(value);
-}
-inline void Packet::add_trace(const void* value, size_t size) {
-  trace_.Add()->assign(reinterpret_cast<const char*>(value), size);
-}
-inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
-Packet::trace() const {
+inline ::std::string* Packet::mutable_trace() {
+  set_has_trace();
+  if (trace_ == &::google::protobuf::internal::kEmptyString) {
+    trace_ = new ::std::string;
+  }
   return trace_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::std::string>*
-Packet::mutable_trace() {
-  return &trace_;
+inline ::std::string* Packet::release_trace() {
+  clear_has_trace();
+  if (trace_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = trace_;
+    trace_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
 }
 
 

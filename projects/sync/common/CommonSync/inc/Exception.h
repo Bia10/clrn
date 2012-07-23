@@ -99,7 +99,6 @@ void Append(CExcept& e, It it, const T1& arg1, const T2& arg2, const T3& arg3, c
 	Append(e, ++it, arg5);
 }
 
-
 } // namespace xc
 
 #define APPEND_ARGS(xcpt, ...)							\
@@ -172,18 +171,5 @@ catch(...)																			\
 		APPEND_ARGS(except, __VA_ARGS__);												\
 		throw except;																	\
 	}
-
-#ifdef _DEBUG
-#define TRACE_PACKET(packet, ...)														\
-{																						\
-	if (packet){																		\
-	CMN_NAMESPACE_NAME::CExcept e(__FILE__, __LINE__, __FUNCTION__);					\
-	APPEND_ARGS(e, __VA_ARGS__);														\
-	std::string* const trace = packet->add_trace();										\
-	trace->assign(e.what());}															\
-}
-#else
-#define TRACE_PACKET(packet, ...)
-#endif // _DUBUG
 
 #endif // Exception_h__

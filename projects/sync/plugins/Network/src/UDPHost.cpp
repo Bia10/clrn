@@ -209,7 +209,7 @@ private:
 
 		// signal status event
 		const ProtoPacketPtr eventPacket(new packets::Packet());
-		TRACE_PACKET(eventPacket);
+		TRACE_PACKET(eventPacket, count);
 		data::Table& resultTable = *eventPacket->mutable_job()->add_results();
 		resultTable.set_action(count ? data::Table_Action_Insert : data::Table_Action_Delete);
 		resultTable.set_id(data::Table_Id_HostStatusEvent);
@@ -454,9 +454,9 @@ private:
 					% packet->from()
 					% (socket == m_pSrvSocket ? "IN" : "OUT")
 					% client->address().to_string() 
-					% client->port();
+					% client->port()
+					<< packet;
 
-				TRACE_PACKET(packet);
 				HandlePacket(socket, packet, client);
 			}
 
@@ -470,8 +470,6 @@ private:
 	{
 		SCOPED_LOG(m_Log);
 
-		TRACE_PACKET(packet);
-
 		if (!m_OutgoingEP)
 			return;
 
@@ -484,7 +482,8 @@ private:
 			% m_RemoteGuid 
 			% m_OutgoingEP->address().to_string() 
 			% m_OutgoingEP->port() 
-			% packet->ShortDebugString();
+			% packet->ShortDebugString()
+			<< packet;
 
 		// create socket if not exists and send data
 		if (!m_pOutgoingSocket)
@@ -504,15 +503,14 @@ private:
 	{
 		SCOPED_LOG(m_Log);
 
-		TRACE_PACKET(packet);
-
 		CHECK(m_IncomingEP);
 
 		LOG_TRACE("Sending to: [%s], as [IN], ep:[%s]:[%s], data: [%s]") 
 			% m_RemoteGuid 
 			% m_IncomingEP->address().to_string() 
 			% m_IncomingEP->port() 
-			% packet->ShortDebugString();
+			% packet->ShortDebugString()
+			<< packet;
 
 		// send through server incoming socket
 		SendBuffer(Serialize(packet), packet->guid(), m_IncomingEP, m_pSrvSocket, packet->type());

@@ -19,8 +19,15 @@ class CEventDispatcher::Impl
 	//! Events map type
 	typedef std::map<std::string, EventSignalPtr>		EventsMap;
 
+	//! Callback info
+	struct Info
+	{
+		std::size_t index;
+		std::string	host;
+	};
+
 	//! Callbacks indexes map
-	typedef std::map<std::string, std::size_t>			CallbackIndexMap;
+	typedef std::map<std::string, Info>					CallbackInfoMap;
 
 public:
 
@@ -62,15 +69,16 @@ public:
 			boost::recursive_mutex::scoped_lock lockCallback(m_CallbackMutex);
 			const std::string hash = GetHash(name, host, caller);
 
-			const CallbackIndexMap::const_iterator itCallback = m_CallbackIndexes.find(hash);
-			if (m_CallbackIndexes.end() != itCallback)
+			const CallbackInfoMap::const_iterator itCallback = m_CallbacksInfo.find(hash);
+			if (m_CallbacksInfo.end() != itCallback)
 			{
-				// unsubscribe first
-				UnSubscribe(name, hash);
+				// unsubscribe all host callbacks
+				UnSubscribeHost(host);
 			}
 
 			signal.connect(++m_CurrentCallbackIndex, callBack);			
-			m_CallbackIndexes[hash] = m_CurrentCallbackIndex;
+			m_CallbacksInfo[hash].index = m_CurrentCallbackIndex;
+
 
 			return hash;
 		}
@@ -119,14 +127,14 @@ public:
 
 			boost::recursive_mutex::scoped_lock lockCallback(m_CallbackMutex);
 
-			const CallbackIndexMap::const_iterator itCallback = m_CallbackIndexes.find(hash);
-			CHECK(m_CallbackIndexes.end() != itCallback);
+			const CallbackInfoMap::const_iterator itCallback = m_CallbacksInfo.find(hash);
+			CHECK(m_CallbacksInfo.end() != itCallback);
 
 			// disconnect callback from slot
 			EventSignal& signal = *it->second;
 			
-			signal.disconnect(itCallback->second);			
-			m_CallbackIndexes.erase(itCallback);
+			signal.disconnect(itCallback->second.index);			
+			m_CallbacksInfo.erase(itCallback);
 		}
 		CATCH_PASS_EXCEPTIONS("UnSubscribe failed.", name, hash)
 	}
@@ -134,8 +142,33 @@ public:
 
 private:
 
+	//! Unsubscribe host
+	void UnSubscribeHost(const std::string& host)
+	{
+		SCOPED_LOG(m_Log);
+
+		std::vector<CallbackInfoMap::const_iterator> toDelete;
+
+		boost::recursive_mutex::scoped_lock lock(m_CallbackMutex);
+
+		CallbackInfoMap::const_iterator it = m_CallbacksInfo.begin();
+		const CallbackInfoMap::const_iterator itEnd = m_CallbacksInfo.end();
+		for (; it != itEnd; ++it)
+		{
+			if (it->second.host == host)
+				toDelete.push_back(it);
+		}
+
+		LOG_WARNING("Unsubscribing all events: [%s] from host: [%s].") % toDelete.size() % host;
+
+		BOOST_FOREACH(const CallbackInfoMap::const_iterator it, toDelete)
+		{
+			m_CallbacksInfo.erase(it);
+		}
+	}
+
 	//! Generate hash
-	std::string				GetHash(const std::string& name, const std::string& host, const std::string& caller)
+	std::string	GetHash(const std::string& name, const std::string& host, const std::string& caller)
 	{
 		return (boost::format("[%s][%s][%s]") % name % host % caller).str();
 	}
@@ -153,7 +186,7 @@ private:
 	boost::recursive_mutex	m_EventsMutex;
 
 	//! Callback indexes map
-	CallbackIndexMap		m_CallbackIndexes;
+	CallbackInfoMap			m_CallbacksInfo;
 
 	//! Current callback index
 	std::size_t				m_CurrentCallbackIndex;

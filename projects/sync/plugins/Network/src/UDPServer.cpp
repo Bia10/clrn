@@ -147,9 +147,9 @@ public:
 				LOG_TRACE("Received from: [%s], socket: [IN], ep: [%s]:[%s]") 
 					% packet->from()
 					% client->address().to_string() 
-					% client->port();
+					% client->port()
+					<< packet;
 
-				TRACE_PACKET(packet);
 				HandlePacket(socket, packet, client);
 			}
 
