@@ -91,5 +91,5 @@ void CGetEvent::HandleReply(const ProtoPacketPtr packet)
 	{
 		m_CallBackFn(packet);
 	}
-	CATCH_IGNORE_EXCEPTIONS(m_Log, "Event callback failed.")
+	CATCH_IGNORE_EXCEPTIONS((m_Log << packet), "Event callback failed.")
 }

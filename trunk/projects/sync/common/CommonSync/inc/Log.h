@@ -40,7 +40,7 @@ public:
 
 	//! Set log module levels
 	void		SetLogLevels(const std::vector<Level::Enum_t>& levels);
-	
+
 	//! Is logging enabled
 	bool		IsEnabled(unsigned int module, const Level::Enum_t level) const;
 
@@ -73,16 +73,19 @@ public:
 	ILog&		operator % (const std::string& value);
 	ILog&		operator % (const std::wstring& value);
 
+	//! Attach packet
+	ILog&		operator << (const ProtoPacketPtr packet) ;
+
 	//! Make scoped log
 	ScopedLogPtr MakeScopedLog(unsigned int module, const std::string& szFunction);
 
 private:
 
 	//!  Internal write
-	void								Write(const Level::Enum_t level);
+	void		Write(const Level::Enum_t level);
 
 	//! Level to string
-	const char*							Level2String(const Level::Enum_t level) const;
+	const char*	Level2String(const Level::Enum_t level) const;
 
 	//! Log output stream pointers
 	Streams								m_Streams;
@@ -110,6 +113,12 @@ private:
 
 	//! Stream indexes
 	StreamIndexes						m_StreamIndexes;
+
+	//! Current packet
+	ProtoPacketPtr						m_Packet;
+
+	//! Temp stream
+	std::ostringstream					m_TempStream;
 };
 
 #endif // Log_h__

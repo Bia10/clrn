@@ -226,7 +226,7 @@ ILog& CLog::Warning(unsigned int module, const std::string& func, const std::str
 {
 	m_Mutex.lock();
 
-	m_Format = boost::format(std::string(text) + " /* " + func + " */");
+	m_Format = boost::format(text + " /* " + func + " */");
 	m_CurrentLevel = Level::Warning;
 	m_CurrentModule = module;
 
@@ -418,6 +418,8 @@ const char* CLog::Level2String(const Level::Enum_t level) const
 	return "UNKNOWN";
 }
 
+boost::mutex g_PacketMutex;
+
 void CLog::Write(const Level::Enum_t level)
 {
 	try
@@ -428,7 +430,9 @@ void CLog::Write(const Level::Enum_t level)
 			return;
 		}
 
-		*m_Streams[m_CurrentModule]
+		m_TempStream.str("");
+
+		m_TempStream
 			<< "[" << Level2String(level) << "][" << m_CurrentModule
 			<< "][" << boost::posix_time::to_iso_extended_string(boost::posix_time::microsec_clock().local_time()) << "]:["
 #ifdef WIN32
@@ -438,6 +442,11 @@ void CLog::Write(const Level::Enum_t level)
 #endif
 			<< "]: " << m_Format.str() << std::endl;
 
+		*m_Streams[m_CurrentModule] << m_TempStream.str();
+
+		boost::mutex::scoped_lock lock(g_PacketMutex);
+		if (m_Packet)
+			m_Packet->mutable_trace()->append(m_TempStream.str());
 	}
 	catch(...)
 	{
@@ -465,3 +474,18 @@ void CLog::SetLogLevels(const std::vector<Level::Enum_t>& levels)
 	for (unsigned int i = 0 ; i < m_Levels.size(); ++i)
 		Warning(i, __FUNCTION__, "Setting up module: [%s] log level: [%s].") % i % m_Levels[i];
 }
+
+
+ILog& CLog::operator << (const ProtoPacketPtr packet)
+{
+	m_Packet = packet;
+	return *this;
+}
+
+#ifdef _DEBUG
+void TracePacket(const ProtoPacketPtr packet, const char* text)
+{
+	boost::mutex::scoped_lock lock(g_PacketMutex);
+	packet->mutable_trace()->append(text); 
+}
+#endif // _DEBUG

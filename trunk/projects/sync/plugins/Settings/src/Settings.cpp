@@ -260,5 +260,5 @@ const std::size_t CSettings::BufferSize() const
 
 const std::size_t CSettings::JobTimeout() const
 {
-	return 10 * 1000;
+	return 1000 * 1000;
 }

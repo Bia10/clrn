@@ -209,15 +209,13 @@ void CKernel::HostStatusCallBack(const ProtoPacketPtr packet)
 
 	CHECK(packet);
 
-	TRACE_PACKET(packet);
-
 	TRY 
 	{
 		data::Table* protoTable = packet->mutable_job()->mutable_results(0);
 		CTable table(*protoTable);
 		const std::string& guid = table[0]["guid"];
 
-		LOG_TRACE("Catched host status event, action: [%s]. Guid: [%s]") % protoTable->action() % guid;
+		LOG_TRACE("Catched host status event, action: [%s]. Guid: [%s]") % protoTable->action() % guid << packet;;
 
 		if (data::Table_Action_Insert == protoTable->action())
 		{
@@ -228,7 +226,7 @@ void CKernel::HostStatusCallBack(const ProtoPacketPtr packet)
 		if (data::Table_Action_Delete != protoTable->action())
 			return;
 
-		LOG_WARNING("Host: [%s] went offline, deleting all associated jobs.") % guid;
+		LOG_WARNING("Host: [%s] went offline, deleting all associated jobs.") % guid << packet;
 
 		// deleting all jobs associated with this host
 		std::vector<IJob::Ptr> jobsToErase;
@@ -395,14 +393,13 @@ void CKernel::ProcessProtoPacket(const ProtoPacketPtr packet)
 			assert(false);
 		}
 	}
-	CATCH_IGNORE_EXCEPTIONS(m_Log, "ProcessProtoPacket failed.", *packet)
+	CATCH_IGNORE_EXCEPTIONS((m_Log << packet), "ProcessProtoPacket failed.", *packet)
 }
 
 void CKernel::HandleNewPacket(const ProtoPacketPtr packet)
 {
 	CHECK(packet);
-	LOG_DEBUG("Queuing new packet: [%s].") % packet->ShortDebugString();
-	TRACE_PACKET(packet);
+	LOG_DEBUG("Queuing new packet: [%s].") % packet->ShortDebugString() << packet;
 	m_Service.post(boost::bind(&CKernel::ProcessProtoPacket, this, packet));
 }
 
