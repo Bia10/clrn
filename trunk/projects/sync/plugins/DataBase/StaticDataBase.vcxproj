@@ -25,6 +25,7 @@
     <ProjectGuid>{78B34B3E-910F-4176-8074-2ADF2CE3A841}</ProjectGuid>
     <RootNamespace>StaticDataBase</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <ProjectName>DataBase</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_vc110|Win32'" Label="Configuration">
@@ -147,18 +148,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include=".\src\DataBasePlugin.h" />
-    <ClInclude Include=".\src\ExecuteProcedure.h" />
-    <ClInclude Include=".\src\ExecuteScript.h" />
-    <ClInclude Include=".\inc\Procedure.h" />
-    <ClInclude Include=".\src\ProcedureExecutor.h" />
-    <ClInclude Include=".\src\stdafx.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Events\StaticEvents.vcxproj">
       <Project>{41d15513-1512-46da-baf2-d0ecc34849a2}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\ExecuteProcedure.h" />
+    <ClInclude Include="inc\ExecuteScript.h" />
+    <ClInclude Include="inc\Procedure.h" />
+    <ClInclude Include="inc\ProcedureExecutor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

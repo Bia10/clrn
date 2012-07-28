@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="StaticDataBase"
+	Name="DataBase"
 	ProjectGUID="{78B34B3E-910F-4176-8074-2ADF2CE3A841}"
 	RootNamespace="StaticDataBase"
 	Keyword="Win32Proj"
@@ -314,15 +314,11 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\src\DataBasePlugin.h"
+				RelativePath=".\inc\ExecuteProcedure.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\ExecuteProcedure.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\ExecuteScript.h"
+				RelativePath=".\inc\ExecuteScript.h"
 				>
 			</File>
 			<File
@@ -330,11 +326,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\ProcedureExecutor.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\stdafx.h"
+				RelativePath=".\inc\ProcedureExecutor.h"
 				>
 			</File>
 		</Filter>

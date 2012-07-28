@@ -10,7 +10,6 @@
 #include "job.pb.h"
 #include "IKernel.h"
 #include "StreamHelpers.h"
-#include "DataBasePlugin.h"
 #include "JobFactory.h"
 #include "ILog.h"
 #include "Conversion.h"

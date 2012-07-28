@@ -446,10 +446,7 @@ void CLog::Write(const Level::Enum_t level)
 
 		boost::mutex::scoped_lock lock(g_PacketMutex);
 		if (m_Packet)
-		{
-			m_TempStream << "\t";
-			m_Packet->mutable_trace()->append(m_TempStream.str());
-		}
+			m_Packet->add_trace(m_TempStream.str());
 	}
 	catch(...)
 	{
@@ -489,7 +486,6 @@ ILog& CLog::operator << (const ProtoPacketPtr packet)
 void TracePacket(const ProtoPacketPtr packet, const char* text)
 {
 	boost::mutex::scoped_lock lock(g_PacketMutex);
-	packet->mutable_trace()->append(text); 
-	packet->mutable_trace()->append("\t"); 
+	packet->add_trace(text);
 }
 #endif // _DEBUG

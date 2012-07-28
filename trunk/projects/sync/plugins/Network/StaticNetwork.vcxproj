@@ -25,6 +25,7 @@
     <ProjectGuid>{32133C47-2DCC-4654-9B64-393A12835D9E}</ProjectGuid>
     <RootNamespace>StaticNetwork</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <ProjectName>Network</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_vc110|Win32'" Label="Configuration">
@@ -144,16 +145,7 @@
     <ClCompile Include=".\src\UDPServer.cpp" />
     <ClCompile Include="src\Connect.cpp" />
     <ClCompile Include="src\ConnectionEstablisher.cpp" />
-    <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\UDPHost.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include=".\src\NetworkPlugin.h" />
-    <ClInclude Include=".\src\stdafx.h" />
-    <ClInclude Include=".\inc\UDPServer.h" />
-    <ClInclude Include="src\Connect.h" />
-    <ClInclude Include="src\ConnectionEstablisher.h" />
-    <ClInclude Include="src\UDPHost.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\common\CommonSync\Common.vcxproj">
@@ -168,6 +160,11 @@
       <Project>{41d15513-1512-46da-baf2-d0ecc34849a2}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\Connect.h" />
+    <ClInclude Include="inc\ConnectionEstablisher.h" />
+    <ClInclude Include="inc\UDPServer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

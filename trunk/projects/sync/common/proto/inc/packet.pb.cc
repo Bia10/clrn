@@ -117,7 +117,7 @@ void protobuf_AddDesc_packet_2eproto() {
     "ketType\022\026\n\003job\030\002 \001(\0132\t.jobs.Job\0220\n\013desti"
     "nation\030\003 \001(\0132\033.packets.Packet.Destinatio"
     "n\022\014\n\004guid\030\004 \002(\014\022\017\n\007timeout\030\005 \001(\r\022\014\n\004from"
-    "\030\006 \002(\014\022\n\n\002ep\030\007 \001(\014\022\r\n\005trace\030\010 \001(\014\032\221\001\n\013De"
+    "\030\006 \002(\014\022\n\n\002ep\030\007 \001(\014\022\r\n\005trace\030\010 \003(\014\032\221\001\n\013De"
     "stination\0223\n\004type\030\001 \002(\0162 .packets.Packet"
     ".Destination.Type:\003ONE\022\014\n\004from\030\002 \001(\r\022\n\n\002"
     "to\030\003 \001(\005\022\016\n\006filter\030\004 \001(\014\"#\n\004Type\022\007\n\003ONE\020"
@@ -573,7 +573,6 @@ void Packet::SharedCtor() {
   timeout_ = 0u;
   from_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   ep_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
-  trace_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -590,9 +589,6 @@ void Packet::SharedDtor() {
   }
   if (ep_ != &::google::protobuf::internal::kEmptyString) {
     delete ep_;
-  }
-  if (trace_ != &::google::protobuf::internal::kEmptyString) {
-    delete trace_;
   }
   if (this != default_instance_) {
     delete job_;
@@ -645,12 +641,8 @@ void Packet::Clear() {
         ep_->clear();
       }
     }
-    if (has_trace()) {
-      if (trace_ != &::google::protobuf::internal::kEmptyString) {
-        trace_->clear();
-      }
-    }
   }
+  trace_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -767,16 +759,17 @@ bool Packet::MergePartialFromCodedStream(
         break;
       }
       
-      // optional bytes trace = 8;
+      // repeated bytes trace = 8;
       case 8: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_trace:
           DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_trace()));
+                input, this->add_trace()));
         } else {
           goto handle_uninterpreted;
         }
+        if (input->ExpectTag(66)) goto parse_trace;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -840,10 +833,10 @@ void Packet::SerializeWithCachedSizes(
       7, this->ep(), output);
   }
   
-  // optional bytes trace = 8;
-  if (has_trace()) {
+  // repeated bytes trace = 8;
+  for (int i = 0; i < this->trace_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteBytes(
-      8, this->trace(), output);
+      8, this->trace(i), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -900,11 +893,10 @@ void Packet::SerializeWithCachedSizes(
         7, this->ep(), target);
   }
   
-  // optional bytes trace = 8;
-  if (has_trace()) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        8, this->trace(), target);
+  // repeated bytes trace = 8;
+  for (int i = 0; i < this->trace_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteBytesToArray(8, this->trace(i), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -966,14 +958,14 @@ int Packet::ByteSize() const {
           this->ep());
     }
     
-    // optional bytes trace = 8;
-    if (has_trace()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::BytesSize(
-          this->trace());
-    }
-    
   }
+  // repeated bytes trace = 8;
+  total_size += 1 * this->trace_size();
+  for (int i = 0; i < this->trace_size(); i++) {
+    total_size += ::google::protobuf::internal::WireFormatLite::BytesSize(
+      this->trace(i));
+  }
+  
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -999,6 +991,7 @@ void Packet::MergeFrom(const ::google::protobuf::Message& from) {
 
 void Packet::MergeFrom(const Packet& from) {
   GOOGLE_CHECK_NE(&from, this);
+  trace_.MergeFrom(from.trace_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_type()) {
       set_type(from.type());
@@ -1020,9 +1013,6 @@ void Packet::MergeFrom(const Packet& from) {
     }
     if (from.has_ep()) {
       set_ep(from.ep());
-    }
-    if (from.has_trace()) {
-      set_trace(from.trace());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -1058,7 +1048,7 @@ void Packet::Swap(Packet* other) {
     std::swap(timeout_, other->timeout_);
     std::swap(from_, other->from_);
     std::swap(ep_, other->ep_);
-    std::swap(trace_, other->trace_);
+    trace_.Swap(&other->trace_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

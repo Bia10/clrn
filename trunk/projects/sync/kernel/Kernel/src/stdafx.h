@@ -11,10 +11,6 @@
 #include "Conversion.h"
 #include "FileSystem.h"
 #include "StreamHelpers.h"
-#include "Settings/inc/Settings.h"
-#include "Network/inc/UDPServer.h"
-#include "DataBase/inc/Procedure.h"
-#include "Events/inc/Event.h"
 
 #include <stdio.h>
 #include <iostream>

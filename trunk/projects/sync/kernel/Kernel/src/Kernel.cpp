@@ -1,6 +1,24 @@
 #include "stdafx.h"
 #include "Kernel.h"
 
+#include "Events/inc/EventDispatcher.h"
+#include "Events/inc/GetEvent.h"
+#include "Events/inc/SetEvent.h"
+#include "Events/inc/Event.h"
+
+#include "Settings/inc/GetSettings.h"
+#include "Settings/inc/SetSettings.h"
+#include "Settings/inc/Settings.h"
+
+#include "DataBase/inc/ExecuteProcedure.h"
+#include "DataBase/inc/ExecuteScript.h"
+#include "DataBase/inc/ProcedureExecutor.h"
+#include "DataBase/inc/Procedure.h"
+
+#include "Network/inc/Connect.h"
+#include "Network/inc/ConnectionEstablisher.h"
+#include "Network/inc/UDPServer.h"
+
 #include <boost/asio/ip/host_name.hpp>
 
 CKernel::CKernel()
@@ -41,6 +59,7 @@ void CKernel::Stop()
 	}
 
 	m_PluginLoader->Unload();
+	UnLoadStaticPlugins();
 	m_pSettings.reset();
 	m_pServer.reset();
 
@@ -50,6 +69,58 @@ void CKernel::Stop()
 ISettings& CKernel::Settings()
 {
 	return *m_pSettings;
+}
+
+void CKernel::LoadStaticPlugins()
+{
+	TRY 
+	{
+		// events
+		m_Factory.Register<CGetEvent>(jobs::Job_JobId_GET_EVENT);
+		m_Factory.Register<CSetEvent>(jobs::Job_JobId_SET_EVENT);
+
+		CEventDispatcher::Create(m_Log, *this);
+
+		// settings
+		m_Factory.Register<CSetSettings>(jobs::Job_JobId_SET_SETTINGS); 
+		m_Factory.Register<CGetSettings>(jobs::Job_JobId_GET_SETTINGS);
+
+		// database
+		m_Factory.Register<CExecuteScript>(jobs::Job_JobId_EXEC_SCRIPT); 
+		m_Factory.Register<CExecuteProcedure>(jobs::Job_JobId_EXEC_PROCEDURE); 
+
+		CProcedureExecutor::Create(*this, m_Log);
+
+		// network
+		m_Factory.Register<CConnect>(jobs::Job_JobId_CONNECT);
+
+		net::CConnectionEstablisher::Create(*this, m_Log);
+	}
+	CATCH_PASS_EXCEPTIONS()
+}
+
+void CKernel::UnLoadStaticPlugins()
+{
+	TRY 
+	{
+		// events
+		CEventDispatcher::Shutdown();
+
+		m_Factory.Unregister(jobs::Job_JobId_GET_EVENT);
+		m_Factory.Unregister(jobs::Job_JobId_SET_EVENT);
+
+		// settings
+		m_Factory.Unregister(jobs::Job_JobId_SET_SETTINGS);
+		m_Factory.Unregister(jobs::Job_JobId_GET_SETTINGS);
+
+		// database
+		m_Factory.Unregister(jobs::Job_JobId_EXEC_SCRIPT);
+		m_Factory.Unregister(jobs::Job_JobId_EXEC_PROCEDURE);
+
+		// network
+		m_Factory.Unregister(jobs::Job_JobId_CONNECT);
+	}
+	CATCH_PASS_EXCEPTIONS()
 }
 
 void CKernel::InitLog()
@@ -114,6 +185,9 @@ void CKernel::LoadPlugins()
 	std::string pluginsPath;
 	TRY 
 	{
+		// load static plugins
+		LoadStaticPlugins();
+
 		m_pSettings->Get(KERNEL_MODULE_ID, pluginsPath, "plugins_path");
 	
 		CPluginLoader::TPlugins plugins;
