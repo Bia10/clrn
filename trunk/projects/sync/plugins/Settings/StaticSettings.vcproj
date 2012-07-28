@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="Settings"
+	Name="StaticSettings"
 	ProjectGUID="{475FB8CE-740F-428B-8E5A-96F3EF657C78}"
 	RootNamespace="StaticSettings"
 	Keyword="Win32Proj"
@@ -308,15 +308,23 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\inc\GetSettings.h"
+				RelativePath=".\src\GetSettings.h"
 				>
 			</File>
 			<File
-				RelativePath=".\inc\SetSettings.h"
+				RelativePath=".\src\SetSettings.h"
 				>
 			</File>
 			<File
 				RelativePath=".\inc\Settings.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\SettingsPlugin.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\stdafx.h"
 				>
 			</File>
 		</Filter>

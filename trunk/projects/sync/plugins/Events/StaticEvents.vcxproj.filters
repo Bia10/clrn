@@ -28,16 +28,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\Event.h">
+    <ClInclude Include=".\inc\Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\EventDispatcher.h">
+    <ClInclude Include=".\src\EventDispatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\GetEvent.h">
+    <ClInclude Include=".\src\EventsPlugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\SetEvent.h">
+    <ClInclude Include=".\src\GetEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include=".\src\SetEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include=".\src\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

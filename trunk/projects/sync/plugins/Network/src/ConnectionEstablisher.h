@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include <boost/scoped_ptr.hpp>
 #include <boost/noncopyable.hpp>
 
 class IKernel;
@@ -21,27 +22,23 @@ namespace net
 //!
 class CConnectionEstablisher : boost::noncopyable
 {
-	friend class std::auto_ptr<CConnectionEstablisher>;
+public:
+
+	//! Pointer type
+	typedef boost::scoped_ptr<CConnectionEstablisher>	Ptr;
 
 	//! Ctor
-	CConnectionEstablisher(IKernel& kernel, ILog& log);
+	CConnectionEstablisher
+	(
+		IKernel& kernel, 
+		ILog& log
+	);
 	~CConnectionEstablisher(void);
-
-public:
-	 
-	//! Create instance
-	static void Create(IKernel& kernel, ILog& log);
-
-	//! Shutdown instance
-	static void Shutdown();
 
 private:
 	//! Implementation
 	class Impl;
 	std::auto_ptr<Impl> m_pImpl;
-
-	//! Single instance
-	static std::auto_ptr<CConnectionEstablisher> s_pInstance;
 };
 
 } // namespace net

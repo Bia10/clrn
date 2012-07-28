@@ -1,5 +1,5 @@
-#ifndef SetEvent_h__
-#define SetEvent_h__
+#ifndef ExecuteScript_h__
+#define ExecuteScript_h__
 
 #include "BaseJob.h"
 
@@ -21,4 +21,5 @@ public:
 	void				Execute(const ProtoPacketPtr packet);
 
 };
-#endif // SetEvent_h__
+
+#endif // ExecuteScript_h__
