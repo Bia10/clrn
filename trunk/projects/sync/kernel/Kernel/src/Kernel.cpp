@@ -399,7 +399,8 @@ void CKernel::ProcessProtoPacket(const ProtoPacketPtr packet)
 void CKernel::HandleNewPacket(const ProtoPacketPtr packet)
 {
 	CHECK(packet);
-	LOG_DEBUG("Queuing new packet: [%s].") % packet->ShortDebugString() << packet;
+	TRACE_PACKET(packet);
+	LOG_DEBUG("Queuing new packet: [%s].") % packet->ShortDebugString();
 	m_Service.post(boost::bind(&CKernel::ProcessProtoPacket, this, packet));
 }
 

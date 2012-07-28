@@ -59,7 +59,7 @@ public:
 
 		LOG_TRACE("Old size: [%s], new size: [%s]") % m_BufferSize % size;
 
-		CHECK(m_BufferSize, size);
+		CHECK(size, size, m_BufferSize);
 		m_BufferSize = size;
 	}
 
