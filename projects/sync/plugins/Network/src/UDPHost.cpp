@@ -478,12 +478,12 @@ private:
 			m_LastOutgoingSend = boost::posix_time::microsec_clock::local_time();
 		}
 
+		TRACE_PACKET(packet);
 		LOG_TRACE("Sending to: [%s], as [OUT], ep:[%s]:[%s], data: [%s]") 
 			% m_RemoteGuid 
 			% m_OutgoingEP->address().to_string() 
 			% m_OutgoingEP->port() 
-			% packet->ShortDebugString()
-			<< packet;
+			% packet->ShortDebugString();
 
 		// create socket if not exists and send data
 		if (!m_pOutgoingSocket)
@@ -505,12 +505,12 @@ private:
 
 		CHECK(m_IncomingEP);
 
+		TRACE_PACKET(packet);
 		LOG_TRACE("Sending to: [%s], as [IN], ep:[%s]:[%s], data: [%s]") 
 			% m_RemoteGuid 
 			% m_IncomingEP->address().to_string() 
 			% m_IncomingEP->port() 
-			% packet->ShortDebugString()
-			<< packet;
+			% packet->ShortDebugString();
 
 		// send through server incoming socket
 		SendBuffer(Serialize(packet), packet->guid(), m_IncomingEP, m_pSrvSocket, packet->type());

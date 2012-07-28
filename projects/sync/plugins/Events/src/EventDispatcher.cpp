@@ -73,6 +73,7 @@ public:
 			if (m_CallbacksInfo.end() != itCallback)
 			{
 				// unsubscribe all host callbacks
+				// TODO: signal host offline-online here
 				UnSubscribeHost(host);
 			}
 
@@ -92,6 +93,7 @@ public:
 
 		CHECK(packet);
 
+		TRACE_PACKET(packet);
 		LOG_TRACE("Signaling event: name: [%s], data: [%s]") % name % packet->ShortDebugString();
 		 
 		TRY 
