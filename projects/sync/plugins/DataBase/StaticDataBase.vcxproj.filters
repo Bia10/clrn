@@ -28,22 +28,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include=".\src\DataBasePlugin.h">
+    <ClInclude Include="inc\ExecuteProcedure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include=".\src\ExecuteProcedure.h">
+    <ClInclude Include="inc\ExecuteScript.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include=".\src\ExecuteScript.h">
+    <ClInclude Include="inc\Procedure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include=".\inc\Procedure.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include=".\src\ProcedureExecutor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include=".\src\stdafx.h">
+    <ClInclude Include="inc\ProcedureExecutor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

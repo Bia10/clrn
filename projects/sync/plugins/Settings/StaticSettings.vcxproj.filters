@@ -25,19 +25,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include=".\src\GetSettings.h">
+    <ClInclude Include="inc\GetSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include=".\src\SetSettings.h">
+    <ClInclude Include="inc\SetSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include=".\inc\Settings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include=".\src\SettingsPlugin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include=".\src\stdafx.h">
+    <ClInclude Include="inc\Settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="StaticEvents"
+	Name="Events"
 	ProjectGUID="{41D15513-1512-46DA-BAF2-D0ECC34849A2}"
 	RootNamespace="StaticEvents"
 	Keyword="Win32Proj"
@@ -314,23 +314,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\EventDispatcher.h"
+				RelativePath=".\inc\EventDispatcher.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\EventsPlugin.h"
+				RelativePath=".\inc\GetEvent.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\GetEvent.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\SetEvent.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\stdafx.h"
+				RelativePath=".\inc\SetEvent.h"
 				>
 			</File>
 		</Filter>

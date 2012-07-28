@@ -16,11 +16,6 @@ insert into settings(module, name, value) values(0, 'kernel_threads', '8');
 insert into settings(module, name, value) values(0, 'plugins_path', './');
 insert into settings(module, name, value) values(0, 'ping_interval', '5000');
 
-insert into plugins values(1, 'Events');
-insert into plugins values(2, 'Settings');
-insert into plugins values(3, 'DataBase');
-insert into plugins values(4, 'Network');
-
 insert into hosts(guid, ip, port) values('00000000-0000-0000-0000-000000000000', '192.168.1.2', 5000);
 insert into hosts(guid, ip, port) values('00000000-0000-0000-0000-000000000001', '192.168.1.2', 10000);
 

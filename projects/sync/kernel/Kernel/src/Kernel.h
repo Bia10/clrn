@@ -110,6 +110,12 @@ private:
 	//! Load plugins
 	void					LoadPlugins();
 
+	//! Load static plugins
+	void					LoadStaticPlugins();
+
+	//! Unload static plugins
+	void					UnLoadStaticPlugins();
+
 	//! Jobs callback
 	void					JobCallBack(ProtoPacketPtr packet, 
 										const MutexPtr mutex, 

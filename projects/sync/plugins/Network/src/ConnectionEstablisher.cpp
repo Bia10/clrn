@@ -259,7 +259,7 @@ private:
 
 };
 
-
+std::auto_ptr<CConnectionEstablisher> CConnectionEstablisher::s_pInstance;
 CConnectionEstablisher::CConnectionEstablisher
 (
 	IKernel& kernel, 
@@ -267,11 +267,22 @@ CConnectionEstablisher::CConnectionEstablisher
 )
 	: m_pImpl(new Impl(kernel, log))
 {
-}
+} 
 
 
 CConnectionEstablisher::~CConnectionEstablisher(void)
 {
 }
 
+void CConnectionEstablisher::Create(IKernel& kernel, ILog& log)
+{
+	s_pInstance.reset(new CConnectionEstablisher(kernel, log));
+}
+
+void CConnectionEstablisher::Shutdown()
+{
+	s_pInstance.reset();
+}
+
 } // namespace net
+

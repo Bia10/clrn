@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="StaticNetwork"
+	Name="Network"
 	ProjectGUID="{32133C47-2DCC-4654-9B64-393A12835D9E}"
 	RootNamespace="StaticNetwork"
 	Keyword="Win32Proj"
@@ -280,10 +280,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\dllmain.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\stdafx.cpp"
 				>
 				<FileConfiguration
@@ -318,23 +314,11 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\src\Connect.h"
+				RelativePath=".\inc\Connect.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\ConnectionEstablisher.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\NetworkPlugin.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\stdafx.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\UDPHost.h"
+				RelativePath=".\inc\ConnectionEstablisher.h"
 				>
 			</File>
 			<File

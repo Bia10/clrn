@@ -21,14 +21,12 @@ namespace net
 //!
 class CConnectionEstablisher : boost::noncopyable
 {
-	friend class std::auto_ptr<CConnectionEstablisher>;
-
-	//! Ctor
+		//! Ctor
 	CConnectionEstablisher(IKernel& kernel, ILog& log);
 	~CConnectionEstablisher(void);
 
 public:
-	 
+
 	//! Create instance
 	static void Create(IKernel& kernel, ILog& log);
 
