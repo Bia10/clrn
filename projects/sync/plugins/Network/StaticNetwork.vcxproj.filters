@@ -17,6 +17,9 @@
     <ClCompile Include=".\src\UDPServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\UDPHost.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -28,13 +31,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\Connect.h">
+    <ClInclude Include=".\src\NetworkPlugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\ConnectionEstablisher.h">
+    <ClInclude Include=".\src\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\UDPServer.h">
+    <ClInclude Include=".\inc\UDPServer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UDPHost.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConnectionEstablisher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Connect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

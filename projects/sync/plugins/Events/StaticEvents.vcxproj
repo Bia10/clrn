@@ -25,7 +25,6 @@
     <ProjectGuid>{41D15513-1512-46DA-BAF2-D0ECC34849A2}</ProjectGuid>
     <RootNamespace>StaticEvents</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>Events</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_vc110|Win32'" Label="Configuration">
@@ -136,10 +135,12 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\Event.h" />
-    <ClInclude Include="inc\EventDispatcher.h" />
-    <ClInclude Include="inc\GetEvent.h" />
-    <ClInclude Include="inc\SetEvent.h" />
+    <ClInclude Include=".\inc\Event.h" />
+    <ClInclude Include=".\src\EventDispatcher.h" />
+    <ClInclude Include=".\src\EventsPlugin.h" />
+    <ClInclude Include=".\src\GetEvent.h" />
+    <ClInclude Include=".\src\SetEvent.h" />
+    <ClInclude Include=".\src\stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

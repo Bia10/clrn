@@ -25,7 +25,6 @@
     <ProjectGuid>{475FB8CE-740F-428B-8E5A-96F3EF657C78}</ProjectGuid>
     <RootNamespace>StaticSettings</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>Settings</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_vc110|Win32'" Label="Configuration">
@@ -137,6 +136,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include=".\src\GetSettings.h" />
+    <ClInclude Include=".\src\SetSettings.h" />
+    <ClInclude Include=".\inc\Settings.h" />
+    <ClInclude Include=".\src\SettingsPlugin.h" />
+    <ClInclude Include=".\src\stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\common\CommonSync\Common.vcxproj">
       <Project>{f61b301a-ba8a-4848-af98-cf85373fa12e}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -149,11 +155,6 @@
       <Project>{85142ebf-e20a-4d53-b391-de25047edbbe}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="inc\GetSettings.h" />
-    <ClInclude Include="inc\SetSettings.h" />
-    <ClInclude Include="inc\Settings.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
