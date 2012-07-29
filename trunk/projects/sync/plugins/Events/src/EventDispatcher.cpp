@@ -217,6 +217,7 @@ void CEventDispatcher::Create(ILog& logger, IKernel& kernel)
 
 CEventDispatcher& CEventDispatcher::Instance()
 {
+	CHECK(s_pInstance.get());
 	return *s_pInstance;
 }
 
