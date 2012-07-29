@@ -10,14 +10,18 @@ class CEventDispatcher::Impl
 {
 	void operator = (const Impl&);
 
-	//! Event signal type
-	typedef boost::signal<void (const ProtoPacketPtr)>	EventSignal;
+	//! Callback info
+	struct CallbackInfo
+	{
+		IJob::CallBackFn	callback;
+		std::string			host;
+	};
 
-	//! Signal pointer
-	typedef boost::shared_ptr<EventSignal>				EventSignalPtr;
+	//! Signals map
+	typedef std::map<std::size_t, CallbackInfo>		SignalsMap;
 
 	//! Events map type
-	typedef std::map<std::string, EventSignalPtr>		EventsMap;
+	typedef std::map<std::string, SignalsMap>		EventsMap;
 
 	//! Callback info
 	struct Info
@@ -27,7 +31,7 @@ class CEventDispatcher::Impl
 	};
 
 	//! Callbacks indexes map
-	typedef std::map<std::string, Info>					CallbackInfoMap;
+	typedef std::map<std::string, Info>				CallbackInfoMap;
 
 public:
 
@@ -59,12 +63,12 @@ public:
 			EventsMap::iterator it = m_Events.find(name);
 			if (m_Events.end() == it)
 			{
-				const EventsMap::value_type event = std::make_pair( name, EventSignalPtr(new EventSignal()) );
+				const EventsMap::value_type event = std::make_pair( name, SignalsMap() );
 				it = m_Events.insert(event).first;
 			}
 
 			// connect callback to slot
-			EventSignal& signal = *it->second;
+			SignalsMap& signalsMap = it->second;
 
 			boost::recursive_mutex::scoped_lock lockCallback(m_CallbackMutex);
 			const std::string hash = GetHash(name, host, caller);
@@ -73,13 +77,19 @@ public:
 			if (m_CallbacksInfo.end() != itCallback)
 			{
 				// unsubscribe all host callbacks
-				// TODO: signal host offline-online here
 				UnSubscribeHost(host);
+
+				// signal status event
+				SignalStatusEvent(false, host);
 			}
 
-			signal.connect(++m_CurrentCallbackIndex, callBack);			
-			m_CallbacksInfo[hash].index = m_CurrentCallbackIndex;
+			CallbackInfo info;
+			info.callback = callBack;
+			info.host = host;
 
+			signalsMap.insert(std::make_pair(++m_CurrentCallbackIndex, info));			
+			m_CallbacksInfo[hash].index = m_CurrentCallbackIndex;
+			m_CallbacksInfo[hash].host = host;
 
 			return hash;
 		}
@@ -98,6 +108,8 @@ public:
 		 
 		TRY 
 		{
+			boost::recursive_mutex::scoped_lock lock(m_EventsMutex);
+
 			// find event
 			const EventsMap::const_iterator it = m_Events.find(name);
 			if (m_Events.end() == it)
@@ -106,7 +118,12 @@ public:
 				return;
 			}
 
-			(*it->second)(packet);
+			const SignalsMap& signalsMap = it->second;
+			BOOST_FOREACH(const SignalsMap::value_type& pair, signalsMap)
+			{
+				pair.second.callback(packet);
+			}
+
 		}
 		CATCH_PASS_EXCEPTIONS("Signal failed.", name, *packet)
 	}
@@ -133,9 +150,12 @@ public:
 			CHECK(m_CallbacksInfo.end() != itCallback);
 
 			// disconnect callback from slot
-			EventSignal& signal = *it->second;
+			SignalsMap& signalsMap = it->second;
+
+			const SignalsMap::const_iterator itSignal = signalsMap.find(itCallback->second.index);
+			CHECK(itSignal != signalsMap.end(), itCallback->second.index);
 			
-			signal.disconnect(itCallback->second.index);			
+			signalsMap.erase(itSignal);			
 			m_CallbacksInfo.erase(itCallback);
 		}
 		CATCH_PASS_EXCEPTIONS("UnSubscribe failed.", name, hash)
@@ -144,28 +164,72 @@ public:
 
 private:
 
+	//! Signal status event
+	void SignalStatusEvent(const bool online, const std::string& guid)
+	{
+		const ProtoPacketPtr eventPacket(new packets::Packet());
+		TRACE_PACKET(eventPacket, online);
+		data::Table& resultTable = *eventPacket->mutable_job()->add_results();
+		resultTable.set_action(online ? data::Table_Action_Insert : data::Table_Action_Delete);
+		resultTable.set_id(data::Table_Id_HostStatusEvent);
+
+		CTable table(resultTable);
+		table.AddRow()["guid"] = guid;
+
+		CEvent evnt(m_Kernel, HOST_STATUS_EVENT_NAME);
+		const IJob::CallBackFn callback(!online ? boost::bind(&Impl::HostOnlineCallBack, this, _1, guid) : IJob::CallBackFn());
+		evnt.Signal(eventPacket, callback);
+	}
+
+	//! Host offline event signal callback
+	void HostOnlineCallBack(const ProtoPacketPtr packet, const std::string& guid)
+	{
+		if (!packet)
+			return; // callback failed
+
+		SignalStatusEvent(true, guid);
+	}
+
 	//! Unsubscribe host
 	void UnSubscribeHost(const std::string& host)
 	{
 		SCOPED_LOG(m_Log);
 
-		std::vector<CallbackInfoMap::const_iterator> toDelete;
-
-		boost::recursive_mutex::scoped_lock lock(m_CallbackMutex);
-
-		CallbackInfoMap::const_iterator it = m_CallbacksInfo.begin();
-		const CallbackInfoMap::const_iterator itEnd = m_CallbacksInfo.end();
-		for (; it != itEnd; ++it)
 		{
-			if (it->second.host == host)
-				toDelete.push_back(it);
+			std::vector<CallbackInfoMap::const_iterator> toDelete;
+
+			boost::recursive_mutex::scoped_lock lock(m_CallbackMutex);
+
+			CallbackInfoMap::const_iterator it = m_CallbacksInfo.begin();
+			const CallbackInfoMap::const_iterator itEnd = m_CallbacksInfo.end();
+			for (; it != itEnd; ++it)
+			{
+				if (it->second.host == host)
+					toDelete.push_back(it);
+			}
+
+			LOG_WARNING("Unsubscribing all events: [%s] from host: [%s].") % toDelete.size() % host;
+
+			BOOST_FOREACH(const CallbackInfoMap::const_iterator it, toDelete)
+			{
+				m_CallbacksInfo.erase(it);
+			}
 		}
-
-		LOG_WARNING("Unsubscribing all events: [%s] from host: [%s].") % toDelete.size() % host;
-
-		BOOST_FOREACH(const CallbackInfoMap::const_iterator it, toDelete)
 		{
-			m_CallbacksInfo.erase(it);
+			BOOST_FOREACH(EventsMap::value_type& evnt, m_Events)
+			{
+				std::vector<std::size_t> toDelete;
+				BOOST_FOREACH(const SignalsMap::value_type& signal, evnt.second)
+				{
+					if (signal.second.host == host)
+						toDelete.push_back(signal.first);
+				}
+
+				BOOST_FOREACH(const std::size_t index, toDelete)
+				{
+					evnt.second.erase(index);
+				}
+			}
 		}
 	}
 

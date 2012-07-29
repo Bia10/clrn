@@ -20,7 +20,7 @@ public:
 	void		Subscribe(const IJob::CallBackFn& callback, const std::string& host = "");
 
 	//! Signal event
-	void		Signal(const ProtoPacketPtr packet);
+	void		Signal(const ProtoPacketPtr packet, const IJob::CallBackFn callback = IJob::CallBackFn());
 
 private:
 
