@@ -1,9 +1,11 @@
 insert into settings(module, name, value) values(0, 'log_level', '4');
+insert into settings(module, name, value) values(0, 'log_level', '3');
 insert into settings(module, name, value) values(1, 'log_level', '4');
 insert into settings(module, name, value) values(2, 'log_level', '4');
 insert into settings(module, name, value) values(3, 'log_level', '4');
 insert into settings(module, name, value) values(4, 'log_level', '4');
 insert into settings(module, name, value) values(5, 'log_level', '4');
+insert into settings(module, name, value) values(0, 'log_source', '../logs/Kernel.log');
 insert into settings(module, name, value) values(0, 'log_source', '1');
 insert into settings(module, name, value) values(1, 'log_source', '../logs/Events.log');
 insert into settings(module, name, value) values(2, 'log_source', '../logs/Settings.log');
@@ -26,5 +28,5 @@ insert into hosts(guid, ip, port) values('00000000-0000-0000-0000-000000000001',
 
 
 insert into accounts values(0, 'CLRN');
-update settings set value = '3' where name = 'log_level';
+--update settings set value = '3' where name = 'log_level';
 

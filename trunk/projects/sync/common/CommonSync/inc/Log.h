@@ -9,9 +9,96 @@
 
 #include <boost/format.hpp>
 #include <boost/scoped_ptr.hpp>
+#include <boost/shared_ptr.hpp>
 #include <boost/thread/mutex.hpp>
 
-//! Log interface
+namespace log_details
+{
+
+//! Log stream implementation
+class LogStream
+{
+	//! Stream information
+	struct StreamInfo
+	{
+		std::ostream*		stream;
+		bool				created;
+		ILog::Level::Enum_t	lvl;
+	};
+
+	//! Stream vector
+	typedef std::vector<StreamInfo>			Streams;
+
+public:
+
+	//! Pointer type
+	typedef boost::shared_ptr<LogStream> Ptr;
+
+	LogStream()
+	{
+
+	}
+
+	~LogStream()
+	{
+		Streams::const_iterator it = m_Streams.begin();
+		const Streams::const_iterator itEnd = m_Streams.end();
+		for (; it != itEnd; ++it)
+		{
+			if (it->created)
+				delete it->stream;
+		}
+	}
+
+	bool IsEnabled(const ILog::Level::Enum_t level) const
+	{
+		Streams::const_iterator it = m_Streams.begin();
+		const Streams::const_iterator itEnd = m_Streams.end();
+		for (; it != itEnd; ++it)
+		{
+			if (it->lvl >= level)
+				return true;
+		}
+
+		return false;
+	}
+
+	void AddStream(std::ostream* stream, const ILog::Level::Enum_t level, const bool created)
+	{
+		if (!stream)
+			return;
+
+		StreamInfo info;
+		info.created = created;
+		info.lvl = level;
+		info.stream = stream;
+
+		m_Streams.push_back(info);
+	}
+
+	void Write (const std::string& text, const ILog::Level::Enum_t level)
+	{
+		Streams::const_iterator it = m_Streams.begin();
+		const Streams::const_iterator itEnd = m_Streams.end();
+		for (; it != itEnd; ++it)
+		{
+			if (it->lvl >= level)
+			{
+				*it->stream << text;
+				it->stream->flush();
+			}
+		}
+	}
+
+private:
+
+	//! Streams bound to this log stream
+	Streams			m_Streams;
+};
+
+} // namespace log_details
+
+//! Logger interface
 //!
 //! \class CLog
 //!
@@ -19,27 +106,21 @@ class CLog
 	: public ILog
 {
 	//! Stream vector
-	typedef std::vector<std::ostream*>			Streams;
+	typedef std::vector<log_details::LogStream::Ptr>	Streams;
 
-	//! Stream open flags(created or opened)
-	typedef std::vector<bool>					StreamFlags;
-
-	//! Stream path to index container
-	typedef std::map<std::wstring, std::size_t> StreamIndexes;
+	//! Stream path to pointer container
+	typedef std::map<std::wstring, std::ostream*>		StreamIndexes;
 
 public:
 	CLog(void);
 	~CLog(void);
 
 	//! Open log
-	void		Open(const std::string& szSource, unsigned int module);
-	void		Open(const std::wstring& szSource, unsigned int module);
+	void		Open(const std::string& szSource, unsigned int module, const Level::Enum_t level);
+	void		Open(const std::wstring& szSource, unsigned int module, const Level::Enum_t level);
 
 	//! Close log
 	void		Close();
-
-	//! Set log module levels
-	void		SetLogLevels(const std::vector<Level::Enum_t>& levels);
 
 	//! Is logging enabled
 	bool		IsEnabled(unsigned int module, const Level::Enum_t level) const;
@@ -89,12 +170,6 @@ private:
 
 	//! Log output stream pointers
 	Streams								m_Streams;
-
-	//! Stream flags
-	StreamFlags							m_CreatedStreams;
-
-	//! Log levels
-	std::vector<Level::Enum_t>			m_Levels;
 
 	//! Current message level
 	Level::Enum_t						m_CurrentLevel;

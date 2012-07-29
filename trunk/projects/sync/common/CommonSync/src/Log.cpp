@@ -66,17 +66,17 @@ CLog::~CLog(void)
 	Close();
 }
 
-void CLog::Open(const std::string& source, unsigned int module)
+void CLog::Open(const std::string& source, unsigned int module, const Level::Enum_t level)
 {
-	Open(conv::cast<std::wstring>(source), module);
+	Open(conv::cast<std::wstring>(source), module, level);
 }
 
-void CLog::Open(const std::wstring& source, unsigned int module)
+void CLog::Open(const std::wstring& source, unsigned int module, const Level::Enum_t level)
 {
 	if (m_Streams.size() <= module)
 	{
 		m_Streams.resize(module + 1);
-		m_CreatedStreams.resize(m_Streams.size());
+		m_Streams[module].reset(new log_details::LogStream());
 	}
 
 	if (1 == source.size())
@@ -84,24 +84,22 @@ void CLog::Open(const std::wstring& source, unsigned int module)
 		switch(*source.begin())
 		{
 		case '1' :
-			m_Streams[module] = &std::cout;
+			m_Streams[module]->AddStream(&std::cout, level, false);
 			break;
 		case '2' :
-			m_Streams[module] = &std::cerr;
+			m_Streams[module]->AddStream(&std::cerr, level, false);
 			break;
 		case '3' :
-			m_Streams[module] = &std::clog;
+			m_Streams[module]->AddStream(&std::clog, level, false);
 			break;
 		}
-		m_CreatedStreams[module] = false;
 	}
 	else
 	{
 		if (m_StreamIndexes.count(source))
 		{
 			// this stream already opened
-			m_Streams[module] = m_Streams[m_StreamIndexes[source]];
-			m_CreatedStreams[module] = false;
+			m_Streams[module]->AddStream(m_StreamIndexes[source], level, false);
 		}
 		else
 		{
@@ -124,18 +122,16 @@ void CLog::Open(const std::wstring& source, unsigned int module)
 			}
 
 			fs::CreateDirectories(source);
-			std::ofstream* stream = new std::ofstream(fs::FullPath(source).c_str(), std::ios::out);
+			std::auto_ptr<std::ofstream> stream(new std::ofstream(fs::FullPath(source).c_str(), std::ios::out));
 			CHECK(stream->is_open(), conv::cast<std::string>(source));
-			m_Streams[module] = stream;
-			m_CreatedStreams[module] = true;
-			m_StreamIndexes[source] = module;
+			m_Streams[module]->AddStream(stream.release(), level, true);
 		}
 	}	
 
 
 	m_Mutex.lock();
 	m_CurrentModule = module;
-	m_Format = boost::format("Logger started, module: [%s], source: [%s].") % module % conv::cast<std::string>(source);
+	m_Format = boost::format("Logger started, module: [%s], level: [%s], source: [%s].") % module % level % conv::cast<std::string>(source);
 	Write(Level::None);
 	m_IsOpened = true;
 }
@@ -152,20 +148,14 @@ void CLog::Close()
 	m_Format = boost::format("Logger stopped.");
 	Write(Level::None);
 
-	for (std::size_t i = 0 ; i < m_Streams.size(); ++i)
-	{
-		if (m_CreatedStreams[i])
-			delete m_Streams[i];
-		m_CreatedStreams[i] = false;
-	}
+	m_Streams.clear();
 }
 
 bool CLog::IsEnabled(unsigned int module, const Level::Enum_t level) const
 {
-	if (m_Levels.size() <= module)
+	if (module >= m_Streams.size())
 		return false;
-
-	return m_Levels[module] >= level;
+	return m_Streams[module]->IsEnabled(level);
 }
 
 ILog& CLog::Error(unsigned int module, const std::string& text)
@@ -443,14 +433,11 @@ void CLog::Write(const Level::Enum_t level)
 #endif
 			<< "]: " << m_Format.str() << std::endl;
 
-		*m_Streams[m_CurrentModule] << m_TempStream.str();
+		m_Streams[m_CurrentModule]->Write(m_TempStream.str(), level);
 
 		boost::mutex::scoped_lock lock(g_PacketMutex);
 		if (m_Packet)
-		{
-			m_TempStream << "\t";
 			m_Packet->add_trace(m_TempStream.str());
-		}
 	}
 	catch(...)
 	{
@@ -467,18 +454,6 @@ ILog::ScopedLogPtr CLog::MakeScopedLog(unsigned int module, const std::string& f
 
 	return ScopedLogPtr(new CScopedLog(*this, func.c_str(), module));
 }
-
-void CLog::SetLogLevels(const std::vector<Level::Enum_t>& levels)
-{
-	m_Levels = levels;
-
-	m_Streams.resize(m_Levels.size());
-	m_CreatedStreams.resize(m_Levels.size());
-
-	for (unsigned int i = 0 ; i < m_Levels.size(); ++i)
-		Warning(i, __FUNCTION__, "Setting up module: [%s] log level: [%s].") % i % m_Levels[i];
-}
-
 
 ILog& CLog::operator << (const ProtoPacketPtr packet)
 {

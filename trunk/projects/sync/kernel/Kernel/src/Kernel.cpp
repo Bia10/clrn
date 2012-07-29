@@ -57,24 +57,21 @@ void CKernel::InitLog()
 {
 	TRY 
 	{
-		std::vector<ILog::Level::Enum_t> levels;
-		for (std::size_t i = 0; i <= LAST_MODULE_ID; ++i)
-		{
-			int logLevel = 0;
-			m_pSettings->Get(i, logLevel, "log_level"); 
-			levels.push_back(static_cast<ILog::Level::Enum_t>(logLevel));
-		}
-	
 		m_Log.Close();
-	
+
 		for (std::size_t i = 0; i <= LAST_MODULE_ID; ++i)
 		{
-			std::string logSource;
-			m_pSettings->Get(i, logSource, "log_source");
-			m_Log.Open(logSource, i);
-		}	
-	
-		m_Log.SetLogLevels(levels);
+			std::vector<std::size_t> levels;
+			m_pSettings->Get(i, levels, "log_level"); 
+
+			std::vector<std::wstring> sources;
+			m_pSettings->Get(i, sources, "log_source"); 
+
+			CHECK(levels.size() == sources.size(), levels.size(), sources.size());
+
+			for (std::size_t n = 0 ; n < sources.size(); ++n)
+				m_Log.Open(sources[n], i, static_cast<ILog::Level::Enum_t>(levels[n]));
+		}
 	}
 	CATCH_PASS_EXCEPTIONS("Failed to init log")
 }
@@ -140,7 +137,7 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 
 	TRY 
 	{
-		m_Log.Open("1", CURRENT_MODULE_ID);
+		m_Log.Open("1", CURRENT_MODULE_ID, ILog::Level::Error);
 
 		const std::string dbPath = conv::cast<std::string>(fs::FullPath(szDBpath ? szDBpath : KERNEL_DATABASE_FILE_NAME));
 		CHECK(fs::Exists(dbPath), dbPath);

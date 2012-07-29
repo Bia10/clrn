@@ -117,18 +117,25 @@ std::basic_ostream<char>& CExcept::Append()
 	return m_pImpl->Append();
 }
 
-namespace xc
+namespace xc_details
 {
 
-void FormatArguments(std::vector<std::string>& args, const char* text /*= 0*/)
+void FormatArguments(StringList& args, const char* text /*= 0*/)
 {
 	if (!text)
 		return;
 
 	boost::algorithm::split(args, text, boost::algorithm::is_any_of(","));
 
-	BOOST_FOREACH(std::string& argument, args)
-		boost::algorithm::trim(argument);
+	StringList::iterator it = args.begin();
+	const StringList::const_iterator itEnd = args.end();
+	for (; it != itEnd; ++it)
+	{
+		if (it->substr(0, 1) == "\"")
+			it->clear();
+		else
+			boost::algorithm::trim(*it);
+	}
 }
 
-} // namespace xc
+} // namespace xc_details
