@@ -44,6 +44,8 @@ public:
 	void				Get(const int module, double& value, const std::string& path);
 	void				Get(const int module, std::string& value, const std::string& path);
 	void				Get(const int module, std::wstring& value, const std::string& path);
+	void				Get(const int module, std::vector<std::wstring>& value, const std::string& path);
+	void				Get(const int module, std::vector<unsigned int>& value, const std::string& path);
 
 	//!	Set local guid
 	void				SetLocalGuid(const std::string& guid);

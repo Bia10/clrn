@@ -5,7 +5,7 @@
 
 #include <exception>
 #include <string>
-#include <vector>
+#include <list>
 
 #include <boost/scoped_ptr.hpp>
 
@@ -45,17 +45,17 @@ private:
 	boost::scoped_ptr<Impl> m_pImpl;
 };
 
-namespace xc
+namespace xc_details
 {
 
 //! Type of the string vector
-typedef std::vector<std::string>		StringVector;
+typedef std::list<std::string>	StringList;
 
 //! Type of the string vector iterator
-typedef StringVector::const_iterator	It;
+typedef StringList::const_iterator	It;
 
 //! Argument formatter
-void FormatArguments(StringVector& args, const char* text = 0);
+void FormatArguments(StringList& args, const char* text = 0);
 
 //! Message appenders
 template<class T>
@@ -66,7 +66,10 @@ void Append(T& /*e*/, It /*it*/)
 template<class T>
 void Append(CExcept& e, It it, const T& arg1)
 {
-	e.Append() << "\t[" << *it << "] : [" << arg1 << "]" << std::endl;
+	if (it->empty())
+		e.Append() << "\t[" << arg1 << "]" << std::endl;
+	else
+		e.Append() << "\t[" << *it << "] : [" << arg1 << "]" << std::endl;
 } 
 template<class T1, class T2>
 void Append(CExcept& e, It it, const T1& arg1, const T2& arg2)
@@ -99,12 +102,12 @@ void Append(CExcept& e, It it, const T1& arg1, const T2& arg2, const T3& arg3, c
 	Append(e, ++it, arg5);
 }
 
-} // namespace xc
+} // namespace xc_details
 
-#define APPEND_ARGS(xcpt, ...)							\
-	xc::StringVector args;								\
-	xc::FormatArguments(args, #__VA_ARGS__);			\
-	xc::Append(xcpt, args.begin(), __VA_ARGS__);		\
+#define APPEND_ARGS(xcpt, ...)									\
+	xc_details::StringList args;								\
+	xc_details::FormatArguments(args, #__VA_ARGS__);			\
+	xc_details::Append(xcpt, args.begin(), __VA_ARGS__);		\
 
 #define TRY try
 #define THROW(text) throw CMN_NAMESPACE_NAME::CExcept(__FILE__, __LINE__, text);

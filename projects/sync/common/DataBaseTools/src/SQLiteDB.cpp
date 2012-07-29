@@ -50,6 +50,8 @@ public:
 		{
 			SCOPED_LOG(m_Log);
 
+			LOG_TRACE("Executing: [%s].") % sql;
+
 			boost::mutex::scoped_lock lock(m_Mutex);
 			CppSQLite3Query query = m_DataBase.execQuery(sql);
 			
@@ -82,7 +84,7 @@ public:
 				query.nextRow();	
 			}
 
-			LOG_TRACE("Sql: [%s], rows received: [%s]") % sql % result.rows_size();
+			LOG_TRACE("Rows received: [%s]") % result.rows_size();
 			LOG_DEBUG("Table: [%s]") % result.ShortDebugString();
 		}
 		CATCH_PASS_SQLITE_EXCEPTIONS(sql)

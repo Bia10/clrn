@@ -6,8 +6,7 @@ namespace po = boost::program_options;
 int main(int ac, char* av[])
 {
 	CLog logger;
-	logger.Open("1", KERNEL_MODULE_ID);
-	std::vector<ILog::Level::Enum_t> levels(10, ILog::Level::Trace);
+	logger.Open("1", KERNEL_MODULE_ID, ILog::Level::Trace);
 
 	TRY 
 	{

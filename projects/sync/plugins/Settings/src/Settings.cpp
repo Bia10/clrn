@@ -44,6 +44,26 @@ public:
 	}
 
 	template<typename T>
+	inline void Get(const int module, std::vector<T>& value, const std::string& path)
+	{
+		CHECK(m_pData, path);
+		CHECK(m_pTableWrapper, path, *m_pData);
+
+		BOOST_FOREACH(const CTable::Row& row, *m_pTableWrapper)
+		{
+			const int currentModule = conv::cast<int>(row["module"]);
+			if (currentModule != module)
+				continue;
+
+			const std::string& valueName = row["name"];
+			if (valueName != path)
+				continue;
+
+			value.push_back(conv::cast<T>(row["value"]));
+		}
+	}
+
+	template<typename T>
 	inline void Set(const int module, const T& value, const std::string& path)
 	{
 		CHECK(m_pData, conv::cast<std::string>(value), path);
@@ -196,6 +216,16 @@ void CSettings::Get(const int module, std::string& value, const std::string& pat
 }
 
 void CSettings::Get(const int module, std::wstring& value, const std::string& path)
+{
+	m_pImpl->Get(module, value, path);
+}
+
+void CSettings::Get(const int module, std::vector<std::wstring>& value, const std::string& path)
+{
+	m_pImpl->Get(module, value, path);
+}
+
+void CSettings::Get(const int module, std::vector<unsigned int>& value, const std::string& path)
 {
 	m_pImpl->Get(module, value, path);
 }

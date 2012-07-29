@@ -63,14 +63,11 @@ public:
 	};
 
 	//! Open log
-	virtual void		Open(const std::string& szSource, unsigned int module) = 0;
-	virtual void		Open(const std::wstring& szSource, unsigned int module) = 0;
+	virtual void		Open(const std::string& szSource, unsigned int module, const Level::Enum_t level) = 0;
+	virtual void		Open(const std::wstring& szSource, unsigned int module, const Level::Enum_t level) = 0;
 
 	//! Close log
 	virtual void		Close() = 0;
-
-	//! Set log module levels
-	virtual void		SetLogLevels(const std::vector<Level::Enum_t>& levels) = 0;
 
 	//! Is logging enabled
 	virtual bool		IsEnabled(unsigned int module, const Level::Enum_t level) const = 0;
