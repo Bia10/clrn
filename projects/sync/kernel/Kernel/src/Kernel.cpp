@@ -13,14 +13,18 @@ CKernel::~CKernel(void)
 {
 	SCOPED_LOG(m_Log);
 
-	m_Service.stop();
-	m_WorkPool.interrupt_all();
-	m_WorkPool.join_all();
+	{
+		boost::mutex::scoped_lock lock(m_WaitingJobsMutex);
+		m_WaitingJobs.clear();
+	}
+
+	m_Log.Close();
+
+	m_PluginLoader->Unload();
+	m_pSettings.reset();
 	m_pServer.reset();
 
 	DataBase::Shutdown();
-
-	m_Log.Close();
 }
 
 void CKernel::Run()
@@ -40,15 +44,6 @@ void CKernel::Stop()
 	m_Service.stop();
 	m_WorkPool.interrupt_all();
 	m_WorkPool.join_all();
-
-	{
-		boost::mutex::scoped_lock lock(m_WaitingJobsMutex);
-		m_WaitingJobs.clear();
-	}
-
-	m_PluginLoader->Unload();
-	m_pSettings.reset();
-	m_pServer.reset();
 
 	LOG_WARNING("Kernel stopped.");
 }

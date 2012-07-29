@@ -14,9 +14,13 @@ CGetEvent::~CGetEvent()
 {
 	SCOPED_LOG(m_Log);
 
-	// removing subscribe
-	if (!m_EventName.empty())
-		CEventDispatcher::Instance().UnSubscribe(m_EventName, m_EventHash);
+	TRY 
+	{
+		// removing subscribe
+		if (!m_EventName.empty())
+			CEventDispatcher::Instance().UnSubscribe(m_EventName, m_EventHash);
+	}
+	CATCH_IGNORE_EXCEPTIONS(m_Log)
 }
 
 void CGetEvent::EventCallBack(const ProtoPacketPtr packet)

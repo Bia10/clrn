@@ -145,6 +145,7 @@ void CLog::Close()
 	if (!m_IsOpened)
 		return;
 
+	m_Packet.reset();
 	m_IsOpened = false;
 
 	m_Mutex.lock();
