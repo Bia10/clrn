@@ -415,7 +415,7 @@ void CLog::Write(const Level::Enum_t level)
 {
 	try
 	{
-		if (!m_Streams[m_CurrentModule])
+		if (m_Streams.size() <= m_CurrentModule || !m_Streams[m_CurrentModule])
 		{
 			m_Mutex.unlock();
 			return;

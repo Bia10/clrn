@@ -38,6 +38,10 @@ void CSetEvent::Invoke(const TableList& params, const std::string& /*host*/)
 
 		// signal event
 		CEventDispatcher::Instance().Signal(name, resultPacket);
+
+		// invoke callback if exists
+		if (m_CallBackFn)
+			m_CallBackFn(resultPacket);
 	}
 	CATCH_PASS_EXCEPTIONS("CSetEvent::Invoke failed.")
 }

@@ -30,7 +30,7 @@ void CEvent::Subscribe(const IJob::CallBackFn& callback, const std::string& host
 	CATCH_PASS_EXCEPTIONS(host)
 }
 
-void CEvent::Signal(const ProtoPacketPtr packet)
+void CEvent::Signal(const ProtoPacketPtr packet, const IJob::CallBackFn callback)
 {
 	TRY 
 	{
@@ -53,7 +53,7 @@ void CEvent::Signal(const ProtoPacketPtr packet)
 			params.push_back(table);
 		}
 	
-		m_Kernel.ExecuteJob(jobs::Job_JobId_SET_EVENT, params);
+		m_Kernel.ExecuteJob(jobs::Job_JobId_SET_EVENT, params, "", callback);
 	}
 	CATCH_PASS_EXCEPTIONS(*packet)
 }
