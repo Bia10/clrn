@@ -35,9 +35,6 @@ private:
 	//! Request packet host
 	std::string				m_RequestPacketHost;
 
-	//! Event name
-	std::string				m_EventName;
-
 	//! Event id
 	std::string				m_EventHash;
 };

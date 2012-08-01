@@ -17,8 +17,8 @@ CGetEvent::~CGetEvent()
 	TRY 
 	{
 		// removing subscribe
-		if (!m_EventName.empty())
-			CEventDispatcher::Instance().UnSubscribe(m_EventName, m_EventHash);
+		if (!m_EventHash.empty())
+			CEventDispatcher::Instance().UnSubscribe(m_EventHash);
 	}
 	CATCH_IGNORE_EXCEPTIONS(m_Log)
 }
@@ -54,19 +54,19 @@ void CGetEvent::Execute(const ProtoPacketPtr packet)
 		LOG_TRACE("Execute subscribe, packet: [%s].") % packet->ShortDebugString(); 
 
 		// getting event params
-		m_EventName = packet->job().params(0).rows(0).data(0);
+		const std::string& name = packet->job().params(0).rows(0).data(0);
 		const std::string& caller = packet->job().params(0).rows(0).data(1);
 
-		CHECK(!m_EventName.empty());
+		CHECK(!name.empty());
 
 		// subscribe to event
-		m_EventHash = CEventDispatcher::Instance().Subscribe(m_EventName, packet->from(), caller, boost::bind(&CGetEvent::EventCallBack, this, _1));
+		m_EventHash = CEventDispatcher::Instance().Subscribe(name, packet->from(), caller, boost::bind(&CGetEvent::EventCallBack, this, _1));
 
 		// saving request packet params
 		m_RequestPacketGuid = packet->guid();
 		m_RequestPacketHost = packet->from();
 
-		TRACE_PACKET(packet, m_EventHash, m_EventName, m_RequestPacketHost, m_RequestPacketGuid);
+		TRACE_PACKET(packet, m_EventHash, m_RequestPacketHost, m_RequestPacketGuid);
 
 		// add this job to the list of waiting
 		m_TimeOut = std::numeric_limits<std::size_t>::max();

@@ -180,15 +180,15 @@ void CKernel::Init(const char* szDBpath /*= 0*/)
 
 		// subscribing to host map change event
 		CEvent hostMapEvent(*this, HOSTMAP_EVENT_NAME);
-		hostMapEvent.Subscribe(boost::bind(&CKernel::HostMapCallBack, this, _1));
+		hostMapEvent.Subscribe(boost::bind(&CKernel::HostMapCallBack, this, _1), __FUNCTION__);
 
 		// subscribing to host list change event
 		CEvent hostListEvent(*this, HOSTS_TABLE_NAME);
-		hostListEvent.Subscribe(boost::bind(&CKernel::HostListCallBack, this, _1));
+		hostListEvent.Subscribe(boost::bind(&CKernel::HostListCallBack, this, _1), __FUNCTION__);
 
 		// subscribing to host status event
 		CEvent hostStatusEvent(*this, HOST_STATUS_EVENT_NAME);
-		hostStatusEvent.Subscribe(boost::bind(&CKernel::HostStatusCallBack, this, _1));
+		hostStatusEvent.Subscribe(boost::bind(&CKernel::HostStatusCallBack, this, _1), __FUNCTION__);
 
 		// setting up server endpoints
 		CProcedure hostList(*this);

@@ -14,31 +14,19 @@ class CEventDispatcher::Impl
 	struct CallbackInfo
 	{
 		IJob::CallBackFn	callback;
+		std::string			name;
 		std::string			host;
+		std::string			hash;
 	};
 
-	//! Signals map
-	typedef std::map<std::size_t, CallbackInfo>		SignalsMap;
-
-	//! Events map type
-	typedef std::map<std::string, SignalsMap>		EventsMap;
-
-	//! Callback info
-	struct Info
-	{
-		std::size_t index;
-		std::string	host;
-	};
-
-	//! Callbacks indexes map
-	typedef std::map<std::string, Info>				CallbackInfoMap;
+	//! Callbacks
+	typedef std::list<CallbackInfo>	Callbacks;
 
 public:
 
 	Impl(ILog& logger, IKernel& kernel)
 		: m_Log(logger)
 		, m_Kernel(kernel)
-		, m_CurrentCallbackIndex(0)
 	{
 		SCOPED_LOG(m_Log);
 	}
@@ -57,24 +45,20 @@ public:
 
 		TRY 
 		{
-			boost::recursive_mutex::scoped_lock lock(m_EventsMutex);
-
-			// find or create new signal
-			EventsMap::iterator it = m_Events.find(name);
-			if (m_Events.end() == it)
-			{
-				const EventsMap::value_type event = std::make_pair( name, SignalsMap() );
-				it = m_Events.insert(event).first;
-			}
-
-			// connect callback to slot
-			SignalsMap& signalsMap = it->second;
-
-			boost::recursive_mutex::scoped_lock lockCallback(m_CallbackMutex);
+			// generate hash
 			const std::string hash = GetHash(name, host, caller);
 
-			const CallbackInfoMap::const_iterator itCallback = m_CallbacksInfo.find(hash);
-			if (m_CallbacksInfo.end() != itCallback)
+			boost::recursive_mutex::scoped_lock lock(m_CallbackMutex);
+
+			// check for this hash existence
+			const Callbacks::const_iterator it = std::find_if
+			(
+				m_Callbacks.begin(),
+				m_Callbacks.end(),
+				boost::bind(&CallbackInfo::hash, _1) == hash
+			);
+
+			if (m_Callbacks.end() != it)
 			{
 				// unsubscribe all host callbacks
 				UnSubscribeHost(host);
@@ -83,13 +67,14 @@ public:
 				SignalStatusEvent(false, host);
 			}
 
+			// simply add new callback
 			CallbackInfo info;
 			info.callback = callBack;
+			info.hash = hash;
 			info.host = host;
+			info.name = name;
 
-			signalsMap.insert(std::make_pair(++m_CurrentCallbackIndex, info));			
-			m_CallbacksInfo[hash].index = m_CurrentCallbackIndex;
-			m_CallbacksInfo[hash].host = host;
+			m_Callbacks.push_back(info);
 
 			return hash;
 		}
@@ -108,28 +93,20 @@ public:
 		 
 		TRY 
 		{
-			boost::recursive_mutex::scoped_lock lock(m_EventsMutex);
+			boost::recursive_mutex::scoped_lock lock(m_CallbackMutex);
 
-			// find event
-			const EventsMap::const_iterator it = m_Events.find(name);
-			if (m_Events.end() == it)
+			// find callbacks and invoke them
+			BOOST_FOREACH(const CallbackInfo& info, m_Callbacks)
 			{
-				LOG_WARNING("Event: name: [%s], data: [%s], don't have any subscribers, ignored.") % name % packet->ShortDebugString();
-				return;
+				if (info.name == name)
+					info.callback(packet);
 			}
-
-			const SignalsMap& signalsMap = it->second;
-			BOOST_FOREACH(const SignalsMap::value_type& pair, signalsMap)
-			{
-				pair.second.callback(packet);
-			}
-
 		}
 		CATCH_PASS_EXCEPTIONS("Signal failed.", name, *packet)
 	}
 
 	//! Unsubscribe
-	void UnSubscribe(const std::string& name, const std::string& hash)
+	void UnSubscribe(const std::string& hash)
 	{
 		SCOPED_LOG(m_Log);
 
@@ -137,28 +114,21 @@ public:
 
 		TRY 
 		{
-			boost::recursive_mutex::scoped_lock lock(m_EventsMutex);
+			boost::recursive_mutex::scoped_lock lock(m_CallbackMutex);
 
-			// find signal
-			EventsMap::iterator it = m_Events.find(name);
-			if (m_Events.end() == it)
-				return;
+			// find callback and erase it
+			const Callbacks::const_iterator it = std::find_if
+			(
+				m_Callbacks.begin(),
+				m_Callbacks.end(),
+				boost::bind(&CallbackInfo::hash, _1) == hash
+			);
 
-			boost::recursive_mutex::scoped_lock lockCallback(m_CallbackMutex);
+			CHECK(m_Callbacks.end() != it);
 
-			const CallbackInfoMap::const_iterator itCallback = m_CallbacksInfo.find(hash);
-			CHECK(m_CallbacksInfo.end() != itCallback);
-
-			// disconnect callback from slot
-			SignalsMap& signalsMap = it->second;
-
-			const SignalsMap::const_iterator itSignal = signalsMap.find(itCallback->second.index);
-			CHECK(itSignal != signalsMap.end(), itCallback->second.index);
-			
-			signalsMap.erase(itSignal);			
-			m_CallbacksInfo.erase(itCallback);
+			m_Callbacks.erase(it);
 		}
-		CATCH_PASS_EXCEPTIONS("UnSubscribe failed.", name, hash)
+		CATCH_PASS_EXCEPTIONS("UnSubscribe failed.", hash)
 	}
 
 
@@ -195,41 +165,19 @@ private:
 	{
 		SCOPED_LOG(m_Log);
 
+		boost::recursive_mutex::scoped_lock lock(m_CallbackMutex);
+
+		Callbacks::const_iterator it = m_Callbacks.begin();
+		const Callbacks::const_iterator itEnd = m_Callbacks.end();
+		for (; it != itEnd; )
 		{
-			std::vector<CallbackInfoMap::const_iterator> toDelete;
-
-			boost::recursive_mutex::scoped_lock lock(m_CallbackMutex);
-
-			CallbackInfoMap::const_iterator it = m_CallbacksInfo.begin();
-			const CallbackInfoMap::const_iterator itEnd = m_CallbacksInfo.end();
-			for (; it != itEnd; ++it)
+			if (it->host == host)
 			{
-				if (it->second.host == host)
-					toDelete.push_back(it);
+				LOG_WARNING("Unsubscribing event name: [%s], hash: [%s] from host: [%s].") % it->name % it->hash % it->host;
+				it = m_Callbacks.erase(it);
 			}
-
-			LOG_WARNING("Unsubscribing all events: [%s] from host: [%s].") % toDelete.size() % host;
-
-			BOOST_FOREACH(const CallbackInfoMap::const_iterator it, toDelete)
-			{
-				m_CallbacksInfo.erase(it);
-			}
-		}
-		{
-			BOOST_FOREACH(EventsMap::value_type& evnt, m_Events)
-			{
-				std::vector<std::size_t> toDelete;
-				BOOST_FOREACH(const SignalsMap::value_type& signal, evnt.second)
-				{
-					if (signal.second.host == host)
-						toDelete.push_back(signal.first);
-				}
-
-				BOOST_FOREACH(const std::size_t index, toDelete)
-				{
-					evnt.second.erase(index);
-				}
-			}
+			else
+				++it;
 		}
 	}
 
@@ -245,17 +193,8 @@ private:
 	//! Kernel
 	IKernel&				m_Kernel;
 
-	//! Registered events
-	EventsMap				m_Events;
-
-	//! Events mutex
-	boost::recursive_mutex	m_EventsMutex;
-
-	//! Callback indexes map
-	CallbackInfoMap			m_CallbacksInfo;
-
-	//! Current callback index
-	std::size_t				m_CurrentCallbackIndex;
+	//! Registered callbacks
+	Callbacks				m_Callbacks;
 
 	//! Callback indexes mutes
 	boost::recursive_mutex	m_CallbackMutex;
@@ -295,9 +234,9 @@ void CEventDispatcher::Signal(const std::string& name, const ProtoPacketPtr pack
 	m_pImpl->Signal(name, packet);
 }
 
-void CEventDispatcher::UnSubscribe(const std::string& name, const std::string& hash)
+void CEventDispatcher::UnSubscribe(const std::string& hash)
 {
-	m_pImpl->UnSubscribe(name, hash);
+	m_pImpl->UnSubscribe(hash);
 }
 
 std::string CEventDispatcher::Subscribe(const std::string& name, const std::string& host, const std::string& caller, const IJob::CallBackFn& callBack)
