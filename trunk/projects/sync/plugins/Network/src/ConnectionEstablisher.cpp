@@ -33,7 +33,7 @@ public:
 
 		// subscribe to host status event
 		CEvent hostStatusEvent(m_Kernel, HOST_STATUS_EVENT_NAME);
-		hostStatusEvent.Subscribe(boost::bind(&Impl::LocalHostStatusCallBack, this, _1));
+		hostStatusEvent.Subscribe(boost::bind(&Impl::LocalHostStatusCallBack, this, _1), __FUNCTION__);
 
 		// subscribing to host check event
 		m_Kernel.Timer(boost::posix_time::milliseconds(m_PingInterval * HOST_CONNECT_TIMEOUT_RATIO), boost::bind(&Impl::HostControlTimeEvent, this));
@@ -65,10 +65,10 @@ public:
 			{
 				// subscribe to events on this hosts
 				CEvent remoteHostsEvent(m_Kernel, HOSTS_TABLE_NAME);
-				remoteHostsEvent.Subscribe(boost::bind(&Impl::RemoteHostsCallBack, this, _1), guid);
+				remoteHostsEvent.Subscribe(boost::bind(&Impl::RemoteHostsCallBack, this, _1), __FUNCTION__, guid);
 	
 				CEvent remoteHostMapEvent(m_Kernel, HOSTMAP_EVENT_NAME);
-				remoteHostMapEvent.Subscribe(boost::bind(&Impl::RemoteHostMapCallBack, this, _1, guid), guid);		
+				remoteHostMapEvent.Subscribe(boost::bind(&Impl::RemoteHostMapCallBack, this, _1, guid), __FUNCTION__, guid);		
 	
 				// registering this host data
 				boost::mutex ::scoped_lock lock(m_HostsMutex);

@@ -131,7 +131,7 @@ void FormatArguments(StringList& args, const char* text /*= 0*/)
 	const StringList::const_iterator itEnd = args.end();
 	for (; it != itEnd; ++it)
 	{
-		if (it->substr(0, 1) == "\"")
+		if (it->size() > 1 && std::find(it->begin(), it->begin() + 2, '\"') != it->begin() + 2)
 			it->clear();
 		else
 			boost::algorithm::trim(*it);

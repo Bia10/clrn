@@ -42,7 +42,6 @@ public:
 	//! Unsubscribe
 	void						UnSubscribe
 	(
-		const std::string& name,
 		const std::string& hash
 	);
 

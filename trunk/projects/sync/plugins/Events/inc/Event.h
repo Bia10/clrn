@@ -17,7 +17,7 @@ public:
 	~CEvent(void);
 
 	//! Subscribe to event
-	void		Subscribe(const IJob::CallBackFn& callback, const std::string& host = "");
+	void		Subscribe(const IJob::CallBackFn& callback, const std::string& hash, const std::string& host = "");
 
 	//! Signal event
 	void		Signal(const ProtoPacketPtr packet, const IJob::CallBackFn callback = IJob::CallBackFn());
