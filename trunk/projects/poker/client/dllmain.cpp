@@ -15,6 +15,8 @@
 #include <boost/date_time/posix_time/time_formatters.hpp>
 #include <boost/thread/mutex.hpp>
 
+using namespace dasm;
+
 typedef void (__cdecl* ParseMessageOnTheFlyOriginal)(int, MessageRecord *);
 typedef BOOL (WINAPI* SendPostMessage)(HWND , UINT,  WPARAM, LPARAM);
 typedef std::vector<HWND> Windows;
@@ -76,7 +78,7 @@ BOOL CALLBACK PokerWindowFinder(HWND hWnd, LPARAM lParam)
 
 void GetUsefullData(const DataBlock& data, std::vector<char>& out)
 {
-	std::copy(data.Values->Data + data.Offset, data.Values->Data + data.Offset + data.Size, std::back_inserter(out));
+	std::copy(data.m_Data + data.m_Offset, data.m_Data + data.m_Offset + data.m_Size, std::back_inserter(out));
 }
 
 template<typename Stream>
@@ -84,7 +86,6 @@ void WriteCardInfo(Stream& stream, const char* data, int index)
 {
 	stream	<< data[index] << static_cast<int>(data[index + 1]);
 }
-
 
 template<typename Stream>
 void BytesToString(Stream& stream, const void* data, std::size_t size)
@@ -102,217 +103,6 @@ void BytesToString(Stream& stream, const void* data, std::size_t size)
 			stream << symbol;
 		stream << "' ";
 	}
-}
-
-template<typename T>
-void Parse(MessageRecord* record, T& value)
-{
-	assert(!record->FieldType);
-
-	const BYTE* values = reinterpret_cast<BYTE*>(record->Block->Values);
-	values += record->Block->Offset;
-	values += record->BytesParsed;
-
-	value = *reinterpret_cast<const T*>(values);
-	record->BytesParsed += sizeof(T);
-}
-
-void ParseDwordInverted(MessageRecord *thisPtr, DWORD& a)
-{
-	DWORD result;
-	Parse(thisPtr, result);
-	a = _byteswap_ulong(result);
-}
-
-void __stdcall HandleMessages(int a1, HandleMessagesArgument *a2, int messageId, DataBlock* dataBlock)
-{
-/*
-	ScopedLogger logger;
-	logger 
-		<<  "MessageId: 0x" << std::setfill('0') << std::setw(4) << std::hex << messageId << std::dec << std::setw(0)
-		<< ", Size: " << dataBlock->Size;
-
-	std::vector<char> data;
-	GetUsefullData(*dataBlock, data);
-
-	// FOLD == 0x36
-	// CARDS == 0x09
-	if (messageId == 0x09) 
-	{
-		std::ostringstream oss;
-
-		WriteCardInfo(oss, &data.front(), 0);
-		WriteCardInfo(oss, &data.front(), 3);
-
-		logger << ", Player cards: " << oss.str();
-	}
-
-	logger << ", Data: ";
-	BytesToString(logger, &data.front(), data.size());*/
-}
-
-void __stdcall ParseMessage(int messageId, DataBlock* messageBody)
-{
-/*
-	ScopedLogger logger;
-
-	std::vector<char> data;
-	GetUsefullData(*messageBody, data);
-
-	logger << "Message Id: 0x" << std::hex << std::setfill('0') << std::setw(4) << messageId;
-	if (messageId == 0x1005)
-	{
-		g_CardsCount = static_cast<int>(data.front());
-		logger << ", Cards received: " << std::dec << g_CardsCount;
-	}
-
-	logger << ", Data: ";
-	BytesToString(logger, &data.front(), data.size());*/
-}
-
-// Wrapper for
-// int __userpurge HandleMessages<eax>(int a1<eax>, HandleMessagesArgument *a2<ecx>, int messageId, DataBlock *dataBlock)
-__declspec(naked) void HandleMessagesWrapper()
-{
-	__asm
-	{
-		// save all registers
-		push ebp;
-		mov ebp, esp; // ebp == esp
-		push eax;
-		push ebx;
-		push ecx;
-		push edx;
-		push esp;
-		push esi;
-		push edi;
-		
-		// call handler
-		push dword ptr[ebp + 0x0C]; // dataBlock
-		push dword ptr[ebp + 0x08]; // messageId
-		push ecx;					// a2
-		push eax;					// a1
-		call HandleMessages;	
-
-		// restore all registers
-		pop edi;
-		pop esi;
-		pop esp;
-		pop edx;
-		pop ecx;
-		pop ebx;
-		pop eax;
-		pop ebp;
-
-		// jump to original function
-		jmp g_OriginalHandleMessages;
-	}
-}
-
-// Wrapper for
-// int __thiscall ParseMessage(int this, int messageId, DataBlock *messageBody)
-__declspec(naked) void ParseMessagesWrapper()
-{
-	__asm
-	{
-		// save all registers
-		push ebp;
-		mov ebp, esp; // ebp == esp
-		push eax;
-		push ebx;
-		push ecx;
-		push edx;
-		push esp;
-		push esi;
-		push edi;
-
-		// call handler
-		push dword ptr[ebp + 0x0c]; // messageBody
-		push dword ptr[ebp + 0x08]; // messageId
-		call ParseMessage;	
-
-		// restore all registers
-		pop edi;
-		pop esi;
-		pop esp;
-		pop edx;
-		pop ecx;
-		pop ebx;
-		pop eax;
-		pop ebp;
-
-		// jump to original function
-		jmp g_OriginalParseMessage;
-	}
-}
-
-void __cdecl ParseMessageOnTheFly(int parseFunction, MessageRecord *message)
-{
-	DWORD value1;
-	ParseDwordInverted(message, value1);
-
-	BYTE command;
-	Parse(message, command);
-
-	int commandId = command;
-	int delta = commandId - 33;
-
-	DWORD id;
-	ParseDwordInverted(message, id);
-	message->BytesParsed -= sizeof(DWORD);
-
-	std::vector<char> data;
-	GetUsefullData(*message->Block, data);
-
-	ScopedLogger logger;
-	logger << "Message Id: 0x" << std::hex <<  std::setfill('0') << std::setw(4) << id << ", Command: 0x" << static_cast<int>(command);
-
-	if (id == 0x10000)
-	{
-		const char* name = &data[0x31];
-
-		const std::string playerName(name);
-		logger << ", Player name: " << playerName;
-
-		const char action = data[0x2c];
-		const int amount = _byteswap_ulong(*reinterpret_cast<const int*>(&data[0x2d]));	
-
-		logger 
-			<< ", Action: 0x" << std::setfill('0') << std::setw(2) << std::hex << static_cast<int>(action) << " '" << action
-			<< "', Amount: " << std::setw(0) << std::dec << amount / 100;
-
-		if (action == 'C')
-		{
-			const int stack = _byteswap_ulong(*reinterpret_cast<const int*>(&data[0x88 + playerName.size()]));	
-			logger << ", Stack: " << stack  / 100;
-		}
-	}
-	else
-	if (command == 0x21 && (id == 0x1001 || id == 0x1005)) // flop and turn or river
-	{
-		const char* cardsBegin = &data[0xA2];
-
-		std::ostringstream oss;
-
-		for (int i = 0 ; i < 10; i += 2)
-		{
-			if (cardsBegin[i] != 'd' && cardsBegin[i] != 's' && cardsBegin[i] != 'h' && cardsBegin[i] != 'c')
-				break;
-
-			if (cardsBegin[i + 1] > 0xe)
-				break;
-
-			WriteCardInfo(oss, cardsBegin, i);
-		}
-
-		logger << ", Table cards: " << oss.str();
-	}
-
-	logger << ", Data: ";
-	BytesToString(logger, &data.front(), data.size());
-
-	message->BytesParsed -= (sizeof(BYTE) + sizeof(DWORD));
-	g_OriginalParseOnTheFly(parseFunction, message);
 }
 
 bool IsCard(const char* data)
@@ -333,9 +123,9 @@ bool IsCardsEnd(const char* data)
 void FindFlopCards(const DataBlock& data, std::string& result)
 {
 	int cardsFound = 0;
-	for (unsigned int i = data.Offset ; i < data.Size + data.Offset; ++i)
+	for (unsigned int i = data.m_Offset ; i < data.m_Size + data.m_Offset; ++i)
 	{
-		const char* current = data.Values->Data + i;
+		const char* current = data.m_Data + i;
 		if (IsCard(current))
 		{
 			++cardsFound;
@@ -364,7 +154,7 @@ void MessagesHook(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 	WindowMessage* message = reinterpret_cast<WindowMessage*>(lParam);
 
 	std::vector<char> data;
-	GetUsefullData(message->Block, data);
+	GetUsefullData(message->m_Block, data);
 
 	const DWORD messageId = _byteswap_ulong(*reinterpret_cast<const DWORD*>(&data[0xd]));
 
@@ -395,7 +185,7 @@ void MessagesHook(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 	if (messageId == 0x1001 || messageId == 0x1005) // flop cards
 	{
 		std::string cards;
-		FindFlopCards(message->Block, cards);
+		FindFlopCards(message->m_Block, cards);
 		logger << ", Flop cards: " << cards;
 	}
 	else
@@ -411,9 +201,8 @@ void MessagesHook(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 	else
 	if (messageId == 0x20000) // players info
 	{
-		MessageRecord record;
-		record.BytesParsed = 0x20;
-		record.Block = &message->Block;
+		MessageRecord record(*message);
+		record.SetParsedBytes(0x20);
 
 		std::ostringstream oss;
 

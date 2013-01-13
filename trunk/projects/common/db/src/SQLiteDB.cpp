@@ -14,7 +14,7 @@ catch(CppSQLite3Exception& e)														\
 	std::ostringstream oss;															\
 	oss << "SQLite error: [" << e.errorCode() << "] Message: ["						\
 	<< e.errorMessage() << "] Sql: [" << message << "]";							\
-	throw CMN_NAMESPACE_NAME::CExcept(__FILE__, __LINE__, oss.str());				\
+	throw CExcept(__FILE__, __LINE__, oss.str());				\
 }
 
 #define CATCH_PASS_SQLITE_EXCEPTIONS(message)										\
