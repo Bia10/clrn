@@ -9,12 +9,13 @@ message Packet
 	// packet type
 	enum PacketType 
 	{
-		REQUEST 		= 1;
-		REPLY 			= 2;
-		ERR				= 3;
-		PING			= 4;
-		ACK				= 5;
-		CONNECT			= 6;
+		REQUEST 		= 1;	// this packets stores request
+		REPLY 			= 2;	// this is reply to request
+		ERR				= 3;	// this is error reply
+		PING			= 4;	// ping packet
+		ACK				= 5;	// acknowledge packet
+		CONNECT			= 6;	// packet containing connect with third host job 
+		RECONNECT		= 7;	// reconnect packet, if after start host finds out that it have active sessions it sends this packet to all active hosts
 	}
 	
 	// packet destination description

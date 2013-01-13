@@ -9,8 +9,12 @@ int main(int argc, char* argv[])
 {
 	try 
 	{
-		dll::Injector injector("PokerStars.exe");
-		injector.Inject("d:\\svn\\trunk\\projects\\poker\\tests\\SpyDll\\Debug\\SpyDll.dll");
+		if (argc < 3)
+			return 1;
+
+		dll::Injector injector(argv[1]);
+
+		injector.Inject(argv[2]);
 	}
 	catch (const std::exception& e)
 	{
