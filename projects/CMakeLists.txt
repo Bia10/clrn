@@ -7,12 +7,20 @@ SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 set(COMMON_INC "${CMAKE_CURRENT_LIST_DIR}/common/common/inc/")
 set(DB_INC "${CMAKE_CURRENT_LIST_DIR}/common/db/inc/")
 
+add_definitions(
+	-D_X86_
+)
+
 set(TOOLSET "vc110")
 set(THIRD_PARTY "d:/svn/trunk/ThirdParty/")
 link_directories(
 	"${THIRD_PARTY}/lib"
 	"${THIRD_PARTY}/lib/${CMAKE_CFG_INTDIR}_${TOOLSET}"
 	"${LIBRARY_OUTPUT_PATH}"
+)
+include_directories(
+	"${THIRD_PARTY}"
+	"${COMMON_INC}"
 )
 
 add_subdirectory(common)

@@ -1,15 +1,7 @@
-////////////////////////////////////////////////////////////////////////////////
-//
-// COPYRIGHT    :   Positive Technologies, 2006-2012
-// PROGRAMMED BY:   Karnaukhov Sergey
-// BRIEF        :   Object factory implementation
-// DESCRIPTION  :   Implements simple registering/creating objects.
-//
-//////////////////////////////////////////////////////////////////////////////// 
 #ifndef Factory_h__
 #define Factory_h__
 
-#include "PTConversions.h"
+#include "Conversion.h"
 
 #include <stdexcept>
 #include <sstream>
@@ -21,11 +13,11 @@
 #pragma warning(disable: 4481) // nonstandard extension used: override specifier 'override'
 #endif
 
-namespace PT
+namespace cmn
 {
-namespace Functional
+namespace functional
 {
-namespace Details
+namespace details
 {
 
 //! Interface of the creator
@@ -87,7 +79,7 @@ public:
 		if (map.count(id))
 		{
 			std::ostringstream oss;
-			oss << "Item with id: [" << PT::tostr(id) << "] already exists in factory.";
+			oss << "Item with id: [" << conv::cast<std::string>(id) << "] already exists in factory.";
 			throw std::logic_error(oss.str().c_str());
 		}	
 	}
@@ -146,8 +138,8 @@ public:
 class NoLockPolicy
 {
 public:
-	typedef Details::Dummy Object;
-	typedef Details::DummyLocker ScopedLock;
+	typedef details::Dummy Object;
+	typedef details::DummyLocker ScopedLock;
 
 	Object& GetObject() const {return m_Dummy;}
 private:
@@ -176,7 +168,7 @@ template
 >
 class Factory : protected LockPolicy
 {
-	typedef Details::ICreator<Base> ICreator;
+	typedef details::ICreator<Base> ICreator; 
 	typedef boost::ptr_map<Id, ICreator> Map;
 public:
 
@@ -187,7 +179,7 @@ public:
 		const LockPolicy::ScopedLock lock(LockPolicy::GetObject());
 
 		CheckPolicy::CheckInsert(m_Creators, id);
-		std::auto_ptr<ICreator> creator(new Details::DefaultCreator<Base, Object>());
+		std::auto_ptr<ICreator> creator(new details::DefaultCreator<Base, Object>());
 		m_Creators.insert(id, creator);
 	}
 
@@ -198,7 +190,7 @@ public:
 		const LockPolicy::ScopedLock lock(LockPolicy::GetObject());
 
 		CheckPolicy::CheckInsert(m_Creators, id);
-		std::auto_ptr<ICreator> creator(new Details::FunctorCreator<Base, Functor>(functor));
+		std::auto_ptr<ICreator> creator(new details::FunctorCreator<Base, Functor>(functor));
 		m_Creators.insert(id, creator);
 	}
 
@@ -243,7 +235,7 @@ private:
 
 
 } // namespace Functional
-} // namespace PT
+} // namespace cmn
 
 #if _MSC_VER >= 1500
 #pragma warning (pop)

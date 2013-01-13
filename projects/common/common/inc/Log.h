@@ -2,7 +2,6 @@
 #define Log_h__
 
 #include "ILog.h"
-#include "Config.h"
 
 #include <ostream>
 #include <vector>

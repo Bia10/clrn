@@ -1,8 +1,6 @@
 #ifndef Exception_h__
 #define Exception_h__
 
-#include "Config.h"
-
 #include <exception>
 #include <string>
 #include <list>
@@ -110,10 +108,10 @@ void Append(CExcept& e, It it, const T1& arg1, const T2& arg2, const T3& arg3, c
 	xc_details::Append(xcpt, args.begin(), __VA_ARGS__);		\
 
 #define TRY try
-#define THROW(text) throw CMN_NAMESPACE_NAME::CExcept(__FILE__, __LINE__, text);
+#define THROW(text) throw CExcept(__FILE__, __LINE__, text);
 
 #define CATCH_PASS_CEXCEPT(...)														\
-catch(CMN_NAMESPACE_NAME::CExcept& e)												\
+catch(CExcept& e)																	\
 {																					\
 	e.Append(__FILE__, __LINE__);													\
 	APPEND_ARGS(e, __VA_ARGS__); throw;												\
@@ -122,19 +120,19 @@ catch(CMN_NAMESPACE_NAME::CExcept& e)												\
 #define CATCH_PASS_STDEXCEPT(...)													\
 catch(const std::exception& e)														\
 {																					\
-	CMN_NAMESPACE_NAME::CExcept except(__FILE__, __LINE__, e.what());				\
+	CExcept except(__FILE__, __LINE__, e.what());									\
 	APPEND_ARGS(except, __VA_ARGS__); throw except;									\
 }
 
 #define CATCH_PASS_UNHANDLED(...)													\
 catch(...)																			\
 {																					\
-	CMN_NAMESPACE_NAME::CExcept except(__FILE__, __LINE__, "Unhandled exception.");	\
+	CExcept except(__FILE__, __LINE__, "Unhandled exception.");						\
 	APPEND_ARGS(except, __VA_ARGS__); throw except;									\
 }
 
 #define CATCH_IGNORE_CEXCEPT(log, ...)												\
-catch(CMN_NAMESPACE_NAME::CExcept& e)												\
+catch(CExcept& e)																	\
 {																					\
 	e.Append(__FILE__, __LINE__);													\
 	APPEND_ARGS(e, __VA_ARGS__);													\
@@ -144,7 +142,7 @@ catch(CMN_NAMESPACE_NAME::CExcept& e)												\
 #define CATCH_IGNORE_STDEXCEPT(log, ...)											\
 catch(const std::exception& e)														\
 {																					\
-	CMN_NAMESPACE_NAME::CExcept except(__FILE__, __LINE__, e.what());				\
+	CExcept except(__FILE__, __LINE__, e.what());									\
 	APPEND_ARGS(except, __VA_ARGS__);												\
 	log.Error(CURRENT_MODULE_ID, __FUNCTION__, "Ignored: %s") % except.what();		\
 }
@@ -152,7 +150,7 @@ catch(const std::exception& e)														\
 #define CATCH_IGNORE_UNHANDLED(log, ...)											\
 catch(...)																			\
 {																					\
-	CMN_NAMESPACE_NAME::CExcept except(__FILE__, __LINE__, "Unhandled exception.");	\
+	CExcept except(__FILE__, __LINE__, "Unhandled exception.");						\
 	APPEND_ARGS(except, __VA_ARGS__);												\
 	log.Error(CURRENT_MODULE_ID, __FUNCTION__, "Ignored: %s") % except.what();		\
 }
@@ -170,7 +168,7 @@ catch(...)																			\
 #define CHECK(expr, ...)																\
 	if (!(expr))																		\
 	{																					\
-		CMN_NAMESPACE_NAME::CExcept except(__FILE__, __LINE__, "(" #expr ") failed.");	\
+		CExcept except(__FILE__, __LINE__, "(" #expr ") failed.");	\
 		APPEND_ARGS(except, __VA_ARGS__);												\
 		throw except;																	\
 	}

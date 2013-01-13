@@ -1,8 +1,6 @@
 #ifndef ILog_h__
 #define ILog_h__
 
-#include "Config.h"
-
 #include <string>
 #include <vector>
 
