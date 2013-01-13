@@ -1,195 +1,202 @@
-// Import.cpp : Defines the entry point for the console application.
-//
-
 #include "stdafx.h"
 
-#include <Windows.h>
-
+#include <stdexcept>
+#include <iostream>
 #include <vector>
 #include <string>
-#include <memory>
+#include <sstream>
+#include <iomanip>
+#include <fstream>
 
 #include <boost/bind.hpp>
-#include <boost/thread.hpp>
+#include <boost/noncopyable.hpp>
 #include <boost/shared_ptr.hpp>
-#include <boost/date_time/posix_time/posix_time.hpp>
-
 #include <boost/foreach.hpp>
 
-#define for_each BOOST_FOREACH
-
-std::string GetLastErrorDesc() 
+class ISerializable
 {
-	LPVOID lpMsgBuf;
-	DWORD l_err = GetLastError();
-	FormatMessageA
-	( 
-		FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-		NULL,
-		l_err,
-		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
-		reinterpret_cast<LPSTR>(&lpMsgBuf),
-		0,
-		NULL 
-	);
+public:
+	typedef boost::shared_ptr<ISerializable> Ptr;
+	virtual void Serialize(std::ostream& stream) = 0;
+	virtual void Deserialize(std::istream& stream) = 0;
+};
 
-	const std::string sResult(reinterpret_cast<const char*> (lpMsgBuf));
-
-	// Free the buffer.
-	LocalFree(lpMsgBuf);
-	return sResult;
-}
-
-#define WINAPICHECKTHROW(expr) if (!(expr)) { std::ostringstream oss; \
-	oss << "Error: File: " << __FILE__ << " Line: " << __LINE__ << "\nExpression: " << #expr " failed\nDsc:" << GetLastErrorDesc(); \
-	throw std::runtime_error(oss.str().c_str()); \
+template<typename T>
+std::ostream& operator << (std::ostream& os, const std::vector<T>& data) 
+{
+ 	BOOST_FOREACH(const T& value, data)
+ 		os << value;
+	return os;
 }
 
 template<typename T>
-class ScopedHandle
+std::istream& operator >> (std::istream& os, std::vector<T>& data) 
 {
-public:
-
-	//! Pointer type
-	typedef boost::shared_ptr< ScopedHandle<T> > Ptr;
-
-	explicit ScopedHandle(const T& h)
-		: m_Handle(h)
-	{
-		WINAPICHECKTHROW(m_Handle != INVALID_HANDLE_VALUE);
-	}
-
-	operator T () const 
-	{ 
-		return m_Handle; 
-	}
-
-	~ScopedHandle()
-	{
-		CloseHandle(m_Handle);
-	}
-
-private:
-
-	ScopedHandle(const ScopedHandle&);
-	ScopedHandle& operator = (const ScopedHandle);
-
-	//! Handle 
-	T m_Handle;
-};
-
-
-struct Data
-{
-	std::string string;
-	std::vector<char> data;
-};
-
-boost::thread_group				pool;
-std::size_t						jobCount = 0;
-ScopedHandle<HANDLE>::Ptr		hIOCP;
-
-void WorkLoop()
-{
-	DWORD nBytes = 0;
-	unsigned long pData = 0;
-	LPOVERLAPPED RecvOverlapped;
-
-	static std::size_t thread = 0;
-	static boost::mutex mxth;
-	std::size_t current = 0;
-	{
-		boost::mutex::scoped_lock lock(mxth);
-		current = ++thread;
-	}
-	try
-	{
-		while(true)
-		{
-			WINAPICHECKTHROW(GetQueuedCompletionStatus(*hIOCP, &nBytes, &pData, &RecvOverlapped, INFINITE));
-			boost::this_thread::interruption_point();
-
-			const boost::shared_ptr<Data> data(reinterpret_cast<Data*>(pData));
-
-			static boost::mutex mx;
-			boost::mutex::scoped_lock lock(mx);
-			std::cout << current << " work is done!: " << jobCount++ << " " << data->string << std::endl;
-		}
-	}
-	catch (const boost::thread_interrupted&)
-	{
-
-	}
-	catch (const std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+ 	BOOST_FOREACH(T& value, data)
+ 		os >> value;
+	return os;
 }
 
-class Object
+template<typename T>
+class Field : public ISerializable, boost::noncopyable
 {
 public:
+	Field(T& field, const char* name, std::size_t version = 1)
+		: m_Field(field)
+		, m_Name(name)
+		, m_Version(version) 
+	{}
 
-	Object()
-		: m(0)
+private:
+	void Serialize(std::ostream& stream) override
 	{
-		std::cout << "Object()" << std::endl;
-
+		stream << m_Name << " = '" << m_Field << "' ";
 	}
 
-	~Object()
+	void Deserialize(std::istream& stream) override
 	{
-		std::cout << "~Object()" << std::endl;
+		stream >> m_Field;
 	}
 
-	Object(const Object& obj)
-		: m(obj.m)
+private:
+	T& m_Field;
+	std::string m_Name;
+	std::size_t m_Version;
+};
+
+class Serializable : public ISerializable
+{
+	typedef std::vector<ISerializable::Ptr> Fields;
+public:
+	void Serialize(std::ostream& stream) override
 	{
-		//std::cout << "Object(const Object& obj)" << std::endl;
+		if (m_Fields.empty())
+			Register();
+
+		BOOST_FOREACH(const ISerializable::Ptr& field, m_Fields)
+			field->Serialize(stream);
 	}
 
-	const Object& operator = (const Object& obj)
+	void Deserialize(std::istream& stream) override
 	{
-		m = obj.m;
-		std::cout << "const Object& operator = (const Object& obj)" << std::endl;
+		if (m_Fields.empty())
+			Register();
+
+		BOOST_FOREACH(const ISerializable::Ptr& field, m_Fields)
+			field->Deserialize(stream);
 	}
 
-	void Do()
+protected:
+
+	template<typename T>
+	void RegisterField(T& field, const char* name, std::size_t version = 1)
 	{
-		++m;
-		boost::this_thread::sleep(boost::posix_time::microseconds(1));
+		m_Fields.push_back(ISerializable::Ptr(new Field<T>(field, name, version)));
 	}
 
 private:
 
-	int m;
+	virtual void Register() = 0;
+
+private:
+
+	Fields m_Fields;
 };
+
+
+#define SUSPENDABLE_BEGIN \
+	virtual void Register() override {
+
+#define SUSPENDABLE_END }
+
+#define FIELD(name) RegisterField(name, #name);
+#define NAMED_FIELD(field, name) RegisterField(field, name);
+#define FIELD_FROM_VER(field, name, version) RegisterField(field, name, version);
+
+class Test : public Serializable
+{
+	SUSPENDABLE_BEGIN
+		FIELD(m_Int)
+		NAMED_FIELD(m_String, "some_string")
+		FIELD_FROM_VER(m_Strings, "strings", 2)
+	SUSPENDABLE_END
+
+public:
+	Test()
+	{
+
+	}
+
+//private:
+	int m_Int;
+	std::string m_String;
+	std::vector<std::string> m_Strings;
+};
+
+// template< class A1, class M, class T >
+// void bind( M T::*f, A1 a1 )
+// {
+// 
+// }
+
+void BytesToString(std::ostream& stream, const void* data, std::size_t size)
+{
+	for (std::size_t i = 0 ; i < size; ++i)
+	{
+		const unsigned char symbol = reinterpret_cast<const unsigned char*>(data)[i];
+		stream 
+			<< std::setfill('0') << std::setw(2) << std::hex << static_cast<int>(symbol)
+			<< std::setw(0) << "'" << std::dec;
+		
+		if (symbol)
+			stream << symbol;
+		else
+			stream << "0";
+		stream << "' ";
+	}
+}
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 	try
 	{
-		hIOCP.reset(new ScopedHandle<HANDLE>(CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, NULL, NULL)));
-
-		for (std::size_t i = 0; i < 1; ++i)
 		{
-			pool.create_thread(boost::bind(&WorkLoop));
+			std::ofstream ofs("D:\\1.txt");
+
+			ofs << "test";
+			ofs.flush();
+			
 		}
 
-		for (std::size_t i = 0; i < 20; ++i)
-		{
-			OVERLAPPED RecvOverlapped;
-			ZeroMemory(&RecvOverlapped, sizeof(RecvOverlapped));
+		std::ostringstream oss;
 
-			std::auto_ptr<Data> data(new Data);
-			data->data.resize(10, i);
-			data->string.resize(10, i + 50);
+		std::vector<char> bytes;
+		bytes.push_back('\0');
+		bytes.push_back(255);
+		bytes.push_back('A');
+		bytes.push_back('v');
+		bytes.push_back(253);
+		bytes.push_back(252);
 
-			WINAPICHECKTHROW(PostQueuedCompletionStatus(*hIOCP, 0, reinterpret_cast<ULONG_PTR>(data.get()), 0));
-			data.release();
-		}
+		BytesToString(oss, &bytes.front(), bytes.size());
 
-		pool.join_all();
+		const std::string result = oss.str();
+
+
+// 		Test t;
+// 		t.m_Int = 100;
+// 		t.m_String = "100";
+// 		t.m_Strings.push_back("300");
+// 
+// 		std::stringstream oss;
+// 
+// 		t.Serialize(oss);
+// 
+// 		Test s;
+// 		s.Deserialize(oss);
+
+// 		boost::bind(&Test::m_Strings, &t);
+// 		bind(&Test::m_Strings, &t);
 
 	}
 	catch (const std::exception& e)

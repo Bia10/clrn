@@ -1,4 +1,4 @@
 md build
 cd build 
-cmake ../
+cmake ../ -DPOKER_BOT=ON
 cd ..
