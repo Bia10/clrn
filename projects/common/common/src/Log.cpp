@@ -55,24 +55,24 @@ private:
 CScopedLog::ThreadsMap 	CScopedLog::s_mapThreads;
 boost::mutex		 	CScopedLog::s_mxMap;
 
-CLog::CLog(void)
+Log::Log(void)
 	: m_CurrentLevel(Level::None)
 	, m_IsOpened(false)
 	, m_CurrentModule(0)
 {
 }
 
-CLog::~CLog(void)
+Log::~Log(void)
 {
 	Close();
 }
 
-void CLog::Open(const std::string& source, unsigned int module, const Level::Enum_t level)
+void Log::Open(const std::string& source, unsigned int module, const Level::Enum_t level)
 {
 	Open(conv::cast<std::wstring>(source), module, level);
 }
 
-void CLog::Open(const std::wstring& source, unsigned int module, const Level::Enum_t level)
+void Log::Open(const std::wstring& source, unsigned int module, const Level::Enum_t level)
 {
 	if (m_Streams.size() <= module)
 	{
@@ -137,7 +137,7 @@ void CLog::Open(const std::wstring& source, unsigned int module, const Level::En
 	m_IsOpened = true;
 }
 
-void CLog::Close()
+void Log::Close()
 {
 	if (!m_IsOpened)
 		return;
@@ -151,14 +151,14 @@ void CLog::Close()
 	m_Streams.clear();
 }
 
-bool CLog::IsEnabled(unsigned int module, const Level::Enum_t level) const
+bool Log::IsEnabled(unsigned int module, const Level::Enum_t level) const
 {
 	if (module >= m_Streams.size())
 		return false;
 	return m_Streams[module]->IsEnabled(level);
 }
 
-ILog& CLog::Error(unsigned int module, const std::string& text)
+ILog& Log::Error(unsigned int module, const std::string& text)
 {
 	m_Mutex.lock();
 	m_Format = boost::format(text);
@@ -171,12 +171,12 @@ ILog& CLog::Error(unsigned int module, const std::string& text)
 	return *this;
 }
 
-ILog& CLog::Error(unsigned int module, const std::wstring& text)
+ILog& Log::Error(unsigned int module, const std::wstring& text)
 {
 	return Error(module, conv::cast<std::string>(text).c_str());
 }
 
-ILog& CLog::Error(unsigned int module, const std::string& func, const std::string& text)
+ILog& Log::Error(unsigned int module, const std::string& func, const std::string& text)
 {
 	m_Mutex.lock();
 	m_Format = boost::format(std::string(text) + " /* " + func + " */");
@@ -189,12 +189,12 @@ ILog& CLog::Error(unsigned int module, const std::string& func, const std::strin
 	return *this;
 }
 
-ILog& CLog::Error(unsigned int module, const std::string& func, const std::wstring& text)
+ILog& Log::Error(unsigned int module, const std::string& func, const std::wstring& text)
 {
 	return Error(module, func, conv::cast<std::string>(text).c_str());
 }
 
-ILog& CLog::Warning(unsigned int module, const std::string& text)
+ILog& Log::Warning(unsigned int module, const std::string& text)
 {
 	m_Mutex.lock();
 
@@ -208,12 +208,12 @@ ILog& CLog::Warning(unsigned int module, const std::string& text)
 	return *this;
 }
 
-ILog& CLog::Warning(unsigned int module, const std::wstring& text)
+ILog& Log::Warning(unsigned int module, const std::wstring& text)
 {
 	return Warning(module, conv::cast<std::string>(text).c_str());
 }
 
-ILog& CLog::Warning(unsigned int module, const std::string& func, const std::string& text)
+ILog& Log::Warning(unsigned int module, const std::string& func, const std::string& text)
 {
 	m_Mutex.lock();
 
@@ -227,12 +227,12 @@ ILog& CLog::Warning(unsigned int module, const std::string& func, const std::str
 	return *this;
 }
 
-ILog& CLog::Warning(unsigned int module, const std::string& func, const std::wstring& text)
+ILog& Log::Warning(unsigned int module, const std::string& func, const std::wstring& text)
 {
 	return Warning(module, func, conv::cast<std::string>(text).c_str());
 }
 
-ILog& CLog::Trace(unsigned int module, const std::string& text)
+ILog& Log::Trace(unsigned int module, const std::string& text)
 {
 	m_Mutex.lock();
 
@@ -246,12 +246,12 @@ ILog& CLog::Trace(unsigned int module, const std::string& text)
 	return *this;
 }
 
-ILog& CLog::Trace(unsigned int module, const std::wstring& text)
+ILog& Log::Trace(unsigned int module, const std::wstring& text)
 {
 	return Trace(module, conv::cast<std::string>(text).c_str());
 }
 
-ILog& CLog::Trace(unsigned int module, const std::string& func, const std::string& text)
+ILog& Log::Trace(unsigned int module, const std::string& func, const std::string& text)
 {
 	m_Mutex.lock();
 
@@ -265,12 +265,12 @@ ILog& CLog::Trace(unsigned int module, const std::string& func, const std::strin
 	return *this;
 }
 
-ILog& CLog::Trace(unsigned int module, const std::string& func, const std::wstring& text)
+ILog& Log::Trace(unsigned int module, const std::string& func, const std::wstring& text)
 {
 	return Trace(module, func, conv::cast<std::string>(text).c_str());
 }
 
-ILog& CLog::Debug(unsigned int module, const std::string& text)
+ILog& Log::Debug(unsigned int module, const std::string& text)
 {
 	m_Mutex.lock();
 
@@ -284,12 +284,12 @@ ILog& CLog::Debug(unsigned int module, const std::string& text)
 	return *this;
 }
 
-ILog& CLog::Debug(unsigned int module, const std::wstring& text)
+ILog& Log::Debug(unsigned int module, const std::wstring& text)
 {
 	return Debug(module, conv::cast<std::string>(text).c_str());
 }
 
-ILog& CLog::Debug(unsigned int module, const std::string& func, const std::string& text)
+ILog& Log::Debug(unsigned int module, const std::string& func, const std::string& text)
 {
 	m_Mutex.lock();
 
@@ -303,12 +303,12 @@ ILog& CLog::Debug(unsigned int module, const std::string& func, const std::strin
 	return *this;
 }
 
-ILog& CLog::Debug(unsigned int module, const std::string& func, const std::wstring& text)
+ILog& Log::Debug(unsigned int module, const std::string& func, const std::wstring& text)
 {
 	return Debug(module, func, conv::cast<std::string>(text).c_str());
 }
 
-ILog& CLog::operator%(const unsigned int value)
+ILog& Log::operator%(const unsigned int value)
 {
 	if (!m_Format.remaining_args())
 		return *this;
@@ -321,7 +321,7 @@ ILog& CLog::operator%(const unsigned int value)
 	return *this;
 }
 
-ILog& CLog::operator%(const int value)
+ILog& Log::operator%(const int value)
 {
 	if (!m_Format.remaining_args())
 		return *this;
@@ -334,7 +334,7 @@ ILog& CLog::operator%(const int value)
 	return *this;
 }
 
-ILog& CLog::operator%(const double value)
+ILog& Log::operator%(const double value)
 {
 	if (!m_Format.remaining_args())
 		return *this;
@@ -347,7 +347,7 @@ ILog& CLog::operator%(const double value)
 	return *this;
 }
 
-ILog& CLog::operator%(const unsigned long value)
+ILog& Log::operator%(const unsigned long value)
 {
 	if (!m_Format.remaining_args())
 		return *this;
@@ -360,7 +360,7 @@ ILog& CLog::operator%(const unsigned long value)
 	return *this;
 }
 
-ILog& CLog::operator%(const long value)
+ILog& Log::operator%(const long value)
 {
 	if (!m_Format.remaining_args())
 		return *this;
@@ -373,12 +373,12 @@ ILog& CLog::operator%(const long value)
 	return *this;
 }
 
-ILog& CLog::operator%(const std::wstring& value)
+ILog& Log::operator%(const std::wstring& value)
 {
 	return operator % (conv::cast<std::string>(value));
 }
 
-ILog& CLog::operator%(const std::string& value)
+ILog& Log::operator%(const std::string& value)
 {
 	if (!m_Format.remaining_args())
 		return *this;
@@ -391,7 +391,7 @@ ILog& CLog::operator%(const std::string& value)
 	return *this;
 }
 
-const char* CLog::Level2String(const Level::Enum_t level) const
+const char* Log::Level2String(const Level::Enum_t level) const
 {
 	switch(level)
 	{
@@ -409,7 +409,7 @@ const char* CLog::Level2String(const Level::Enum_t level) const
 	return "UNKNOWN";
 }
 
-void CLog::Write(const Level::Enum_t level)
+void Log::Write(const Level::Enum_t level)
 {
 	try
 	{
@@ -441,7 +441,7 @@ void CLog::Write(const Level::Enum_t level)
 	m_Mutex.unlock();
 }
 
-ILog::ScopedLogPtr CLog::MakeScopedLog(unsigned int module, const std::string& func)
+ILog::ScopedLogPtr Log::MakeScopedLog(unsigned int module, const std::string& func)
 {
 	if (!IsEnabled(module, Level::Debug))
 		return ScopedLogPtr();

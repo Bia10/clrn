@@ -1,7 +1,7 @@
 #ifndef IClient_h__
 #define IClient_h__
 
-#include <windef.h>
+#include <windows.h>
 
 #include <boost/noncopyable.hpp>
 

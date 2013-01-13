@@ -7,9 +7,9 @@ SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 set(COMMON_INC "${CMAKE_CURRENT_LIST_DIR}/common/common/inc/")
 set(DB_INC "${CMAKE_CURRENT_LIST_DIR}/common/db/inc/")
 
-add_definitions(
-	-D_X86_
-)
+#add_definitions(
+#	-D_X86_
+#)
 
 set(TOOLSET "vc110")
 set(THIRD_PARTY "d:/svn/trunk/ThirdParty/")

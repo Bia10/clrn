@@ -1,10 +1,9 @@
 #include "PokerStarsClient.h"
 #include "Exception.h"
 #include "PokerStarsTable.h"
+#include "Modules.h"
 
 #include <windows.h>
-
-
 
 namespace clnt
 {
@@ -52,8 +51,12 @@ void Client::HandleMessage(HWND hWnd, UINT Msg, WPARAM /*wParam*/, LPARAM lParam
 	it->second->HandleMessage(message);
 }
 
-Client::Client(ILog& logger) : m_Log(logger)
+Client::Client()
 {
+	m_Log.Open("client.txt", Modules::Client, ILog::Level::Debug);
+	m_Log.Open("mesages.txt", Modules::Messages, ILog::Level::Debug);
+	m_Log.Open("table.txt", Modules::Table, ILog::Level::Debug);
+
 	// find initial windows
 	Windows wnds;
 

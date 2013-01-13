@@ -99,9 +99,9 @@ private:
 
 //! Logger interface
 //!
-//! \class CLog
+//! \class Log
 //!
-class CLog
+class Log
 	: public ILog
 {
 	//! Stream vector
@@ -111,8 +111,8 @@ class CLog
 	typedef std::map<std::wstring, std::ostream*>		StreamIndexes;
 
 public:
-	CLog(void);
-	~CLog(void);
+	Log();
+	~Log();
 
 	//! Open log
 	void		Open(const std::string& szSource, unsigned int module, const Level::Enum_t level);
