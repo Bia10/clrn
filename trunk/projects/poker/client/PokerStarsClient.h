@@ -3,7 +3,7 @@
 
 #include "IClient.h"
 #include "ITable.h"
-#include "ILog.h"
+#include "Log.h"
 
 #include <map>
 #include <vector>
@@ -21,7 +21,7 @@ class Client : public IClient
 	typedef std::vector<HWND> WindowList;
 public:
 
-	Client(ILog& logger);
+	Client();
 
 private:
 
@@ -39,7 +39,7 @@ private:
 	boost::mutex m_Mutex;
 
 	//! Logger
-	ILog& m_Log;
+	Log m_Log;
 };
 
 } // namespace ps
