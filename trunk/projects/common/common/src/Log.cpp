@@ -75,10 +75,10 @@ void Log::Open(const std::string& source, unsigned int module, const Level::Enum
 void Log::Open(const std::wstring& source, unsigned int module, const Level::Enum_t level)
 {
 	if (m_Streams.size() <= module)
-	{
 		m_Streams.resize(module + 1);
+
+	if (!m_Streams[module])
 		m_Streams[module].reset(new log_details::LogStream());
-	}
 
 	if (1 == source.size())
 	{
@@ -122,8 +122,10 @@ void Log::Open(const std::wstring& source, unsigned int module, const Level::Enu
 				fs::Move(fs::FullPath(source), newPath);
 			}
 
-			fs::CreateDirectories(source);
-			std::auto_ptr<std::ofstream> stream(new std::ofstream(fs::FullPath(source).c_str(), std::ios::out));
+			const std::wstring fullPath = fs::FullPath(source);
+
+			fs::CreateDirectories(fullPath);
+			std::auto_ptr<std::ofstream> stream(new std::ofstream(fullPath.c_str(), std::ios::out));
 			CHECK(stream->is_open(), conv::cast<std::string>(source));
 			m_Streams[module]->AddStream(stream.release(), level, true);
 		}

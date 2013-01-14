@@ -4,8 +4,10 @@
 #include "Actions.h"
 #include "ITable.h"
 #include "Cards.h"
+#include "Exception.h"
 
 #include <sstream>
+#include <iomanip>
 
 namespace clnt
 {
@@ -33,6 +35,24 @@ Action::Value ConvertAction(const char action)
 	}
 
 	// to find M, Q, q
+}
+
+template<typename Stream>
+void BytesToString(Stream& stream, const void* data, std::size_t size)
+{
+	for (std::size_t i = 0 ; i < size; ++i)
+	{
+		const unsigned char symbol = reinterpret_cast<const unsigned char*>(data)[i];
+		stream 
+			<< std::setfill('0') << std::setw(2) << std::hex << static_cast<int>(symbol)
+			<< std::setw(0) << "'" << std::dec;
+
+		if (symbol < 0x20)
+			stream << " ";
+		else
+			stream << symbol;
+		stream << "' ";
+	}
 }
 
 bool IsCard(const char* data)
@@ -93,14 +113,11 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 	const char* name = &data[0x31];
 	const char action = data[0x2c];
 	const Action::Value actionValue = ConvertAction(action);
-	const int amount = _byteswap_ulong(*reinterpret_cast<const int*>(&data[0x2d]));	
+	const int amount = _byteswap_ulong(*reinterpret_cast<const int*>(&data[0x2d])) / 100;	
 
-	LOG_TRACE("Player name: [%s], action: [%p], amount: [%s]") % name % Action::ToString(actionValue) % amount;
+	LOG_TRACE("Player: '%s', action: '%p', amount: '%s'") % name % Action::ToString(actionValue) % amount;
 
-	if (actionValue == Action::Unknown)
-		LOG_WARNING("Unknown action: [%p][%s]") % action % action;
-
-
+	CHECK(actionValue != Action::Unknown, static_cast<int>(action));
 	table.PlayerAction(name, actionValue, amount);
 }
 
@@ -112,18 +129,27 @@ std::size_t FlopCards::GetId() const
 
 void FlopCards::Process(const dasm::WindowMessage& message, ITable& table) const 
 {
+	SCOPED_LOG(m_Log);
+
 	std::vector<Card> cards;
 	FindFlopCards(message.m_Block, cards);
 
-	assert(cards.size() >= 3);
+	if (cards.size() < 3)
+	{
+		std::vector<char> data;
+		std::ostringstream oss;
+		BytesToString(oss, message.m_Block.m_Data + message.m_Block.m_Offset, message.m_Block.m_Offset + message.m_Block.m_Size);
+		LOG_ERROR("Failed to find flop cards, raw data: '%s'") % oss.str();
+		CHECK(false, "Failed to find flop cards");
+	}
 
 	if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Trace))
 	{
 		std::ostringstream oss;
 		for (const Card& card : cards)
-			oss << "[" << Card::ToString(card.m_Value) << " of " << Suit::ToString(card.m_Suit) << "]";
+			oss << "('" << Card::ToString(card.m_Value) << "' of '" << Suit::ToString(card.m_Suit) << "')";
 
-		LOG_TRACE("Cards received: [%s]") % oss.str();
+		LOG_TRACE("Cards received: %s") % oss.str();
 	}
 
 	table.FlopCards(cards);
@@ -142,6 +168,8 @@ std::size_t PlayerCards::GetId() const
 
 void PlayerCards::Process(const dasm::WindowMessage& message, ITable& table) const 
 {
+	SCOPED_LOG(m_Log);
+
 	const char* data = message.m_Block.m_Data + message.m_Block.m_Offset;
 
 	Card first;
@@ -163,6 +191,8 @@ std::size_t PlayersInfo::GetId() const
 
 void PlayersInfo::Process(const dasm::WindowMessage& message, ITable& table) const 
 {
+	SCOPED_LOG(m_Log);
+
 	dasm::MessageRecord record(message);
 	record.SetParsedBytes(0x20);
 
@@ -188,7 +218,7 @@ void PlayersInfo::Process(const dasm::WindowMessage& message, ITable& table) con
 		record.Extract(temp);
 		record.Extract(temp);
 
-		LOG_TRACE("Player: [%s], stack: [%s], country: [%s]") % name % stack, country;
+		LOG_TRACE("Player: '%s', stack: '%s', country: '%s'") % name % stack % country;
 
 		Player player;
 		player.Name(name);

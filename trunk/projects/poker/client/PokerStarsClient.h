@@ -27,6 +27,8 @@ private:
 
 	virtual void HandleMessage(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) override;
 
+	void SaveScreenThread(HWND handle, const std::string message);
+
 private:
 
 	//! Tables
