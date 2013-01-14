@@ -17,6 +17,8 @@ public:
 	virtual void HandleMessage(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) = 0;
 };
 
+IClient* CreateClient();
+
 }
 
 #endif // IClient_h__
