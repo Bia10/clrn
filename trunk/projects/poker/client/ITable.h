@@ -5,7 +5,7 @@
 #include "Cards.h"
 #include "Player.h"
 
-#include <windef.h>
+#include <windows.h>
 #include <string>
 #include <vector>
 

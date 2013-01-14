@@ -3,7 +3,7 @@
 
 #include <boost/filesystem.hpp>
 
-namespace bfs = boost::filesystem3;
+namespace bfs = boost::filesystem;
 
 namespace fs
 {
