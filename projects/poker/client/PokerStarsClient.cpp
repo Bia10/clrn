@@ -4,6 +4,8 @@
 #include "Modules.h"
 #include "Screenshot.h"
 #include "FileSystem.h"
+#include "DataSender.h"
+#include "Player.h"
 
 #include <windows.h>
 
@@ -24,27 +26,6 @@ IClient* CreateClient()
 namespace ps
 {
 
-struct Windows
-{
-	typedef std::vector<HWND> List;
-
-	List m_Matched;
-	List m_NotMatched;
-};
-
-BOOL CALLBACK PokerWindowFinder(HWND hWnd, LPARAM lParam)
-{
-	Windows& wnds = *reinterpret_cast<Windows*>(lParam);
-	wchar_t name[512] = {0};
-	CHECK(GetClassNameW(hWnd, name, _countof(name)));
-	if (!_wcsicmp(name, POKERSTARS_TABLE_WINDOW_CLASS))
-		wnds.m_Matched.push_back(hWnd);
-	else
-		wnds.m_NotMatched.push_back(hWnd);
-
-	return TRUE;
-}
-
 void Client::HandleMessage(HWND hWnd, UINT Msg, WPARAM /*wParam*/, LPARAM lParam)
 {
 	SCOPED_LOG(m_Log);
@@ -52,13 +33,9 @@ void Client::HandleMessage(HWND hWnd, UINT Msg, WPARAM /*wParam*/, LPARAM lParam
 	if (Msg != 0x8002)
 		return;
 
-	if (std::find(m_NotInterested.begin(), m_NotInterested.end(), hWnd) != m_NotInterested.end())
-		return;
+	const std::wstring& name = GetWindowClass(hWnd);
 
-	wchar_t name[512] = {0};
-	CHECK(GetClassNameW(hWnd, name, _countof(name)));
-
-	if (_wcsicmp(name, POKERSTARS_TABLE_WINDOW_CLASS))
+	if (name != POKERSTARS_TABLE_WINDOW_CLASS)
 		return; // not a poker window
 
 	try 
@@ -81,7 +58,7 @@ void Client::HandleMessage(HWND hWnd, UINT Msg, WPARAM /*wParam*/, LPARAM lParam
 	}
 }
 
-Client::Client()
+Client::Client() : m_Sender(new DataSender(m_Log))
 {
 	TRY 
 	{
@@ -90,21 +67,14 @@ Client::Client()
 		m_Log.Open("logs/client.txt", Modules::Client, ILog::Level::Trace);
 		m_Log.Open("logs/mesages.txt", Modules::Messages, ILog::Level::Trace);
 		m_Log.Open("logs/table.txt", Modules::Table, ILog::Level::Trace);
-	
-		// find initial windows
-		Windows wnds;
-	
-		CHECK(EnumWindows(&PokerWindowFinder, reinterpret_cast<LPARAM>(&wnds)));
-	
-		m_NotInterested = wnds.m_NotMatched;
-	
-		for (const auto handle : wnds.m_Matched)
-			m_Tables.insert(std::make_pair(handle, ITable::Ptr(new ps::Table(m_Log))));
+
+		// player name
+		Player::ThisPlayer().Name("CLRN");
 	}
 	CATCH_PASS_EXCEPTIONS("Failed to construct client")
 }
 
-void Client::SaveScreenThread(HWND handle, const std::string message)
+void Client::SaveScreenThread(HWND handle, const std::string& message)
 {
 	SCOPED_LOG(m_Log);
 		
@@ -122,44 +92,37 @@ void Client::SaveScreenThread(HWND handle, const std::string message)
 
 		LOG_ERROR("Handle message failed: [%s], file: [%s]") % message % path;
 
+		ShowWindow(handle, SW_SHOW);
+		cmn::Screenshot shot(handle);
+		for (unsigned i = 0 ; i < 10; ++i)
 		{
-			const std::wstring temp = path + L"_1.bmp";
-			ShowWindow(handle, SW_SHOW);
-			cmn::Screenshot shot(handle);
-			shot.Save(fs::FullPath(temp));
-		}
-
-		boost::this_thread::interruptible_wait(200);
-
-		{
-			const std::wstring temp = path + L"_2.bmp";
-			ShowWindow(handle, SW_SHOW);
-			cmn::Screenshot shot(handle);
-			shot.Save(fs::FullPath(temp));
-		}
-
-		boost::this_thread::interruptible_wait(300);
-
-		{
-			const std::wstring temp = path + L"_3.bmp";
-			ShowWindow(handle, SW_SHOW);
-			cmn::Screenshot shot(handle);
-			shot.Save(fs::FullPath(temp));
-		}
-
-		boost::this_thread::interruptible_wait(500);
-
-		{
-			const std::wstring temp = path + L"_4.bmp";
-			ShowWindow(handle, SW_SHOW);
-			cmn::Screenshot shot(handle);
-			shot.Save(fs::FullPath(temp));
+			TakeScreenshot(shot, i, path);
+			boost::this_thread::interruptible_wait(200);
 		}
 	}
 	catch (const std::exception& e)
 	{
 		LOG_ERROR("Failed to save screenshot, error: [%s]") % e.what();
 	}
+}
+
+void Client::TakeScreenshot(cmn::Screenshot& scrrenshot, unsigned index, const std::wstring& path)
+{
+	const std::wstring temp = path + std::wstring(L"_") + conv::cast<std::wstring>(index) + L".bmp";
+	scrrenshot.Save(fs::FullPath(temp));
+}
+
+const std::wstring& Client::GetWindowClass(HWND handle)
+{
+	WindowClasses::const_iterator it = m_WindowClasses.find(handle);
+	if (it == m_WindowClasses.end())
+	{
+		wchar_t name[512] = {0};
+		CHECK(GetClassNameW(handle, name, _countof(name)));
+		it = m_WindowClasses.insert(std::make_pair(handle, name)).first;
+	}
+
+	return it->second;
 }
 
 
