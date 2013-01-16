@@ -4,11 +4,17 @@
 #include "IClient.h"
 #include "ITable.h"
 #include "Log.h"
+#include "IDataSender.h"
 
 #include <map>
 #include <vector>
 
 #include <boost/thread/mutex.hpp>
+
+namespace cmn
+{
+	class Screenshot;
+}
 
 namespace clnt
 {
@@ -18,7 +24,7 @@ namespace ps
 class Client : public IClient
 {
 	typedef std::map<HWND, ITable::Ptr> Tables;
-	typedef std::vector<HWND> WindowList;
+	typedef std::map<HWND, std::wstring> WindowClasses;
 public:
 
 	Client();
@@ -27,21 +33,26 @@ private:
 
 	virtual void HandleMessage(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) override;
 
-	void SaveScreenThread(HWND handle, const std::string message);
+	void SaveScreenThread(HWND handle, const std::string& message);
+	void TakeScreenshot(cmn::Screenshot& scrrenshot, unsigned index, const std::wstring& path);
+	const std::wstring& GetWindowClass(HWND handle);
 
 private:
 
 	//! Tables
 	Tables m_Tables;
 
-	//! Not interested windows
-	WindowList m_NotInterested;
+	//! Window classes
+	WindowClasses m_WindowClasses;
 
 	//! Tables mutex
 	boost::mutex m_Mutex;
 
 	//! Logger
 	Log m_Log;
+
+	//! Data sender
+	std::auto_ptr<IDataSender> m_Sender;
 };
 
 } // namespace ps

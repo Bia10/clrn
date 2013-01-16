@@ -64,6 +64,17 @@ private:
 	ILog& m_Log;
 };
 
+class PlayerInfo : public IMessage
+{
+public:
+	PlayerInfo(ILog& logger) : m_Log(logger) {}
+private:
+	virtual std::size_t GetId() const override;
+	virtual void Process(const dasm::WindowMessage& message, ITable& table) const override;
+private:
+	ILog& m_Log;
+};
+
 } // namespace msg
 } // namespace ps
 } // namespace clnt

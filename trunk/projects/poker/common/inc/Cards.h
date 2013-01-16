@@ -2,6 +2,7 @@
 #define Cards_h__
 
 #include <string>
+#include <vector>
 
 namespace clnt
 {
@@ -20,8 +21,10 @@ namespace clnt
 
 	struct Card
 	{
+		typedef std::vector<Card> List;
 		enum Value
 		{
+			Unknown	= 0,
 			Two		= 2,
 			Three	= 3,
 			Four	= 4,
@@ -38,6 +41,7 @@ namespace clnt
 		};
 
 		static std::string ToString(Value value);
+		static Value FromString(const char value);
 
 		Value m_Value;
 		Suit::Value m_Suit;

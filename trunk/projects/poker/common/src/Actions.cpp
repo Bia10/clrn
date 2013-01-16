@@ -2,7 +2,6 @@
 
 namespace clnt
 {
-
 	std::string Action::ToString(const Action::Value value)
 	{
 #define CASE(x) case x: return #x;
@@ -13,15 +12,18 @@ namespace clnt
 				CASE(Call)
 				CASE(Bet)
 				CASE(Raise)
-				CASE(Show)
+				CASE(ShowCards)
 				CASE(SmallBlind)
 				CASE(BigBlind)
 				CASE(Ante)
 				CASE(Win)
 				CASE(Loose)
+				CASE(MoneyReturn)
+				CASE(SecondsLeft)
+				CASE(Rank)
+				CASE(WinCards)
 		default: return "unknown";
 		}
 #undef CASE
 	}
-
 }

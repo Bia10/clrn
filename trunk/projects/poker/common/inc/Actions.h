@@ -5,7 +5,6 @@
 
 namespace clnt
 {
-
 	struct Action
 	{
 		enum Value
@@ -16,17 +15,20 @@ namespace clnt
 			Call		= 2,
 			Bet			= 3,
 			Raise		= 4,
-			Show		= 5,
+			ShowCards	= 5,
 			SmallBlind	= 6,
 			BigBlind	= 7,
 			Ante		= 8,
 			Win			= 9,
-			Loose		= 10
+			Loose		= 10,
+			MoneyReturn	= 11,
+			SecondsLeft	= 12,
+			Rank		= 13,
+			WinCards	= 14
 		};
 
 		static std::string ToString(Value value);
 	};
-
 }
 
 #endif // Actions_h__

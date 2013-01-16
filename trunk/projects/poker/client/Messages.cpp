@@ -22,37 +22,25 @@ Action::Value ConvertAction(const char action)
 {
 	switch (action)
 	{
-	case 'F': return Action::Fold;
-	case 'C': return Action::Call;
-	case 'c': return Action::Check;
-	case 'B': return Action::Bet;
-	case 'E': return Action::Raise;
-	case 'S': return Action::Show;
-	case 's': return Action::Loose;
-	case 'P': return Action::BigBlind;
-	case 'p': return Action::SmallBlind;
+	case 'F' : return Action::Fold;
+	case 'C' : return Action::Call;
+	case 'c' : return Action::Check;
+	case 'B' : return Action::Bet;
+	case 'E' : return Action::Raise;
+ 	case 'S' : return Action::ShowCards;
+ 	case 's' : return Action::ShowCards;
+	case 'P' : return Action::BigBlind;
+	case 'p' : return Action::SmallBlind;
+	case 'r' : return Action::MoneyReturn;
+	case 'w' : return Action::Win;
+	case 0x8 : return Action::SecondsLeft;
+	case 0xB : return Action::Rank; // player out
+	case 0x1 : return Action::WinCards; // win with combination of cards
+	case 'M' : return Action::Loose; // cards not showed
 	default: return Action::Unknown;
 	}
 
-	// to find M, Q, q
-}
-
-template<typename Stream>
-void BytesToString(Stream& stream, const void* data, std::size_t size)
-{
-	for (std::size_t i = 0 ; i < size; ++i)
-	{
-		const unsigned char symbol = reinterpret_cast<const unsigned char*>(data)[i];
-		stream 
-			<< std::setfill('0') << std::setw(2) << std::hex << static_cast<int>(symbol)
-			<< std::setw(0) << "'" << std::dec;
-
-		if (symbol < 0x20)
-			stream << " ";
-		else
-			stream << symbol;
-		stream << "' ";
-	}
+	// to find Q, q
 }
 
 bool IsCard(const char* data)
@@ -109,16 +97,45 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 	SCOPED_LOG(m_Log);
 
 	const char* data = message.m_Block.m_Data + message.m_Block.m_Offset;
+	const char* end = message.m_Block.m_Data + message.m_Block.m_Offset + message.m_Block.m_Size;
 
-	const char* name = &data[0x31];
-	const char action = data[0x2c];
+	data = std::find(data + 0x0c, end, 0xff);
+	data += 0x14;
+
+	const char action = *data;
+
+	if (!action)
+		return; // empty message
+
+	++data;
+
+	int amount = _byteswap_ulong(*reinterpret_cast<const int*>(data));	
+
+	data += sizeof(DWORD);
+
 	const Action::Value actionValue = ConvertAction(action);
-	const int amount = _byteswap_ulong(*reinterpret_cast<const int*>(&data[0x2d])) / 100;	
 
-	LOG_TRACE("Player: '%s', action: '%p', amount: '%s'") % name % Action::ToString(actionValue) % amount;
+	if (actionValue == Action::ShowCards)
+	{
+		std::string name(data);
+		data += (name.size() + 1);
+		LOG_TRACE("Player: '%s', action: '%p', cards: '%s'") % name % Action::ToString(actionValue) % data;
+		table.PlayerCards(name, data);
+	}
+	else
+	if (actionValue == Action::WinCards)
+	{
+		std::string name(data);
+		data += (name.size() + 1);
+		LOG_TRACE("Player: '%s', action: '%p', pot: '%s', cards: '%s'") % name % Action::ToString(actionValue) % amount % data;
+	}
+	else
+	{
+		LOG_TRACE("Player: '%s', action: '%p', amount: '%s'") % data % Action::ToString(actionValue) % amount;
+	}
 
 	CHECK(actionValue != Action::Unknown, static_cast<int>(action));
-	table.PlayerAction(name, actionValue, amount);
+	table.PlayerAction(data, actionValue, amount);
 }
 
 
@@ -135,13 +152,7 @@ void FlopCards::Process(const dasm::WindowMessage& message, ITable& table) const
 	FindFlopCards(message.m_Block, cards);
 
 	if (cards.size() < 3)
-	{
-		std::vector<char> data;
-		std::ostringstream oss;
-		BytesToString(oss, message.m_Block.m_Data + message.m_Block.m_Offset, message.m_Block.m_Offset + message.m_Block.m_Size);
-		LOG_ERROR("Failed to find flop cards, raw data: '%s'") % oss.str();
-		CHECK(false, "Failed to find flop cards");
-	}
+		return; // empty messsage;
 
 	if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Trace))
 	{
@@ -180,7 +191,16 @@ void PlayerCards::Process(const dasm::WindowMessage& message, ITable& table) con
 	second.m_Suit = static_cast<Suit::Value>(data[0x18]);
 	second.m_Value = static_cast<Card::Value>(data[0x19]);
 
-	table.PlayerCards(first, second);
+	if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Trace))
+	{
+		std::ostringstream oss;
+		oss << "('" << Card::ToString(first.m_Value) << "' of '" << Suit::ToString(first.m_Suit) << "')";
+		oss << "('" << Card::ToString(second.m_Value) << "' of '" << Suit::ToString(second.m_Suit) << "')";
+
+		LOG_TRACE("Player cards: %s") % oss.str();
+	}
+
+	table.BotCards(first, second);
 }
 
 
@@ -209,7 +229,7 @@ void PlayersInfo::Process(const dasm::WindowMessage& message, ITable& table) con
 
 		DWORD stack;
 		record.Extract(stack);
-		stack = _byteswap_ulong(stack) / 100;
+		stack = _byteswap_ulong(stack);
 
 		std::string country;
 		record.Extract(country);
@@ -229,6 +249,68 @@ void PlayersInfo::Process(const dasm::WindowMessage& message, ITable& table) con
 	}
 
 	table.PlayersInfo(players);
+}
+
+
+std::size_t PlayerInfo::GetId() const 
+{
+	return 0x1006;
+}
+
+void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) const 
+{
+	dasm::MessageRecord record(message);
+
+	const char* data = message.m_Block.m_Data + message.m_Block.m_Offset;
+	const char* end = message.m_Block.m_Data + message.m_Block.m_Offset + message.m_Block.m_Size;
+
+	Player::List players;
+	while (*data && data < end)
+	{
+		data = std::find(data + 1, end, 0x50);
+		const char temp = *(data + 1) - char(0xf5);
+		if (temp)
+			continue;
+
+		data = std::find(data, end, 0xff);
+
+		if (!players.empty())
+			data = std::find(data + 1, end, 0xff);
+		
+		data += 0x19;
+
+		if (*data < 0x20)
+			break;
+
+		Player player;
+		player.Name(data);
+
+		players.push_back(player);
+	}
+
+	unsigned index = 0;
+	while (data < end) 
+	{
+		data = std::find(data + 1, end, 0x1c);
+		if (*(data - 1) - char(0x00))
+			continue;
+		if (*(data - 2) - char(0x00))
+			continue;
+		if (*(data - 3) - char(0x00))
+			continue;
+		if (*(data - 4) - char(0xff))
+			continue;
+		if (*(data - 5) - char(0x00))
+			continue;
+
+		CHECK(players.size() > index, index, players.size());
+
+		const int amount = _byteswap_ulong(*reinterpret_cast<const int*>(data + 1));	
+		players[index++].Stack(amount);
+	}
+
+	for (const Player& p : players)
+		LOG_TRACE("Player: '%s', stack: '%s'") % p.Name() % p.Stack();
 }
 
 } // namespace msg
