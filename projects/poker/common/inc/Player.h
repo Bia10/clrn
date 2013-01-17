@@ -18,7 +18,7 @@ public:
 	{
 		enum Value
 		{
-			Passive		= 0,		//!< check of fold
+			Passive		= 0,		//!< check or fold
 			Normal		= 1,		//!< call
 			Agressive	= 2			//!< raise or bet
 		};

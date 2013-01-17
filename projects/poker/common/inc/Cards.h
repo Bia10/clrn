@@ -40,8 +40,14 @@ namespace clnt
 			Ace		= 14
 		};
 
+		Card(Value value, Suit::Value suit) 
+			: m_Value(value)
+			, m_Suit(suit)
+		{}
+
 		static std::string ToString(Value value);
 		static Value FromString(const char value);
+		int ToEvalFormat() const;
 
 		Value m_Value;
 		Suit::Value m_Suit;

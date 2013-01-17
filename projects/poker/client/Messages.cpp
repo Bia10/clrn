@@ -69,11 +69,7 @@ void FindFlopCards(const dasm::DataBlock& data, std::vector<Card>& result)
 			++cardsFound;
 			++i;
 
-			Card currentCard;
-			currentCard.m_Suit = static_cast<Suit::Value>(current[0]);
-			currentCard.m_Value = static_cast<Card::Value>(current[1]);
-
-			result.push_back(currentCard);
+			result.push_back(Card(static_cast<Card::Value>(current[1]), static_cast<Suit::Value>(current[0])));
 		}
 		else
 		if (cardsFound)
@@ -183,13 +179,8 @@ void PlayerCards::Process(const dasm::WindowMessage& message, ITable& table) con
 
 	const char* data = message.m_Block.m_Data + message.m_Block.m_Offset;
 
-	Card first;
-	first.m_Suit = static_cast<Suit::Value>(data[0x15]);
-	first.m_Value = static_cast<Card::Value>(data[0x16]);
-
-	Card second;
-	second.m_Suit = static_cast<Suit::Value>(data[0x18]);
-	second.m_Value = static_cast<Card::Value>(data[0x19]);
+	Card first(static_cast<Card::Value>(data[0x16]), static_cast<Suit::Value>(data[0x15]));
+	Card second(static_cast<Card::Value>(data[0x19]), static_cast<Suit::Value>(data[0x18]));
 
 	if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Trace))
 	{

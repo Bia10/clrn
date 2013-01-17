@@ -29,21 +29,35 @@ clnt::Card::Value clnt::Card::FromString(const char value)
 {
 	switch (value)
 	{
-	case '2': return Two;
-	case '3': return Three;
-	case '4': return Four;
-	case '5': return Five;
-	case '6': return Six;
-	case '7': return Seven;
-	case '8': return Eight;
-	case '9': return Nine;
-	case 'T': return Ten;
-	case 'J': return Jack;
-	case 'Q': return Queen;
-	case 'K': return King;
-	case 'A': return Ace;
-	default: assert(false); return Unknown;
+		case '2': return Two;
+		case '3': return Three;
+		case '4': return Four;
+		case '5': return Five;
+		case '6': return Six;
+		case '7': return Seven;
+		case '8': return Eight;
+		case '9': return Nine;
+		case 'T': return Ten;
+		case 'J': return Jack;
+		case 'Q': return Queen;
+		case 'K': return King;
+		case 'A': return Ace;
+		default: assert(false); return Unknown;
 	}
+}
+
+int clnt::Card::ToEvalFormat() const
+{
+	const int result = (Ace - m_Value) * 4;
+	switch (m_Suit)
+	{
+		case Suit::Spades: return result;
+		case Suit::Hearts: return result + 1;
+		case Suit::Diamonds: return result + 2;
+		case Suit::Clubs: return result + 3;
+	}
+	assert(false);
+	return 0;
 }
 
 std::string clnt::Suit::ToString(Value value)

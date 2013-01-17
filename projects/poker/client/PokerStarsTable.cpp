@@ -230,7 +230,7 @@ Player& Table::GetPlayer(const std::string& name)
 
 void Table::OnBotAction()
 {
-	// make a decition and react
+	// make a decision and react
 }
 
 bool Table::IsPhaseCompleted(Player& current, Player& next)
@@ -249,10 +249,7 @@ void Table::PlayerCards(const std::string& name, const std::string& cards)
 	Player& player = GetPlayer(name);
 	Card::List cardsList;
 
-	Card tmp;
-	tmp.m_Value = Card::FromString(cards[0]);
-	tmp.m_Suit = static_cast<Suit::Value>(cards[1]);
-
+	Card tmp(Card::FromString(cards[0]), static_cast<Suit::Value>(cards[1]));
 	cardsList.push_back(tmp);
 
 	tmp.m_Value = Card::FromString(cards[2]);
