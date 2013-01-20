@@ -37,6 +37,7 @@ Action::Value ConvertAction(const char action)
 	case 0xB : return Action::Rank; // player out
 	case 0x1 : return Action::WinCards; // win with combination of cards
 	case 'M' : return Action::Loose; // cards not showed
+	case 't' : return Action::SecondsLeft; // time left?
 	default: return Action::Unknown;
 	}
 
@@ -113,10 +114,14 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 
 	if (actionValue == Action::ShowCards)
 	{
-		std::string name(data);
+		const std::string name(data);
 		data += (name.size() + 1);
-		LOG_TRACE("Player: '%s', action: '%p', cards: '%s'") % name % Action::ToString(actionValue) % data;
-		table.PlayerCards(name, data);
+		const std::string cards(data);
+
+		LOG_TRACE("Player: '%s', action: '%p', cards: '%s'") % name % Action::ToString(actionValue) % cards;
+
+		if (!cards.empty())
+			table.PlayerCards(name, data);
 	}
 	else
 	if (actionValue == Action::WinCards)
@@ -256,14 +261,15 @@ void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) cons
 	const char* end = message.m_Block.m_Data + message.m_Block.m_Offset + message.m_Block.m_Size;
 
 	Player::List players;
-	while (*data && data < end)
+	while (data < end)
 	{
 		data = std::find(data + 1, end, 0x50);
-		const char temp = *(data + 1) - char(0xf5);
-		if (temp)
-			continue;
+		if (data == end)
+			break;
 
 		data = std::find(data, end, 0xff);
+		if (data == end)
+			break;
 
 		if (!players.empty())
 			data = std::find(data + 1, end, 0xff);
@@ -271,7 +277,7 @@ void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) cons
 		data += 0x19;
 
 		if (*data < 0x20)
-			break;
+			continue;
 
 		Player player;
 		player.Name(data);
@@ -280,6 +286,7 @@ void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) cons
 	}
 
 	unsigned index = 0;
+	data = message.m_Block.m_Data + message.m_Block.m_Offset;
 	while (data < end) 
 	{
 		data = std::find(data + 1, end, 0x1c);
@@ -302,6 +309,8 @@ void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) cons
 
 	for (const Player& p : players)
 		LOG_TRACE("Player: '%s', stack: '%s'") % p.Name() % p.Stack();
+
+	table.PlayersInfo(players);
 }
 
 } // namespace msg

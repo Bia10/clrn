@@ -15,9 +15,10 @@ class Calculator
 {
 public:
 	Calculator();
+	~Calculator();
 	short GetRank(const Card::List& cards);
 private:
-	std::auto_ptr<SevenEval> m_Evaluator;
+	SevenEval* m_Evaluator;
 };
 }
 #endif // CombinationsCalculator_h__
