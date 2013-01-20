@@ -36,15 +36,6 @@ public:
 		};
 	};
 
-	struct Pot
-	{
-		typedef std::vector<Pot> List;
-		Pot() : m_Amount(0), m_Main(true) {}
-
-		std::size_t m_Amount;
-		std::vector<std::string> m_Players;
-		bool m_Main;
-	};
 
 	typedef boost::shared_ptr<ITable> Ptr;
 

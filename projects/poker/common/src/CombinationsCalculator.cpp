@@ -25,4 +25,9 @@ short Calculator::GetRank(const Card::List& cards)
 	return m_Evaluator->getRankOfSeven(evals[0], evals[1], evals[2], evals[3], evals[4], evals[5], evals[6]);
 }
 
+Calculator::~Calculator()
+{
+	delete m_Evaluator;
+}
+
 }

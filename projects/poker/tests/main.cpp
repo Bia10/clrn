@@ -1,4 +1,5 @@
 #include "CombinationsCalculator.h"
+#include "../../evaluator/HandEval.h"
 
 #include <iostream>
 
@@ -8,6 +9,16 @@ using namespace clnt;
 
 int main()
 {
+	HandEval *eval = new HandEval();
+	int holeCards[4] = {0, 11, 37, 38}; // Two pairs of hole cards, the first
+	// player has the Ace of Spades and the
+	// Queen of Clubs, while the second
+	// player has the 5 of Hearts and the
+	// 5 of Diamonds.
+
+	// The equity should be approximately 45.33% versus 54.67%.
+	printf("\n%s\n", eval->computePreFlopEquityForSpecificHoleCards(holeCards, 1));
+
 	Calculator calc;
 
 	{

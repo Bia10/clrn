@@ -17,8 +17,6 @@ int main (int argc, char *const argv[])
   printf("\n%s\n", eval->computePreFlopEquityForSpecificHoleCards(holeCards, 2));
   eval->timeRankMethod();
   delete eval;
-
-  int test = ACE | SPADE;
   
   SevenEval *sEval = new SevenEval();
   printf("%i\n", sEval->getRankOfSeven(0, 1, 2, 3, 4, 5, 6)); // Ace quad with kings, 7452

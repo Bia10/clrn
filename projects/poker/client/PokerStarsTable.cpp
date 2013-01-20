@@ -44,7 +44,12 @@ void BytesToString(Stream& stream, const void* data, std::size_t size)
 	}
 }
 
-Table::Table(ILog& logger) : m_Log(logger), m_Phase(Phase::Preflop), m_SmallBlindAmount(0)
+Table::Table(ILog& logger) 
+	: m_Log(logger)
+	, m_Phase(Phase::Preflop)
+	, m_SmallBlindAmount(0)
+	, m_Pot(0)
+	, m_Evaluator(new Calculator())
 {
 	SCOPED_LOG(m_Log);
 
@@ -96,6 +101,9 @@ void Table::HandleMessage(const dasm::WindowMessage& message)
 
 void Table::PlayerAction(const std::string& name, Action::Value action, std::size_t amount)
 {
+	if (m_Players.empty())
+		return; 
+
 	Player& current = GetPlayer(name);
 	Player& next = GetNextPlayer(name);
 	switch (action)
@@ -103,39 +111,54 @@ void Table::PlayerAction(const std::string& name, Action::Value action, std::siz
 		case Action::Fold: 
 			current.SetStyle(static_cast<std::size_t>(m_Phase), Player::Style::Passive);
 			current.Result(Player::Result::LooseWithFold);
+			current.State(Player::State::Fold);
 			break;
 		case Action::Check: 
 			current.SetStyle(static_cast<std::size_t>(m_Phase), Player::Style::Passive);
+			current.State(Player::State::InPot);
 			break;
 		case Action::Call: 
 			current.SetStyle(static_cast<std::size_t>(m_Phase), Player::Style::Normal);
 			current.Stack(current.Stack() - amount);
 			current.Bet(current.Bet() + amount);
+			current.State(Player::State::InPot);
+			m_Pot += amount;
+			if (!current.Stack())
+				current.State(Player::State::AllIn);
 			break;
 		case Action::Bet: 
 			current.SetStyle(static_cast<std::size_t>(m_Phase), Player::Style::Agressive);
 			current.Stack(current.Stack() - amount);
 			current.Bet(current.Bet() + amount);
+			current.State(Player::State::InPot);
+			m_Pot += amount;
+			if (!current.Stack())
+				current.State(Player::State::AllIn);
 			break;
 		case Action::Raise:
 			current.SetStyle(static_cast<std::size_t>(m_Phase), Player::Style::Agressive);
 			current.Stack(current.Stack() - amount);
 			current.Bet(current.Bet() + amount);
+			current.State(Player::State::InPot);
+			m_Pot += amount;
+			if (!current.Stack())
+				current.State(Player::State::AllIn);
 			break;
 		case Action::SmallBlind: 
 			m_SmallBlindAmount = amount;
 			current.Bet(m_SmallBlindAmount);
 			next.Bet(m_SmallBlindAmount * 2);
-			if (Player::ThisPlayer().Name() == GetNextPlayer(next.Name()).Name())
-				OnBotAction(); // our turn to play
+			current.State(Player::State::InPot);
+			next.State(Player::State::InPot);
 			break;
 		case Action::Ante: 
-			m_Pots.front().m_Amount += amount;
+			m_Pot += amount;
 			current.Stack(current.Stack() - amount);
 			break;
 		case Action::MoneyReturn: 
 			current.Stack(current.Stack() + amount);
 			current.Bet(current.Bet() - amount);
+			m_Pot -= amount;
 			break;
 		case Action::SecondsLeft: 
 			if (name == Player::ThisPlayer().Name())
@@ -154,8 +177,15 @@ void Table::PlayerAction(const std::string& name, Action::Value action, std::siz
 		default: assert(false);
 	}
 
-	if (IsPhaseCompleted(current, next))
+	if (action != Action::SmallBlind && IsPhaseCompleted(current))
+	{
+		LOG_TRACE("Switching state from '%d' to '%d'") % m_Phase % (static_cast<int>(m_Phase) + 1);
+
+		if (m_Phase == Phase::River)
+			ProcessWinners();
+
 		return;
+	}
 
 	if (Player::ThisPlayer().Name() == next.Name())
 		OnBotAction(); // our turn to play
@@ -163,6 +193,9 @@ void Table::PlayerAction(const std::string& name, Action::Value action, std::siz
 
 void Table::FlopCards(const Card::List& cards)
 {
+	for (Player& player : m_Players)
+		player.State(Player::State::Waiting);
+
 	switch (cards.size())
 	{
 	case 3: m_Phase = Phase::Flop; break;
@@ -183,14 +216,8 @@ void Table::BotCards(const Card& first, const Card& second)
 
 void Table::PlayersInfo(const Player::List& players)
 {
-	CHECK(m_Phase == Phase::Preflop, "Ivalid phase when info received", m_Phase);
-
+	ResetPhase();
 	m_Players = players;
-	m_Pots.clear();
-	m_Pots.push_back(Pot());
-
-	for (const Player& p : players)
-		m_Pots.back().m_Players.push_back(p.Name());
 }
 
 Player& Table::GetNextPlayer(const std::string& name)
@@ -228,22 +255,77 @@ Player& Table::GetPlayer(const std::string& name)
 	return *it;
 }
 
+Player& Table::GetNextActivePlayer(const std::string& name)
+{
+	// find next active player
+	for (Player* next = &GetNextPlayer(name); next->Name() != name; next = &GetNextPlayer(next->Name()))
+	{
+		if (next->State() != Player::State::Fold)
+			return *next;
+	}
+
+	return GetPlayer(name); // no active players
+}
+
+
 void Table::OnBotAction()
 {
 	// make a decision and react
 }
 
-bool Table::IsPhaseCompleted(Player& current, Player& next)
+bool Table::IsPhaseCompleted(Player& current)
 {
 	// check all bets here
 	// if all bets are off - going to next phase
 	// if some players are all in - create additional pots and go to next phase
 
-	return false;
+	// find any waiting player
+	const Player::List::const_iterator it = std::find_if(m_Players.begin(), m_Players.end(), [](const Player& p){ return p.State() == Player::State::Waiting; });
+	if (it != m_Players.end())
+		return false;
+
+	// calculate win sizes
+	std::size_t maxBet = 0;
+	for (Player& player : m_Players)
+	{
+		if (player.Bet() > maxBet)
+			maxBet = player.Bet();
+
+		switch (player.State())
+		{
+		case Player::State::AllIn:
+			{
+				player.WinSize(m_Pot);
+				for (const Player& current : m_Players)
+				{
+					if (current.State() == Player::State::Fold)
+						continue;
+
+					if (current.Bet() < player.Bet())
+					{
+						const std::size_t diff = player.Bet() - current.Bet();
+						player.WinSize(player.WinSize() - diff);
+					}
+				}
+
+			}
+			break;
+		case Player::State::Fold:
+			break;
+		case Player::State::InPot:
+			player.WinSize(m_Pot);
+			break;
+		}
+	}
+
+	return true;
 }
 
 void Table::PlayerCards(const std::string& name, const std::string& cards)
 {
+	if (m_Players.empty())
+		return;
+
 	assert(cards.size() == 4);
 
 	Player& player = GetPlayer(name);
@@ -264,9 +346,73 @@ void Table::ResetPhase()
 	m_Phase = Phase::Preflop;
 	m_Players.clear();
 	m_PlayerCards.clear();
-	m_Pots.clear();
+	m_Pot = 0;
 	m_FlopCards.clear();
 	m_SmallBlindAmount = 0;
+}
+
+void Table::ProcessWinners()
+{
+	assert(m_FlopCards.size() == 5);
+
+	struct Info
+	{
+		std::string m_Name;
+		short m_Value;
+		std::size_t m_Pot;
+	};
+
+	std::vector<Info> players;
+	std::size_t maxPot = 0;
+	for (const Player& player : m_Players)
+	{
+		const Card::List& cards = player.Cards();
+		if (!cards.empty() && player.State() != Player::State::Fold)
+		{
+			players.push_back(Info());
+			Info& info = players.back();
+
+			Card::List playerCards = m_FlopCards;
+			std::copy(cards.begin(), cards.end(), std::back_inserter(playerCards));
+
+			assert(playerCards.size() == 7);
+			
+			info.m_Name = player.Name();
+			info.m_Pot = player.WinSize();
+			info.m_Value = m_Evaluator->GetRank(playerCards);
+
+			if (info.m_Pot > maxPot)
+				maxPot = info.m_Pot;
+		}
+	}
+
+	std::sort(players.begin(), players.end(), [](const Info& lhs, const Info& rhs) { return lhs.m_Value > rhs.m_Value; });
+
+	std::size_t addPot = 0;
+	bool winners = true;
+	for (const Info& player : players)
+	{
+		if (winners)
+			GetPlayer(player.m_Name).Result(Player::Result::WinByCards);
+		else
+			GetPlayer(player.m_Name).Result(Player::Result::LooseWithCards);
+
+		if (player.m_Pot != maxPot)
+		{
+			addPot = player.m_Pot;
+			LOG_TRACE("Player '%s' wins additional pot: '%s' with hand: '%s'") % player.m_Name % player.m_Pot % Combination::ToString(Combination::FromEval(player.m_Value));
+		}
+		else
+		{
+			LOG_TRACE("Player '%s' wins main pot: '%s' with hand: '%s'") % player.m_Name % (player.m_Pot - addPot) % Combination::ToString(Combination::FromEval(player.m_Value));
+			winners = false;
+		}
+	}
+}
+
+void Table::SendStatistic()
+{
+
 }
 
 

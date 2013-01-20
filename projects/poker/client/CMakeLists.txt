@@ -10,4 +10,5 @@ set_target_properties(client PROPERTIES FOLDER "poker")
 target_link_libraries(client
 	common
 	pokercmn
+	evaluator
 )
