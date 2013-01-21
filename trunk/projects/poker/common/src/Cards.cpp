@@ -1,7 +1,7 @@
 #include "Cards.h"
 #include <cassert>
 
-std::string clnt::Card::ToString(Value value)
+std::string pcmn::Card::ToString(Value value)
 {
 #define CASE(x) case x: return #x;
 	switch (value)
@@ -25,7 +25,7 @@ std::string clnt::Card::ToString(Value value)
 	return "";
 }
 
-clnt::Card::Value clnt::Card::FromString(const char value)
+pcmn::Card::Value pcmn::Card::FromString(const char value)
 {
 	switch (value)
 	{
@@ -46,7 +46,7 @@ clnt::Card::Value clnt::Card::FromString(const char value)
 	}
 }
 
-short clnt::Card::ToEvalFormat() const
+short pcmn::Card::ToEvalFormat() const
 {
 	const int result = (Ace - m_Value) * 4;
 	switch (m_Suit)
@@ -60,7 +60,7 @@ short clnt::Card::ToEvalFormat() const
 	return 0;
 }
 
-void clnt::Card::FromEvalFormat(short value)
+void pcmn::Card::FromEvalFormat(short value)
 {
 	m_Value = static_cast<Value>(Ace - value / 4);
 	int rest = value % 4;
@@ -73,7 +73,7 @@ void clnt::Card::FromEvalFormat(short value)
 	}
 }
 
-std::string clnt::Suit::ToString(Value value)
+std::string pcmn::Suit::ToString(Value value)
 {
 #define CASE(x) case x: return #x;
 	switch (value)

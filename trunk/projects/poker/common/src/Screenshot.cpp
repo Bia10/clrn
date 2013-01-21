@@ -3,7 +3,7 @@
 
 #include <boost/scope_exit.hpp>
 
-namespace cmn
+namespace pcmn
 {
 Screenshot::Screenshot(HWND window) : m_Window(window)
 {

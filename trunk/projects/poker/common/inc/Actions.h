@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace clnt
+namespace pcmn
 {
 	struct Action
 	{

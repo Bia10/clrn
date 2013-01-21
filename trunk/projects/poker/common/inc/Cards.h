@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace clnt
+namespace pcmn
 {
 	struct Suit
 	{

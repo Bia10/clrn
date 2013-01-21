@@ -9,6 +9,8 @@
 #include <sstream>
 #include <iomanip>
 
+using namespace pcmn;
+
 namespace clnt
 {
 namespace ps

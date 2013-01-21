@@ -9,7 +9,7 @@
 #include <boost/random/uniform_int_distribution.hpp>
 #include <boost/random/random_device.hpp>
 
-namespace clnt
+namespace pcmn
 {
 	
 

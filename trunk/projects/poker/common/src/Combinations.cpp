@@ -2,7 +2,7 @@
 
 #include <cassert>
 
-namespace clnt
+namespace pcmn
 {
 	
 std::string Combination::ToString(Value value)

@@ -11,7 +11,7 @@
 
 #include <boost/thread/mutex.hpp>
 
-namespace cmn
+namespace pcmn
 {
 	class Screenshot;
 }
@@ -34,7 +34,7 @@ private:
 	virtual void HandleMessage(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) override;
 
 	void SaveScreenThread(HWND handle, const std::string& message);
-	void TakeScreenshot(cmn::Screenshot& scrrenshot, unsigned index, const std::wstring& path);
+	void TakeScreenshot(pcmn::Screenshot& screenshot, unsigned index, const std::wstring& path);
 	const std::wstring& GetWindowClass(HWND handle);
 
 private:
@@ -52,7 +52,7 @@ private:
 	Log m_Log;
 
 	//! Data sender
-	std::auto_ptr<IDataSender> m_Sender;
+	std::auto_ptr<pcmn::IDataSender> m_Sender;
 };
 
 } // namespace ps
