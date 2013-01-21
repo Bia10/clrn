@@ -50,6 +50,7 @@ Table::Table(ILog& logger)
 	, m_SmallBlindAmount(0)
 	, m_Pot(0)
 	, m_Evaluator(new Evaluator())
+	, m_Actions(4)
 {
 	SCOPED_LOG(m_Log);
 
@@ -81,7 +82,7 @@ void Table::HandleMessage(const dasm::WindowMessage& message)
 			std::vector<char> data;
 			std::ostringstream oss;
 			BytesToString(oss, message.m_Block.m_Data + message.m_Block.m_Offset, message.m_Block.m_Offset + message.m_Block.m_Size);
-			LOG_TRACE("Message [0x%x] ignored, data: [%s]") % messageId % oss.str();
+			LOG_DEBUG("Message [0x%x] ignored, data: [%s]") % messageId % oss.str();
 			return;
 		}
 		
@@ -123,14 +124,25 @@ void Table::PlayerAction(const std::string& name, Action::Value action, std::siz
 			break;
 		case Action::Bet: 
 		case Action::Raise:
-			current.SetStyle(static_cast<std::size_t>(m_Phase), Player::Style::Agressive);
-		case Action::Call: 
 			{
-				current.SetStyle(static_cast<std::size_t>(m_Phase), Player::Style::Normal);
+				current.SetStyle(static_cast<std::size_t>(m_Phase), Player::Style::Agressive);
 
 				const std::size_t difference = amount - current.Bet();
 				current.Stack(current.Stack() - difference);
 				current.Bet(amount);
+				current.State(Player::State::InPot);
+				m_Pot += difference;
+				if (!current.Stack())
+					current.State(Player::State::AllIn);
+			}
+			break;
+		case Action::Call: 
+			{
+				current.SetStyle(static_cast<std::size_t>(m_Phase), Player::Style::Normal);
+
+				const std::size_t difference = amount;
+				current.Stack(current.Stack() - difference);
+				current.Bet(current.Bet() + difference);
 				current.State(Player::State::InPot);
 				m_Pot += difference;
 				if (!current.Stack())
@@ -145,8 +157,8 @@ void Table::PlayerAction(const std::string& name, Action::Value action, std::siz
 			m_Pot += m_SmallBlindAmount;
 			next.Bet(m_SmallBlindAmount * 2);
 			m_Pot += m_SmallBlindAmount * 2;
-			current.State(Player::State::InPot);
-			next.State(Player::State::InPot);
+			current.State(Player::State::Waiting);
+			next.State(Player::State::Waiting);
 			LOG_TRACE("Player: '%s', action: '%s', amount: '%s'") % next.Name() % Action::ToString(Action::BigBlind) % (m_SmallBlindAmount * 2);
 			break;
 		case Action::Ante: 
@@ -157,7 +169,7 @@ void Table::PlayerAction(const std::string& name, Action::Value action, std::siz
 			current.Stack(current.Stack() + amount);
 			current.Bet(current.Bet() - amount);
 			m_Pot -= amount;
-			break;
+			return;
 		case Action::SecondsLeft: 
 			if (name == Player::ThisPlayer().Name())
 				OnBotAction(); // our turn to play
@@ -321,10 +333,10 @@ bool Table::IsPhaseCompleted(Player& current, std::size_t& playersInPot)
 	bool finished = true;
 	for (const Player& player : m_Players)
 	{
-		if (player.State() == Player::State::InPot)
+		if (player.State() == Player::State::InPot || player.State() == Player::State::AllIn)
 		{
 			++playersInPot;
-			if (player.Bet() < maxBet)
+			if (player.State() != Player::State::AllIn && player.Bet() < maxBet)
 				finished = false;
 		}
 	}
@@ -363,7 +375,7 @@ void Table::ProcessWinners(const std::size_t playersInPot)
 		Player* playerPtr = 0;
 		for (Player& player : m_Players)
 		{
-			if (player.State() == Player::State::InPot)
+			if (player.State() == Player::State::InPot || player.State() == Player::State::AllIn)
 			{
 				assert(!playerPtr);
 				playerPtr = &player;
@@ -453,7 +465,7 @@ void Table::SetPhase(const Phase::Value phase)
 	for (Player& p : m_Players)
 	{
 		p.Bet(0);
-		if (p.State() != Player::State::Fold)
+		if (p.State() != Player::State::Fold && p.State() != Player::State::AllIn)
 			p.State(Player::State::Waiting);
 	}
 

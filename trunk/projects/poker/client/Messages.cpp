@@ -120,7 +120,7 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 
 		LOG_TRACE("Player: '%s', action: '%p', cards: '%s'") % name % Action::ToString(actionValue) % cards;
 
-		if (!cards.empty())
+		if (!name.empty() && !cards.empty())
 		{
 			Card::List cardsList;
 
@@ -146,7 +146,8 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 	}
 
 	CHECK(actionValue != Action::Unknown, static_cast<int>(action));
-	table.PlayerAction(name, actionValue, amount);
+	if (!name.empty())
+		table.PlayerAction(name, actionValue, amount);
 }
 
 

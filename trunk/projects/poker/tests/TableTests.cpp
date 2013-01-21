@@ -216,6 +216,101 @@ public:
 		}
 	}
 
+	void DoPredefinedActions()
+	{
+		{
+			m_Players = boost::assign::list_of
+				(Player("ttommi", 488))
+				(Player("tonycry75", 970))
+				(Player("Shaggs1981", 398))
+				(Player("sevenup_king", 308))
+				(Player("PaulV39", 378))
+				(Player("TRUKHANOFF", 576))
+				(Player("LE CHACAL53", 692))
+				(Player("fialka03", 666));
+
+
+			m_Table->PlayersInfo(m_Players);
+			m_Table->PlayerAction("TRUKHANOFF", Action::SmallBlind, 15);
+			m_Table->PlayerAction("fialka03", Action::Raise, 60);
+			m_Table->PlayerAction("ttommi", Action::Fold, 0);
+			m_Table->PlayerAction("tonycry75", Action::Raise, 970);
+			m_Table->PlayerAction("Shaggs1981", Action::Fold, 0);
+			m_Table->PlayerAction("sevenup_king", Action::Fold, 0);
+			m_Table->PlayerAction("PaulV39", Action::Fold, 0);
+			m_Table->PlayerAction("TRUKHANOFF", Action::Fold, 0);
+			m_Table->PlayerAction("LE CHACAL53", Action::Fold, 0);
+			m_Table->PlayerAction("fialka03", Action::Fold, 0);
+		}
+
+		{
+			m_Players = boost::assign::list_of
+				(Player("loboda1968", 40))
+				(Player("sevenup_king", 524))
+				(Player("anatoliw", 1270))
+				(Player("pittipopo", 441))
+				(Player("LECHACAL53", 190))
+				(Player("Kuksman", 1255))
+				(Player("=Foksimus1=", 752))
+				;
+			m_Table->PlayersInfo(m_Players);
+
+			m_Table->PlayerAction("sevenup_king", Action::SmallBlind, 20);
+			m_Table->PlayerAction("pittipopo", Action::Fold, 0);
+			m_Table->PlayerAction("LECHACAL53", Action::Call, 40);
+			m_Table->PlayerAction("Kuksman", Action::Fold, 0);
+			m_Table->PlayerAction("=Foksimus1=", Action::Call, 40);
+			m_Table->PlayerAction("loboda1968", Action::Call, 40);
+			m_Table->PlayerAction("sevenup_king", Action::Call, 20);
+			m_Table->PlayerAction("anatoliw", Action::Check, 0);
+			{
+				const Card::List flopCards = boost::assign::list_of
+					(Card(Card::King, Suit::Diamonds))
+					(Card(Card::Four, Suit::Spades))
+					(Card(Card::Three, Suit::Diamonds))
+					;
+				m_Table->FlopCards(flopCards);
+			}
+
+			m_Table->PlayerAction("sevenup_king", Action::Check, 0);
+			m_Table->PlayerAction("anatoliw", Action::Check, 0);
+			m_Table->PlayerAction("LECHACAL53", Action::Check, 0);
+			m_Table->PlayerAction("=Foksimus1=", Action::Check, 0);
+
+			{
+				const Card::List flopCards = boost::assign::list_of
+					(Card(Card::King, Suit::Diamonds))
+					(Card(Card::Four, Suit::Spades))
+					(Card(Card::Three, Suit::Diamonds))
+					(Card(Card::Nine, Suit::Spades))
+					;
+				m_Table->FlopCards(flopCards);
+			}
+
+			m_Table->PlayerAction("sevenup_king", Action::Check, 0);
+			m_Table->PlayerAction("anatoliw", Action::Check, 0);
+			m_Table->PlayerAction("LECHACAL53", Action::Check, 0);
+			m_Table->PlayerAction("=Foksimus1=", Action::Check, 0);
+			{
+				const Card::List flopCards = boost::assign::list_of
+					(Card(Card::King, Suit::Diamonds))
+					(Card(Card::Four, Suit::Spades))
+					(Card(Card::Three, Suit::Diamonds))
+					(Card(Card::Nine, Suit::Spades))
+					(Card(Card::Ten, Suit::Clubs))
+					;
+				m_Table->FlopCards(flopCards);
+			}
+
+			m_Table->PlayerAction("sevenup_king", Action::Check, 0);
+			m_Table->PlayerAction("anatoliw", Action::Bet, 40);
+			m_Table->PlayerAction("LECHACAL53", Action::Fold, 0);
+			m_Table->PlayerAction("=Foksimus1=", Action::Fold, 0);
+			m_Table->PlayerAction("sevenup_king", Action::Fold, 0);
+			m_Table->PlayerAction("anatoliw", Action::MoneyReturn, 40);
+			m_Table->PlayerAction("loboda1968", Action::Rank, 7);
+		}
+	}
 
 private:
 	Log m_Log;
@@ -227,6 +322,10 @@ private:
 	std::vector<Player::State::Value> m_Moves;
 };
 
+TEST_P(TestTable, PredefinedActions)
+{
+	DoPredefinedActions();
+}
 
 TEST_P(TestTable, Messages)
 {
