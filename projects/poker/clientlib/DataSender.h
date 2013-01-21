@@ -12,7 +12,7 @@ class DataSender : public pcmn::IDataSender
 public:
 	DataSender(ILog& logger);
 private:
-	virtual void OnGameFinished(const Statistic& stats) override;
+	virtual void OnGameFinished(const net::Packet& packet) override;
 };
 
 } // namespace clnt

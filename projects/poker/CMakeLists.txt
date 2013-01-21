@@ -1,8 +1,10 @@
 set(POKER_COMMON_INC "${CMAKE_CURRENT_LIST_DIR}/common/inc/")
-include_directories("${POKER_COMMON_INC}")
+set(PROTO_INC "${CMAKE_CURRENT_LIST_DIR}/protocols/inc/")
+include_directories("${POKER_COMMON_INC}" "${PROTO_INC}")
 
 add_subdirectory(common)
 add_subdirectory(injector)
+add_subdirectory(clientlib)
 add_subdirectory(client)
 add_subdirectory(evaluator)
 add_subdirectory(tests)
