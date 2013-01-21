@@ -5,7 +5,7 @@
 
 #include <boost/regex.hpp>
 
-using namespace clnt;
+using namespace pcmn;
 
 void Process(const std::string& input, std::ostream& output)
 {

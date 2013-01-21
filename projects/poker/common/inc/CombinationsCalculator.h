@@ -8,7 +8,7 @@
 
 class SevenEval;
 
-namespace clnt
+namespace pcmn
 {
 
 class Evaluator

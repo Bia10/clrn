@@ -8,6 +8,7 @@ message Packet
 		required string Name 	= 1; 	// player name
 		required uint32 Stack 	= 2;	// player stack
 		required uint32 Bet		= 3;	// player total bet
+		repeated uint32 Cards	= 4;	// player cards
 	}
 	
 	message Table

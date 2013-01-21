@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <string>
 
-namespace cmn
+namespace pcmn
 {
 class Screenshot
 {

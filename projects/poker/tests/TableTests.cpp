@@ -5,6 +5,7 @@
 #include "Log.h"
 #include "Modules.h"
 #include "CombinationsCalculator.h"
+#include "IDataSender.h"
 
 #include "gtest/gtest.h"
 
@@ -16,6 +17,7 @@
 #include <boost/random/random_device.hpp>
 #include <boost/lexical_cast.hpp>
 
+using namespace pcmn;
 using namespace clnt;
 using testing::Range;
 using testing::Combine;
@@ -46,10 +48,18 @@ std::string GetRandomString(std::size_t size = 10)
 	return result;
 }
 
+class FakeSender : public pcmn::IDataSender
+{
+	virtual void OnGameFinished(const pcmn::IDataSender::Statistic& stats)
+	{
+
+	}
+};
+
 class TestTable : public testing::TestWithParam<::std::tr1::tuple<int, int> >
 {
 public:
-	TestTable() : m_Button(0), m_Table(new ps::Table(m_Log)), m_MaxBet(0)
+	TestTable() : m_Button(0), m_Table(new ps::Table(m_Log, m_Sender)), m_MaxBet(0)
 	{
 		m_Log.Open("tests.log", Modules::Table, ILog::Level::Debug);
 
@@ -313,6 +323,7 @@ public:
 	}
 
 private:
+	FakeSender m_Sender;
 	Log m_Log;
 	Player::List m_Players;
 	std::size_t m_Button;

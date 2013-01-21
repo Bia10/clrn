@@ -43,7 +43,7 @@ void Client::HandleMessage(HWND hWnd, UINT Msg, WPARAM /*wParam*/, LPARAM lParam
 		boost::mutex::scoped_lock lock(m_Mutex);
 		Tables::const_iterator it = m_Tables.find(hWnd);
 		if (it == m_Tables.end())
-			it = m_Tables.insert(std::make_pair(hWnd, ITable::Ptr(new ps::Table(m_Log)))).first;
+			it = m_Tables.insert(std::make_pair(hWnd, ITable::Ptr(new ps::Table(m_Log, *m_Sender)))).first;
 	
 		lock.unlock();
 	
@@ -69,7 +69,7 @@ Client::Client() : m_Sender(new DataSender(m_Log))
 		m_Log.Open("logs/table.txt", Modules::Table, ILog::Level::Trace);
 
 		// player name
-		Player::ThisPlayer().Name("CLRN");
+		pcmn::Player::ThisPlayer().Name("CLRN");
 	}
 	CATCH_PASS_EXCEPTIONS("Failed to construct client")
 }
@@ -93,7 +93,7 @@ void Client::SaveScreenThread(HWND handle, const std::string& message)
 		LOG_ERROR("Handle message failed: [%s], file: [%s]") % message % path;
 
 		ShowWindow(handle, SW_SHOW);
-		cmn::Screenshot shot(handle);
+		pcmn::Screenshot shot(handle);
 		for (unsigned i = 0 ; i < 10; ++i)
 		{
 			TakeScreenshot(shot, i, path);
@@ -106,7 +106,7 @@ void Client::SaveScreenThread(HWND handle, const std::string& message)
 	}
 }
 
-void Client::TakeScreenshot(cmn::Screenshot& scrrenshot, unsigned index, const std::wstring& path)
+void Client::TakeScreenshot(pcmn::Screenshot& scrrenshot, unsigned index, const std::wstring& path)
 {
 	const std::wstring temp = path + std::wstring(L"_") + conv::cast<std::wstring>(index) + L".bmp";
 	scrrenshot.Save(fs::FullPath(temp));

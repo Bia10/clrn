@@ -7,7 +7,7 @@
 namespace clnt
 {
 
-class DataSender : public IDataSender
+class DataSender : public pcmn::IDataSender
 {
 public:
 	DataSender(ILog& logger);

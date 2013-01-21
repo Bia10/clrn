@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace clnt
+namespace pcmn
 {
 
 class IDataSender
@@ -17,6 +17,7 @@ public:
 	virtual ~IDataSender() {}
 	virtual void OnGameFinished(const Statistic& stats) = 0;
 };
+
 }
 
 #endif // IDataSender_h__

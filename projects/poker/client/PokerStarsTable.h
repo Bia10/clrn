@@ -7,6 +7,7 @@
 #include "ILog.h"
 #include "CombinationsCalculator.h"
 #include "Cards.h"
+#include "IDataSender.h"
 
 namespace clnt
 {
@@ -17,44 +18,44 @@ class Table : public ITable
 {
 	struct ActionDesc
 	{
-		ActionDesc(const std::string& name, Action::Value value, std::size_t amount)
+		ActionDesc(const std::string& name, pcmn::Action::Value value, std::size_t amount)
 			: m_Name(name)
 			, m_Value(value)
 			, m_Amount(amount)
 		{}
 		std::string m_Name;
-		Action::Value m_Value;
+		pcmn::Action::Value m_Value;
 		std::size_t m_Amount;
 	};
 	typedef cmn::functional::Factory<IMessage, std::size_t, cmn::functional::IgnoreErrorPolicy> Factory;
 	typedef std::vector<ActionDesc> Actions;
 	typedef std::vector<Actions> GameActions;
 public:
-	Table(ILog& logger);
+	Table(ILog& logger, pcmn::IDataSender& dataSender);
 
 private:
 	virtual void HandleMessage(const dasm::WindowMessage& message) override;
-	virtual void PlayerAction(const std::string& name, Action::Value, std::size_t amount) override;
-	virtual void FlopCards(const Card::List& cards) override;
-	virtual void BotCards(const Card& first, const Card& second) override;
-	virtual void PlayersInfo(const Player::List& players) override;
-	virtual void PlayerCards(const std::string& name, const Card::List& cards) override;
+	virtual void PlayerAction(const std::string& name, pcmn::Action::Value, std::size_t amount) override;
+	virtual void FlopCards(const pcmn::Card::List& cards) override;
+	virtual void BotCards(const pcmn::Card& first, const pcmn::Card& second) override;
+	virtual void PlayersInfo(const pcmn::Player::List& players) override;
+	virtual void PlayerCards(const std::string& name, const pcmn::Card::List& cards) override;
 private:
 
 	//! Get player on table
-	Player& GetPlayer(const std::string& name);
+	pcmn::Player& GetPlayer(const std::string& name);
 
 	//! Get next player on table
-	Player& GetNextPlayer(const std::string& name);
+	pcmn::Player& GetNextPlayer(const std::string& name);
 
 	//! Get next active player on table
-	Player& GetNextActivePlayer(const std::string& name);
+	pcmn::Player& GetNextActivePlayer(const std::string& name);
 
 	//! On bot action
 	void OnBotAction();
 
 	//! Checks for current stage completion
-	bool IsPhaseCompleted(Player& current, std::size_t& playersInPot);
+	bool IsPhaseCompleted(pcmn::Player& current, std::size_t& playersInPot);
 
 	//! Reset phase
 	void ResetPhase();
@@ -72,37 +73,40 @@ private:
 private:
 
 	//! Message factory
-	static Factory				s_Factory;
+	static Factory					s_Factory;
 
 	//! Logger 
-	ILog&						m_Log;
+	ILog&							m_Log;
 
 	//! Players
-	Player::List				m_Players;
+	pcmn::Player::List				m_Players;
 
 	//! Pot
-	std::size_t					m_Pot;
+	std::size_t						m_Pot;
 
 	//! Game phase
-	Phase::Value				m_Phase;
+	Phase::Value					m_Phase;
 
 	//! Flop cards
-	Card::List					m_FlopCards;
+	pcmn::Card::List				m_FlopCards;
 
 	//! Flop cards
-	Card::List					m_BotCards;
+	pcmn::Card::List				m_BotCards;
 
 	//! Small blind size
-	std::size_t					m_SmallBlindAmount;
+	std::size_t						m_SmallBlindAmount;
 
 	//! Hands evaluator
-	std::auto_ptr<Evaluator>	m_Evaluator;
+	std::auto_ptr<pcmn::Evaluator>	m_Evaluator;
 
 	//! This game actions
-	GameActions					m_Actions;
+	GameActions						m_Actions;
 
 	//! Player name on button
-	std::string					m_OnButton;
+	std::string						m_OnButton;
+
+	//! Data sender interface
+	pcmn::IDataSender&				m_DataSender;
 
 };
 

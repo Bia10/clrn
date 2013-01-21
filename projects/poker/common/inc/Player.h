@@ -7,7 +7,7 @@
 #include <vector>
 #include <cassert>
 
-namespace clnt
+namespace pcmn
 {
 class Player
 {

@@ -42,11 +42,11 @@ public:
 	virtual ~ITable() {}
 
 	virtual void HandleMessage(const dasm::WindowMessage& message) = 0;
-	virtual void PlayerAction(const std::string& name, Action::Value, std::size_t amount) = 0;
-	virtual void FlopCards(const Card::List& cards) = 0;
-	virtual void BotCards(const Card& first, const Card& second) = 0;
-	virtual void PlayerCards(const std::string& name, const Card::List& cards) = 0;
-	virtual void PlayersInfo(const Player::List& players) = 0;
+	virtual void PlayerAction(const std::string& name, pcmn::Action::Value, std::size_t amount) = 0;
+	virtual void FlopCards(const pcmn::Card::List& cards) = 0;
+	virtual void BotCards(const pcmn::Card& first, const pcmn::Card& second) = 0;
+	virtual void PlayerCards(const std::string& name, const pcmn::Card::List& cards) = 0;
+	virtual void PlayersInfo(const pcmn::Player::List& players) = 0;
 
 };
 

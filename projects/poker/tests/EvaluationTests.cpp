@@ -8,7 +8,7 @@
 
 #include <boost/assign.hpp>
 
-using namespace clnt;
+using namespace pcmn;
 
 TEST(Cards, Convertion)
 {
