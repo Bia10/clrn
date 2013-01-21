@@ -181,7 +181,10 @@ void Table::PlayerAction(const std::string& name, Action::Value action, std::siz
 		LOG_TRACE("Switching state from '%d' to '%d'") % m_Phase % (static_cast<int>(m_Phase) + 1);
 
 		if (m_Phase == Phase::River || playersInPot == 1)
+		{
 			ProcessWinners(playersInPot);
+			SendStatistic();
+		}
 
 		return;
 	}

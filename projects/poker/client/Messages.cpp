@@ -112,9 +112,9 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 
 	const Action::Value actionValue = ConvertAction(action);
 
+	const std::string name(data);
 	if (actionValue == Action::ShowCards)
 	{
-		const std::string name(data);
 		data += (name.size() + 1);
 		const std::string cards(data);
 
@@ -137,7 +137,6 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 	else
 	if (actionValue == Action::WinCards)
 	{
-		std::string name(data);
 		data += (name.size() + 1);
 		LOG_TRACE("Player: '%s', action: '%p', pot: '%s', cards: '%s'") % name % Action::ToString(actionValue) % amount % data;
 	}
@@ -147,7 +146,7 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 	}
 
 	CHECK(actionValue != Action::Unknown, static_cast<int>(action));
-	table.PlayerAction(data, actionValue, amount);
+	table.PlayerAction(name, actionValue, amount);
 }
 
 
