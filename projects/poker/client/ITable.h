@@ -43,9 +43,9 @@ public:
 
 	virtual void HandleMessage(const dasm::WindowMessage& message) = 0;
 	virtual void PlayerAction(const std::string& name, Action::Value, std::size_t amount) = 0;
-	virtual void FlopCards(const std::vector<Card>& cards) = 0;
+	virtual void FlopCards(const Card::List& cards) = 0;
 	virtual void BotCards(const Card& first, const Card& second) = 0;
-	virtual void PlayerCards(const std::string& name, const std::string& cards) = 0;
+	virtual void PlayerCards(const std::string& name, const Card::List& cards) = 0;
 	virtual void PlayersInfo(const Player::List& players) = 0;
 
 };

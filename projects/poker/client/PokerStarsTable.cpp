@@ -49,7 +49,7 @@ Table::Table(ILog& logger)
 	, m_Phase(Phase::Preflop)
 	, m_SmallBlindAmount(0)
 	, m_Pot(0)
-	, m_Evaluator(new Calculator())
+	, m_Evaluator(new Evaluator())
 {
 	SCOPED_LOG(m_Log);
 
@@ -101,6 +101,10 @@ void Table::HandleMessage(const dasm::WindowMessage& message)
 
 void Table::PlayerAction(const std::string& name, Action::Value action, std::size_t amount)
 {
+	m_Actions[m_Phase].push_back(ActionDesc(name, action, amount));
+
+	LOG_TRACE("Player: '%s', action: '%s', amount: '%s'") % name % Action::ToString(action) % amount;
+
 	if (m_Players.empty())
 		return; 
 
@@ -117,39 +121,33 @@ void Table::PlayerAction(const std::string& name, Action::Value action, std::siz
 			current.SetStyle(static_cast<std::size_t>(m_Phase), Player::Style::Passive);
 			current.State(Player::State::InPot);
 			break;
-		case Action::Call: 
-			current.SetStyle(static_cast<std::size_t>(m_Phase), Player::Style::Normal);
-			current.Stack(current.Stack() - amount);
-			current.Bet(current.Bet() + amount);
-			current.State(Player::State::InPot);
-			m_Pot += amount;
-			if (!current.Stack())
-				current.State(Player::State::AllIn);
-			break;
 		case Action::Bet: 
-			current.SetStyle(static_cast<std::size_t>(m_Phase), Player::Style::Agressive);
-			current.Stack(current.Stack() - amount);
-			current.Bet(current.Bet() + amount);
-			current.State(Player::State::InPot);
-			m_Pot += amount;
-			if (!current.Stack())
-				current.State(Player::State::AllIn);
-			break;
 		case Action::Raise:
 			current.SetStyle(static_cast<std::size_t>(m_Phase), Player::Style::Agressive);
-			current.Stack(current.Stack() - amount);
-			current.Bet(current.Bet() + amount);
-			current.State(Player::State::InPot);
-			m_Pot += amount;
-			if (!current.Stack())
-				current.State(Player::State::AllIn);
+		case Action::Call: 
+			{
+				current.SetStyle(static_cast<std::size_t>(m_Phase), Player::Style::Normal);
+
+				const std::size_t difference = amount - current.Bet();
+				current.Stack(current.Stack() - difference);
+				current.Bet(amount);
+				current.State(Player::State::InPot);
+				m_Pot += difference;
+				if (!current.Stack())
+					current.State(Player::State::AllIn);
+			}
 			break;
 		case Action::SmallBlind: 
+			assert(!m_SmallBlindAmount);
+			m_OnButton = current.Name();
 			m_SmallBlindAmount = amount;
 			current.Bet(m_SmallBlindAmount);
+			m_Pot += m_SmallBlindAmount;
 			next.Bet(m_SmallBlindAmount * 2);
+			m_Pot += m_SmallBlindAmount * 2;
 			current.State(Player::State::InPot);
 			next.State(Player::State::InPot);
+			LOG_TRACE("Player: '%s', action: '%s', amount: '%s'") % next.Name() % Action::ToString(Action::BigBlind) % (m_SmallBlindAmount * 2);
 			break;
 		case Action::Ante: 
 			m_Pot += amount;
@@ -177,12 +175,13 @@ void Table::PlayerAction(const std::string& name, Action::Value action, std::siz
 		default: assert(false);
 	}
 
-	if (action != Action::SmallBlind && IsPhaseCompleted(current))
+	std::size_t playersInPot = 0;
+	if (action != Action::SmallBlind && IsPhaseCompleted(current, playersInPot))
 	{
 		LOG_TRACE("Switching state from '%d' to '%d'") % m_Phase % (static_cast<int>(m_Phase) + 1);
 
-		if (m_Phase == Phase::River)
-			ProcessWinners();
+		if (m_Phase == Phase::River || playersInPot == 1)
+			ProcessWinners(playersInPot);
 
 		return;
 	}
@@ -193,25 +192,24 @@ void Table::PlayerAction(const std::string& name, Action::Value action, std::siz
 
 void Table::FlopCards(const Card::List& cards)
 {
-	for (Player& player : m_Players)
-		player.State(Player::State::Waiting);
-
+	Phase::Value phase = Phase::Preflop;
 	switch (cards.size())
 	{
-	case 3: m_Phase = Phase::Flop; break;
-	case 4: m_Phase = Phase::Turn; break;
-	case 5: m_Phase = Phase::River; break;
+	case 3: phase = Phase::Flop; break;
+	case 4: phase = Phase::Turn; break;
+	case 5: phase = Phase::River; break;
 	default: assert(false);
 	}
 
 	m_FlopCards = cards;
+	SetPhase(phase);
 }
 
 void Table::BotCards(const Card& first, const Card& second)
 {
-	m_PlayerCards.clear();
-	m_PlayerCards.push_back(first);
-	m_PlayerCards.push_back(second);
+	m_BotCards.clear();
+	m_BotCards.push_back(first);
+	m_BotCards.push_back(second);
 }
 
 void Table::PlayersInfo(const Player::List& players)
@@ -273,18 +271,12 @@ void Table::OnBotAction()
 	// make a decision and react
 }
 
-bool Table::IsPhaseCompleted(Player& current)
+bool Table::IsPhaseCompleted(Player& current, std::size_t& playersInPot)
 {
 	// check all bets here
 	// if all bets are off - going to next phase
 	// if some players are all in - create additional pots and go to next phase
 
-	// find any waiting player
-	const Player::List::const_iterator it = std::find_if(m_Players.begin(), m_Players.end(), [](const Player& p){ return p.State() == Player::State::Waiting; });
-	if (it != m_Players.end())
-		return false;
-
-	// calculate win sizes
 	std::size_t maxBet = 0;
 	for (Player& player : m_Players)
 	{
@@ -315,44 +307,81 @@ bool Table::IsPhaseCompleted(Player& current)
 		case Player::State::InPot:
 			player.WinSize(m_Pot);
 			break;
+		case Player::State::Waiting:
+			return false;
+			break;
 		}
 	}
 
-	return true;
+	// find players that didn't call bets
+	playersInPot = 0;
+	bool finished = true;
+	for (const Player& player : m_Players)
+	{
+		if (player.State() == Player::State::InPot)
+		{
+			++playersInPot;
+			if (player.Bet() < maxBet)
+				finished = false;
+		}
+	}
+
+	return finished;
 }
 
-void Table::PlayerCards(const std::string& name, const std::string& cards)
+void Table::PlayerCards(const std::string& name, const Card::List& cards)
 {
 	if (m_Players.empty())
 		return;
 
-	assert(cards.size() == 4);
-
+	assert(cards.size() == 2);
 	Player& player = GetPlayer(name);
-	Card::List cardsList;
-
-	Card tmp(Card::FromString(cards[0]), static_cast<Suit::Value>(cards[1]));
-	cardsList.push_back(tmp);
-
-	tmp.m_Value = Card::FromString(cards[2]);
-	tmp.m_Suit = static_cast<Suit::Value>(cards[3]);
-	cardsList.push_back(tmp);
-
-	player.Cards(cardsList);
+	player.Cards(cards);
 }
 
 void Table::ResetPhase()
 {
 	m_Phase = Phase::Preflop;
 	m_Players.clear();
-	m_PlayerCards.clear();
+	m_BotCards.clear();
 	m_Pot = 0;
 	m_FlopCards.clear();
 	m_SmallBlindAmount = 0;
+	m_Actions.clear();
+	m_Actions.resize(4);
+	m_OnButton.clear();
 }
 
-void Table::ProcessWinners()
+void Table::ProcessWinners(const std::size_t playersInPot)
 {
+	if (playersInPot == 1)
+	{
+		// all players folds
+		Player* playerPtr = 0;
+		for (Player& player : m_Players)
+		{
+			if (player.State() == Player::State::InPot)
+			{
+				assert(!playerPtr);
+				playerPtr = &player;
+			}
+		}
+
+		const Player::Style::Value style = playerPtr->GetStyle(m_Phase);
+		if (style == Player::Style::Agressive)
+		{
+			playerPtr->Result(Player::Result::WinByRaise);
+			LOG_TRACE("Player '%s' wins main pot: '%s' by successfull raise.") % playerPtr->Name() % m_Pot;
+		}
+		else
+		{
+			playerPtr->Result(Player::Result::WinByLuck);
+			LOG_TRACE("Player '%s' wins main pot: '%s' because all players folds.") % playerPtr->Name() % m_Pot;
+		}
+
+		return;
+	}
+
 	assert(m_FlopCards.size() == 5);
 
 	struct Info
@@ -390,24 +419,42 @@ void Table::ProcessWinners()
 
 	std::size_t addPot = 0;
 	bool winners = true;
+	short winValue = 0;
 	for (const Info& player : players)
 	{
-		if (winners)
-			GetPlayer(player.m_Name).Result(Player::Result::WinByCards);
-		else
-			GetPlayer(player.m_Name).Result(Player::Result::LooseWithCards);
-
-		if (player.m_Pot != maxPot)
+		if (winners || player.m_Value == winValue)
 		{
-			addPot = player.m_Pot;
-			LOG_TRACE("Player '%s' wins additional pot: '%s' with hand: '%s'") % player.m_Name % player.m_Pot % Combination::ToString(Combination::FromEval(player.m_Value));
+			GetPlayer(player.m_Name).Result(Player::Result::WinByCards);
+			if (player.m_Pot != maxPot)
+			{
+				addPot = player.m_Pot;
+				LOG_TRACE("Player '%s' wins additional pot: '%s' with hand: '%s'") % player.m_Name % player.m_Pot % Combination::ToString(Combination::FromEval(player.m_Value));
+			}
+			else
+			{
+				LOG_TRACE("Player '%s' wins main pot: '%s' with hand: '%s'") % player.m_Name % (player.m_Pot - addPot) % Combination::ToString(Combination::FromEval(player.m_Value));
+				winners = false;
+				winValue = player.m_Value;
+			}
 		}
 		else
 		{
-			LOG_TRACE("Player '%s' wins main pot: '%s' with hand: '%s'") % player.m_Name % (player.m_Pot - addPot) % Combination::ToString(Combination::FromEval(player.m_Value));
-			winners = false;
+			GetPlayer(player.m_Name).Result(Player::Result::LooseWithCards);
+			LOG_TRACE("Player '%s' loose with hand: '%s'") % player.m_Name % Combination::ToString(Combination::FromEval(player.m_Value));
 		}
 	}
+}
+
+void Table::SetPhase(const Phase::Value phase)
+{
+	for (Player& p : m_Players)
+	{
+		p.Bet(0);
+		if (p.State() != Player::State::Fold)
+			p.State(Player::State::Waiting);
+	}
+
+	m_Phase = phase;
 }
 
 void Table::SendStatistic()

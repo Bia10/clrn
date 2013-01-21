@@ -1,7 +1,8 @@
 file(GLOB SOURCES "*.cpp")
 file(GLOB HEADERS "*.h" "*.rc" "*.def")
+file(GLOB CLIENT_SRC "../client/*.cpp")
 
-add_executable(tests ${SOURCES} ${HEADERS})
+add_executable(tests ${SOURCES} ${HEADERS} ${CLIENT_SRC})
 set_target_properties(tests PROPERTIES FOLDER "poker")
 target_link_libraries(tests
 	evaluator

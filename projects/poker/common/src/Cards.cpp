@@ -46,7 +46,7 @@ clnt::Card::Value clnt::Card::FromString(const char value)
 	}
 }
 
-int clnt::Card::ToEvalFormat() const
+short clnt::Card::ToEvalFormat() const
 {
 	const int result = (Ace - m_Value) * 4;
 	switch (m_Suit)
@@ -58,6 +58,19 @@ int clnt::Card::ToEvalFormat() const
 	}
 	assert(false);
 	return 0;
+}
+
+void clnt::Card::FromEvalFormat(short value)
+{
+	m_Value = static_cast<Value>(Ace - value / 4);
+	int rest = value % 4;
+	switch (rest)
+	{
+	case 0: m_Suit = Suit::Spades; break;
+	case 1: m_Suit =  Suit::Hearts; break;
+	case 2: m_Suit =  Suit::Diamonds; break;
+	case 3: m_Suit =  Suit::Clubs; break;
+	}
 }
 
 std::string clnt::Suit::ToString(Value value)

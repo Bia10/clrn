@@ -121,7 +121,18 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 		LOG_TRACE("Player: '%s', action: '%p', cards: '%s'") % name % Action::ToString(actionValue) % cards;
 
 		if (!cards.empty())
-			table.PlayerCards(name, data);
+		{
+			Card::List cardsList;
+
+			Card tmp(Card::FromString(cards[0]), static_cast<Suit::Value>(cards[1]));
+			cardsList.push_back(tmp);
+
+			tmp.m_Value = Card::FromString(cards[2]);
+			tmp.m_Suit = static_cast<Suit::Value>(cards[3]);
+			cardsList.push_back(tmp);
+
+			table.PlayerCards(name, cardsList);
+		}
 	}
 	else
 	if (actionValue == Action::WinCards)

@@ -10,6 +10,7 @@ namespace clnt
 	{
 		enum Value
 		{
+			Unknown		= 0,
 			Hearts		= 'h',
 			Clubs		= 'c',
 			Spades		= 's',
@@ -40,6 +41,7 @@ namespace clnt
 			Ace		= 14
 		};
 
+		Card() : m_Suit(Suit::Unknown), m_Value(Unknown) {}
 		Card(Value value, Suit::Value suit) 
 			: m_Value(value)
 			, m_Suit(suit)
@@ -47,7 +49,8 @@ namespace clnt
 
 		static std::string ToString(Value value);
 		static Value FromString(const char value);
-		int ToEvalFormat() const;
+		short ToEvalFormat() const;
+		void FromEvalFormat(short value);
 
 		Value m_Value;
 		Suit::Value m_Suit;
