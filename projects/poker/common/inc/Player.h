@@ -65,6 +65,18 @@ public:
 		m_Styles.resize(4, Style::Normal);
 	}
 
+	Player(const std::string& name, const std::size_t stack)
+		: m_Name(name)
+		, m_Country()
+		, m_Stack(stack)
+		, m_Bet(0)
+		, m_WinSize(0)
+		, m_Result()
+		, m_State(State::Waiting)
+	{
+		m_Styles.resize(4, Style::Normal);
+	}
+
 	typedef std::vector<Player> List;
 	typedef std::vector<Style::Value> Styles;
 
