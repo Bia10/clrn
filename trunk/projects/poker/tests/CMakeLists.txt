@@ -7,4 +7,8 @@ target_link_libraries(tests
 	evaluator
 	common
 	pokercmn
+	gtest
+	gtest_main
+	protocols
+	libprotobuf
 )

@@ -1,0 +1,7 @@
+package packets;
+
+// data packet
+message Packet 
+{
+
+}
