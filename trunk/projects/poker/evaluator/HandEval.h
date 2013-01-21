@@ -2,6 +2,7 @@
 #define HANDEVAL_H
 
 #include "Constants.h"
+#include <vector>
 
   // Uncomment when testing. Make this number is
   // very large, to allow the evaluator to get up
@@ -68,8 +69,9 @@ public:
   /*!
    Equity evalaution methods.
    */
-  const char * computePreFlopEquityForSpecificHoleCards (int * holeCards,
-                                                         int number_of_players);
+  void computePreFlopEquityForSpecificHoleCards (int * holeCards,
+                                                         int number_of_players,
+														 std::vector<float>& result);
   
   const char * computeFlopEquityForSpecificCards (int * holeCards,
                                                   int * tableCards,

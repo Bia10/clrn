@@ -91,6 +91,11 @@ public:
 			m_Styles[phase] = style;
 	}
 
+	Style::Value GetStyle(std::size_t phase)
+	{
+		return m_Styles[phase];
+	}
+
 	static Player& ThisPlayer()
 	{
 		static Player bot;

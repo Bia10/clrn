@@ -212,7 +212,7 @@ short HandEval::getRankOfSeven ( const int card_1, const int card_2, const int c
     return 0;
 }
 
-const char * HandEval::computePreFlopEquityForSpecificHoleCards ( int *hole_cards, int number_of_players ) {
+void HandEval::computePreFlopEquityForSpecificHoleCards ( int *hole_cards, int number_of_players, std::vector<float>& result ) {
     // Count and list the undealt cards, ie. the remaining deck.
     int undealtCards[DECK_SIZE];
     int number_of_undealt_cards = 0;
@@ -418,10 +418,9 @@ const char * HandEval::computePreFlopEquityForSpecificHoleCards ( int *hole_card
     }
     
     equity_percentage[player_defect] = 100.0f - equity_sum;
-    static char resultString[256];
-    sprintf ( resultString, "%.16f_%.16f_%.16f_%.16f_%.16f_%.16f_%.16f_%.16f", equity_percentage[0], equity_percentage[1], equity_percentage[2],
-              equity_percentage[3], equity_percentage[4], equity_percentage[5], equity_percentage[6], equity_percentage[7] );
-    return resultString;
+
+	for (int i = 0 ; i < number_of_players; ++i)
+		result.push_back(equity_percentage[i]);
 }
 
 const char * HandEval::computeFlopEquityForSpecificCards ( int * hole_cards, int * table_cards, int number_of_players )

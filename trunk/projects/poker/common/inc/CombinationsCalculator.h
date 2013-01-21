@@ -11,12 +11,13 @@ class SevenEval;
 namespace clnt
 {
 
-class Calculator
+class Evaluator
 {
 public:
-	Calculator();
-	~Calculator();
-	short GetRank(const Card::List& cards);
+	Evaluator();
+	~Evaluator();
+	short GetRank(const Card::List& cards) const;
+	short GetRandomCard() const;
 private:
 	SevenEval* m_Evaluator;
 };

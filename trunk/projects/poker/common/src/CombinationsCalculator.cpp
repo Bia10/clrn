@@ -5,16 +5,20 @@
 #include <cassert>
 #include <algorithm>
 
+#include <boost/random/mersenne_twister.hpp>
+#include <boost/random/uniform_int_distribution.hpp>
+#include <boost/random/random_device.hpp>
+
 namespace clnt
 {
 	
 
-Calculator::Calculator() : m_Evaluator(new SevenEval())
+Evaluator::Evaluator() : m_Evaluator(new SevenEval())
 {
 
 }
 
-short Calculator::GetRank(const Card::List& cards)
+short Evaluator::GetRank(const Card::List& cards) const
 {
 	CHECK(cards.size() == 7, cards.size());
 
@@ -25,9 +29,16 @@ short Calculator::GetRank(const Card::List& cards)
 	return m_Evaluator->getRankOfSeven(evals[0], evals[1], evals[2], evals[3], evals[4], evals[5], evals[6]);
 }
 
-Calculator::~Calculator()
+Evaluator::~Evaluator()
 {
 	delete m_Evaluator;
+}
+
+short Evaluator::GetRandomCard() const
+{
+	static boost::random::random_device rng;
+	boost::random::uniform_int_distribution<> distribution(0, DECK_SIZE - 1);
+	return distribution(rng);
 }
 
 }
