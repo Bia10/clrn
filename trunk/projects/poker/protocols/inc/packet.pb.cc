@@ -32,7 +32,6 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* Packet_Phase_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Packet_Phase_reflection_ = NULL;
-const ::google::protobuf::EnumDescriptor* Packet_Phase_PhaseValue_descriptor_ = NULL;
 
 }  // namespace
 
@@ -45,7 +44,7 @@ void protobuf_AssignDesc_packet_2eproto() {
   GOOGLE_CHECK(file != NULL);
   Packet_descriptor_ = file->message_type(0);
   static const int Packet_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet, data_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet, info_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet, phases_),
   };
   Packet_reflection_ =
@@ -60,10 +59,11 @@ void protobuf_AssignDesc_packet_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Packet));
   Packet_Player_descriptor_ = Packet_descriptor_->nested_type(0);
-  static const int Packet_Player_offsets_[3] = {
+  static const int Packet_Player_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet_Player, name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet_Player, stack_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet_Player, bet_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet_Player, cards_),
   };
   Packet_Player_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -110,8 +110,7 @@ void protobuf_AssignDesc_packet_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Packet_Action));
   Packet_Phase_descriptor_ = Packet_descriptor_->nested_type(3);
-  static const int Packet_Phase_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet_Phase, value_),
+  static const int Packet_Phase_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet_Phase, actions_),
   };
   Packet_Phase_reflection_ =
@@ -125,7 +124,6 @@ void protobuf_AssignDesc_packet_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Packet_Phase));
-  Packet_Phase_PhaseValue_descriptor_ = Packet_Phase_descriptor_->enum_type(0);
 }
 
 namespace {
@@ -172,17 +170,15 @@ void protobuf_AddDesc_packet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\014packet.proto\022\003net\"\212\003\n\006Packet\022\037\n\004Data\030\001"
+    "\n\014packet.proto\022\003net\"\261\002\n\006Packet\022\037\n\004Info\030\001"
     " \002(\0132\021.net.Packet.Table\022!\n\006Phases\030\002 \003(\0132"
-    "\021.net.Packet.Phase\0322\n\006Player\022\014\n\004Name\030\001 \002"
-    "(\t\022\r\n\005Stack\030\002 \002(\r\022\013\n\003Bet\030\003 \002(\r\032<\n\005Table\022"
-    "#\n\007Players\030\001 \003(\0132\022.net.Packet.Player\022\016\n\006"
-    "Button\030\002 \002(\r\0324\n\006Action\022\016\n\006Player\030\001 \002(\r\022\n"
-    "\n\002Id\030\002 \002(\r\022\016\n\006Amount\030\003 \001(\r\032\223\001\n\005Phase\022+\n\005"
-    "Value\030\001 \002(\0162\034.net.Packet.Phase.PhaseValu"
-    "e\022#\n\007Actions\030\002 \003(\0132\022.net.Packet.Action\"8"
-    "\n\nPhaseValue\022\013\n\007PreFlop\020\000\022\010\n\004Flop\020\001\022\010\n\004T"
-    "urn\020\002\022\t\n\005River\020\003", 416);
+    "\021.net.Packet.Phase\032A\n\006Player\022\014\n\004Name\030\001 \002"
+    "(\t\022\r\n\005Stack\030\002 \002(\r\022\013\n\003Bet\030\003 \002(\r\022\r\n\005Cards\030"
+    "\004 \003(\r\032<\n\005Table\022#\n\007Players\030\001 \003(\0132\022.net.Pa"
+    "cket.Player\022\016\n\006Button\030\002 \002(\r\0324\n\006Action\022\016\n"
+    "\006Player\030\001 \002(\t\022\n\n\002Id\030\002 \002(\r\022\016\n\006Amount\030\003 \001("
+    "\r\032,\n\005Phase\022#\n\007Actions\030\001 \003(\0132\022.net.Packet"
+    ".Action", 327);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "packet.proto", &protobuf_RegisterTypes);
   Packet::default_instance_ = new Packet();
@@ -212,6 +208,7 @@ struct StaticDescriptorInitializer_packet_2eproto {
 const int Packet_Player::kNameFieldNumber;
 const int Packet_Player::kStackFieldNumber;
 const int Packet_Player::kBetFieldNumber;
+const int Packet_Player::kCardsFieldNumber;
 #endif  // !_MSC_VER
 
 Packet_Player::Packet_Player()
@@ -278,6 +275,7 @@ void Packet_Player::Clear() {
     stack_ = 0u;
     bet_ = 0u;
   }
+  cards_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -332,6 +330,28 @@ bool Packet_Player::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
+        if (input->ExpectTag(32)) goto parse_Cards;
+        break;
+      }
+      
+      // repeated uint32 Cards = 4;
+      case 4: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_Cards:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 1, 32, input, this->mutable_cards())));
+        } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
+                   == ::google::protobuf::internal::WireFormatLite::
+                      WIRETYPE_LENGTH_DELIMITED) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, this->mutable_cards())));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(32)) goto parse_Cards;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -373,6 +393,12 @@ void Packet_Player::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->bet(), output);
   }
   
+  // repeated uint32 Cards = 4;
+  for (int i = 0; i < this->cards_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(
+      4, this->cards(i), output);
+  }
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -399,6 +425,12 @@ void Packet_Player::SerializeWithCachedSizes(
   // required uint32 Bet = 3;
   if (has_bet()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->bet(), target);
+  }
+  
+  // repeated uint32 Cards = 4;
+  for (int i = 0; i < this->cards_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteUInt32ToArray(4, this->cards(i), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -434,6 +466,16 @@ int Packet_Player::ByteSize() const {
     }
     
   }
+  // repeated uint32 Cards = 4;
+  {
+    int data_size = 0;
+    for (int i = 0; i < this->cards_size(); i++) {
+      data_size += ::google::protobuf::internal::WireFormatLite::
+        UInt32Size(this->cards(i));
+    }
+    total_size += 1 * this->cards_size() + data_size;
+  }
+  
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -459,6 +501,7 @@ void Packet_Player::MergeFrom(const ::google::protobuf::Message& from) {
 
 void Packet_Player::MergeFrom(const Packet_Player& from) {
   GOOGLE_CHECK_NE(&from, this);
+  cards_.MergeFrom(from.cards_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_name()) {
       set_name(from.name());
@@ -496,6 +539,7 @@ void Packet_Player::Swap(Packet_Player* other) {
     std::swap(name_, other->name_);
     std::swap(stack_, other->stack_);
     std::swap(bet_, other->bet_);
+    cards_.Swap(&other->cards_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -787,7 +831,7 @@ Packet_Action::Packet_Action(const Packet_Action& from)
 
 void Packet_Action::SharedCtor() {
   _cached_size_ = 0;
-  player_ = 0u;
+  player_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   id_ = 0u;
   amount_ = 0u;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -798,6 +842,9 @@ Packet_Action::~Packet_Action() {
 }
 
 void Packet_Action::SharedDtor() {
+  if (player_ != &::google::protobuf::internal::kEmptyString) {
+    delete player_;
+  }
   if (this != default_instance_) {
   }
 }
@@ -824,7 +871,11 @@ Packet_Action* Packet_Action::New() const {
 
 void Packet_Action::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    player_ = 0u;
+    if (has_player()) {
+      if (player_ != &::google::protobuf::internal::kEmptyString) {
+        player_->clear();
+      }
+    }
     id_ = 0u;
     amount_ = 0u;
   }
@@ -838,14 +889,15 @@ bool Packet_Action::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 Player = 1;
+      // required string Player = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &player_)));
-          set_has_player();
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_player()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+            this->player().data(), this->player().length(),
+            ::google::protobuf::internal::WireFormat::PARSE);
         } else {
           goto handle_uninterpreted;
         }
@@ -903,9 +955,13 @@ bool Packet_Action::MergePartialFromCodedStream(
 
 void Packet_Action::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required uint32 Player = 1;
+  // required string Player = 1;
   if (has_player()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->player(), output);
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->player().data(), this->player().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      1, this->player(), output);
   }
   
   // required uint32 Id = 2;
@@ -926,9 +982,14 @@ void Packet_Action::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Packet_Action::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required uint32 Player = 1;
+  // required string Player = 1;
   if (has_player()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->player(), target);
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->player().data(), this->player().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->player(), target);
   }
   
   // required uint32 Id = 2;
@@ -952,10 +1013,10 @@ int Packet_Action::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required uint32 Player = 1;
+    // required string Player = 1;
     if (has_player()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        ::google::protobuf::internal::WireFormatLite::StringSize(
           this->player());
     }
     
@@ -1053,33 +1114,7 @@ void Packet_Action::Swap(Packet_Action* other) {
 
 // -------------------------------------------------------------------
 
-const ::google::protobuf::EnumDescriptor* Packet_Phase_PhaseValue_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return Packet_Phase_PhaseValue_descriptor_;
-}
-bool Packet_Phase_PhaseValue_IsValid(int value) {
-  switch(value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-      return true;
-    default:
-      return false;
-  }
-}
-
 #ifndef _MSC_VER
-const Packet_Phase_PhaseValue Packet_Phase::PreFlop;
-const Packet_Phase_PhaseValue Packet_Phase::Flop;
-const Packet_Phase_PhaseValue Packet_Phase::Turn;
-const Packet_Phase_PhaseValue Packet_Phase::River;
-const Packet_Phase_PhaseValue Packet_Phase::PhaseValue_MIN;
-const Packet_Phase_PhaseValue Packet_Phase::PhaseValue_MAX;
-const int Packet_Phase::PhaseValue_ARRAYSIZE;
-#endif  // _MSC_VER
-#ifndef _MSC_VER
-const int Packet_Phase::kValueFieldNumber;
 const int Packet_Phase::kActionsFieldNumber;
 #endif  // !_MSC_VER
 
@@ -1099,7 +1134,6 @@ Packet_Phase::Packet_Phase(const Packet_Phase& from)
 
 void Packet_Phase::SharedCtor() {
   _cached_size_ = 0;
-  value_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1133,9 +1167,6 @@ Packet_Phase* Packet_Phase::New() const {
 }
 
 void Packet_Phase::Clear() {
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    value_ = 0;
-  }
   actions_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -1147,28 +1178,8 @@ bool Packet_Phase::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .net.Packet.Phase.PhaseValue Value = 1;
+      // repeated .net.Packet.Action Actions = 1;
       case 1: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          int value;
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
-                 input, &value)));
-          if (::net::Packet_Phase_PhaseValue_IsValid(value)) {
-            set_value(static_cast< ::net::Packet_Phase_PhaseValue >(value));
-          } else {
-            mutable_unknown_fields()->AddVarint(1, value);
-          }
-        } else {
-          goto handle_uninterpreted;
-        }
-        if (input->ExpectTag(18)) goto parse_Actions;
-        break;
-      }
-      
-      // repeated .net.Packet.Action Actions = 2;
-      case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_Actions:
@@ -1177,7 +1188,7 @@ bool Packet_Phase::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(18)) goto parse_Actions;
+        if (input->ExpectTag(10)) goto parse_Actions;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -1200,16 +1211,10 @@ bool Packet_Phase::MergePartialFromCodedStream(
 
 void Packet_Phase::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .net.Packet.Phase.PhaseValue Value = 1;
-  if (has_value()) {
-    ::google::protobuf::internal::WireFormatLite::WriteEnum(
-      1, this->value(), output);
-  }
-  
-  // repeated .net.Packet.Action Actions = 2;
+  // repeated .net.Packet.Action Actions = 1;
   for (int i = 0; i < this->actions_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2, this->actions(i), output);
+      1, this->actions(i), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -1220,17 +1225,11 @@ void Packet_Phase::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Packet_Phase::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .net.Packet.Phase.PhaseValue Value = 1;
-  if (has_value()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
-      1, this->value(), target);
-  }
-  
-  // repeated .net.Packet.Action Actions = 2;
+  // repeated .net.Packet.Action Actions = 1;
   for (int i = 0; i < this->actions_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        2, this->actions(i), target);
+        1, this->actions(i), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -1243,15 +1242,7 @@ void Packet_Phase::SerializeWithCachedSizes(
 int Packet_Phase::ByteSize() const {
   int total_size = 0;
   
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .net.Packet.Phase.PhaseValue Value = 1;
-    if (has_value()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::EnumSize(this->value());
-    }
-    
-  }
-  // repeated .net.Packet.Action Actions = 2;
+  // repeated .net.Packet.Action Actions = 1;
   total_size += 1 * this->actions_size();
   for (int i = 0; i < this->actions_size(); i++) {
     total_size +=
@@ -1285,11 +1276,6 @@ void Packet_Phase::MergeFrom(const ::google::protobuf::Message& from) {
 void Packet_Phase::MergeFrom(const Packet_Phase& from) {
   GOOGLE_CHECK_NE(&from, this);
   actions_.MergeFrom(from.actions_);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_value()) {
-      set_value(from.value());
-    }
-  }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -1306,7 +1292,6 @@ void Packet_Phase::CopyFrom(const Packet_Phase& from) {
 }
 
 bool Packet_Phase::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
   
   for (int i = 0; i < actions_size(); i++) {
     if (!this->actions(i).IsInitialized()) return false;
@@ -1316,7 +1301,6 @@ bool Packet_Phase::IsInitialized() const {
 
 void Packet_Phase::Swap(Packet_Phase* other) {
   if (other != this) {
-    std::swap(value_, other->value_);
     actions_.Swap(&other->actions_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
@@ -1336,7 +1320,7 @@ void Packet_Phase::Swap(Packet_Phase* other) {
 // -------------------------------------------------------------------
 
 #ifndef _MSC_VER
-const int Packet::kDataFieldNumber;
+const int Packet::kInfoFieldNumber;
 const int Packet::kPhasesFieldNumber;
 #endif  // !_MSC_VER
 
@@ -1346,7 +1330,7 @@ Packet::Packet()
 }
 
 void Packet::InitAsDefaultInstance() {
-  data_ = const_cast< ::net::Packet_Table*>(&::net::Packet_Table::default_instance());
+  info_ = const_cast< ::net::Packet_Table*>(&::net::Packet_Table::default_instance());
 }
 
 Packet::Packet(const Packet& from)
@@ -1357,7 +1341,7 @@ Packet::Packet(const Packet& from)
 
 void Packet::SharedCtor() {
   _cached_size_ = 0;
-  data_ = NULL;
+  info_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1367,7 +1351,7 @@ Packet::~Packet() {
 
 void Packet::SharedDtor() {
   if (this != default_instance_) {
-    delete data_;
+    delete info_;
   }
 }
 
@@ -1393,8 +1377,8 @@ Packet* Packet::New() const {
 
 void Packet::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (has_data()) {
-      if (data_ != NULL) data_->::net::Packet_Table::Clear();
+    if (has_info()) {
+      if (info_ != NULL) info_->::net::Packet_Table::Clear();
     }
   }
   phases_.Clear();
@@ -1408,12 +1392,12 @@ bool Packet::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .net.Packet.Table Data = 1;
+      // required .net.Packet.Table Info = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_data()));
+               input, mutable_info()));
         } else {
           goto handle_uninterpreted;
         }
@@ -1454,10 +1438,10 @@ bool Packet::MergePartialFromCodedStream(
 
 void Packet::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .net.Packet.Table Data = 1;
-  if (has_data()) {
+  // required .net.Packet.Table Info = 1;
+  if (has_info()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->data(), output);
+      1, this->info(), output);
   }
   
   // repeated .net.Packet.Phase Phases = 2;
@@ -1474,11 +1458,11 @@ void Packet::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Packet::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .net.Packet.Table Data = 1;
-  if (has_data()) {
+  // required .net.Packet.Table Info = 1;
+  if (has_info()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        1, this->data(), target);
+        1, this->info(), target);
   }
   
   // repeated .net.Packet.Phase Phases = 2;
@@ -1499,11 +1483,11 @@ int Packet::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .net.Packet.Table Data = 1;
-    if (has_data()) {
+    // required .net.Packet.Table Info = 1;
+    if (has_info()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->data());
+          this->info());
     }
     
   }
@@ -1542,8 +1526,8 @@ void Packet::MergeFrom(const Packet& from) {
   GOOGLE_CHECK_NE(&from, this);
   phases_.MergeFrom(from.phases_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_data()) {
-      mutable_data()->::net::Packet_Table::MergeFrom(from.data());
+    if (from.has_info()) {
+      mutable_info()->::net::Packet_Table::MergeFrom(from.info());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -1564,8 +1548,8 @@ void Packet::CopyFrom(const Packet& from) {
 bool Packet::IsInitialized() const {
   if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
   
-  if (has_data()) {
-    if (!this->data().IsInitialized()) return false;
+  if (has_info()) {
+    if (!this->info().IsInitialized()) return false;
   }
   for (int i = 0; i < phases_size(); i++) {
     if (!this->phases(i).IsInitialized()) return false;
@@ -1575,7 +1559,7 @@ bool Packet::IsInitialized() const {
 
 void Packet::Swap(Packet* other) {
   if (other != this) {
-    std::swap(data_, other->data_);
+    std::swap(info_, other->info_);
     phases_.Swap(&other->phases_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);

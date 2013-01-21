@@ -69,6 +69,9 @@ private:
 	//! Clear player bets
 	void SetPhase(const Phase::Value phase);
 
+	//! Close window
+	void CloseWindow();
+
 
 private:
 

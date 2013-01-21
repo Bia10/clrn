@@ -7,7 +7,8 @@ struct Modules
 	{
 		Messages	= 0,
 		Table		= 1,
-		Client		= 2
+		Client		= 2,
+		Network		= 3
 	};
 };
 

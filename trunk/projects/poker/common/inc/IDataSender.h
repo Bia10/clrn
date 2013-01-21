@@ -11,11 +11,6 @@ namespace pcmn
 class IDataSender
 {
 public:
-	struct Statistic
-	{
-
-	};
-
 	virtual ~IDataSender() {}
 	virtual void OnGameFinished(const net::Packet& packet) = 0;
 };

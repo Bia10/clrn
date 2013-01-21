@@ -179,6 +179,8 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 		case pcmn::Action::Win: 
 		case pcmn::Action::Loose: 
 		case pcmn::Action::Rank: 
+			if (current.Name() == pcmn::Player::ThisPlayer().Name())
+				CloseWindow();
 		case pcmn::Action::WinCards: 
 			return;
 		default: assert(false);
@@ -473,7 +475,48 @@ void Table::SendStatistic()
 		return;
 
 	net::Packet packet;
+
+	net::Packet::Table& table = *packet.mutable_info();
+
+	std::size_t counter = 0;
+	for (const pcmn::Player& player : m_Players)
+	{
+		net::Packet::Player& added = *table.add_players();
+		added.set_bet(player.Bet());
+		added.set_name(player.Name());
+		added.set_stack(player.Stack());
+
+		const pcmn::Card::List& cards = player.Cards();
+		for (const pcmn::Card& card : cards)
+			added.mutable_cards()->Add(card.ToEvalFormat());
+
+		if (player.Name() == m_OnButton)
+			table.set_button(counter);
+
+		++counter;
+	}
+
+	for (const Actions& actions : m_Actions)
+	{
+		if (actions.empty())
+			break;
+
+		net::Packet::Phase& phase = *packet.add_phases();
+		for (const ActionDesc& dsc : actions)
+		{
+			net::Packet::Action& action = *phase.add_actions();
+			action.set_amount(dsc.m_Amount);
+			action.set_id(dsc.m_Value);
+			action.set_player(dsc.m_Name);
+		}
+	}
+
 	m_DataSender.OnGameFinished(packet);
+}
+
+void Table::CloseWindow()
+{
+
 }
 
 

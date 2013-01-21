@@ -9,6 +9,7 @@ set(DB_INC "${CMAKE_CURRENT_LIST_DIR}/common/db/inc/")
 
 add_definitions(
 	-D_VARIADIC_MAX=10
+	-D_WIN32_WINNT=0x0501
 )
 
 set(TOOLSET "vc110")
