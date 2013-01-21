@@ -38,27 +38,6 @@ class Packet_Table;
 class Packet_Action;
 class Packet_Phase;
 
-enum Packet_Phase_PhaseValue {
-  Packet_Phase_PhaseValue_PreFlop = 0,
-  Packet_Phase_PhaseValue_Flop = 1,
-  Packet_Phase_PhaseValue_Turn = 2,
-  Packet_Phase_PhaseValue_River = 3
-};
-bool Packet_Phase_PhaseValue_IsValid(int value);
-const Packet_Phase_PhaseValue Packet_Phase_PhaseValue_PhaseValue_MIN = Packet_Phase_PhaseValue_PreFlop;
-const Packet_Phase_PhaseValue Packet_Phase_PhaseValue_PhaseValue_MAX = Packet_Phase_PhaseValue_River;
-const int Packet_Phase_PhaseValue_PhaseValue_ARRAYSIZE = Packet_Phase_PhaseValue_PhaseValue_MAX + 1;
-
-const ::google::protobuf::EnumDescriptor* Packet_Phase_PhaseValue_descriptor();
-inline const ::std::string& Packet_Phase_PhaseValue_Name(Packet_Phase_PhaseValue value) {
-  return ::google::protobuf::internal::NameOfEnum(
-    Packet_Phase_PhaseValue_descriptor(), value);
-}
-inline bool Packet_Phase_PhaseValue_Parse(
-    const ::std::string& name, Packet_Phase_PhaseValue* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<Packet_Phase_PhaseValue>(
-    Packet_Phase_PhaseValue_descriptor(), name, value);
-}
 // ===================================================================
 
 class Packet_Player : public ::google::protobuf::Message {
@@ -140,6 +119,18 @@ class Packet_Player : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 bet() const;
   inline void set_bet(::google::protobuf::uint32 value);
   
+  // repeated uint32 Cards = 4;
+  inline int cards_size() const;
+  inline void clear_cards();
+  static const int kCardsFieldNumber = 4;
+  inline ::google::protobuf::uint32 cards(int index) const;
+  inline void set_cards(int index, ::google::protobuf::uint32 value);
+  inline void add_cards(::google::protobuf::uint32 value);
+  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      cards() const;
+  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_cards();
+  
   // @@protoc_insertion_point(class_scope:net.Packet.Player)
  private:
   inline void set_has_name();
@@ -154,9 +145,10 @@ class Packet_Player : public ::google::protobuf::Message {
   ::std::string* name_;
   ::google::protobuf::uint32 stack_;
   ::google::protobuf::uint32 bet_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > cards_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
   
   friend void  protobuf_AddDesc_packet_2eproto();
   friend void protobuf_AssignDesc_packet_2eproto();
@@ -316,12 +308,16 @@ class Packet_Action : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // required uint32 Player = 1;
+  // required string Player = 1;
   inline bool has_player() const;
   inline void clear_player();
   static const int kPlayerFieldNumber = 1;
-  inline ::google::protobuf::uint32 player() const;
-  inline void set_player(::google::protobuf::uint32 value);
+  inline const ::std::string& player() const;
+  inline void set_player(const ::std::string& value);
+  inline void set_player(const char* value);
+  inline void set_player(const char* value, size_t size);
+  inline ::std::string* mutable_player();
+  inline ::std::string* release_player();
   
   // required uint32 Id = 2;
   inline bool has_id() const;
@@ -348,7 +344,7 @@ class Packet_Action : public ::google::protobuf::Message {
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
-  ::google::protobuf::uint32 player_;
+  ::std::string* player_;
   ::google::protobuf::uint32 id_;
   ::google::protobuf::uint32 amount_;
   
@@ -416,45 +412,12 @@ class Packet_Phase : public ::google::protobuf::Message {
   
   // nested types ----------------------------------------------------
   
-  typedef Packet_Phase_PhaseValue PhaseValue;
-  static const PhaseValue PreFlop = Packet_Phase_PhaseValue_PreFlop;
-  static const PhaseValue Flop = Packet_Phase_PhaseValue_Flop;
-  static const PhaseValue Turn = Packet_Phase_PhaseValue_Turn;
-  static const PhaseValue River = Packet_Phase_PhaseValue_River;
-  static inline bool PhaseValue_IsValid(int value) {
-    return Packet_Phase_PhaseValue_IsValid(value);
-  }
-  static const PhaseValue PhaseValue_MIN =
-    Packet_Phase_PhaseValue_PhaseValue_MIN;
-  static const PhaseValue PhaseValue_MAX =
-    Packet_Phase_PhaseValue_PhaseValue_MAX;
-  static const int PhaseValue_ARRAYSIZE =
-    Packet_Phase_PhaseValue_PhaseValue_ARRAYSIZE;
-  static inline const ::google::protobuf::EnumDescriptor*
-  PhaseValue_descriptor() {
-    return Packet_Phase_PhaseValue_descriptor();
-  }
-  static inline const ::std::string& PhaseValue_Name(PhaseValue value) {
-    return Packet_Phase_PhaseValue_Name(value);
-  }
-  static inline bool PhaseValue_Parse(const ::std::string& name,
-      PhaseValue* value) {
-    return Packet_Phase_PhaseValue_Parse(name, value);
-  }
-  
   // accessors -------------------------------------------------------
   
-  // required .net.Packet.Phase.PhaseValue Value = 1;
-  inline bool has_value() const;
-  inline void clear_value();
-  static const int kValueFieldNumber = 1;
-  inline ::net::Packet_Phase_PhaseValue value() const;
-  inline void set_value(::net::Packet_Phase_PhaseValue value);
-  
-  // repeated .net.Packet.Action Actions = 2;
+  // repeated .net.Packet.Action Actions = 1;
   inline int actions_size() const;
   inline void clear_actions();
-  static const int kActionsFieldNumber = 2;
+  static const int kActionsFieldNumber = 1;
   inline const ::net::Packet_Action& actions(int index) const;
   inline ::net::Packet_Action* mutable_actions(int index);
   inline ::net::Packet_Action* add_actions();
@@ -465,16 +428,13 @@ class Packet_Phase : public ::google::protobuf::Message {
   
   // @@protoc_insertion_point(class_scope:net.Packet.Phase)
  private:
-  inline void set_has_value();
-  inline void clear_has_value();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
   ::google::protobuf::RepeatedPtrField< ::net::Packet_Action > actions_;
-  int value_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
   
   friend void  protobuf_AddDesc_packet_2eproto();
   friend void protobuf_AssignDesc_packet_2eproto();
@@ -544,13 +504,13 @@ class Packet : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // required .net.Packet.Table Data = 1;
-  inline bool has_data() const;
-  inline void clear_data();
-  static const int kDataFieldNumber = 1;
-  inline const ::net::Packet_Table& data() const;
-  inline ::net::Packet_Table* mutable_data();
-  inline ::net::Packet_Table* release_data();
+  // required .net.Packet.Table Info = 1;
+  inline bool has_info() const;
+  inline void clear_info();
+  static const int kInfoFieldNumber = 1;
+  inline const ::net::Packet_Table& info() const;
+  inline ::net::Packet_Table* mutable_info();
+  inline ::net::Packet_Table* release_info();
   
   // repeated .net.Packet.Phase Phases = 2;
   inline int phases_size() const;
@@ -566,12 +526,12 @@ class Packet : public ::google::protobuf::Message {
   
   // @@protoc_insertion_point(class_scope:net.Packet)
  private:
-  inline void set_has_data();
-  inline void clear_has_data();
+  inline void set_has_info();
+  inline void clear_has_info();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
-  ::net::Packet_Table* data_;
+  ::net::Packet_Table* info_;
   ::google::protobuf::RepeatedPtrField< ::net::Packet_Phase > phases_;
   
   mutable int _cached_size_;
@@ -693,6 +653,31 @@ inline void Packet_Player::set_bet(::google::protobuf::uint32 value) {
   bet_ = value;
 }
 
+// repeated uint32 Cards = 4;
+inline int Packet_Player::cards_size() const {
+  return cards_.size();
+}
+inline void Packet_Player::clear_cards() {
+  cards_.Clear();
+}
+inline ::google::protobuf::uint32 Packet_Player::cards(int index) const {
+  return cards_.Get(index);
+}
+inline void Packet_Player::set_cards(int index, ::google::protobuf::uint32 value) {
+  cards_.Set(index, value);
+}
+inline void Packet_Player::add_cards(::google::protobuf::uint32 value) {
+  cards_.Add(value);
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+Packet_Player::cards() const {
+  return cards_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+Packet_Player::mutable_cards() {
+  return &cards_;
+}
+
 // -------------------------------------------------------------------
 
 // Packet_Table
@@ -748,7 +733,7 @@ inline void Packet_Table::set_button(::google::protobuf::uint32 value) {
 
 // Packet_Action
 
-// required uint32 Player = 1;
+// required string Player = 1;
 inline bool Packet_Action::has_player() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -759,15 +744,51 @@ inline void Packet_Action::clear_has_player() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void Packet_Action::clear_player() {
-  player_ = 0u;
+  if (player_ != &::google::protobuf::internal::kEmptyString) {
+    player_->clear();
+  }
   clear_has_player();
 }
-inline ::google::protobuf::uint32 Packet_Action::player() const {
+inline const ::std::string& Packet_Action::player() const {
+  return *player_;
+}
+inline void Packet_Action::set_player(const ::std::string& value) {
+  set_has_player();
+  if (player_ == &::google::protobuf::internal::kEmptyString) {
+    player_ = new ::std::string;
+  }
+  player_->assign(value);
+}
+inline void Packet_Action::set_player(const char* value) {
+  set_has_player();
+  if (player_ == &::google::protobuf::internal::kEmptyString) {
+    player_ = new ::std::string;
+  }
+  player_->assign(value);
+}
+inline void Packet_Action::set_player(const char* value, size_t size) {
+  set_has_player();
+  if (player_ == &::google::protobuf::internal::kEmptyString) {
+    player_ = new ::std::string;
+  }
+  player_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* Packet_Action::mutable_player() {
+  set_has_player();
+  if (player_ == &::google::protobuf::internal::kEmptyString) {
+    player_ = new ::std::string;
+  }
   return player_;
 }
-inline void Packet_Action::set_player(::google::protobuf::uint32 value) {
-  set_has_player();
-  player_ = value;
+inline ::std::string* Packet_Action::release_player() {
+  clear_has_player();
+  if (player_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = player_;
+    player_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
 }
 
 // required uint32 Id = 2;
@@ -818,30 +839,7 @@ inline void Packet_Action::set_amount(::google::protobuf::uint32 value) {
 
 // Packet_Phase
 
-// required .net.Packet.Phase.PhaseValue Value = 1;
-inline bool Packet_Phase::has_value() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void Packet_Phase::set_has_value() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void Packet_Phase::clear_has_value() {
-  _has_bits_[0] &= ~0x00000001u;
-}
-inline void Packet_Phase::clear_value() {
-  value_ = 0;
-  clear_has_value();
-}
-inline ::net::Packet_Phase_PhaseValue Packet_Phase::value() const {
-  return static_cast< ::net::Packet_Phase_PhaseValue >(value_);
-}
-inline void Packet_Phase::set_value(::net::Packet_Phase_PhaseValue value) {
-  GOOGLE_DCHECK(::net::Packet_Phase_PhaseValue_IsValid(value));
-  set_has_value();
-  value_ = value;
-}
-
-// repeated .net.Packet.Action Actions = 2;
+// repeated .net.Packet.Action Actions = 1;
 inline int Packet_Phase::actions_size() const {
   return actions_.size();
 }
@@ -870,32 +868,32 @@ Packet_Phase::mutable_actions() {
 
 // Packet
 
-// required .net.Packet.Table Data = 1;
-inline bool Packet::has_data() const {
+// required .net.Packet.Table Info = 1;
+inline bool Packet::has_info() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void Packet::set_has_data() {
+inline void Packet::set_has_info() {
   _has_bits_[0] |= 0x00000001u;
 }
-inline void Packet::clear_has_data() {
+inline void Packet::clear_has_info() {
   _has_bits_[0] &= ~0x00000001u;
 }
-inline void Packet::clear_data() {
-  if (data_ != NULL) data_->::net::Packet_Table::Clear();
-  clear_has_data();
+inline void Packet::clear_info() {
+  if (info_ != NULL) info_->::net::Packet_Table::Clear();
+  clear_has_info();
 }
-inline const ::net::Packet_Table& Packet::data() const {
-  return data_ != NULL ? *data_ : *default_instance_->data_;
+inline const ::net::Packet_Table& Packet::info() const {
+  return info_ != NULL ? *info_ : *default_instance_->info_;
 }
-inline ::net::Packet_Table* Packet::mutable_data() {
-  set_has_data();
-  if (data_ == NULL) data_ = new ::net::Packet_Table;
-  return data_;
+inline ::net::Packet_Table* Packet::mutable_info() {
+  set_has_info();
+  if (info_ == NULL) info_ = new ::net::Packet_Table;
+  return info_;
 }
-inline ::net::Packet_Table* Packet::release_data() {
-  clear_has_data();
-  ::net::Packet_Table* temp = data_;
-  data_ = NULL;
+inline ::net::Packet_Table* Packet::release_info() {
+  clear_has_info();
+  ::net::Packet_Table* temp = info_;
+  info_ = NULL;
   return temp;
 }
 
@@ -933,10 +931,6 @@ Packet::mutable_phases() {
 namespace google {
 namespace protobuf {
 
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::net::Packet_Phase_PhaseValue>() {
-  return ::net::Packet_Phase_PhaseValue_descriptor();
-}
 
 }  // namespace google
 }  // namespace protobuf

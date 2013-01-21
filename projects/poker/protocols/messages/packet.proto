@@ -19,23 +19,14 @@ message Packet
 	
 	message Action
 	{
-		required uint32 Player		= 1;	// player index
+		required string Player		= 1;	// player name
 		required uint32 Id			= 2;	// action Id
 		optional uint32 Amount		= 3;	// action amount		
 	}
 	
 	message Phase
 	{
-		enum PhaseValue
-		{
-			PreFlop		= 0;
-			Flop		= 1;
-			Turn		= 2;
-			River		= 3;
-		}
-		
-		required PhaseValue Value 	= 1;
-		repeated Action Actions		= 2;
+		repeated Action Actions		= 1;
 	}
 	
 	required Table Info		= 1;
