@@ -189,7 +189,7 @@ namespace Detours
 			DWORD dwProtect = PAGE_READWRITE;
 
 			VirtualProtect(lpFunc, szJumpNear, dwProtect, &dwProtect);
-			*reinterpret_cast<char*>(lpFunc) = 0xE9;
+			*reinterpret_cast<char*>(lpFunc) = char(0xE9);
 			errno_t err = memcpy_s(reinterpret_cast<char*>(lpFunc) + 1, sizeof(size_t), &szDispacement, sizeof(size_t));
 			VirtualProtect(lpFunc, szJumpNear, dwProtect, &dwProtect);
 

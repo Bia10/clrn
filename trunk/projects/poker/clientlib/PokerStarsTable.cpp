@@ -472,8 +472,8 @@ void Table::SendStatistic()
 	if (m_Actions[Phase::Preflop].empty())
 		return;
 
-	pcmn::IDataSender::Statistic stats;
-	m_DataSender.OnGameFinished(stats);
+	net::Packet packet;
+	m_DataSender.OnGameFinished(packet);
 }
 
 

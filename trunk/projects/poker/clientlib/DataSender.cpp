@@ -3,7 +3,7 @@
 namespace clnt
 {
 
-void DataSender::OnGameFinished(const IDataSender::Statistic& stats)
+void DataSender::OnGameFinished(const net::Packet& packet)
 {
 
 }

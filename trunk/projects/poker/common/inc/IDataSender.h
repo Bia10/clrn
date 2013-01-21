@@ -1,6 +1,8 @@
 #ifndef IDataSender_h__
 #define IDataSender_h__
 
+#include "packet.pb.h"
+
 #include <string>
 
 namespace pcmn
@@ -15,7 +17,7 @@ public:
 	};
 
 	virtual ~IDataSender() {}
-	virtual void OnGameFinished(const Statistic& stats) = 0;
+	virtual void OnGameFinished(const net::Packet& packet) = 0;
 };
 
 }

@@ -1,6 +1,6 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "Detours.h"
-#include "IClient.h"
+#include "../clientlib/IClient.h"
 
 #include <windows.h>
 #include <cassert>

@@ -1,6 +1,6 @@
 #include "Player.h"
-#include "../client/ITable.h"
-#include "../client/PokerStarsTable.h"
+#include "../clientlib/ITable.h"
+#include "../clientlib/PokerStarsTable.h"
 #include "Actions.h"
 #include "Log.h"
 #include "Modules.h"
@@ -50,7 +50,7 @@ std::string GetRandomString(std::size_t size = 10)
 
 class FakeSender : public pcmn::IDataSender
 {
-	virtual void OnGameFinished(const pcmn::IDataSender::Statistic& stats)
+	virtual void OnGameFinished(const net::Packet& packet) override
 	{
 
 	}
