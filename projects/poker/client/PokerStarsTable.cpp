@@ -175,15 +175,11 @@ void Table::PlayerAction(const std::string& name, Action::Value action, std::siz
 				OnBotAction(); // our turn to play
 			break;
 		case Action::ShowCards: 
-			break;
 		case Action::Win: 
-			break;
 		case Action::Loose: 
-			break;
 		case Action::Rank: 
-			break;
 		case Action::WinCards: 
-			break;
+			return;
 		default: assert(false);
 	}
 
