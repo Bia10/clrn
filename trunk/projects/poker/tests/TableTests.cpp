@@ -18,8 +18,8 @@
 
 using namespace clnt;
 using testing::Range;
+using testing::Combine;
 
-const std::size_t g_PlayersCount = 3;
 const std::size_t g_SmallBlind = 10;
 boost::random::mt19937 g_Generator;  
 
@@ -46,7 +46,7 @@ std::string GetRandomString(std::size_t size = 10)
 	return result;
 }
 
-class TestTable : public testing::TestWithParam<int>
+class TestTable : public testing::TestWithParam<::std::tr1::tuple<int, int> >
 {
 public:
 	TestTable() : m_Button(0), m_Table(new ps::Table(m_Log)), m_MaxBet(0)
@@ -54,7 +54,7 @@ public:
 		m_Log.Open("tests.log", Modules::Table, ILog::Level::Debug);
 
 		Evaluator ev;
-		for (std::size_t i = 0 ; i < g_PlayersCount; ++i)
+		for (int i = 0 ; i < ::std::tr1::get<0>(GetParam()); ++i)
 		{
 			Player player;
 			player.Name(std::string("Player_") + boost::lexical_cast<std::string>(i));
@@ -237,5 +237,9 @@ INSTANTIATE_TEST_CASE_P
 (
 	Combined,
 	TestTable,
-	Range(1, 1000)
+	Combine
+	(
+		Range(2, 10),
+		Range(1, 10)
+	)
 );

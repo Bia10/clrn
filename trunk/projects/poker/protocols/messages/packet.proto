@@ -1,7 +1,42 @@
-package packets;
+package net;
 
 // data packet
 message Packet 
 {
-
+	message Player
+	{
+		required string Name 	= 1; 	// player name
+		required uint32 Stack 	= 2;	// player stack
+		required uint32 Bet		= 3;	// player total bet
+	}
+	
+	message Table
+	{
+		repeated Player Players		= 1;	// players
+		required uint32 Button		= 2;	// index of the player on button
+	}
+	
+	message Action
+	{
+		required uint32 Player		= 1;	// player index
+		required uint32 Id			= 2;	// action Id
+		optional uint32 Amount		= 3;	// action amount		
+	}
+	
+	message Phase
+	{
+		enum PhaseValue
+		{
+			PreFlop		= 0;
+			Flop		= 1;
+			Turn		= 2;
+			River		= 3;
+		}
+		
+		required PhaseValue Value 	= 1;
+		repeated Action Actions		= 2;
+	}
+	
+	required Table Info		= 1;
+	repeated Phase Phases	= 2;
 }
