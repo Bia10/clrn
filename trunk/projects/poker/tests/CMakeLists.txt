@@ -1,3 +1,5 @@
+include_directories("${NET_INC}")
+
 file(GLOB SOURCES "*.cpp")
 file(GLOB HEADERS "*.h" "*.rc" "*.def")
 
@@ -6,6 +8,7 @@ set_target_properties(tests PROPERTIES FOLDER "poker")
 target_link_libraries(tests
 	evaluator
 	common
+	net
 	pokercmn
 	gtest
 	gtest_main

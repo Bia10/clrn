@@ -18,7 +18,7 @@ class DataSender::Impl
 public:
 	Impl(ILog& logger) 
 		: m_Log(logger)
-		, m_Socket(m_Service)
+		, m_Socket(m_Service, ba::ip::udp::v4())
 		, m_Endpoint(ba::ip::address_v4::from_string("127.0.0.1"), 5000)
 	{
 		boost::thread(boost::bind(&ba::io_service::run, &m_Service));
@@ -37,7 +37,7 @@ public:
 			CHECK(packet.ByteSize());
 
 			const BufferPtr buffer(new Buffer(packet.ByteSize()));
-			packet.SerializeToArray(&buffer->front(), buffer->size());
+			CHECK(packet.SerializeToArray(&buffer->front(), buffer->size()));
 
 			m_Socket.async_send_to(ba::buffer(*buffer), m_Endpoint, boost::bind(&Impl::SendCallback, this, ba::placeholders::error, buffer));
 		}
@@ -67,6 +67,11 @@ void DataSender::OnGameFinished(const net::Packet& packet)
 DataSender::DataSender(ILog& logger) : m_Impl(new Impl(logger))
 {
 	
+}
+
+DataSender::~DataSender()
+{
+	delete m_Impl;
 }
 
 }

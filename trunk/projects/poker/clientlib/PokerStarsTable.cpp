@@ -471,7 +471,7 @@ void Table::SetPhase(const Phase::Value phase)
 
 void Table::SendStatistic()
 {
-	if (m_Actions[Phase::Preflop].empty())
+	if (m_Actions[Phase::Preflop].empty() || m_OnButton.empty())
 		return;
 
 	net::Packet packet;
@@ -511,7 +511,14 @@ void Table::SendStatistic()
 		}
 	}
 
-	m_DataSender.OnGameFinished(packet);
+	try
+	{
+		m_DataSender.OnGameFinished(packet);
+	}
+	catch (const std::exception& e)
+	{
+		LOG_WARNING("Failed to send statistics, error: [%s]") % e.what();
+	}
 }
 
 void Table::CloseWindow()

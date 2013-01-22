@@ -17,11 +17,12 @@ class DataSender : public pcmn::IDataSender
 	typedef boost::shared_ptr<Buffer> BufferPtr;
 public:
 	DataSender(ILog& logger);
+	~DataSender();
 private:
 	virtual void OnGameFinished(const net::Packet& packet) override;
 private:
 	class Impl;
-	std::auto_ptr<Impl> m_Impl;
+	Impl* m_Impl;
 };
 
 } // namespace clnt
