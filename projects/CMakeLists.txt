@@ -6,6 +6,7 @@ SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 set(COMMON_INC "${CMAKE_CURRENT_LIST_DIR}/common/common/inc/")
 set(DB_INC "${CMAKE_CURRENT_LIST_DIR}/common/db/inc/")
+set(NET_INC "${CMAKE_CURRENT_LIST_DIR}/common/net/inc/")
 
 add_definitions(
 	-D_VARIADIC_MAX=10
