@@ -1,44 +1,37 @@
-#include "Player.h"
-#include "../clientlib/ITable.h"
-#include "../clientlib/PokerStarsTable.h"
-#include "Actions.h"
 #include "Log.h"
 #include "Modules.h"
-#include "CombinationsCalculator.h"
-#include "IDataSender.h"
-#include "UDPServer.h"
-#include "../clientlib/DataSender.h"
+#include "UDPHost.h"
+#include "IConnection.h"
+#include "packet.pb.h"
+#include "Actions.h"
+#include "Player.h"
 
 #include "gtest/gtest.h"
 
 #include <iostream>
 
 #include <boost/assign.hpp>
-#include <boost/random/mersenne_twister.hpp>
-#include <boost/random/uniform_int_distribution.hpp>
-#include <boost/random/random_device.hpp>
-#include <boost/lexical_cast.hpp>
 #include <boost/bind.hpp>
 #include <boost/function.hpp>
 
 using namespace pcmn;
-using namespace clnt;
 using testing::Range;
 using testing::Combine;
 
 Log logger;
-std::auto_ptr<net::UDPServer> srv;
 
-//! Client handle
-void HandleRequest(const net::UDPServer::BufferPtr& buffer, const net::UDPServer::IClient& client)
+void ReceiveFromClientCallback(const google::protobuf::Message& message, const net::IConnection::Ptr& connection)
 {
-	srv->Stop();
+	connection->Send(message);
 }
 
-TEST(SendReceive, Simple)
+void ReceiveFromServerCallback(const google::protobuf::Message& message)
 {
-	srv.reset(new net::UDPServer(logger, 5000, 1, boost::bind(&HandleRequest, _1, _2)));
 
+}
+
+void TestFunc()
+{
 	net::Packet packet;
 
 	net::Packet::Table& table = *packet.mutable_info();
@@ -55,9 +48,20 @@ TEST(SendReceive, Simple)
 	action.set_id(pcmn::Action::Ante);
 	action.set_player("name1");
 
-	clnt::DataSender sender(logger);
-	IDataSender& iface = sender;
-	iface.OnGameFinished(packet);
+	net::UDPHost srv(logger, 1);
+	net::UDPHost clnt(logger, 1);
 
-	srv->Run();
+	srv.Receive(boost::bind(&ReceiveFromClientCallback, _1, _2), packet, 5000);
+	const net::IConnection::Ptr connection = clnt.Connect("127.0.0.1", 5000);
+
+	connection->Send(packet);
+	connection->Receive(boost::bind(&ReceiveFromServerCallback, _1));
+
+	srv.Run();
+}
+
+
+TEST(SendReceive, Simple)
+{
+	TestFunc();	
 }
