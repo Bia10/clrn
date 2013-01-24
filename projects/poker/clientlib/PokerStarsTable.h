@@ -51,6 +51,9 @@ private:
 	//! Get next active player on table
 	pcmn::Player& GetNextActivePlayer(const std::string& name);
 
+	//! Get previous player
+	pcmn::Player& GetPreviousPlayer(const std::string& name);
+
 	//! On bot action
 	void OnBotAction();
 

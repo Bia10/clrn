@@ -60,7 +60,7 @@ void TestFunc()
 	net::Packet::Action& action = *phase.add_actions();
 	action.set_amount(1321);
 	action.set_id(pcmn::Action::Ante);
-	action.set_player("name1");
+	action.set_player(0);
 
 	srv.Receive(boost::bind(&ReceiveFromClientCallback, _1, _2), packet, 5000);
 	const net::IConnection::Ptr connection = clnt.Connect("127.0.0.1", 5000);

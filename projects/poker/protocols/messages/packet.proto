@@ -19,7 +19,7 @@ message Packet
 	
 	message Action
 	{
-		required string Player		= 1;	// player name
+		required uint32 Player		= 1;	// player index
 		required uint32 Id			= 2;	// action Id
 		optional uint32 Amount		= 3;	// action amount		
 	}
