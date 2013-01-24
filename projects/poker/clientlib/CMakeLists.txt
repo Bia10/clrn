@@ -1,5 +1,6 @@
 include_directories(
 	"${THIRD_PARTY}"
+	"${NET_INC}"
 )
 
 file(GLOB SOURCES "*.cpp")
@@ -13,4 +14,5 @@ target_link_libraries(clientlib
 	evaluator
 	protocols
 	libprotobuf
+	net
 )

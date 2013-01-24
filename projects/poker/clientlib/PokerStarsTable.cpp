@@ -2,6 +2,7 @@
 #include "Messages.h"
 #include "PokerStars.h"
 #include "Modules.h"
+#include "packet.pb.h"
 
 #include <windows.h>
 
@@ -44,14 +45,14 @@ void BytesToString(Stream& stream, const void* data, std::size_t size)
 	}
 }
 
-Table::Table(ILog& logger, pcmn::IDataSender& dataSender) 
+Table::Table(ILog& logger, const net::IConnection::Ptr& connection) 
 	: m_Log(logger)
 	, m_Phase(Phase::Preflop)
 	, m_SmallBlindAmount(0)
 	, m_Pot(0)
 	, m_Evaluator(new pcmn::Evaluator())
 	, m_Actions(4)
-	, m_DataSender(dataSender)
+	, m_Connection(connection)
 {
 	SCOPED_LOG(m_Log);
 
@@ -513,7 +514,7 @@ void Table::SendStatistic()
 
 	try
 	{
-		m_DataSender.OnGameFinished(packet);
+		m_Connection->Send(packet);
 	}
 	catch (const std::exception& e)
 	{

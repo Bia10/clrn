@@ -20,14 +20,28 @@ using testing::Combine;
 
 Log logger;
 
+net::UDPHost srv(logger, 1);
+net::UDPHost clnt(logger, 1);
+
+std::size_t g_Counter = 0;
+
 void ReceiveFromClientCallback(const google::protobuf::Message& message, const net::IConnection::Ptr& connection)
 {
 	connection->Send(message);
+	++g_Counter;
+	if (g_Counter > 100)
+	{
+		srv.Stop();
+		clnt.Stop();
+
+		std::cout << g_Counter << " messages transfered" << std::endl;
+	}
 }
 
-void ReceiveFromServerCallback(const google::protobuf::Message& message)
+void ReceiveFromServerCallback(const google::protobuf::Message& message, const net::IConnection::Ptr& connection)
 {
-
+	connection->Send(message);
+	++g_Counter;
 }
 
 void TestFunc()
@@ -48,14 +62,11 @@ void TestFunc()
 	action.set_id(pcmn::Action::Ante);
 	action.set_player("name1");
 
-	net::UDPHost srv(logger, 1);
-	net::UDPHost clnt(logger, 1);
-
 	srv.Receive(boost::bind(&ReceiveFromClientCallback, _1, _2), packet, 5000);
 	const net::IConnection::Ptr connection = clnt.Connect("127.0.0.1", 5000);
 
 	connection->Send(packet);
-	connection->Receive(boost::bind(&ReceiveFromServerCallback, _1));
+	connection->Receive(boost::bind(&ReceiveFromServerCallback, _1, connection));
 
 	srv.Run();
 }

@@ -7,7 +7,7 @@
 #include "ILog.h"
 #include "CombinationsCalculator.h"
 #include "Cards.h"
-#include "IDataSender.h"
+#include "IConnection.h"
 
 namespace clnt
 {
@@ -31,7 +31,7 @@ class Table : public ITable
 	typedef std::vector<ActionDesc> Actions;
 	typedef std::vector<Actions> GameActions;
 public:
-	Table(ILog& logger, pcmn::IDataSender& dataSender);
+	Table(ILog& logger, const net::IConnection::Ptr& connection);
 
 private:
 	virtual void HandleMessage(const dasm::WindowMessage& message) override;
@@ -109,7 +109,7 @@ private:
 	std::string						m_OnButton;
 
 	//! Data sender interface
-	pcmn::IDataSender&				m_DataSender;
+	net::IConnection::Ptr			m_Connection;
 
 };
 

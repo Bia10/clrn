@@ -4,7 +4,7 @@
 #include "IClient.h"
 #include "ITable.h"
 #include "Log.h"
-#include "IDataSender.h"
+#include "IHost.h"
 
 #include <map>
 #include <vector>
@@ -52,7 +52,7 @@ private:
 	Log m_Log;
 
 	//! Data sender
-	std::auto_ptr<pcmn::IDataSender> m_Sender;
+	std::auto_ptr<net::IHost> m_Server;
 };
 
 } // namespace ps

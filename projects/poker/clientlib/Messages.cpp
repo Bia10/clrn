@@ -38,6 +38,7 @@ Action::Value ConvertAction(const char action)
 	case 0x8 : return Action::SecondsLeft;
 	case 0xB : return Action::Rank; // player out
 	case 0x1 : return Action::WinCards; // win with combination of cards
+	case 0x2 : return Action::WinCards; // win with combination of cards
 	case 'M' : return Action::Loose; // cards not showed
 	case 't' : return Action::SecondsLeft; // time left?
 	default: return Action::Unknown;
@@ -274,19 +275,12 @@ void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) cons
 	const char* end = message.m_Block.m_Data + message.m_Block.m_Offset + message.m_Block.m_Size;
 
 	Player::List players;
+
+	for (int i = 0 ; i < 5 && data < end; ++i)
+		data = std::find(data + 1, end, 0xff);
+
 	while (data < end)
 	{
-		data = std::find(data + 1, end, 0x50);
-		if (data == end)
-			break;
-
-		data = std::find(data, end, 0xff);
-		if (data == end)
-			break;
-
-		if (!players.empty())
-			data = std::find(data + 1, end, 0xff);
-		
 		data += 0x19;
 
 		if (*data < 0x20)
@@ -296,6 +290,9 @@ void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) cons
 		player.Name(data);
 
 		players.push_back(player);
+	
+		for (int i = 0 ; i < 3 && data < end; ++i)
+			data = std::find(data + 1, end, 0xff);
 	}
 
 	unsigned index = 0;

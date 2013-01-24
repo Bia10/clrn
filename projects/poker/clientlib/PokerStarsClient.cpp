@@ -4,7 +4,7 @@
 #include "Modules.h"
 #include "Screenshot.h"
 #include "FileSystem.h"
-#include "DataSender.h"
+#include "UDPHost.h"
 #include "Player.h"
 
 #include <windows.h>
@@ -43,7 +43,10 @@ void Client::HandleMessage(HWND hWnd, UINT Msg, WPARAM /*wParam*/, LPARAM lParam
 		boost::mutex::scoped_lock lock(m_Mutex);
 		Tables::const_iterator it = m_Tables.find(hWnd);
 		if (it == m_Tables.end())
-			it = m_Tables.insert(std::make_pair(hWnd, ITable::Ptr(new ps::Table(m_Log, *m_Sender)))).first;
+		{
+			const net::IConnection::Ptr connection = m_Server->Connect("127.0.0.1", 5000);
+			it = m_Tables.insert(std::make_pair(hWnd, ITable::Ptr(new ps::Table(m_Log, connection)))).first;
+		}
 	
 		lock.unlock();
 	
@@ -58,12 +61,13 @@ void Client::HandleMessage(HWND hWnd, UINT Msg, WPARAM /*wParam*/, LPARAM lParam
 	}
 }
 
-Client::Client() : m_Sender(new DataSender(m_Log))
+Client::Client() : m_Server(new net::UDPHost(m_Log, 1))
 {
 	TRY 
 	{
 		SCOPED_LOG(m_Log);
 
+		m_Log.Open("logs/network.txt", Modules::Network, ILog::Level::Trace);
 		m_Log.Open("logs/client.txt", Modules::Client, ILog::Level::Trace);
 		m_Log.Open("logs/mesages.txt", Modules::Messages, ILog::Level::Trace);
 		m_Log.Open("logs/table.txt", Modules::Table, ILog::Level::Trace);

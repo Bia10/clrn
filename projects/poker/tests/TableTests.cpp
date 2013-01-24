@@ -5,7 +5,7 @@
 #include "Log.h"
 #include "Modules.h"
 #include "CombinationsCalculator.h"
-#include "IDataSender.h"
+#include "IConnection.h"
 
 #include "gtest/gtest.h"
 
@@ -48,12 +48,16 @@ std::string GetRandomString(std::size_t size = 10)
 	return result;
 }
 
-class FakeSender : public pcmn::IDataSender
+class FakeSender : public net::IConnection
 {
-	virtual void OnGameFinished(const net::Packet& packet) override
+	virtual void Send(const google::protobuf::Message& message) 
 	{
-
 	}
+
+	virtual void Receive(const Callback& callback) 
+	{
+	}
+
 };
 
 class TestTable : public testing::TestWithParam<::std::tr1::tuple<int, int> >
@@ -323,7 +327,7 @@ public:
 	}
 
 private:
-	FakeSender m_Sender;
+	net::IConnection::Ptr m_Sender;
 	Log m_Log;
 	Player::List m_Players;
 	std::size_t m_Button;

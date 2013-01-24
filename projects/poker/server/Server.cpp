@@ -2,6 +2,8 @@
 #include "Log.h"
 #include "packet.pb.h"
 #include "Exception.h"
+#include "UDPHost.h"
+#include "Modules.h"
 
 #include <iostream>
 
@@ -16,29 +18,28 @@ class Server::Impl
 public:
 	Impl()
 	{
-		//m_Server.reset(new net::UDPServer(m_Log, 5000, 3, boost::bind(&Impl::HandleRequest, this, _1, _2)));
+		m_Log.Open("1", Modules::Network, ILog::Level::Debug);
+		m_Client.reset(new net::UDPHost(m_Log, 1));
+		m_Client->Receive(boost::bind(&Impl::HandleRequest, this, _1, _2), net::Packet(), 5000);
 	}
 
 	void Run()
 	{
-		//m_Server->Run();
+		m_Client->Run();
 	}
 
 private:
 
-// 	//! Client handle
-// 	void HandleRequest(const net::UDPServer::BufferPtr& buffer, const net::UDPServer::IClient& client)
-// 	{
-// 		net::Packet packet;
-// 		CHECK(packet.ParseFromArray(&buffer->front(), buffer->size()));
-// 
-// 		std::cout << packet.DebugString() << std::endl;
-// 	}
+	//! Client handle
+	void HandleRequest(const google::protobuf::Message& message, const net::IConnection::Ptr& connection)
+	{
+		std::cout << message.DebugString() << std::endl;
+	}
 
 private:
 
-	//! UDP server
-	//std::auto_ptr<net::UDPServer>		m_Server;
+	//! UDP client
+	std::auto_ptr<net::IHost>			m_Client;
 
 	//! Logger
 	Log									m_Log;
