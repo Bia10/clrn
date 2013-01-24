@@ -69,11 +69,10 @@ private:
 	void ReceiveInBuffer(const IConnection::Callback& callback, const BufferPtr buffer)
 	{
 		SCOPED_LOG(m_Log);
-		const EndpointPtr ep(new Endpoint());
 		m_Socket->async_receive_from
 		(
 			boost::asio::buffer(*buffer), 
-			*ep,
+			m_Endpoint,
 			boost::bind
 			(
 				&Connection::ReceiveCallback, 
@@ -81,7 +80,6 @@ private:
 				boost::asio::placeholders::error,
 				boost::asio::placeholders::bytes_transferred,
 				buffer,
-				ep,
 				callback
 			)
 		);
@@ -94,7 +92,7 @@ private:
 			LOG_ERROR("Failed to send data to server. Error: [%s]") % e.message();
 	}
 
-	void ReceiveCallback(const boost::system::error_code e, const std::size_t size, const BufferPtr& buffer, const EndpointPtr& ep, const IConnection::Callback& callback)
+	void ReceiveCallback(const boost::system::error_code e, const std::size_t size, const BufferPtr& buffer, const IConnection::Callback& callback)
 	{
 		SCOPED_LOG(m_Log);
 
@@ -109,7 +107,6 @@ private:
 
 			TRY 
 			{
-				m_Endpoint = *ep;
 				const std::auto_ptr<google::protobuf::Message> mesaage(m_Message->New());
 				CHECK(mesaage->ParseFromArray(&buffer->front(), size));
 				callback(*mesaage);
