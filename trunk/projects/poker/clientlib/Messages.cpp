@@ -284,7 +284,7 @@ void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) cons
 		data += 0x19;
 
 		if (*data < 0x20)
-			continue;
+			break;
 
 		Player player;
 		player.Name(data);

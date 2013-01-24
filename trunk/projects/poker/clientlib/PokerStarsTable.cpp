@@ -104,12 +104,16 @@ void Table::HandleMessage(const dasm::WindowMessage& message)
 
 void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, std::size_t amount)
 {
+	const bool firstMove = m_Actions[m_Phase].empty();
 	m_Actions[m_Phase].push_back(ActionDesc(name, action, amount));
 
 	LOG_TRACE("Player: '%s', action: '%s', amount: '%s'") % name % pcmn::Action::ToString(action) % amount;
 
 	if (m_Players.empty())
 		return; 
+
+	if (firstMove && action != pcmn::Action::SmallBlind)
+		m_OnButton = GetPreviousPlayer(GetPreviousPlayer(name).Name()).Name();
 
 	pcmn::Player& current = GetPlayer(name);
 	pcmn::Player& next = GetNextPlayer(name);
@@ -276,6 +280,24 @@ pcmn::Player& Table::GetNextActivePlayer(const std::string& name)
 	}
 
 	return GetPlayer(name); // no active players
+}
+
+
+pcmn::Player& Table::GetPreviousPlayer(const std::string& name)
+{
+	for (std::size_t i = 0; i < m_Players.size(); ++i)
+	{
+		if (m_Players[i].Name() == name)
+		{
+			if (i)
+				return m_Players[i - 1];
+			else
+				return m_Players[m_Players.size() - 1];
+		}
+	}
+
+	assert(false);
+	return GetPlayer(name); 
 }
 
 
@@ -480,6 +502,7 @@ void Table::SendStatistic()
 	net::Packet::Table& table = *packet.mutable_info();
 
 	std::size_t counter = 0;
+	std::map<std::string, std::size_t> players;
 	for (const pcmn::Player& player : m_Players)
 	{
 		net::Packet::Player& added = *table.add_players();
@@ -494,6 +517,7 @@ void Table::SendStatistic()
 		if (player.Name() == m_OnButton)
 			table.set_button(counter);
 
+		players[player.Name()] = counter;
 		++counter;
 	}
 
@@ -508,7 +532,7 @@ void Table::SendStatistic()
 			net::Packet::Action& action = *phase.add_actions();
 			action.set_amount(dsc.m_Amount);
 			action.set_id(dsc.m_Value);
-			action.set_player(dsc.m_Name);
+			action.set_player(players[dsc.m_Name]);
 		}
 	}
 

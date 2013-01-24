@@ -308,16 +308,12 @@ class Packet_Action : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // required string Player = 1;
+  // required uint32 Player = 1;
   inline bool has_player() const;
   inline void clear_player();
   static const int kPlayerFieldNumber = 1;
-  inline const ::std::string& player() const;
-  inline void set_player(const ::std::string& value);
-  inline void set_player(const char* value);
-  inline void set_player(const char* value, size_t size);
-  inline ::std::string* mutable_player();
-  inline ::std::string* release_player();
+  inline ::google::protobuf::uint32 player() const;
+  inline void set_player(::google::protobuf::uint32 value);
   
   // required uint32 Id = 2;
   inline bool has_id() const;
@@ -344,7 +340,7 @@ class Packet_Action : public ::google::protobuf::Message {
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
-  ::std::string* player_;
+  ::google::protobuf::uint32 player_;
   ::google::protobuf::uint32 id_;
   ::google::protobuf::uint32 amount_;
   
@@ -733,7 +729,7 @@ inline void Packet_Table::set_button(::google::protobuf::uint32 value) {
 
 // Packet_Action
 
-// required string Player = 1;
+// required uint32 Player = 1;
 inline bool Packet_Action::has_player() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -744,51 +740,15 @@ inline void Packet_Action::clear_has_player() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void Packet_Action::clear_player() {
-  if (player_ != &::google::protobuf::internal::kEmptyString) {
-    player_->clear();
-  }
+  player_ = 0u;
   clear_has_player();
 }
-inline const ::std::string& Packet_Action::player() const {
-  return *player_;
-}
-inline void Packet_Action::set_player(const ::std::string& value) {
-  set_has_player();
-  if (player_ == &::google::protobuf::internal::kEmptyString) {
-    player_ = new ::std::string;
-  }
-  player_->assign(value);
-}
-inline void Packet_Action::set_player(const char* value) {
-  set_has_player();
-  if (player_ == &::google::protobuf::internal::kEmptyString) {
-    player_ = new ::std::string;
-  }
-  player_->assign(value);
-}
-inline void Packet_Action::set_player(const char* value, size_t size) {
-  set_has_player();
-  if (player_ == &::google::protobuf::internal::kEmptyString) {
-    player_ = new ::std::string;
-  }
-  player_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* Packet_Action::mutable_player() {
-  set_has_player();
-  if (player_ == &::google::protobuf::internal::kEmptyString) {
-    player_ = new ::std::string;
-  }
+inline ::google::protobuf::uint32 Packet_Action::player() const {
   return player_;
 }
-inline ::std::string* Packet_Action::release_player() {
-  clear_has_player();
-  if (player_ == &::google::protobuf::internal::kEmptyString) {
-    return NULL;
-  } else {
-    ::std::string* temp = player_;
-    player_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
-    return temp;
-  }
+inline void Packet_Action::set_player(::google::protobuf::uint32 value) {
+  set_has_player();
+  player_ = value;
 }
 
 // required uint32 Id = 2;

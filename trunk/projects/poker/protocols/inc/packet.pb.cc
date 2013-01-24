@@ -176,7 +176,7 @@ void protobuf_AddDesc_packet_2eproto() {
     "(\t\022\r\n\005Stack\030\002 \002(\r\022\013\n\003Bet\030\003 \002(\r\022\r\n\005Cards\030"
     "\004 \003(\r\032<\n\005Table\022#\n\007Players\030\001 \003(\0132\022.net.Pa"
     "cket.Player\022\016\n\006Button\030\002 \002(\r\0324\n\006Action\022\016\n"
-    "\006Player\030\001 \002(\t\022\n\n\002Id\030\002 \002(\r\022\016\n\006Amount\030\003 \001("
+    "\006Player\030\001 \002(\r\022\n\n\002Id\030\002 \002(\r\022\016\n\006Amount\030\003 \001("
     "\r\032,\n\005Phase\022#\n\007Actions\030\001 \003(\0132\022.net.Packet"
     ".Action", 327);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
@@ -831,7 +831,7 @@ Packet_Action::Packet_Action(const Packet_Action& from)
 
 void Packet_Action::SharedCtor() {
   _cached_size_ = 0;
-  player_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  player_ = 0u;
   id_ = 0u;
   amount_ = 0u;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -842,9 +842,6 @@ Packet_Action::~Packet_Action() {
 }
 
 void Packet_Action::SharedDtor() {
-  if (player_ != &::google::protobuf::internal::kEmptyString) {
-    delete player_;
-  }
   if (this != default_instance_) {
   }
 }
@@ -871,11 +868,7 @@ Packet_Action* Packet_Action::New() const {
 
 void Packet_Action::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (has_player()) {
-      if (player_ != &::google::protobuf::internal::kEmptyString) {
-        player_->clear();
-      }
-    }
+    player_ = 0u;
     id_ = 0u;
     amount_ = 0u;
   }
@@ -889,15 +882,14 @@ bool Packet_Action::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required string Player = 1;
+      // required uint32 Player = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_player()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-            this->player().data(), this->player().length(),
-            ::google::protobuf::internal::WireFormat::PARSE);
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &player_)));
+          set_has_player();
         } else {
           goto handle_uninterpreted;
         }
@@ -955,13 +947,9 @@ bool Packet_Action::MergePartialFromCodedStream(
 
 void Packet_Action::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required string Player = 1;
+  // required uint32 Player = 1;
   if (has_player()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->player().data(), this->player().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      1, this->player(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->player(), output);
   }
   
   // required uint32 Id = 2;
@@ -982,14 +970,9 @@ void Packet_Action::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Packet_Action::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required string Player = 1;
+  // required uint32 Player = 1;
   if (has_player()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->player().data(), this->player().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->player(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->player(), target);
   }
   
   // required uint32 Id = 2;
@@ -1013,10 +996,10 @@ int Packet_Action::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required string Player = 1;
+    // required uint32 Player = 1;
     if (has_player()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
+        ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->player());
     }
     
