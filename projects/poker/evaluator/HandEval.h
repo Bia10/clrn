@@ -14,7 +14,7 @@ class HandEval {
  private:
   
     // Uncomment when timing.
-    char hands_array[BIG_NUMBER];
+    //char hands_array[BIG_NUMBER];
   
     /*!
      Ranks for 7-card evaluation separated
@@ -84,6 +84,8 @@ public:
                                                    const int * table_cards,
                                                    int number_of_players);
   
+  void EvaluateHands(const int* hands, const unsigned int size, short* results);
+
   // Uncomment when timing the performance.
   void timeRankMethod();
 };

@@ -10,34 +10,59 @@
 
 using testing::Range;
 using testing::Combine;
+using testing::Values;
 using namespace pcmn;
 
-class TestHands : public testing::TestWithParam<int>
+typedef ::std::tr1::tuple<int, int, int, float>  ParamsWithoutFlop;
+
+typedef ::std::tr1::tuple<int, int, Card::List, int, float>  ParamsWithFlop;
+
+class TestHands : public testing::TestWithParam<ParamsWithoutFlop>
 {
 public:
 
 	void Do()
 	{
-		Card first(Card::Ace, Suit::Spades);
-		Card second(Card::King, Suit::Spades);
-
-		std::vector<short> ranges(GetParam() - 1, Evaluator::CARD_DECK_SIZE - 1);
+		std::vector<short> ranges(::std::tr1::get<2>(GetParam()) - 1, Evaluator::CARD_DECK_SIZE);
 		std::vector<int> flop;
 
-		const float percents =  m_Calc.GetEquity(first.ToEvalFormat(), second.ToEvalFormat(), flop, ranges);
+		const float percents =  m_Calc.GetEquity(std::tr1::get<0>(GetParam()), std::tr1::get<1>(GetParam()), flop, ranges);
 
-		ASSERT_TRUE(fabs(percents - 67.043f) < 1.0f) << percents;
+		ASSERT_TRUE(fabs(percents - std::tr1::get<3>(GetParam())) < 1.0f) << percents;
 	}
 private:
 	Evaluator m_Calc;
 };
-/*
+
+class TestHandsAndFlop : public testing::TestWithParam<ParamsWithFlop>
+{
+public:
+
+	void Do()
+	{
+		std::vector<short> ranges(::std::tr1::get<3>(GetParam()) - 1, Evaluator::CARD_DECK_SIZE);
+
+		Card::List flopCards = std::tr1::get<2>(GetParam());
+
+		std::vector<int> flop;
+		for (const Card& card : flopCards)
+			flop.push_back(card.ToEvalFormat());
+
+		const float percents =  m_Calc.GetEquity(std::tr1::get<0>(GetParam()), std::tr1::get<1>(GetParam()), flop, ranges);
+
+		ASSERT_TRUE(fabs(percents - std::tr1::get<4>(GetParam())) < 1.0f) << percents;
+	}
+private:
+	Evaluator m_Calc;
+};
+
 TEST(Cards, Convertion)
 {
 	Evaluator ev;
 	for (int i = 0 ; i < 1000; ++i)
 	{
-		const short evalValue = ev.GetRandomCard();
+		bool dead[Evaluator::CARD_DECK_SIZE] = {false};
+		const short evalValue = ev.GetRandomCard(dead);
 		Card card;
 		card.FromEvalFormat(evalValue);
 
@@ -46,7 +71,7 @@ TEST(Cards, Convertion)
 		EXPECT_EQ(evalValue, converted);
 	}
 }
-*/
+
 TEST(HandEval, Old)
 {
 	std::auto_ptr<HandEval> eval(new HandEval());
@@ -68,7 +93,7 @@ TEST(HandEval, Old)
 	EXPECT_EQ(sEval->getRankOfSeven(0, 4, 8, 12, 16, 20, 24), 7462);// Spade royal flush, 7462
 	EXPECT_EQ(sEval->getRankOfSeven(51, 47, 43, 39, 30, 26, 22), 49);// 49, the worst hand.
 }
-/*
+
 TEST(Evaluator, Ranks)
 {
 	Evaluator calc;
@@ -173,8 +198,12 @@ TEST(Evaluator, Ranks)
 
 }
 
-*/
 TEST_P(TestHands, Simple)
+{
+	Do();	
+}
+
+TEST_P(TestHandsAndFlop, Simple)
 {
 	Do();	
 }
@@ -183,5 +212,35 @@ INSTANTIATE_TEST_CASE_P
 (
 	Combined,
 	TestHands,
-	Range(2, 10)
+	Values
+	(
+		ParamsWithoutFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), 2, 67.054f),
+		ParamsWithoutFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), 3, 50.700f),
+		ParamsWithoutFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), 4, 41.435f),
+		ParamsWithoutFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), 5, 35.444f),
+		ParamsWithoutFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), 6, 31.044f),
+		ParamsWithoutFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), 7, 27.691f),
+		ParamsWithoutFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), 8, 24.960f),
+		ParamsWithoutFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), 9, 22.631f)
+
+	)
+);
+
+Card::List flop =  boost::assign::list_of(Card(Card::Five, Suit::Hearts))(Card(Card::Two, Suit::Diamonds))(Card(Card::Eight, Suit::Clubs));
+
+INSTANTIATE_TEST_CASE_P
+(
+	Combined,
+	TestHandsAndFlop,
+	Values
+	(
+		ParamsWithFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), flop, 2, 52.214f),
+		ParamsWithFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), flop, 3, 31.435f),
+		ParamsWithFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), flop, 4, 21.472f),
+		ParamsWithFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), flop, 5, 16.189f),
+		ParamsWithFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), flop, 6, 12.883f),
+		ParamsWithFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), flop, 7, 10.697f),
+		ParamsWithFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), flop, 8, 9.003f),
+		ParamsWithFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), flop, 9, 7.639f)
+	)
 );

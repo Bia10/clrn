@@ -6,18 +6,14 @@
 #include <cassert>
 #include <algorithm>
 
-#include <boost/random/mersenne_twister.hpp>
-#include <boost/random/uniform_int_distribution.hpp>
-#include <boost/random/random_device.hpp>
+#include <boost/date_time.hpp>
 
 namespace pcmn
 {
 
-const std::size_t NUMBER_OF_REPITITIONS = 10000;
-
 Evaluator::Evaluator() : m_RanksEvaluator(new SevenEval()), m_HandsEvaluator(new HandEval())
 {
-
+	srand ( ( unsigned int ) time ( 0 ) );
 }
 
 Evaluator::~Evaluator()
@@ -37,35 +33,20 @@ short Evaluator::GetRank(const Card::List& cards) const
 	return m_RanksEvaluator->getRankOfSeven(evals[0], evals[1], evals[2], evals[3], evals[4], evals[5], evals[6]);
 }
 
-short Evaluator::GetRandomCard(const short minValue) const
-{
-	static boost::random::random_device rng;
-	boost::random::uniform_int_distribution<> distribution(0, minValue);
-	return distribution(rng);
-}
-
-short Evaluator::GetRandomCard(const Card::List& dead) const
+short Evaluator::GetRandomCard(bool* dead, const short minValue) const
 {
 	for (;;)
 	{
-		const short card = GetRandomCard();
-		const Card::List::const_iterator it = std::find_if(dead.begin(), dead.end(), [&](const Card& input) { return input.ToEvalFormat() == card;});
-		if (it == dead.end())
-			return card;
-	}
-}
-
-short Evaluator::GetRandomCard(const bool* dead, const short minValue) const
-{
-	for (;;)
-	{
-		const short card = GetRandomCard(minValue);
+		const short card = rand() % minValue;
 		if (!dead[card])
+		{
+			dead[card] = true;
 			return card;
+		}
 	}
 }
 
-float Evaluator::GetEquity(short player1, short player2, const std::vector<int>& flop, const std::vector<short>& playerRanges) const
+float Evaluator::GetEquity(short player1, short player2, const std::vector<int>& flop, const std::vector<short>& playerRanges)
 {
 	bool deadCards[CARD_DECK_SIZE] = {false};
 

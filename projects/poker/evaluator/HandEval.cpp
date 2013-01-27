@@ -1042,7 +1042,7 @@ double HandEval::computeRiverEquityForSpecificCards ( const int * hole_cards,
 }
 
 void HandEval::timeRankMethod() {
-    srand ( ( unsigned int ) time ( 0 ) );
+   /* srand ( ( unsigned int ) time ( 0 ) );
     int rank = 0;
     
     // Generate lots of random hands.
@@ -1128,5 +1128,40 @@ void HandEval::timeRankMethod() {
     printf ( "\nEvaluator testing finished" );
     printf ( "\ntime taken: %i clocks", finish - start - ( finish_adjust - start_adjust ) );
     float rate = BIG_NUMBER / 7 * ( CLOCKS_PER_SEC + 0.0f ) / ( finish - start - ( finish_adjust - start_adjust ) + 0.0f );
-    printf ( "\nevaluations per second: %f\n", rate );
+    printf ( "\nevaluations per second: %f\n", rate );*/
+}
+
+void HandEval::EvaluateHands(const int* hands, const unsigned int size, short* results)
+{
+	std::size_t counter = 0;
+	for ( unsigned int N = 0; N < size; N += 7, ++counter ) 
+	{
+		int card_1 = hands[N];
+		int card_2 = hands[N + 1];
+		int card_3 = hands[N + 2];
+		int card_4 = hands[N + 3];
+		int card_5 = hands[N + 4];
+		int card_6 = hands[N + 5];
+		int card_7 = hands[N + 6];
+		unsigned int KEY = deckcardsKey[card_1] + deckcardsKey[card_2] + deckcardsKey[card_3] + deckcardsKey[card_4] + deckcardsKey[card_5] + deckcardsKey[card_6] +
+			deckcardsKey[card_7];
+		int FLUSH_SUIT = flushCheck[SUIT_BIT_MASK & KEY];
+
+		if ( FLUSH_SUIT < 0 ) 
+		{
+			KEY = ( KEY >> NON_FLUSH_BIT_SHIFT );
+			results[counter] = rankArray[KEY < CIRCUMFERENCE_SEVEN ? KEY : KEY - CIRCUMFERENCE_SEVEN];
+		}
+		else 
+		{
+			int FLUSH_KEY = ( deckcardsSuit[card_1] == FLUSH_SUIT ? deckcardsFlush[card_1] : 0 ) +
+				( deckcardsSuit[card_2] == FLUSH_SUIT ? deckcardsFlush[card_2] : 0 ) +
+				( deckcardsSuit[card_3] == FLUSH_SUIT ? deckcardsFlush[card_3] : 0 ) +
+				( deckcardsSuit[card_4] == FLUSH_SUIT ? deckcardsFlush[card_4] : 0 ) +
+				( deckcardsSuit[card_5] == FLUSH_SUIT ? deckcardsFlush[card_5] : 0 ) +
+				( deckcardsSuit[card_6] == FLUSH_SUIT ? deckcardsFlush[card_6] : 0 ) +
+				( deckcardsSuit[card_7] == FLUSH_SUIT ? deckcardsFlush[card_7] : 0 );
+			results[counter] = flushRankArray[FLUSH_KEY];
+		}
+	}
 }
