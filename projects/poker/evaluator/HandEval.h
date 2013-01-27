@@ -8,7 +8,7 @@
   // very large, to allow the evaluator to get up
   // to speed, and divisible by 7. Also close any
   // other applications that are open.
-  #define BIG_NUMBER 3000000*7
+  #define BIG_NUMBER 30000000*7
 
 class HandEval {
  private:
@@ -69,20 +69,19 @@ public:
   /*!
    Equity evalaution methods.
    */
-  void computePreFlopEquityForSpecificHoleCards (int * holeCards,
-                                                         int number_of_players,
-														 std::vector<float>& result);
+  double computePreFlopEquityForSpecificHoleCards (const int * holeCards,
+                                                         int number_of_players);
   
-  const char * computeFlopEquityForSpecificCards (int * holeCards,
-                                                  int * tableCards,
+  double computeFlopEquityForSpecificCards (const int * holeCards,
+                                                  const int * tableCards,
                                                   int number_of_players);
   
-  const char * computeTurnEquityForSpecificCards (int * hole_cards,
-                                                  int * table_cards,
+  double computeTurnEquityForSpecificCards (const int * hole_cards,
+                                                 const int * table_cards,
                                                   int number_of_players);
   
-  const char * computeRiverEquityForSpecificCards (int * hole_cards,
-                                                   int * table_cards,
+  double computeRiverEquityForSpecificCards (const int * hole_cards,
+                                                   const int * table_cards,
                                                    int number_of_players);
   
   // Uncomment when timing the performance.

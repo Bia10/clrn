@@ -232,6 +232,18 @@ class Packet_Table : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 button() const;
   inline void set_button(::google::protobuf::uint32 value);
   
+  // repeated uint32 Cards = 3;
+  inline int cards_size() const;
+  inline void clear_cards();
+  static const int kCardsFieldNumber = 3;
+  inline ::google::protobuf::uint32 cards(int index) const;
+  inline void set_cards(int index, ::google::protobuf::uint32 value);
+  inline void add_cards(::google::protobuf::uint32 value);
+  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      cards() const;
+  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_cards();
+  
   // @@protoc_insertion_point(class_scope:net.Packet.Table)
  private:
   inline void set_has_button();
@@ -240,10 +252,11 @@ class Packet_Table : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
   ::google::protobuf::RepeatedPtrField< ::net::Packet_Player > players_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > cards_;
   ::google::protobuf::uint32 button_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
   
   friend void  protobuf_AddDesc_packet_2eproto();
   friend void protobuf_AssignDesc_packet_2eproto();
@@ -723,6 +736,31 @@ inline ::google::protobuf::uint32 Packet_Table::button() const {
 inline void Packet_Table::set_button(::google::protobuf::uint32 value) {
   set_has_button();
   button_ = value;
+}
+
+// repeated uint32 Cards = 3;
+inline int Packet_Table::cards_size() const {
+  return cards_.size();
+}
+inline void Packet_Table::clear_cards() {
+  cards_.Clear();
+}
+inline ::google::protobuf::uint32 Packet_Table::cards(int index) const {
+  return cards_.Get(index);
+}
+inline void Packet_Table::set_cards(int index, ::google::protobuf::uint32 value) {
+  cards_.Set(index, value);
+}
+inline void Packet_Table::add_cards(::google::protobuf::uint32 value) {
+  cards_.Add(value);
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+Packet_Table::cards() const {
+  return cards_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+Packet_Table::mutable_cards() {
+  return &cards_;
 }
 
 // -------------------------------------------------------------------

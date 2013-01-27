@@ -8,6 +8,7 @@
 
 #include <boost/functional/factory.hpp>
 #include <boost/bind.hpp>
+#include <boost/assign.hpp>
 
 namespace clnt
 {
@@ -165,6 +166,7 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 			m_Pot += m_SmallBlindAmount * 2;
 			current.State(pcmn::Player::State::Waiting);
 			next.State(pcmn::Player::State::Waiting);
+			m_Actions[m_Phase].push_back(ActionDesc(next.Name(), pcmn::Action::BigBlind, m_SmallBlindAmount * 2));
 			LOG_TRACE("Player: '%s', action: '%s', amount: '%s'") % next.Name() % pcmn::Action::ToString(pcmn::Action::BigBlind) % (m_SmallBlindAmount * 2);
 			break;
 		case pcmn::Action::Ante: 
@@ -223,9 +225,7 @@ void Table::FlopCards(const pcmn::Card::List& cards)
 
 void Table::BotCards(const pcmn::Card& first, const pcmn::Card& second)
 {
-	m_BotCards.clear();
-	m_BotCards.push_back(first);
-	m_BotCards.push_back(second);
+	GetPlayer(pcmn::Player::ThisPlayer().Name()).Cards(boost::assign::list_of(first)(second));
 }
 
 void Table::PlayersInfo(const pcmn::Player::List& players)
@@ -378,7 +378,6 @@ void Table::ResetPhase()
 {
 	m_Phase = Phase::Preflop;
 	m_Players.clear();
-	m_BotCards.clear();
 	m_Pot = 0;
 	m_FlopCards.clear();
 	m_SmallBlindAmount = 0;
@@ -500,6 +499,9 @@ void Table::SendStatistic()
 	net::Packet packet;
 
 	net::Packet::Table& table = *packet.mutable_info();
+
+	for (const pcmn::Card& card : m_FlopCards)
+		table.mutable_cards()->Add(card.ToEvalFormat());	
 
 	std::size_t counter = 0;
 	std::map<std::string, std::size_t> players;

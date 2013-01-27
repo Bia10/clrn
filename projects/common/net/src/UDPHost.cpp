@@ -94,9 +94,8 @@ public:
 	void Stop()
 	{
 		SCOPED_LOG(m_Log);
-		m_Service.stop();
 		m_Pool.interrupt_all();
-		m_Pool.join_all();
+		m_Service.stop();
 	}
 
 	void Receive(const IHost::Callback& callback, const google::protobuf::Message& message, const short port)

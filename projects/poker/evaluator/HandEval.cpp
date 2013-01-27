@@ -212,7 +212,7 @@ short HandEval::getRankOfSeven ( const int card_1, const int card_2, const int c
     return 0;
 }
 
-void HandEval::computePreFlopEquityForSpecificHoleCards ( int *hole_cards, int number_of_players, std::vector<float>& result ) {
+double HandEval::computePreFlopEquityForSpecificHoleCards ( const int *hole_cards, int number_of_players ) {
     // Count and list the undealt cards, ie. the remaining deck.
     int undealtCards[DECK_SIZE];
     int number_of_undealt_cards = 0;
@@ -419,11 +419,10 @@ void HandEval::computePreFlopEquityForSpecificHoleCards ( int *hole_cards, int n
     
     equity_percentage[player_defect] = 100.0f - equity_sum;
 
-	for (int i = 0 ; i < number_of_players; ++i)
-		result.push_back(equity_percentage[i]);
+	return equity_percentage[0];
 }
 
-const char * HandEval::computeFlopEquityForSpecificCards ( int * hole_cards, int * table_cards, int number_of_players )
+double HandEval::computeFlopEquityForSpecificCards ( const int * hole_cards, const int * table_cards, int number_of_players )
 {
     // Count and list the undealt cards, ie. the remaining deck.
     int undealtCards[DECK_SIZE];
@@ -678,23 +677,12 @@ const char * HandEval::computeFlopEquityForSpecificCards ( int * hole_cards, int
     {
         equity_percentage[i] = 100 * ( equity[i] + 0.0 ) / total_equity;
     }
-    
-    static char resultString[256];
-    sprintf ( resultString,
-              "%.16f_%.16f_%.16f_%.16f_%.16f_%.16f_%.16f_%.16f",
-              equity_percentage[0],
-              equity_percentage[1],
-              equity_percentage[2],
-              equity_percentage[3],
-              equity_percentage[4],
-              equity_percentage[5],
-              equity_percentage[6],
-              equity_percentage[7] );
-    return resultString;
+
+	return equity_percentage[0];
 }
 
-const char * HandEval::computeTurnEquityForSpecificCards ( int * hole_cards,
-        int * table_cards,
+double HandEval::computeTurnEquityForSpecificCards ( const int * hole_cards,
+        const int * table_cards,
         int number_of_players )
 {
     //Count and list the undealt cards, ie. the remaining deck
@@ -938,23 +926,12 @@ const char * HandEval::computeTurnEquityForSpecificCards ( int * hole_cards,
     {
         equity_percentage[i] = 100 * ( equity[i] + 0.0 ) / total_equity;
     }
-    
-    static char resultString[256];
-    sprintf ( resultString,
-              "%.16f_%.16f_%.16f_%.16f_%.16f_%.16f_%.16f_%.16f",
-              equity_percentage[0],
-              equity_percentage[1],
-              equity_percentage[2],
-              equity_percentage[3],
-              equity_percentage[4],
-              equity_percentage[5],
-              equity_percentage[6],
-              equity_percentage[7] );
-    return resultString;
+
+	return equity_percentage[0];
 }
 
-const char * HandEval::computeRiverEquityForSpecificCards ( int * hole_cards,
-        int * table_cards,
+double HandEval::computeRiverEquityForSpecificCards ( const int * hole_cards,
+       const int * table_cards,
         int number_of_players )
 {
     //Cumulative equities
@@ -1061,18 +1038,7 @@ const char * HandEval::computeRiverEquityForSpecificCards ( int * hole_cards,
         equity_percentage[i] = 100 * ( equity[i] + 0.0 ) / total_equity;
     }
     
-    static char resultString[256];
-    sprintf ( resultString,
-              "%.16f_%.16f_%.16f_%.16f_%.16f_%.16f_%.16f_%.16f",
-              equity_percentage[0],
-              equity_percentage[1],
-              equity_percentage[2],
-              equity_percentage[3],
-              equity_percentage[4],
-              equity_percentage[5],
-              equity_percentage[6],
-              equity_percentage[7] );
-    return resultString;
+	return equity_percentage[0];
 }
 
 void HandEval::timeRankMethod() {
