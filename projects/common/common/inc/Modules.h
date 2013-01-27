@@ -9,7 +9,8 @@ struct Modules
 		Table		= 1,
 		Client		= 2,
 		Network		= 3,
-		Tools		= 4
+		Tools		= 4,
+		DataBase	= 5
 	};
 };
 

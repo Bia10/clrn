@@ -1,26 +1,28 @@
 #include "StdAfx.h"
 #include "Compiler.h"
+#include "SQLiteDB.h"
 
 CDBCompiler::CDBCompiler(ILog& logger)
 	: m_Logger(logger)
+	, m_Database(new sql::SQLiteDataBase(logger))
 {
 }
 
 CDBCompiler::~CDBCompiler(void)
 {
-	DataBase::Shutdown();
+
 }
 
 void CDBCompiler::Create(const std::string& fileName)
 {
 	boost::filesystem::remove(fileName);
 
-	DataBase::Create(m_Logger, fileName.c_str());
+	m_Database->Open(fileName);
 }
 
 void CDBCompiler::Open(const std::string& fileName)
 {
-	DataBase::Create(m_Logger, fileName.c_str());
+	m_Database->Open(fileName);
 }
 
 void CDBCompiler::ExecuteFile(const std::string& fileName)
@@ -32,5 +34,5 @@ void CDBCompiler::ExecuteFile(const std::string& fileName)
 	std::vector<char> data(size + 1);
 	ifs.read(&data.front(), data.size());
 
-	DataBase::Instance().Execute(&data.front());
+	m_Database->CreateStatement(&data.front())->Execute();
 }

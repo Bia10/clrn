@@ -4,7 +4,13 @@ include_directories(
 	"${DB_INC}"
 )
 
-file(GLOB_RECURSE SOURCES "*.cpp" "*.h")
+add_subdirectory(tests)
+
+file(GLOB_RECURSE SOURCES "src/*.cpp" "inc/*.h")
 
 add_library(db STATIC ${SOURCES})
 set_target_properties(db PROPERTIES FOLDER "common")
+
+target_link_libraries(db
+	sqlite3
+)

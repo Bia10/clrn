@@ -81,8 +81,6 @@ float Evaluator::GetEquity(short player1, short player2, const std::vector<int>&
 		// get bot rank
 		const short botRank = m_RanksEvaluator->getRankOfSeven(player1, player2, flopCards[0], flopCards[1], flopCards[2], flopCards[3], flopCards[4]);
 
-		std::vector<short> ranks;
-
 		// get random cards for each player
 		for (std::size_t i = 0; i < playerRanges.size(); ++i)
 		{
@@ -96,7 +94,6 @@ float Evaluator::GetEquity(short player1, short player2, const std::vector<int>&
 
 			// get player rank
 			const short playerRank = m_RanksEvaluator->getRankOfSeven(first, second, flopCards[0], flopCards[1], flopCards[2], flopCards[3], flopCards[4]);
-			ranks.push_back(playerRank);
 			if (playerRank >= botRank)
 			{
 				++looses;

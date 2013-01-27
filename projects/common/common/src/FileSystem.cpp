@@ -13,6 +13,24 @@ std::wstring fs::GetInitialPath()
 	return bfs::initial_path().wstring();
 }
 
+void Remove(const std::string& path)
+{
+	TRY 
+	{
+		bfs::remove(path);
+	}
+	CATCH_PASS_EXCEPTIONS(conv::cast<std::string>(path))
+}
+
+void Remove(const std::wstring& path)
+{
+	TRY 
+	{
+		bfs::remove(path);
+	}
+	CATCH_PASS_EXCEPTIONS(conv::cast<std::string>(path))
+}
+
 std::wstring fs::FullPath(const std::wstring& path)
 {
 	TRY 

@@ -42,10 +42,11 @@
 
 #include <cstdio>
 #include <cstring>
+#include <exception>
 
 #define CPPSQLITE_ERROR 1000
 
-class CppSQLite3Exception
+class CppSQLite3Exception : public std::exception
 {
 public:
 
@@ -56,6 +57,8 @@ public:
     CppSQLite3Exception(const CppSQLite3Exception&  e);
 
     virtual ~CppSQLite3Exception();
+
+	virtual const char* what() const throw() override  { return mpszErrMess; }
 
     const int errorCode() { return mnErrCode; }
 
