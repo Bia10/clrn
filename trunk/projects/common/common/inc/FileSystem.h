@@ -41,6 +41,11 @@ namespace fs
 	std::string		GetExtension(const std::string& path);
 	std::wstring	GetExtension(const std::wstring& path);
 
+	//! Remove file
+	void			Remove(const std::string& path);
+	void			Remove(const std::wstring& path);
+
+
 } // namespace fs
 
 

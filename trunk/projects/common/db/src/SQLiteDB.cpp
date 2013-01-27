@@ -1,12 +1,14 @@
 #include "SQLiteDB.h"
 #include "CppSQLite3.h"
 #include "Exception.h"
+#include "SQLiteStatement.h"
 
 #include <sstream>
 
-#include <boost/thread/mutex.hpp>
+namespace sql
+{
 
-static const unsigned int CURRENT_MODULE_ID =  0;
+
 
 #define CATCH_PASS_SQLITE_EXCEPTION(message)										\
 catch(CppSQLite3Exception& e)														\
@@ -25,14 +27,13 @@ catch(CppSQLite3Exception& e)														\
 //!
 //! \class CSQLiteDB
 //! 
-class DataBase::Impl
+class SQLiteDataBase::Impl
 {
 public:
 
-	Impl(ILog& logger, const char* szFile)
+	Impl(ILog& logger)
 		: m_Log(logger)
 	{
-		Open(szFile);
 	}	
 
 	~Impl()
@@ -40,48 +41,15 @@ public:
 		Close();
 	}
 
-	void Execute(const char* sql, data::Table& result, const data::Table_Id tableId)
+	IStatement::Ptr CreateStatement(const std::string& sql)
 	{
 		TRY 
 		{
 			SCOPED_LOG(m_Log);
 
-// 			LOG_TRACE("Executing: [%s].") % sql;
-// 
-// 			boost::mutex::scoped_lock lock(m_Mutex);
-// 			CppSQLite3Query query = m_DataBase.execQuery(sql);
-// 			
-// 			CTableMapping::CColumnMapping::ColumnMap mapping;
-// 
-// 			for (int field = 0 ; field < query.numFields(); ++field)
-// 			{
-// 				const char* name = query.fieldName(field);
-// 				const int type = query.fieldDataType(field);
-// 
-// 				mapping.insert(std::make_pair(name, field));
-// 
-// 				LOG_DEBUG("Column index: [%s], name: [%s], type: [%s]") % field % name % type;
-// 			}
-// 
-// 			if (data::Table_Id_None == tableId)
-// 				result.set_id(CTableMapping::Instance()[mapping]);
-// 			else
-// 				result.set_id(tableId);
-// 
-// 			while (!query.eof())
-// 			{
-// 				data::Table_Row* row = result.add_rows();
-// 
-// 				for (int field = 0 ; field < query.numFields(); ++field)
-// 				{
-// 					const char* value = query.fieldValue(field);
-// 					row->add_data(value ? value : "NULL");					
-// 				}
-// 				query.nextRow();	
-// 			}
-// 
-// 			LOG_TRACE("Rows received: [%s]") % result.rows_size();
-// 			LOG_DEBUG("Table: [%s]") % result.ShortDebugString();
+ 			LOG_TRACE("Compiling sql statement: [%s].") % sql;
+
+			return IStatement::Ptr(new SQLiteStatement(m_DataBase.compileStatement(sql.c_str())));
 		}
 		CATCH_PASS_SQLITE_EXCEPTIONS(sql)
 	}
@@ -94,7 +62,6 @@ public:
 
 			LOG_TRACE("Sql: [%s]") % sql;
 
-			boost::mutex::scoped_lock lock(m_Mutex);
 			return m_DataBase.execDML(sql);
 		}
 		CATCH_PASS_SQLITE_EXCEPTIONS(sql)
@@ -115,7 +82,16 @@ public:
 		Execute("rollback transaction;");
 	}
 
-private:
+	void Close()
+	{
+		TRY 
+		{
+			SCOPED_LOG(m_Log);
+
+			m_DataBase.close();
+		}
+		CATCH_PASS_SQLITE_EXCEPTIONS("Close failed.")
+	}	
 
 	void Open(const char* szFile)
 	{
@@ -125,83 +101,100 @@ private:
 
 			LOG_TRACE("DB file: [%s]") % szFile;
 
-			boost::mutex::scoped_lock lock(m_Mutex);
 			m_DataBase.open(szFile);		
 		}
 		CATCH_PASS_SQLITE_EXCEPTIONS(szFile)
 	}
 
-	void Close()
+	Recordset::Ptr Fetch(const std::string& sql)
 	{
 		TRY 
 		{
 			SCOPED_LOG(m_Log);
 
-			boost::mutex::scoped_lock lock(m_Mutex);
-			m_DataBase.close();
+			return Recordset::Ptr(new Recordset(m_DataBase.execQuery(sql.c_str())));
 		}
-		CATCH_PASS_SQLITE_EXCEPTIONS("Close failed.")
-	}	
+		CATCH_PASS_SQLITE_EXCEPTIONS("Fetch failed.")
+	}
+
+	std::size_t ExecuteScalar(const std::string& sql)
+	{
+		TRY 
+		{
+			SCOPED_LOG(m_Log);
+
+			return m_DataBase.execScalar(sql.c_str());
+		}
+		CATCH_PASS_SQLITE_EXCEPTIONS("ExecuteScalar failed.")
+	}
+
+
+private:
 
 	//! Database
 	CppSQLite3DB		m_DataBase;
 
 	//! Logger
 	ILog&				m_Log;
-
-	//! DB mutex
-	boost::mutex		m_Mutex;
 };
 
 
-std::auto_ptr<DataBase> DataBase::s_Instance;
-
-DataBase::DataBase(ILog& logger, const char* szFile)
-	: m_pImpl(new Impl(logger, szFile))
+SQLiteDataBase::SQLiteDataBase(ILog& logger)
+	: m_pImpl(new Impl(logger))
 {
 }
 
-DataBase::~DataBase(void)
+SQLiteDataBase::~SQLiteDataBase(void)
 {
 	delete m_pImpl;
 }
 
-void DataBase::Execute(const char* sql, data::Table& result, const data::Table_Id tableId /*= static_cast<data::Table_Id>(0)*/)
+void SQLiteDataBase::Open(const std::string& arg)
 {
-	m_pImpl->Execute(sql, result, tableId);
+	m_pImpl->Open(arg.c_str());
 }
 
-unsigned int DataBase::Execute(const char* sql)
+void SQLiteDataBase::Close()
 {
-	return m_pImpl->Execute(sql);
+	m_pImpl->Close();
 }
 
-void DataBase::StartTransaction()
+void SQLiteDataBase::BeginTransaction()
 {
 	m_pImpl->StartTransaction();
 }
 
-void DataBase::Commit()
+void SQLiteDataBase::Commit()
 {
 	m_pImpl->Commit();
 }
 
-void DataBase::RollBack()
+void SQLiteDataBase::Rollback()
 {
 	m_pImpl->RollBack();
 }
 
-void DataBase::Create(ILog& logger, const char* szFile)
+IStatement::Ptr SQLiteDataBase::CreateStatement(const std::string& sql)
 {
-	s_Instance.reset(new DataBase(logger, szFile));
+	return m_pImpl->CreateStatement(sql);
 }
 
-void DataBase::Shutdown()
+std::size_t SQLiteDataBase::Execute(const std::string& sql)
 {
-	s_Instance.reset();
+	return m_pImpl->Execute(sql.c_str());
 }
 
-DataBase& DataBase::Instance()
+
+Recordset::Ptr SQLiteDataBase::Fetch(const std::string& sql)
 {
-	return *s_Instance;
+	return m_pImpl->Fetch(sql);
 }
+
+
+std::size_t SQLiteDataBase::ExecuteScalar(const std::string& sql)
+{
+	return m_pImpl->ExecuteScalar(sql);
+}
+
+}
+

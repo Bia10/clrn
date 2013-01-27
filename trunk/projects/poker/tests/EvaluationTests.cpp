@@ -14,7 +14,7 @@ using testing::Values;
 using namespace pcmn;
 
 typedef ::std::tr1::tuple<int, int, int, float>  ParamsWithoutFlop;
-
+ 
 typedef ::std::tr1::tuple<int, int, Card::List, int, float>  ParamsWithFlop;
 
 class TestHands : public testing::TestWithParam<ParamsWithoutFlop>

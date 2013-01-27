@@ -2,6 +2,7 @@
 #define Compiler_h__
 
 #include "ILog.h"
+#include "IDatabase.h"
 
 //! Class for db compile/script executing
 //!
@@ -27,5 +28,8 @@ private:
 
 	//! Logger
 	ILog&	m_Logger;
+
+	//! Database
+	sql::IDatabase::Ptr m_Database;
 };
 #endif // Compiler_h__

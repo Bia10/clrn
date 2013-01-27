@@ -2,58 +2,45 @@
 #define SQLiteDB_h__
 
 #include "ILog.h"
+#include "IDatabase.h"
 
 #include <memory>
 
-//! Forward declarations
-namespace data
+namespace sql
 {
-	class Table;
-	enum Table_Id;
-}
 
 //! SQLite database wrapper
 //!
 //! \class CSQLiteDB
 //! 
-class DataBase
+class SQLiteDataBase : public IDatabase
 {
 public:
-	DataBase(ILog& logger, const char* szFile);
-	~DataBase(void);
+	SQLiteDataBase(ILog& logger);
+	~SQLiteDataBase();
 
-	//! Execute query
-	void				Execute(const char* sql, data::Table& result, const data::Table_Id tableId = static_cast<data::Table_Id>(0));
-
-	//! Execute DML
-	unsigned int		Execute(const char* sql);
-
-	//! Begin transaction
-	void				StartTransaction();
-
-	//! Commit transaction
-	void				Commit();
-
-	//! Rollback transaction
-	void				RollBack();
-
-	//! Instance initialization
-	static void			Create(ILog& logger, const char* szFile);
-
-	//! Instance deinitialization
-	static void			Shutdown();
-
-	//! Instance reference
-	static DataBase&	Instance();
+	virtual void Open(const std::string& arg) override;
+	virtual void Close() override;
+	virtual void BeginTransaction() override;
+	virtual void Commit() override;
+	virtual void Rollback() override;
+	virtual std::size_t Execute(const std::string& sql) override;
+	virtual std::size_t ExecuteScalar(const std::string& sql) override;
+	virtual Recordset::Ptr Fetch(const std::string& sql) override;
+	virtual IStatement::Ptr CreateStatement(const std::string& sql) override;
 
 private:
 
 	//! Implementation
 	class Impl;
-	Impl*							m_pImpl;
+	Impl*									m_pImpl;
 
 	//! Instance
-	static std::auto_ptr<DataBase>	s_Instance;
+	static std::auto_ptr<SQLiteDataBase>	s_Instance;
 
 };
+
+}
+
+
 #endif // SQLiteDB_h__
