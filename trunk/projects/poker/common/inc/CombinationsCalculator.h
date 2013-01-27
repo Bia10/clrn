@@ -17,14 +17,13 @@ class Evaluator
 public:
 	enum { CARD_DECK_SIZE = 52 };
 	enum { MAX_PLAYERS = 9 };
+	enum {NUMBER_OF_REPITITIONS = 1000 * 1000 };
 
 	Evaluator();
 	~Evaluator();
 	short GetRank(const Card::List& cards) const;
-	short GetRandomCard(const short minValue = CARD_DECK_SIZE - 1) const;
-	short GetRandomCard(const Card::List& dead) const;
-	short GetRandomCard(const bool* dead, const short minValue = CARD_DECK_SIZE - 1) const; 
-	float GetEquity(short player1, short player2, const std::vector<int>& flop, const std::vector<short>& playerRanges) const;
+	short GetRandomCard(bool* dead, const short minValue = CARD_DECK_SIZE) const; 
+	float GetEquity(short player1, short player2, const std::vector<int>& flop, const std::vector<short>& playerRanges);
 private:
 	SevenEval* m_RanksEvaluator;
 	HandEval* m_HandsEvaluator;

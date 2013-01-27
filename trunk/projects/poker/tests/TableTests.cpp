@@ -1,4 +1,3 @@
-/*
 #include "Player.h"
 #include "../clientlib/ITable.h"
 #include "../clientlib/PokerStarsTable.h"
@@ -69,6 +68,7 @@ public:
 		m_Log.Open("tests.log", Modules::Table, ILog::Level::Debug);
 
 		Evaluator ev;
+		bool dead[Evaluator::CARD_DECK_SIZE] = {false};
 		for (int i = 0 ; i < ::std::tr1::get<0>(GetParam()); ++i)
 		{
 			Player player;
@@ -76,8 +76,8 @@ public:
 			player.Stack(1000);
 
 			Card::List cards(2);
-			cards[0].FromEvalFormat(ev.GetRandomCard());
-			cards[1].FromEvalFormat(ev.GetRandomCard());
+			cards[0].FromEvalFormat(ev.GetRandomCard(dead));
+			cards[1].FromEvalFormat(ev.GetRandomCard(dead));
 
 			player.Cards(cards);
 
@@ -197,13 +197,13 @@ public:
 		GameLoop(m_Button + 2);
 	}
 
-	void DealCards(const std::size_t count)
+	void DealCards(bool* dead, const std::size_t count)
 	{
 		Evaluator ev;
 		for (std::size_t i = 0 ; i < count ; ++i)
 		{
 			m_FlopCards.push_back(Card());
-			m_FlopCards.back().FromEvalFormat(ev.GetRandomCard());
+			m_FlopCards.back().FromEvalFormat(ev.GetRandomCard(dead));
 		}
 
 		m_Table->FlopCards(m_FlopCards);
@@ -213,19 +213,20 @@ public:
 	{
 		try
 		{
+			bool dead[Evaluator::CARD_DECK_SIZE] = {false};
 			Preflop();
 			ClearBets();
-			DealCards(3);
+			DealCards(dead ,3);
 			ClearBets();
 			GameLoop(m_Button + 1);
-			DealCards(1);
+			DealCards(dead ,1);
 			ClearBets();
 			GameLoop(m_Button + 1);
-			DealCards(1);
+			DealCards(dead ,1);
 			ClearBets();
 			GameLoop(m_Button + 1);
 		}
-		catch (const NoPlayers& / *e* /)
+		catch (const NoPlayers& /*e*/)
 		{
 			
 		}
@@ -345,7 +346,7 @@ TEST_P(TestTable, PredefinedActions)
 
 TEST_P(TestTable, Messages)
 {
-	Do();	
+	Do();	 
 }
 
 INSTANTIATE_TEST_CASE_P
@@ -355,6 +356,6 @@ INSTANTIATE_TEST_CASE_P
 	Combine
 	(
 		Range(1, 10),
-		Range(0, 0)
+		Range(0, 1)
 	)
-);*/
+);

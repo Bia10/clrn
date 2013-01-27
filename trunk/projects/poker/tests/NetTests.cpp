@@ -1,4 +1,3 @@
-/*
 #include "Log.h"
 #include "Modules.h"
 #include "UDPHost.h"
@@ -78,4 +77,4 @@ TEST(SendReceive, Simple)
 {
 	TestFunc();	
 }
-*/
+
