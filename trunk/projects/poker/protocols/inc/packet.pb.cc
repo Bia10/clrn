@@ -77,9 +77,10 @@ void protobuf_AssignDesc_packet_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Packet_Player));
   Packet_Table_descriptor_ = Packet_descriptor_->nested_type(1);
-  static const int Packet_Table_offsets_[2] = {
+  static const int Packet_Table_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet_Table, players_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet_Table, button_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet_Table, cards_),
   };
   Packet_Table_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -170,15 +171,15 @@ void protobuf_AddDesc_packet_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\014packet.proto\022\003net\"\261\002\n\006Packet\022\037\n\004Info\030\001"
+    "\n\014packet.proto\022\003net\"\300\002\n\006Packet\022\037\n\004Info\030\001"
     " \002(\0132\021.net.Packet.Table\022!\n\006Phases\030\002 \003(\0132"
     "\021.net.Packet.Phase\032A\n\006Player\022\014\n\004Name\030\001 \002"
     "(\t\022\r\n\005Stack\030\002 \002(\r\022\013\n\003Bet\030\003 \002(\r\022\r\n\005Cards\030"
-    "\004 \003(\r\032<\n\005Table\022#\n\007Players\030\001 \003(\0132\022.net.Pa"
-    "cket.Player\022\016\n\006Button\030\002 \002(\r\0324\n\006Action\022\016\n"
-    "\006Player\030\001 \002(\r\022\n\n\002Id\030\002 \002(\r\022\016\n\006Amount\030\003 \001("
-    "\r\032,\n\005Phase\022#\n\007Actions\030\001 \003(\0132\022.net.Packet"
-    ".Action", 327);
+    "\004 \003(\r\032K\n\005Table\022#\n\007Players\030\001 \003(\0132\022.net.Pa"
+    "cket.Player\022\016\n\006Button\030\002 \002(\r\022\r\n\005Cards\030\003 \003"
+    "(\r\0324\n\006Action\022\016\n\006Player\030\001 \002(\r\022\n\n\002Id\030\002 \002(\r"
+    "\022\016\n\006Amount\030\003 \001(\r\032,\n\005Phase\022#\n\007Actions\030\001 \003"
+    "(\0132\022.net.Packet.Action", 342);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "packet.proto", &protobuf_RegisterTypes);
   Packet::default_instance_ = new Packet();
@@ -560,6 +561,7 @@ void Packet_Player::Swap(Packet_Player* other) {
 #ifndef _MSC_VER
 const int Packet_Table::kPlayersFieldNumber;
 const int Packet_Table::kButtonFieldNumber;
+const int Packet_Table::kCardsFieldNumber;
 #endif  // !_MSC_VER
 
 Packet_Table::Packet_Table()
@@ -616,6 +618,7 @@ void Packet_Table::Clear() {
     button_ = 0u;
   }
   players_.Clear();
+  cards_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -653,6 +656,28 @@ bool Packet_Table::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
+        if (input->ExpectTag(24)) goto parse_Cards;
+        break;
+      }
+      
+      // repeated uint32 Cards = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_Cards:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 1, 24, input, this->mutable_cards())));
+        } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
+                   == ::google::protobuf::internal::WireFormatLite::
+                      WIRETYPE_LENGTH_DELIMITED) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, this->mutable_cards())));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(24)) goto parse_Cards;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -686,6 +711,12 @@ void Packet_Table::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->button(), output);
   }
   
+  // repeated uint32 Cards = 3;
+  for (int i = 0; i < this->cards_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(
+      3, this->cards(i), output);
+  }
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -704,6 +735,12 @@ void Packet_Table::SerializeWithCachedSizes(
   // required uint32 Button = 2;
   if (has_button()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->button(), target);
+  }
+  
+  // repeated uint32 Cards = 3;
+  for (int i = 0; i < this->cards_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteUInt32ToArray(3, this->cards(i), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -733,6 +770,16 @@ int Packet_Table::ByteSize() const {
         this->players(i));
   }
   
+  // repeated uint32 Cards = 3;
+  {
+    int data_size = 0;
+    for (int i = 0; i < this->cards_size(); i++) {
+      data_size += ::google::protobuf::internal::WireFormatLite::
+        UInt32Size(this->cards(i));
+    }
+    total_size += 1 * this->cards_size() + data_size;
+  }
+  
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -759,6 +806,7 @@ void Packet_Table::MergeFrom(const ::google::protobuf::Message& from) {
 void Packet_Table::MergeFrom(const Packet_Table& from) {
   GOOGLE_CHECK_NE(&from, this);
   players_.MergeFrom(from.players_);
+  cards_.MergeFrom(from.cards_);
   if (from._has_bits_[1 / 32] & (0xffu << (1 % 32))) {
     if (from.has_button()) {
       set_button(from.button());
@@ -792,6 +840,7 @@ void Packet_Table::Swap(Packet_Table* other) {
   if (other != this) {
     players_.Swap(&other->players_);
     std::swap(button_, other->button_);
+    cards_.Swap(&other->cards_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

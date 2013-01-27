@@ -15,6 +15,7 @@ message Packet
 	{
 		repeated Player Players		= 1;	// players
 		required uint32 Button		= 2;	// index of the player on button
+		repeated uint32 Cards		= 3;	// flop cards
 	}
 	
 	message Action

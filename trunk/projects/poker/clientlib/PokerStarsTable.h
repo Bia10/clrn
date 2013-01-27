@@ -96,9 +96,6 @@ private:
 	//! Flop cards
 	pcmn::Card::List				m_FlopCards;
 
-	//! Flop cards
-	pcmn::Card::List				m_BotCards;
-
 	//! Small blind size
 	std::size_t						m_SmallBlindAmount;
 

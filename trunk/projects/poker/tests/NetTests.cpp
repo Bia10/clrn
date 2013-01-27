@@ -1,3 +1,4 @@
+/*
 #include "Log.h"
 #include "Modules.h"
 #include "UDPHost.h"
@@ -69,6 +70,7 @@ void TestFunc()
 	connection->Receive(boost::bind(&ReceiveFromServerCallback, _1, connection));
 
 	srv.Run();
+	clnt.Run();
 }
 
 
@@ -76,3 +78,4 @@ TEST(SendReceive, Simple)
 {
 	TestFunc();	
 }
+*/

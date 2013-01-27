@@ -8,8 +8,30 @@
 
 #include <boost/assign.hpp>
 
+using testing::Range;
+using testing::Combine;
 using namespace pcmn;
 
+class TestHands : public testing::TestWithParam<int>
+{
+public:
+
+	void Do()
+	{
+		Card first(Card::Ace, Suit::Spades);
+		Card second(Card::King, Suit::Spades);
+
+		std::vector<short> ranges(GetParam() - 1, Evaluator::CARD_DECK_SIZE - 1);
+		std::vector<int> flop;
+
+		const float percents =  m_Calc.GetEquity(first.ToEvalFormat(), second.ToEvalFormat(), flop, ranges);
+
+		ASSERT_TRUE(fabs(percents - 67.043f) < 1.0f) << percents;
+	}
+private:
+	Evaluator m_Calc;
+};
+/*
 TEST(Cards, Convertion)
 {
 	Evaluator ev;
@@ -24,7 +46,7 @@ TEST(Cards, Convertion)
 		EXPECT_EQ(evalValue, converted);
 	}
 }
-
+*/
 TEST(HandEval, Old)
 {
 	std::auto_ptr<HandEval> eval(new HandEval());
@@ -36,10 +58,7 @@ TEST(HandEval, Old)
 
 
 	// The equity should be approximately 45.33% versus 54.67%.
-	std::vector<float> results;
-	eval->computePreFlopEquityForSpecificHoleCards(holeCards, 2, results);
-	EXPECT_TRUE(fabs(45.33f - results[0]) < 0.1f);
-	EXPECT_TRUE(fabs(54.67f - results[1]) < 0.1f);
+	EXPECT_TRUE(fabs(45.33f - eval->computePreFlopEquityForSpecificHoleCards(holeCards, 2)) < 0.1f);
 	eval->timeRankMethod();
 
 	std::auto_ptr<SevenEval> sEval(new SevenEval());
@@ -49,7 +68,7 @@ TEST(HandEval, Old)
 	EXPECT_EQ(sEval->getRankOfSeven(0, 4, 8, 12, 16, 20, 24), 7462);// Spade royal flush, 7462
 	EXPECT_EQ(sEval->getRankOfSeven(51, 47, 43, 39, 30, 26, 22), 49);// 49, the worst hand.
 }
-
+/*
 TEST(Evaluator, Ranks)
 {
 	Evaluator calc;
@@ -153,3 +172,16 @@ TEST(Evaluator, Ranks)
 	EXPECT_GT(pair, highCard);
 
 }
+
+*/
+TEST_P(TestHands, Simple)
+{
+	Do();	
+}
+
+INSTANTIATE_TEST_CASE_P
+(
+	Combined,
+	TestHands,
+	Range(2, 10)
+);

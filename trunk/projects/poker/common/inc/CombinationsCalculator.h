@@ -7,6 +7,7 @@
 #include <string>
 
 class SevenEval;
+class HandEval;
 
 namespace pcmn
 {
@@ -14,12 +15,19 @@ namespace pcmn
 class Evaluator
 {
 public:
+	enum { CARD_DECK_SIZE = 52 };
+	enum { MAX_PLAYERS = 9 };
+
 	Evaluator();
 	~Evaluator();
 	short GetRank(const Card::List& cards) const;
-	short GetRandomCard() const;
+	short GetRandomCard(const short minValue = CARD_DECK_SIZE - 1) const;
+	short GetRandomCard(const Card::List& dead) const;
+	short GetRandomCard(const bool* dead, const short minValue = CARD_DECK_SIZE - 1) const; 
+	float GetEquity(short player1, short player2, const std::vector<int>& flop, const std::vector<short>& playerRanges) const;
 private:
-	SevenEval* m_Evaluator;
+	SevenEval* m_RanksEvaluator;
+	HandEval* m_HandsEvaluator;
 };
 }
 #endif // CombinationsCalculator_h__
