@@ -19,7 +19,6 @@ class Server::Impl
 public:
 	Impl() 
 		: m_Client(new net::UDPHost(m_Log, 1))
-		, m_Parser(m_Log)
 	{
 		m_Log.Open("1", Modules::Network, ILog::Level::Debug);
 		m_Client->Receive(boost::bind(&Impl::HandleRequest, this, _1, _2), net::Packet(), 5000);
@@ -37,7 +36,9 @@ private:
 	{
 		std::cout << message.DebugString() << std::endl;
 		Parser::Data data;
-		const bool needDecision = m_Parser.Parse(dynamic_cast<const net::Packet&>(message), data);
+
+		Parser parser(m_Log, dynamic_cast<const net::Packet&>(message));
+		const bool needDecision = parser.Parse();
 
 		// write statistics
 
@@ -54,9 +55,6 @@ private:
 
 	//! Logger
 	Log									m_Log;
-
-	//! Parser
-	Parser								m_Parser;
 };
 
 void Server::Run()
