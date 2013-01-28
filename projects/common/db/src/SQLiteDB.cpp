@@ -128,6 +128,10 @@ public:
 		CATCH_PASS_SQLITE_EXCEPTIONS("ExecuteScalar failed.")
 	}
 
+	__int64 LastRowId()
+	{
+		return m_DataBase.lastRowId();
+	}
 
 private:
 
@@ -196,5 +200,11 @@ std::size_t SQLiteDataBase::ExecuteScalar(const std::string& sql)
 	return m_pImpl->ExecuteScalar(sql);
 }
 
+__int64 SQLiteDataBase::LastRowId()
+{
+	return m_pImpl->LastRowId();
 }
+
+}
+
 

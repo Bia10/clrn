@@ -27,6 +27,7 @@ public:
 	virtual std::size_t ExecuteScalar(const std::string& sql) = 0;
 	virtual Recordset::Ptr Fetch(const std::string& sql) = 0;
 	virtual IStatement::Ptr CreateStatement(const std::string& sql) = 0;
+	virtual __int64 LastRowId() = 0;
 
 };
 
