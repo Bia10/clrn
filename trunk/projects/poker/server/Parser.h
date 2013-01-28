@@ -21,7 +21,7 @@ public:
 		{
 			typedef std::vector<Player> List;
 			std::string m_Name;
-			__int64 m_Index;
+			__int64 m_Index; // row id from sqlite
 			int m_Position;		
 			std::vector<float> m_Percents; // player percents on different streets
 		};
@@ -48,9 +48,10 @@ public:
 		Hand::List m_Hands;
 	};
 
-	Parser(ILog& logger);
+	Parser(ILog& logger, const net::Packet& packet);
 	~Parser();
-	bool Parse(const net::Packet& packet, Data& result); // returns true if next player bot and he need to do something
+	bool Parse(); // returns true if next player bot and he need to do something
+	const Data& GetResult() const;
 
 private:
 	class Impl;
