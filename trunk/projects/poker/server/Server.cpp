@@ -4,6 +4,7 @@
 #include "Exception.h"
 #include "UDPHost.h"
 #include "Modules.h"
+#include "Parser.h"
 
 #include <iostream>
 
@@ -16,10 +17,11 @@ namespace srv
 class Server::Impl
 {
 public:
-	Impl()
+	Impl() 
+		: m_Client(new net::UDPHost(m_Log, 1))
+		, m_Parser(m_Log)
 	{
 		m_Log.Open("1", Modules::Network, ILog::Level::Debug);
-		m_Client.reset(new net::UDPHost(m_Log, 1));
 		m_Client->Receive(boost::bind(&Impl::HandleRequest, this, _1, _2), net::Packet(), 5000);
 	}
 
@@ -34,6 +36,15 @@ private:
 	void HandleRequest(const google::protobuf::Message& message, const net::IConnection::Ptr& connection)
 	{
 		std::cout << message.DebugString() << std::endl;
+		Parser::Data data;
+		const bool needDecision = m_Parser.Parse(dynamic_cast<const net::Packet&>(message), data);
+
+		// write statistics
+
+		if (needDecision)
+		{
+			// react on action
+		}
 	}
 
 private:
@@ -43,6 +54,9 @@ private:
 
 	//! Logger
 	Log									m_Log;
+
+	//! Parser
+	Parser								m_Parser;
 };
 
 void Server::Run()

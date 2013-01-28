@@ -28,6 +28,7 @@ public:
 	virtual std::size_t ExecuteScalar(const std::string& sql) override;
 	virtual Recordset::Ptr Fetch(const std::string& sql) override;
 	virtual IStatement::Ptr CreateStatement(const std::string& sql) override;
+	virtual __int64 LastRowId() override;
 
 private:
 
