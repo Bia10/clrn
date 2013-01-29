@@ -6,6 +6,7 @@
 #include "Modules.h"
 #include "CombinationsCalculator.h"
 #include "IConnection.h"
+#include "UDPHost.h"
 
 #include "gtest/gtest.h"
 
@@ -48,25 +49,15 @@ std::string GetRandomString(std::size_t size = 10)
 	return result;
 }
 
-class FakeSender : public net::IConnection
-{
-	virtual void Send(const google::protobuf::Message& message) 
-	{
-	}
-
-	virtual void Receive(const Callback& callback) 
-	{
-	}
-
-};
-
 class TestTable : public testing::TestWithParam<::std::tr1::tuple<int, int> >
 {
 public:
-	TestTable() : m_Sender(new FakeSender()), m_Button(0), m_Table(new ps::Table(m_Log, m_Sender)), m_MaxBet(0)
+	TestTable() : m_Server(new net::UDPHost(m_Log, 1)), m_Button(0), m_MaxBet(0)
 	{
-		m_Log.Open("tests.log", Modules::Table, ILog::Level::Debug);
-
+		//m_Log.Open("tests.log", Modules::Table, ILog::Level::Debug);
+		m_Sender = m_Server->Connect("127.0.0.1", 5000);
+		m_Table.reset(new ps::Table(m_Log, m_Sender));
+		
 		Evaluator ev;
 		bool dead[Evaluator::CARD_DECK_SIZE] = {false};
 		for (int i = 0 ; i < ::std::tr1::get<0>(GetParam()); ++i)
@@ -86,6 +77,11 @@ public:
 		}
 
 		m_Moves.resize(m_Players.size());
+	}
+
+	~TestTable()
+	{
+		m_Server->Stop();
 	}
 
 	void ClearBets()
@@ -225,6 +221,8 @@ public:
 			DealCards(dead ,1);
 			ClearBets();
 			GameLoop(m_Button + 1);
+
+			m_Table->PlayersInfo(m_Players);
 		}
 		catch (const NoPlayers& /*e*/)
 		{
@@ -325,12 +323,15 @@ public:
 			m_Table->PlayerAction("sevenup_king", Action::Fold, 0);
 			m_Table->PlayerAction("anatoliw", Action::MoneyReturn, 40);
 			m_Table->PlayerAction("loboda1968", Action::Rank, 7);
+
+			m_Table->PlayersInfo(m_Players);
 		}
 	}
 
 private:
-	net::IConnection::Ptr m_Sender;
 	Log m_Log;
+	net::IHost::Ptr m_Server;
+	net::IConnection::Ptr m_Sender;
 	Player::List m_Players;
 	std::size_t m_Button;
 	std::auto_ptr<ITable> m_Table;
@@ -355,7 +356,7 @@ INSTANTIATE_TEST_CASE_P
 	TestTable,
 	Combine
 	(
-		Range(1, 10),
-		Range(0, 1)
+		Range(2, 10),
+		Range(0, 2)
 	)
 );

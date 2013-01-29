@@ -52,6 +52,17 @@ public:
 			AFK		= 4
 		};
 	};
+	
+	//! Player positions
+	struct Position
+	{
+		enum Value
+		{
+			Early	= 0,
+			Middle	= 1,
+			Later	= 2
+		};
+	};
 
 	Player()
 		: m_Name()

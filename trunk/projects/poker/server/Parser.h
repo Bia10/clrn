@@ -3,6 +3,7 @@
 
 #include "ILog.h"
 #include "packet.pb.h"
+#include "Player.h"
 
 #include <vector>
 
@@ -23,7 +24,7 @@ public:
 			typedef std::vector<Player> List;
 			std::string m_Name;
 			__int64 m_Index; // row id from sqlite
-			int m_Position;		
+			pcmn::Player::Position::Value m_Position;		
 			std::vector<float> m_Percents; // player percents on different streets
 		};
 
