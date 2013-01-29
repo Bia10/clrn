@@ -1,8 +1,10 @@
 #include "Parser.h"
 #include "Exception.h"
 #include "CombinationsCalculator.h"
+#include "Actions.h"
 
 #include <iostream>
+#include <set>
 
 #include <boost/bind.hpp>
 #include <boost/function.hpp>
@@ -20,8 +22,8 @@ public:
 
 	bool Parse()
 	{
-
-
+		
+		ParsePlayers();
 
 		for (int i = 0 ; i < m_Packet.phases_size(); ++i)
 		{
@@ -40,6 +42,13 @@ public:
 
 private:
 
+	//! ParseFlopCards
+	void ParseFlopCards()
+	{
+		for (int i = 0 ; i < m_Packet.info().cards_size(); ++i)
+			m_Result.m_Flop.push_back(m_Packet.info().cards(i));
+	}
+
 	//! Parse players
 	void ParsePlayers()
 	{
@@ -54,21 +63,42 @@ private:
 			{
 				const int first = player.cards(0);
 				const int second = player.cards(1);
-
-				std::vector<short> ranges(m_Packet.info().players_size(), pcmn::Evaluator::CARD_DECK_SIZE);
-				//m_Evaluator.GetEquity(first, second, )
-			}
 			
+				p.m_Percents = GetPlayerEquities(first, second);
+			}
 
 			m_Result.m_Players.push_back(p);
 
 		}
 	}
 
-	//! Get player equity
-	void GetPlayerEquity(const int first, const int second)
+	std::vector<int> FindActivePlayer(const net::Packet::Phase& phase)
 	{
+		std::set<int> result;
+		for (int i = 0 ; i < phase.actions_size(); ++i)
+		{
+			const pcmn::Action::Value action = static_cast<pcmn::Action::Value>(phase.actions(i).id());
+			if (pcmn::Action::IsActive(action))
+				result.insert(phase.actions(i).player());
+		}
 
+		return std::vector<int>();
+	}
+
+	//! Get player equity
+	std::vector<float> GetPlayerEquities(const int first, const int second)
+	{
+		std::vector<float> result;
+		for (int i = 0 ; i < m_Packet.phases_size(); ++i)
+		{
+			const net::Packet::Phase& phase = m_Packet.phases(i);
+
+			const std::vector<int> activePlayers = FindActivePlayer(phase);
+			const std::vector<short> ranges(activePlayers.size(), pcmn::Evaluator::CARD_DECK_SIZE);
+
+			result.push_back(m_Evaluator.GetEquity(first, second, m_Result.m_Flop, ranges));
+		}
+		return result;
 	}
 
 	//! Parse round data

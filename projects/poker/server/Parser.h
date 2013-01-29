@@ -17,6 +17,7 @@ public:
 	//! Packet parsed data
 	struct Data
 	{
+		//! Player info
 		struct Player
 		{
 			typedef std::vector<Player> List;
@@ -36,6 +37,7 @@ public:
 			float m_StackAmount;
 		};
 
+		//! Player hand
 		struct Hand
 		{
 			typedef std::vector<Hand> List;
@@ -43,9 +45,11 @@ public:
 			int m_Second;
 		};
 
+
 		Player::List m_Players;
 		Action::List m_Actions;
 		Hand::List m_Hands;
+		std::vector<int> m_Flop;
 	};
 
 	Parser(ILog& logger, const net::Packet& packet);
