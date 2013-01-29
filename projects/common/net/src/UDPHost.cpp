@@ -73,6 +73,7 @@ public:
 	~Impl()
 	{
 		SCOPED_LOG(m_Log);
+		m_Pool.join_all();
 	}
 
 	void SetBufferSize(const int size)

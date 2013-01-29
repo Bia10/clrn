@@ -17,8 +17,7 @@ namespace srv
 class Server::Impl
 {
 public:
-	Impl() 
-		: m_Client(new net::UDPHost(m_Log, 1))
+	Impl() : m_Client(new net::UDPHost(m_Log, 1))
 	{
 		m_Log.Open("1", Modules::Network, ILog::Level::Debug);
 		m_Client->Receive(boost::bind(&Impl::HandleRequest, this, _1, _2), net::Packet(), 5000);
@@ -50,11 +49,11 @@ private:
 
 private:
 
-	//! UDP client
-	std::auto_ptr<net::IHost>			m_Client;
-
 	//! Logger
 	Log									m_Log;
+
+	//! UDP client
+	std::auto_ptr<net::IHost>			m_Client;
 };
 
 void Server::Run()

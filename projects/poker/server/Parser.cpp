@@ -22,8 +22,9 @@ public:
 
 	bool Parse()
 	{
-		
+		ParseFlopCards();
 		ParsePlayers();
+		ParsePlayersPositions();
 
 		for (int i = 0 ; i < m_Packet.phases_size(); ++i)
 		{
@@ -68,11 +69,10 @@ private:
 			}
 
 			m_Result.m_Players.push_back(p);
-
 		}
 	}
 
-	std::vector<int> FindActivePlayer(const net::Packet::Phase& phase)
+	std::vector<int> FindActivePlayers(const net::Packet::Phase& phase)
 	{
 		std::set<int> result;
 		for (int i = 0 ; i < phase.actions_size(); ++i)
@@ -93,12 +93,47 @@ private:
 		{
 			const net::Packet::Phase& phase = m_Packet.phases(i);
 
-			const std::vector<int> activePlayers = FindActivePlayer(phase);
+			const std::vector<int> activePlayers = FindActivePlayers(phase);
 			const std::vector<short> ranges(activePlayers.size(), pcmn::Evaluator::CARD_DECK_SIZE);
 
 			result.push_back(m_Evaluator.GetEquity(first, second, m_Result.m_Flop, ranges));
 		}
 		return result;
+	}
+
+	//! Parse positions
+	void ParsePlayersPositions()
+	{
+		std::vector<std::size_t> players;
+
+		const int playerOnButtonIndex = m_Packet.info().button();
+		const std::string& nameOnButton = m_Packet.info().players(playerOnButtonIndex).name();
+
+		players.push_back(playerOnButtonIndex);
+		for (std::size_t i = playerOnButtonIndex + 1; ; ++i)
+		{
+			if (i == m_Result.m_Players.size())
+				i = 0;
+
+			if (i == playerOnButtonIndex)
+				break;
+
+			players.push_back(i);
+		}
+
+		const std::size_t step = players.size() / 3; // step per player position
+
+		// set early stage for first players
+		for (std::size_t i = 0 ; i < step + 1; ++i)
+			m_Result.m_Players[i].m_Position = pcmn::Player::Position::Early;
+
+		// set later position for last players
+		for (std::size_t i = 0 ; i < step; ++i)
+			m_Result.m_Players[m_Result.m_Players.size() - 1 - i].m_Position = pcmn::Player::Position::Later;
+
+		// set middle position for least players
+		for (std::size_t i = step + 1; i < m_Result.m_Players.size() - step; ++i)
+			m_Result.m_Players[i].m_Position = pcmn::Player::Position::Middle;
 	}
 
 	//! Parse round data
