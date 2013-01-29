@@ -113,8 +113,13 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 	if (m_Players.empty())
 		return; 
 
-	if (firstMove && action != pcmn::Action::SmallBlind)
-		m_OnButton = GetPreviousPlayer(GetPreviousPlayer(name).Name()).Name();
+	if (m_OnButton.empty() && firstMove && action != pcmn::Action::SmallBlind)
+	{
+		if (m_Phase == Phase::Preflop)
+			m_OnButton = GetPreviousPlayer(GetPreviousPlayer(GetPreviousPlayer(name).Name()).Name()).Name();
+		else
+			m_OnButton = GetPreviousPlayer(name).Name();
+	}
 
 	pcmn::Player& current = GetPlayer(name);
 	pcmn::Player& next = GetNextPlayer(name);
@@ -158,7 +163,7 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 			break;
 		case pcmn::Action::SmallBlind: 
 			assert(!m_SmallBlindAmount);
-			m_OnButton = current.Name();
+			m_OnButton = GetPreviousPlayer(current.Name()).Name();
 			m_SmallBlindAmount = amount;
 			current.Bet(m_SmallBlindAmount);
 			m_Pot += m_SmallBlindAmount;

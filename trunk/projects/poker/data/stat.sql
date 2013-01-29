@@ -1,7 +1,16 @@
+CREATE TABLE [flops] (
+  [id] INTEGER PRIMARY KEY ON CONFLICT REPLACE AUTOINCREMENT, 
+  [first] CHAR, 
+  [second] CHAR, 
+  [third] CHAR, 
+  [fourth] CHAR, 
+  [fifth] CHAR);
+
+
 CREATE TABLE [games] (
   [id] INTEGER PRIMARY KEY ON CONFLICT REPLACE AUTOINCREMENT, 
-  [players] INTEGER NOT NULL ON CONFLICT ABORT
-);
+  [players] INTEGER NOT NULL ON CONFLICT ABORT, 
+  [flop] INTEGER CONSTRAINT [flop_id_FK] REFERENCES [flops]([id]) ON DELETE CASCADE ON UPDATE CASCADE MATCH SIMPLE);
 
 
 CREATE TABLE [players] (
@@ -33,4 +42,5 @@ CREATE TABLE [percents] (
   [value] FLOAT NOT NULL ON CONFLICT ABORT);
 
 CREATE UNIQUE INDEX [unique_player_game_street] ON [percents] ([player], [game], [street]);
+
 

@@ -26,4 +26,20 @@ namespace pcmn
 		}
 #undef CASE
 	}
+
+	bool Action::IsActive(Value value)
+	{
+		switch (value)
+		{
+			case Check:
+			case Call:
+			case Bet:
+			case Raise:
+			case SmallBlind:
+			case BigBlind:
+				return true;
+		}
+		return false;
+	}
+
 }
