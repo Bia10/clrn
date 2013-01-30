@@ -1,4 +1,7 @@
-include_directories("${NET_INC}")
+include_directories(
+	"${NET_INC}"
+	"${DB_INC}"
+)
 
 file(GLOB SOURCES "*.cpp")
 file(GLOB HEADERS "*.h" "*.rc" "*.def")

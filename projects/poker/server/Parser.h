@@ -4,11 +4,14 @@
 #include "ILog.h"
 #include "packet.pb.h"
 #include "Player.h"
+#include "Modules.h"
 
 #include <vector>
 
 namespace srv
 {
+
+const int CURRENT_MODULE_ID = Modules::Server;
 
 //! Stats packet parser
 class Parser
@@ -23,7 +26,7 @@ public:
 		{
 			typedef std::vector<Player> List;
 			std::string m_Name;
-			__int64 m_Index; // row id from sqlite
+			unsigned int m_Index; // row id from sqlite 
 			std::vector<float> m_Percents; // player percents on different streets
 		};
 
@@ -42,7 +45,7 @@ public:
 		struct Hand
 		{
 			typedef std::vector<Hand> List;
-			int m_PlayerIndex;
+			int m_PlayerIndex;			// index in the players vector
 			int m_First;
 			int m_Second;
 		};
@@ -57,7 +60,7 @@ public:
 	Parser(ILog& logger, const net::Packet& packet);
 	~Parser();
 	bool Parse(); // returns true if next player bot and he need to do something
-	const Data& GetResult() const;
+	Data& GetResult() const;
 
 private:
 	class Impl;

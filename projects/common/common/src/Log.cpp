@@ -155,7 +155,7 @@ void Log::Close()
 
 bool Log::IsEnabled(unsigned int module, const Level::Enum_t level) const
 {
-	if (module >= m_Streams.size())
+	if (module >= m_Streams.size() || !m_Streams[module])
 		return false;
 	return m_Streams[module]->IsEnabled(level);
 }

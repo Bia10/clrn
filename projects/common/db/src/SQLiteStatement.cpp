@@ -70,4 +70,28 @@ IStatement& SQLiteStatement::operator>>(Recordset::Data& value)
 	return *this;
 }
 
+IStatement& SQLiteStatement::operator>>(unsigned int& value)
+{
+	m_Stmnt.bind(m_Index++, reinterpret_cast<int&>(value));
+	return *this;
+}
+
+IStatement& SQLiteStatement::operator>>(Null)
+{
+	m_Stmnt.bindNull(m_Index++);
+	return *this;
+}
+
+IStatement& SQLiteStatement::operator<<(const unsigned int value)
+{
+	m_Stmnt.bind(m_Index++, static_cast<int>(value));
+	return *this;
+}
+
+IStatement& SQLiteStatement::operator<<(Null)
+{
+	m_Stmnt.bindNull(m_Index++);
+	return *this;
+}
+
 }
