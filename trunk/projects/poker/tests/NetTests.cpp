@@ -62,8 +62,8 @@ void TestFunc()
 	action.set_id(pcmn::Action::Ante);
 	action.set_player(0);
 
-	srv.Receive(boost::bind(&ReceiveFromClientCallback, _1, _2), packet, 5000);
-	const net::IConnection::Ptr connection = clnt.Connect("127.0.0.1", 5000);
+	srv.Receive(boost::bind(&ReceiveFromClientCallback, _1, _2), packet, 10000);
+	const net::IConnection::Ptr connection = clnt.Connect("127.0.0.1", 10000);
 
 	connection->Send(packet);
 	connection->Receive(boost::bind(&ReceiveFromServerCallback, _1, connection));

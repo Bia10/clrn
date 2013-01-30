@@ -17,11 +17,12 @@ class Parser::Impl
 public:
 	Impl(ILog& logger, const net::Packet& packet) : m_Packet(packet), m_Log(logger)
 	{
-
+		SCOPED_LOG(m_Log);
 	}
 
 	bool Parse()
 	{
+		SCOPED_LOG(m_Log);
 		ParseFlopCards();
 		ParsePlayers();
 		ParsePlayersPositions();
@@ -35,7 +36,7 @@ public:
 		return false;
 	}
 
-	const Data& GetResult() const
+	Data& GetResult()
 	{
 		return m_Result;
 	}
@@ -45,6 +46,8 @@ private:
 	//! ParseFlopCards
 	void ParseFlopCards()
 	{
+		SCOPED_LOG(m_Log);
+
 		for (int i = 0 ; i < m_Packet.info().cards_size(); ++i)
 			m_Result.m_Flop.push_back(m_Packet.info().cards(i));
 	}
@@ -52,6 +55,8 @@ private:
 	//! Parse players
 	void ParsePlayers()
 	{
+		SCOPED_LOG(m_Log);
+
 		m_PlayersStacks.resize(m_Packet.info().players_size());
 		for (int i = 0 ; i < m_Packet.info().players_size(); ++i)
 		{
@@ -79,6 +84,8 @@ private:
 
 	std::vector<int> FindActivePlayers(const net::Packet::Phase& phase)
 	{
+		SCOPED_LOG(m_Log);
+
 		std::set<int> result;
 		for (int i = 0 ; i < phase.actions_size(); ++i)
 		{
@@ -93,6 +100,8 @@ private:
 	//! Get player equity
 	std::vector<float> GetPlayerEquities(const int first, const int second)
 	{
+		SCOPED_LOG(m_Log);
+
 		std::vector<float> result;
 		std::vector<int> flop;
 		for (int i = 0 ; i < m_Packet.phases_size(); ++i)
@@ -116,6 +125,8 @@ private:
 	//! Parse positions
 	void ParsePlayersPositions()
 	{
+		SCOPED_LOG(m_Log);
+
 		std::vector<std::size_t> players;
 
 		const int playerOnButtonIndex = m_Packet.info().button();
@@ -153,6 +164,8 @@ private:
 	//! Parse round data
 	void ParseStreet(const net::Packet::Phase& phase, const int street)
 	{
+		SCOPED_LOG(m_Log);
+
 		std::size_t pot = 0;
 		std::vector<int> playerBets(m_Result.m_Players.size());
 		for (int i = 0 ; i < phase.actions_size(); ++i)
@@ -232,7 +245,7 @@ bool Parser::Parse()
 	return m_Impl->Parse();
 }
 
-const Parser::Data& Parser::GetResult() const
+Parser::Data& Parser::GetResult() const
 {
 	return m_Impl->GetResult();
 }
