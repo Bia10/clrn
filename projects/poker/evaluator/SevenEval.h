@@ -24,7 +24,7 @@ class SevenEval {
 	 */
   ~SevenEval();
   
-  short getRankOfSeven(const int CARD1, const int CARD2, const int CARD3, const int CARD4, const int CARD5, const int CARD6, const int CARD7);
+  short getRankOfSeven(const int CARD1, const int CARD2, const int CARD3, const int CARD4, const int CARD5, const int CARD6, const int CARD7) const;
   void validateAgainstFiveEval();
 };
 
