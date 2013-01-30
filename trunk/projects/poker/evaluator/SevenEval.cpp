@@ -173,7 +173,8 @@ SevenEval::SevenEval() {
 
 SevenEval::~SevenEval() {}
 
-short SevenEval::getRankOfSeven ( const int CARD1, const int CARD2, const int CARD3, const int CARD4, const int CARD5, const int CARD6, const int CARD7 ) {
+short SevenEval::getRankOfSeven ( const int CARD1, const int CARD2, const int CARD3, const int CARD4, const int CARD5, const int CARD6, const int CARD7 ) const
+{
     // Create a 7-card hand key by adding up each of the card keys.
     unsigned long KEY = deckcardsKey[CARD1] + deckcardsKey[CARD2] + deckcardsKey[CARD3] + deckcardsKey[CARD4] + deckcardsKey[CARD5] + deckcardsKey[CARD6] +
                         deckcardsKey[CARD7];

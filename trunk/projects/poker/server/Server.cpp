@@ -17,7 +17,7 @@ namespace srv
 class Server::Impl
 {
 public:
-	Impl() : m_Client(new net::UDPHost(m_Log, 1))
+	Impl() : m_Client(new net::UDPHost(m_Log, 3))
 	{
 		m_Log.Open("1", Modules::Network, ILog::Level::Debug);
 		m_Client->Receive(boost::bind(&Impl::HandleRequest, this, _1, _2), net::Packet(), 5000);

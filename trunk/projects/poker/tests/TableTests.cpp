@@ -57,9 +57,9 @@ public:
 		//m_Log.Open("tests.log", Modules::Table, ILog::Level::Debug);
 		m_Sender = m_Server->Connect("127.0.0.1", 5000);
 		m_Table.reset(new ps::Table(m_Log, m_Sender));
+		memset(m_DeadCards, 0, _countof(m_DeadCards));
 		
 		Evaluator ev;
-		bool dead[Evaluator::CARD_DECK_SIZE] = {false};
 		for (int i = 0 ; i < ::std::tr1::get<0>(GetParam()); ++i)
 		{
 			Player player;
@@ -67,8 +67,8 @@ public:
 			player.Stack(1000);
 
 			Card::List cards(2);
-			cards[0].FromEvalFormat(ev.GetRandomCard(dead));
-			cards[1].FromEvalFormat(ev.GetRandomCard(dead));
+			cards[0].FromEvalFormat(ev.GetRandomCard(m_DeadCards));
+			cards[1].FromEvalFormat(ev.GetRandomCard(m_DeadCards));
 
 			player.Cards(cards);
 
@@ -193,13 +193,13 @@ public:
 		GameLoop(m_Button + 2);
 	}
 
-	void DealCards(bool* dead, const std::size_t count)
+	void DealCards(const std::size_t count)
 	{
 		Evaluator ev;
 		for (std::size_t i = 0 ; i < count ; ++i)
 		{
 			m_FlopCards.push_back(Card());
-			m_FlopCards.back().FromEvalFormat(ev.GetRandomCard(dead));
+			m_FlopCards.back().FromEvalFormat(ev.GetRandomCard(m_DeadCards));
 		}
 
 		m_Table->FlopCards(m_FlopCards);
@@ -209,19 +209,19 @@ public:
 	{
 		try
 		{
-			bool dead[Evaluator::CARD_DECK_SIZE] = {false};
 			Preflop();
 			ClearBets();
-			DealCards(dead ,3);
+			DealCards(3);
 			ClearBets();
 			GameLoop(m_Button + 1);
-			DealCards(dead ,1);
+			DealCards(1);
 			ClearBets();
 			GameLoop(m_Button + 1);
-			DealCards(dead ,1);
+			DealCards(1);
 			ClearBets();
 			GameLoop(m_Button + 1);
 
+			// send statistics
 			m_Table->PlayersInfo(m_Players);
 		}
 		catch (const NoPlayers& /*e*/)
@@ -338,6 +338,7 @@ private:
 	std::size_t m_MaxBet;
 	Card::List m_FlopCards;
 	std::vector<Player::State::Value> m_Moves;
+	bool m_DeadCards[Evaluator::CARD_DECK_SIZE];
 };
 
 TEST_P(TestTable, PredefinedActions)

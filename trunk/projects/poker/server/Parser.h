@@ -24,7 +24,6 @@ public:
 			typedef std::vector<Player> List;
 			std::string m_Name;
 			__int64 m_Index; // row id from sqlite
-			pcmn::Player::Position::Value m_Position;		
 			std::vector<float> m_Percents; // player percents on different streets
 		};
 
@@ -36,12 +35,14 @@ public:
 			int m_Action;
 			float m_PotAmount;
 			float m_StackAmount;
+			int m_Position;
 		};
 
 		//! Player hand
 		struct Hand
 		{
 			typedef std::vector<Hand> List;
+			int m_PlayerIndex;
 			int m_First;
 			int m_Second;
 		};
@@ -49,7 +50,7 @@ public:
 
 		Player::List m_Players;
 		Action::List m_Actions;
-		Hand::List m_Hands;
+		Hand::List m_Hands;	
 		std::vector<int> m_Flop;
 	};
 
