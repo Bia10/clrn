@@ -63,7 +63,7 @@ public:
 	class ScopedTransaction
 	{
 	public:
-		ScopedTransaction(sql::IDatabase& db) : m_DB(db), m_Done(false), m_Lock(m_Mutex)
+		ScopedTransaction(sql::IDatabase& db, boost::mutex& mutex) : m_DB(db), m_Done(false), m_Lock(mutex)
 		{
 			m_DB.BeginTransaction();
 		}
@@ -81,7 +81,6 @@ public:
 	private:
 		bool m_Done;
 		sql::IDatabase& m_DB;
-		boost::mutex m_Mutex;
 		boost::mutex::scoped_lock m_Lock;
 	};
 
@@ -104,7 +103,7 @@ void Write(Parser::Data& data)
 		SCOPED_LOG(m_Log);
 
 		// scoped transaction
-		ScopedTransaction transaction(*m_DB);
+		ScopedTransaction transaction(*m_DB, m_Mutex);
 
 		sql::IStatement::Ptr statement;
 		unsigned int flopId = 0;
@@ -193,6 +192,7 @@ void Write(Parser::Data& data)
 private:
 	ILog& m_Log;
 	sql::IDatabase::Ptr m_DB;
+	boost::mutex m_Mutex;
 };
 
 Statistics::Statistics(ILog& logger) : m_Impl(new Impl(logger))
