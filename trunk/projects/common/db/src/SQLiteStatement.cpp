@@ -3,11 +3,12 @@
 namespace sql
 {
 
-void SQLiteStatement::Execute()
+unsigned int SQLiteStatement::Execute()
 {
-	m_Stmnt.execDML();
+	const unsigned int result = m_Stmnt.execDML();
 	m_Stmnt.reset();
 	m_Index = 1;
+	return result;
 }
 
 IStatement& SQLiteStatement::operator<<(const std::string& value)

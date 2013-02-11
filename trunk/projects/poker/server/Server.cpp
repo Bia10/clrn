@@ -20,7 +20,7 @@ class Server::Impl
 public:
 	Impl() : m_Client(new net::UDPHost(m_Log, 3)), m_Statistics(m_Log)
 	{
-		m_Log.Open("1", Modules::Server, ILog::Level::Debug);
+		m_Log.Open("1", Modules::Server, ILog::Level::Warning);
 		m_Client->Receive(boost::bind(&Impl::HandleRequest, this, _1, _2), net::Packet(), 5000);
 	}
 

@@ -47,7 +47,7 @@ int main(int ac, char* av[])
 		const std::vector<std::string> files = vm["script-file"].as<std::vector<std::string> >();
 		BOOST_FOREACH(const std::string& file, files)
 		{
-			boost::filesystem::path path = scriptPath;
+			boost::filesystem::path path = boost::filesystem::system_complete(scriptPath);
 			path.append(file.begin(), file.end());
 			CHECK(boost::filesystem::exists(path), path.string());
 

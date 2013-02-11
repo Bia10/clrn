@@ -33,6 +33,5 @@ void CDBCompiler::ExecuteFile(const std::string& fileName)
 
 	std::vector<char> data(size + 1);
 	ifs.read(&data.front(), data.size());
-
-	m_Database->CreateStatement(&data.front())->Execute();
+	m_Database->Execute(&data.front());
 }

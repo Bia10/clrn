@@ -46,8 +46,7 @@ public:
 		{
 			typedef std::vector<Hand> List;
 			int m_PlayerIndex;			// index in the players vector
-			int m_First;
-			int m_Second;
+			std::vector<int> m_Cards;
 		};
 
 

@@ -13,7 +13,7 @@ class SQLiteStatement : public IStatement
 public:
 	SQLiteStatement(const CppSQLite3Statement& stmnt) : m_Stmnt(stmnt), m_Index(1) {}
 
-	virtual void Execute() override;
+	virtual unsigned int Execute() override;
 	virtual IStatement& operator << (const std::string& value) override;
 	virtual IStatement& operator << (const char* value) override;
 	virtual IStatement& operator << (const double value) override;

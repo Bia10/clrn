@@ -82,6 +82,7 @@ public:
 	~TestTable()
 	{
 		m_Server->Stop();
+		m_Server->Wait();
 	}
 
 	void ClearBets()
@@ -219,15 +220,15 @@ public:
 			GameLoop(m_Button + 1);
 			DealCards(1);
 			ClearBets();
-			GameLoop(m_Button + 1);
-
-			// send statistics
-			m_Table->PlayersInfo(m_Players);
+			GameLoop(m_Button + 1); 
 		}
 		catch (const NoPlayers& /*e*/)
 		{
 			
 		}
+
+		// send statistics
+		m_Table->PlayersInfo(m_Players);
 	}
 
 	void DoPredefinedActions()
@@ -341,10 +342,11 @@ private:
 	bool m_DeadCards[Evaluator::CARD_DECK_SIZE];
 };
 
+/*
 TEST_P(TestTable, PredefinedActions)
 {
 	DoPredefinedActions();
-}
+} */
 
 TEST_P(TestTable, Messages)
 {
@@ -358,6 +360,6 @@ INSTANTIATE_TEST_CASE_P
 	Combine
 	(
 		Range(2, 10),
-		Range(0, 2)
+		Range(0, 10)
 	)
 );

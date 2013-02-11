@@ -68,13 +68,13 @@ private:
 			if (player.cards_size() == 2)
 			{
 				Data::Hand hand;
-				hand.m_First = player.cards(0);
-				hand.m_Second = player.cards(1);
+				hand.m_Cards.push_back(player.cards(0));
+				hand.m_Cards.push_back(player.cards(1));
 				hand.m_PlayerIndex = i;
 
 				m_Result.m_Hands.push_back(hand);
 
-				p.m_Percents = GetPlayerEquities(hand.m_First, hand.m_Second);
+				p.m_Percents = GetPlayerEquities(player.cards(0), player.cards(1));
 			}
 
 			m_Result.m_Players.push_back(p);
