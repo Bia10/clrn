@@ -1,0 +1,1 @@
+db_compiler.exe -D stat.db -C true -I ../../../poker/data/ --script-file stat.sql

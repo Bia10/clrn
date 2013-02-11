@@ -38,6 +38,9 @@ public:
 
 	//! Stop server
 	virtual void				Stop() = 0;
+
+	//! Wait for server stop
+	virtual void				Wait() = 0;
 };
 
 

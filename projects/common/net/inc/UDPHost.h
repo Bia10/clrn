@@ -16,6 +16,7 @@ public:
 	virtual void				SetBufferSize(const int size) override;
 	virtual void				Run() override;
 	virtual void				Stop() override;
+	virtual void				Wait() override;
 private:
 
 	class Impl;

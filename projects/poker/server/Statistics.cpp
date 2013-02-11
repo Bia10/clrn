@@ -4,22 +4,29 @@
 #include "Exception.h"
 
 #include <boost/thread/mutex.hpp>
+#include <boost/format.hpp>
 
 namespace srv
 {
+
+const char SQL_SELECT_MAX_FLOP[] =
+	"SELECT Max(id) "
+	"FROM cards";
+
 const char SQL_INSERT_FLOP[] =
-	"INSERT INTO flops "
-				"(first, "
-				 "second, "
-				 "third, "
-				 "fourth, "
-				 "fifth) "
-	"VALUES     (?, ?, ?, ?, ?)";
+	"INSERT INTO cards "
+				"(id, value) "
+	"VALUES     (?, ?)";
 
 const char SQL_INSERT_GAME[] = 
 	"INSERT INTO games "
 		"(players, flop) "
 	"VALUES(?, ?)";
+
+const char SQL_GET_PLAYER[] = 
+	"SELECT id "
+		"FROM players "
+	"WHERE name = '%s'";
 
 const char SQL_INSERT_PLAYERS[] = 
 	"INSERT INTO players "
@@ -41,9 +48,8 @@ const char SQL_INSERT_HANDS[] =
 	"INSERT INTO hands "
 				"(player, "
 				 "game, "
-				 "first_card, "
-				 "second_card) " 
-	"VALUES      (?, ?, ?, ?) ";
+				 "cards) " 
+	"VALUES      (?, ?, ?) ";
 
 const char SQL_INSERT_ACTIONS[] = 
 	"INSERT INTO actions "
@@ -111,16 +117,8 @@ void Write(Parser::Data& data)
 		// write flop first
 		if (!data.m_Flop.empty())
 		{
-			statement = m_DB->CreateStatement(SQL_INSERT_FLOP);
-			for (int i = 0 ; i < 5 ; ++i)
-			{
-				if (data.m_Flop.size() > 1)
-					*statement << data.m_Flop[i];
-				else
-					*statement << sql::Null();
-			}
-			statement->Execute();
-			flopId = static_cast<unsigned int>(m_DB->LastRowId());
+			// this flop id
+			flopId = InsertCards(data.m_Flop);
 		}
 
 		// write game
@@ -137,16 +135,10 @@ void Write(Parser::Data& data)
 		const unsigned int gameId = static_cast<unsigned int>(m_DB->LastRowId());
 
 		// write all players
-		statement = m_DB->CreateStatement(SQL_INSERT_PLAYERS);
 		for (Parser::Data::Player& player : data.m_Players)
 		{
 			// check and insert name
-			*statement << player.m_Name << player.m_Name;
-
-			// get player id
-			player.m_Index = static_cast<unsigned int>(m_DB->LastRowId());
-
-			statement->Execute();
+			player.m_Index = InsertPlayer(player.m_Name);
 		}
 
 		// insert player percents
@@ -164,7 +156,8 @@ void Write(Parser::Data& data)
 		statement = m_DB->CreateStatement(SQL_INSERT_HANDS);
 		for (const Parser::Data::Hand& hand : data.m_Hands)
 		{
-			*statement << data.m_Players[hand.m_PlayerIndex].m_Index << gameId << hand.m_First << hand.m_Second;
+			const unsigned int cardsId = InsertCards(hand.m_Cards);
+			*statement << data.m_Players[hand.m_PlayerIndex].m_Index << gameId << cardsId;
 			statement->Execute();
 		}
 
@@ -186,7 +179,47 @@ void Write(Parser::Data& data)
 
 		transaction.Done();
 	}
-	CATCH_PASS_EXCEPTIONS("Failed to write data to database")
+	CATCH_IGNORE_EXCEPTIONS(m_Log, "Failed to write data to database")
+}
+
+
+unsigned int InsertCards(const std::vector<int>& cards)
+{
+	TRY 
+	{
+		// this flop id
+		const unsigned int result = m_DB->ExecuteScalar(SQL_SELECT_MAX_FLOP) + 1;
+	
+		const sql::IStatement::Ptr statement = m_DB->CreateStatement(SQL_INSERT_FLOP);
+		for (const int card : cards)
+		{
+			*statement << result << card;
+			statement->Execute();
+		}
+	
+		return result;
+	}
+	CATCH_PASS_EXCEPTIONS("InsertCards failed")
+}
+
+unsigned int InsertPlayer(const std::string& name)
+{
+	TRY 
+	{
+		const sql::IStatement::Ptr insertPlayer = m_DB->CreateStatement(SQL_INSERT_PLAYERS);
+		*insertPlayer << name << name;
+		if (insertPlayer->Execute())
+		{
+			return static_cast<unsigned int>(m_DB->LastRowId());
+		}
+		else
+		{
+			const sql::Recordset::Ptr recordset = m_DB->Fetch((boost::format(SQL_GET_PLAYER) % name).str());
+			assert(!recordset->Eof());
+			return recordset->Get<unsigned int>(0);
+		}
+	}
+	CATCH_PASS_EXCEPTIONS("InsertPlayer failed", name)
 }
 
 private:

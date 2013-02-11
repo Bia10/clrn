@@ -70,10 +70,15 @@ public:
 		m_Signals->async_wait(boost::bind(&Impl::Stop, this));
 	}
 
-	~Impl()
+	void Wait()
 	{
 		SCOPED_LOG(m_Log);
 		m_Pool.join_all();
+	}
+
+	~Impl()
+	{
+		SCOPED_LOG(m_Log);
 	}
 
 	void SetBufferSize(const int size)
@@ -194,6 +199,11 @@ IConnection::Ptr UDPHost::Connect(const std::string& host, const short port)
 void UDPHost::Receive(const IHost::Callback& callback, const google::protobuf::Message& message, const short port)
 {
 	m_Impl->Receive(callback, message, port);
+}
+
+void UDPHost::Wait()
+{
+	m_Impl->Wait();
 }
 
 

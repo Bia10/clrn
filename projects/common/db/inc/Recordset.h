@@ -62,6 +62,18 @@ public:
 	}
 
 	template<>
+	const unsigned int Get(int field) const
+	{
+		return static_cast<unsigned int>(m_Query.getIntField(field));
+	}
+
+	template<>
+	const unsigned int Get(const std::string& field) const
+	{
+		return static_cast<unsigned int>(m_Query.getIntField(field.c_str()));
+	}
+
+	template<>
 	const double Get(int field) const
 	{
 		return m_Query.getFloatField(field);

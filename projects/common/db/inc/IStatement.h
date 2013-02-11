@@ -21,7 +21,7 @@ public:
 	typedef boost::shared_ptr<IStatement> Ptr;
 
 	virtual ~IStatement() {}
-	virtual void Execute() = 0;
+	virtual unsigned int Execute() = 0;
 	virtual IStatement& operator << (const std::string& value) = 0;
 	virtual IStatement& operator << (const char* value) = 0;
 	virtual IStatement& operator << (const double value) = 0;
