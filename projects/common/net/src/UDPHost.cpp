@@ -113,7 +113,7 @@ public:
 		const SocketPtr socket(new Socket(m_Service, Endpoint(boost::asio::ip::udp::v4(), port)));
 		const IConnection::Ptr connection(new Connection<Socket, Endpoint>(m_Log, socket, m_BufferSize, *m_Message));
 
-		for (std::size_t i = 0 ; i < m_Threads; ++i)
+		for (std::size_t i = 0 ; i < m_Threads * 2; ++i)
 			connection->Receive(boost::bind(&Impl::ConnectionCallback, this, _1, connection, callback));
 	}
 

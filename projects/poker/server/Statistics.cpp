@@ -206,18 +206,26 @@ unsigned int InsertPlayer(const std::string& name)
 {
 	TRY 
 	{
+		const std::map<std::string, unsigned int>::const_iterator it = m_Players.find(name);
+		if (it != m_Players.end())
+			return it->second;
+
+		unsigned int result = 0;
 		const sql::IStatement::Ptr insertPlayer = m_DB->CreateStatement(SQL_INSERT_PLAYERS);
 		*insertPlayer << name << name;
 		if (insertPlayer->Execute())
 		{
-			return static_cast<unsigned int>(m_DB->LastRowId());
+			result = static_cast<unsigned int>(m_DB->LastRowId());
 		}
 		else
 		{
 			const sql::Recordset::Ptr recordset = m_DB->Fetch((boost::format(SQL_GET_PLAYER) % name).str());
 			assert(!recordset->Eof());
-			return recordset->Get<unsigned int>(0);
+			result = recordset->Get<unsigned int>(0);
 		}
+
+		m_Players.insert(std::make_pair(name, result));
+		return result;
 	}
 	CATCH_PASS_EXCEPTIONS("InsertPlayer failed", name)
 }
@@ -226,6 +234,7 @@ private:
 	ILog& m_Log;
 	sql::IDatabase::Ptr m_DB;
 	boost::mutex m_Mutex;
+	std::map<std::string, unsigned int> m_Players;
 };
 
 Statistics::Statistics(ILog& logger) : m_Impl(new Impl(logger))

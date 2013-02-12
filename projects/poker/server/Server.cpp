@@ -34,7 +34,8 @@ private:
 	//! Client handle
 	void HandleRequest(const google::protobuf::Message& message, const net::IConnection::Ptr& connection)
 	{
-		std::cout << message.DebugString() << std::endl;
+		SCOPED_LOG(m_Log);
+		LOG_TRACE("Request: [%s]") % message.DebugString();
 		Parser::Data data;
 
 		Parser parser(m_Log, dynamic_cast<const net::Packet&>(message));
