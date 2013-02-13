@@ -17,7 +17,15 @@ class Evaluator
 public:
 	enum { CARD_DECK_SIZE = 52 };
 	enum { MAX_PLAYERS = 9 };
-	enum {NUMBER_OF_REPITITIONS = 1000 * 1000 };
+	enum 
+	{
+		NUMBER_OF_REPITITIONS = 
+		1000 
+#ifndef _DEBUG
+		* 
+		1000 
+#endif
+	};
 
 	Evaluator();
 	~Evaluator();

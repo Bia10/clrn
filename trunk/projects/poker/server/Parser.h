@@ -49,11 +49,11 @@ public:
 			std::vector<int> m_Cards;
 		};
 
-
 		Player::List m_Players;
 		Action::List m_Actions;
 		Hand::List m_Hands;	
 		std::vector<int> m_Flop;
+		std::vector<std::vector<int> > m_ActivePlayersPerStreet;
 	};
 
 	Parser(ILog& logger, const net::Packet& packet);

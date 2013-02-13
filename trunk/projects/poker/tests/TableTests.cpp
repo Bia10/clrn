@@ -64,7 +64,7 @@ public:
 		{
 			Player player;
 			player.Name(std::string("Player_") + boost::lexical_cast<std::string>(i));
-			player.Stack(1000);
+			player.Stack(10000000);
 
 			Card::List cards(2);
 			cards[0].FromEvalFormat(ev.GetRandomCard(m_DeadCards));
@@ -359,7 +359,7 @@ INSTANTIATE_TEST_CASE_P
 	TestTable,
 	Combine
 	(
-		Range(2, 10),
+		Range(9, 10),
 		Range(0, 10)
 	)
 );
