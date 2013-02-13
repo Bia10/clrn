@@ -25,7 +25,7 @@ public:
 		SCOPED_LOG(m_Log);
 		ParseFlopCards();
 		ParsePlayers();
-		ParsePlayersPositions();
+		ParseActivePlayers();
 
 		for (int i = 0 ; i < m_Packet.phases_size(); ++i)
 		{
@@ -122,45 +122,6 @@ private:
 		return result;
 	}
 
-	//! Parse positions
-	void ParsePlayersPositions()
-	{
-		SCOPED_LOG(m_Log);
-
-		std::vector<std::size_t> players;
-
-		const int playerOnButtonIndex = m_Packet.info().button();
-		const std::string& nameOnButton = m_Packet.info().players(playerOnButtonIndex).name();
-
-		players.push_back(playerOnButtonIndex);
-		for (std::size_t i = playerOnButtonIndex + 1; ; ++i)
-		{
-			if (i == m_Result.m_Players.size())
-				i = 0;
-
-			if (i == playerOnButtonIndex)
-				break;
-
-			players.push_back(i);
-		}
-
-		m_PlayersPositions.resize(players.size());
-
-		const std::size_t step = players.size() / 3; // step per player position
-
-		// set early stage for first players
-		for (std::size_t i = 0 ; i < step + 1; ++i)
-			m_PlayersPositions[i] = pcmn::Player::Position::Early;
-
-		// set later position for last players
-		for (std::size_t i = 0 ; i < step; ++i)
-			m_PlayersPositions[m_Result.m_Players.size() - 1 - i] = pcmn::Player::Position::Later;
-
-		// set middle position for least players
-		for (std::size_t i = step + 1; i < m_Result.m_Players.size() - step; ++i)
-			m_PlayersPositions[i] = pcmn::Player::Position::Middle;
-	}
-
 	//! Parse round data
 	void ParseStreet(const net::Packet::Phase& phase, const int street)
 	{
@@ -179,7 +140,10 @@ private:
 			resultAction.m_Street = street;
 			resultAction.m_PotAmount = pot ? static_cast<float>(action.amount()) / pot : 1;
 			resultAction.m_StackAmount = static_cast<float>(action.amount()) / m_PlayersStacks[player];
-			resultAction.m_Position = m_PlayersPositions[player];
+			resultAction.m_Position = GetPlayerPosition(street, player);
+
+			assert(resultAction.m_PotAmount >= 0);
+			assert(resultAction.m_StackAmount >= 0);
 
 			switch (static_cast<pcmn::Action::Value>(resultAction.m_Action))
 			{
@@ -205,6 +169,63 @@ private:
 		}
 	}
 
+	//! Get player position
+	pcmn::Player::Position::Value GetPlayerPosition(const int street, const int player)
+	{
+		const int playersSize = street ? m_Result.m_ActivePlayersPerStreet[street - 1].size() : m_Result.m_Players.size();
+
+		int step = playersSize / 3;
+		if (!step)
+			step = 1;
+
+		if (player + 1 <= step)
+			return pcmn::Player::Position::Early;
+		else
+		if (player >= playersSize - step)
+			return pcmn::Player::Position::Later;
+		else
+			return pcmn::Player::Position::Middle;
+	}
+
+	//! Parse player positions for street
+	void ParseActivePlayers()
+	{
+		m_Result.m_ActivePlayersPerStreet.resize(m_Packet.phases_size());
+
+		for (int p = 0 ; p < m_Packet.phases_size(); ++p)
+		{
+			const net::Packet::Phase& phase = m_Packet.phases(p);
+
+			std::vector<int>& activePlayers = m_Result.m_ActivePlayersPerStreet[p];
+
+			for (int i = 0 ; i < phase.actions_size(); ++i)
+			{
+				const net::Packet::Action action = phase.actions(i);
+
+				switch (static_cast<pcmn::Action::Value>(action.id()))
+				{
+				case pcmn::Action::Fold: 
+					{
+						const std::vector<int>::const_iterator it = std::find(activePlayers.begin(), activePlayers.end(), action.player());
+						if (it != activePlayers.end())
+							activePlayers.erase(it);
+					}
+
+					break;
+				case pcmn::Action::Bet: 
+				case pcmn::Action::Raise:
+				case pcmn::Action::Call: 
+				case pcmn::Action::SmallBlind: 
+				case pcmn::Action::BigBlind:
+					if (std::find(activePlayers.begin(), activePlayers.end(), action.player()) == activePlayers.end())
+						activePlayers.push_back(action.player());
+
+					break;
+				}
+			}
+		}
+	}
+
 
 private:
 
@@ -222,9 +243,6 @@ private:
 
 	//! Player stacks
 	std::vector<int> m_PlayersStacks;
-
-	//! Players positions
-	std::vector<pcmn::Player::Position::Value> m_PlayersPositions;
 };
 
 pcmn::Evaluator Parser::Impl::s_Evaluator;
