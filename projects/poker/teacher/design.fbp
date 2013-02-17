@@ -28,11 +28,11 @@
             <property name="font"></property>
             <property name="hidden">0</property>
             <property name="id">wxID_ANY</property>
-            <property name="maximum_size"></property>
-            <property name="minimum_size"></property>
+            <property name="maximum_size">875,187</property>
+            <property name="minimum_size">875,187</property>
             <property name="name">MyFrame3</property>
             <property name="pos"></property>
-            <property name="size">1141,552</property>
+            <property name="size">875,187</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass"></property>
             <property name="title"></property>
@@ -499,8 +499,8 @@
                 </object>
                 <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
-                    <property name="flag">wxEXPAND</property>
-                    <property name="proportion">1</property>
+                    <property name="flag"></property>
+                    <property name="proportion">0</property>
                     <object class="wxGridSizer" expanded="1">
                         <property name="cols">8</property>
                         <property name="hgap">0</property>
@@ -535,7 +535,7 @@
                                 <property name="window_name"></property>
                                 <property name="window_style"></property>
                                 <event name="OnChar"></event>
-                                <event name="OnChoice"></event>
+                                <event name="OnChoice">OnWinRate</event>
                                 <event name="OnEnterWindow"></event>
                                 <event name="OnEraseBackground"></event>
                                 <event name="OnKeyDown"></event>
@@ -586,7 +586,7 @@
                                 <property name="window_name"></property>
                                 <property name="window_style"></property>
                                 <event name="OnChar"></event>
-                                <event name="OnChoice"></event>
+                                <event name="OnChoice">OnPosition</event>
                                 <event name="OnEnterWindow"></event>
                                 <event name="OnEraseBackground"></event>
                                 <event name="OnKeyDown"></event>
@@ -637,7 +637,7 @@
                                 <property name="window_name"></property>
                                 <property name="window_style"></property>
                                 <event name="OnChar"></event>
-                                <event name="OnChoice"></event>
+                                <event name="OnChoice">OnPotRatio</event>
                                 <event name="OnEnterWindow"></event>
                                 <event name="OnEraseBackground"></event>
                                 <event name="OnKeyDown"></event>
@@ -688,7 +688,7 @@
                                 <property name="window_name"></property>
                                 <property name="window_style"></property>
                                 <event name="OnChar"></event>
-                                <event name="OnChoice"></event>
+                                <event name="OnChoice">OnStackRatio</event>
                                 <event name="OnEnterWindow"></event>
                                 <event name="OnEraseBackground"></event>
                                 <event name="OnKeyDown"></event>
@@ -739,7 +739,7 @@
                                 <property name="window_name"></property>
                                 <property name="window_style"></property>
                                 <event name="OnChar"></event>
-                                <event name="OnChoice"></event>
+                                <event name="OnChoice">OnPlayers</event>
                                 <event name="OnEnterWindow"></event>
                                 <event name="OnEraseBackground"></event>
                                 <event name="OnKeyDown"></event>
@@ -790,7 +790,7 @@
                                 <property name="window_name"></property>
                                 <property name="window_style"></property>
                                 <event name="OnChar"></event>
-                                <event name="OnChoice"></event>
+                                <event name="OnChoice">OnPlayersStyle</event>
                                 <event name="OnEnterWindow"></event>
                                 <event name="OnEraseBackground"></event>
                                 <event name="OnKeyDown"></event>
@@ -841,7 +841,7 @@
                                 <property name="window_name"></property>
                                 <property name="window_style"></property>
                                 <event name="OnChar"></event>
-                                <event name="OnChoice"></event>
+                                <event name="OnChoice">OnStyleChanges</event>
                                 <event name="OnEnterWindow"></event>
                                 <event name="OnEraseBackground"></event>
                                 <event name="OnKeyDown"></event>
@@ -892,7 +892,7 @@
                                 <property name="window_name"></property>
                                 <property name="window_style"></property>
                                 <event name="OnChar"></event>
-                                <event name="OnChoice"></event>
+                                <event name="OnChoice">OnBotStyle</event>
                                 <event name="OnEnterWindow"></event>
                                 <event name="OnEraseBackground"></event>
                                 <event name="OnKeyDown"></event>
@@ -921,8 +921,8 @@
                 </object>
                 <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
-                    <property name="flag">wxEXPAND</property>
-                    <property name="proportion">1</property>
+                    <property name="flag"></property>
+                    <property name="proportion">0</property>
                     <object class="wxGridSizer" expanded="1">
                         <property name="cols">2</property>
                         <property name="hgap">0</property>
@@ -988,7 +988,7 @@
                                         <event name="OnMouseEvents"></event>
                                         <event name="OnMouseWheel"></event>
                                         <event name="OnPaint"></event>
-                                        <event name="OnRadioBox"></event>
+                                        <event name="OnRadioBox">OnFold</event>
                                         <event name="OnRightDClick"></event>
                                         <event name="OnRightDown"></event>
                                         <event name="OnRightUp"></event>
@@ -1042,7 +1042,7 @@
                                         <event name="OnMouseEvents"></event>
                                         <event name="OnMouseWheel"></event>
                                         <event name="OnPaint"></event>
-                                        <event name="OnRadioBox"></event>
+                                        <event name="OnRadioBox">OnCheckCall</event>
                                         <event name="OnRightDClick"></event>
                                         <event name="OnRightDown"></event>
                                         <event name="OnRightUp"></event>
@@ -1096,7 +1096,7 @@
                                         <event name="OnMouseEvents"></event>
                                         <event name="OnMouseWheel"></event>
                                         <event name="OnPaint"></event>
-                                        <event name="OnRadioBox"></event>
+                                        <event name="OnRadioBox">OnRaise</event>
                                         <event name="OnRightDClick"></event>
                                         <event name="OnRightDown"></event>
                                         <event name="OnRightUp"></event>
@@ -1112,7 +1112,7 @@
                             <property name="flag">wxEXPAND</property>
                             <property name="proportion">1</property>
                             <object class="wxFlexGridSizer" expanded="1">
-                                <property name="cols">3</property>
+                                <property name="cols">4</property>
                                 <property name="flexible_direction">wxBOTH</property>
                                 <property name="growablecols"></property>
                                 <property name="growablerows"></property>
@@ -1149,7 +1149,7 @@
                                         <property name="window_extra_style"></property>
                                         <property name="window_name"></property>
                                         <property name="window_style"></property>
-                                        <event name="OnButtonClick"></event>
+                                        <event name="OnButtonClick">OnSave</event>
                                         <event name="OnChar"></event>
                                         <event name="OnEnterWindow"></event>
                                         <event name="OnEraseBackground"></event>
@@ -1201,7 +1201,7 @@
                                         <property name="window_extra_style"></property>
                                         <property name="window_name"></property>
                                         <property name="window_style"></property>
-                                        <event name="OnButtonClick"></event>
+                                        <event name="OnButtonClick">OnNext</event>
                                         <event name="OnChar"></event>
                                         <event name="OnEnterWindow"></event>
                                         <event name="OnEraseBackground"></event>
@@ -1253,7 +1253,59 @@
                                         <property name="window_extra_style"></property>
                                         <property name="window_name"></property>
                                         <property name="window_style"></property>
-                                        <event name="OnButtonClick"></event>
+                                        <event name="OnButtonClick">OnLoad</event>
+                                        <event name="OnChar"></event>
+                                        <event name="OnEnterWindow"></event>
+                                        <event name="OnEraseBackground"></event>
+                                        <event name="OnKeyDown"></event>
+                                        <event name="OnKeyUp"></event>
+                                        <event name="OnKillFocus"></event>
+                                        <event name="OnLeaveWindow"></event>
+                                        <event name="OnLeftDClick"></event>
+                                        <event name="OnLeftDown"></event>
+                                        <event name="OnLeftUp"></event>
+                                        <event name="OnMiddleDClick"></event>
+                                        <event name="OnMiddleDown"></event>
+                                        <event name="OnMiddleUp"></event>
+                                        <event name="OnMotion"></event>
+                                        <event name="OnMouseEvents"></event>
+                                        <event name="OnMouseWheel"></event>
+                                        <event name="OnPaint"></event>
+                                        <event name="OnRightDClick"></event>
+                                        <event name="OnRightDown"></event>
+                                        <event name="OnRightUp"></event>
+                                        <event name="OnSetFocus"></event>
+                                        <event name="OnSize"></event>
+                                        <event name="OnUpdateUI"></event>
+                                    </object>
+                                </object>
+                                <object class="sizeritem" expanded="1">
+                                    <property name="border">5</property>
+                                    <property name="flag">wxALL</property>
+                                    <property name="proportion">0</property>
+                                    <object class="wxButton" expanded="1">
+                                        <property name="bg"></property>
+                                        <property name="context_help"></property>
+                                        <property name="default">0</property>
+                                        <property name="enabled">1</property>
+                                        <property name="fg"></property>
+                                        <property name="font"></property>
+                                        <property name="hidden">0</property>
+                                        <property name="id">wxID_ANY</property>
+                                        <property name="label">Test</property>
+                                        <property name="maximum_size"></property>
+                                        <property name="minimum_size"></property>
+                                        <property name="name">m_button14</property>
+                                        <property name="permission">protected</property>
+                                        <property name="pos"></property>
+                                        <property name="size"></property>
+                                        <property name="style"></property>
+                                        <property name="subclass"></property>
+                                        <property name="tooltip"></property>
+                                        <property name="window_extra_style"></property>
+                                        <property name="window_name"></property>
+                                        <property name="window_style"></property>
+                                        <event name="OnButtonClick">OnTest</event>
                                         <event name="OnChar"></event>
                                         <event name="OnEnterWindow"></event>
                                         <event name="OnEraseBackground"></event>
