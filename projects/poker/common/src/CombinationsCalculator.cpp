@@ -46,7 +46,7 @@ short Evaluator::GetRandomCard(bool* dead, const short minValue) const
 	}
 }
 
-float Evaluator::GetEquity(short player1, short player2, const std::vector<int>& flop, const std::vector<short>& playerRanges)
+float Evaluator::GetEquity(short player1, short player2, const std::vector<int>& flop, const std::vector<short>& playerRanges) const
 {
 	bool deadCards[CARD_DECK_SIZE] = {false};
 

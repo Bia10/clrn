@@ -21,9 +21,11 @@ public:
 	{
 		NUMBER_OF_REPITITIONS = 
 		1000 
+		*
+		100
 #ifndef _DEBUG
 		* 
-		1000 
+		10
 #endif
 	};
 
@@ -31,7 +33,7 @@ public:
 	~Evaluator();
 	short GetRank(const Card::List& cards) const;
 	short GetRandomCard(bool* dead, const short minValue = CARD_DECK_SIZE) const; 
-	float GetEquity(short player1, short player2, const std::vector<int>& flop, const std::vector<short>& playerRanges);
+	float GetEquity(short player1, short player2, const std::vector<int>& flop, const std::vector<short>& playerRanges) const;
 private:
 	SevenEval* m_RanksEvaluator;
 	HandEval* m_HandsEvaluator;

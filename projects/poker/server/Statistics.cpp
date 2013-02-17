@@ -208,7 +208,7 @@ unsigned int InsertPlayer(const std::string& name)
 	{
 		const std::map<std::string, unsigned int>::const_iterator it = m_Players.find(name);
 		if (it != m_Players.end())
-			return it->second;
+			return it->second; // player already inserted
 
 		unsigned int result = 0;
 		const sql::IStatement::Ptr insertPlayer = m_DB->CreateStatement(SQL_INSERT_PLAYERS);
