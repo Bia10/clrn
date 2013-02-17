@@ -23,9 +23,10 @@ public:
 	bool Parse()
 	{
 		SCOPED_LOG(m_Log);
+
 		ParseFlopCards();
-		ParsePlayers();
 		ParseActivePlayers();
+		ParsePlayers();
 
 		for (int i = 0 ; i < m_Packet.phases_size(); ++i)
 		{
@@ -82,21 +83,6 @@ private:
 		}
 	}
 
-	std::vector<int> FindActivePlayers(const net::Packet::Phase& phase)
-	{
-		SCOPED_LOG(m_Log);
-
-		std::set<int> result;
-		for (int i = 0 ; i < phase.actions_size(); ++i)
-		{
-			const pcmn::Action::Value action = static_cast<pcmn::Action::Value>(phase.actions(i).id());
-			if (pcmn::Action::IsActive(action))
-				result.insert(phase.actions(i).player());
-		}
-
-		return std::vector<int>(result.begin(), result.end());
-	}
-
 	//! Get player equity
 	std::vector<float> GetPlayerEquities(const int first, const int second)
 	{
@@ -108,8 +94,8 @@ private:
 		{
 			const net::Packet::Phase& phase = m_Packet.phases(i);
 
-			const std::vector<int> activePlayers = FindActivePlayers(phase);
-			const std::vector<short> ranges(activePlayers.size(), pcmn::Evaluator::CARD_DECK_SIZE);
+			const std::size_t activePlayers = i ? m_Result.m_ActivePlayersPerStreet[i - 1].size() : m_Result.m_Players.size();
+			const std::vector<short> ranges(activePlayers, pcmn::Evaluator::CARD_DECK_SIZE);
 
 			if (i == 1 && m_Result.m_Flop.size() >= 3)
 				std::copy(m_Result.m_Flop.begin(), m_Result.m_Flop.begin() + 3, std::back_inserter(flop));

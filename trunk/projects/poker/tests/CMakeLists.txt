@@ -15,4 +15,5 @@ target_link_libraries(poker_tests
 	protocols
 	libprotobuf
 	clientlib
+	neuro
 )
