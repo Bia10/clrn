@@ -20,4 +20,5 @@ set_target_properties(teacher PROPERTIES FOLDER "poker")
 target_link_libraries(teacher
 	common
 	pokercmn
+	neuro
 )

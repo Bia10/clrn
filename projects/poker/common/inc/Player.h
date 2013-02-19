@@ -20,8 +20,11 @@ public:
 		{
 			Passive		= 0,		//!< check or fold
 			Normal		= 1,		//!< call
-			Agressive	= 2			//!< raise or bet
+			Aggressive	= 2,		//!< raise/bet/reraise
+			Max			= Aggressive
 		};
+
+		static std::string ToString(Value value);
 	};
 
 	//! Result of the player game
@@ -60,8 +63,23 @@ public:
 		{
 			Early	= 0,
 			Middle	= 1,
-			Later	= 2
+			Later	= 2,
+			Max = Later
 		};
+		static std::string ToString(Value value);
+	};
+
+	//! Players count
+	struct Count
+	{
+		enum Value
+		{
+			One			= 0,
+			Two			= 1,
+			ThreeOrMOre	= 2,
+			Max			= ThreeOrMOre
+		};
+		static std::string ToString(Value value);
 	};
 
 	Player()

@@ -11,7 +11,9 @@ struct Modules
 		Network		= 3,
 		Tools		= 4,
 		DataBase	= 5,
-		Server		= 6
+		Server		= 6,
+		NeuroNet	= 7,
+		Teacher		= 8
 	};
 };
 
