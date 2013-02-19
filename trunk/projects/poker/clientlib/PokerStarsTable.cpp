@@ -137,7 +137,7 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 		case pcmn::Action::Bet: 
 		case pcmn::Action::Raise:
 			{
-				current.SetStyle(static_cast<std::size_t>(m_Phase), pcmn::Player::Style::Agressive);
+				current.SetStyle(static_cast<std::size_t>(m_Phase), pcmn::Player::Style::Aggressive);
 
 				const std::size_t difference = amount - current.Bet();
 				current.Stack(current.Stack() - difference);
@@ -407,7 +407,7 @@ void Table::ProcessWinners(const std::size_t playersInPot)
 		}
 
 		const pcmn::Player::Style::Value style = playerPtr->GetStyle(m_Phase);
-		if (style == pcmn::Player::Style::Agressive)
+		if (style == pcmn::Player::Style::Aggressive)
 		{
 			playerPtr->Result(pcmn::Player::Result::WinByRaise);
 			LOG_TRACE("Player '%s' wins main pot: '%s' by successfull raise.") % playerPtr->Name() % m_Pot;
