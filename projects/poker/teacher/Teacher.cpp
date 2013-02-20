@@ -21,6 +21,7 @@ Teacher::Teacher()
 {
 	m_StatusBar->SetStatusText("ready");
 	SetGuiParams(m_CurrentParams);
+	m_CurrentParams.m_CheckFold = true;
 }
 
 void Teacher::OnWinRate(wxCommandEvent& event)
@@ -68,34 +69,18 @@ void Teacher::OnBotStackSize(wxCommandEvent& event)
 	m_CurrentParams.m_BotStackSize = static_cast<pcmn::StackSize::Value>(event.GetInt());
 }
 
-void Teacher::OnFold(wxCommandEvent& event)
-{
-	m_CurrentParams.m_CheckFold = true;
-	m_CurrentParams.m_BetCall = false;
-	m_CurrentParams.m_RaiseReraise = false;
-	m_FoldRadio->SetSelection(0);
-	m_CheckCallRadio->SetSelection(1);
-	m_BetRaiseradio->SetSelection(1);
-}
-
-void Teacher::OnCheckCall(wxCommandEvent& event)
-{
-	m_CurrentParams.m_CheckFold = false;
-	m_CurrentParams.m_BetCall = true;
-	m_CurrentParams.m_RaiseReraise = false;
-	m_FoldRadio->SetSelection(1);
-	m_CheckCallRadio->SetSelection(0);
-	m_BetRaiseradio->SetSelection(1);
-}
-
-void Teacher::OnRaise(wxCommandEvent& event)
+void Teacher::OnAction(wxCommandEvent& event)
 {
 	m_CurrentParams.m_CheckFold = false;
 	m_CurrentParams.m_BetCall = false;
-	m_CurrentParams.m_RaiseReraise = true;
-	m_FoldRadio->SetSelection(1);
-	m_CheckCallRadio->SetSelection(1);
-	m_BetRaiseradio->SetSelection(0);
+	m_CurrentParams.m_RaiseReraise = false;
+
+	switch (event.GetSelection())
+	{
+	case 0: m_CurrentParams.m_CheckFold = true; break;
+	case 1: m_CurrentParams.m_BetCall = true; break;
+	case 2: m_CurrentParams.m_RaiseReraise = true; break;
+	}
 }
 
 void Teacher::OnSave(wxCommandEvent& event)
@@ -106,7 +91,7 @@ void Teacher::OnSave(wxCommandEvent& event)
 
 		const std::string path = fs::FullPath(DATA_FILE_NAME);
 		std::ofstream file(path.c_str(), std::ios_base::out);
-		CHECK(file.is_open());
+		CHECK(file.is_open(), path);
 
 		for (const neuro::Params& params : m_Parameters)
 			params.Serialize(file);
@@ -284,14 +269,14 @@ void Teacher::OnLoad(wxCommandEvent& event)
 	{
 		const std::string path = fs::FullPath(DATA_FILE_NAME);
 		std::ifstream file(path.c_str(), std::ios_base::in);
-		CHECK(file.is_open());
+		CHECK(file.is_open(), path);
 
 		m_Parameters.clear();
 
 		std::vector<int> data;
 		std::copy(std::istream_iterator<int>(file), std::istream_iterator<int>(), std::back_inserter(data));
 
-		CHECK(!(data.size() % 12));
+		CHECK(!(data.size() % 12), data.size());
 
 		m_Parameters.resize(data.size() / 12);
 
@@ -373,7 +358,7 @@ void Teacher::AddParameters()
 	if (m_CurrentParams.m_RaiseReraise)
 		++counter;
 
-	CHECK(counter == 1, "Only one output parameter must be set");
+	CHECK(counter == 1, "Only one output parameter must be set", counter);
 
 	m_Parameters.push_back(m_CurrentParams);
 
@@ -393,9 +378,15 @@ void Teacher::SetGuiParams(const neuro::Params& params)
 	m_StyleChangeChoice->SetSelection(params.m_UnusualStyle);
 	m_BotStyleChoice->SetSelection(params.m_BotStyle);
 	m_BostStackSizeChoice->SetSelection(params.m_BotStackSize);
-	m_FoldRadio->SetSelection(!params.m_CheckFold);
-	m_CheckCallRadio->SetSelection(!params.m_BetCall);
-	m_BetRaiseradio->SetSelection(!params.m_RaiseReraise);
+
+	int action = 0;
+	if (params.m_BetCall)
+		action = 1;
+	else
+	if (params.m_RaiseReraise)
+		action = 2;
+
+	m_ActionRadio->SetSelection(action);
 }
 
 }

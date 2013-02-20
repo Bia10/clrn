@@ -158,41 +158,29 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	bSizer4->Add( gSizer211, 0, wxEXPAND|wxTOP|wxBOTTOM, 5 );
 	
 	wxGridSizer* gSizer12;
-	gSizer12 = new wxGridSizer( 1, 2, 0, 0 );
+	gSizer12 = new wxGridSizer( 1, 4, 0, 0 );
 	
 	wxGridSizer* gSizer4;
-	gSizer4 = new wxGridSizer( 1, 3, 0, 0 );
+	gSizer4 = new wxGridSizer( 1, 1, 0, 0 );
 	
-	wxString m_FoldRadioChoices[] = { wxT("Yes"), wxT("No") };
-	int m_FoldRadioNChoices = sizeof( m_FoldRadioChoices ) / sizeof( wxString );
-	m_FoldRadio = new wxRadioBox( this, wxID_ANY, wxT("CHECK/FOLD"), wxDefaultPosition, wxDefaultSize, m_FoldRadioNChoices, m_FoldRadioChoices, 1, wxRA_SPECIFY_COLS );
-	m_FoldRadio->SetSelection( 0 );
-	gSizer4->Add( m_FoldRadio, 0, wxALL|wxEXPAND, 5 );
-	
-	wxString m_CheckCallRadioChoices[] = { wxT("Yes"), wxT("No") };
-	int m_CheckCallRadioNChoices = sizeof( m_CheckCallRadioChoices ) / sizeof( wxString );
-	m_CheckCallRadio = new wxRadioBox( this, wxID_ANY, wxT("CALL/BET"), wxDefaultPosition, wxDefaultSize, m_CheckCallRadioNChoices, m_CheckCallRadioChoices, 1, wxRA_SPECIFY_COLS );
-	m_CheckCallRadio->SetSelection( 0 );
-	gSizer4->Add( m_CheckCallRadio, 0, wxALL|wxEXPAND, 5 );
-	
-	wxString m_BetRaiseradioChoices[] = { wxT("Yes"), wxT("No") };
-	int m_BetRaiseradioNChoices = sizeof( m_BetRaiseradioChoices ) / sizeof( wxString );
-	m_BetRaiseradio = new wxRadioBox( this, wxID_ANY, wxT("RAISE/RERAISE"), wxDefaultPosition, wxDefaultSize, m_BetRaiseradioNChoices, m_BetRaiseradioChoices, 1, wxRA_SPECIFY_COLS );
-	m_BetRaiseradio->SetSelection( 0 );
-	gSizer4->Add( m_BetRaiseradio, 0, wxALL|wxEXPAND, 5 );
+	wxString m_ActionRadioChoices[] = { wxT("Check/Fold"), wxT("Bet/Call"), wxT("Raise/Reraise") };
+	int m_ActionRadioNChoices = sizeof( m_ActionRadioChoices ) / sizeof( wxString );
+	m_ActionRadio = new wxRadioBox( this, wxID_ANY, wxT("Action"), wxDefaultPosition, wxDefaultSize, m_ActionRadioNChoices, m_ActionRadioChoices, 1, wxRA_SPECIFY_COLS );
+	m_ActionRadio->SetSelection( 0 );
+	gSizer4->Add( m_ActionRadio, 1, wxEXPAND|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
 	gSizer12->Add( gSizer4, 1, wxEXPAND, 5 );
 	
 	wxFlexGridSizer* fgSizer6;
-	fgSizer6 = new wxFlexGridSizer( 1, 5, 0, 0 );
+	fgSizer6 = new wxFlexGridSizer( 2, 3, 0, 0 );
 	fgSizer6->SetFlexibleDirection( wxBOTH );
 	fgSizer6->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
-	m_SaveButton = new wxButton( this, wxID_ANY, wxT("Save"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer6->Add( m_SaveButton, 0, wxALL, 5 );
-	
 	m_NextButton = new wxButton( this, wxID_ANY, wxT("Next"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer6->Add( m_NextButton, 0, wxALL, 5 );
+	
+	m_SaveButton = new wxButton( this, wxID_ANY, wxT("Save"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer6->Add( m_SaveButton, 0, wxALL, 5 );
 	
 	m_LoadButton = new wxButton( this, wxID_ANY, wxT("Load"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer6->Add( m_LoadButton, 0, wxALL, 5 );
@@ -203,7 +191,7 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_TestButton = new wxButton( this, wxID_ANY, wxT("Test"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer6->Add( m_TestButton, 0, wxALL, 5 );
 	
-	gSizer12->Add( fgSizer6, 1, wxEXPAND, 5 );
+	gSizer12->Add( fgSizer6, 1, wxEXPAND|wxALL, 5 );
 	
 	bSizer4->Add( gSizer12, 0, wxEXPAND, 5 );
 	
@@ -221,11 +209,9 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_StyleChangeChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnStyleChanges ), NULL, this );
 	m_BotStyleChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnBotStyle ), NULL, this );
 	m_BostStackSizeChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnBotStackSize ), NULL, this );
-	m_FoldRadio->Connect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnFold ), NULL, this );
-	m_CheckCallRadio->Connect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnCheckCall ), NULL, this );
-	m_BetRaiseradio->Connect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnRaise ), NULL, this );
-	m_SaveButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnSave ), NULL, this );
+	m_ActionRadio->Connect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnAction ), NULL, this );
 	m_NextButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnNext ), NULL, this );
+	m_SaveButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnSave ), NULL, this );
 	m_LoadButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnLoad ), NULL, this );
 	m_TeachButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnTeach ), NULL, this );
 	m_TestButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnTest ), NULL, this );
@@ -243,11 +229,9 @@ TeacherMainFrame::~TeacherMainFrame()
 	m_StyleChangeChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnStyleChanges ), NULL, this );
 	m_BotStyleChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnBotStyle ), NULL, this );
 	m_BostStackSizeChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnBotStackSize ), NULL, this );
-	m_FoldRadio->Disconnect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnFold ), NULL, this );
-	m_CheckCallRadio->Disconnect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnCheckCall ), NULL, this );
-	m_BetRaiseradio->Disconnect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnRaise ), NULL, this );
-	m_SaveButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnSave ), NULL, this );
+	m_ActionRadio->Disconnect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnAction ), NULL, this );
 	m_NextButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnNext ), NULL, this );
+	m_SaveButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnSave ), NULL, this );
 	m_LoadButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnLoad ), NULL, this );
 	m_TeachButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnTeach ), NULL, this );
 	m_TestButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnTest ), NULL, this );
