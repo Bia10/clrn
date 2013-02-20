@@ -59,11 +59,9 @@ class TeacherMainFrame : public wxFrame
 		wxCheckBox* m_StyleChengeCheck;
 		wxCheckBox* m_BotStyleCheck;
 		wxCheckBox* m_BotStackCheck;
-		wxRadioBox* m_FoldRadio;
-		wxRadioBox* m_CheckCallRadio;
-		wxRadioBox* m_BetRaiseradio;
-		wxButton* m_SaveButton;
+		wxRadioBox* m_ActionRadio;
 		wxButton* m_NextButton;
+		wxButton* m_SaveButton;
 		wxButton* m_LoadButton;
 		wxButton* m_TeachButton;
 		wxButton* m_TestButton;
@@ -79,18 +77,16 @@ class TeacherMainFrame : public wxFrame
 		virtual void OnStyleChanges( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnBotStyle( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnBotStackSize( wxCommandEvent& event ){ event.Skip(); }
-		virtual void OnFold( wxCommandEvent& event ){ event.Skip(); }
-		virtual void OnCheckCall( wxCommandEvent& event ){ event.Skip(); }
-		virtual void OnRaise( wxCommandEvent& event ){ event.Skip(); }
-		virtual void OnSave( wxCommandEvent& event ){ event.Skip(); }
+		virtual void OnAction( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnNext( wxCommandEvent& event ){ event.Skip(); }
+		virtual void OnSave( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnLoad( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnTeach( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnTest( wxCommandEvent& event ){ event.Skip(); }
 		
 	
 	public:
-		TeacherMainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Neuro network teacher"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1000,239 ), long style = wxCAPTION|wxCLOSE_BOX|wxTAB_TRAVERSAL );
+		TeacherMainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Neuro network teacher"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1000,264 ), long style = wxCAPTION|wxCLOSE_BOX|wxTAB_TRAVERSAL );
 		~TeacherMainFrame();
 	
 };
