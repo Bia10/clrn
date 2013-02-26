@@ -136,22 +136,25 @@ public:
 				break;
 			case 1: 
 				if (m_MaxBet)
+				{
 					action = Action::Call; 
+					amount = m_MaxBet - player->Bet(); 
+				}
 				else
 				{
 					m_MaxBet = g_SmallBlind * 2;
 					action = Action::Bet;
+					amount = m_MaxBet;
 				}
-
-				amount = m_MaxBet; 
+				
 				m_Moves[playerIndex] = Player::State::InPot;
-				player->Bet(m_MaxBet);
+				player->Bet(amount);
 				break;
 			case 2: 
 				action = Action::Bet; 
 				amount = m_MaxBet * 2; 
 				m_MaxBet = amount; 
-				player->Bet(m_MaxBet);
+				player->Bet(amount);
 
 				for (Player::State::Value& state : m_Moves)
 				{
@@ -233,6 +236,7 @@ public:
 
 	void DoPredefinedActions()
 	{
+/*
 		{
 			m_Players = boost::assign::list_of
 				(Player("ttommi", 488))
@@ -256,7 +260,7 @@ public:
 			m_Table->PlayerAction("TRUKHANOFF", Action::Fold, 0);
 			m_Table->PlayerAction("LE CHACAL53", Action::Fold, 0);
 			m_Table->PlayerAction("fialka03", Action::Fold, 0);
-		}
+		}*/
 
 		{
 			m_Players = boost::assign::list_of
@@ -321,7 +325,7 @@ public:
 			m_Table->PlayerAction("anatoliw", Action::Bet, 40);
 			m_Table->PlayerAction("LECHACAL53", Action::Fold, 0);
 			m_Table->PlayerAction("=Foksimus1=", Action::Fold, 0);
-			m_Table->PlayerAction("sevenup_king", Action::Fold, 0);
+ 			m_Table->PlayerAction("sevenup_king", Action::Fold, 0);
 			m_Table->PlayerAction("anatoliw", Action::MoneyReturn, 40);
 			m_Table->PlayerAction("loboda1968", Action::Rank, 7);
 
@@ -342,16 +346,17 @@ private:
 	bool m_DeadCards[Evaluator::CARD_DECK_SIZE];
 };
 
-/*
+
 TEST_P(TestTable, PredefinedActions)
 {
 	DoPredefinedActions();
-} */
+} 
 
+/*
 TEST_P(TestTable, Messages)
 {
 	Do();	 
-}
+}*/
 
 INSTANTIATE_TEST_CASE_P
 (

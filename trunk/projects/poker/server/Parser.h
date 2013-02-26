@@ -54,6 +54,7 @@ public:
 		Hand::List m_Hands;	
 		std::vector<int> m_Flop;
 		std::vector<std::vector<int> > m_ActivePlayersPerStreet;
+		std::size_t m_NextPlayer;
 	};
 
 	Parser(ILog& logger, const net::Packet& packet);

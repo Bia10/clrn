@@ -2,6 +2,8 @@
 #define Player_h__
 
 #include "Cards.h"
+#include "IActionsQueue.h"
+#include "TableContext.h"
 
 #include <string>
 #include <vector>
@@ -90,11 +92,13 @@ public:
 		, m_WinSize(0)
 		, m_Result()
 		, m_State(State::Waiting)
+		, m_Next(0)
+		, m_Previous(0)
 	{
 		m_Styles.resize(4, Style::Normal);
 	}
 
-	Player(const std::string& name, const std::size_t stack)
+	Player(const std::string& name, const std::size_t stack, Player* next = 0, Player* prev = 0)
 		: m_Name(name)
 		, m_Country()
 		, m_Stack(stack)
@@ -102,9 +106,12 @@ public:
 		, m_WinSize(0)
 		, m_Result()
 		, m_State(State::Waiting)
+		, m_Next(next)
+		, m_Previous(prev)
 	{
 		m_Styles.resize(4, Style::Normal);
 	}
+	~Player();
 
 	typedef std::vector<Player> List;
 	typedef std::vector<Style::Value> Styles;
@@ -143,6 +150,11 @@ public:
 		return bot;
 	}
 
+	IActionsQueue::Event::Value Do(IActionsQueue& actions, TableContext& table);
+	Player* GetNext() const { return m_Next; }
+
+	bool operator == (const Player& other) const;
+
 private:
 	std::string m_Name;		
 	std::string m_Country;	
@@ -153,6 +165,8 @@ private:
 	Result::Value m_Result;	//!< player game result
 	Card::List m_Cards;		//!< player cards
 	State::Value m_State;	//!< player state
+	Player* m_Next;			//!< next player on the table
+	Player* m_Previous;		//!< previous player on the table
 };
 }
 

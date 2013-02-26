@@ -38,5 +38,6 @@ private:
 
 	//! Parameters
 	neuro::Params::List m_Parameters;
+
 };
 }

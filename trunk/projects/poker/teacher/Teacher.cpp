@@ -360,6 +360,14 @@ void Teacher::AddParameters()
 
 	CHECK(counter == 1, "Only one output parameter must be set", counter);
 
+	if (!m_Parameters.empty() && !memcmp(&m_Parameters.back(), &m_CurrentParams, sizeof(neuro::Params)))
+	{
+		std::ostringstream oss;
+		oss << "parameters are same, save skipped";
+		m_StatusBar->SetStatusText(oss.str());
+		return;
+	}
+
 	m_Parameters.push_back(m_CurrentParams);
 
 	std::ostringstream oss;
