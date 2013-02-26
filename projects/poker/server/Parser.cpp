@@ -2,9 +2,12 @@
 #include "Exception.h"
 #include "CombinationsCalculator.h"
 #include "Actions.h"
+#include "PacketActionsQueue.h"
+#include "TableContext.h"
 
 #include <iostream>
 #include <set>
+#include <queue>
 
 #include <boost/bind.hpp>
 #include <boost/function.hpp>
@@ -18,6 +21,7 @@ public:
 	Impl(ILog& logger, const net::Packet& packet) : m_Packet(packet), m_Log(logger)
 	{
 		SCOPED_LOG(m_Log);
+		m_Result.m_NextPlayer = 0;
 	}
 
 	bool Parse()
@@ -27,6 +31,72 @@ public:
 		ParseFlopCards();
 		ParseActivePlayers();
 		ParsePlayers();
+
+		std::vector<pcmn::Player> activePlayers(m_Result.m_Players.size());
+		pcmn::Player* previous = 0;
+		for (std::size_t i = m_Packet.info().button(), counter = 0 ; counter < activePlayers.size(); ++i, ++counter)
+		{
+			if (i == m_Result.m_Players.size())
+				i = 0;
+
+			const Data::Player& player = m_Result.m_Players[i];
+
+			activePlayers[i] = pcmn::Player(
+				player.m_Name,
+				m_Packet.info().players(i).stack(),
+				(i + 1 < m_Result.m_Players.size()) ? &activePlayers[i + 1] : 0,
+				i ? &activePlayers[i - 1] : 0
+			);
+
+			//pcmn::Player& current = activePlayers.back();
+
+		}
+
+		typedef std::deque<pcmn::Player*> PlayerQueue;
+
+		for (int i = 0 ; i < m_Packet.phases_size(); ++i)
+		{
+			PlayerQueue playerQueue;
+			pcmn::TableContext context;
+
+			pcmn::PacketActions packetActions(m_Packet.phases(i));
+
+			// init queue
+			for (pcmn::Player& player : activePlayers)
+				playerQueue.push_back(&player);
+
+			// next after the button
+			playerQueue.push_back(playerQueue.front());
+			playerQueue.pop_front();
+
+			while (!playerQueue.empty())
+			{
+				pcmn::Player& current = *playerQueue.front();
+				playerQueue.pop_front();
+
+				const pcmn::IActionsQueue::Event::Value result = current.Do(packetActions, context);
+
+				if (result == pcmn::IActionsQueue::Event::Raise)
+				{
+					pcmn::Player* next = current.GetNext();
+					while (next && next != &current)
+						playerQueue.push_back(next);
+				}
+				else
+				if (result == pcmn::IActionsQueue::Event::NeedDecition)
+				{
+
+				}
+				else
+				if (result == pcmn::IActionsQueue::Event::Fold)
+				{
+					activePlayers.erase(std::find(activePlayers.begin(), activePlayers.end(), current));
+				}
+			}
+		}
+
+
+
 
 		for (int i = 0 ; i < m_Packet.phases_size(); ++i)
 		{
@@ -114,11 +184,28 @@ private:
 		SCOPED_LOG(m_Log);
 
 		std::size_t pot = 0;
-		std::vector<int> playerBets(m_Result.m_Players.size());
+		std::vector<std::size_t> playerBets(m_Result.m_Players.size());
+		std::vector<bool> activePlayers(m_Result.m_Players.size(), false);
+
+		if (street)
+		{
+			const std::vector<int>& activePlayersOnThisTreet = m_Result.m_ActivePlayersPerStreet[street - 1];
+			for (int player : activePlayersOnThisTreet)
+				activePlayers[player] = true;
+		}
+		else
+		{
+			std::fill(activePlayers.begin(), activePlayers.end(), true); // preflop. all players are active
+		}
+
+		std::size_t lastPlayerIndex = 0;
+		std::size_t maxBet = 0;
 		for (int i = 0 ; i < phase.actions_size(); ++i)
 		{
 			const net::Packet::Action action = phase.actions(i);
 			const int player = action.player();
+
+			lastPlayerIndex = player;
 
 			Data::Action resultAction;
 			resultAction.m_Action = action.id();
@@ -133,6 +220,9 @@ private:
 
 			switch (static_cast<pcmn::Action::Value>(resultAction.m_Action))
 			{
+			case pcmn::Action::Fold: 
+				activePlayers[player] = false;
+				break;
 			case pcmn::Action::Bet: 
 			case pcmn::Action::Raise:
 				{
@@ -140,19 +230,43 @@ private:
 					m_PlayersStacks[player] -= difference;
 					pot += difference;
 					playerBets[player] += action.amount();
+
+					if (playerBets[player] > maxBet)
+						maxBet = playerBets[player];
+					activePlayers[player] = true;
 				}
-				break;
+				break; 
 			case pcmn::Action::Call: 
 			case pcmn::Action::SmallBlind: 
 			case pcmn::Action::BigBlind:
 				pot += action.amount();
 				playerBets[player] += action.amount();
 				m_PlayersStacks[player] -= action.amount();
+				if (action.amount() > maxBet)
+					maxBet = action.amount();
+				activePlayers[player] = true;
 				break;
 			}
 
 			m_Result.m_Actions.push_back(resultAction);
 		}
+
+		for (std::size_t i = lastPlayerIndex + 1 ; i != lastPlayerIndex ; ++i)
+		{
+			if (i == m_Result.m_Players.size())
+			{
+				i = 0;
+				continue;
+			}
+
+			if (activePlayers[i] && playerBets[i] < maxBet)
+			{
+				std::cout << phase.DebugString() << std::endl;
+				m_Result.m_NextPlayer = i;
+				return;
+			}
+		}
+
 	}
 
 	//! Get player position
@@ -203,6 +317,7 @@ private:
 				case pcmn::Action::Call: 
 				case pcmn::Action::SmallBlind: 
 				case pcmn::Action::BigBlind:
+				case pcmn::Action::Check:
 					if (std::find(activePlayers.begin(), activePlayers.end(), action.player()) == activePlayers.end())
 						activePlayers.push_back(action.player());
 

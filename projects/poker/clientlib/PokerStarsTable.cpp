@@ -123,6 +123,13 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 
 	pcmn::Player& current = GetPlayer(name);
 	pcmn::Player& next = GetNextPlayer(name);
+
+	if (action == pcmn::Action::SmallBlind)
+		m_Actions[m_Phase].push_back(ActionDesc(next.Name(), pcmn::Action::BigBlind, amount * 2));
+
+	/*
+	pcmn::Player& current = GetPlayer(name);
+	pcmn::Player& next = GetNextPlayer(name);
 	switch (action)
 	{
 		case pcmn::Action::Fold: 
@@ -211,6 +218,7 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 
 	if (pcmn::Player::ThisPlayer().Name() == next.Name())
 		OnBotAction(); // our turn to play
+		*/
 }
 
 void Table::FlopCards(const pcmn::Card::List& cards)

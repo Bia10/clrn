@@ -46,6 +46,12 @@ class UDPHost::Impl
 	//! Type of the boost::asio signal set pointer
 	typedef boost::scoped_ptr<boost::asio::signal_set> 			SignalSetPtr;
 
+	//! Thread shared pointer
+	typedef boost::shared_ptr<boost::thread>					ThreadPtr;
+
+	//! Pointer of the thread pointer
+	typedef boost::shared_ptr<ThreadPtr>						PtrOfTheThreadPtr;
+
 public:
 	Impl(ILog& logger, const std::size_t threads)
 		: m_Log(logger)
@@ -55,7 +61,10 @@ public:
 	{
 		SCOPED_LOG(m_Log);
 		for (std::size_t i = 0; i < m_Threads; ++i)
-			m_Pool.create_thread(boost::bind(&boost::asio::io_service::run, &m_Service));	
+		{
+			const PtrOfTheThreadPtr threadPtr(new ThreadPtr());
+			threadPtr->reset(m_Pool.create_thread(boost::bind(&Impl::ThreadFunc, this, threadPtr)));	
+		}
 
 		// Creating signal set
 		m_Signals.reset(new boost::asio::signal_set(m_Service));
@@ -64,21 +73,35 @@ public:
 		m_Signals->add(SIGTERM);
 
 #if defined(SIGQUIT)
-		m_pTerminationSignals->add(SIGQUIT);
+		m_Signals->add(SIGQUIT);
 #endif // defined(SIGQUIT)
 
 		m_Signals->async_wait(boost::bind(&Impl::Stop, this));
 	}
 
+	void ThreadFunc(const PtrOfTheThreadPtr& ptr)
+	{
+ 		boost::this_thread::at_thread_exit(boost::bind(&Impl::RemoveFromPool, this, *ptr));
+ 		m_Service.run();
+	}
+
+	void RemoveFromPool(const ThreadPtr& threadPtr)
+	{
+		m_Pool.remove_thread(threadPtr.get());
+	}
+
 	void Wait()
 	{
 		SCOPED_LOG(m_Log);
-		m_Pool.join_all();
+		while (m_Pool.size())
+			boost::this_thread::interruptible_wait(100);
 	}
 
 	~Impl()
 	{
 		SCOPED_LOG(m_Log);
+		Stop();
+		Wait();
 	}
 
 	void SetBufferSize(const int size)
