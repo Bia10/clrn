@@ -11,6 +11,7 @@
 
 #include <boost/bind.hpp>
 #include <boost/function.hpp>
+#include <boost/make_shared.hpp>
 
 namespace srv
 {
@@ -32,8 +33,8 @@ public:
 		ParseActivePlayers();
 		ParsePlayers();
 
-		std::vector<pcmn::Player> activePlayers(m_Result.m_Players.size());
-		pcmn::Player* previous = 0;
+		pcmn::Player::List activePlayers(m_Result.m_Players.size());
+		pcmn::Player::Ptr prev;
 		for (std::size_t i = m_Packet.info().button(), counter = 0 ; counter < activePlayers.size(); ++i, ++counter)
 		{
 			if (i == m_Result.m_Players.size())
@@ -41,18 +42,25 @@ public:
 
 			const Data::Player& player = m_Result.m_Players[i];
 
-			activePlayers[i] = pcmn::Player(
+			activePlayers[i] = boost::make_shared<pcmn::Player>(
 				player.m_Name,
-				m_Packet.info().players(i).stack(),
-				(i + 1 < m_Result.m_Players.size()) ? &activePlayers[i + 1] : 0,
-				i ? &activePlayers[i - 1] : 0
+				m_Packet.info().players(i).stack()
 			);
 
-			//pcmn::Player& current = activePlayers.back();
+			if (prev)
+			{
+				activePlayers[i]->SetPrevious(prev);
+				prev->SetNext(activePlayers[i]);
+			}
 
+			prev = activePlayers[i];
 		}
 
-		typedef std::deque<pcmn::Player*> PlayerQueue;
+		activePlayers.front()->SetPrevious(activePlayers.back());
+		activePlayers.back()->SetNext(activePlayers.front());
+
+
+		typedef std::deque<pcmn::Player::Ptr> PlayerQueue;
 
 		for (int i = 0 ; i < m_Packet.phases_size(); ++i)
 		{
@@ -62,8 +70,8 @@ public:
 			pcmn::PacketActions packetActions(m_Packet.phases(i));
 
 			// init queue
-			for (pcmn::Player& player : activePlayers)
-				playerQueue.push_back(&player);
+			for (const pcmn::Player::Ptr& player : activePlayers)
+				playerQueue.push_back(player);
 
 			// next after the button
 			playerQueue.push_back(playerQueue.front());
@@ -71,15 +79,15 @@ public:
 
 			while (!playerQueue.empty())
 			{
-				pcmn::Player& current = *playerQueue.front();
+				const pcmn::Player::Ptr current = playerQueue.front();
 				playerQueue.pop_front();
 
-				const pcmn::IActionsQueue::Event::Value result = current.Do(packetActions, context);
+				const pcmn::IActionsQueue::Event::Value result = current->Do(packetActions, context);
 
 				if (result == pcmn::IActionsQueue::Event::Raise)
 				{
-					pcmn::Player* next = current.GetNext();
-					while (next && next != &current)
+					const pcmn::Player::Ptr next = current->GetNext();
+					while (next && next != current)
 						playerQueue.push_back(next);
 				}
 				else
@@ -90,7 +98,10 @@ public:
 				else
 				if (result == pcmn::IActionsQueue::Event::Fold)
 				{
-					activePlayers.erase(std::find(activePlayers.begin(), activePlayers.end(), current));
+					const pcmn::Player::List::iterator it = std::find(activePlayers.begin(), activePlayers.end(), current);
+					assert(it != activePlayers.end());
+					(*it)->DeleteLinks();
+					activePlayers.erase(it);
 				}
 			}
 		}
