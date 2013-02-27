@@ -33,12 +33,22 @@ public:
 		ParseActivePlayers();
 		ParsePlayers();
 
-		pcmn::Player::List activePlayers(m_Result.m_Players.size());
+
+		typedef std::deque<pcmn::Player::Ptr> PlayerQueue;
+
+		PlayerQueue activePlayers(m_Result.m_Players.size());
 		pcmn::Player::Ptr prev;
-		for (std::size_t i = m_Packet.info().button(), counter = 0 ; counter < activePlayers.size(); ++i, ++counter)
+		for (std::size_t i = m_Packet.info().button(), counter = 0 ; ; ++i, ++counter)
 		{
 			if (i == m_Result.m_Players.size())
 				i = 0;
+
+			if (counter == activePlayers.size())
+			{
+				activePlayers[m_Packet.info().button()]->SetPrevious(prev);
+				prev->SetNext(activePlayers[m_Packet.info().button()]);
+				break;
+			}
 
 			const Data::Player& player = m_Result.m_Players[i];
 
@@ -56,11 +66,11 @@ public:
 			prev = activePlayers[i];
 		}
 
-		activePlayers.front()->SetPrevious(activePlayers.back());
-		activePlayers.back()->SetNext(activePlayers.front());
-
-
-		typedef std::deque<pcmn::Player::Ptr> PlayerQueue;
+		while (activePlayers.front()->Name() != m_Result.m_Players[m_Packet.info().button()].m_Name)
+		{
+			activePlayers.push_back(activePlayers.front());
+			activePlayers.pop_front();
+		}
 
 		for (int i = 0 ; i < m_Packet.phases_size(); ++i)
 		{
@@ -86,9 +96,14 @@ public:
 
 				if (result == pcmn::IActionsQueue::Event::Raise)
 				{
-					const pcmn::Player::Ptr next = current->GetNext();
-					while (next && next != current)
-						playerQueue.push_back(next);
+					pcmn::Player::Ptr next = playerQueue.back()->GetNext();
+					while (next != current)
+					{
+						if (next->State() != pcmn::Player::State::AllIn)
+							playerQueue.push_back(next);
+
+						next = next->GetNext();
+					}
 				}
 				else
 				if (result == pcmn::IActionsQueue::Event::NeedDecition)
@@ -98,16 +113,13 @@ public:
 				else
 				if (result == pcmn::IActionsQueue::Event::Fold)
 				{
-					const pcmn::Player::List::iterator it = std::find(activePlayers.begin(), activePlayers.end(), current);
+					const PlayerQueue::iterator it = std::find(activePlayers.begin(), activePlayers.end(), current);
 					assert(it != activePlayers.end());
 					(*it)->DeleteLinks();
 					activePlayers.erase(it);
 				}
 			}
 		}
-
-
-
 
 		for (int i = 0 ; i < m_Packet.phases_size(); ++i)
 		{
