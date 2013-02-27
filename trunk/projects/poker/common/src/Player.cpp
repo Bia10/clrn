@@ -95,22 +95,14 @@ namespace pcmn
 
 	Player::~Player()
 	{
-		if (m_Previous && m_Next)
-		{
-			m_Previous->m_Next = m_Next;
-			m_Next->m_Previous = m_Previous;
-		}
-		else
-		if (m_Previous)
-		{
-			m_Previous->m_Next = 0;
-		}
-		else
-		if (m_Next)
-		{
-			m_Next->m_Previous = 0;
-		}
+	}
 
+	void Player::DeleteLinks()
+	{
+		assert (m_Previous.lock() && m_Next.lock());
+
+		m_Previous.lock()->m_Next = m_Next;
+		m_Next.lock()->m_Previous = m_Previous;
 	}
 
 }

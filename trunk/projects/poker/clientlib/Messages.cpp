@@ -9,6 +9,8 @@
 #include <sstream>
 #include <iomanip>
 
+#include <boost/make_shared.hpp>
+
 using namespace pcmn;
 
 namespace clnt
@@ -250,10 +252,8 @@ void PlayersInfo::Process(const dasm::WindowMessage& message, ITable& table) con
 
 		LOG_TRACE("Player: '%s', stack: '%s', country: '%s'") % name % stack % country;
 
-		Player player;
-		player.Name(name);
-		player.Country(country);
-		player.Stack(stack);
+		Player::Ptr player = boost::make_shared<Player>(name, stack);
+		player->Country(country);
 
 		players.push_back(player);
 	}
@@ -286,10 +286,7 @@ void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) cons
 		if (*data < 0x20)
 			break;
 
-		Player player;
-		player.Name(data);
-
-		players.push_back(player);
+		players.push_back(boost::make_shared<Player>(data, 0));
 	
 		for (int i = 0 ; i < 3 && data < end; ++i)
 			data = std::find(data + 1, end, 0xff);
@@ -314,11 +311,11 @@ void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) cons
 		CHECK(players.size() > index, index, players.size());
 
 		const int amount = _byteswap_ulong(*reinterpret_cast<const int*>(data + 1));	
-		players[index++].Stack(amount);
+		players[index++]->Stack(amount);
 	}
 
-	for (const Player& p : players)
-		LOG_TRACE("Player: '%s', stack: '%s'") % p.Name() % p.Stack();
+	for (const Player::Ptr& p : players)
+		LOG_TRACE("Player: '%s', stack: '%s'") % p->Name() % p->Stack();
 
 	table.PlayersInfo(players);
 }

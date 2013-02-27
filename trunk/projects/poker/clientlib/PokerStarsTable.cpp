@@ -254,17 +254,17 @@ pcmn::Player& Table::GetNextPlayer(const std::string& name)
 	(
 		m_Players.begin(),
 		m_Players.end(),
-		[&](const pcmn::Player& player)
+		[&](const pcmn::Player::Ptr& player)
 		{
-			return player.Name() == name;
+			return player->Name() == name;
 		}
 	);
 
 	CHECK(it != m_Players.end(), "Failed to find player by name", name);
 	if (it + 1 == m_Players.end())
-		return m_Players.front();
+		return *m_Players.front();
 
-	return *(it + 1);
+	return **(it + 1);
 }
 
 pcmn::Player& Table::GetPlayer(const std::string& name)
@@ -273,14 +273,14 @@ pcmn::Player& Table::GetPlayer(const std::string& name)
 	(
 		m_Players.begin(),
 		m_Players.end(),
-		[&](const pcmn::Player& player)
+		[&](const pcmn::Player::Ptr& player)
 		{
-			return player.Name() == name;
+			return player->Name() == name;
 		}
 	);
 
 	CHECK(it != m_Players.end(), "Failed to find player by name", name);
-	return *it;
+	return **it;
 }
 
 pcmn::Player& Table::GetNextActivePlayer(const std::string& name)
@@ -300,12 +300,12 @@ pcmn::Player& Table::GetPreviousPlayer(const std::string& name)
 {
 	for (std::size_t i = 0; i < m_Players.size(); ++i)
 	{
-		if (m_Players[i].Name() == name)
+		if (m_Players[i]->Name() == name)
 		{
 			if (i)
-				return m_Players[i - 1];
+				return *m_Players[i - 1];
 			else
-				return m_Players[m_Players.size() - 1];
+				return *m_Players[m_Players.size() - 1];
 		}
 	}
 
@@ -326,25 +326,25 @@ bool Table::IsPhaseCompleted(pcmn::Player& current, std::size_t& playersInPot)
 	// if some players are all in - create additional pots and go to next phase
 
 	std::size_t maxBet = 0;
-	for (pcmn::Player& player : m_Players)
+	for (const pcmn::Player::Ptr& player : m_Players)
 	{
-		if (player.Bet() > maxBet)
-			maxBet = player.Bet();
+		if (player->Bet() > maxBet)
+			maxBet = player->Bet();
 
-		switch (player.State())
+		switch (player->State())
 		{
 		case pcmn::Player::State::AllIn:
 			{
-				player.WinSize(m_Pot);
-				for (const pcmn::Player& current : m_Players)
+				player->WinSize(m_Pot);
+				for (const pcmn::Player::Ptr& current : m_Players)
 				{
-					if (current.State() == pcmn::Player::State::Fold)
+					if (current->State() == pcmn::Player::State::Fold)
 						continue;
 
-					if (current.Bet() < player.Bet())
+					if (current->Bet() < player->Bet())
 					{
-						const std::size_t diff = player.Bet() - current.Bet();
-						player.WinSize(player.WinSize() - diff);
+						const std::size_t diff = player->Bet() - current->Bet();
+						player->WinSize(player->WinSize() - diff);
 					}
 				}
 
@@ -353,7 +353,7 @@ bool Table::IsPhaseCompleted(pcmn::Player& current, std::size_t& playersInPot)
 		case pcmn::Player::State::Fold:
 			break;
 		case pcmn::Player::State::InPot:
-			player.WinSize(m_Pot);
+			player->WinSize(m_Pot);
 			break;
 		case pcmn::Player::State::Waiting:
 			return false;
@@ -364,12 +364,12 @@ bool Table::IsPhaseCompleted(pcmn::Player& current, std::size_t& playersInPot)
 	// find players that didn't call bets
 	playersInPot = 0;
 	bool finished = true;
-	for (const pcmn::Player& player : m_Players)
+	for (const pcmn::Player::Ptr& player : m_Players)
 	{
-		if (player.State() == pcmn::Player::State::InPot || player.State() == pcmn::Player::State::AllIn)
+		if (player->State() == pcmn::Player::State::InPot || player->State() == pcmn::Player::State::AllIn)
 		{
 			++playersInPot;
-			if (player.State() != pcmn::Player::State::AllIn && player.Bet() < maxBet)
+			if (player->State() != pcmn::Player::State::AllIn && player->Bet() < maxBet)
 				finished = false;
 		}
 	}
@@ -405,12 +405,12 @@ void Table::ProcessWinners(const std::size_t playersInPot)
 	{
 		// all players folds
 		pcmn::Player* playerPtr = 0;
-		for (pcmn::Player& player : m_Players)
+		for (const pcmn::Player::Ptr& player : m_Players)
 		{
-			if (player.State() == pcmn::Player::State::InPot || player.State() == pcmn::Player::State::AllIn)
+			if (player->State() == pcmn::Player::State::InPot || player->State() == pcmn::Player::State::AllIn)
 			{
 				assert(!playerPtr);
-				playerPtr = &player;
+				playerPtr = player.get();
 			}
 		}
 
@@ -440,10 +440,10 @@ void Table::ProcessWinners(const std::size_t playersInPot)
 
 	std::vector<Info> players;
 	std::size_t maxPot = 0;
-	for (const pcmn::Player& player : m_Players)
+	for (const pcmn::Player::Ptr& player : m_Players)
 	{
-		const pcmn::Card::List& cards = player.Cards();
-		if (!cards.empty() && player.State() != pcmn::Player::State::Fold)
+		const pcmn::Card::List& cards = player->Cards();
+		if (!cards.empty() && player->State() != pcmn::Player::State::Fold)
 		{
 			players.push_back(Info());
 			Info& info = players.back();
@@ -453,8 +453,8 @@ void Table::ProcessWinners(const std::size_t playersInPot)
 
 			assert(playerCards.size() == 7);
 			
-			info.m_Name = player.Name();
-			info.m_Pot = player.WinSize();
+			info.m_Name = player->Name();
+			info.m_Pot = player->WinSize();
 			info.m_Value = m_Evaluator->GetRank(playerCards);
 
 			if (info.m_Pot > maxPot)
@@ -494,11 +494,11 @@ void Table::ProcessWinners(const std::size_t playersInPot)
 
 void Table::SetPhase(const Phase::Value phase)
 {
-	for (pcmn::Player& p : m_Players)
+	for (const pcmn::Player::Ptr& p : m_Players)
 	{
-		p.Bet(0);
-		if (p.State() != pcmn::Player::State::Fold && p.State() != pcmn::Player::State::AllIn)
-			p.State(pcmn::Player::State::Waiting);
+		p->Bet(0);
+		if (p->State() != pcmn::Player::State::Fold && p->State() != pcmn::Player::State::AllIn)
+			p->State(pcmn::Player::State::Waiting);
 	}
 
 	m_Phase = phase;
@@ -518,21 +518,21 @@ void Table::SendStatistic()
 
 	std::size_t counter = 0;
 	std::map<std::string, std::size_t> players;
-	for (const pcmn::Player& player : m_Players)
+	for (const pcmn::Player::Ptr& player : m_Players)
 	{
 		net::Packet::Player& added = *table.add_players();
-		added.set_bet(player.Bet());
-		added.set_name(player.Name());
-		added.set_stack(player.Stack());
+		added.set_bet(player->Bet());
+		added.set_name(player->Name());
+		added.set_stack(player->Stack());
 
-		const pcmn::Card::List& cards = player.Cards();
+		const pcmn::Card::List& cards = player->Cards();
 		for (const pcmn::Card& card : cards)
 			added.mutable_cards()->Add(card.ToEvalFormat());
 
-		if (player.Name() == m_OnButton)
+		if (player->Name() == m_OnButton)
 			table.set_button(counter);
 
-		players[player.Name()] = counter;
+		players[player->Name()] = counter;
 		++counter;
 	}
 

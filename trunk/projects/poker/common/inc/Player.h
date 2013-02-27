@@ -9,9 +9,13 @@
 #include <vector>
 #include <cassert>
 
+#include <boost/shared_ptr.hpp>
+#include <boost/weak_ptr.hpp>
+#include <boost/noncopyable.hpp>
+
 namespace pcmn
 {
-class Player
+class Player : boost::noncopyable
 {
 public:
 
@@ -84,6 +88,11 @@ public:
 		static std::string ToString(Value value);
 	};
 
+	typedef boost::shared_ptr<Player> Ptr;
+	typedef boost::weak_ptr<Player> WeakPtr;
+	typedef std::vector<Player::Ptr> List;
+	typedef std::vector<Style::Value> Styles;
+
 	Player()
 		: m_Name()
 		, m_Country()
@@ -92,13 +101,11 @@ public:
 		, m_WinSize(0)
 		, m_Result()
 		, m_State(State::Waiting)
-		, m_Next(0)
-		, m_Previous(0)
 	{
 		m_Styles.resize(4, Style::Normal);
 	}
 
-	Player(const std::string& name, const std::size_t stack, Player* next = 0, Player* prev = 0)
+	Player(const std::string& name, const std::size_t stack)
 		: m_Name(name)
 		, m_Country()
 		, m_Stack(stack)
@@ -106,15 +113,10 @@ public:
 		, m_WinSize(0)
 		, m_Result()
 		, m_State(State::Waiting)
-		, m_Next(next)
-		, m_Previous(prev)
 	{
 		m_Styles.resize(4, Style::Normal);
 	}
 	~Player();
-
-	typedef std::vector<Player> List;
-	typedef std::vector<Style::Value> Styles;
 
 	std::string Name() const				{ return m_Name; }
 	void Name(const std::string& val)		{ m_Name = val; }
@@ -151,7 +153,11 @@ public:
 	}
 
 	IActionsQueue::Event::Value Do(IActionsQueue& actions, TableContext& table);
-	Player* GetNext() const { return m_Next; }
+	Player::Ptr GetNext() const { return m_Next.lock(); }
+	void SetNext(Player::Ptr val) { m_Next = val; }
+	void SetPrevious(Player::Ptr val) { m_Previous = val; }
+
+	void DeleteLinks();
 
 	bool operator == (const Player& other) const;
 
@@ -165,8 +171,8 @@ private:
 	Result::Value m_Result;	//!< player game result
 	Card::List m_Cards;		//!< player cards
 	State::Value m_State;	//!< player state
-	Player* m_Next;			//!< next player on the table
-	Player* m_Previous;		//!< previous player on the table
+	Player::WeakPtr m_Next;			//!< next player on the table
+	Player::WeakPtr m_Previous;		//!< previous player on the table
 };
 }
 
