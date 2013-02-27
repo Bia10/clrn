@@ -125,7 +125,10 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 	pcmn::Player& next = GetNextPlayer(name);
 
 	if (action == pcmn::Action::SmallBlind)
+	{
+		m_OnButton = GetPreviousPlayer(current.Name()).Name();
 		m_Actions[m_Phase].push_back(ActionDesc(next.Name(), pcmn::Action::BigBlind, amount * 2));
+	}
 
 	/*
 	pcmn::Player& current = GetPlayer(name);

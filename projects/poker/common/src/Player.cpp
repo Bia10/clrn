@@ -59,7 +59,7 @@ namespace pcmn
 		case pcmn::Action::Bet: 
 		case pcmn::Action::Raise:
 			{
-				const unsigned difference = m_Bet - amount;
+				const unsigned difference = amount - m_Bet;
 				m_Stack -= difference;
 				m_State = m_Stack ? State::Waiting : State::AllIn;
 				table.m_Pot += difference;
