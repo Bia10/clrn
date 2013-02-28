@@ -51,6 +51,9 @@ namespace pcmn
 		if (!actions.Extract(action, amount))
 			return IActionsQueue::Event::NeedDecition;
 
+		table.m_LastAction = action;
+		table.m_LastAmount = amount;
+
 		switch (action)
 		{
 		case pcmn::Action::Fold: 
