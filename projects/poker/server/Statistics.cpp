@@ -62,6 +62,9 @@ const char SQL_INSERT_ACTIONS[] =
 				 "position) "
 	"VALUES     (?, ?, ?, ?, ?, ?, ?) ";
 
+
+static const int CURRENT_MODULE_ID = Modules::Server;
+
 class Statistics::Impl
 {
 public:
@@ -102,7 +105,7 @@ Impl(ILog& logger) : m_Log(logger), m_DB(new sql::SQLiteDataBase(m_Log))
 	CATCH_PASS_EXCEPTIONS("Failed to init statistics")
 }
 
-void Write(Parser::Data& data)
+void Write(pcmn::TableContext::Data& data)
 {
 	TRY 
 	{
@@ -135,7 +138,7 @@ void Write(Parser::Data& data)
 		const unsigned int gameId = static_cast<unsigned int>(m_DB->LastRowId());
 
 		// write all players
-		for (Parser::Data::Player& player : data.m_Players)
+		for (pcmn::TableContext::Data::Player& player : data.m_Players)
 		{
 			// check and insert name
 			player.m_Index = InsertPlayer(player.m_Name);
@@ -143,7 +146,7 @@ void Write(Parser::Data& data)
 
 		// insert player percents
 		statement = m_DB->CreateStatement(SQL_INSERT_PERCENTS);
-		for (const Parser::Data::Player& player : data.m_Players)
+		for (const pcmn::TableContext::Data::Player& player : data.m_Players)
 		{
 			for (std::size_t street = 0 ; street < player.m_Percents.size(); ++street)
 			{
@@ -154,7 +157,7 @@ void Write(Parser::Data& data)
 
 		// insert hands
 		statement = m_DB->CreateStatement(SQL_INSERT_HANDS);
-		for (const Parser::Data::Hand& hand : data.m_Hands)
+		for (const pcmn::TableContext::Data::Hand& hand : data.m_Hands)
 		{
 			const unsigned int cardsId = InsertCards(hand.m_Cards);
 			*statement << data.m_Players[hand.m_PlayerIndex].m_Index << gameId << cardsId;
@@ -163,7 +166,7 @@ void Write(Parser::Data& data)
 
 		// insert actions
 		statement = m_DB->CreateStatement(SQL_INSERT_ACTIONS);
-		for (const Parser::Data::Action& action : data.m_Actions)
+		for (const pcmn::TableContext::Data::Action& action : data.m_Actions)
 		{
 			*statement
 				<< gameId
@@ -247,7 +250,7 @@ Statistics::~Statistics()
 	delete m_Impl;
 }
 
-void Statistics::Write(Parser::Data& data)
+void Statistics::Write(pcmn::TableContext::Data& data)
 {
 	m_Impl->Write(data);
 }

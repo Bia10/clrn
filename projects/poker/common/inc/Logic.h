@@ -1,0 +1,64 @@
+#ifndef Logic_h__
+#define Logic_h__
+
+#include "IActionsQueue.h"
+#include "ILog.h"
+#include "Player.h"
+
+#include <deque>
+#include <map>
+
+#include <boost/noncopyable.hpp>
+
+namespace pcmn
+{
+
+//! Decision callback
+class IDecisionCallback
+{
+public:
+	virtual ~IDecisionCallback() {}
+
+	virtual void MakeDecision() = 0;
+};
+
+//! Poker table logic implementation
+class Logic
+{
+public:
+	typedef std::deque<pcmn::Player::Ptr> PlayerQueue;
+	typedef std::map<std::string, std::size_t> PlayersMap;
+
+	Logic(ILog& logger, IActionsQueue& action, IDecisionCallback& callback, const PlayerQueue& players);
+
+	bool Run(TableContext& context);
+
+private:
+
+	//! Parse input data
+	void Parse();
+
+	//! Get player position
+	Player::Position::Value GetPlayerPosition(const PlayerQueue& players, const Player::Ptr& player);
+
+private:
+
+	//! Logger
+	ILog& m_Log;
+
+	//! Actions source
+	IActionsQueue& m_Actions;
+
+	//! Callback
+	IDecisionCallback& m_Callback;
+
+	//! Players
+	PlayerQueue m_Players;
+
+	//! Player indexes map
+	PlayersMap m_PlayersIndexes;
+};
+
+}
+
+#endif // Logic_h__

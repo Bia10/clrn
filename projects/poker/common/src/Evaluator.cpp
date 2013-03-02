@@ -1,4 +1,4 @@
-#include "CombinationsCalculator.h"
+#include "Evaluator.h"
 #include "Exception.h"
 #include "../../evaluator/SevenEval.h"
 #include "../../evaluator/HandEval.h"
@@ -48,7 +48,7 @@ short Evaluator::GetRandomCard(bool* dead, const short minValue) const
 
 float Evaluator::GetEquity(short player1, short player2, const std::vector<int>& flop, const std::vector<short>& playerRanges) const
 {
-	bool deadCards[CARD_DECK_SIZE] = {false};
+	bool deadCards[cfg::CARD_DECK_SIZE] = {false};
 
 	deadCards[player1] = true;
 	deadCards[player2] = true;
@@ -65,7 +65,7 @@ float Evaluator::GetEquity(short player1, short player2, const std::vector<int>&
 
 	std::size_t looses = 0;
 	std::vector<int> outs;
-	for (std::size_t repetition = 0 ; repetition < NUMBER_OF_REPITITIONS; ++repetition)
+	for (std::size_t repetition = 0 ; repetition < cfg::NUMBER_OF_REPITITIONS; ++repetition)
 	{
 		outs.clear();
 
@@ -106,7 +106,7 @@ float Evaluator::GetEquity(short player1, short player2, const std::vector<int>&
 			deadCards[card] = false;
 	}
 
-	return static_cast<float>(100.0f - (static_cast<double>(looses * 100) / NUMBER_OF_REPITITIONS));
+	return static_cast<float>(100.0f - (static_cast<double>(looses * 100) / cfg::NUMBER_OF_REPITITIONS));
 }
 
 }

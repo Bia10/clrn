@@ -1,5 +1,6 @@
 #include "NetworkTeacher.h"
 #include "Exception.h"
+#include "Config.h"
 
 #include <fann/floatfann.h>
 
@@ -7,7 +8,7 @@ namespace neuro
 {
 	NetworkTeacher::NetworkTeacher(const std::string& file) : m_File(file)
 	{
-		CHECK(m_Net = fann_create_standard(LAYERS_COUNT, INPUT_COUNT, HIDDEN_NEIRONS_COUNT, OUTPUT_COUNT), "Failed to create network");
+		CHECK(m_Net = fann_create_standard(cfg::LAYERS_COUNT, cfg::INPUT_COUNT, cfg::HIDDEN_NEIRONS_COUNT, cfg::OUTPUT_COUNT), "Failed to create network");
 
 		fann_set_activation_steepness_hidden(m_Net, 1);
 		fann_set_activation_steepness_output(m_Net, 1);
@@ -32,8 +33,8 @@ namespace neuro
 	void NetworkTeacher::Process(const std::vector<float>& input, std::vector<float>& output)
 	{
 		CHECK(m_Net);
-		CHECK(input.size() == INPUT_COUNT);
-		CHECK(output.size() == OUTPUT_COUNT);
+		CHECK(input.size() == cfg::INPUT_COUNT);
+		CHECK(output.size() == cfg::OUTPUT_COUNT);
 
 		float* inputPtr = const_cast<float*>(&input.front());
 		float* outputPtr = const_cast<float*>(&output.front());

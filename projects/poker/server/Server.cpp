@@ -6,6 +6,7 @@
 #include "Modules.h"
 #include "Parser.h"
 #include "Statistics.h"
+#include "DecisionMaker.h"
 
 #include <iostream>
 
@@ -14,6 +15,8 @@
 
 namespace srv
 {
+
+const int CURRENT_MODULE_ID = Modules::Server;
 
 class Server::Impl
 {
@@ -36,18 +39,13 @@ private:
 	{
 		SCOPED_LOG(m_Log);
 		LOG_TRACE("Request: [%s]") % message.DebugString();
-		Parser::Data data;
 
-		Parser parser(m_Log, dynamic_cast<const net::Packet&>(message));
-		const bool needDecision = parser.Parse();
+		pcmn::Decisionmaker decisionMaker(m_Log);
 
-		if (needDecision)
-		{
-			// react on action
-		}
+		Parser parser(m_Log, dynamic_cast<const net::Packet&>(message), decisionMaker);
 
-		// write statistics
-		m_Statistics.Write(parser.GetResult());
+		if (parser.Parse())  // write statistics, game completed
+			m_Statistics.Write(parser.GetResult());
 	}
 
 private:

@@ -3,7 +3,6 @@
 
 #include "Cards.h"
 #include "IActionsQueue.h"
-#include "TableContext.h"
 
 #include <string>
 #include <vector>
@@ -15,6 +14,8 @@
 
 namespace pcmn
 {
+struct TableContext;
+
 class Player : boost::noncopyable
 {
 public:

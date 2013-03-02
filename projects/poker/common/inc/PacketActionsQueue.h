@@ -11,14 +11,15 @@ class PacketActions : public IActionsQueue
 {
 public:
 
-	PacketActions(const net::Packet::Phase& street);
+	PacketActions(const net::Packet& packet);
 
 	virtual bool Extract(Action::Value& action, unsigned& amount) const override;
 
 private:
 
 	mutable int m_Index;
-	const net::Packet::Phase& m_Street;
+	mutable int m_Street;
+	const net::Packet& m_Packet;
 };
 
 }
