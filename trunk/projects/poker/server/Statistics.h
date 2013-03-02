@@ -2,7 +2,7 @@
 #define Statistics_h__
 
 #include "ILog.h"
-#include "Parser.h"
+#include "TableContext.h"
 
 namespace srv
 {
@@ -16,7 +16,7 @@ public:
 	~Statistics();
 
 	//! Write statistics data
-	void Write(Parser::Data& data);
+	void Write(pcmn::TableContext::Data& data);
 
 private:
 	class Impl;

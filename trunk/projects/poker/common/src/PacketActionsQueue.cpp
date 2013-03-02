@@ -3,18 +3,30 @@
 namespace pcmn
 {
 
-PacketActions::PacketActions(const net::Packet::Phase& street) : m_Index(0), m_Street(street)
+PacketActions::PacketActions(const net::Packet& packet) 
+	: m_Index(0)
+	, m_Packet(packet)
+	, m_Street(0)
 {
 
 }
 
 bool PacketActions::Extract(Action::Value& action, unsigned& amount) const 
 {
-	if (m_Index >= m_Street.actions_size())
+	if (m_Street >= m_Packet.phases_size())
 		return false;
 
-	action = static_cast<Action::Value>(m_Street.actions(m_Index).id());
-	amount = static_cast<unsigned>(m_Street.actions(m_Index).amount());
+	if (m_Index >= m_Packet.phases(m_Street).actions_size())
+	{
+		m_Index = 0;
+		++m_Street;
+	}
+
+	if (m_Street >= m_Packet.phases_size())
+		return false;
+
+	action = static_cast<Action::Value>(m_Packet.phases(m_Street).actions(m_Index).id());
+	amount = static_cast<unsigned>(m_Packet.phases(m_Street).actions(m_Index).amount());
 	++m_Index;
 	return true;
 }

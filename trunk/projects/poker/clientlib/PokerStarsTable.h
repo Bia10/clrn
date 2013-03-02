@@ -5,7 +5,7 @@
 #include "Factory.h"
 #include "IMessage.h"
 #include "ILog.h"
-#include "CombinationsCalculator.h"
+#include "Evaluator.h"
 #include "Cards.h"
 #include "IConnection.h"
 

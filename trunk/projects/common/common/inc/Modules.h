@@ -13,7 +13,8 @@ struct Modules
 		DataBase	= 5,
 		Server		= 6,
 		NeuroNet	= 7,
-		Teacher		= 8
+		Teacher		= 8,
+		TableLogic	= 9
 	};
 };
 

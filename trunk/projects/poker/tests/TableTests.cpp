@@ -4,9 +4,10 @@
 #include "Actions.h"
 #include "Log.h"
 #include "Modules.h"
-#include "CombinationsCalculator.h"
+#include "Evaluator.h"
 #include "IConnection.h"
 #include "UDPHost.h"
+#include "Config.h"
 
 #include "gtest/gtest.h"
 
@@ -341,7 +342,7 @@ private:
 	std::size_t m_MaxBet;
 	Card::List m_FlopCards;
 	std::vector<Player::State::Value> m_Moves;
-	bool m_DeadCards[Evaluator::CARD_DECK_SIZE];
+	bool m_DeadCards[cfg::CARD_DECK_SIZE];
 };
 
 

@@ -8,11 +8,6 @@
 namespace neuro
 {
 
-const std::size_t LAYERS_COUNT = 3;
-const std::size_t HIDDEN_NEIRONS_COUNT = 3;
-const std::size_t INPUT_COUNT = 9;
-const std::size_t OUTPUT_COUNT = 3;
-
 template<typename T>
 class INetwork
 {
