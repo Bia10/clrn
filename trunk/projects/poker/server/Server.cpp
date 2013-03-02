@@ -9,6 +9,7 @@
 #include "DecisionMaker.h"
 
 #include <iostream>
+#include <atomic>
 
 #include <boost/bind.hpp>
 #include <boost/function.hpp>
@@ -21,7 +22,10 @@ const int CURRENT_MODULE_ID = Modules::Server;
 class Server::Impl
 {
 public:
-	Impl() : m_Client(new net::UDPHost(m_Log, 3)), m_Statistics(m_Log)
+	Impl() 
+		: m_Client(new net::UDPHost(m_Log, 3))
+		, m_Statistics(m_Log)
+		, m_RequestsCount(0)
 	{
 		m_Log.Open("1", Modules::Server, ILog::Level::Warning);
 		m_Client->Receive(boost::bind(&Impl::HandleRequest, this, _1, _2), net::Packet(), 5000);
@@ -46,6 +50,8 @@ private:
 
 		if (parser.Parse())  // write statistics, game completed
 			m_Statistics.Write(parser.GetResult());
+
+		LOG_WARNING("Requests processed: [%s]") % m_RequestsCount++;
 	}
 
 private:
@@ -58,6 +64,9 @@ private:
 
 	//! Server statistics
 	Statistics							m_Statistics;
+
+	//! Requests count
+	std::atomic<std::size_t>			m_RequestsCount;
 };
 
 void Server::Run()
