@@ -12,7 +12,7 @@ namespace neuro
 {
 	Network::Network(const std::string& file)
 	{
-		CHECK(m_Net = fann_create_from_file(file.c_str()), "Failed to create network");
+		CHECK(m_Net = fann_create_from_file(file.c_str()), "Failed to open network", file);
 	}
 
 	Network::~Network()

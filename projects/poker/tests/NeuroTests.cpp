@@ -1,6 +1,7 @@
 #include "../neuro/NeuroNetwork.h"
 #include "../neuro/NetworkTeacher.h"
 #include "Player.h"
+#include "Config.h"
 
 #include "gtest/gtest.h"
 
@@ -43,7 +44,7 @@ TEST(Neuro, Simple)
 	{
 		neuro::NetworkTeacher teacher("test.txt");
 
-		for (std::size_t i = 0; i < 50000; ++i)
+		for (std::size_t i = 0; i < cfg::TEACH_REPETITIONS_COUNT; ++i)
 		{
 			teacher.Process(in1, out1);
 			teacher.Process(in2, out2);

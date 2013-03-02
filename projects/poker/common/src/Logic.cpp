@@ -42,6 +42,8 @@ bool Logic::Run(TableContext& context)
 			playerQueue.push_back(playerQueue[1]);
 		}
 
+		context.m_MaxBet = 0;
+
 		while (!playerQueue.empty())
 		{
 			const pcmn::Player::Ptr current = playerQueue.front();
@@ -51,10 +53,11 @@ bool Logic::Run(TableContext& context)
 				continue;
 
 			const pcmn::IActionsQueue::Event::Value result = current->Do(m_Actions, context);
+			const Player::Position::Value position = GetPlayerPosition(m_Players, current);
 
-			if (result == pcmn::IActionsQueue::Event::NeedDecition)
+			if (result == pcmn::IActionsQueue::Event::NeedDecision)
 			{
-				m_Callback.MakeDecision();
+				m_Callback.MakeDecision(*current, m_Players, context, position);
 				return false;
 			}
 
@@ -64,7 +67,7 @@ bool Logic::Run(TableContext& context)
 			resultAction.m_Street = street;
 			resultAction.m_PotAmount = context.m_Pot ? static_cast<float>(context.m_LastAmount) / context.m_Pot : 1;
 			resultAction.m_StackAmount = current->Stack() ? static_cast<float>(context.m_LastAmount) / current->Stack() : 1;
-			resultAction.m_Position = GetPlayerPosition(m_Players, current);
+			resultAction.m_Position = static_cast<int>(position);
 
 			assert(resultAction.m_PotAmount >= 0);
 			assert(resultAction.m_StackAmount >= 0);

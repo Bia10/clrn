@@ -37,6 +37,7 @@ class Packet_Player;
 class Packet_Table;
 class Packet_Action;
 class Packet_Phase;
+class Reply;
 
 // ===================================================================
 
@@ -553,6 +554,112 @@ class Packet : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static Packet* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class Reply : public ::google::protobuf::Message {
+ public:
+  Reply();
+  virtual ~Reply();
+  
+  Reply(const Reply& from);
+  
+  inline Reply& operator=(const Reply& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Reply& default_instance();
+  
+  void Swap(Reply* other);
+  
+  // implements Message ----------------------------------------------
+  
+  Reply* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Reply& from);
+  void MergeFrom(const Reply& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional string Error = 1;
+  inline bool has_error() const;
+  inline void clear_error();
+  static const int kErrorFieldNumber = 1;
+  inline const ::std::string& error() const;
+  inline void set_error(const ::std::string& value);
+  inline void set_error(const char* value);
+  inline void set_error(const char* value, size_t size);
+  inline ::std::string* mutable_error();
+  inline ::std::string* release_error();
+  
+  // required uint32 Action = 2;
+  inline bool has_action() const;
+  inline void clear_action();
+  static const int kActionFieldNumber = 2;
+  inline ::google::protobuf::uint32 action() const;
+  inline void set_action(::google::protobuf::uint32 value);
+  
+  // required uint32 Amount = 3;
+  inline bool has_amount() const;
+  inline void clear_amount();
+  static const int kAmountFieldNumber = 3;
+  inline ::google::protobuf::uint32 amount() const;
+  inline void set_amount(::google::protobuf::uint32 value);
+  
+  // @@protoc_insertion_point(class_scope:net.Reply)
+ private:
+  inline void set_has_error();
+  inline void clear_has_error();
+  inline void set_has_action();
+  inline void clear_has_action();
+  inline void set_has_amount();
+  inline void clear_has_amount();
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  ::std::string* error_;
+  ::google::protobuf::uint32 action_;
+  ::google::protobuf::uint32 amount_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_packet_2eproto();
+  friend void protobuf_AssignDesc_packet_2eproto();
+  friend void protobuf_ShutdownFile_packet_2eproto();
+  
+  void InitAsDefaultInstance();
+  static Reply* default_instance_;
+};
 // ===================================================================
 
 
@@ -918,6 +1025,112 @@ Packet::phases() const {
 inline ::google::protobuf::RepeatedPtrField< ::net::Packet_Phase >*
 Packet::mutable_phases() {
   return &phases_;
+}
+
+// -------------------------------------------------------------------
+
+// Reply
+
+// optional string Error = 1;
+inline bool Reply::has_error() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Reply::set_has_error() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Reply::clear_has_error() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void Reply::clear_error() {
+  if (error_ != &::google::protobuf::internal::kEmptyString) {
+    error_->clear();
+  }
+  clear_has_error();
+}
+inline const ::std::string& Reply::error() const {
+  return *error_;
+}
+inline void Reply::set_error(const ::std::string& value) {
+  set_has_error();
+  if (error_ == &::google::protobuf::internal::kEmptyString) {
+    error_ = new ::std::string;
+  }
+  error_->assign(value);
+}
+inline void Reply::set_error(const char* value) {
+  set_has_error();
+  if (error_ == &::google::protobuf::internal::kEmptyString) {
+    error_ = new ::std::string;
+  }
+  error_->assign(value);
+}
+inline void Reply::set_error(const char* value, size_t size) {
+  set_has_error();
+  if (error_ == &::google::protobuf::internal::kEmptyString) {
+    error_ = new ::std::string;
+  }
+  error_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* Reply::mutable_error() {
+  set_has_error();
+  if (error_ == &::google::protobuf::internal::kEmptyString) {
+    error_ = new ::std::string;
+  }
+  return error_;
+}
+inline ::std::string* Reply::release_error() {
+  clear_has_error();
+  if (error_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = error_;
+    error_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+
+// required uint32 Action = 2;
+inline bool Reply::has_action() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Reply::set_has_action() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Reply::clear_has_action() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void Reply::clear_action() {
+  action_ = 0u;
+  clear_has_action();
+}
+inline ::google::protobuf::uint32 Reply::action() const {
+  return action_;
+}
+inline void Reply::set_action(::google::protobuf::uint32 value) {
+  set_has_action();
+  action_ = value;
+}
+
+// required uint32 Amount = 3;
+inline bool Reply::has_amount() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void Reply::set_has_amount() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void Reply::clear_has_amount() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void Reply::clear_amount() {
+  amount_ = 0u;
+  clear_has_amount();
+}
+inline ::google::protobuf::uint32 Reply::amount() const {
+  return amount_;
+}
+inline void Reply::set_amount(::google::protobuf::uint32 value) {
+  set_has_amount();
+  amount_ = value;
 }
 
 

@@ -9,6 +9,11 @@
 
 #include <vector>
 
+namespace pcmn
+{
+	class Evaluator;
+}
+
 namespace srv
 {
 
@@ -17,7 +22,7 @@ class Parser
 {
 public:
 
-	Parser(ILog& logger, const net::Packet& packet, pcmn::IDecisionCallback& callback);
+	Parser(ILog& logger, const pcmn::Evaluator& evaluator, const net::Packet& packet, pcmn::IDecisionCallback& callback);
 	~Parser();
 	bool Parse(); // returns true if next player bot and he need to do something
 	pcmn::TableContext::Data& GetResult() const;

@@ -50,6 +50,7 @@ struct TableContext
 		, m_Pot(0)
 		, m_LastAction()
 		, m_LastAmount(0)
+		, m_BigBlind(0)
 	{
 
 	}
@@ -58,6 +59,7 @@ struct TableContext
 	unsigned m_Pot;
 	Action::Value m_LastAction;
 	unsigned m_LastAmount;
+	unsigned m_BigBlind;
 	Data m_Data;
 };
 }

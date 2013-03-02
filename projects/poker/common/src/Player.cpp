@@ -43,6 +43,16 @@ namespace pcmn
 #undef CASE
 	}
 
+	Player::Count::Value Player::Count::FromValue(unsigned value)
+	{
+		if (value == 1)
+			return One;
+		else
+		if (value == 2)
+			return Two;
+		else
+			return ThreeOrMOre;
+	}
 
 	IActionsQueue::Event::Value Player::Do(IActionsQueue& actions, TableContext& table)
 	{
@@ -50,7 +60,17 @@ namespace pcmn
 		unsigned amount = 0;
 
 		if (!actions.Extract(action, amount))
-			return IActionsQueue::Event::NeedDecition;
+			return IActionsQueue::Event::NeedDecision;
+
+		if (!table.m_BigBlind)
+		{
+			if (action == Action::Value::SmallBlind)
+				table.m_BigBlind = amount * 2;
+			else
+			if (action == Action::Value::BigBlind)
+				table.m_BigBlind = amount;
+		}
+
 
 		table.m_LastAction = action;
 		table.m_LastAmount = amount;

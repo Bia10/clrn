@@ -24,10 +24,11 @@ const int CURRENT_MODULE_ID = Modules::Server;
 class Parser::Impl : boost::noncopyable
 {
 public:
-	Impl(ILog& logger, const net::Packet& packet, pcmn::IDecisionCallback& callback) 
+	Impl(ILog& logger, const pcmn::Evaluator& evaluator, const net::Packet& packet, pcmn::IDecisionCallback& callback) 
 		: m_Packet(packet)
 		, m_Log(logger)
 		, m_Callback(callback)
+		, m_Evaluator(evaluator)
 	{
 		SCOPED_LOG(m_Log);
 	}
@@ -145,7 +146,7 @@ private:
 			if (i && static_cast<int>(m_Context.m_Data.m_Flop.size()) >= 2 + i)
 				flop.push_back(m_Context.m_Data.m_Flop[1 + i]);
 
-			result.push_back(s_Evaluator.GetEquity(first, second, flop, ranges));
+			result.push_back(m_Evaluator.GetEquity(first, second, flop, ranges));
 		}
 		return result;
 	}
@@ -162,7 +163,7 @@ private:
 	pcmn::TableContext m_Context;
 
 	//! Evaluator
-	static pcmn::Evaluator s_Evaluator;
+	const pcmn::Evaluator& m_Evaluator;
 
 	//! Player indexes map
 	typedef std::map<std::string, std::size_t> PlayersMap;
@@ -173,11 +174,8 @@ private:
 
 };
 
-pcmn::Evaluator Parser::Impl::s_Evaluator;
-
-
-Parser::Parser(ILog& logger, const net::Packet& packet, pcmn::IDecisionCallback& callback) 
-	: m_Impl(new Impl(logger, packet, callback))
+Parser::Parser(ILog& logger, const pcmn::Evaluator& evaluator, const net::Packet& packet, pcmn::IDecisionCallback& callback) 
+	: m_Impl(new Impl(logger, evaluator, packet, callback))
 {
 
 }

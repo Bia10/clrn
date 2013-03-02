@@ -33,3 +33,10 @@ message Packet
 	required Table Info		= 1;
 	repeated Phase Phases	= 2;
 }
+
+message Reply
+{
+	optional string Error = 1;
+	required uint32 Action = 2;
+	required uint32 Amount = 3;
+}
