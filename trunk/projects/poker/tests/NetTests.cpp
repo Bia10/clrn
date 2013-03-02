@@ -66,7 +66,7 @@ void TestFunc()
 	const net::IConnection::Ptr connection = clnt.Connect("127.0.0.1", 10000);
 
 	connection->Send(packet);
-	connection->Receive(boost::bind(&ReceiveFromServerCallback, _1, connection));
+	connection->Receive(boost::bind(&ReceiveFromServerCallback, _1, connection), 0);
 
 	srv.Run();
 	clnt.Run();

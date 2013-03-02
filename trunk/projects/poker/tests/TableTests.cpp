@@ -19,6 +19,7 @@
 #include <boost/random/random_device.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/make_shared.hpp>
+#include <boost/thread.hpp>
 
 using namespace pcmn;
 using namespace clnt;
@@ -55,7 +56,7 @@ std::string GetRandomString(std::size_t size = 10)
 class TestTable : public testing::TestWithParam<::std::tr1::tuple<int, int> >
 {
 public:
-	TestTable() : m_Server(new net::UDPHost(m_Log, 1)), m_Button(0), m_MaxBet(0)
+	TestTable() : m_Server(new net::UDPHost(m_Log, 2)), m_Button(0), m_MaxBet(0)
 	{
 		//m_Log.Open("tests.log", Modules::Table, ILog::Level::Debug);
 		m_Sender = m_Server->Connect("127.0.0.1", cfg::DEFAULT_PORT);
@@ -84,6 +85,7 @@ public:
 
 	~TestTable()
 	{
+		boost::this_thread::interruptible_wait(100);
 		m_Server->Stop();
 		m_Server->Wait();
 	}

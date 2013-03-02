@@ -37,7 +37,7 @@ namespace pcmn
 		{
 			CASE(One)
 			CASE(Two)
-			CASE(ThreeOrMOre)
+			CASE(ThreeOrMore)
 		default: return "unknown";
 		}
 #undef CASE
@@ -51,7 +51,7 @@ namespace pcmn
 		if (value == 2)
 			return Two;
 		else
-			return ThreeOrMOre;
+			return ThreeOrMore;
 	}
 
 	IActionsQueue::Event::Value Player::Do(IActionsQueue& actions, TableContext& table)

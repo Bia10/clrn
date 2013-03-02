@@ -58,9 +58,12 @@ public:
 		m_Socket->async_send_to(boost::asio::buffer(*buffer), m_Endpoint, boost::bind(&Connection::SendCallback, this, _1, buffer));
 	}
 
-	virtual void Receive(const IConnection::Callback& callback) override
+	virtual void Receive(const IConnection::Callback& callback, const google::protobuf::Message* message) override
 	{
 		SCOPED_LOG(m_Log);
+		if (message)
+			m_Message.reset(message->New());
+
 		const BufferPtr buffer(new Buffer(m_BufferSize));
 		ReceiveInBuffer(callback, buffer);
 	}

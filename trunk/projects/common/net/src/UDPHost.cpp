@@ -137,7 +137,7 @@ public:
 		const IConnection::Ptr connection(new Connection<Socket, Endpoint>(m_Log, socket, m_BufferSize, *m_Message));
 
 		for (std::size_t i = 0 ; i < m_Threads * 2; ++i)
-			connection->Receive(boost::bind(&Impl::ConnectionCallback, this, _1, connection, callback));
+			connection->Receive(boost::bind(&Impl::ConnectionCallback, this, _1, connection, callback), 0);
 	}
 
 	void ConnectionCallback(const google::protobuf::Message& message, const IConnection::Ptr& connection, const IHost::Callback& callback)
