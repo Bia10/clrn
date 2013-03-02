@@ -26,7 +26,6 @@ bool Logic::Run(TableContext& context)
 	for (int street = 0 ; street < 4; ++street)
 	{
 		PlayerQueue playerQueue;
-		pcmn::TableContext context;
 
 		// init queue
 		for (const pcmn::Player::Ptr& player : m_Players)
@@ -36,10 +35,20 @@ bool Logic::Run(TableContext& context)
 		playerQueue.push_back(playerQueue.front());
 		playerQueue.pop_front();
 
+		if (!street)
+		{
+			// add players on blinds
+			playerQueue.push_back(playerQueue[0]);
+			playerQueue.push_back(playerQueue[1]);
+		}
+
 		while (!playerQueue.empty())
 		{
 			const pcmn::Player::Ptr current = playerQueue.front();
 			playerQueue.pop_front();
+
+			if (current->State() == pcmn::Player::State::AllIn)
+				continue;
 
 			const pcmn::IActionsQueue::Event::Value result = current->Do(m_Actions, context);
 
@@ -54,7 +63,7 @@ bool Logic::Run(TableContext& context)
 			resultAction.m_PlayerIndex = m_PlayersIndexes[current->Name()];
 			resultAction.m_Street = street;
 			resultAction.m_PotAmount = context.m_Pot ? static_cast<float>(context.m_LastAmount) / context.m_Pot : 1;
-			resultAction.m_StackAmount = static_cast<float>(context.m_LastAmount) / current->Stack();
+			resultAction.m_StackAmount = current->Stack() ? static_cast<float>(context.m_LastAmount) / current->Stack() : 1;
 			resultAction.m_Position = GetPlayerPosition(m_Players, current);
 
 			assert(resultAction.m_PotAmount >= 0);
