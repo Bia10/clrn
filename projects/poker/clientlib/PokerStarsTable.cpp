@@ -323,7 +323,7 @@ void Table::OnBotAction()
 	// make a decision and react
 	SendStatistic();
 
-	m_Connection->Receive(boost::bind(&Table::ReceiveFromServerCallback, this, _1));
+	m_Connection->Receive(boost::bind(&Table::ReceiveFromServerCallback, this, _1), &net::Reply());
 }
 
 bool Table::IsPhaseCompleted(pcmn::Player& current, std::size_t& playersInPot)

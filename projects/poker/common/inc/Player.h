@@ -83,8 +83,8 @@ public:
 		{
 			One			= 0,
 			Two			= 1,
-			ThreeOrMOre	= 2,
-			Max			= ThreeOrMOre
+			ThreeOrMore	= 2,
+			Max			= ThreeOrMore
 		};
 		static std::string ToString(Value value);
 		static Value FromValue(unsigned value);

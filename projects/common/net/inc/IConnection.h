@@ -32,7 +32,7 @@ public:
 	virtual void Send(const google::protobuf::Message& message) = 0;
 
 	//! Receive callback
-	virtual void Receive(const Callback& callback) = 0;
+	virtual void Receive(const Callback& callback, const google::protobuf::Message* message = 0) = 0;
 };
 
 
