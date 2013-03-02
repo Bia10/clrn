@@ -33,6 +33,7 @@ class NoPlayers : std::exception
 
 };
 
+
 std::string GetRandomString(std::size_t size = 10)
 {
 	static const std::string chars(
@@ -60,12 +61,14 @@ public:
 		m_Sender = m_Server->Connect("127.0.0.1", cfg::DEFAULT_PORT);
 		m_Table.reset(new ps::Table(m_Log, m_Sender));
 		memset(m_DeadCards, 0, _countof(m_DeadCards));
+
+		Player::ThisPlayer().Name("CLRN");
 		
 		Evaluator ev;
 		for (int i = 0 ; i < ::std::tr1::get<0>(GetParam()); ++i)
 		{
 			const Player::Ptr player = boost::make_shared<Player>(std::string("Player_") + boost::lexical_cast<std::string>(i), 10000000);
-
+			 
 			Card::List cards(2);
 			cards[0].FromEvalFormat(ev.GetRandomCard(m_DeadCards));
 			cards[1].FromEvalFormat(ev.GetRandomCard(m_DeadCards));
@@ -259,6 +262,38 @@ public:
 			m_Table->PlayerAction("TRUKHANOFF", Action::Fold, 0);
 			m_Table->PlayerAction("LE CHACAL53", Action::Fold, 0);
 			m_Table->PlayerAction("fialka03", Action::Fold, 0);
+		}
+
+		{
+			m_Players = boost::assign::list_of
+				(boost::make_shared<Player>("ttommi", 488))
+				(boost::make_shared<Player>("tonycry75", 970))
+				(boost::make_shared<Player>("Shaggs1981", 398))
+				(boost::make_shared<Player>("sevenup_king", 308))
+				(boost::make_shared<Player>(Player::ThisPlayer().Name(), 378))
+				(boost::make_shared<Player>("TRUKHANOFF", 576))
+				(boost::make_shared<Player>("LE CHACAL53", 692))
+				(boost::make_shared<Player>("fialka03", 666));
+
+
+			m_Table->PlayersInfo(m_Players);
+
+			Card card1;
+			card1.m_Suit = Suit::Diamonds;
+			card1.m_Value = Card::Ace;
+
+			Card card2;
+			card2.m_Suit = Suit::Diamonds;
+			card2.m_Value = Card::King;
+
+			m_Table->BotCards(card1, card2);
+
+			m_Table->PlayerAction("TRUKHANOFF", Action::SmallBlind, 15);
+			m_Table->PlayerAction("fialka03", Action::Raise, 60);
+			m_Table->PlayerAction("ttommi", Action::Fold, 0);
+			m_Table->PlayerAction("tonycry75", Action::Raise, 970);
+			m_Table->PlayerAction("Shaggs1981", Action::Fold, 0);
+			m_Table->PlayerAction("sevenup_king", Action::Fold, 0);
 		}
 
 		{

@@ -25,7 +25,7 @@ namespace pcmn
 				return BetSize::VeryLow;
 			if (value < 0.3f)
 				return BetSize::Low;
-			if (value < 1.1f)
+			if (value < 0.6f)
 				return BetSize::Normal;
 			if (value < 2.0f)
 				return BetSize::High;

@@ -207,6 +207,7 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 			return;
 		default: assert(false);
 	}
+	
 
 	std::size_t playersInPot = 0;
 	if (action != pcmn::Action::SmallBlind && IsPhaseCompleted(current, playersInPot))
@@ -217,11 +218,11 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 			ProcessWinners(playersInPot);
 
 		return;
-	}
+	}*/
 
 	if (pcmn::Player::ThisPlayer().Name() == next.Name())
 		OnBotAction(); // our turn to play
-		*/
+	
 }
 
 void Table::FlopCards(const pcmn::Card::List& cards)
@@ -320,6 +321,9 @@ pcmn::Player& Table::GetPreviousPlayer(const std::string& name)
 void Table::OnBotAction()
 {
 	// make a decision and react
+	SendStatistic();
+
+	m_Connection->Receive(boost::bind(&Table::ReceiveFromServerCallback, this, _1));
 }
 
 bool Table::IsPhaseCompleted(pcmn::Player& current, std::size_t& playersInPot)
@@ -567,6 +571,11 @@ void Table::SendStatistic()
 void Table::CloseWindow()
 {
 
+}
+
+void Table::ReceiveFromServerCallback(const google::protobuf::Message& message)
+{
+	LOG_TRACE("Received decision from server: [%s]") % message.ShortDebugString();
 }
 
 

@@ -50,7 +50,7 @@ namespace pcmn
 		static std::string ToString(Value value);
 		static Value FromString(const char value);
 		short ToEvalFormat() const;
-		void FromEvalFormat(short value);
+		const Card& FromEvalFormat(short value); 
 
 		Value m_Value;
 		Suit::Value m_Suit;

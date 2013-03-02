@@ -60,7 +60,7 @@ short pcmn::Card::ToEvalFormat() const
 	return 0;
 }
 
-void pcmn::Card::FromEvalFormat(short value)
+const pcmn::Card& pcmn::Card::FromEvalFormat(short value)
 {
 	m_Value = static_cast<Value>(Ace - value / 4);
 	int rest = value % 4;
@@ -71,6 +71,7 @@ void pcmn::Card::FromEvalFormat(short value)
 	case 2: m_Suit =  Suit::Diamonds; break;
 	case 3: m_Suit =  Suit::Clubs; break;
 	}
+	return *this;
 }
 
 std::string pcmn::Suit::ToString(Value value)
