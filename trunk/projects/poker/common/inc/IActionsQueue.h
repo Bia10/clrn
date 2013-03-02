@@ -19,7 +19,7 @@ public:
 			Fold			= 0,
 			Call			= 1,
 			Raise			= 2,
-			NeedDecition	= 3
+			NeedDecision	= 3
 		};
 	};
 

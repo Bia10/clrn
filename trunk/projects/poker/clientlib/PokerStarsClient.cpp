@@ -6,6 +6,7 @@
 #include "FileSystem.h"
 #include "UDPHost.h"
 #include "Player.h"
+#include "Config.h"
 
 #include <windows.h>
 
@@ -44,7 +45,7 @@ void Client::HandleMessage(HWND hWnd, UINT Msg, WPARAM /*wParam*/, LPARAM lParam
 		Tables::const_iterator it = m_Tables.find(hWnd);
 		if (it == m_Tables.end())
 		{
-			const net::IConnection::Ptr connection = m_Server->Connect("127.0.0.1", 5000);
+			const net::IConnection::Ptr connection = m_Server->Connect("127.0.0.1", cfg::DEFAULT_PORT);
 			it = m_Tables.insert(std::make_pair(hWnd, ITable::Ptr(new ps::Table(m_Log, connection)))).first;
 		}
 	

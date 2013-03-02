@@ -2,6 +2,7 @@
 #include "SQLiteDB.h"
 #include "FileSystem.h"
 #include "Exception.h"
+#include "Config.h"
 
 #include <boost/thread/mutex.hpp>
 #include <boost/format.hpp>
@@ -98,7 +99,7 @@ Impl(ILog& logger) : m_Log(logger), m_DB(new sql::SQLiteDataBase(m_Log))
 	TRY 
 	{
 		SCOPED_LOG(m_Log);
-		const std::string path = fs::FullPath("stat.db");
+		const std::string path = fs::FullPath(cfg::DB_FILE_NAME);
 		CHECK(fs::Exists(path), "Failed to find database", path);
 		m_DB->Open(path);
 	}

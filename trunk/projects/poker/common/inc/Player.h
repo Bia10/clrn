@@ -87,6 +87,7 @@ public:
 			Max			= ThreeOrMOre
 		};
 		static std::string ToString(Value value);
+		static Value FromValue(unsigned value);
 	};
 
 	typedef boost::shared_ptr<Player> Ptr;

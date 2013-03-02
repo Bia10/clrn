@@ -17,9 +17,17 @@ namespace pcmn
 class IDecisionCallback
 {
 public:
+	typedef std::deque<pcmn::Player::Ptr> PlayerQueue;
+
 	virtual ~IDecisionCallback() {}
 
-	virtual void MakeDecision() = 0;
+	virtual void MakeDecision
+	(	
+		const Player& player, 
+		const PlayerQueue& activePlayers,
+		const TableContext& context,
+		const Player::Position::Value position
+	) = 0;
 };
 
 //! Poker table logic implementation

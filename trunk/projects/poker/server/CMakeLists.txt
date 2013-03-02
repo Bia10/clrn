@@ -17,4 +17,5 @@ target_link_libraries(server
 	evaluator 
 	protocols
 	libprotobuf
+	neuro
 )

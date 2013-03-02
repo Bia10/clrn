@@ -4,6 +4,7 @@
 #include "FileSystem.h"
 #include "../neuro/NetworkTeacher.h"
 #include "../neuro/NeuroNetwork.h"
+#include "Config.h"
 
 #include "wx/msgdlg.h"
 
@@ -12,9 +13,6 @@
 
 namespace tchr
 {
-
-const char DATA_FILE_NAME[] = "train_data.txt";
-const char NETWORK_FILE_NAME[] = "teached_network.txt";
 
 Teacher::Teacher() 
 	: TeacherMainFrame(NULL)
@@ -89,7 +87,7 @@ void Teacher::OnSave(wxCommandEvent& event)
 	{
 		AddParameters();
 
-		const std::string path = fs::FullPath(DATA_FILE_NAME);
+		const std::string path = fs::FullPath(cfg::DATA_FILE_NAME);
 		std::ofstream file(path.c_str(), std::ios_base::out);
 		CHECK(file.is_open(), path);
 
@@ -267,7 +265,7 @@ void Teacher::OnLoad(wxCommandEvent& event)
 {
 	try
 	{
-		const std::string path = fs::FullPath(DATA_FILE_NAME);
+		const std::string path = fs::FullPath(cfg::DATA_FILE_NAME);
 		std::ifstream file(path.c_str(), std::ios_base::in);
 		CHECK(file.is_open(), path);
 
@@ -305,11 +303,11 @@ void Teacher::OnLoad(wxCommandEvent& event)
 
 void Teacher::OnTeach(wxCommandEvent& event)
 {
-	neuro::NetworkTeacher teacher(NETWORK_FILE_NAME);
+	neuro::NetworkTeacher teacher(cfg::NETWORK_FILE_NAME);
 
 	std::vector<float> in;
 	std::vector<float> out;
-	for (std::size_t i = 0; i < 50000; ++i)
+	for (std::size_t i = 0; i < cfg::TEACH_REPETITIONS_COUNT; ++i)
 	{
 		for (const neuro::Params& params : m_Parameters)
 		{
@@ -323,7 +321,7 @@ void Teacher::OnTeach(wxCommandEvent& event)
 
 void Teacher::OnTest(wxCommandEvent& event)
 {
-	neuro::Network net(NETWORK_FILE_NAME);
+	neuro::Network net(cfg::NETWORK_FILE_NAME);
 
 	std::vector<float> in;
 	std::vector<float> out;

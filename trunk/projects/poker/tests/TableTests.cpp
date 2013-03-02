@@ -57,7 +57,7 @@ public:
 	TestTable() : m_Server(new net::UDPHost(m_Log, 1)), m_Button(0), m_MaxBet(0)
 	{
 		//m_Log.Open("tests.log", Modules::Table, ILog::Level::Debug);
-		m_Sender = m_Server->Connect("127.0.0.1", 5000);
+		m_Sender = m_Server->Connect("127.0.0.1", cfg::DEFAULT_PORT);
 		m_Table.reset(new ps::Table(m_Log, m_Sender));
 		memset(m_DeadCards, 0, _countof(m_DeadCards));
 		

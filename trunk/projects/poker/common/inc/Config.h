@@ -20,6 +20,18 @@ namespace cfg
 	static const int HIDDEN_NEIRONS_COUNT = 3;
 	static const int INPUT_COUNT = 9;
 	static const int OUTPUT_COUNT = 3;
+	static const char NETWORK_FILE_NAME[] = "neuro.txt";
+	static const int TEACH_REPETITIONS_COUNT = 50000;
+
+	// network
+	static const int DEFAULT_PORT = 5000;
+
+	// server
+	static const int THREADS_COUNT = 4;
+	static const char DB_FILE_NAME[] = "stat.db"; 
+
+	// teacher
+	static const char DATA_FILE_NAME[] = "train_data.txt";
 };
 
 #endif // Config_h__
