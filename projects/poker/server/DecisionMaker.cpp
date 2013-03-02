@@ -81,6 +81,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& 
 	
 		if (out[0] > out[1] && out[0] > out[2])
 		{
+			reply.set_amount(0);
 			if (player.Bet() == context.m_MaxBet)
 				reply.set_action(pcmn::Action::Check);
 			else
@@ -118,7 +119,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& 
 			% pcmn::Player::Style::ToString(params.m_BotStyle)
 			% pcmn::StackSize::ToString(params.m_BotStackSize);
 
-		LOG_TRACE("Decision output: action: [%s], amount: [%s]") % reply.action() % reply.amount();
+		LOG_TRACE("Decision output: [%s]") % reply.ShortDebugString();
 	
 		m_Connection.Send(reply);
 	}
@@ -129,7 +130,7 @@ pcmn::WinRate::Value DecisionMaker::GetPlayerWinRate(const pcmn::Player& player,
 {
 	SCOPED_LOG(m_Log);
 
-	assert(player.Cards().size() == 2);
+	CHECK(player.Cards().size() == 2, "Player cards info is invalid", player.Cards().size());
 
 	int players = activePlayers.size();
 	if (players > cfg::MAX_EQUITY_PLAYERS)

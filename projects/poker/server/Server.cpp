@@ -32,7 +32,7 @@ public:
 	{
 		m_Log.Open("1", Modules::Server, ILog::Level::Trace);
 		m_Log.Open("1", Modules::TableLogic, ILog::Level::Trace);
-		m_Log.Open("1", Modules::DataBase, ILog::Level::Trace);
+		m_Log.Open("1", Modules::DataBase, ILog::Level::Warning);
 
 		m_Client->Receive(boost::bind(&Impl::HandleRequest, this, _1, _2), net::Packet(), cfg::DEFAULT_PORT);
 	}

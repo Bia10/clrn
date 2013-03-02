@@ -52,7 +52,8 @@ public:
 			m_Message.reset(message.New());
 
 		const BufferPtr buffer(new Buffer(message.ByteSize()));
-		CHECK(message.SerializeToArray(&buffer->front(), buffer->size()));
+		CHECK(message.IsInitialized(), "Message is not initialized", message.ShortDebugString());
+		CHECK(message.SerializeToArray(&buffer->front(), buffer->size()), message.ShortDebugString());
 
 		m_Socket->async_send_to(boost::asio::buffer(*buffer), m_Endpoint, boost::bind(&Connection::SendCallback, this, _1, buffer));
 	}

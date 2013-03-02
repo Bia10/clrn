@@ -15,6 +15,7 @@
 #include <boost/function.hpp>
 #include <boost/make_shared.hpp>
 #include <boost/noncopyable.hpp>
+#include <boost/assign.hpp>
 
 namespace srv
 {
@@ -68,6 +69,12 @@ public:
 			}
 
 			prev = activePlayers[i];
+		}
+
+		for (const pcmn::TableContext::Data::Hand& hand : m_Context.m_Data.m_Hands)
+		{
+			const pcmn::Card::List cards = boost::assign::list_of(pcmn::Card().FromEvalFormat(hand.m_Cards[0]))(pcmn::Card().FromEvalFormat(hand.m_Cards[1]));
+			activePlayers[hand.m_PlayerIndex]->Cards(cards);
 		}
 
 		while (activePlayers.front()->Name() != m_Context.m_Data.m_Players[m_Packet.info().button()].m_Name)

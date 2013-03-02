@@ -75,6 +75,9 @@ private:
 	//! Close window
 	void CloseWindow();
 
+	//! Server reply callback
+	void ReceiveFromServerCallback(const google::protobuf::Message& message);
+
 
 private:
 
