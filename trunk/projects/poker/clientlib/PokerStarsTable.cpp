@@ -9,6 +9,7 @@
 #include <boost/functional/factory.hpp>
 #include <boost/bind.hpp>
 #include <boost/assign.hpp>
+#include <boost/thread.hpp>
 
 namespace clnt
 {
@@ -17,6 +18,12 @@ namespace ps
 
 Table::Factory Table::s_Factory;
 const std::size_t CURRENT_MODULE_ID = Modules::Table;
+const float FOLD_X = 1.7864864864864864864864864864865f;
+const float FOLD_Y = 1.0579374275782155272305909617613f;
+const float CHECK_CALL_X = 1.3628865979381443298969072164948f;
+const float CHECK_CALL_Y = FOLD_Y;
+const float BET_X = 1.1016666666666666666666666666667f;
+const float BET_Y = FOLD_Y;
 
 template<typename T, typename F, typename A>
 void Register(F& factory, A& arg)
@@ -46,8 +53,9 @@ void BytesToString(Stream& stream, const void* data, std::size_t size)
 	}
 }
 
-Table::Table(ILog& logger, const net::IConnection::Ptr& connection) 
+Table::Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection) 
 	: m_Log(logger)
+	, m_Window(window)
 	, m_Phase(Phase::Preflop)
 	, m_SmallBlindAmount(0)
 	, m_Pot(0)
@@ -578,6 +586,46 @@ void Table::ReceiveFromServerCallback(const google::protobuf::Message& message)
 	LOG_TRACE("Received decision from server: [%s]") % message.ShortDebugString();
 }
 
+void Table::PressButton(const float x, const float y)
+{
+	RECT rect;
+	CHECK(GetWindowRect(m_Window, &rect));
+
+	const LPARAM param = MAKELPARAM(static_cast<float>(rect.right - rect.left) / x, static_cast<float>(rect.bottom - rect.top) / y);
+	CHECK(PostMessage(m_Window, WM_LBUTTONDOWN, (WPARAM)MK_LBUTTON, param));
+	boost::this_thread::interruptible_wait(100);
+	CHECK(PostMessage(m_Window, WM_LBUTTONUP, NULL, param));
+	boost::this_thread::interruptible_wait(100);
+}
+
+void Table::Fold()
+{
+	PressButton(FOLD_X, FOLD_Y);
+}
+
+void Table::CheckCall()
+{
+	PressButton(CHECK_CALL_X, CHECK_CALL_Y);
+	PressButton(BET_X, BET_Y); // in case of all in call
+}
+
+void Table::BetRaise(unsigned amount)
+{
+	const HWND slider = FindWindowEx(m_Window, NULL, "PokerStarsSliderClass", NULL);	
+	CHECK(slider != NULL, "Failed to find slider");
+	const HWND editor = FindWindowEx(slider, NULL, "PokerStarsSliderEditorClass", NULL);
+	CHECK(editor != NULL, "Failed to find editor");
+
+	const std::string value = boost::lexical_cast<std::string>(amount);
+	SendMessage(editor, WM_SETTEXT, NULL, reinterpret_cast<LPARAM>(value.c_str()));
+
+	PressButton(BET_X, BET_Y);
+}
+
+
 
 } // namespace ps
 } // namespace clnt
+
+
+
