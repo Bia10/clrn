@@ -243,6 +243,69 @@ public:
 	{
 		{
 			m_Players = boost::assign::list_of
+				(boost::make_shared<Player>("deathfight58", 416))
+				(boost::make_shared<Player>("batispedro", 476))
+				(boost::make_shared<Player>("BOIRA52", 476))
+				(boost::make_shared<Player>("lili544", 496))
+				(boost::make_shared<Player>("Mr.Speedy66", 634))
+				(boost::make_shared<Player>("gogo7211", 496))
+				(boost::make_shared<Player>("Robertilio", 496))
+				(boost::make_shared<Player>("isaac1111", 496))
+				(boost::make_shared<Player>("521710", 496))
+				;
+			m_Table->PlayersInfo(m_Players);
+
+			m_Table->PlayerAction("BOIRA52", Action::SmallBlind, 10);
+			m_Table->PlayerAction("Mr.Speedy66", Action::Fold, 0);
+			m_Table->PlayerAction("gogo7211", Action::Fold, 0);
+			m_Table->PlayerAction("Robertilio", Action::Fold, 0);
+			m_Table->PlayerAction("isaac1111", Action::Raise, 100);
+			m_Table->PlayerAction("521710", Action::Fold, 0);
+			m_Table->PlayerAction("deathfight58", Action::Fold, 0);
+			m_Table->PlayerAction("batispedro", Action::Call, 100);
+			m_Table->PlayerAction("BOIRA52", Action::Fold, 0);
+			m_Table->PlayerAction("lili544", Action::Call, 80);
+			{const Card::List flopCards = boost::assign::list_of
+				(Card(Card::Four, Suit::Diamonds))
+				(Card(Card::Nine, Suit::Spades))
+				(Card(Card::Seven, Suit::Hearts))
+				;
+			m_Table->FlopCards(flopCards);}
+
+			m_Table->PlayerAction("lili544", Action::Check, 0);
+			m_Table->PlayerAction("isaac1111", Action::Bet, 200);
+			m_Table->PlayerAction("batispedro", Action::Raise, 376);
+			m_Table->PlayerAction("lili544", Action::Call, 376);
+			m_Table->PlayerAction("isaac1111", Action::Call, 176);
+			{const Card::List flopCards = boost::assign::list_of
+				(Card(Card::Four, Suit::Diamonds))
+				(Card(Card::Nine, Suit::Spades))
+				(Card(Card::Seven, Suit::Hearts))
+				(Card(Card::King, Suit::Spades))
+				;
+			m_Table->FlopCards(flopCards);}
+
+			m_Table->PlayerAction("lili544", Action::Check, 0);
+			m_Table->PlayerAction("isaac1111", Action::Check, 0);
+			{const Card::List flopCards = boost::assign::list_of
+				(Card(Card::Four, Suit::Diamonds))
+				(Card(Card::Nine, Suit::Spades))
+				(Card(Card::Seven, Suit::Hearts))
+				(Card(Card::King, Suit::Spades))
+				(Card(Card::Jack, Suit::Diamonds))
+				;
+			m_Table->FlopCards(flopCards);}
+
+			m_Table->PlayerAction("lili544", Action::Check, 0);
+			m_Table->PlayerAction("isaac1111", Action::Check, 0);
+			m_Table->PlayerAction("batispedro", Action::Loose, 0);
+			m_Table->PlayerAction("batispedro", Action::Rank, 9);
+
+			m_Table->PlayersInfo(m_Players);
+		}
+		/*
+		{
+			m_Players = boost::assign::list_of
 				(boost::make_shared<Player>("ttommi", 488))
 				(boost::make_shared<Player>("tonycry75", 970))
 				(boost::make_shared<Player>("Shaggs1981", 398))
@@ -366,7 +429,7 @@ public:
 			m_Table->PlayerAction("loboda1968", Action::Rank, 7);
 
 			m_Table->PlayersInfo(m_Players);
-		}
+		}*/
 	}
 
 private:

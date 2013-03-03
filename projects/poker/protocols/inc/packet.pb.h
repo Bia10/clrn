@@ -95,14 +95,14 @@ class Packet_Player : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // required string Name = 1;
+  // required bytes Name = 1;
   inline bool has_name() const;
   inline void clear_name();
   static const int kNameFieldNumber = 1;
   inline const ::std::string& name() const;
   inline void set_name(const ::std::string& value);
   inline void set_name(const char* value);
-  inline void set_name(const char* value, size_t size);
+  inline void set_name(const void* value, size_t size);
   inline ::std::string* mutable_name();
   inline ::std::string* release_name();
   
@@ -667,7 +667,7 @@ class Reply : public ::google::protobuf::Message {
 
 // Packet_Player
 
-// required string Name = 1;
+// required bytes Name = 1;
 inline bool Packet_Player::has_name() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -700,7 +700,7 @@ inline void Packet_Player::set_name(const char* value) {
   }
   name_->assign(value);
 }
-inline void Packet_Player::set_name(const char* value, size_t size) {
+inline void Packet_Player::set_name(const void* value, size_t size) {
   set_has_name();
   if (name_ == &::google::protobuf::internal::kEmptyString) {
     name_ = new ::std::string;

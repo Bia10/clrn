@@ -62,6 +62,8 @@ public:
 				m_Packet.info().players(i).stack()
 			);
 
+			activePlayers[i]->Index(i);
+
 			if (prev)
 			{
 				activePlayers[i]->SetPrevious(prev);

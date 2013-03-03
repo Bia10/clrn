@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "TableContext.h"
+#include "Exception.h"
 
 namespace pcmn
 {
@@ -58,9 +59,13 @@ namespace pcmn
 	{
 		Action::Value action = Action::Unknown;
 		unsigned amount = 0;
+		unsigned player = 0;
 
-		if (!actions.Extract(action, amount))
+		if (!actions.Extract(action, amount, player))
 			return IActionsQueue::Event::NeedDecision;
+
+		assert(player == m_Index);
+		CHECK(player == m_Index, player, m_Index);
 
 		if (!table.m_BigBlind)
 		{

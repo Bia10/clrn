@@ -103,6 +103,7 @@ public:
 		, m_WinSize(0)
 		, m_Result()
 		, m_State(State::Waiting)
+		, m_Index(0)
 	{
 		m_Styles.resize(4, Style::Normal);
 	}
@@ -115,6 +116,7 @@ public:
 		, m_WinSize(0)
 		, m_Result()
 		, m_State(State::Waiting)
+		, m_Index(0)
 	{
 		m_Styles.resize(4, Style::Normal);
 	}
@@ -136,6 +138,8 @@ public:
 	void WinSize(std::size_t val)			{ m_WinSize = val; }
 	State::Value State() const				{ return m_State; }
 	void State(State::Value val)			{ m_State = val; }
+	std::size_t Index() const				{ return m_Index; }
+	void Index(std::size_t val)				{ m_Index = val; }
 
 	void SetStyle(std::size_t phase, Style::Value style)
 	{
@@ -165,16 +169,17 @@ public:
 
 private:
 	std::string m_Name;		
-	std::string m_Country;	
 	std::size_t m_Stack;
-	std::size_t m_Bet;		//!< player bet on this street
-	std::size_t m_WinSize;	//!< player possible win size
-	Styles m_Styles;		//!< player styles during this game
-	Result::Value m_Result;	//!< player game result
-	Card::List m_Cards;		//!< player cards
-	State::Value m_State;	//!< player state
+	std::size_t m_Bet;				//!< player bet on this street
+	Card::List m_Cards;				//!< player cards
+	State::Value m_State;			//!< player state
 	Player::WeakPtr m_Next;			//!< next player on the table
 	Player::WeakPtr m_Previous;		//!< previous player on the table
+	std::size_t m_Index;			//!< player index
+	std::string m_Country;	
+	std::size_t m_WinSize;			//!< player possible win size
+	Styles m_Styles;				//!< player styles during this game
+	Result::Value m_Result;			//!< player game result
 };
 }
 

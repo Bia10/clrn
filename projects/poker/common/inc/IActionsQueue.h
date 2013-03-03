@@ -26,7 +26,7 @@ public:
 public:
 	virtual ~IActionsQueue() {}
 
-	virtual bool Extract(Action::Value& action, unsigned& amount) const = 0;
+	virtual bool Extract(Action::Value& action, unsigned& amount, unsigned& player) const = 0;
 };
 
 }
