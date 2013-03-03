@@ -50,7 +50,10 @@ bool Logic::Run(TableContext& context)
 			playerQueue.pop_front();
 
 			if (current->State() == pcmn::Player::State::AllIn)
+			{
+				EraseActivePlayer(current);
 				continue;
+			}
 
 			const pcmn::IActionsQueue::Event::Value result = current->Do(m_Actions, context);
 			const Player::Position::Value position = GetPlayerPosition(m_Players, current);
@@ -76,23 +79,17 @@ bool Logic::Run(TableContext& context)
 
 			if (result == pcmn::IActionsQueue::Event::Raise)
 			{
-				pcmn::Player::Ptr next = playerQueue.back()->GetNext();
+				pcmn::Player::Ptr next = playerQueue.empty() ? current->GetNext() : playerQueue.back()->GetNext();
 				while (next != current)
 				{
-					if (next->State() != pcmn::Player::State::AllIn)
-						playerQueue.push_back(next);
+					playerQueue.push_back(next);
 
 					next = next->GetNext();
 				}
 			}
 			else
 			if (result == pcmn::IActionsQueue::Event::Fold)
-			{
-				const PlayerQueue::iterator it = std::find(m_Players.begin(), m_Players.end(), current);
-				assert(it != m_Players.end());
-				(*it)->DeleteLinks();
-				m_Players.erase(it);
-			}
+				EraseActivePlayer(current);
 		}
 
 		if (m_Players.size() < 2)
@@ -129,6 +126,14 @@ void Logic::Parse()
 
 	for (std::size_t i = 0 ; i < m_Players.size(); ++i)
 		m_PlayersIndexes.insert(std::make_pair(m_Players[i]->Name(), i));
+}
+
+void Logic::EraseActivePlayer(const Player::Ptr& player)
+{
+	const PlayerQueue::iterator it = std::find(m_Players.begin(), m_Players.end(), player);
+	assert(it != m_Players.end());
+	(*it)->DeleteLinks();
+	m_Players.erase(it);
 }
 
 }

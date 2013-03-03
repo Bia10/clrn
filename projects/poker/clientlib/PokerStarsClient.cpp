@@ -46,7 +46,7 @@ void Client::HandleMessage(HWND hWnd, UINT Msg, WPARAM /*wParam*/, LPARAM lParam
 		if (it == m_Tables.end())
 		{
 			const net::IConnection::Ptr connection = m_Server->Connect("127.0.0.1", cfg::DEFAULT_PORT);
-			it = m_Tables.insert(std::make_pair(hWnd, ITable::Ptr(new ps::Table(m_Log, connection)))).first;
+			it = m_Tables.insert(std::make_pair(hWnd, ITable::Ptr(new ps::Table(m_Log, hWnd, connection)))).first;
 		}
 	
 		lock.unlock();

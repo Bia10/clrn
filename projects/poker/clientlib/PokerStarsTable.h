@@ -31,7 +31,7 @@ class Table : public ITable
 	typedef std::vector<ActionDesc> Actions;
 	typedef std::vector<Actions> GameActions;
 public:
-	Table(ILog& logger, const net::IConnection::Ptr& connection);
+	Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection);
 
 private:
 	virtual void HandleMessage(const dasm::WindowMessage& message) override;
@@ -78,6 +78,17 @@ private:
 	//! Server reply callback
 	void ReceiveFromServerCallback(const google::protobuf::Message& message);
 
+	//! Press button
+	void PressButton(const float x, const float y);
+
+	//! Fold
+	void Fold();
+
+	//! Call or check
+	void CheckCall();
+
+	//! Bet or raise
+	void BetRaise(unsigned amount);
 
 private:
 
@@ -86,6 +97,9 @@ private:
 
 	//! Logger 
 	ILog&							m_Log;
+
+	//! Window handle
+	const HWND						m_Window;
 
 	//! Players
 	pcmn::Player::List				m_Players;
