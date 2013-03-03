@@ -43,6 +43,8 @@ Action::Value ConvertAction(const char action)
 	case 0x2 : return Action::WinCards; // win with combination of cards
 	case 'M' : return Action::Loose; // cards not showed
 	case 't' : return Action::SecondsLeft; // time left?
+	case 'f' : return Action::ShowCards; // show cards before fold
+	case 'z' : return Action::Fold;	// show cards and fold
 	default: return Action::Unknown;
 	}
 
@@ -115,7 +117,7 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 
 	data += sizeof(DWORD);
 
-	const Action::Value actionValue = ConvertAction(action);
+	Action::Value actionValue = ConvertAction(action);
 
 	const std::string name(data);
 	if (actionValue == Action::ShowCards)
@@ -148,11 +150,11 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 	else
 	{
 		LOG_TRACE("Player: '%s', action: '%p', amount: '%s'") % data % Action::ToString(actionValue) % amount;
-	}
 
-	CHECK(actionValue != Action::Unknown, static_cast<int>(action));
-	if (!name.empty())
-		table.PlayerAction(name, actionValue, amount);
+		CHECK(actionValue != Action::Unknown, static_cast<int>(action));
+		if (!name.empty())
+			table.PlayerAction(name, actionValue, amount);
+	}
 }
 
 
@@ -202,6 +204,9 @@ void PlayerCards::Process(const dasm::WindowMessage& message, ITable& table) con
 
 	Card first(static_cast<Card::Value>(data[0x16]), static_cast<Suit::Value>(data[0x15]));
 	Card second(static_cast<Card::Value>(data[0x19]), static_cast<Suit::Value>(data[0x18]));
+
+	if (!first.IsValid() || !second.IsValid())
+		return;
 
 	if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Trace))
 	{
@@ -286,11 +291,19 @@ void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) cons
 		if (*data < 0x20)
 			break;
 
-		players.push_back(boost::make_shared<Player>(data, 0));
+		const std::string name(data);
+
+		if (name.size() < 2)
+			continue;
+
+		players.push_back(boost::make_shared<Player>(name, 0));
 	
 		for (int i = 0 ; i < 3 && data < end; ++i)
 			data = std::find(data + 1, end, 0xff);
 	}
+
+	if (players.empty())
+		return;
 
 	unsigned index = 0;
 	data = message.m_Block.m_Data + message.m_Block.m_Offset;

@@ -10,6 +10,8 @@
 #include <boost/bind.hpp>
 #include <boost/assign.hpp>
 #include <boost/thread.hpp>
+#include <boost/random/uniform_int_distribution.hpp>
+#include <boost/random/random_device.hpp>
 
 namespace clnt
 {
@@ -129,13 +131,20 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 			m_OnButton = GetPreviousPlayer(name).Name();
 	}
 
-	pcmn::Player& current = GetPlayer(name);
-	pcmn::Player& next = GetNextPlayer(name);
+	const pcmn::Player& current = GetPlayer(name);
+	const pcmn::Player& next = GetNextPlayer(name);
 
 	if (action == pcmn::Action::SmallBlind)
 	{
 		m_OnButton = GetPreviousPlayer(current.Name()).Name();
-		m_Actions[m_Phase].push_back(ActionDesc(next.Name(), pcmn::Action::BigBlind, amount * 2));
+		PlayerAction(next.Name(), pcmn::Action::BigBlind, amount * 2);
+	}
+
+	if (action == pcmn::Action::Rank && amount < 3)
+	{
+		// game finished
+		SendStatistic();
+		CloseTableWindow(); 
 	}
 
 	/*
@@ -576,26 +585,66 @@ void Table::SendStatistic()
 	}
 }
 
-void Table::CloseWindow()
+void Table::CloseTableWindow()
 {
-
+	CHECK(PostMessage(m_Window, WM_SYSCOMMAND, SC_CLOSE, 0), GetLastError());
 }
 
 void Table::ReceiveFromServerCallback(const google::protobuf::Message& message)
 {
 	LOG_TRACE("Received decision from server: [%s]") % message.ShortDebugString();
+
+	const net::Reply& reply = dynamic_cast<const net::Reply&>(message);
+
+	const pcmn::Action::Value action = static_cast<pcmn::Action::Value>(reply.action());
+
+	switch (action)
+	{
+	case pcmn::Action::Fold:
+		Fold();
+		break;
+	case pcmn::Action::Check:
+	case pcmn::Action::Call:
+		CheckCall();
+		break;
+	case pcmn::Action::Bet:
+	case pcmn::Action::Raise:
+		BetRaise(reply.amount());
+		break;
+	default:
+		assert(false);
+	}
 }
 
 void Table::PressButton(const float x, const float y)
 {
+	boost::thread(boost::bind(&Table::PressButtonThread, this, x, y));
+}
+
+void Table::PressButtonThread(const float x, const float y)
+{
+	SCOPED_LOG(m_Log);
+
+	static boost::random::random_device rng;
+	boost::random::uniform_int_distribution<> wait(100, 4000);
+
+	boost::this_thread::interruptible_wait(wait(rng));
+
 	RECT rect;
 	CHECK(GetWindowRect(m_Window, &rect));
 
-	const LPARAM param = MAKELPARAM(static_cast<float>(rect.right - rect.left) / x, static_cast<float>(rect.bottom - rect.top) / y);
+	const float resultX = static_cast<float>(rect.right - rect.left) / x;
+	const float resultY = static_cast<float>(rect.bottom - rect.top) / y;
+
+	LOG_TRACE("Pressing to: x='%s', y='%s'") % resultX % resultY;
+
+	const LPARAM param = MAKELPARAM(resultX, resultY);
 	CHECK(PostMessage(m_Window, WM_LBUTTONDOWN, (WPARAM)MK_LBUTTON, param));
-	boost::this_thread::interruptible_wait(100);
+
+	boost::random::uniform_int_distribution<> up(50, 200);
+
+	boost::this_thread::interruptible_wait(up(rng));
 	CHECK(PostMessage(m_Window, WM_LBUTTONUP, NULL, param));
-	boost::this_thread::interruptible_wait(100);
 }
 
 void Table::Fold()

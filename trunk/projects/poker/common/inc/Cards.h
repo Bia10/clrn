@@ -51,6 +51,7 @@ namespace pcmn
 		static Value FromString(const char value);
 		short ToEvalFormat() const;
 		const Card& FromEvalFormat(short value); 
+		bool IsValid() const;
 
 		Value m_Value;
 		Suit::Value m_Suit;

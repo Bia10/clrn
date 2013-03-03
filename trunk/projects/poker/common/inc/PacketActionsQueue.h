@@ -13,7 +13,7 @@ public:
 
 	PacketActions(const net::Packet& packet);
 
-	virtual bool Extract(Action::Value& action, unsigned& amount) const override;
+	virtual bool Extract(Action::Value& action, unsigned& amount, unsigned& player) const override;
 
 private:
 

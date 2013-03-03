@@ -23,6 +23,8 @@ bool Logic::Run(TableContext& context)
 {
 	SCOPED_LOG(m_Log);
 
+	const std::size_t buttonIndex = m_Players.front()->Index();
+
 	for (int street = 0 ; street < 4; ++street)
 	{
 		PlayerQueue playerQueue;
@@ -32,8 +34,11 @@ bool Logic::Run(TableContext& context)
 			playerQueue.push_back(player);
 
 		// next after the button
-		playerQueue.push_back(playerQueue.front());
-		playerQueue.pop_front();
+		if (playerQueue.front()->Index() == buttonIndex)
+		{
+			playerQueue.push_back(playerQueue.front());
+			playerQueue.pop_front();
+		}
 
 		if (!street)
 		{
@@ -43,6 +48,8 @@ bool Logic::Run(TableContext& context)
 		}
 
 		context.m_MaxBet = 0;
+		for (const pcmn::Player::Ptr& player : m_Players)
+			player->Bet(0);
 
 		while (!playerQueue.empty())
 		{
@@ -87,8 +94,8 @@ bool Logic::Run(TableContext& context)
 					next = next->GetNext();
 				}
 			}
-			else
-			if (result == pcmn::IActionsQueue::Event::Fold)
+			
+			if (result == pcmn::IActionsQueue::Event::Fold || current->State() == pcmn::Player::State::AllIn)
 				EraseActivePlayer(current);
 		}
 

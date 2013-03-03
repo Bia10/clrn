@@ -198,7 +198,7 @@ void protobuf_AddDesc_packet_2eproto() {
     "\n\014packet.proto\022\003net\"\300\002\n\006Packet\022\037\n\004Info\030\001"
     " \002(\0132\021.net.Packet.Table\022!\n\006Phases\030\002 \003(\0132"
     "\021.net.Packet.Phase\032A\n\006Player\022\014\n\004Name\030\001 \002"
-    "(\t\022\r\n\005Stack\030\002 \002(\r\022\013\n\003Bet\030\003 \002(\r\022\r\n\005Cards\030"
+    "(\014\022\r\n\005Stack\030\002 \002(\r\022\013\n\003Bet\030\003 \002(\r\022\r\n\005Cards\030"
     "\004 \003(\r\032K\n\005Table\022#\n\007Players\030\001 \003(\0132\022.net.Pa"
     "cket.Player\022\016\n\006Button\030\002 \002(\r\022\r\n\005Cards\030\003 \003"
     "(\r\0324\n\006Action\022\016\n\006Player\030\001 \002(\r\022\n\n\002Id\030\002 \002(\r"
@@ -314,15 +314,12 @@ bool Packet_Player::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required string Name = 1;
+      // required bytes Name = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
                 input, this->mutable_name()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-            this->name().data(), this->name().length(),
-            ::google::protobuf::internal::WireFormat::PARSE);
         } else {
           goto handle_uninterpreted;
         }
@@ -402,12 +399,9 @@ bool Packet_Player::MergePartialFromCodedStream(
 
 void Packet_Player::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required string Name = 1;
+  // required bytes Name = 1;
   if (has_name()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name().data(), this->name().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
+    ::google::protobuf::internal::WireFormatLite::WriteBytes(
       1, this->name(), output);
   }
   
@@ -435,13 +429,10 @@ void Packet_Player::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Packet_Player::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required string Name = 1;
+  // required bytes Name = 1;
   if (has_name()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name().data(), this->name().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
     target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
         1, this->name(), target);
   }
   
@@ -472,10 +463,10 @@ int Packet_Player::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required string Name = 1;
+    // required bytes Name = 1;
     if (has_name()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
+        ::google::protobuf::internal::WireFormatLite::BytesSize(
           this->name());
     }
     

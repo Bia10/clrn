@@ -73,13 +73,16 @@ private:
 	void SetPhase(const Phase::Value phase);
 
 	//! Close window
-	void CloseWindow();
+	void CloseTableWindow();
 
 	//! Server reply callback
 	void ReceiveFromServerCallback(const google::protobuf::Message& message);
 
 	//! Press button
 	void PressButton(const float x, const float y);
+
+	//! Press button thread
+	void PressButtonThread(const float x, const float y);
 
 	//! Fold
 	void Fold();

@@ -1,4 +1,6 @@
 #include "Cards.h"
+#include "Exception.h"
+
 #include <cassert>
 
 std::string pcmn::Card::ToString(Value value)
@@ -19,7 +21,7 @@ std::string pcmn::Card::ToString(Value value)
 		CASE(Queen)
 		CASE(King)
 		CASE(Ace)
-	default: assert(false);
+	default: CHECK(false, "Invalid value", value);
 	}
 #undef CASE
 	return "";
@@ -42,7 +44,7 @@ pcmn::Card::Value pcmn::Card::FromString(const char value)
 		case 'Q': return Queen;
 		case 'K': return King;
 		case 'A': return Ace;
-		default: assert(false); return Unknown;
+		default: CHECK(false, "Invalid value", value);
 	}
 }
 
@@ -56,7 +58,7 @@ short pcmn::Card::ToEvalFormat() const
 		case Suit::Diamonds: return result + 2;
 		case Suit::Clubs: return result + 3;
 	}
-	assert(false);
+	CHECK(false, "Invalid suit", m_Suit);
 	return 0;
 }
 
@@ -74,6 +76,11 @@ const pcmn::Card& pcmn::Card::FromEvalFormat(short value)
 	return *this;
 }
 
+bool pcmn::Card::IsValid() const
+{
+	return m_Value >= Two && m_Value <= Ace && (m_Suit == Suit::Hearts || m_Suit == Suit::Clubs || m_Suit == Suit::Spades || m_Suit == Suit::Diamonds);
+}
+
 std::string pcmn::Suit::ToString(Value value)
 {
 #define CASE(x) case x: return #x;
@@ -83,7 +90,7 @@ std::string pcmn::Suit::ToString(Value value)
 		CASE(Clubs)
 		CASE(Spades)
 		CASE(Diamonds)
-	default: assert(false);
+	default: CHECK(false, "Invalid card", value);
 	}
 #undef CASE
 	return "";
