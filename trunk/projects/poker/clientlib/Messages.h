@@ -75,6 +75,18 @@ private:
 	ILog& m_Log;
 };
 
+class TableInfo : public IMessage
+{
+public:
+	TableInfo(ILog& logger) : m_Log(logger) {}
+private:
+	virtual std::size_t GetId() const override;
+	virtual void Process(const dasm::WindowMessage& message, ITable& table) const override;
+	void ParseActions(const dasm::WindowMessage& message, ITable& table) const;
+private:
+	ILog& m_Log;
+};
+
 } // namespace msg
 } // namespace ps
 } // namespace clnt

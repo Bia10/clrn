@@ -47,6 +47,7 @@ public:
 	virtual void BotCards(const pcmn::Card& first, const pcmn::Card& second) = 0;
 	virtual void PlayerCards(const std::string& name, const pcmn::Card::List& cards) = 0;
 	virtual void PlayersInfo(const pcmn::Player::List& players) = 0;
+	virtual void Ante(std::size_t value) = 0;
 
 };
 

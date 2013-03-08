@@ -5,6 +5,7 @@
 #include "ITable.h"
 #include "Cards.h"
 #include "Exception.h"
+#include "PacketParser.h"
 
 #include <sstream>
 #include <iomanip>
@@ -45,6 +46,7 @@ Action::Value ConvertAction(const char action)
 	case 't' : return Action::SecondsLeft; // time left?
 	case 'f' : return Action::ShowCards; // show cards before fold
 	case 'z' : return Action::Fold;	// show cards and fold
+	case 'A' : return Action::Ante;	
 	default: return Action::Unknown;
 	}
 
@@ -87,6 +89,104 @@ void FindFlopCards(const dasm::DataBlock& data, std::vector<Card>& result)
 
 			cardsFound = 0;
 			result.clear();
+		}
+	}
+}
+
+template<typename Stream>
+void BytesToString(Stream& stream, const void* data, std::size_t size)
+{
+	for (std::size_t i = 0 ; i < size; ++i)
+	{
+		const unsigned char symbol = reinterpret_cast<const unsigned char*>(data)[i];
+		stream 
+			<< std::setfill('0') << std::setw(2) << std::hex << static_cast<int>(symbol)
+			<< std::setw(0) << "'" << std::dec;
+
+		if (symbol < 0x20)
+			stream << " ";
+		else
+			stream << symbol;
+		stream << "' ";
+	}
+}
+
+unsigned ParseAnte(const dasm::WindowMessage& message)
+{
+	static const std::string regexp = "0\\d'\\s'\\s41'A'\\s00'\\s'\\s00'\\s'\\s(..'.'\\s..'.')\\s";
+
+	std::ostringstream oss;
+	BytesToString(oss, message.m_Block.m_Data + message.m_Block.m_Offset, message.m_Block.m_Offset + message.m_Block.m_Size);
+
+	PacketParser parser(regexp, oss.str());
+
+	if (parser.Eof())
+		return 0;
+
+	return parser.GetInt(1);
+}
+
+void ParsePlayers(const dasm::WindowMessage& message, pcmn::Player::List& players)
+{
+	static const std::string regexp("ff'ÿ'\\s00'\\s'\\s00'\\s'\\s00'\\s'\\s1c'\\s'((\\s..'.'){4})\\s00'\\s'\\s00'\\s'(\\s..'.'){8}(\\s00'\\s'){3}\\s..'.'\\sff'ÿ'(\\s..'.'){9}\\sff'ÿ'(\\s00'\\s'){3}\\s..'.'(\\s00'\\s'){2}(\\s..'.'){2}\\sff'ÿ'(\\s00'\\s'){2}(\\s..'.'){2}\\s(([2-7][0-9a-f]'[\\w\\s]'\\s)*)00'\\s'");
+
+	std::ostringstream oss;
+	BytesToString(oss, message.m_Block.m_Data + message.m_Block.m_Offset, message.m_Block.m_Offset + message.m_Block.m_Size);
+
+	PacketParser parser(regexp, oss.str());
+
+	for (; !parser.Eof(); ++parser)
+	{
+		const std::string name = parser.GetString(11);
+		if (name.empty())
+			continue;
+
+		const unsigned amount = parser.GetInt(1);
+
+		players.push_back(boost::make_shared<Player>(name, amount));
+	}
+}
+
+void TableInfo::ParseActions(const dasm::WindowMessage& message, ITable& table) const
+{
+	static const std::string regexp("(([2-7][0-9a-f]'[\\w\\s]'\\s)*)00'\\s'(\\s..'.'){5}\\sff'ÿ'(\\s00'\\s'){4}(\\s..'.'){4}\\sff'ÿ'(\\s..'.'){8}\\sff'ÿ'(\\s..'.'){19}\\s\\d\\d'(\\w)'(\\s..'.'){4}\\s");
+
+	std::ostringstream oss;
+	BytesToString(oss, message.m_Block.m_Data + message.m_Block.m_Offset, message.m_Block.m_Offset + message.m_Block.m_Size);
+
+	PacketParser parser(regexp, oss.str());
+
+	for (; !parser.Eof(); ++parser)
+	{
+		const std::string name = parser.GetString(1);
+		const std::string action = parser.GetString(8);
+		const unsigned amount = parser.GetInt(9);
+		
+		if (name.size() < 3 || action.size() != 1)
+			continue;
+
+		const pcmn::Action::Value actionValue = ConvertAction(action.front());
+
+		if (actionValue == pcmn::Action::Ante)
+		{
+			table.Ante(amount);
+		}
+		else
+		{
+			if (actionValue == Action::Unknown)
+			{
+				LOG_TRACE("Unknown action: '%s', player: '%s', amount: '%s'") % action % name % amount;
+				continue;
+			}
+
+			try
+			{
+				table.PlayerAction(name, actionValue, amount);
+			}
+			catch (const std::exception& e)
+			{
+				LOG_TRACE("Failed to add action: '%s', player: '%s', amount: '%s'. Exception: %s") % action % name % amount % e.what();
+			}
 		}
 	}
 }
@@ -257,7 +357,7 @@ void PlayersInfo::Process(const dasm::WindowMessage& message, ITable& table) con
 
 		LOG_TRACE("Player: '%s', stack: '%s', country: '%s'") % name % stack % country;
 
-		Player::Ptr player = boost::make_shared<Player>(name, stack);
+		const Player::Ptr player = boost::make_shared<Player>(name, stack);
 		player->Country(country);
 
 		players.push_back(player);
@@ -293,7 +393,7 @@ void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) cons
 
 		const std::string name(data);
 
-		if (name.size() < 2)
+		if (name.size() < 3)
 			continue;
 
 		players.push_back(boost::make_shared<Player>(name, 0));
@@ -327,10 +427,39 @@ void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) cons
 		players[index++]->Stack(amount);
 	}
 
+	const unsigned ante = ParseAnte(message);
+
+	for (const Player::Ptr& p : players)
+		LOG_TRACE("Player: '%s', stack: '%s'") % p->Name() % p->Stack();
+
+	LOG_TRACE("Ante: '%s'") % ante;
+
+	table.Ante(ante);
+	table.PlayersInfo(players);
+}
+
+
+std::size_t TableInfo::GetId() const 
+{
+	return 0x0000;
+}
+
+void TableInfo::Process(const dasm::WindowMessage& message, ITable& table) const 
+{
+	const unsigned ante = ParseAnte(message);
+
+	LOG_TRACE("Ante: '%s'") % ante;
+	table.Ante(ante);
+
+	pcmn::Player::List players;
+	ParsePlayers(message, players);
+
 	for (const Player::Ptr& p : players)
 		LOG_TRACE("Player: '%s', stack: '%s'") % p->Name() % p->Stack();
 
 	table.PlayersInfo(players);
+
+	//ParseActions(message, table);
 }
 
 } // namespace msg
