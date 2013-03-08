@@ -40,6 +40,7 @@ private:
 	virtual void BotCards(const pcmn::Card& first, const pcmn::Card& second) override;
 	virtual void PlayersInfo(const pcmn::Player::List& players) override;
 	virtual void PlayerCards(const std::string& name, const pcmn::Card::List& cards) override;
+	virtual void Ante(std::size_t value) override;
 private:
 
 	//! Get player on table
@@ -93,6 +94,15 @@ private:
 	//! Bet or raise
 	void BetRaise(unsigned amount);
 
+	//! Add players
+	void AddPlayers(const pcmn::Player::List& players);
+
+	//! Bet ante
+	void BetAnte();
+
+	//! Remove player
+	void RemovePlayer(const std::string& name);
+
 private:
 
 	//! Message factory
@@ -106,6 +116,9 @@ private:
 
 	//! Players
 	pcmn::Player::List				m_Players;
+
+	//! Player stacks
+	std::vector<unsigned>			m_Stacks;
 
 	//! Pot
 	std::size_t						m_Pot;
@@ -130,6 +143,9 @@ private:
 
 	//! Data sender interface
 	net::IConnection::Ptr			m_Connection;
+
+	//! Table ante
+	unsigned						m_Ante;
 
 };
 

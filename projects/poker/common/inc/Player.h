@@ -160,6 +160,7 @@ public:
 
 	IActionsQueue::Event::Value Do(IActionsQueue& actions, TableContext& table);
 	Player::Ptr GetNext() const { return m_Next.lock(); }
+	Player::Ptr GetPrevious() const { return m_Previous.lock(); }
 	void SetNext(Player::Ptr val) { m_Next = val; }
 	void SetPrevious(Player::Ptr val) { m_Previous = val; }
 
