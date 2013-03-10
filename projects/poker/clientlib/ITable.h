@@ -25,6 +25,18 @@ class ITable : boost::noncopyable
 {
 public:
 
+	struct ActionDesc
+	{
+		ActionDesc(const std::string& name, pcmn::Action::Value value, std::size_t amount)
+			: m_Name(name)
+			, m_Value(value)
+			, m_Amount(amount)
+		{}
+		std::string m_Name;
+		pcmn::Action::Value m_Value;
+		std::size_t m_Amount;
+	};
+
 	struct Phase
 	{
 		enum Value
@@ -38,6 +50,7 @@ public:
 
 
 	typedef boost::shared_ptr<ITable> Ptr;
+	typedef std::vector<ActionDesc> Actions;
 
 	virtual ~ITable() {}
 

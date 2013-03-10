@@ -49,10 +49,13 @@ private:
 	{
 		SCOPED_LOG(m_Log);
 
+#ifdef _DEBUG
+		std::string request;
+#endif
 		try
 		{
 #ifdef _DEBUG
-			const std::string request = message.DebugString();
+			request = message.DebugString();
 			assert(!request.empty());
 #endif
 			LOG_DEBUG("Request: [%s]") % message.DebugString();
@@ -74,6 +77,8 @@ private:
 
 			net::Reply reply;
 			reply.set_error(oss.str());
+
+			LOG_ERROR("%s") % oss.str();
 			connection->Send(reply);
 		}
 	}
