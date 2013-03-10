@@ -18,19 +18,7 @@ namespace ps
 
 class Table : public ITable
 {
-	struct ActionDesc
-	{
-		ActionDesc(const std::string& name, pcmn::Action::Value value, std::size_t amount)
-			: m_Name(name)
-			, m_Value(value)
-			, m_Amount(amount)
-		{}
-		std::string m_Name;
-		pcmn::Action::Value m_Value;
-		std::size_t m_Amount;
-	};
 	typedef cmn::functional::Factory<IMessage, std::size_t, cmn::functional::IgnoreErrorPolicy> Factory;
-	typedef std::vector<ActionDesc> Actions;
 	typedef std::vector<Actions> GameActions;
 	typedef std::map<std::string, unsigned> StackMap;
 	typedef std::map<std::string, pcmn::Card::List> Cards;
@@ -129,6 +117,8 @@ private:
 
 	//! Player cards
 	Cards							m_PlayerCards;	
+
+	//! Players info
 
 };
 

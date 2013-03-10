@@ -123,13 +123,6 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 	
 	const pcmn::Player::Ptr currentPlayer = GetPlayer(name);
 
-// 	if (action == pcmn::Action::SmallBlind)
-// 	{
-// 		SendStatistic();
-// 		ResetPhase();
-// 		BetAnte();
-// 	}
-// 	else
 	if (currentPlayer && action == pcmn::Action::Rank)
 	{
 		if (amount < 3 || currentPlayer->Name() == pcmn::Player::ThisPlayer().Name())
@@ -149,9 +142,6 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 		const pcmn::Player::Ptr nextPlayer = currentPlayer->GetNext();
 		if (nextPlayer)
 		{
-			if (action == pcmn::Action::SmallBlind)
-				PlayerAction(nextPlayer->Name(), pcmn::Action::BigBlind, amount * 2);
-
 			if (pcmn::Player::ThisPlayer().Name() == nextPlayer->Name())
 				OnBotAction(); // our turn to play
 		}
@@ -247,8 +237,6 @@ void Table::ParsePlayers(std::string& button)
 	// parse player queue
 	const Actions& actions = m_Actions[Phase::Preflop];
 
-	assert(actions.at(0).m_Value == pcmn::Action::SmallBlind);
-
 	if (!m_Players.empty())
 	{
 		const pcmn::Player::Ptr smallBlind = GetPlayer(actions.at(0).m_Name);
@@ -291,6 +279,7 @@ void Table::ParsePlayers(std::string& button)
 		if (bigBlindIsNext)
 		{
 			assert(m_Players.size() > 1);
+			assert(!GetPlayer(action.m_Name));
 
 			m_Players[1] = boost::make_shared<pcmn::Player>(action.m_Name, stack);
 
@@ -310,6 +299,7 @@ void Table::ParsePlayers(std::string& button)
 		if (smallBlind.empty())
 		{
 			// next player - on big blind, reserve space
+			assert(!GetPlayer(action.m_Name));
 			m_Players.push_back(boost::make_shared<pcmn::Player>(action.m_Name, stack));
 
 			if (actions[i + 1].m_Value != pcmn::Action::BigBlind)
@@ -327,6 +317,7 @@ void Table::ParsePlayers(std::string& button)
 		}
 		else
 		{
+			assert(!GetPlayer(action.m_Name));
 			m_Players.push_back(boost::make_shared<pcmn::Player>(action.m_Name, stack));
 		}
 	}	
@@ -335,6 +326,9 @@ void Table::ParsePlayers(std::string& button)
 void Table::SendStatistic()
 {
 	if (m_Actions[Phase::Preflop].empty())
+		return;
+
+	if (m_Actions[Phase::Preflop].at(0).m_Value != pcmn::Action::SmallBlind)
 		return;
 
 	std::string onButton;

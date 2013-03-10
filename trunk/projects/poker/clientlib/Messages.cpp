@@ -384,9 +384,15 @@ void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) cons
 	for (int i = 0 ; i < 5 && data < end; ++i)
 		data = std::find(data + 1, end, 0xff);
 
+	ITable::Actions actions;
 	while (data < end)
 	{
-		data += 0x19;
+		data += 0x14;
+
+		const Action::Value actionValue = ConvertAction(*data);
+		++data;
+		const unsigned amount = _byteswap_ulong(*reinterpret_cast<const int*>(data));	
+		data += sizeof(unsigned int);
 
 		if (*data < 0x20)
 			break;
@@ -395,6 +401,9 @@ void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) cons
 
 		if (name.size() < 3)
 			continue;
+
+		if (actionValue != pcmn::Action::Unknown)
+			actions.push_back(ITable::ActionDesc(name, actionValue, amount));
 
 		players.push_back(boost::make_shared<Player>(name, 0));
 	
@@ -434,8 +443,14 @@ void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) cons
 
 	LOG_TRACE("Ante: '%s'") % ante;
 
-	table.Ante(ante);
 	table.PlayersInfo(players);
+	table.Ante(ante);
+
+	for (const ITable::ActionDesc& action : actions)
+	{
+		LOG_TRACE("Player: '%s', action: '%p', amount: '%s'") % action.m_Name % Action::ToString(action.m_Value) % action.m_Amount;
+		table.PlayerAction(action.m_Name, action.m_Value, action.m_Amount);
+	}
 }
 
 
