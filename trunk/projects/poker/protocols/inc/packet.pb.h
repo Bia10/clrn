@@ -621,14 +621,14 @@ class Reply : public ::google::protobuf::Message {
   inline ::std::string* mutable_error();
   inline ::std::string* release_error();
   
-  // required uint32 Action = 2;
+  // optional uint32 Action = 2;
   inline bool has_action() const;
   inline void clear_action();
   static const int kActionFieldNumber = 2;
   inline ::google::protobuf::uint32 action() const;
   inline void set_action(::google::protobuf::uint32 value);
   
-  // required uint32 Amount = 3;
+  // optional uint32 Amount = 3;
   inline bool has_amount() const;
   inline void clear_amount();
   static const int kAmountFieldNumber = 3;
@@ -1089,7 +1089,7 @@ inline ::std::string* Reply::release_error() {
   }
 }
 
-// required uint32 Action = 2;
+// optional uint32 Action = 2;
 inline bool Reply::has_action() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -1111,7 +1111,7 @@ inline void Reply::set_action(::google::protobuf::uint32 value) {
   action_ = value;
 }
 
-// required uint32 Amount = 3;
+// optional uint32 Amount = 3;
 inline bool Reply::has_amount() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }

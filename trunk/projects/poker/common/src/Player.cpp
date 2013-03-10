@@ -64,8 +64,8 @@ namespace pcmn
 		if (!actions.Extract(action, amount, player))
 			return IActionsQueue::Event::NeedDecision;
 
-		assert(player == m_Index);
-		CHECK(player == m_Index, player, m_Index);
+		if (player != m_Index)
+			throw pcmn::Player::BadIndex(m_Index, player);
 
 		if (!table.m_BigBlind)
 		{

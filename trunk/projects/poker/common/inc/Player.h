@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <cassert>
+#include <exception>
 
 #include <boost/shared_ptr.hpp>
 #include <boost/weak_ptr.hpp>
@@ -88,6 +89,18 @@ public:
 		};
 		static std::string ToString(Value value);
 		static Value FromValue(unsigned value);
+	};
+
+	//! Bad index exception
+	class BadIndex : public std::exception
+	{
+	public:
+		BadIndex(unsigned expected, unsigned got) : m_Expected(expected), m_Got(got) {}
+		const unsigned Got() const { return m_Got; }
+		const unsigned Expected() const { return m_Expected; }
+	private:
+		const unsigned m_Expected;
+		const unsigned m_Got;
 	};
 
 	typedef boost::shared_ptr<Player> Ptr;

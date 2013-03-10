@@ -303,7 +303,7 @@ public:
 
 			m_Table->PlayersInfo(m_Players);
 		}
-		/*
+		
 		{
 			m_Players = boost::assign::list_of
 				(boost::make_shared<Player>("ttommi", 488))
@@ -359,6 +359,9 @@ public:
 			m_Table->PlayerAction("tonycry75", Action::Raise, 970);
 			m_Table->PlayerAction("Shaggs1981", Action::Fold, 0);
 			m_Table->PlayerAction("sevenup_king", Action::Fold, 0);
+			m_Table->PlayerAction(Player::ThisPlayer().Name(), Action::SecondsLeft, 8);
+
+			boost::this_thread::interruptible_wait(100000);
 		}
 
 		{
@@ -429,7 +432,7 @@ public:
 			m_Table->PlayerAction("loboda1968", Action::Rank, 7);
 
 			m_Table->PlayersInfo(m_Players);
-		}*/
+		}
 	}
 
 private:

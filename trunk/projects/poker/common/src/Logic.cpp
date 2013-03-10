@@ -1,6 +1,7 @@
 #include "Logic.h"
 #include "Modules.h"
 #include "TableContext.h"
+#include "Exception.h"
 
 #include <cassert>
 
@@ -23,85 +24,108 @@ bool Logic::Run(TableContext& context)
 {
 	SCOPED_LOG(m_Log);
 
-	const std::size_t buttonIndex = m_Players.front()->Index();
-
-	for (int street = 0 ; street < 4; ++street)
+	TRY 
 	{
-		PlayerQueue playerQueue;
-
-		// init queue
-		for (const pcmn::Player::Ptr& player : m_Players)
-			playerQueue.push_back(player);
-
-		// next after the button
-		if (playerQueue.front()->Index() == buttonIndex)
+		const std::size_t buttonIndex = m_Players.front()->Index();
+	
+		for (int street = 0 ; street < 4; ++street)
 		{
-			playerQueue.push_back(playerQueue.front());
-			playerQueue.pop_front();
-		}
-
-		if (!street)
-		{
-			// add players on blinds
-			playerQueue.push_back(playerQueue[0]);
-			playerQueue.push_back(playerQueue[1]);
-		}
-
-		context.m_MaxBet = 0;
-		for (const pcmn::Player::Ptr& player : m_Players)
-			player->Bet(0);
-
-		while (!playerQueue.empty())
-		{
-			const pcmn::Player::Ptr current = playerQueue.front();
-			playerQueue.pop_front();
-
-			if (current->State() == pcmn::Player::State::AllIn)
+			PlayerQueue playerQueue;
+	
+			// init queue
+			for (const pcmn::Player::Ptr& player : m_Players)
+				playerQueue.push_back(player);
+	
+			// next after the button
+			if (playerQueue.front()->Index() == buttonIndex)
 			{
-				EraseActivePlayer(current);
-				continue;
+				playerQueue.push_back(playerQueue.front());
+				playerQueue.pop_front();
 			}
-
-			const pcmn::IActionsQueue::Event::Value result = current->Do(m_Actions, context);
-			const Player::Position::Value position = GetPlayerPosition(m_Players, current);
-
-			if (result == pcmn::IActionsQueue::Event::NeedDecision)
+	
+			if (!street)
 			{
-				m_Callback.MakeDecision(*current, m_Players, context, position);
-				return false;
+				// add players on blinds
+				playerQueue.push_back(playerQueue[0]);
+				playerQueue.push_back(playerQueue[1]);
 			}
-
-			TableContext::Data::Action resultAction;
-			resultAction.m_Action = context.m_LastAction;
-			resultAction.m_PlayerIndex = m_PlayersIndexes[current->Name()];
-			resultAction.m_Street = street;
-			resultAction.m_PotAmount = context.m_Pot ? static_cast<float>(context.m_LastAmount) / context.m_Pot : 1;
-			resultAction.m_StackAmount = current->Stack() ? static_cast<float>(context.m_LastAmount) / current->Stack() : 1;
-			resultAction.m_Position = static_cast<int>(position);
-
-			assert(resultAction.m_PotAmount >= 0);
-			assert(resultAction.m_StackAmount >= 0);
-
-			context.m_Data.m_Actions.push_back(resultAction);
-
-			if (result == pcmn::IActionsQueue::Event::Raise)
+	
+			context.m_MaxBet = 0;
+			for (const pcmn::Player::Ptr& player : m_Players)
+				player->Bet(0);
+	
+			while (!playerQueue.empty())
 			{
-				pcmn::Player::Ptr next = playerQueue.empty() ? current->GetNext() : playerQueue.back()->GetNext();
-				while (next != current)
+				const pcmn::Player::Ptr current = playerQueue.front();
+				playerQueue.pop_front();
+	
+				if (current->State() == pcmn::Player::State::AllIn)
 				{
-					playerQueue.push_back(next);
-
-					next = next->GetNext();
+					EraseActivePlayer(current);
+					continue;
+				}
+	
+				try
+				{
+					const pcmn::IActionsQueue::Event::Value result = current->Do(m_Actions, context);
+					const Player::Position::Value position = GetPlayerPosition(m_Players, current);
+	
+					if (result == pcmn::IActionsQueue::Event::NeedDecision)
+					{
+						m_Callback.MakeDecision(*current, m_Players, context, position);
+						return false;
+					}
+	
+					TableContext::Data::Action resultAction;
+					resultAction.m_Action = context.m_LastAction;
+					resultAction.m_PlayerIndex = m_PlayersIndexes[current->Name()];
+					resultAction.m_Street = street;
+					resultAction.m_PotAmount = context.m_Pot ? static_cast<float>(context.m_LastAmount) / context.m_Pot : 1;
+					resultAction.m_StackAmount = current->Stack() ? static_cast<float>(context.m_LastAmount) / current->Stack() : 1;
+					resultAction.m_Position = static_cast<int>(position);
+	
+					assert(resultAction.m_PotAmount >= 0);
+					assert(resultAction.m_StackAmount >= 0);
+	
+					context.m_Data.m_Actions.push_back(resultAction);
+	
+					if (result == pcmn::IActionsQueue::Event::Raise)
+					{
+						pcmn::Player::Ptr next = playerQueue.empty() ? current->GetNext() : playerQueue.back()->GetNext();
+						while (next != current)
+						{
+							playerQueue.push_back(next);
+	
+							next = next->GetNext();
+						}
+					}
+	
+					if (result == pcmn::IActionsQueue::Event::Fold || current->State() == pcmn::Player::State::AllIn)
+						EraseActivePlayer(current);
+				}
+				catch (const pcmn::Player::BadIndex& e)
+				{
+					const unsigned expected = e.Expected();
+					const PlayerQueue::const_iterator it = std::find_if(m_Players.begin(), m_Players.end(), 
+						[&](const pcmn::Player::Ptr& player)
+						{
+							return player->Index() == expected;
+						}
+					);
+	
+					CHECK(it != m_Players.end(), "Failed to find expected player. Invalid query.", expected, e.Got());
+					const std::string expectedPlayer = (*it)->Name();
+					const std::string gotPlayer = current->Name();
+	
+					CHECK(false, "Invalid actions sequence detected", expectedPlayer, gotPlayer, expected);
 				}
 			}
-			
-			if (result == pcmn::IActionsQueue::Event::Fold || current->State() == pcmn::Player::State::AllIn)
-				EraseActivePlayer(current);
+	
+			if (m_Players.size() < 2)
+				break;
 		}
-
-		if (m_Players.size() < 2)
-			break;
 	}
+	CATCH_PASS_EXCEPTIONS("Failed to analyze table logic")
 
 	return true;
 }
