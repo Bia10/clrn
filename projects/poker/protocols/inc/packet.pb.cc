@@ -204,7 +204,7 @@ void protobuf_AddDesc_packet_2eproto() {
     "(\r\0324\n\006Action\022\016\n\006Player\030\001 \002(\r\022\n\n\002Id\030\002 \002(\r"
     "\022\016\n\006Amount\030\003 \001(\r\032,\n\005Phase\022#\n\007Actions\030\001 \003"
     "(\0132\022.net.Packet.Action\"6\n\005Reply\022\r\n\005Error"
-    "\030\001 \001(\t\022\016\n\006Action\030\002 \002(\r\022\016\n\006Amount\030\003 \002(\r", 398);
+    "\030\001 \001(\t\022\016\n\006Action\030\002 \001(\r\022\016\n\006Amount\030\003 \001(\r", 398);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "packet.proto", &protobuf_RegisterTypes);
   Packet::default_instance_ = new Packet();
@@ -1724,7 +1724,7 @@ bool Reply::MergePartialFromCodedStream(
         break;
       }
       
-      // required uint32 Action = 2;
+      // optional uint32 Action = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1740,7 +1740,7 @@ bool Reply::MergePartialFromCodedStream(
         break;
       }
       
-      // required uint32 Amount = 3;
+      // optional uint32 Amount = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -1783,12 +1783,12 @@ void Reply::SerializeWithCachedSizes(
       1, this->error(), output);
   }
   
-  // required uint32 Action = 2;
+  // optional uint32 Action = 2;
   if (has_action()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->action(), output);
   }
   
-  // required uint32 Amount = 3;
+  // optional uint32 Amount = 3;
   if (has_amount()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->amount(), output);
   }
@@ -1811,12 +1811,12 @@ void Reply::SerializeWithCachedSizes(
         1, this->error(), target);
   }
   
-  // required uint32 Action = 2;
+  // optional uint32 Action = 2;
   if (has_action()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->action(), target);
   }
   
-  // required uint32 Amount = 3;
+  // optional uint32 Amount = 3;
   if (has_amount()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->amount(), target);
   }
@@ -1839,14 +1839,14 @@ int Reply::ByteSize() const {
           this->error());
     }
     
-    // required uint32 Action = 2;
+    // optional uint32 Action = 2;
     if (has_action()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->action());
     }
     
-    // required uint32 Amount = 3;
+    // optional uint32 Amount = 3;
     if (has_amount()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
@@ -1906,7 +1906,6 @@ void Reply::CopyFrom(const Reply& from) {
 }
 
 bool Reply::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000006) != 0x00000006) return false;
   
   return true;
 }

@@ -132,7 +132,7 @@ private:
 			}
 
 			m_Context.m_Data.m_Players.push_back(p);
-			m_PlayersIndexes.insert(std::make_pair(player.name(), i));
+			CHECK(m_PlayersIndexes.insert(std::make_pair(player.name(), i)).second, "Bad request, player name must be unique", player.name());
 		}
 	}
 

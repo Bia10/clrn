@@ -48,16 +48,34 @@ private:
 	void HandleRequest(const google::protobuf::Message& message, const net::IConnection::Ptr& connection)
 	{
 		SCOPED_LOG(m_Log);
-		LOG_DEBUG("Request: [%s]") % message.DebugString();
 
-		DecisionMaker decisionMaker(m_Log, m_Evaluator, m_Statistics, m_Network, *connection);
+		try
+		{
+#ifdef _DEBUG
+			const std::string request = message.DebugString();
+			assert(!request.empty());
+#endif
+			LOG_DEBUG("Request: [%s]") % message.DebugString();
 
-		Parser parser(m_Log, m_Evaluator, dynamic_cast<const net::Packet&>(message), decisionMaker);
+			DecisionMaker decisionMaker(m_Log, m_Evaluator, m_Statistics, m_Network, *connection);
 
-		if (parser.Parse())  // write statistics, game completed
-			m_Statistics.Write(parser.GetResult());
+			Parser parser(m_Log, m_Evaluator, dynamic_cast<const net::Packet&>(message), decisionMaker);
 
-		LOG_WARNING("Requests processed: [%s]") % m_RequestsCount++;
+			if (parser.Parse())  // write statistics, game completed
+				m_Statistics.Write(parser.GetResult());
+
+			LOG_WARNING("Requests processed: [%s]") % m_RequestsCount++;
+		}
+		catch (const std::exception& e)
+		{
+			std::ostringstream oss;
+			oss << "Error: " << e.what() << std::endl
+				<< "Packet: " << message.DebugString();
+
+			net::Reply reply;
+			reply.set_error(oss.str());
+			connection->Send(reply);
+		}
 	}
 
 private:

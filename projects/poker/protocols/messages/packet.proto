@@ -37,6 +37,6 @@ message Packet
 message Reply
 {
 	optional string Error = 1;
-	required uint32 Action = 2;
-	required uint32 Amount = 3;
+	optional uint32 Action = 2;
+	optional uint32 Amount = 3;
 }

@@ -9,6 +9,8 @@
 #include "Cards.h"
 #include "IConnection.h"
 
+#include <map>
+
 namespace clnt
 {
 namespace ps
@@ -30,6 +32,8 @@ class Table : public ITable
 	typedef cmn::functional::Factory<IMessage, std::size_t, cmn::functional::IgnoreErrorPolicy> Factory;
 	typedef std::vector<ActionDesc> Actions;
 	typedef std::vector<Actions> GameActions;
+	typedef std::map<std::string, unsigned> StackMap;
+	typedef std::map<std::string, pcmn::Card::List> Cards;
 public:
 	Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection);
 
@@ -44,28 +48,13 @@ private:
 private:
 
 	//! Get player on table
-	pcmn::Player& GetPlayer(const std::string& name);
-
-	//! Get next player on table
-	pcmn::Player& GetNextPlayer(const std::string& name);
-
-	//! Get next active player on table
-	pcmn::Player& GetNextActivePlayer(const std::string& name);
-
-	//! Get previous player
-	pcmn::Player& GetPreviousPlayer(const std::string& name);
+	pcmn::Player::Ptr GetPlayer(const std::string& name);
 
 	//! On bot action
 	void OnBotAction();
 
-	//! Checks for current stage completion
-	bool IsPhaseCompleted(pcmn::Player& current, std::size_t& playersInPot);
-
 	//! Reset phase
 	void ResetPhase();
-
-	//! Process winners
-	void ProcessWinners(const std::size_t playersInPot);
 
 	//! Send statistics to server
 	void SendStatistic();
@@ -94,14 +83,14 @@ private:
 	//! Bet or raise
 	void BetRaise(unsigned amount);
 
-	//! Add players
-	void AddPlayers(const pcmn::Player::List& players);
-
 	//! Bet ante
 	void BetAnte();
 
 	//! Remove player
 	void RemovePlayer(const std::string& name);
+
+	//! Parse players
+	void ParsePlayers(std::string& button);
 
 private:
 
@@ -118,10 +107,7 @@ private:
 	pcmn::Player::List				m_Players;
 
 	//! Player stacks
-	std::vector<unsigned>			m_Stacks;
-
-	//! Pot
-	std::size_t						m_Pot;
+	StackMap						m_Stacks;
 
 	//! Game phase
 	Phase::Value					m_Phase;
@@ -129,23 +115,20 @@ private:
 	//! Flop cards
 	pcmn::Card::List				m_FlopCards;
 
-	//! Small blind size
-	std::size_t						m_SmallBlindAmount;
-
 	//! Hands evaluator
 	std::auto_ptr<pcmn::Evaluator>	m_Evaluator;
 
 	//! This game actions
 	GameActions						m_Actions;
 
-	//! Player name on button
-	std::string						m_OnButton;
-
 	//! Data sender interface
 	net::IConnection::Ptr			m_Connection;
 
 	//! Table ante
 	unsigned						m_Ante;
+
+	//! Player cards
+	Cards							m_PlayerCards;	
 
 };
 
