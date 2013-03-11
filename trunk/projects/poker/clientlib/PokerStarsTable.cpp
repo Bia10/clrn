@@ -264,7 +264,7 @@ void Table::ParsePlayers(std::string& button)
 			}
 		}
 		m_Players.clear(); // invalid player list
-		button = actions.back().m_Name; // set last player as on button, because we may don't know really player
+		//button = actions.back().m_Name; // set last player as on button, because we may don't know really player
 	}
 
 	std::string smallBlind;
@@ -307,7 +307,7 @@ void Table::ParsePlayers(std::string& button)
 		{
 			// next action will be from big blind
 			// previous action was from button
-			button = actions[i - 1].m_Name;
+			//button = actions[i - 1].m_Name;
 
 			if (!bigBlindExists)
 				bigBlindIsNext = true;
@@ -322,7 +322,11 @@ void Table::ParsePlayers(std::string& button)
 	}	
 
 	if (bigBlindIsNext)
+	{
 		m_Players[1] = boost::make_shared<pcmn::Player>("Unknown", 1500); // don't know who on the big blind, but he wins
+		m_Stacks["Unknown"] = 1500;
+		//button = "Unknown";
+	}
 
 	// make links
 	m_Players.front()->SetPrevious(m_Players.back());
@@ -333,6 +337,17 @@ void Table::ParsePlayers(std::string& button)
 		m_Players[p]->SetNext(m_Players[p + 1]);
 		m_Players[p + 1]->SetPrevious(m_Players[p]);
 	}
+
+	button = GetPlayer(smallBlind)->GetPrevious()->Name();
+
+#ifdef _DEBUG
+	const pcmn::Player::Ptr playerOnButton = GetPlayer(button);
+	const pcmn::Player::Ptr playerOnSmallBlind = GetPlayer(actions[0].m_Name);
+	const pcmn::Player::Ptr playerOnBigBlind = m_Players[1];
+
+	assert(playerOnButton->GetNext() == playerOnSmallBlind);
+	assert(playerOnSmallBlind->GetNext() == playerOnBigBlind);
+#endif
 }
 
 void Table::SendStatistic()
