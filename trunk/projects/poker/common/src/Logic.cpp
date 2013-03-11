@@ -70,7 +70,7 @@ bool Logic::Run(TableContext& context)
 					const pcmn::IActionsQueue::Event::Value result = current->Do(m_Actions, context);
 					const Player::Position::Value position = GetPlayerPosition(m_Players, current);
 	
-					if (result == pcmn::IActionsQueue::Event::NeedDecision)
+					if (result == pcmn::IActionsQueue::Event::NeedDecision && m_Players.size() > 1)
 					{
 						m_Callback.MakeDecision(*current, m_Players, context, position);
 						return false;
@@ -117,7 +117,7 @@ bool Logic::Run(TableContext& context)
 					const std::string expectedPlayer = (*it)->Name();
 					const std::string gotPlayer = current->Name();
 	
-					CHECK(false, "Invalid actions sequence detected", expectedPlayer, gotPlayer, expected);
+					CHECK(false, "Invalid actions sequence detected", expectedPlayer, gotPlayer, e.Expected(), e.Got(), street);
 				}
 			}
 	
@@ -162,7 +162,9 @@ void Logic::Parse()
 void Logic::EraseActivePlayer(const Player::Ptr& player)
 {
 	const PlayerQueue::iterator it = std::find(m_Players.begin(), m_Players.end(), player);
-	assert(it != m_Players.end());
+	if (it == m_Players.end())
+		return;
+
 	(*it)->DeleteLinks();
 	m_Players.erase(it);
 }

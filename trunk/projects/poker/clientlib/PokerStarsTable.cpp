@@ -77,7 +77,7 @@ Table::Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection)
 		Register<msg::TurnAndRiverCards>(s_Factory, m_Log);
 		Register<msg::PlayerCards>(s_Factory, m_Log);
 		Register<msg::PlayersInfo>(s_Factory, m_Log);
-		Register<msg::PlayerInfo>(s_Factory, m_Log);
+		Register<msg::BeforePreflopActions>(s_Factory, m_Log);
 		Register<msg::TableInfo>(s_Factory, m_Log);
 	}
 }
@@ -120,23 +120,29 @@ void Table::HandleMessage(const dasm::WindowMessage& message)
 void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, std::size_t amount)
 {
 	LOG_TRACE("Player: '%s', action: '%s', amount: '%s'") % name % pcmn::Action::ToString(action) % amount;
-	
-	const pcmn::Player::Ptr currentPlayer = GetPlayer(name);
 
-	if (currentPlayer && action == pcmn::Action::Rank)
+	if (action == pcmn::Action::Ante)
+		return; // no need to save ante, player stacks value equal to stacks after ante bet
+
+	if (action == pcmn::Action::Rank)
 	{
-		if (amount < 3 || currentPlayer->Name() == pcmn::Player::ThisPlayer().Name())
+		if (amount < 3 || name == pcmn::Player::ThisPlayer().Name())
 		{
 			// game finished
 			SendStatistic();
 			CloseTableWindow(); 
 		}
-		RemovePlayer(name);
-		return;
 	}	
+
+	if (action == pcmn::Action::SecondsLeft && pcmn::Player::ThisPlayer().Name() == name)
+		OnBotAction(); // our turn to play
+
+	if (action > pcmn::Action::BigBlind)
+		return; // useless action
 
 	m_Actions[m_Phase].push_back(ActionDesc(name, action, amount));
 
+	const pcmn::Player::Ptr currentPlayer = GetPlayer(name);
 	if (currentPlayer)
 	{
 		const pcmn::Player::Ptr nextPlayer = currentPlayer->GetNext();
@@ -146,9 +152,6 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 				OnBotAction(); // our turn to play
 		}
 	}
-
-	if (action == pcmn::Action::SecondsLeft && pcmn::Player::ThisPlayer().Name() == name)
-		OnBotAction(); // our turn to play
 }
 
 void Table::FlopCards(const pcmn::Card::List& cards)
@@ -188,7 +191,7 @@ pcmn::Player::Ptr Table::GetPlayer(const std::string& name)
 		m_Players.end(),
 		[&](const pcmn::Player::Ptr& player)
 		{
-			return player->Name() == name;
+			return player ? player->Name() == name : false;
 		}
 	);
 
@@ -266,6 +269,7 @@ void Table::ParsePlayers(std::string& button)
 
 	std::string smallBlind;
 	bool bigBlindIsNext = false;
+	bool bigBlindExists = false;
 	for (unsigned i = 0; i < actions.size(); ++i)
 	{
 		const ActionDesc& action = actions.at(i);
@@ -282,28 +286,19 @@ void Table::ParsePlayers(std::string& button)
 			assert(!GetPlayer(action.m_Name));
 
 			m_Players[1] = boost::make_shared<pcmn::Player>(action.m_Name, stack);
-
-			// make links
-			m_Players.front()->SetPrevious(m_Players.back());
-			m_Players.back()->SetNext(m_Players.front());
-
-			for (unsigned p = 0; p < m_Players.size() - 1; ++p)
-			{
-				m_Players[p]->SetNext(m_Players[p + 1]);
-				m_Players[p + 1]->SetPrevious(m_Players[p]);
-			}
-
+			bigBlindIsNext = false;
 			break;
 		}
 
 		if (smallBlind.empty())
 		{
-			// next player - on big blind, reserve space
 			assert(!GetPlayer(action.m_Name));
 			m_Players.push_back(boost::make_shared<pcmn::Player>(action.m_Name, stack));
 
 			if (actions[i + 1].m_Value != pcmn::Action::BigBlind)
-				m_Players.push_back(pcmn::Player::Ptr());
+				m_Players.push_back(pcmn::Player::Ptr()); // next player - on big blind, reserve space
+			else
+				bigBlindExists = true;
 
 			smallBlind = action.m_Name;
 		}
@@ -312,8 +307,12 @@ void Table::ParsePlayers(std::string& button)
 		{
 			// next action will be from big blind
 			// previous action was from button
-			bigBlindIsNext = true;
 			button = actions[i - 1].m_Name;
+
+			if (!bigBlindExists)
+				bigBlindIsNext = true;
+			else
+				break;
 		}
 		else
 		{
@@ -321,6 +320,19 @@ void Table::ParsePlayers(std::string& button)
 			m_Players.push_back(boost::make_shared<pcmn::Player>(action.m_Name, stack));
 		}
 	}	
+
+	if (bigBlindIsNext)
+		m_Players[1] = boost::make_shared<pcmn::Player>("Unknown", 1500); // don't know who on the big blind, but he wins
+
+	// make links
+	m_Players.front()->SetPrevious(m_Players.back());
+	m_Players.back()->SetNext(m_Players.front());
+
+	for (unsigned p = 0; p < m_Players.size() - 1; ++p)
+	{
+		m_Players[p]->SetNext(m_Players[p + 1]);
+		m_Players[p + 1]->SetPrevious(m_Players[p]);
+	}
 }
 
 void Table::SendStatistic()
@@ -492,23 +504,6 @@ void Table::BetAnte()
 {
 	for (const pcmn::Player::Ptr& player : m_Players)
 		m_Stacks[player->Name()] -= m_Ante;
-}
-
-void Table::RemovePlayer(const std::string& name)
-{
-	const pcmn::Player::List::iterator it = std::find_if
-	(
-		m_Players.begin(),
-		m_Players.end(),
-		[&](const pcmn::Player::Ptr& player)
-		{
-			return player->Name() == name;
-		}
-	);
-
-	CHECK(it != m_Players.end(), "Failed to find player by name", name);
-	(*it)->DeleteLinks();
-	m_Players.erase(it);
 }
 
 

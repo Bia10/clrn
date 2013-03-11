@@ -367,12 +367,12 @@ void PlayersInfo::Process(const dasm::WindowMessage& message, ITable& table) con
 }
 
 
-std::size_t PlayerInfo::GetId() const 
+std::size_t BeforePreflopActions::GetId() const 
 {
 	return 0x1006;
 }
 
-void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) const 
+void BeforePreflopActions::Process(const dasm::WindowMessage& message, ITable& table) const 
 {
 	dasm::MessageRecord record(message);
 
@@ -430,9 +430,11 @@ void PlayerInfo::Process(const dasm::WindowMessage& message, ITable& table) cons
 		if (*(data - 5) - char(0x00))
 			continue;
 
-		CHECK(players.size() > index, index, players.size());
-
 		const int amount = _byteswap_ulong(*reinterpret_cast<const int*>(data + 1));	
+
+		if (index == players.size())
+			break;
+
 		players[index++]->Stack(amount);
 	}
 

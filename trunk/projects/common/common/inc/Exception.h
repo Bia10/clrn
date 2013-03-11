@@ -99,7 +99,16 @@ void Append(CExcept& e, It it, const T1& arg1, const T2& arg2, const T3& arg3, c
 	Append(e, ++it, arg4);
 	Append(e, ++it, arg5);
 }
-
+template<class T1, class T2, class T3, class T4, class T5, class T6>
+void Append(CExcept& e, It it, const T1& arg1, const T2& arg2, const T3& arg3, const T4& arg4, const T5& arg5, const T6& arg6)
+{
+	Append(e, it, arg1);
+	Append(e, ++it, arg2);
+	Append(e, ++it, arg3);
+	Append(e, ++it, arg4);
+	Append(e, ++it, arg5);
+	Append(e, ++it, arg6);
+}
 } // namespace xc_details
 
 #define APPEND_ARGS(xcpt, ...)									\

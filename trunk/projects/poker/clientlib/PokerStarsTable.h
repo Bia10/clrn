@@ -74,9 +74,6 @@ private:
 	//! Bet ante
 	void BetAnte();
 
-	//! Remove player
-	void RemovePlayer(const std::string& name);
-
 	//! Parse players
 	void ParsePlayers(std::string& button);
 
