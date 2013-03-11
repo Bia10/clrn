@@ -74,8 +74,8 @@ Client::Client() : m_Server(new net::UDPHost(m_Log, 1))
 		SCOPED_LOG(m_Log);
 
 		m_Log.Open("logs/network.txt", Modules::Network, ILog::Level::Trace);
-		m_Log.Open("logs/client.txt", Modules::Client, ILog::Level::Debug);
-		m_Log.Open("logs/mesages.txt", Modules::Messages, ILog::Level::Debug);
+		m_Log.Open("logs/client.txt", Modules::Client, ILog::Level::Trace);
+		m_Log.Open("logs/mesages.txt", Modules::Messages, ILog::Level::Trace);
 		m_Log.Open("logs/table.txt", Modules::Table, ILog::Level::Debug);
 
 		// player name
