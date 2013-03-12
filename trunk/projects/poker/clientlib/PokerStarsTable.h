@@ -119,6 +119,14 @@ private:
 	//! Actions parser
 	ActionsParser					m_ActionsParser;
 
+	//! Player bets
+	StackMap						m_Bets;
+
+	//! Losers
+	std::vector<std::string>		m_Loosers;
+
+	//! Is bot active now
+	bool							m_IsActive;
 };
 
 } // namespace ps

@@ -48,6 +48,12 @@ bool Logic::Run(TableContext& context)
 				// add players on blinds
 				playerQueue.push_back(playerQueue[0]);
 				playerQueue.push_back(playerQueue[1]);
+
+				if (m_Players.size() == 2)
+				{
+					playerQueue.push_back(playerQueue.front());
+					playerQueue.pop_front();
+				}
 			}
 	
 			context.m_MaxBet = 0;
@@ -102,11 +108,14 @@ bool Logic::Run(TableContext& context)
 	
 					if (result == pcmn::IActionsQueue::Event::Fold || current->State() == pcmn::Player::State::AllIn)
 						EraseActivePlayer(current);
+
+					if (m_Players.size() < 2)
+						break;
 				}
 				catch (const pcmn::Player::BadIndex& e)
 				{
 					const unsigned expected = e.Expected();
-					const unsigned got = e.Expected();
+					const unsigned got = e.Got();
 					const PlayerQueue::const_iterator itExpected = std::find_if(m_Players.begin(), m_Players.end(), 
 						[&](const pcmn::Player::Ptr& player)
 						{
