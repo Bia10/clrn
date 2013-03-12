@@ -360,8 +360,6 @@ public:
 			m_Table->PlayerAction("Shaggs1981", Action::Fold, 0);
 			m_Table->PlayerAction("sevenup_king", Action::Fold, 0);
 			m_Table->PlayerAction(Player::ThisPlayer().Name(), Action::SecondsLeft, 8);
-
-			boost::this_thread::interruptible_wait(100000);
 		}
 
 		{

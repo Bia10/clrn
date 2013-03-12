@@ -67,6 +67,8 @@ Table::Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection)
 	, m_Actions(4)
 	, m_Connection(connection)
 	, m_Ante(0)
+	, m_IsNeedDecision(false)
+	, m_ActionsParser(m_Actions, m_Players)
 {
 	SCOPED_LOG(m_Log);
 
@@ -121,9 +123,6 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 {
 	LOG_TRACE("Player: '%s', action: '%s', amount: '%s'") % name % pcmn::Action::ToString(action) % amount;
 
-	if (action == pcmn::Action::Ante)
-		return; // no need to save ante, player stacks value equal to stacks after ante bet
-
 	if (action == pcmn::Action::Rank)
 	{
 		if (amount < 3 || name == pcmn::Player::ThisPlayer().Name())
@@ -136,9 +135,6 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 
 	if (action == pcmn::Action::SecondsLeft && pcmn::Player::ThisPlayer().Name() == name)
 		OnBotAction(); // our turn to play
-
-	if (action > pcmn::Action::BigBlind)
-		return; // useless action
 
 	m_Actions[m_Phase].push_back(ActionDesc(name, action, amount));
 
@@ -204,6 +200,7 @@ pcmn::Player::Ptr Table::GetPlayer(const std::string& name)
 void Table::OnBotAction()
 {
 	// make a decision and react
+	m_IsNeedDecision = true;
 	SendStatistic();
 
 	m_Connection->Receive(boost::bind(&Table::ReceiveFromServerCallback, this, _1), &net::Reply());
@@ -221,6 +218,7 @@ void Table::ResetPhase()
 	m_Actions.clear();
 	m_Actions.resize(4);
 	m_PlayerCards.clear();
+	m_IsNeedDecision = false;
 }
 
 void Table::SetPhase(const Phase::Value phase)
@@ -235,142 +233,14 @@ void Table::SetPhase(const Phase::Value phase)
 	m_Phase = phase;
 }
 
-void Table::ParsePlayers(std::string& button)
-{
-	// parse player queue
-	const Actions& actions = m_Actions[Phase::Preflop];
-
-	if (!m_Players.empty())
-	{
-		const pcmn::Player::Ptr smallBlind = GetPlayer(actions.at(0).m_Name);
-		if (smallBlind)
-		{
-			const pcmn::Player::Ptr onButton = smallBlind->GetPrevious();
-			if (onButton)
-			{
-				// try to match all players
-				std::set<std::string> actionPlayers;
-				for (const ActionDesc& action : actions)
-					actionPlayers.insert(action.m_Name);
-
-				std::set<std::string> parsedPlayers;
-				for (const pcmn::Player::Ptr& player : m_Players)
-					parsedPlayers.insert(player->Name());
-
-				button = onButton->Name(); // found previous player
-
-				if (actionPlayers == parsedPlayers)
-					return; // list is actual
-			}
-		}
-		m_Players.clear(); // invalid player list
-		//button = actions.back().m_Name; // set last player as on button, because we may don't know really player
-	}
-
-	std::string smallBlind;
-	bool bigBlindIsNext = false;
-	bool bigBlindExists = false;
-	for (unsigned i = 0; i < actions.size(); ++i)
-	{
-		const ActionDesc& action = actions.at(i);
-
-		unsigned stack;
-		if (m_Stacks.count(action.m_Name))
-			stack = m_Stacks[action.m_Name];
-		else
-			stack = 1500;
-
-		if (bigBlindIsNext)
-		{
-			assert(m_Players.size() > 1);
-			assert(!GetPlayer(action.m_Name));
-
-			m_Players[1] = boost::make_shared<pcmn::Player>(action.m_Name, stack);
-			bigBlindIsNext = false;
-			break;
-		}
-
-		if (smallBlind.empty())
-		{
-			assert(!GetPlayer(action.m_Name));
-			m_Players.push_back(boost::make_shared<pcmn::Player>(action.m_Name, stack));
-
-			if (actions[i + 1].m_Value != pcmn::Action::BigBlind)
-				m_Players.push_back(pcmn::Player::Ptr()); // next player - on big blind, reserve space
-			else
-				bigBlindExists = true;
-
-			smallBlind = action.m_Name;
-		}
-		else
-		if (smallBlind == action.m_Name)
-		{
-			// next action will be from big blind
-			// previous action was from button
-			//button = actions[i - 1].m_Name;
-
-			if (!bigBlindExists)
-				bigBlindIsNext = true;
-			else
-				break;
-		}
-		else
-		{
-			assert(!GetPlayer(action.m_Name));
-			m_Players.push_back(boost::make_shared<pcmn::Player>(action.m_Name, stack));
-		}
-	}	
-
-	if (bigBlindIsNext)
-	{
-		m_Players[1] = boost::make_shared<pcmn::Player>("Unknown", 1500); // don't know who on the big blind, but he wins
-		m_Stacks["Unknown"] = 1500;
-		//button = "Unknown";
-	}
-
-	// make links
-	m_Players.front()->SetPrevious(m_Players.back());
-	m_Players.back()->SetNext(m_Players.front());
-
-	for (unsigned p = 0; p < m_Players.size() - 1; ++p)
-	{
-		m_Players[p]->SetNext(m_Players[p + 1]);
-		m_Players[p + 1]->SetPrevious(m_Players[p]);
-	}
-
-	button = GetPlayer(smallBlind)->GetPrevious()->Name();
-
-#ifdef _DEBUG
-	const pcmn::Player::Ptr playerOnButton = GetPlayer(button);
-	const pcmn::Player::Ptr playerOnSmallBlind = GetPlayer(actions[0].m_Name);
-	const pcmn::Player::Ptr playerOnBigBlind = m_Players[1];
-
-	assert(playerOnButton->GetNext() == playerOnSmallBlind);
-	assert(playerOnSmallBlind->GetNext() == playerOnBigBlind);
-#endif
-}
-
 void Table::SendStatistic()
 {
-	if (m_Actions[Phase::Preflop].empty())
-		return;
-
-	if (m_Actions[Phase::Preflop].at(0).m_Value != pcmn::Action::SmallBlind)
-		return;
-
 	std::string onButton;
-	ParsePlayers(onButton);
+
+	if (!m_ActionsParser.Parse(m_IsNeedDecision, onButton))
+		return;
 
 	assert(!onButton.empty());
-
-	if (m_Actions[Phase::Preflop].at(1).m_Value != pcmn::Action::BigBlind)
-	{
-		const pcmn::Player::Ptr smallBlind = GetPlayer(m_Actions[Phase::Preflop].at(0).m_Name);
-		assert(smallBlind);
-		const pcmn::Player::Ptr bigBlind = smallBlind->GetNext();
-		assert(bigBlind);
-		m_Actions[Phase::Preflop].insert(m_Actions[Phase::Preflop].begin() + 1, ActionDesc(bigBlind->Name(), pcmn::Action::BigBlind, m_Actions[Phase::Preflop].at(0).m_Amount * 2));
-	}
 
 	net::Packet packet;
 

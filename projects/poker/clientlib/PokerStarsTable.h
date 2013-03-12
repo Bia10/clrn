@@ -8,6 +8,7 @@
 #include "Evaluator.h"
 #include "Cards.h"
 #include "IConnection.h"
+#include "ActionsParser.h"
 
 #include <map>
 
@@ -74,9 +75,6 @@ private:
 	//! Bet ante
 	void BetAnte();
 
-	//! Parse players
-	void ParsePlayers(std::string& button);
-
 private:
 
 	//! Message factory
@@ -115,7 +113,11 @@ private:
 	//! Player cards
 	Cards							m_PlayerCards;	
 
-	//! Players info
+	//! Is need decision
+	bool							m_IsNeedDecision;
+
+	//! Actions parser
+	ActionsParser					m_ActionsParser;
 
 };
 
