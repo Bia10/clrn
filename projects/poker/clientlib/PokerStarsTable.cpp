@@ -69,6 +69,7 @@ Table::Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection)
 	, m_Ante(0)
 	, m_IsNeedDecision(false)
 	, m_ActionsParser(m_Actions, m_Players)
+	, m_IsActive(true)
 {
 	SCOPED_LOG(m_Log);
 
@@ -125,6 +126,7 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 
 	if (action == pcmn::Action::Rank)
 	{
+		m_Loosers.push_back(name);
 		if (amount < 3 || name == pcmn::Player::ThisPlayer().Name())
 		{
 			// game finished
@@ -133,10 +135,31 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 		}
 	}	
 
+	switch (action)
+	{
+	case pcmn::Action::Bet: 
+	case pcmn::Action::Raise:
+		{
+			const unsigned difference = amount - m_Bets[name];
+			m_Bets[name] += difference;
+			break;
+		}
+	case pcmn::Action::Call: 
+	case pcmn::Action::SmallBlind: 
+	case pcmn::Action::BigBlind:
+		m_Bets[name] += amount;
+		break;
+	default:
+		break;
+	}
+
 	if (action == pcmn::Action::SecondsLeft && pcmn::Player::ThisPlayer().Name() == name)
 		OnBotAction(); // our turn to play
 
 	m_Actions[m_Phase].push_back(ActionDesc(name, action, amount));
+
+	if (!m_IsActive)
+		return;
 
 	const pcmn::Player::Ptr currentPlayer = GetPlayer(name);
 	if (currentPlayer)
@@ -219,6 +242,9 @@ void Table::ResetPhase()
 	m_Actions.resize(4);
 	m_PlayerCards.clear();
 	m_IsNeedDecision = false;
+	m_Bets.clear();
+	m_Loosers.clear();
+	m_IsActive = true;
 }
 
 void Table::SetPhase(const Phase::Value phase)
@@ -241,6 +267,9 @@ void Table::SendStatistic()
 		return;
 
 	assert(!onButton.empty());
+
+	for (const std::string& name : m_Loosers)
+		m_Stacks[name] = m_Bets[name];
 
 	net::Packet packet;
 
@@ -305,11 +334,12 @@ void Table::ReceiveFromServerCallback(const google::protobuf::Message& message)
 
 	const net::Reply& reply = dynamic_cast<const net::Reply&>(message);
 
-	const pcmn::Action::Value action = static_cast<pcmn::Action::Value>(reply.action());
+	const pcmn::Action::Value action = reply.error().empty() ? static_cast<pcmn::Action::Value>(reply.action()) : pcmn::Action::Fold;
 
 	switch (action)
 	{
 	case pcmn::Action::Fold:
+		m_IsActive = false;
 		Fold();
 		break;
 	case pcmn::Action::Check:
@@ -391,9 +421,9 @@ void Table::BetAnte()
 		m_Stacks[player->Name()] -= m_Ante;
 }
 
-
 } // namespace ps
 } // namespace clnt
+
 
 
 
