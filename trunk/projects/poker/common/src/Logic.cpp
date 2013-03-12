@@ -106,18 +106,28 @@ bool Logic::Run(TableContext& context)
 				catch (const pcmn::Player::BadIndex& e)
 				{
 					const unsigned expected = e.Expected();
-					const PlayerQueue::const_iterator it = std::find_if(m_Players.begin(), m_Players.end(), 
+					const unsigned got = e.Expected();
+					const PlayerQueue::const_iterator itExpected = std::find_if(m_Players.begin(), m_Players.end(), 
 						[&](const pcmn::Player::Ptr& player)
 						{
 							return player->Index() == expected;
 						}
 					);
+
+					const PlayerQueue::const_iterator itGot = std::find_if(m_Players.begin(), m_Players.end(), 
+						[&](const pcmn::Player::Ptr& player)
+						{
+							return player->Index() == got;
+						}
+					);
+
 	
-					CHECK(it != m_Players.end(), "Failed to find expected player. Invalid query.", expected, e.Got());
-					const std::string expectedPlayer = (*it)->Name();
-					const std::string gotPlayer = current->Name();
+					CHECK(itExpected != m_Players.end(), "Failed to find expected player. Invalid query.", expected);
+					CHECK(itGot != m_Players.end(), "Failed to find got player. Invalid query.", got);
+					const std::string expectedPlayer = (*itExpected)->Name();
+					const std::string gotPlayer = (*itGot)->Name();
 	
-					CHECK(false, "Invalid actions sequence detected", expectedPlayer, gotPlayer, e.Expected(), e.Got(), street);
+					CHECK(false, "Invalid actions sequence detected", expectedPlayer, gotPlayer, expected, got, street);
 				}
 			}
 	
