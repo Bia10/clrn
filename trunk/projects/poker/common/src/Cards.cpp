@@ -48,6 +48,37 @@ pcmn::Card::Value pcmn::Card::FromString(const char value)
 	}
 }
 
+pcmn::Card pcmn::Card::FromString(const std::string& value, const std::string& suit)
+{
+	Card result;
+#define CASE(x) if (value == #x) result.m_Value = x;
+	{
+		CASE(Two)
+		CASE(Three)
+		CASE(Four)
+		CASE(Five)
+		CASE(Six)
+		CASE(Seven)
+		CASE(Eight)
+		CASE(Nine)
+		CASE(Ten)
+		CASE(Jack)
+		CASE(Queen)
+		CASE(King)
+		CASE(Ace)
+	}
+#undef CASE
+#define CASE(x) if (suit == #x) result.m_Suit = Suit::x;
+	{
+		CASE(Hearts)
+		CASE(Clubs)
+		CASE(Spades)
+		CASE(Diamonds)
+	}
+#undef CASE
+	return result;
+}
+
 short pcmn::Card::ToEvalFormat() const
 {
 	const int result = (Ace - m_Value) * 4;

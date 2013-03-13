@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "../neuro/INeuroNetwork.h"
 #include "IConnection.h"
+#include "IStatistics.h"
 
 #include <boost/noncopyable.hpp>
 
@@ -17,7 +18,6 @@ namespace pcmn
 
 namespace srv
 {
-class Statistics;
 
 class DecisionMaker : public pcmn::IDecisionCallback, boost::noncopyable
 {
@@ -26,7 +26,7 @@ public:
 	(
 		ILog& logger, 
 		const pcmn::Evaluator& evaluator, 
-		const Statistics& stats, 
+		const IStatistics& stats, 
 		neuro::INetwork<float>& net,
 		net::IConnection& connection
 	);
@@ -64,7 +64,7 @@ private:
 	const pcmn::Evaluator& m_Evaluator;
 
 	//! Statistics
-	const srv::Statistics& m_Stat;
+	const srv::IStatistics& m_Stat;
 
 	//! Neuro network
 	neuro::INetwork<float>& m_Net;

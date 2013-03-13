@@ -49,6 +49,7 @@ namespace pcmn
 
 		static std::string ToString(Value value);
 		static Value FromString(const char value);
+		static Card FromString(const std::string& value, const std::string& suit);
 		short ToEvalFormat() const;
 		const Card& FromEvalFormat(short value); 
 		bool IsValid() const;

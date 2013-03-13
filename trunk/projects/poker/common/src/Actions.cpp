@@ -42,4 +42,28 @@ namespace pcmn
 		return false;
 	}
 
+	Action::Value Action::FromString(const std::string& text)
+	{
+#define CASE(x) if (text == #x) return x;
+		{
+			CASE(Fold)
+			CASE(Check)
+			CASE(Call)
+			CASE(Bet)
+			CASE(Raise)
+			CASE(ShowCards)
+			CASE(SmallBlind)
+			CASE(BigBlind)
+			CASE(Ante)
+			CASE(Win)
+			CASE(Loose)
+			CASE(MoneyReturn)
+			CASE(SecondsLeft)
+			CASE(Rank)
+			CASE(WinCards)
+		}
+#undef CASE
+		return Unknown;
+	}
+
 }

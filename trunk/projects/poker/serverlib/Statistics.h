@@ -1,14 +1,13 @@
 #ifndef Statistics_h__
 #define Statistics_h__
 
-#include "ILog.h"
-#include "TableContext.h"
+#include "IStatistics.h"
 
 namespace srv
 {
 
 //! Stats writer/reader
-class Statistics
+class Statistics : public IStatistics
 {
 public:
 

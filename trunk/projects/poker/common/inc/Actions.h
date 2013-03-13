@@ -28,6 +28,7 @@ namespace pcmn
 		};
 
 		static std::string ToString(Value value);
+		static Value FromString(const std::string& text);
 		static bool IsActive(Value value);
 	};
 }
