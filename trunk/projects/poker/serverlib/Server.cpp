@@ -114,4 +114,9 @@ Server::Server() : m_Impl(new Impl())
 
 }
 
+Server::~Server()
+{
+	delete m_Impl;
+}
+
 }

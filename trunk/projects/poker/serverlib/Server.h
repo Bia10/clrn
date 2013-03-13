@@ -10,11 +10,12 @@ class Server
 {
 public:
 	Server();
+	~Server();
 	void Run();
 
 private:
 	class Impl;
-	std::auto_ptr<Impl> m_Impl;
+	Impl* m_Impl;
 
 };
 
