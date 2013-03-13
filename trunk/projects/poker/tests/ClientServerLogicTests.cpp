@@ -39,6 +39,20 @@ public:
 	}
 };
 
+class TestClient : public net::IConnection
+{
+	virtual void Send(const google::protobuf::Message& message) 
+	{
+		std::cout << message.DebugString() << std::endl;
+	}
+
+	virtual void Receive(const Callback& callback, const google::protobuf::Message* message = 0) 
+	{
+		throw std::exception("The method or operation is not implemented.");
+	}
+
+};
+
 class TestServer : public net::IConnection
 {
 public:
@@ -50,7 +64,8 @@ public:
 
 	virtual void Send(const google::protobuf::Message& message) 
 	{
-		srv::DecisionMaker decisionMaker(m_Log, m_Evaluator, m_Statistics, m_Network, *this);
+		TestClient client;
+		srv::DecisionMaker decisionMaker(m_Log, m_Evaluator, m_Statistics, m_Network, client);
 
 		srv::Parser parser(m_Log, m_Evaluator, dynamic_cast<const net::Packet&>(message), decisionMaker);
 
@@ -91,13 +106,16 @@ void ParseCards(const std::string& text, Card::List& result)
 void ParseData(const std::string& data, ITable& table)
 {
 
-	static const boost::regex line("\\]\\:(.*?)/\\*");
+	static const boost::regex line("\\[.*?\\]\\:(.*?)/\\*");
 
 	boost::sregex_iterator itLine(data.begin(), data.end(), line);
 	boost::sregex_iterator end;
 
-	for (; itLine != end; ++itLine)
+	pcmn::Player::List players;
+	unsigned count = 0;
+	for (; itLine != end; ++itLine, ++count)
 	{
+		const std::string& fullLine = (*itLine)[0];
 		const std::string& lineText = (*itLine)[1];
 
 		// info
@@ -105,7 +123,6 @@ void ParseData(const std::string& data, ITable& table)
 			static const boost::regex info(".*'(\\S+)'.*stack.*'(\\d+)'");
 			boost::sregex_iterator it(lineText.begin(), lineText.end(), info);
 
-			pcmn::Player::List players;
 			while (it != end)
 			{
 				const std::string& name = (*it)[1];
@@ -115,9 +132,6 @@ void ParseData(const std::string& data, ITable& table)
 				//output << "\t(boost::make_shared<Player>(\"" << (*it)[1] << "\", " << (*it)[2] << "))" << std::endl;
 				++it;
 			}
-
-			if (!players.empty())
-				table.PlayersInfo(players);
 		}
 
 		// actions
@@ -125,9 +139,14 @@ void ParseData(const std::string& data, ITable& table)
 			static const boost::regex action(".*'(\\S+)'.*action.*'(\\S+)'.*'(\\d+)'");
 			boost::sregex_iterator it(lineText.begin(), lineText.end(), action);		
 
-			
 			while (it != end)
 			{
+				if (!players.empty())
+				{
+					table.PlayersInfo(players);
+					players.clear();
+				}
+
 				const std::string& name = (*it)[1];
 				const std::string& action = (*it)[2];
 				const unsigned amount = boost::lexical_cast<unsigned>((*it)[3]);
@@ -176,7 +195,6 @@ void RunTest()
 	static const std::string file = "messages.txt";
 	const std::string full = fs::FullPath(file);
 
-
 	// read file data
 	std::ifstream ifs(full.c_str(), std::ios_base::binary);
 	ASSERT_TRUE(ifs.is_open()) << full;
@@ -187,7 +205,7 @@ void RunTest()
 	std::copy(std::istream_iterator<char>(ifs), std::istream_iterator<char>(), std::back_inserter(content));
 	
 	Log log;
-	net::IConnection::Ptr connection;
+	net::IConnection::Ptr connection(new TestServer());
 
 	ps::Table table(log, NULL, connection);
 	ParseData(content, table);
@@ -195,5 +213,6 @@ void RunTest()
 
 TEST(Logic, ClientServerByLogs)
 {
+	pcmn::Player::ThisPlayer().Name("CLRN");
 	RunTest();
 }

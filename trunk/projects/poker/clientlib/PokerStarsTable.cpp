@@ -68,7 +68,7 @@ Table::Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection)
 	, m_Connection(connection)
 	, m_Ante(0)
 	, m_IsNeedDecision(false)
-	, m_ActionsParser(m_Actions, m_Players)
+	, m_ActionsParser(m_Log, m_Actions, m_Players)
 	, m_IsActive(true)
 {
 	SCOPED_LOG(m_Log);
@@ -158,8 +158,14 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 
 	m_Actions[m_Phase].push_back(ActionDesc(name, action, amount));
 
+	if (action == pcmn::Action::Fold && pcmn::Player::ThisPlayer().Name() == name)
+		m_IsActive = false;
+
 	if (!m_IsActive)
 		return;
+
+	if (action == pcmn::Action::SmallBlind)
+		return; // no need to check next player
 
 	const pcmn::Player::Ptr currentPlayer = GetPlayer(name);
 	if (currentPlayer)
@@ -191,6 +197,9 @@ void Table::FlopCards(const pcmn::Card::List& cards)
 void Table::BotCards(const pcmn::Card& first, const pcmn::Card& second)
 {
 	m_PlayerCards[pcmn::Player::ThisPlayer().Name()] = boost::assign::list_of(first)(second);
+
+	if (m_IsNeedDecision)
+		OnBotAction();
 }
 
 void Table::PlayersInfo(const pcmn::Player::List& players)
@@ -224,6 +233,10 @@ void Table::OnBotAction()
 {
 	// make a decision and react
 	m_IsNeedDecision = true;
+
+	if (!m_PlayerCards.count(pcmn::Player::ThisPlayer().Name()))
+		return; // wait for bot cards
+
 	SendStatistic();
 
 	m_Connection->Receive(boost::bind(&Table::ReceiveFromServerCallback, this, _1), &net::Reply());
@@ -236,6 +249,10 @@ void Table::PlayerCards(const std::string& name, const pcmn::Card::List& cards)
 
 void Table::ResetPhase()
 {
+	for (const std::string& name : m_Loosers)
+		ErasePlayer(name);
+	m_Loosers.clear();
+
 	m_Phase = Phase::Preflop;
 	m_FlopCards.clear();
 	m_Actions.clear();
@@ -263,13 +280,18 @@ void Table::SendStatistic()
 {
 	std::string onButton;
 
+	static int s = 0;
+	++s;
+
 	if (!m_ActionsParser.Parse(m_IsNeedDecision, onButton))
 		return;
 
 	assert(!onButton.empty());
 
-	for (const std::string& name : m_Loosers)
-		m_Stacks[name] = m_Bets[name];
+	m_ActionsParser.ParseStacks(m_IsNeedDecision, m_Stacks);
+	m_IsNeedDecision = false;
+// 	for (const std::string& name : m_Loosers)
+// 		m_Stacks[name] = m_Bets[name];
 
 	net::Packet packet;
 
@@ -285,7 +307,9 @@ void Table::SendStatistic()
 		net::Packet::Player& added = *table.add_players();
 		added.set_bet(player->Bet());
 		added.set_name(player->Name());
-		added.set_stack(m_Stacks[player->Name()]);
+		unsigned stack = m_Stacks[player->Name()];
+
+		added.set_stack(stack);
 
 		const pcmn::Card::List& cards = m_PlayerCards[player->Name()];
 		for (const pcmn::Card& card : cards)
@@ -321,6 +345,7 @@ void Table::SendStatistic()
 	{
 		LOG_WARNING("Failed to send statistics, error: [%s]") % e.what();
 	}
+
 }
 
 void Table::CloseTableWindow()
@@ -419,6 +444,24 @@ void Table::BetAnte()
 {
 	for (const pcmn::Player::Ptr& player : m_Players)
 		m_Stacks[player->Name()] -= m_Ante;
+}
+
+void Table::ErasePlayer(const std::string& name)
+{
+	const pcmn::Player::List::iterator it = std::find_if
+	(
+		m_Players.begin(),
+		m_Players.end(),
+		[&](const pcmn::Player::Ptr& player)
+		{
+			return player ? player->Name() == name : false;
+		}
+	);
+
+	assert(it != m_Players.end());
+	(*it)->DeleteLinks();
+	m_Players.erase(it);
+	m_Stacks.erase(name);
 }
 
 } // namespace ps

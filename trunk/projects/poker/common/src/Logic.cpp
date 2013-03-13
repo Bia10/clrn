@@ -27,6 +27,9 @@ bool Logic::Run(TableContext& context)
 	TRY 
 	{
 		const std::size_t buttonIndex = m_Players.front()->Index();
+
+		for (TableContext::Data::Player& player : context.m_Data.m_Players)
+			player.m_TotalBet = 0;
 	
 		for (int street = 0 ; street < 4; ++street)
 		{
@@ -73,8 +76,11 @@ bool Logic::Run(TableContext& context)
 	
 				try
 				{
+					const unsigned previousBet = current->Bet();
 					const pcmn::IActionsQueue::Event::Value result = current->Do(m_Actions, context);
 					const Player::Position::Value position = GetPlayerPosition(m_Players, current);
+
+					context.m_Data.m_Players[current->Index()].m_TotalBet += current->Bet() - previousBet;
 	
 					if (result == pcmn::IActionsQueue::Event::NeedDecision && m_Players.size() > 1)
 					{

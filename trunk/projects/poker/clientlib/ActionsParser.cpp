@@ -1,10 +1,29 @@
 #include "ActionsParser.h"
 #include "Exception.h"
+#include "Logic.h"
+#include "TableActionsQueue.h"
+#include "TableContext.h"
 
 #include <boost/make_shared.hpp>
 
 namespace clnt
 {
+
+class FakeDecisionMaker : public pcmn::IDecisionCallback
+{
+public:
+	FakeDecisionMaker() : m_IsValid(true) {}
+	virtual void MakeDecision(const pcmn::Player& player, const PlayerQueue& /*activePlayers*/, const pcmn::TableContext& /*context*/, const pcmn::Player::Position::Value /*position*/) 
+	{
+		m_Name = player.Name();
+		m_IsValid = m_Name == pcmn::Player::ThisPlayer().Name();
+	}
+	bool IsValid() const { return m_IsValid; }
+	std::string Name() const { return m_Name; }
+private:
+	bool m_IsValid;
+	std::string m_Name;
+};
 
 //! Unique add
 template<typename C, typename V>
@@ -16,9 +35,10 @@ void UniqueAdd(C& c, const V& value)
 }
 
 
-ActionsParser::ActionsParser(Actions& actions, pcmn::Player::List& players)
+ActionsParser::ActionsParser(ILog& logger, Actions& actions, pcmn::Player::List& players)
 	: m_Actions(actions)
 	, m_Players(players)
+	, m_Log(logger)
 {
 
 }
@@ -49,7 +69,7 @@ bool ActionsParser::ParseByAnte(std::string& button)
 	for (const std::string& name : players)
 		m_Players.push_back(boost::make_shared<pcmn::Player>(name, 0));
 
-	LinkPlayers();
+	LinkPlayers(m_Players);
 	RemoveUselessActions();
 
 	const ITable::Actions& actions = m_Actions.front();
@@ -65,16 +85,16 @@ bool ActionsParser::ParseByAnte(std::string& button)
 	return true;
 }
 
-void ActionsParser::LinkPlayers()
+void ActionsParser::LinkPlayers(pcmn::Player::List& players)
 {
 	// make links
-	m_Players.front()->SetPrevious(m_Players.back());
-	m_Players.back()->SetNext(m_Players.front());
+	players.front()->SetPrevious(players.back());
+	players.back()->SetNext(players.front());
 
-	for (unsigned p = 0; p < m_Players.size() - 1; ++p)
+	for (unsigned p = 0; p < players.size() - 1; ++p)
 	{
-		m_Players[p]->SetNext(m_Players[p + 1]);
-		m_Players[p + 1]->SetPrevious(m_Players[p]);
+		players[p]->SetNext(players[p + 1]);
+		players[p + 1]->SetPrevious(players[p]);
 	}
 }
 
@@ -119,7 +139,7 @@ bool ActionsParser::ParseByBlinds(std::string& button, const bool isNeedDecision
 			m_Players.push_back(boost::make_shared<pcmn::Player>(name, 0));
 	}
 
-	LinkPlayers();
+	LinkPlayers(m_Players);
 
 	if (m_Players.size() == 2)
 		button = GetPlayer(actions.front().m_Name)->Name();
@@ -190,13 +210,13 @@ bool ActionsParser::ParseOneAction(std::string& button, bool isNeedDecision)
 			m_Players.push_back(smallBlind);
 			CreateUnknown();
 			actions.push_back(ITable::ActionDesc(m_Players.back()->Name(), pcmn::Action::BigBlind, actions.front().m_Amount * 2));
-			LinkPlayers();
+			LinkPlayers(m_Players);
 		}
 
 		// try to find button
 		const pcmn::Player::Ptr buttonPlayer = smallBlind->GetPrevious();
 		if (!buttonPlayer)
-			LinkPlayers();
+			LinkPlayers(m_Players);
 
 		if (m_Players.size() == 2)
 			button = GetPlayer(actions.front().m_Name)->Name();
@@ -294,7 +314,209 @@ bool ActionsParser::ArePlayersMatches(const std::vector<std::string>& players)
 		if (!nextPlayer || nextPlayer->Name() != next)
 			return false;
 	}
+
 	return true;
+}
+
+void ActionsParser::ParseStacks(bool isNeedDecision, ITable::StackMap& stacks)
+{
+	typedef std::map<std::string, unsigned> IndexesMap;
+	IndexesMap indexes;
+	for (unsigned i = 0 ; i < m_Players.size(); ++i)
+		indexes.insert(std::make_pair(m_Players[i]->Name(), i));
+
+	std::string button;
+	{
+		if (m_Players.size() == 2)
+			button = GetPlayer(m_Actions.front().front().m_Name)->Name();
+		else
+			button = GetPlayer(m_Actions.front().front().m_Name)->GetPrevious()->Name();
+	}
+
+	const unsigned buttonIndex = indexes[button];
+
+	bool isValid = false;
+	while (!isValid)
+	{
+		pcmn::Logic::PlayerQueue activePlayers(m_Players.size());
+		pcmn::Player::Ptr prev;
+		for (std::size_t i = buttonIndex, counter = 0 ; ; ++i, ++counter)
+		{
+			if (i == m_Players.size())
+				i = 0;
+
+			if (counter == activePlayers.size())
+			{
+				activePlayers[buttonIndex]->SetPrevious(prev);
+				prev->SetNext(activePlayers[buttonIndex]);
+				break;
+			}
+
+			const pcmn::Player::Ptr& player = m_Players[i];
+
+			activePlayers[i] = boost::make_shared<pcmn::Player>(
+				player->Name(),
+				stacks[player->Name()]
+			);
+
+			activePlayers[i]->Index(i);
+
+			if (prev)
+			{
+				activePlayers[i]->SetPrevious(prev);
+				prev->SetNext(activePlayers[i]);
+			}
+
+			prev = activePlayers[i];
+		}
+
+		while (activePlayers.front()->Name() != m_Players[buttonIndex]->Name())
+		{
+			activePlayers.push_back(activePlayers.front());
+			activePlayers.pop_front();
+		}
+
+		pcmn::TableActions tableActions(m_Actions, m_Players);
+		FakeDecisionMaker maker;
+		pcmn::TableContext context;
+
+		for (const pcmn::Player::Ptr& player : m_Players)
+		{
+			pcmn::TableContext::Data::Player p;
+			p.m_Name = player->Name();
+			context.m_Data.m_Players.push_back(p);
+		}
+
+		pcmn::Logic logic(m_Log, tableActions, maker, activePlayers);
+
+		try
+		{
+			logic.Run(context);
+		}
+		catch (const pcmn::Player::BadIndex& e)
+		{
+			const unsigned expected = e.Expected();
+			const unsigned got = e.Got();
+		}
+
+		if (!maker.IsValid())
+		{
+			const std::string name = maker.Name();
+			const unsigned index = indexes[name];
+
+			const unsigned maxBet = context.m_Data.m_Players[index].m_TotalBet;
+			if (stacks[name] != maxBet)
+				stacks[name] = maxBet;
+			else
+				return;
+		}
+
+		isValid = maker.IsValid();
+
+		for (unsigned i = 0 ; i < context.m_Data.m_Players.size(); ++i)
+		{
+			const std::string& name = context.m_Data.m_Players[i].m_Name;
+			if (stacks[name] < context.m_Data.m_Players[i].m_TotalBet)
+				stacks[name] = context.m_Data.m_Players[i].m_TotalBet * 3 / 2;
+		}
+	}
+
+
+
+	
+
+	/*
+	typedef std::map<std::string, pcmn::Player::Ptr> PlayersMap;
+	PlayersMap activePlayers;
+	std::string button;
+
+	{
+		pcmn::Player::List activePlayersList;
+		for (const pcmn::Player::Ptr& player : m_Players)
+			activePlayersList.push_back(boost::make_shared<pcmn::Player>(player->Name(), 0));
+
+		LinkPlayers(activePlayersList);
+
+		for (const pcmn::Player::Ptr& player : activePlayersList)
+			activePlayers.insert(std::make_pair(player->Name(), player));
+
+		if (m_Players.size() == 2)
+			button = GetPlayer(m_Actions.front().front().m_Name)->Name();
+		else
+			button = GetPlayer(m_Actions.front().front().m_Name)->GetPrevious()->Name();
+	}
+
+	unsigned street = 0;
+	for (const ITable::Actions& actions : m_Actions)
+	{
+		std::string next;
+		ITable::StackMap bets;
+
+		if (street)
+		{
+			pcmn::Player::Ptr nextPlayer = GetPlayer(button)->GetNext();
+			while (!activePlayers.count(nextPlayer->Name()))
+				nextPlayer = nextPlayer->GetNext();
+			next = nextPlayer->Name();
+		}
+
+		if (actions.empty() && !isNeedDecision)
+		{
+			for (const PlayersMap::value_type& pair : activePlayers)
+			{
+				if (stacks[pair.first] < pair.second->Bet())
+					stacks[pair.first] = pair.second->Bet();
+			}
+		}
+
+		for (const ITable::ActionDesc& action : actions)
+		{
+			const pcmn::Player::Ptr current = activePlayers[action.m_Name];
+			assert(current);
+
+			if (!next.empty() && next != action.m_Name)
+			{
+				// player is all in
+				const pcmn::Player::Ptr previous = activePlayers[next];
+				stacks[next] = previous->Bet();
+				previous->DeleteLinks();
+				activePlayers.erase(next);
+			}
+
+			switch (action.m_Value)
+			{
+			case pcmn::Action::Bet: 
+			case pcmn::Action::Raise:
+				{
+					const unsigned difference = action.m_Amount - bets[action.m_Name];
+					bets[action.m_Name] += difference;
+					current->Bet(current->Bet() + difference);
+					break;
+				}
+			case pcmn::Action::Call: 
+			case pcmn::Action::SmallBlind: 
+			case pcmn::Action::BigBlind:
+				bets[action.m_Name] += action.m_Amount;
+				current->Bet(current->Bet() + action.m_Amount);
+				break;
+			case pcmn::Action::Fold:
+				{
+					const pcmn::Player::Ptr current = activePlayers[action.m_Name];
+					assert(current);
+
+					next = current->GetNext()->Name();
+					current->DeleteLinks();
+					activePlayers.erase(action.m_Name);
+				}
+			default:
+				break;
+			}
+
+			if (action.m_Value != pcmn::Action::Fold)
+				next = current->GetNext()->Name();
+		}
+		++street;
+	}*/
 }
 
 } // namespace clnt

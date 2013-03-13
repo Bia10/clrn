@@ -21,7 +21,6 @@ class Table : public ITable
 {
 	typedef cmn::functional::Factory<IMessage, std::size_t, cmn::functional::IgnoreErrorPolicy> Factory;
 	typedef std::vector<Actions> GameActions;
-	typedef std::map<std::string, unsigned> StackMap;
 	typedef std::map<std::string, pcmn::Card::List> Cards;
 public:
 	Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection);
@@ -74,6 +73,9 @@ private:
 
 	//! Bet ante
 	void BetAnte();
+
+	//! Erase player
+	void ErasePlayer(const std::string& name);
 
 private:
 
