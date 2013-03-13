@@ -1,5 +1,5 @@
 #include "Player.h"
-#include "../clientlib/ITable.h"
+#include "ITable.h"
 #include "../clientlib/PokerStarsTable.h"
 #include "Actions.h"
 #include "Log.h"

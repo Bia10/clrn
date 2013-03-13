@@ -90,6 +90,9 @@ namespace pcmn
 			{
 				const unsigned difference = amount - m_Bet;
 				m_Stack -= difference;
+				if (static_cast<int>(m_Stack) < 0)
+					m_Stack = 0;
+
 				m_State = m_Stack ? State::Waiting : State::AllIn;
 				table.m_Pot += difference;
 				m_Bet += difference;
@@ -101,6 +104,8 @@ namespace pcmn
 		case pcmn::Action::SmallBlind: 
 		case pcmn::Action::BigBlind:
 			m_Stack -= amount;
+			if (static_cast<int>(m_Stack) < 0)
+				m_Stack = 0;
 
 			if (m_Stack)
 				m_State = action == pcmn::Action::Call ? State::Waiting : State::InPot;
@@ -114,6 +119,7 @@ namespace pcmn
 			break;
 		
 		}
+
 		return IActionsQueue::Event::Call;
 	}
 

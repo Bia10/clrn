@@ -8,6 +8,7 @@
 #include <windows.h>
 #include <string>
 #include <vector>
+#include <map>
 
 #include <boost/shared_ptr.hpp>
 #include <boost/noncopyable.hpp>
@@ -51,6 +52,7 @@ public:
 
 	typedef boost::shared_ptr<ITable> Ptr;
 	typedef std::vector<ActionDesc> Actions;
+	typedef std::map<std::string, unsigned> StackMap;
 
 	virtual ~ITable() {}
 

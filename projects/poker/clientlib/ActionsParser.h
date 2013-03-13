@@ -3,6 +3,7 @@
 
 #include "ITable.h"
 #include "Player.h"
+#include "ILog.h"
 
 namespace clnt
 {
@@ -11,9 +12,12 @@ class ActionsParser
 {
 	typedef std::vector<ITable::Actions> Actions;
 public:
-	ActionsParser(Actions& actions, pcmn::Player::List& players);
+	ActionsParser(ILog& logger, Actions& actions, pcmn::Player::List& players);
 
 	bool Parse(bool isNeedDecision, std::string& button);
+
+	//! Parse player stacks
+	void ParseStacks(bool isNeedDecision, ITable::StackMap& stacks);
 
 private:
 
@@ -24,7 +28,7 @@ private:
 	bool ParseByBlinds(std::string& button, bool isNeedDecision);
 
 	//! Link players
-	void LinkPlayers();
+	void LinkPlayers(pcmn::Player::List& players);
 
 	//! Remove unused actions
 	void RemoveUselessActions();
@@ -48,6 +52,9 @@ private:
 	bool ArePlayersMatches(const std::vector<std::string>& players);
 
 private:
+
+	//! Logger
+	ILog& m_Log;
 
 	//! Actions list
 	Actions& m_Actions;
