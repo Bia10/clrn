@@ -20,7 +20,7 @@ DecisionMaker::DecisionMaker
 (
 	ILog& logger, 
 	const pcmn::Evaluator& evaluator, 
-	const srv::Statistics& stats, 
+	const srv::IStatistics& stats, 
 	neuro::INetwork<float>& net,
 	net::IConnection& connection
 ) 
