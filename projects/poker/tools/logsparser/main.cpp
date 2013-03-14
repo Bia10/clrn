@@ -43,7 +43,7 @@ void Process(const std::string& input, std::ostream& output)
 				if (!ended)
 				{
 					output << "\t;" << std::endl;
-					output << "m_Table->PlayersInfo(m_Players); " << std::endl << std::endl;
+					output << "m_Table->CashGameInfo(m_Players); " << std::endl << std::endl;
 					ended = true;
 				}
 

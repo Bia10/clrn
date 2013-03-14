@@ -124,6 +124,9 @@ private:
 	//! Player bets
 	StackMap						m_Bets;
 
+	//! Player total bets
+	StackMap						m_TotalBets;
+
 	//! Losers
 	std::vector<std::string>		m_Loosers;
 

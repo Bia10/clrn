@@ -71,6 +71,9 @@ public:
 
 		if (parser.Parse())  // write statistics, game completed
 			m_Statistics.Write(parser.GetResult());
+
+		static int counter = 0;
+		std::cout << "Requests: " << counter++ << std::endl;
 	}
 
 	virtual void Receive(const Callback& callback, const google::protobuf::Message* message = 0) 
@@ -129,7 +132,6 @@ void ParseData(const std::string& data, ITable& table)
 				const unsigned stack = boost::lexical_cast<unsigned>((*it)[2]);
 
 				players.push_back(boost::make_shared<Player>(name, stack));
-				//output << "\t(boost::make_shared<Player>(\"" << (*it)[1] << "\", " << (*it)[2] << "))" << std::endl;
 				++it;
 			}
 		}

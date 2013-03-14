@@ -53,10 +53,10 @@ private:
 	ILog& m_Log;
 };
 
-class PlayersInfo : public IMessage
+class CashGameInfo : public IMessage
 {
 public:
-	PlayersInfo(ILog& logger) : m_Log(logger) {}
+	CashGameInfo(ILog& logger) : m_Log(logger) {}
 private:
 	virtual std::size_t GetId() const override;
 	virtual void Process(const dasm::WindowMessage& message, ITable& table) const override;

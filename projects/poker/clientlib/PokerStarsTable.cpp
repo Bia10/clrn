@@ -79,7 +79,7 @@ Table::Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection)
 		Register<msg::FlopCards>(s_Factory, m_Log);
 		Register<msg::TurnAndRiverCards>(s_Factory, m_Log);
 		Register<msg::PlayerCards>(s_Factory, m_Log);
-		Register<msg::PlayersInfo>(s_Factory, m_Log);
+		Register<msg::CashGameInfo>(s_Factory, m_Log);
 		Register<msg::BeforePreflopActions>(s_Factory, m_Log);
 		Register<msg::TableInfo>(s_Factory, m_Log);
 	}
@@ -124,6 +124,12 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 {
 	LOG_TRACE("Player: '%s', action: '%s', amount: '%s'") % name % pcmn::Action::ToString(action) % amount;
 
+	if (action == pcmn::Action::SmallBlind)
+	{
+		SendStatistic();
+		ResetPhase();
+	}
+
 	if (action == pcmn::Action::Rank)
 	{
 		m_Loosers.push_back(name);
@@ -142,11 +148,13 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 		{
 			const unsigned difference = amount - m_Bets[name];
 			m_Bets[name] += difference;
+			m_TotalBets[name] += difference;
 			break;
 		}
 	case pcmn::Action::Call: 
 	case pcmn::Action::SmallBlind: 
 	case pcmn::Action::BigBlind:
+		m_TotalBets[name] += amount;
 		m_Bets[name] += amount;
 		break;
 	default:
@@ -164,7 +172,7 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 	if (!m_IsActive)
 		return;
 
-	if (action == pcmn::Action::SmallBlind)
+	if (action == pcmn::Action::SmallBlind || action == pcmn::Action::SecondsLeft)
 		return; // no need to check next player
 
 	const pcmn::Player::Ptr currentPlayer = GetPlayer(name);
@@ -181,12 +189,21 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 
 void Table::FlopCards(const pcmn::Card::List& cards)
 {
+	m_Bets.clear();
 	Phase::Value phase = Phase::Preflop;
+	std::string onButton;
 	switch (cards.size())
 	{
-	case 3: phase = Phase::Flop; break;
-	case 4: phase = Phase::Turn; break;
-	case 5: phase = Phase::River; break;
+	case 3: 
+		phase = Phase::Flop; 
+		m_ActionsParser.Parse(false, onButton); 
+		break;
+	case 4: 
+		phase = Phase::Turn; 
+		break;
+	case 5: 
+		phase = Phase::River; 
+		break;
 	default: assert(false);
 	}
 
@@ -204,9 +221,6 @@ void Table::BotCards(const pcmn::Card& first, const pcmn::Card& second)
 
 void Table::PlayersInfo(const pcmn::Player::List& players)
 {
-	SendStatistic();
-	ResetPhase();
-
 	for (const pcmn::Player::Ptr& player : players)
 		m_Stacks[player->Name()] = player->Stack();
 }
@@ -262,6 +276,7 @@ void Table::ResetPhase()
 	m_Bets.clear();
 	m_Loosers.clear();
 	m_IsActive = true;
+	m_TotalBets.clear();
 }
 
 void Table::SetPhase(const Phase::Value phase)
@@ -288,7 +303,7 @@ void Table::SendStatistic()
 
 	assert(!onButton.empty());
 
-	m_ActionsParser.ParseStacks(m_IsNeedDecision, m_Stacks);
+	//m_ActionsParser.ParseStacks(m_IsNeedDecision, m_Stacks);
 	m_IsNeedDecision = false;
 // 	for (const std::string& name : m_Loosers)
 // 		m_Stacks[name] = m_Bets[name];
@@ -307,7 +322,7 @@ void Table::SendStatistic()
 		net::Packet::Player& added = *table.add_players();
 		added.set_bet(player->Bet());
 		added.set_name(player->Name());
-		unsigned stack = m_Stacks[player->Name()];
+		unsigned stack = m_Stacks[player->Name()] + m_TotalBets[player->Name()];
 
 		added.set_stack(stack);
 
@@ -389,7 +404,7 @@ void Table::PressButtonThread(const float x, const float y)
 {
 	SCOPED_LOG(m_Log);
 
-	boost::random::uniform_int_distribution<> wait(100, 4000);
+	boost::random::uniform_int_distribution<> wait(1000, 3000);
 
 	boost::this_thread::interruptible_wait(wait(g_Random));
 
@@ -404,7 +419,7 @@ void Table::PressButtonThread(const float x, const float y)
 	const LPARAM param = MAKELPARAM(resultX, resultY);
 	CHECK(PostMessage(m_Window, WM_LBUTTONDOWN, (WPARAM)MK_LBUTTON, param));
 
-	boost::random::uniform_int_distribution<> up(50, 200);
+	boost::random::uniform_int_distribution<> up(200, 500);
 
 	boost::this_thread::interruptible_wait(up(g_Random));
 	CHECK(PostMessage(m_Window, WM_LBUTTONUP, NULL, param));

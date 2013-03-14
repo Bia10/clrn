@@ -11,6 +11,7 @@
 #include <iomanip>
 
 #include <boost/make_shared.hpp>
+#include <boost/assign.hpp>
 
 using namespace pcmn;
 
@@ -249,11 +250,32 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 	}
 	else
 	{
-		LOG_TRACE("Player: '%s', action: '%p', amount: '%s'") % data % Action::ToString(actionValue) % amount;
+		LOG_TRACE("Player: '%s', action: '%p', amount: '%s'") % name % Action::ToString(actionValue) % amount;
 
 		CHECK(actionValue != Action::Unknown, static_cast<int>(action));
 		if (!name.empty())
 			table.PlayerAction(name, actionValue, amount);
+	}
+
+	data = message.m_Block.m_Data + message.m_Block.m_Offset;
+	while (data < end) 
+	{
+		data = std::find(data + 1, end, 0x1c);
+		if (*(data - 1) - char(0x00))
+			continue;
+		if (*(data - 2) - char(0x00))
+			continue;
+		if (*(data - 3) - char(0x00))
+			continue;
+		if (*(data - 4) - char(0xff))
+			continue;
+		if (*(data - 5) - char(0x00))
+			continue;
+
+		const int stack = _byteswap_ulong(*reinterpret_cast<const int*>(data + 1));	
+
+		LOG_TRACE("Player: '%s', stack: '%s'") % name % stack;
+		table.PlayersInfo(boost::assign::list_of(boost::make_shared<pcmn::Player>(name, stack)));
 	}
 }
 
@@ -321,12 +343,12 @@ void PlayerCards::Process(const dasm::WindowMessage& message, ITable& table) con
 }
 
 
-std::size_t PlayersInfo::GetId() const 
+std::size_t CashGameInfo::GetId() const 
 {
 	return 0x20000;
 }
 
-void PlayersInfo::Process(const dasm::WindowMessage& message, ITable& table) const 
+void CashGameInfo::Process(const dasm::WindowMessage& message, ITable& table) const 
 {
 	SCOPED_LOG(m_Log);
 
