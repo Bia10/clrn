@@ -105,7 +105,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& 
 		if (out[2] > out[0] && out[2] > out[1])
 		{
 			reply.set_action(pcmn::Action::Raise);
-			reply.set_amount(context.m_MaxBet * 3);
+			reply.set_amount(context.m_MaxBet ? context.m_MaxBet * 3 : context.m_BigBlind * 5);
 		}
 
 		LOG_TRACE("Decision input: win: [%s], pos: [%s], pot: [%s], stack: [%s], players: [%s], aggression: [%s], unusual: [%s], bot style: [%s], bot stack: [%s]")
