@@ -79,10 +79,18 @@ bool ActionsParser::ParseByAnte(std::string& button)
 	if (actions.front().m_Value != pcmn::Action::SmallBlind)
 		return false;
 
+	const pcmn::Player::Ptr buttonPlayer = GetPlayer(actions.front().m_Name);
+
+	if (!buttonPlayer)
+		return false;
+
 	if (m_Players.size() == 2)
-		button = GetPlayer(actions.front().m_Name)->Name();
+		button = buttonPlayer->Name();
 	else
-		button = GetPlayer(actions.front().m_Name)->GetPrevious()->Name();
+	if (buttonPlayer->GetPrevious())
+		button = buttonPlayer->GetPrevious()->Name();
+	else
+		return false;
 
 	InsertBigBlind();
 

@@ -141,17 +141,6 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 	{
 		SendStatistic();
 		ResetPhase();
-
-		if (action == pcmn::Action::SmallBlind)
-		{
-			pcmn::Player::Ptr currentPlayer = GetPlayer(name);
-			if (!currentPlayer)
-				return;
-
-			currentPlayer = currentPlayer->GetNext();
-			if (currentPlayer)
-				PlayerAction(currentPlayer->Name(), pcmn::Action::BigBlind, amount * 2);
-		}
 	}
 
 	if (action == pcmn::Action::Rank)
@@ -196,11 +185,25 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 
 	m_Actions[m_Phase].push_back(ActionDesc(name, action, amount));
 
+	if (action == pcmn::Action::SmallBlind)
+	{
+		pcmn::Player::Ptr currentPlayer = GetPlayer(name);
+		if (!currentPlayer)
+			return;
+
+		currentPlayer = currentPlayer->GetNext();
+		if (currentPlayer)
+			PlayerAction(currentPlayer->Name(), pcmn::Action::BigBlind, amount * 2);
+	}
+
 	if (action == pcmn::Action::Fold)
 		m_FoldedPlayers[name] = true;
 
 	if (m_FoldedPlayers[botName] || m_WaitingPlayers[botName])
 		return;
+
+	if (action == pcmn::Action::SecondsLeft)
+		return; // no need to check next player
 
 	MakeDecisionIfNext(name);
 }
@@ -464,9 +467,8 @@ void Table::BetRaise(unsigned amount)
 	const HWND editor = FindWindowEx(slider, NULL, "PokerStarsSliderEditorClass", NULL);
 	CHECK(editor != NULL, "Failed to find editor");
 
-	boost::this_thread::interruptible_wait(1000);
 	const std::string value = boost::lexical_cast<std::string>(amount);
-	PostMessage(editor, WM_SETTEXT, NULL, reinterpret_cast<LPARAM>(value.c_str()));
+	SendMessage(editor, WM_SETTEXT, NULL, reinterpret_cast<LPARAM>(value.c_str()));
 
 	PressButton(BET_X, BET_Y);
 }
