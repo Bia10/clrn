@@ -121,6 +121,8 @@ void ParseData(const std::string& data, ITable& table)
 		boost::sregex_iterator itNext = itLine;
 		++itNext;
 		if (itNext != end)
+			++itNext;
+		if (itNext != end)
 		{
 			const std::string& nextLine = (*itNext)[0];
 			if (nextLine.find("SecondsLeft") != std::string::npos && nextLine.find("CLRN") != std::string::npos)
