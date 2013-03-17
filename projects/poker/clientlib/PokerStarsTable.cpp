@@ -127,10 +127,11 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 	if (action == pcmn::Action::ShowCards)
 	{
 		m_IsCardsShowed = true;
+		m_WaitingPlayers[name] = false;
 		return;
 	}
 
-	if (action == pcmn::Action::SmallBlind)
+	if (action == pcmn::Action::SmallBlind || action == pcmn::Action::MoneyReturn)
 	{
 		SendStatistic();
 		ResetPhase();
@@ -160,11 +161,11 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 			break;
 		}
 	case pcmn::Action::Call: 
+		m_WaitingPlayers[name] = true;
 	case pcmn::Action::SmallBlind: 
 	case pcmn::Action::BigBlind:
 		m_TotalBets[name] += amount;
 		m_Bets[name] += amount;
-		m_WaitingPlayers[name] = true;
 		break;
 	case pcmn::Action::Check:
 		m_WaitingPlayers[name] = true;
@@ -187,24 +188,7 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 	if (action == pcmn::Action::SmallBlind || action == pcmn::Action::SecondsLeft)
 		return; // no need to check next player
 
-	pcmn::Player::Ptr currentPlayer = GetPlayer(name);
-	if (!currentPlayer)
-		return;
-
-	for (;;)
-	{
-		currentPlayer = currentPlayer->GetNext();
-		if (!currentPlayer)
-			break;
-
-		if (m_FoldedPlayers[currentPlayer->Name()])
-			continue;
-
-		if (currentPlayer->Name() == botName)
-			OnBotAction(); // our turn to play
-
-		break;
-	}
+	MakeDecisionIfNext(name);
 }
 
 void Table::FlopCards(const pcmn::Card::List& cards)
@@ -216,7 +200,6 @@ void Table::FlopCards(const pcmn::Card::List& cards)
 	{
 	case 3: 
 		phase = Phase::Flop; 
-		m_ActionsParser.Parse(false, m_Button); 
 		break;
 	case 4: 
 		phase = Phase::Turn; 
@@ -227,19 +210,10 @@ void Table::FlopCards(const pcmn::Card::List& cards)
 	default: assert(false);
 	}
 
+	m_ActionsParser.Parse(false, m_Button); 
 	m_FlopCards = cards;
 	SetPhase(phase);
-
-	if (m_FoldedPlayers[pcmn::Player::ThisPlayer().Name()])
-		return;
-
-	const pcmn::Player::Ptr button = GetPlayer(m_Button);
-	if (!button)
-		return;
-
-	const pcmn::Player::Ptr next = button->GetNext();
-	if (next && next->Name() == pcmn::Player::ThisPlayer().Name())
-		OnBotAction();
+	MakeDecisionIfNext(m_Button);
 }
 
 void Table::BotCards(const pcmn::Card& first, const pcmn::Card& second)
@@ -465,6 +439,7 @@ void Table::Fold()
 void Table::CheckCall()
 {
 	PressButton(CHECK_CALL_X, CHECK_CALL_Y);
+	boost::this_thread::interruptible_wait(3000);
 	PressButton(BET_X, BET_Y); // in case of all in call
 }
 
@@ -475,8 +450,9 @@ void Table::BetRaise(unsigned amount)
 	const HWND editor = FindWindowEx(slider, NULL, "PokerStarsSliderEditorClass", NULL);
 	CHECK(editor != NULL, "Failed to find editor");
 
+	boost::this_thread::interruptible_wait(1000);
 	const std::string value = boost::lexical_cast<std::string>(amount);
-	SendMessage(editor, WM_SETTEXT, NULL, reinterpret_cast<LPARAM>(value.c_str()));
+	PostMessage(editor, WM_SETTEXT, NULL, reinterpret_cast<LPARAM>(value.c_str()));
 
 	PressButton(BET_X, BET_Y);
 }
@@ -493,10 +469,34 @@ void Table::ErasePlayer(const std::string& name)
 		}
 	);
 
-	assert(it != m_Players.end());
+	if (it == m_Players.end())
+		return;
+
 	(*it)->DeleteLinks();
 	m_Players.erase(it);
 	m_Stacks.erase(name);
+}
+
+void Table::MakeDecisionIfNext(const std::string& current)
+{
+	pcmn::Player::Ptr currentPlayer = GetPlayer(current);
+	if (!currentPlayer)
+		return;
+
+	for (;;)
+	{
+		currentPlayer = currentPlayer->GetNext();
+		if (!currentPlayer)
+			break;
+
+		if (m_FoldedPlayers[currentPlayer->Name()])
+			continue;
+
+		if (currentPlayer->Name() == pcmn::Player::ThisPlayer().Name())
+			OnBotAction(); // our turn to play
+
+		break;
+	}
 }
 
 } // namespace ps

@@ -118,6 +118,15 @@ void ParseData(const std::string& data, ITable& table)
 	unsigned count = 0;
 	for (; itLine != end; ++itLine, ++count)
 	{
+		boost::sregex_iterator itNext = itLine;
+		++itNext;
+		if (itNext != end)
+		{
+			const std::string& nextLine = (*itNext)[0];
+			if (nextLine.find("SecondsLeft") != std::string::npos && nextLine.find("CLRN") != std::string::npos)
+				++itNext;
+		}
+
 		const std::string& fullLine = (*itLine)[0];
 		const std::string& lineText = (*itLine)[1];
 
