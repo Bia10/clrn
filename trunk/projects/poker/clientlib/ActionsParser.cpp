@@ -73,7 +73,11 @@ bool ActionsParser::ParseByAnte(std::string& button)
 	RemoveUselessActions();
 
 	const ITable::Actions& actions = m_Actions.front();
-	assert(actions.front().m_Value == pcmn::Action::SmallBlind);
+	if (actions.empty())
+		return false;
+
+	if (actions.front().m_Value != pcmn::Action::SmallBlind)
+		return false;
 
 	if (m_Players.size() == 2)
 		button = GetPlayer(actions.front().m_Name)->Name();

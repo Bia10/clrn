@@ -74,6 +74,9 @@ private:
 	//! Erase player
 	void ErasePlayer(const std::string& name);
 
+	//! Make a decision if next
+	void MakeDecisionIfNext(const std::string& current);
+
 private:
 
 	//! Message factory

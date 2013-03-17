@@ -82,7 +82,7 @@ bool Logic::Run(TableContext& context)
 
 					context.m_Data.m_Players[current->Index()].m_TotalBet += current->Bet() - previousBet;
 	
-					if (result == pcmn::IActionsQueue::Event::NeedDecision && m_Players.size() > 1)
+					if (result == pcmn::IActionsQueue::Event::NeedDecision && !current->Cards().empty())
 					{
 						m_Callback.MakeDecision(*current, m_Players, context, position);
 						return false;
@@ -114,9 +114,6 @@ bool Logic::Run(TableContext& context)
 	
 					if (result == pcmn::IActionsQueue::Event::Fold || current->State() == pcmn::Player::State::AllIn)
 						EraseActivePlayer(current);
-
-					if (m_Players.size() < 2)
-						break;
 				}
 				catch (const pcmn::Player::BadIndex& e)
 				{
