@@ -210,6 +210,7 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 void Table::FlopCards(const pcmn::Card::List& cards)
 {
 	m_Bets.clear();
+	m_WaitingPlayers.clear();
 	Phase::Value phase = Phase::Preflop;
 	switch (cards.size())
 	{
