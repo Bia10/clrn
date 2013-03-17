@@ -137,9 +137,9 @@ bool ActionsParser::ParseByBlinds(std::string& button, const bool isNeedDecision
 		m_Players.clear();
 		for (const std::string& name : players)
 			m_Players.push_back(boost::make_shared<pcmn::Player>(name, 0));
-	}
 
-	LinkPlayers(m_Players);
+		LinkPlayers(m_Players);
+	}
 
 	if (m_Players.size() == 2)
 		button = GetPlayer(actions.front().m_Name)->Name();
