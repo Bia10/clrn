@@ -22,6 +22,7 @@ class Table : public ITable
 	typedef cmn::functional::Factory<IMessage, std::size_t, cmn::functional::IgnoreErrorPolicy> Factory;
 	typedef std::vector<Actions> GameActions;
 	typedef std::map<std::string, pcmn::Card::List> Cards;
+	typedef std::map<std::string, bool> ActiveMap;
 public:
 	Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection);
 
@@ -32,7 +33,6 @@ private:
 	virtual void BotCards(const pcmn::Card& first, const pcmn::Card& second) override;
 	virtual void PlayersInfo(const pcmn::Player::List& players) override;
 	virtual void PlayerCards(const std::string& name, const pcmn::Card::List& cards) override;
-	virtual void Ante(std::size_t value) override;
 private:
 
 	//! Get player on table
@@ -71,9 +71,6 @@ private:
 	//! Bet or raise
 	void BetRaise(unsigned amount);
 
-	//! Bet ante
-	void BetAnte();
-
 	//! Erase player
 	void ErasePlayer(const std::string& name);
 
@@ -109,9 +106,6 @@ private:
 	//! Data sender interface
 	net::IConnection::Ptr			m_Connection;
 
-	//! Table ante
-	unsigned						m_Ante;
-
 	//! Player cards
 	Cards							m_PlayerCards;	
 
@@ -130,8 +124,17 @@ private:
 	//! Losers
 	std::vector<std::string>		m_Loosers;
 
-	//! Is bot active now
-	bool							m_IsActive;
+	//! Folded players
+	ActiveMap						m_FoldedPlayers;
+
+	//! Players which waiting for game completion
+	ActiveMap						m_WaitingPlayers;
+
+	//! Player on button
+	std::string						m_Button;
+
+	//! Is cards showed / game finished
+	bool							m_IsCardsShowed;
 };
 
 } // namespace ps

@@ -90,7 +90,7 @@ private:
 
 void ParseCards(const std::string& text, Card::List& result)
 {
-	static const boost::regex cards("\\('(\\S+?)' of '(\\S+?)'\\)");
+	static const boost::regex cards("\\('(.+?)' of '(.+?)'\\)");
 	boost::sregex_iterator it(text.begin(), text.end(), cards);		
 	boost::sregex_iterator end;
 
@@ -123,7 +123,7 @@ void ParseData(const std::string& data, ITable& table)
 
 		// info
 		{
-			static const boost::regex info(".*'(\\S+)'.*stack.*'(\\d+)'");
+			static const boost::regex info(".*'(.+)'.*stack.*'(\\d+)'");
 			boost::sregex_iterator it(lineText.begin(), lineText.end(), info);
 
 			while (it != end)
@@ -138,7 +138,7 @@ void ParseData(const std::string& data, ITable& table)
 
 		// actions
 		{
-			static const boost::regex action(".*'(\\S+)'.*action.*'(\\S+)'.*'(\\d+)'");
+			static const boost::regex action(".*'(.+)'.*action.*'(.+)',.*?(('(\\d+)')|(cards.*'(\\S+)'))");
 			boost::sregex_iterator it(lineText.begin(), lineText.end(), action);		
 
 			while (it != end)
@@ -151,9 +151,28 @@ void ParseData(const std::string& data, ITable& table)
 
 				const std::string& name = (*it)[1];
 				const std::string& action = (*it)[2];
-				const unsigned amount = boost::lexical_cast<unsigned>((*it)[3]);
+				const std::string& cards = (*it)[7];
 
-				table.PlayerAction(name, Action::FromString(action), amount);
+				if (cards.empty())
+				{
+					const unsigned amount = boost::lexical_cast<unsigned>((*it)[5]);
+					table.PlayerAction(name, Action::FromString(action), amount);
+				}
+				else
+				if (cards.size() == 4)
+				{
+					Card::List cardsList;
+
+					Card tmp(Card::FromString(cards[0]), static_cast<Suit::Value>(cards[1]));
+					cardsList.push_back(tmp);
+
+					tmp.m_Value = Card::FromString(cards[2]);
+					tmp.m_Suit = static_cast<Suit::Value>(cards[3]);
+					cardsList.push_back(tmp);
+
+					table.PlayerCards(name, cardsList);
+					table.PlayerAction(name, Action::ShowCards, 0);
+				}
 				
 				++it;
 			}

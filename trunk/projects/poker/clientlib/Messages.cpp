@@ -168,26 +168,19 @@ void TableInfo::ParseActions(const dasm::WindowMessage& message, ITable& table) 
 
 		const pcmn::Action::Value actionValue = ConvertAction(action.front());
 
-		if (actionValue == pcmn::Action::Ante)
+		if (actionValue == Action::Unknown)
 		{
-			table.Ante(amount);
+			LOG_TRACE("Unknown action: '%s', player: '%s', amount: '%s'") % action % name % amount;
+			continue;
 		}
-		else
-		{
-			if (actionValue == Action::Unknown)
-			{
-				LOG_TRACE("Unknown action: '%s', player: '%s', amount: '%s'") % action % name % amount;
-				continue;
-			}
 
-			try
-			{
-				table.PlayerAction(name, actionValue, amount);
-			}
-			catch (const std::exception& e)
-			{
-				LOG_TRACE("Failed to add action: '%s', player: '%s', amount: '%s'. Exception: %s") % action % name % amount % e.what();
-			}
+		try
+		{
+			table.PlayerAction(name, actionValue, amount);
+		}
+		catch (const std::exception& e)
+		{
+			LOG_TRACE("Failed to add action: '%s', player: '%s', amount: '%s'. Exception: %s") % action % name % amount % e.what();
 		}
 	}
 }
@@ -221,6 +214,28 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 	Action::Value actionValue = ConvertAction(action);
 
 	const std::string name(data);
+
+	const char* stackData = message.m_Block.m_Data + message.m_Block.m_Offset;
+	while (stackData < end) 
+	{
+		stackData = std::find(stackData + 1, end, 0x1c);
+		if (*(stackData - 1) - char(0x00))
+			continue;
+		if (*(stackData - 2) - char(0x00))
+			continue;
+		if (*(stackData - 3) - char(0x00))
+			continue;
+		if (*(stackData - 4) - char(0xff))
+			continue;
+		if (*(stackData - 5) - char(0x00))
+			continue;
+
+		const int stack = _byteswap_ulong(*reinterpret_cast<const int*>(stackData + 1));	
+
+		LOG_TRACE("Player: '%s', stack: '%s'") % name % stack;
+		table.PlayersInfo(boost::assign::list_of(boost::make_shared<pcmn::Player>(name, stack)));
+	}
+
 	if (actionValue == Action::ShowCards)
 	{
 		data += (name.size() + 1);
@@ -228,7 +243,7 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 
 		LOG_TRACE("Player: '%s', action: '%p', cards: '%s'") % name % Action::ToString(actionValue) % cards;
 
-		if (!name.empty() && !cards.empty())
+		if (!name.empty() && cards.size() == 4)
 		{
 			Card::List cardsList;
 
@@ -240,6 +255,7 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 			cardsList.push_back(tmp);
 
 			table.PlayerCards(name, cardsList);
+			table.PlayerAction(name, actionValue, 0);
 		}
 	}
 	else
@@ -255,27 +271,6 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 		CHECK(actionValue != Action::Unknown, static_cast<int>(action));
 		if (!name.empty())
 			table.PlayerAction(name, actionValue, amount);
-	}
-
-	data = message.m_Block.m_Data + message.m_Block.m_Offset;
-	while (data < end) 
-	{
-		data = std::find(data + 1, end, 0x1c);
-		if (*(data - 1) - char(0x00))
-			continue;
-		if (*(data - 2) - char(0x00))
-			continue;
-		if (*(data - 3) - char(0x00))
-			continue;
-		if (*(data - 4) - char(0xff))
-			continue;
-		if (*(data - 5) - char(0x00))
-			continue;
-
-		const int stack = _byteswap_ulong(*reinterpret_cast<const int*>(data + 1));	
-
-		LOG_TRACE("Player: '%s', stack: '%s'") % name % stack;
-		table.PlayersInfo(boost::assign::list_of(boost::make_shared<pcmn::Player>(name, stack)));
 	}
 }
 
@@ -468,7 +463,6 @@ void BeforePreflopActions::Process(const dasm::WindowMessage& message, ITable& t
 	LOG_TRACE("Ante: '%s'") % ante;
 
 	table.PlayersInfo(players);
-	table.Ante(ante);
 
 	for (const ITable::ActionDesc& action : actions)
 	{
@@ -488,7 +482,6 @@ void TableInfo::Process(const dasm::WindowMessage& message, ITable& table) const
 	const unsigned ante = ParseAnte(message);
 
 	LOG_TRACE("Ante: '%s'") % ante;
-	table.Ante(ante);
 
 	pcmn::Player::List players;
 	ParsePlayers(message, players);
