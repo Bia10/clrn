@@ -175,7 +175,7 @@ pcmn::Player::Position::Value Logic::GetPlayerPosition(const PlayerQueue& player
 
 void Logic::Parse()
 {
-	assert(m_Players.size() >= 2);
+	CHECK(m_Players.size() >= 2, "Invalid players count, must be two at least", m_Players.size());
 
 	for (std::size_t i = 0 ; i < m_Players.size(); ++i)
 		m_PlayersIndexes.insert(std::make_pair(m_Players[i]->Name(), i));

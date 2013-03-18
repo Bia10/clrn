@@ -151,6 +151,8 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 			// game finished
 			SendStatistic();
 			CloseTableWindow(); 
+			ResetPhase();
+			return;
 		}
 	}	
 
@@ -202,7 +204,7 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 	if (m_FoldedPlayers[botName] || m_WaitingPlayers[botName])
 		return;
 
-	if (action == pcmn::Action::SecondsLeft)
+	if (action == pcmn::Action::SecondsLeft || action == pcmn::Action::Ante)
 		return; // no need to check next player
 
 	MakeDecisionIfNext(name);
