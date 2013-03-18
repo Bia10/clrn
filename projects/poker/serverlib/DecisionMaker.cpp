@@ -48,8 +48,8 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& 
 	
 		// win rate
 		const float winRate = GetPlayerWinRate(player, context, activePlayers);
-		params.m_WinRate = pcmn::WinRate::FromValue(winRate);
-		in.push_back(winRate);
+		params.m_WinRate = pcmn::WinRate::FromValue(winRate * 100);
+		in.push_back(winRate + 0.1f);
 	
 		// position 
 		params.m_Position = position;
@@ -123,7 +123,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& 
 
 		LOG_TRACE("Decision input: win: [%s]:[%s], pos: [%s], pot: [%s], stack: [%s], players: [%s], aggression: [%s], unusual: [%s], bot style: [%s], bot stack: [%s]")
 			% pcmn::WinRate::ToString(params.m_WinRate)
-			% winRate
+			% int(winRate * 100)
 			% pcmn::Player::Position::ToString(params.m_Position)
 			% pcmn::BetSize::ToString(params.m_BetPotSize)
 			% pcmn::BetSize::ToString(params.m_BetStackSize)
@@ -159,7 +159,7 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& player, const pcmn::Ta
 		ranges
 	);
 
-	return (percents + 10) / 100;
+	return percents / 100;
 }
 
 pcmn::Player::Style::Value DecisionMaker::GetMostAggressiveStyle(const PlayerQueue& activePlayers) const
