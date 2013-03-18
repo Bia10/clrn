@@ -41,7 +41,7 @@ private:
 private:
 
 	//! Get player win rate
-	pcmn::WinRate::Value GetPlayerWinRate(const pcmn::Player& player, const pcmn::TableContext& context, const PlayerQueue& activePlayers) const;
+	float GetPlayerWinRate(const pcmn::Player& player, const pcmn::TableContext& context, const PlayerQueue& activePlayers) const;
 
 	//! Get most aggressive player style
 	pcmn::Player::Style::Value GetMostAggressiveStyle(const PlayerQueue& activePlayers) const;
