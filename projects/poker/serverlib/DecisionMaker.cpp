@@ -49,7 +49,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& 
 		// win rate
 		const float winRate = GetPlayerWinRate(player, context, activePlayers);
 		params.m_WinRate = pcmn::WinRate::FromValue(winRate * 100);
-		in.push_back(winRate + 0.1f);
+		in.push_back(winRate);
 	
 		// position 
 		params.m_Position = position;

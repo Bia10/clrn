@@ -444,7 +444,7 @@ void Table::PressButtonThread(const float x, const float y)
 	const LPARAM param = MAKELPARAM(resultX, resultY);
 	CHECK(PostMessage(m_Window, WM_LBUTTONDOWN, (WPARAM)MK_LBUTTON, param));
 
-	boost::random::uniform_int_distribution<> up(200, 500);
+	boost::random::uniform_int_distribution<> up(100, 200);
 
 	boost::this_thread::interruptible_wait(up(g_Random));
 	CHECK(PostMessage(m_Window, WM_LBUTTONUP, NULL, param));
