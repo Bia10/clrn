@@ -301,8 +301,8 @@ void ActionsParser::ParsePlayerListByActions(std::vector<std::string>& players, 
 	}
 
 	const std::string& lastName = actions[i].m_Name;
-	if (lastName != players.front())
-		players.push_back(actions[i].m_Name);
+	if (std::find(players.begin(), players.end(), lastName) == players.end())
+		players.push_back(lastName);
 
 	if (isNeedDecision && std::find(players.begin(), players.end(), pcmn::Player::ThisPlayer().Name()) == players.end())
 		players.push_back(pcmn::Player::ThisPlayer().Name());

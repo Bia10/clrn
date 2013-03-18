@@ -234,6 +234,7 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 
 		LOG_TRACE("Player: '%s', stack: '%s'") % name % stack;
 		table.PlayersInfo(boost::assign::list_of(boost::make_shared<pcmn::Player>(name, stack)));
+		break;
 	}
 
 	if (actionValue == Action::ShowCards)
