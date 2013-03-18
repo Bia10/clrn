@@ -43,38 +43,47 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& 
 		assert(context.m_Pot);
 		assert(context.m_BigBlind);
 	
+		std::vector<float> in;
 		neuro::Params params;
 	
 		// win rate
-		params.m_WinRate = GetPlayerWinRate(player, context, activePlayers);
+		const float winRate = GetPlayerWinRate(player, context, activePlayers);
+		params.m_WinRate = pcmn::WinRate::FromValue(winRate);
+		in.push_back(winRate);
 	
 		// position 
 		params.m_Position = position;
+		in.push_back(static_cast<float>(position) / pcmn::Player::Position::Max);
 	
 		// bet pot rate
 		params.m_BetPotSize = pcmn::BetSize::FromValue(static_cast<float>(context.m_MaxBet - player.Bet()) / context.m_Pot, true);
+		in.push_back(static_cast<float>(params.m_BetPotSize) / pcmn::BetSize::Max);
 	
 		// bet stack rate
 		params.m_BetStackSize = pcmn::BetSize::FromValue(player.Stack() ? static_cast<float>(context.m_MaxBet - player.Bet()) / player.Stack() : 0, false);
+		in.push_back(static_cast<float>(params.m_BetStackSize) / pcmn::BetSize::Max);
 	
 		// active players
 		params.m_ActivePlayers = pcmn::Player::Count::FromValue(activePlayers.size() - 1);
+		in.push_back(static_cast<float>(params.m_ActivePlayers) / pcmn::Player::Count::Max);
 	
 		// most aggressive player
 		params.m_MostAggressiveStyle = GetMostAggressiveStyle(activePlayers);
+		in.push_back(static_cast<float>(params.m_MostAggressiveStyle) / pcmn::Player::Style::Max);
 	
 		// unusual style
 		params.m_UnusualStyle = GetUnusualStyle(activePlayers);
+		in.push_back(static_cast<float>(params.m_UnusualStyle) / pcmn::Player::Style::Max);
 	
 		// bot play style
 		params.m_BotStyle = GetBotStyle(activePlayers);
+		in.push_back(static_cast<float>(params.m_BotStyle) / pcmn::Player::Style::Max);
 	
 		// bot stack size
 		params.m_BotStackSize = pcmn::StackSize::FromValue(player.Stack(), context.m_BigBlind, GetMaxStack(activePlayers));
-	
-		std::vector<float> in;
+		in.push_back(static_cast<float>(params.m_BotStackSize) / pcmn::StackSize::Max);
+
 		std::vector<float> out;
-		params.ToNeuroFormat(in, out);
 		m_Net.Process(in, out);
 	
 		net::Reply reply;
@@ -105,11 +114,16 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& 
 		if (out[2] > out[0] && out[2] > out[1])
 		{
 			reply.set_action(pcmn::Action::Raise);
-			reply.set_amount(context.m_MaxBet ? context.m_MaxBet * 3 : context.m_BigBlind * 5);
+			unsigned amount = context.m_MaxBet ? context.m_MaxBet * 3 : context.m_BigBlind * 5;
+			if (amount > player.Stack() * 3 / 2)
+				amount = player.Stack();
+
+			reply.set_amount(amount);
 		}
 
-		LOG_TRACE("Decision input: win: [%s], pos: [%s], pot: [%s], stack: [%s], players: [%s], aggression: [%s], unusual: [%s], bot style: [%s], bot stack: [%s]")
+		LOG_TRACE("Decision input: win: [%s]:[%s], pos: [%s], pot: [%s], stack: [%s], players: [%s], aggression: [%s], unusual: [%s], bot style: [%s], bot stack: [%s]")
 			% pcmn::WinRate::ToString(params.m_WinRate)
+			% winRate
 			% pcmn::Player::Position::ToString(params.m_Position)
 			% pcmn::BetSize::ToString(params.m_BetPotSize)
 			% pcmn::BetSize::ToString(params.m_BetStackSize)
@@ -126,7 +140,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& 
 	CATCH_PASS_EXCEPTIONS("Failed to make a dicision");
 }	
 
-pcmn::WinRate::Value DecisionMaker::GetPlayerWinRate(const pcmn::Player& player, const pcmn::TableContext& context, const PlayerQueue& activePlayers) const
+float DecisionMaker::GetPlayerWinRate(const pcmn::Player& player, const pcmn::TableContext& context, const PlayerQueue& activePlayers) const
 {
 	SCOPED_LOG(m_Log);
 
@@ -145,7 +159,7 @@ pcmn::WinRate::Value DecisionMaker::GetPlayerWinRate(const pcmn::Player& player,
 		ranges
 	);
 
-	return pcmn::WinRate::FromValue(percents);
+	return percents / 100 + 10;
 }
 
 pcmn::Player::Style::Value DecisionMaker::GetMostAggressiveStyle(const PlayerQueue& activePlayers) const
