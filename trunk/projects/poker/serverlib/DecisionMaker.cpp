@@ -159,7 +159,7 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& player, const pcmn::Ta
 		ranges
 	);
 
-	return percents / 100 + 10;
+	return (percents + 10) / 100;
 }
 
 pcmn::Player::Style::Value DecisionMaker::GetMostAggressiveStyle(const PlayerQueue& activePlayers) const
