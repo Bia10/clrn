@@ -5,6 +5,7 @@
 #include "StackSize.h"
 #include "BetSize.h"
 #include "Player.h"
+#include "Danger.h"
 
 #include <vector>
 
@@ -31,11 +32,11 @@ namespace neuro
 		//! Fifth parameter - active players count
 		pcmn::Player::Count::Value m_ActivePlayers;
 
-		//! Six parameter - most aggressive player style
-		pcmn::Player::Style::Value m_MostAggressiveStyle;
+		//! Six parameter - danger
+		pcmn::Danger::Value m_Danger;
 
-		//! Seven parameter - unusual style change
-		pcmn::Player::Style::Value m_UnusualStyle;
+		//! Seven parameter - bot average style
+		pcmn::Player::Style::Value m_BotAverageStyle;
 
 		//! Eight parameter - bot style on previous street
 		pcmn::Player::Style::Value m_BotStyle;

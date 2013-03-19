@@ -9,8 +9,8 @@ namespace neuro
 		, m_BetPotSize(pcmn::BetSize::VeryLow)
 		, m_BetStackSize(pcmn::BetSize::VeryLow)
 		, m_ActivePlayers(pcmn::Player::Count::One)
-		, m_MostAggressiveStyle(pcmn::Player::Style::Passive)
-		, m_UnusualStyle(pcmn::Player::Style::Passive)
+		, m_Danger(pcmn::Danger::Low)
+		, m_BotAverageStyle(pcmn::Player::Style::Passive)
 		, m_BotStyle(pcmn::Player::Style::Passive)
 		, m_BotStackSize(pcmn::StackSize::Small)
 		, m_CheckFold(false)
@@ -28,8 +28,8 @@ namespace neuro
 			<< m_BetPotSize << " " 
 			<< m_BetStackSize << " " 
 			<< m_ActivePlayers << " " 
-			<< m_MostAggressiveStyle << " " 
-			<< m_UnusualStyle << " " 
+			<< m_Danger << " " 
+			<< m_BotAverageStyle << " " 
 			<< m_BotStyle << " " 
 			<< m_BotStackSize << " " 
 			<< m_CheckFold << " " 
@@ -45,8 +45,8 @@ namespace neuro
 		m_BetPotSize = static_cast<pcmn::BetSize::Value>(*it++);
 		m_BetStackSize = static_cast<pcmn::BetSize::Value>(*it++);
 		m_ActivePlayers = static_cast<pcmn::Player::Count::Value>(*it++);
-		m_MostAggressiveStyle = static_cast<pcmn::Player::Style::Value>(*it++);
-		m_UnusualStyle = static_cast<pcmn::Player::Style::Value>(*it++);
+		m_Danger = static_cast<pcmn::Danger::Value>(*it++);
+		m_BotAverageStyle = static_cast<pcmn::Player::Style::Value>(*it++);
 		m_BotStyle = static_cast<pcmn::Player::Style::Value>(*it++);
 		m_BotStackSize = static_cast<pcmn::StackSize::Value>(*it++);
 
@@ -66,8 +66,8 @@ namespace neuro
 		in.push_back(static_cast<float>(m_BetPotSize) / pcmn::BetSize::Max);
 		in.push_back(static_cast<float>(m_BetStackSize) / pcmn::BetSize::Max);
 		in.push_back(static_cast<float>(m_ActivePlayers) / pcmn::Player::Count::Max);
-		in.push_back(static_cast<float>(m_MostAggressiveStyle) / pcmn::Player::Style::Max);
-		in.push_back(static_cast<float>(m_UnusualStyle) / pcmn::Player::Style::Max);
+		in.push_back(static_cast<float>(m_Danger) / pcmn::Danger::Max);
+		in.push_back(static_cast<float>(m_BotAverageStyle) / pcmn::Player::Style::Max);
 		in.push_back(static_cast<float>(m_BotStyle) / pcmn::Player::Style::Max);
 		in.push_back(static_cast<float>(m_BotStackSize) / pcmn::StackSize::Max);
 

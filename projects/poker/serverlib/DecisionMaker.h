@@ -8,6 +8,7 @@
 #include "../neuro/INeuroNetwork.h"
 #include "IConnection.h"
 #include "IStatistics.h"
+#include "Danger.h"
 
 #include <boost/noncopyable.hpp>
 
@@ -44,16 +45,19 @@ private:
 	float GetPlayerWinRate(const pcmn::Player& player, const pcmn::TableContext& context, const PlayerQueue& activePlayers) const;
 
 	//! Get most aggressive player style
-	pcmn::Player::Style::Value GetMostAggressiveStyle(const PlayerQueue& activePlayers) const;
+	pcmn::Danger::Value GetDanger(const PlayerQueue& activePlayers) const;
 
 	//! Get unusual player style
-	pcmn::Player::Style::Value GetUnusualStyle(const PlayerQueue& activePlayers) const;
+	pcmn::Player::Style::Value GetBotAverageStyle(const PlayerQueue& activePlayers) const;
 
 	//! Get bot style
 	pcmn::Player::Style::Value GetBotStyle(const PlayerQueue& activePlayers) const;
 
 	//! Get max stack size
 	unsigned GetMaxStack(const PlayerQueue& activePlayers) const;
+
+	//! Get danger
+	float GetDanger() const;
 
 private:
 

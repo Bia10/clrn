@@ -49,12 +49,12 @@ void Teacher::OnPlayers(wxCommandEvent& event)
 
 void Teacher::OnPlayersStyle(wxCommandEvent& event)
 {
-	m_CurrentParams.m_MostAggressiveStyle = static_cast<pcmn::Player::Style::Value>(event.GetInt());
+	m_CurrentParams.m_Danger = static_cast<pcmn::Danger::Value>(event.GetInt());
 }
 
 void Teacher::OnStyleChanges(wxCommandEvent& event)
 {
-	m_CurrentParams.m_UnusualStyle = static_cast<pcmn::Player::Style::Value>(event.GetInt());
+	m_CurrentParams.m_BotAverageStyle = static_cast<pcmn::Player::Style::Value>(event.GetInt());
 }
 
 void Teacher::OnBotStyle(wxCommandEvent& event)
@@ -149,33 +149,33 @@ void Teacher::OnNext(wxCommandEvent& event)
 	}
 
 	// players unusual style
-	if (m_StyleChengeCheck->IsChecked())
+	if (m_BotAverageStyleCheck->IsChecked())
 	{
-		if (m_CurrentParams.m_UnusualStyle == pcmn::Player::Style::Max)
+		if (m_CurrentParams.m_BotAverageStyle == pcmn::Player::Style::Max)
 		{
-			m_CurrentParams.m_UnusualStyle = pcmn::Player::Style::Passive;
-			m_StyleChangeChoice->SetSelection(0);
+			m_CurrentParams.m_BotAverageStyle = pcmn::Player::Style::Passive;
+			m_BotAverageStyleChoice->SetSelection(0);
 		}
 		else
 		{
-			m_CurrentParams.m_UnusualStyle = static_cast<pcmn::Player::Style::Value>(int(m_CurrentParams.m_UnusualStyle) + 1);
-			m_StyleChangeChoice->SetSelection(m_StyleChangeChoice->GetSelection() + 1);
+			m_CurrentParams.m_BotAverageStyle = static_cast<pcmn::Player::Style::Value>(int(m_CurrentParams.m_BotAverageStyle) + 1);
+			m_BotAverageStyleChoice->SetSelection(m_BotAverageStyleChoice->GetSelection() + 1);
 			return;
 		}
 	}
 
 	// most aggressive style
-	if (m_PlayersStyleCheck->IsChecked())
+	if (m_DangerCheck->IsChecked())
 	{
-		if (m_CurrentParams.m_MostAggressiveStyle == pcmn::Player::Style::Max)
+		if (m_CurrentParams.m_Danger == pcmn::Danger::Max)
 		{
-			m_CurrentParams.m_MostAggressiveStyle = pcmn::Player::Style::Passive;
-			m_PlayersStyleChoice->SetSelection(0);
+			m_CurrentParams.m_Danger = pcmn::Danger::Low;
+			m_DangerChoice->SetSelection(0);
 		}
 		else
 		{
-			m_CurrentParams.m_MostAggressiveStyle = static_cast<pcmn::Player::Style::Value>(int(m_CurrentParams.m_MostAggressiveStyle) + 1);
-			m_PlayersStyleChoice->SetSelection(m_PlayersStyleChoice->GetSelection() + 1);
+			m_CurrentParams.m_Danger = static_cast<pcmn::Danger::Value>(int(m_CurrentParams.m_Danger) + 1);
+			m_DangerChoice->SetSelection(m_DangerChoice->GetSelection() + 1);
 			return;
 		}
 	}
@@ -380,8 +380,8 @@ void Teacher::SetGuiParams(const neuro::Params& params)
 	m_PotRateChoice->SetSelection(params.m_BetPotSize);
 	m_StackRateChoice->SetSelection(params.m_BetStackSize);
 	m_PlayersChoice->SetSelection(params.m_ActivePlayers);
-	m_PlayersStyleChoice->SetSelection(params.m_MostAggressiveStyle);
-	m_StyleChangeChoice->SetSelection(params.m_UnusualStyle);
+	m_DangerChoice->SetSelection(params.m_Danger);
+	m_BotAverageStyleChoice->SetSelection(params.m_BotAverageStyle);
 	m_BotStyleChoice->SetSelection(params.m_BotStyle);
 	m_BostStackSizeChoice->SetSelection(params.m_BotStackSize);
 
