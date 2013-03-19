@@ -20,6 +20,7 @@ namespace pcmn
 
 		static std::string ToString(Value value);
 		static Value FromValue(float value);
+		static float ToValue(Value value);
 	};
 
 };

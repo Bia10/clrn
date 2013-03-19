@@ -20,18 +20,32 @@ namespace pcmn
 
 	WinRate::Value WinRate::FromValue(float value)
 	{
-		if (value < 10)
-			return WinRate::VeryLow;
 		if (value < 20)
+			return WinRate::VeryLow;
+		if (value < 30)
 			return WinRate::Low;
 		if (value < 40)
 			return WinRate::Normal;
-		if (value < 60)
+		if (value < 50)
 			return WinRate::Good;
 		if (value < 80)
 			return WinRate::VeryGood;
 		
 		return WinRate::Nuts;
+	}
+
+	float WinRate::ToValue(Value value)
+	{
+		switch (value)
+		{
+		case VeryLow: return 0.0f;
+		case Low: return 0.2f;
+		case Normal: return 0.3f;
+		case Good: return 0.4f;
+		case VeryGood: return 0.7f;
+		case Nuts: return 1.0f;
+		default: return 0;
+		}
 	}
 
 };
