@@ -354,7 +354,7 @@
                                 <property name="font"></property>
                                 <property name="hidden">0</property>
                                 <property name="id">wxID_ANY</property>
-                                <property name="label">Players style</property>
+                                <property name="label">Danger</property>
                                 <property name="maximum_size"></property>
                                 <property name="minimum_size"></property>
                                 <property name="name">m_staticText28</property>
@@ -405,7 +405,7 @@
                                 <property name="font"></property>
                                 <property name="hidden">0</property>
                                 <property name="id">wxID_ANY</property>
-                                <property name="label">Style change</property>
+                                <property name="label">Bot average style</property>
                                 <property name="maximum_size"></property>
                                 <property name="minimum_size"></property>
                                 <property name="name">m_staticText29</property>
@@ -821,7 +821,7 @@
                             <property name="proportion">0</property>
                             <object class="wxChoice" expanded="1">
                                 <property name="bg"></property>
-                                <property name="choices">&quot;Passive&quot; &quot;Normal&quot; &quot;Agressive&quot;</property>
+                                <property name="choices">&quot;Low&quot; &quot;Normal&quot; &quot;High&quot;</property>
                                 <property name="context_help"></property>
                                 <property name="enabled">1</property>
                                 <property name="fg"></property>
@@ -830,7 +830,7 @@
                                 <property name="id">wxID_ANY</property>
                                 <property name="maximum_size"></property>
                                 <property name="minimum_size"></property>
-                                <property name="name">m_PlayersStyleChoice</property>
+                                <property name="name">m_DangerChoice</property>
                                 <property name="permission">protected</property>
                                 <property name="pos"></property>
                                 <property name="selection">0</property>
@@ -881,7 +881,7 @@
                                 <property name="id">wxID_ANY</property>
                                 <property name="maximum_size"></property>
                                 <property name="minimum_size"></property>
-                                <property name="name">m_StyleChangeChoice</property>
+                                <property name="name">m_BotAverageStyleChoice</property>
                                 <property name="permission">protected</property>
                                 <property name="pos"></property>
                                 <property name="selection">0</property>
@@ -1309,7 +1309,7 @@
                                 <property name="label">autoincrement</property>
                                 <property name="maximum_size"></property>
                                 <property name="minimum_size"></property>
-                                <property name="name">m_PlayersStyleCheck</property>
+                                <property name="name">m_DangerCheck</property>
                                 <property name="permission">protected</property>
                                 <property name="pos"></property>
                                 <property name="size"></property>
@@ -1361,7 +1361,7 @@
                                 <property name="label">autoincrement</property>
                                 <property name="maximum_size"></property>
                                 <property name="minimum_size"></property>
-                                <property name="name">m_StyleChengeCheck</property>
+                                <property name="name">m_BotAverageStyleCheck</property>
                                 <property name="permission">protected</property>
                                 <property name="pos"></property>
                                 <property name="size"></property>

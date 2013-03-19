@@ -39,11 +39,11 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_staticText27->Wrap( -1 );
 	gSizer21->Add( m_staticText27, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 	
-	m_staticText28 = new wxStaticText( this, wxID_ANY, wxT("Players style"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText28 = new wxStaticText( this, wxID_ANY, wxT("Danger"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText28->Wrap( -1 );
 	gSizer21->Add( m_staticText28, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 	
-	m_staticText29 = new wxStaticText( this, wxID_ANY, wxT("Style change"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText29 = new wxStaticText( this, wxID_ANY, wxT("Bot average style"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText29->Wrap( -1 );
 	gSizer21->Add( m_staticText29, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 	
@@ -90,17 +90,17 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_PlayersChoice->SetSelection( 0 );
 	gSizer2->Add( m_PlayersChoice, 0, wxALL|wxEXPAND, 5 );
 	
-	wxString m_PlayersStyleChoiceChoices[] = { wxT("Passive"), wxT("Normal"), wxT("Agressive") };
-	int m_PlayersStyleChoiceNChoices = sizeof( m_PlayersStyleChoiceChoices ) / sizeof( wxString );
-	m_PlayersStyleChoice = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_PlayersStyleChoiceNChoices, m_PlayersStyleChoiceChoices, 0 );
-	m_PlayersStyleChoice->SetSelection( 0 );
-	gSizer2->Add( m_PlayersStyleChoice, 0, wxALL|wxEXPAND, 5 );
+	wxString m_DangerChoiceChoices[] = { wxT("Low"), wxT("Normal"), wxT("High") };
+	int m_DangerChoiceNChoices = sizeof( m_DangerChoiceChoices ) / sizeof( wxString );
+	m_DangerChoice = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_DangerChoiceNChoices, m_DangerChoiceChoices, 0 );
+	m_DangerChoice->SetSelection( 0 );
+	gSizer2->Add( m_DangerChoice, 0, wxALL|wxEXPAND, 5 );
 	
-	wxString m_StyleChangeChoiceChoices[] = { wxT("Passive"), wxT("Normal"), wxT("Agressive") };
-	int m_StyleChangeChoiceNChoices = sizeof( m_StyleChangeChoiceChoices ) / sizeof( wxString );
-	m_StyleChangeChoice = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_StyleChangeChoiceNChoices, m_StyleChangeChoiceChoices, 0 );
-	m_StyleChangeChoice->SetSelection( 0 );
-	gSizer2->Add( m_StyleChangeChoice, 0, wxALL|wxEXPAND, 5 );
+	wxString m_BotAverageStyleChoiceChoices[] = { wxT("Passive"), wxT("Normal"), wxT("Agressive") };
+	int m_BotAverageStyleChoiceNChoices = sizeof( m_BotAverageStyleChoiceChoices ) / sizeof( wxString );
+	m_BotAverageStyleChoice = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_BotAverageStyleChoiceNChoices, m_BotAverageStyleChoiceChoices, 0 );
+	m_BotAverageStyleChoice->SetSelection( 0 );
+	gSizer2->Add( m_BotAverageStyleChoice, 0, wxALL|wxEXPAND, 5 );
 	
 	wxString m_BotStyleChoiceChoices[] = { wxT("Passive"), wxT("Normal"), wxT("Agressive") };
 	int m_BotStyleChoiceNChoices = sizeof( m_BotStyleChoiceChoices ) / sizeof( wxString );
@@ -139,13 +139,13 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	
 	gSizer211->Add( m_PlayersCheck, 0, wxALL, 5 );
 	
-	m_PlayersStyleCheck = new wxCheckBox( this, wxID_ANY, wxT("autoincrement"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_DangerCheck = new wxCheckBox( this, wxID_ANY, wxT("autoincrement"), wxDefaultPosition, wxDefaultSize, 0 );
 	
-	gSizer211->Add( m_PlayersStyleCheck, 0, wxALL, 5 );
+	gSizer211->Add( m_DangerCheck, 0, wxALL, 5 );
 	
-	m_StyleChengeCheck = new wxCheckBox( this, wxID_ANY, wxT("autoincrement"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_BotAverageStyleCheck = new wxCheckBox( this, wxID_ANY, wxT("autoincrement"), wxDefaultPosition, wxDefaultSize, 0 );
 	
-	gSizer211->Add( m_StyleChengeCheck, 0, wxALL, 5 );
+	gSizer211->Add( m_BotAverageStyleCheck, 0, wxALL, 5 );
 	
 	m_BotStyleCheck = new wxCheckBox( this, wxID_ANY, wxT("autoincrement"), wxDefaultPosition, wxDefaultSize, 0 );
 	
@@ -205,8 +205,8 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_PotRateChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPotRatio ), NULL, this );
 	m_StackRateChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnStackRatio ), NULL, this );
 	m_PlayersChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPlayers ), NULL, this );
-	m_PlayersStyleChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPlayersStyle ), NULL, this );
-	m_StyleChangeChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnStyleChanges ), NULL, this );
+	m_DangerChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPlayersStyle ), NULL, this );
+	m_BotAverageStyleChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnStyleChanges ), NULL, this );
 	m_BotStyleChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnBotStyle ), NULL, this );
 	m_BostStackSizeChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnBotStackSize ), NULL, this );
 	m_ActionRadio->Connect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnAction ), NULL, this );
@@ -225,8 +225,8 @@ TeacherMainFrame::~TeacherMainFrame()
 	m_PotRateChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPotRatio ), NULL, this );
 	m_StackRateChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnStackRatio ), NULL, this );
 	m_PlayersChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPlayers ), NULL, this );
-	m_PlayersStyleChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPlayersStyle ), NULL, this );
-	m_StyleChangeChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnStyleChanges ), NULL, this );
+	m_DangerChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPlayersStyle ), NULL, this );
+	m_BotAverageStyleChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnStyleChanges ), NULL, this );
 	m_BotStyleChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnBotStyle ), NULL, this );
 	m_BostStackSizeChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnBotStackSize ), NULL, this );
 	m_ActionRadio->Disconnect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnAction ), NULL, this );

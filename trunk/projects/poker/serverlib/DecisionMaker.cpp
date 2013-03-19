@@ -67,13 +67,13 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& 
 		params.m_ActivePlayers = pcmn::Player::Count::FromValue(activePlayers.size() - 1);
 		in.push_back(static_cast<float>(params.m_ActivePlayers) / pcmn::Player::Count::Max);
 	
-		// most aggressive player
-		params.m_MostAggressiveStyle = GetMostAggressiveStyle(activePlayers);
-		in.push_back(static_cast<float>(params.m_MostAggressiveStyle) / pcmn::Player::Style::Max);
+		// danger
+		params.m_Danger = GetDanger(activePlayers);
+		in.push_back(static_cast<float>(params.m_Danger) / pcmn::Player::Style::Max);
 	
-		// unusual style
-		params.m_UnusualStyle = GetUnusualStyle(activePlayers);
-		in.push_back(static_cast<float>(params.m_UnusualStyle) / pcmn::Player::Style::Max);
+		// bot average style
+		params.m_BotAverageStyle = GetBotAverageStyle(activePlayers);
+		in.push_back(static_cast<float>(params.m_BotAverageStyle) / pcmn::Player::Style::Max);
 	
 		// bot play style
 		params.m_BotStyle = GetBotStyle(activePlayers);
@@ -128,8 +128,8 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& 
 			% pcmn::BetSize::ToString(params.m_BetPotSize)
 			% pcmn::BetSize::ToString(params.m_BetStackSize)
 			% pcmn::Player::Count::ToString(params.m_ActivePlayers)
-			% pcmn::Player::Style::ToString(params.m_MostAggressiveStyle)
-			% pcmn::Player::Style::ToString(params.m_UnusualStyle)
+			% pcmn::Danger::ToString(params.m_Danger)
+			% pcmn::Player::Style::ToString(params.m_BotAverageStyle)
 			% pcmn::Player::Style::ToString(params.m_BotStyle)
 			% pcmn::StackSize::ToString(params.m_BotStackSize);
 
@@ -162,13 +162,13 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& player, const pcmn::Ta
 	return percents / 100;
 }
 
-pcmn::Player::Style::Value DecisionMaker::GetMostAggressiveStyle(const PlayerQueue& activePlayers) const
+pcmn::Danger::Value DecisionMaker::GetDanger(const PlayerQueue& activePlayers) const
 {
 	SCOPED_LOG(m_Log);
-	return pcmn::Player::Style::Normal;
+	return pcmn::Danger::Normal;
 }
 
-pcmn::Player::Style::Value DecisionMaker::GetUnusualStyle(const PlayerQueue& activePlayers) const
+pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const PlayerQueue& activePlayers) const
 {
 	SCOPED_LOG(m_Log);
 	return pcmn::Player::Style::Normal;
@@ -193,5 +193,9 @@ unsigned DecisionMaker::GetMaxStack(const PlayerQueue& activePlayers) const
 	return max;
 }
 
+float DecisionMaker::GetDanger() const
+{
+	return 0;
+}
 
 }

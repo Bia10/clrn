@@ -46,8 +46,8 @@ class TeacherMainFrame : public wxFrame
 		wxChoice* m_PotRateChoice;
 		wxChoice* m_StackRateChoice;
 		wxChoice* m_PlayersChoice;
-		wxChoice* m_PlayersStyleChoice;
-		wxChoice* m_StyleChangeChoice;
+		wxChoice* m_DangerChoice;
+		wxChoice* m_BotAverageStyleChoice;
 		wxChoice* m_BotStyleChoice;
 		wxChoice* m_BostStackSizeChoice;
 		wxCheckBox* m_WinRateCheck;
@@ -55,8 +55,8 @@ class TeacherMainFrame : public wxFrame
 		wxCheckBox* m_PotRatioCheck;
 		wxCheckBox* m_StackRatioCheck;
 		wxCheckBox* m_PlayersCheck;
-		wxCheckBox* m_PlayersStyleCheck;
-		wxCheckBox* m_StyleChengeCheck;
+		wxCheckBox* m_DangerCheck;
+		wxCheckBox* m_BotAverageStyleCheck;
 		wxCheckBox* m_BotStyleCheck;
 		wxCheckBox* m_BotStackCheck;
 		wxRadioBox* m_ActionRadio;
