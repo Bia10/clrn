@@ -158,7 +158,7 @@ pcmn::Player::Position::Value Logic::GetPlayerPosition(const PlayerQueue& player
 	SCOPED_LOG(m_Log);
 
 	const PlayerQueue::const_iterator it = std::find(players.begin(), players.end(), player);
-	const std::size_t playerIndex = std::distance(players.begin(), it);
+	const std::size_t playerIndex = std::distance(players.begin(), it) - 1;
 
 	std::size_t step = players.size() / 3;
 	if (!step)
@@ -167,10 +167,10 @@ pcmn::Player::Position::Value Logic::GetPlayerPosition(const PlayerQueue& player
 	if (playerIndex <= step)
 		return pcmn::Player::Position::Early;
 	else
-		if (playerIndex >= players.size() - step)
-			return pcmn::Player::Position::Later;
-		else
-			return pcmn::Player::Position::Middle;
+	if (playerIndex >= players.size() - step)
+		return pcmn::Player::Position::Later;
+	else
+		return pcmn::Player::Position::Middle;
 }
 
 void Logic::Parse()
