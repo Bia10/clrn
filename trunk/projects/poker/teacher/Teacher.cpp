@@ -70,14 +70,14 @@ void Teacher::OnBotStackSize(wxCommandEvent& event)
 void Teacher::OnAction(wxCommandEvent& event)
 {
 	m_CurrentParams.m_CheckFold = false;
-	m_CurrentParams.m_BetCall = false;
-	m_CurrentParams.m_RaiseReraise = false;
+	m_CurrentParams.m_CheckCall = false;
+	m_CurrentParams.m_BetRaise = false;
 
 	switch (event.GetSelection())
 	{
 	case 0: m_CurrentParams.m_CheckFold = true; break;
-	case 1: m_CurrentParams.m_BetCall = true; break;
-	case 2: m_CurrentParams.m_RaiseReraise = true; break;
+	case 1: m_CurrentParams.m_CheckCall = true; break;
+	case 2: m_CurrentParams.m_BetRaise = true; break;
 	}
 }
 
@@ -330,17 +330,17 @@ void Teacher::OnTest(wxCommandEvent& event)
 	net.Process(in, out);
 
 	m_CurrentParams.m_CheckFold = false;
-	m_CurrentParams.m_BetCall = false;
-	m_CurrentParams.m_RaiseReraise = false;
+	m_CurrentParams.m_CheckCall = false;
+	m_CurrentParams.m_BetRaise = false;
 
 	if (out[0] > out[1] && out[0] > out[2])
 		m_CurrentParams.m_CheckFold = true;
 	else
 	if (out[1] > out[0] && out[1] > out[2])
-		m_CurrentParams.m_BetCall = true;
+		m_CurrentParams.m_CheckCall = true;
 	else
 	if (out[2] > out[0] && out[2] > out[1])
-		m_CurrentParams.m_RaiseReraise = true;
+		m_CurrentParams.m_BetRaise = true;
 
 	SetGuiParams(m_CurrentParams);
 	m_StatusBar->SetStatusText("tested");
@@ -351,9 +351,9 @@ void Teacher::AddParameters()
 	std::size_t counter = 0;
 	if (m_CurrentParams.m_CheckFold)
 		++counter;
-	if (m_CurrentParams.m_BetCall)
+	if (m_CurrentParams.m_CheckCall)
 		++counter;
-	if (m_CurrentParams.m_RaiseReraise)
+	if (m_CurrentParams.m_BetRaise)
 		++counter;
 
 	CHECK(counter == 1, "Only one output parameter must be set", counter);
@@ -386,10 +386,10 @@ void Teacher::SetGuiParams(const neuro::Params& params)
 	m_BostStackSizeChoice->SetSelection(params.m_BotStackSize);
 
 	int action = 0;
-	if (params.m_BetCall)
+	if (params.m_CheckCall)
 		action = 1;
 	else
-	if (params.m_RaiseReraise)
+	if (params.m_BetRaise)
 		action = 2;
 
 	m_ActionRadio->SetSelection(action);
