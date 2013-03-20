@@ -56,12 +56,14 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& 
 		in.push_back(static_cast<float>(position) / pcmn::Player::Position::Max);
 	
 		// bet pot rate
-		params.m_BetPotSize = pcmn::BetSize::FromPot(player.Bet(), context.m_MaxBet, context.m_Pot);
-		in.push_back(static_cast<float>(params.m_BetPotSize) / pcmn::BetSize::Max);
+		float potRate;
+		params.m_BetPotSize = pcmn::BetSize::FromPot(player.Bet(), context.m_MaxBet, context.m_Pot, potRate);
+		in.push_back(potRate);
 	
 		// bet stack rate
-		params.m_BetStackSize = pcmn::BetSize::FromStack(player.Bet(), context.m_MaxBet, player.Stack());
-		in.push_back(static_cast<float>(params.m_BetStackSize) / pcmn::BetSize::Max);
+		float stackRate;
+		params.m_BetStackSize = pcmn::BetSize::FromStack(player.Bet(), context.m_MaxBet, player.Stack(), stackRate);
+		in.push_back(stackRate);
 	
 		// active players
 		params.m_ActivePlayers = pcmn::Player::Count::FromValue(activePlayers.size() - 1);

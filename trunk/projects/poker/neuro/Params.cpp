@@ -63,8 +63,8 @@ namespace neuro
 
 		in.push_back(pcmn::WinRate::ToValue(m_WinRate));
 		in.push_back(static_cast<float>(m_Position) / pcmn::Player::Position::Max);
-		in.push_back(static_cast<float>(m_BetPotSize) / pcmn::BetSize::Max);
-		in.push_back(static_cast<float>(m_BetStackSize) / pcmn::BetSize::Max);
+		in.push_back(pcmn::BetSize::ToPot(m_BetPotSize));
+		in.push_back(pcmn::BetSize::ToStack(m_BetStackSize));
 		in.push_back(static_cast<float>(m_ActivePlayers) / pcmn::Player::Count::Max);
 		in.push_back(static_cast<float>(m_Danger) / pcmn::Danger::Max);
 		in.push_back(static_cast<float>(m_BotAverageStyle) / pcmn::Player::Style::Max);
