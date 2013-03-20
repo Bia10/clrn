@@ -18,8 +18,10 @@ namespace pcmn
 		};
 
 		static std::string ToString(Value value);
-		static Value FromPot(unsigned bet, unsigned maxBet, unsigned pot);
-		static Value FromStack(unsigned bet, unsigned maxBet, unsigned stack);
+		static float ToPot(Value value);
+		static float ToStack(Value value);
+		static Value FromPot(unsigned bet, unsigned maxBet, unsigned pot, float& value);
+		static Value FromStack(unsigned bet, unsigned maxBet, unsigned stack, float& value);
 	};
 
 };
