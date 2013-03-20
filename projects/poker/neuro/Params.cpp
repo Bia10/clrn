@@ -14,8 +14,8 @@ namespace neuro
 		, m_BotStyle(pcmn::Player::Style::Passive)
 		, m_BotStackSize(pcmn::StackSize::Small)
 		, m_CheckFold(false)
-		, m_BetCall(false)
-		, m_RaiseReraise(false)
+		, m_CheckCall(false)
+		, m_BetRaise(false)
 	{
 
 	}
@@ -33,8 +33,8 @@ namespace neuro
 			<< m_BotStyle << " " 
 			<< m_BotStackSize << " " 
 			<< m_CheckFold << " " 
-			<< m_BetCall << " " 
-			<< m_RaiseReraise << " " 
+			<< m_CheckCall << " " 
+			<< m_BetRaise << " " 
 			<< std::endl;
 	}
 
@@ -51,8 +51,8 @@ namespace neuro
 		m_BotStackSize = static_cast<pcmn::StackSize::Value>(*it++);
 
 		m_CheckFold = !!*it++;
-		m_BetCall = !!*it++;
-		m_RaiseReraise = !!*it++;
+		m_CheckCall = !!*it++;
+		m_BetRaise = !!*it++;
 		return it;
 	}
 
@@ -72,8 +72,8 @@ namespace neuro
 		in.push_back(static_cast<float>(m_BotStackSize) / pcmn::StackSize::Max);
 
 		out.push_back(static_cast<float>(m_CheckFold));
-		out.push_back(static_cast<float>(m_BetCall));
-		out.push_back(static_cast<float>(m_RaiseReraise));
+		out.push_back(static_cast<float>(m_CheckCall));
+		out.push_back(static_cast<float>(m_BetRaise));
 	}
 
 }

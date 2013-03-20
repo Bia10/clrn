@@ -163,7 +163,7 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	wxGridSizer* gSizer4;
 	gSizer4 = new wxGridSizer( 1, 1, 0, 0 );
 	
-	wxString m_ActionRadioChoices[] = { wxT("Check/Fold"), wxT("Bet/Call"), wxT("Raise/Reraise") };
+	wxString m_ActionRadioChoices[] = { wxT("Check/Fold"), wxT("Check/Call"), wxT("Bet/Raise") };
 	int m_ActionRadioNChoices = sizeof( m_ActionRadioChoices ) / sizeof( wxString );
 	m_ActionRadio = new wxRadioBox( this, wxID_ANY, wxT("Action"), wxDefaultPosition, wxDefaultSize, m_ActionRadioNChoices, m_ActionRadioChoices, 1, wxRA_SPECIFY_COLS );
 	m_ActionRadio->SetSelection( 0 );

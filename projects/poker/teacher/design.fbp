@@ -1533,7 +1533,7 @@
                                     <property name="proportion">1</property>
                                     <object class="wxRadioBox" expanded="1">
                                         <property name="bg"></property>
-                                        <property name="choices">&quot;Check/Fold&quot; &quot;Bet/Call&quot; &quot;Raise/Reraise&quot;</property>
+                                        <property name="choices">&quot;Check/Fold&quot; &quot;Check/Call&quot; &quot;Bet/Raise&quot;</property>
                                         <property name="context_help"></property>
                                         <property name="enabled">1</property>
                                         <property name="fg"></property>

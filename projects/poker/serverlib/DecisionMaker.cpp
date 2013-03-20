@@ -103,21 +103,32 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& 
 		{
 			if (context.m_MaxBet)
 			{
-				reply.set_action(pcmn::Action::Call);
-				reply.set_amount(context.m_MaxBet - player.Bet());
+				if (player.Stack() < context.m_BigBlind * 3)
+				{
+					reply.set_action(pcmn::Action::Raise);
+					reply.set_amount(player.Stack());
+				}
+				else
+				{
+					reply.set_action(pcmn::Action::Call);
+					reply.set_amount(context.m_MaxBet - player.Bet());
+				}
 			}
 			else
 			{
-				reply.set_action(pcmn::Action::Bet);
-				reply.set_amount(context.m_BigBlind * 4);
+				reply.set_action(pcmn::Action::Check);
+				reply.set_amount(0);
 			}
 		}
 		else
 		if (out[2] > out[0] && out[2] > out[1])
 		{
 			reply.set_action(pcmn::Action::Raise);
+
 			unsigned amount = context.m_MaxBet ? context.m_MaxBet * 3 : context.m_BigBlind * 5;
-			if (amount > player.Stack() * 3 / 2)
+			amount = (amount / 10) * 10;
+
+			if (amount > player.Stack() / 2)
 				amount = player.Stack();
 
 			reply.set_amount(amount);

@@ -44,14 +44,14 @@ namespace neuro
 		//! Nine parameter - stack size
 		pcmn::StackSize::Value m_BotStackSize;
 
-		//! First out parameter - fold action
+		//! First out parameter - check/fold action
 		bool m_CheckFold;
 
 		//! Second out parameter - check/call action
-		bool m_BetCall;
+		bool m_CheckCall;
 
 		//! Third out parameter - bet/raise action
-		bool m_RaiseReraise;
+		bool m_BetRaise;
 
 		//! Serialize
 		void Serialize(std::ostream& stream) const;
