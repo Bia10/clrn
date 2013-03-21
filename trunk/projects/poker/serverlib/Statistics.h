@@ -14,8 +14,10 @@ public:
 	Statistics(ILog& logger);
 	~Statistics();
 
-	//! Write statistics data
-	void Write(pcmn::TableContext::Data& data);
+	virtual void Write(pcmn::TableContext::Data& data) override;
+	virtual void GetRanges(PlayerRanges& players) override;
+	virtual void GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises) override;
+	virtual void GetEquities(PlayerEquities::List& players) override;
 
 private:
 	class Impl;
