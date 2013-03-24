@@ -132,11 +132,13 @@ public:
 		{
 			if (!m_Done)
 				m_DB.Rollback();
-			else
-				m_DB.Commit();
 		}
 
-		void Done()	{ m_Done = true; }
+		void Commit()	
+		{ 
+			m_DB.Commit();
+			m_Done = true; 
+		}
 
 	private:
 		bool m_Done;
@@ -231,7 +233,7 @@ void Write(pcmn::TableContext::Data& data)
 			statement->Execute();
 		}
 
-		transaction.Done();
+		transaction.Commit();
 	}
 	CATCH_IGNORE_EXCEPTIONS(m_Log, "Failed to write data to database")
 }
