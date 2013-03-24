@@ -16,9 +16,6 @@ public:
 
 	bool Parse(bool isNeedDecision, std::string& button);
 
-	//! Parse player stacks
-	void ParseStacks(bool isNeedDecision, ITable::StackMap& stacks);
-
 private:
 
 	//! Parse by ante

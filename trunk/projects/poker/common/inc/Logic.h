@@ -47,7 +47,7 @@ private:
 	void Parse();
 
 	//! Erase active player
-	void EraseActivePlayer(const Player::Ptr& player);
+	void EraseActivePlayer(PlayerQueue& queue, const Player::Ptr& player);
 
 	//! Get player position
 	Player::Position::Value GetPlayerPosition(const PlayerQueue& players, const Player::Ptr& player);

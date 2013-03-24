@@ -120,7 +120,10 @@ void ActionsParser::RemoveUselessActions()
 			(
 				actions.begin(), 
 				actions.end(), 
-				[](const ITable::ActionDesc& action) {return action.m_Value > pcmn::Action::BigBlind; }
+				[](const ITable::ActionDesc& action) 
+				{
+					return action.m_Value > pcmn::Action::BigBlind || action.m_Value == pcmn::Action::ShowCards; 
+				}
 			),
 			actions.end()
 		);
@@ -149,9 +152,10 @@ bool ActionsParser::ParseByBlinds(std::string& button, const bool isNeedDecision
 		m_Players.clear();
 		for (const std::string& name : players)
 			m_Players.push_back(boost::make_shared<pcmn::Player>(name, 0));
-
-		LinkPlayers(m_Players);
 	}
+
+	if (!match || !isNeedDecision)
+		LinkPlayers(m_Players);
 
 	if (m_Players.size() == 2)
 		button = GetPlayer(actions.front().m_Name)->Name();
@@ -255,7 +259,7 @@ void ActionsParser::ParsePlayerListByActions(std::vector<std::string>& players, 
 	{
 		const ITable::ActionDesc& action = actions[i];
 
-		if (i && action.m_Name == actions.front().m_Name || i == actions.size() - 1) // small blind or last action
+		if (i == actions.size() - 1) // small blind or last action
 		{
 			if (isBigBlindExists)
 				break;
@@ -282,10 +286,10 @@ void ActionsParser::ParsePlayerListByActions(std::vector<std::string>& players, 
 				const pcmn::Player::Ptr thisPlayer = GetPlayer(action.m_Name);
 				if (thisPlayer)
 				{
-					const pcmn::Player::Ptr nextPlayer = thisPlayer->GetNext();
-					if (nextPlayer)
+					const pcmn::Player::Ptr prevPlayer = thisPlayer->GetPrevious();
+					if (prevPlayer)
 					{
-						players.insert(players.begin() + 1, nextPlayer->Name());
+						players.insert(players.begin() + 1, prevPlayer->Name());
 						break;
 					}
 				}
@@ -297,7 +301,8 @@ void ActionsParser::ParsePlayerListByActions(std::vector<std::string>& players, 
 			}
 		}
 
-		players.push_back(action.m_Name);
+		if (std::find(players.begin(), players.end(), action.m_Name) == players.end())
+			players.push_back(action.m_Name);
 	}
 
 	const std::string& lastName = actions[i].m_Name;
@@ -328,110 +333,6 @@ bool ActionsParser::ArePlayersMatches(const std::vector<std::string>& players)
 	}
 
 	return true;
-}
-
-void ActionsParser::ParseStacks(bool isNeedDecision, ITable::StackMap& stacks)
-{
-	typedef std::map<std::string, unsigned> IndexesMap;
-	IndexesMap indexes;
-	for (unsigned i = 0 ; i < m_Players.size(); ++i)
-		indexes.insert(std::make_pair(m_Players[i]->Name(), i));
-
-	std::string button;
-	{
-		if (m_Players.size() == 2)
-			button = GetPlayer(m_Actions.front().front().m_Name)->Name();
-		else
-			button = GetPlayer(m_Actions.front().front().m_Name)->GetPrevious()->Name();
-	}
-
-	const unsigned buttonIndex = indexes[button];
-
-	bool isValid = false;
-	while (!isValid)
-	{
-		pcmn::Logic::PlayerQueue activePlayers(m_Players.size());
-		pcmn::Player::Ptr prev;
-		for (std::size_t i = buttonIndex, counter = 0 ; ; ++i, ++counter)
-		{
-			if (i == m_Players.size())
-				i = 0;
-
-			if (counter == activePlayers.size())
-			{
-				activePlayers[buttonIndex]->SetPrevious(prev);
-				prev->SetNext(activePlayers[buttonIndex]);
-				break;
-			}
-
-			const pcmn::Player::Ptr& player = m_Players[i];
-
-			activePlayers[i] = boost::make_shared<pcmn::Player>(
-				player->Name(),
-				stacks[player->Name()]
-			);
-
-			activePlayers[i]->Index(i);
-
-			if (prev)
-			{
-				activePlayers[i]->SetPrevious(prev);
-				prev->SetNext(activePlayers[i]);
-			}
-
-			prev = activePlayers[i];
-		}
-
-		while (activePlayers.front()->Name() != m_Players[buttonIndex]->Name())
-		{
-			activePlayers.push_back(activePlayers.front());
-			activePlayers.pop_front();
-		}
-
-		pcmn::TableActions tableActions(m_Actions, m_Players);
-		FakeDecisionMaker maker;
-		pcmn::TableContext context;
-
-		for (const pcmn::Player::Ptr& player : m_Players)
-		{
-			pcmn::TableContext::Data::Player p;
-			p.m_Name = player->Name();
-			context.m_Data.m_Players.push_back(p);
-		}
-
-		pcmn::Logic logic(m_Log, tableActions, maker, activePlayers);
-
-		try
-		{
-			logic.Run(context);
-		}
-		catch (const pcmn::Player::BadIndex& e)
-		{
-			const unsigned expected = e.Expected();
-			const unsigned got = e.Got();
-		}
-
-		if (!maker.IsValid())
-		{
-			const std::string name = maker.Name();
-			const unsigned index = indexes[name];
-
-			const unsigned maxBet = context.m_Data.m_Players[index].m_TotalBet;
-			if (stacks[name] != maxBet)
-				stacks[name] = maxBet;
-			else
-				return;
-		}
-
-		isValid = maker.IsValid();
-
-		for (unsigned i = 0 ; i < context.m_Data.m_Players.size(); ++i)
-		{
-			const std::string& name = context.m_Data.m_Players[i].m_Name;
-			if (stacks[name] < context.m_Data.m_Players[i].m_TotalBet)
-				stacks[name] = context.m_Data.m_Players[i].m_TotalBet * 3 / 2;
-		}
-	}
 }
 
 } // namespace clnt
