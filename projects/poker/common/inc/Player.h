@@ -103,10 +103,19 @@ public:
 		const unsigned m_Got;
 	};
 
+	//! Player action descriptor
+	struct ActionDesc
+	{
+		unsigned m_Street;
+		Action::Value m_Action;
+		float m_PotAmount;
+	};
+
 	typedef boost::shared_ptr<Player> Ptr;
 	typedef boost::weak_ptr<Player> WeakPtr;
 	typedef std::vector<Player::Ptr> List;
 	typedef std::vector<Style::Value> Styles;
+	typedef std::vector<ActionDesc> Actions;
 
 	Player()
 		: m_Name()
@@ -153,6 +162,7 @@ public:
 	void State(State::Value val)			{ m_State = val; }
 	std::size_t Index() const				{ return m_Index; }
 	void Index(std::size_t val)				{ m_Index = val; }
+	const Actions& GetActions() const		{ return m_Actions; }
 
 	void SetStyle(std::size_t phase, Style::Value style)
 	{
@@ -181,12 +191,17 @@ public:
 
 	bool operator == (const Player& other) const;
 
+	//! Add player action
+	void PushAction(unsigned street, Action::Value action, float potAmount);
+
+
 private:
 	std::string m_Name;		
 	std::size_t m_Stack;
 	std::size_t m_Bet;				//!< player bet on this street
 	Card::List m_Cards;				//!< player cards
 	State::Value m_State;			//!< player state
+	Actions m_Actions;				//!< player actions
 	Player::WeakPtr m_Next;			//!< next player on the table
 	Player::WeakPtr m_Previous;		//!< previous player on the table
 	std::size_t m_Index;			//!< player index

@@ -65,8 +65,7 @@ const char SQL_INSERT_ACTIONS[] =
 
 const char SQL_GET_CARD_RANGES[] = 
 	"SELECT p.name name, "
-		   "( Sum(c.value) * 3 ) / ( Count(c.value) * 2 ) average, "
-		   "a.action "
+		   "( Sum(c.value) * 3 ) / ( Count(c.value) * 2 ) average "
 	"FROM   actions a "
 		   "JOIN players p "
 			 "ON a.player = p.id "
@@ -76,9 +75,7 @@ const char SQL_GET_CARD_RANGES[] =
 		   "JOIN cards c "
 			 "ON c.id = h.cards "
 	"WHERE  a.street = 0 "
-		   "AND a.action IN ( 2, 3, 4 ) "
-		   "AND a.pot_amount > 0.3 "
-		   "AND p.name in (%s) "
+		   "AND (%s) "
 	"GROUP  BY p.id, "
 			  "a.action "
 	"HAVING Count(c.value) > 1 ";
@@ -287,33 +284,29 @@ unsigned int InsertPlayer(const std::string& name)
 	CATCH_PASS_EXCEPTIONS("InsertPlayer failed", name)
 }
 
-void GetRanges(PlayerRanges& players)
+unsigned GetRanges(PlayerInfo::List& players)
 {
 	TRY
 	{
-		std::ostringstream oss;
-		int count = 0;
-		for (const PlayerRanges::value_type& player : players)
-		{
-			if (count)
-				oss << ", ";
-			oss << "'" << player.first << "'";
-			++count;
-		}
+		std::map<std::string, unsigned> indexes;
+		const std::string filter = GetPlayersFilter(players, indexes);
 
-		const std::string sql = (boost::format(SQL_GET_CARD_RANGES) % oss.str()).str();
+		const std::string sql = (boost::format(SQL_GET_CARD_RANGES) % filter).str();
 
 		const sql::Recordset::Ptr recordset = m_DB->Fetch(sql);
+		unsigned count = 0;
 		while (!recordset->Eof())
 		{
 			const std::string name = recordset->Get<std::string>(0);
 			const int range = recordset->Get<int>(1);
-			const pcmn::Action::Value action = static_cast<pcmn::Action::Value>(recordset->Get<int>(2));
 
-			players[name][action] = range;
+			const unsigned index = indexes[name];
+			players[index].m_CardRange = range;
 
 			++(*recordset);
+			++count;
 		}
+		return count;
 	}
 	CATCH_PASS_EXCEPTIONS("GetRanges failed")
 }
@@ -355,46 +348,38 @@ void GetLastActions(const std::string& target, const std::string& opponent, int&
 	CATCH_PASS_EXCEPTIONS("GetLastActions failed")
 }
 
-void GetEquities(PlayerEquities::List& players)
+unsigned GetEquities(PlayerInfo::List& players)
 {
 	TRY
 	{
-		std::ostringstream oss;
-		int count = 0;
-		std::map<std::string, unsigned> Indexes;
-		for (const PlayerEquities& player : players)
-		{
-			if (!count)
-				oss << " OR ";
-			oss 
-				<< "(a.pot_amount > " << player.m_PotAmount << " "
-				<< "AND a.action IN (" << GetActionsFilter(player.m_Actions) << ") "
-				<< "AND p.name = '" << player.m_Name << "' )";
+		std::map<std::string, unsigned> indexes;
+		const std::string filter = GetPlayersFilter(players, indexes);
 
-			Indexes[player.m_Name] = count;
-			++count;
-		}
-
-		const std::string sql = (boost::format(SQL_GET_PLAYER_EQUITIES) % oss.str()).str();
+		const std::string sql = (boost::format(SQL_GET_PLAYER_EQUITIES) % filter).str();
 
 		const sql::Recordset::Ptr recordset = m_DB->Fetch(sql);
+		unsigned count = 0;
 		while (!recordset->Eof())
 		{
 			const std::string name = recordset->Get<std::string>(0);
 			const double rate = recordset->Get<double>(1);
 
-			const unsigned index = Indexes[name];
+			const unsigned index = indexes[name];
 			players[index].m_WinRate = static_cast<float>(rate);
+			
 
 			++(*recordset);
+			++count;
 		}
+
+		return count;
 	}
 	CATCH_PASS_EXCEPTIONS("GetEquities failed")
 }
 
 private:
 
-std::string GetActionsFilter(const PlayerEquities::Actions& actions)
+std::string GetActionsFilter(const PlayerInfo::Actions& actions)
 {
 	std::ostringstream oss;
 	for (unsigned i = 0 ; i < actions.size(); ++i)
@@ -402,6 +387,25 @@ std::string GetActionsFilter(const PlayerEquities::Actions& actions)
 		if (i)
 			oss << ", ";
 		oss << actions[i];
+	}
+	return oss.str();
+}
+
+std::string GetPlayersFilter(PlayerInfo::List& players, std::map<std::string, unsigned>& indexes)
+{
+	std::ostringstream oss;
+	int count = 0;
+	for (const PlayerInfo& player : players)
+	{
+		if (count)
+			oss << " OR ";
+		oss 
+			<< "(a.pot_amount > " << player.m_PotAmount << " "
+			<< "AND a.action IN (" << GetActionsFilter(player.m_Actions) << ") "
+			<< "AND p.name = '" << player.m_Name << "' )";
+
+		indexes[player.m_Name] = count;
+		++count;
 	}
 	return oss.str();
 }
@@ -428,19 +432,19 @@ void Statistics::Write(pcmn::TableContext::Data& data)
 	m_Impl->Write(data);
 }
 
-void Statistics::GetRanges(PlayerRanges& players)
+unsigned Statistics::GetRanges(PlayerInfo::List& players) const
 {
-	m_Impl->GetRanges(players);
+	return m_Impl->GetRanges(players);
 }
 
-void Statistics::GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises)
+void Statistics::GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises) const
 {
 	m_Impl->GetLastActions(target, opponent, checkFolds, calls, raises);
 }
 
-void Statistics::GetEquities(PlayerEquities::List& players)
+unsigned Statistics::GetEquities(PlayerInfo::List& players) const
 {
-	m_Impl->GetEquities(players);
+	return m_Impl->GetEquities(players);
 }
 
 }

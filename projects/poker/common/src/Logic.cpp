@@ -99,6 +99,7 @@ bool Logic::Run(TableContext& context)
 					assert(resultAction.m_PotAmount >= 0);
 					assert(resultAction.m_StackAmount >= 0);
 	
+					current->PushAction(street, context.m_LastAction, resultAction.m_PotAmount);
 					context.m_Data.m_Actions.push_back(resultAction);
 	
 					if (result == pcmn::IActionsQueue::Event::Raise)

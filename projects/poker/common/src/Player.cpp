@@ -140,4 +140,16 @@ namespace pcmn
 		m_Next.lock()->m_Previous = m_Previous;
 	}
 
+	void Player::PushAction(unsigned street, Action::Value value, float potAmount)
+	{
+		if (value > pcmn::Action::Raise)
+			return; // don't collect useless for statistics actions
+
+		m_Actions.push_back(ActionDesc());
+		ActionDesc& action = m_Actions.back();
+		action.m_Action = value;
+		action.m_PotAmount = potAmount;
+		action.m_Street = street;
+	}
+
 }

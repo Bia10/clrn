@@ -8,6 +8,7 @@
 #include "../serverlib/IStatistics.h"
 #include "../serverlib/DecisionMaker.h"
 #include "../serverlib/Parser.h"
+#include "../serverlib/Statistics.h"
 #include "Evaluator.h"
 #include "../neuro/NeuroNetwork.h"
 #include "Config.h"
@@ -35,10 +36,24 @@ public:
 
 	}
 	virtual void Write(pcmn::TableContext::Data& data) {}
-	virtual void GetRanges(PlayerRanges& players) override {}
-	virtual void GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises) override{}
-	virtual void GetEquities(PlayerEquities::List& players) override{}
+	virtual unsigned GetRanges(PlayerInfo::List& players) const override {}
+	virtual void GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises) const override{}
+	virtual unsigned GetEquities(PlayerInfo::List& players) const override{}
 
+};
+
+class TestReadStatistics : public srv::Statistics
+{
+public:
+	TestReadStatistics(ILog& logger) : srv::Statistics(logger)
+	{
+
+	}
+
+	virtual void Write(pcmn::TableContext::Data& data) override
+	{
+
+	}
 };
 
 class TestClient : public net::IConnection
@@ -60,6 +75,7 @@ class TestServer : public net::IConnection
 public:
 	TestServer()
 		: m_Network(cfg::NETWORK_FILE_NAME)
+		, m_Statistics(m_Log)
 	{
 
 	}
@@ -83,8 +99,8 @@ public:
 	}
 
 private:
-	TestStatistics m_Statistics;
 	Log m_Log;
+	TestReadStatistics m_Statistics;
 	pcmn::Evaluator	m_Evaluator;
 	neuro::Network m_Network;
 };

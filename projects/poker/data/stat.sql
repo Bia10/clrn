@@ -25,6 +25,10 @@ CREATE TABLE [actions] (
   [stack_amount] FLOAT NOT NULL ON CONFLICT ABORT, 
   [position] INTEGER NOT NULL ON CONFLICT ABORT);
 
+CREATE INDEX [player_index] ON [actions] ([player]);
+
+CREATE INDEX [game_index] ON [actions] ([game]);
+
 
 CREATE TABLE [hands] (
   [player] INTEGER NOT NULL ON CONFLICT ABORT CONSTRAINT [player_id_FK] REFERENCES [players]([id]) ON DELETE CASCADE ON UPDATE CASCADE MATCH SIMPLE, 

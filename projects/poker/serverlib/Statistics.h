@@ -15,9 +15,9 @@ public:
 	~Statistics();
 
 	virtual void Write(pcmn::TableContext::Data& data) override;
-	virtual void GetRanges(PlayerRanges& players) override;
-	virtual void GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises) override;
-	virtual void GetEquities(PlayerEquities::List& players) override;
+	virtual unsigned GetRanges(PlayerInfo::List& players) const override;
+	virtual void GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises) const override;
+	virtual unsigned GetEquities(PlayerInfo::List& players) const override;
 
 private:
 	class Impl;
