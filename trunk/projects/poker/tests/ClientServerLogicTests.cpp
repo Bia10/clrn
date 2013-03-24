@@ -49,11 +49,12 @@ public:
 	{
 
 	}
+/*
 
 	virtual void Write(pcmn::TableContext::Data& data) override
 	{
 
-	}
+	}*/
 };
 
 class TestClient : public net::IConnection
