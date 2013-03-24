@@ -4,6 +4,7 @@
 #include "ILog.h"
 #include "TableContext.h"
 #include "Actions.h"
+#include "Config.h"
 
 #include <vector>
 #include <string>
@@ -17,20 +18,22 @@ class IStatistics
 {
 public:
 
-	//! Player ranges
-	typedef std::map<pcmn::Action::Value, int> CardRanges;
-	typedef std::map<std::string, CardRanges> PlayerRanges;
-
 	//! Player equities
-	struct PlayerEquities
+	struct PlayerInfo
 	{
 		typedef std::vector<pcmn::Action::Value> Actions;
-		typedef std::vector<PlayerEquities> List;
+		typedef std::vector<PlayerInfo> List;
+
+		PlayerInfo() : m_PotAmount(0), m_WinRate(0), m_CardRange(cfg::CARD_DECK_SIZE)
+		{
+
+		}
 
 		std::string m_Name;
 		Actions m_Actions;
 		float m_PotAmount;
 		float m_WinRate;
+		int m_CardRange;
 	};
 
 	virtual ~IStatistics() {}
@@ -45,13 +48,13 @@ public:
 	virtual void Write(pcmn::TableContext::Data& data) = 0;
 
 	//! Get card ranges
-	virtual void GetRanges(PlayerRanges& players) = 0;
+	virtual unsigned GetRanges(PlayerInfo::List& players) const = 0;
 
 	//! Get last actions
-	virtual void GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises) = 0;
+	virtual void GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises) const = 0;
 
 	//! Get equities
-	virtual void GetEquities(PlayerEquities::List& players) = 0;
+	virtual unsigned GetEquities(PlayerInfo::List& players) const = 0;
 
 
 };

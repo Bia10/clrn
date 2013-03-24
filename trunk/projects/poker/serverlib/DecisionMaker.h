@@ -45,19 +45,19 @@ private:
 	float GetPlayerWinRate(const pcmn::Player& player, const pcmn::TableContext& context, const PlayerQueue& activePlayers) const;
 
 	//! Get most aggressive player style
-	pcmn::Danger::Value GetDanger(const PlayerQueue& activePlayers) const;
+	pcmn::Danger::Value GetDanger(const pcmn::Player& player, const PlayerQueue& activePlayers, float botRate) const;
 
 	//! Get unusual player style
-	pcmn::Player::Style::Value GetBotAverageStyle(const PlayerQueue& activePlayers) const;
+	pcmn::Player::Style::Value GetBotAverageStyle(const pcmn::Player& player, const PlayerQueue& activePlayers) const;
 
 	//! Get bot style
-	pcmn::Player::Style::Value GetBotStyle(const PlayerQueue& activePlayers) const;
+	pcmn::Player::Style::Value GetBotStyle(const pcmn::Player& bot) const;
 
 	//! Get max stack size
 	unsigned GetMaxStack(const PlayerQueue& activePlayers) const;
 
-	//! Get danger
-	float GetDanger() const;
+	//! Get player by name
+	const pcmn::Player& GetPlayer(const PlayerQueue& activePlayers, const std::string& name) const;
 
 private:
 
