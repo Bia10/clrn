@@ -94,6 +94,9 @@ private:
 	//! Player stacks
 	StackMap						m_Stacks;
 
+	//! Player last stacks
+	StackMap						m_LastStacks;
+
 	//! Game phase
 	Phase::Value					m_Phase;
 

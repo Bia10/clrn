@@ -119,15 +119,18 @@ void Table::HandleMessage(const dasm::WindowMessage& message)
 	}
 }
 
-void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, std::size_t amount)
+void Table::PlayerAction(const std::string& name, const pcmn::Action::Value action, const std::size_t amount)
 {
 	LOG_TRACE("Player: '%s', action: '%s', amount: '%s'") % name % pcmn::Action::ToString(action) % amount;
 	const std::string botName = pcmn::Player::ThisPlayer().Name();
 
 	if (action == pcmn::Action::ShowCards)
 	{
+		if (!m_IsCardsShowed)
+			m_LastStacks = m_Stacks;
+
 		m_IsCardsShowed = true;
-		m_WaitingPlayers[name] = false;
+		m_WaitingPlayers[name] = false;	
 		return;
 	}
 
@@ -139,6 +142,22 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 
 	if (action == pcmn::Action::SmallBlind || action == pcmn::Action::MoneyReturn)
 	{
+		// remove loosers
+		const pcmn::Player::List::const_iterator it = std::remove_if
+		(
+			m_Players.begin(),
+			m_Players.end(),
+			[&](const pcmn::Player::Ptr& player)
+			{
+				if (player->Name() == name)
+					return false;
+				return !m_Stacks[player->Name()];
+			}
+		);
+
+		m_Players.erase(it, m_Players.end());
+
+
 		SendStatistic();
 		ResetPhase();
 	}
@@ -204,7 +223,7 @@ void Table::PlayerAction(const std::string& name, pcmn::Action::Value action, st
 	if (m_FoldedPlayers[botName] || m_WaitingPlayers[botName])
 		return;
 
-	if (action == pcmn::Action::SecondsLeft || action == pcmn::Action::Ante)
+	if (action == pcmn::Action::SecondsLeft || action == pcmn::Action::Ante || action == pcmn::Action::ShowCards)
 		return; // no need to check next player
 
 	MakeDecisionIfNext(name);
@@ -245,12 +264,6 @@ void Table::BotCards(const pcmn::Card& first, const pcmn::Card& second)
 
 void Table::PlayersInfo(const pcmn::Player::List& players)
 {
-	if (m_IsCardsShowed)
-	{
-		SendStatistic();
-		ResetPhase();
-	}
-
 	for (const pcmn::Player::Ptr& player : players)
 		m_Stacks[player->Name()] = player->Stack();
 }
@@ -347,8 +360,8 @@ void Table::SendStatistic()
 		net::Packet::Player& added = *table.add_players();
 		added.set_bet(player->Bet());
 		added.set_name(player->Name());
-		unsigned stack = m_Stacks[player->Name()] + m_TotalBets[player->Name()];
 
+		const unsigned stack = (m_IsCardsShowed ? m_LastStacks[player->Name()] : m_Stacks[player->Name()]) + m_TotalBets[player->Name()];
 		added.set_stack(stack);
 
 		const pcmn::Card::List& cards = m_PlayerCards[player->Name()];
