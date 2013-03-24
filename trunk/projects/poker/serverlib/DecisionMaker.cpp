@@ -299,7 +299,7 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const Play
 	const unsigned count = m_Stat.GetEquities(equities);
 
 	// player list empty - unknown value(normal) - else all players have less than bot
-	if (!count)
+	if ((activePlayers.size() - 1) / 2 > count)
 		return pcmn::Danger::Normal;
 
 	// compare equities
