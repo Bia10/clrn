@@ -248,6 +248,23 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const Play
 		if (actions.empty() || player->Name() == bot.Name())
 			continue;
 
+		// only aggressive actions if we have much players
+		if (activePlayers.size() > 2)
+		{
+			std::sort
+			(
+				actions.begin(), 
+				actions.end(), 
+				[](const pcmn::Player::ActionDesc& lhs, const pcmn::Player::ActionDesc& rhs)
+				{
+					return lhs.m_Action < rhs.m_Action;
+				}
+			);
+
+			if (actions.back().m_Action < pcmn::Action::Bet)
+				continue;
+		}
+
 		equities.resize(equities.size() + 1);
 		IStatistics::PlayerInfo& current = equities.back();
 
@@ -274,6 +291,9 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const Play
 
 		current.m_PotAmount = actions.back().m_PotAmount;
 	}
+
+	if (equities.empty())
+		return pcmn::Danger::Normal;
 
 	// fetch statistics
 	const unsigned count = m_Stat.GetEquities(equities);
