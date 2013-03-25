@@ -106,159 +106,7 @@ void Teacher::OnSave(wxCommandEvent& event)
 
 void Teacher::OnNext(wxCommandEvent& event)
 {
-	try
-	{
-		AddParameters();
-	}
-	catch (const std::exception& e)
-	{
-		wxMessageBox(e.what(), "Error", wxOK | wxICON_ERROR);
-		return;
-	}
-
-	// bot stack
-	if (m_BotStackCheck->IsChecked())
-	{
-		if (m_CurrentParams.m_BotStackSize == pcmn::StackSize::Max)
-		{
-			m_CurrentParams.m_BotStackSize = pcmn::StackSize::Small;
-			m_BostStackSizeChoice->SetSelection(0);
-		}
-		else
-		{
-			m_CurrentParams.m_BotStackSize = static_cast<pcmn::StackSize::Value>(int(m_CurrentParams.m_BotStackSize) + 1);
-			m_BostStackSizeChoice->SetSelection(m_BostStackSizeChoice->GetSelection() + 1);
-			return;
-		}
-	}
-	
-	// bot style
-	if (m_BotStyleCheck->IsChecked())
-	{
-		if (m_CurrentParams.m_BotStyle == pcmn::Player::Style::Max)
-		{
-			m_CurrentParams.m_BotStyle = pcmn::Player::Style::Passive;
-			m_BotStyleChoice->SetSelection(0);
-		}
-		else
-		{
-			m_CurrentParams.m_BotStyle = static_cast<pcmn::Player::Style::Value>(int(m_CurrentParams.m_BotStyle) + 1);
-			m_BotStyleChoice->SetSelection(m_BotStyleChoice->GetSelection() + 1);
-			return;
-		}
-	}
-
-	// players unusual style
-	if (m_BotAverageStyleCheck->IsChecked())
-	{
-		if (m_CurrentParams.m_BotAverageStyle == pcmn::Player::Style::Max)
-		{
-			m_CurrentParams.m_BotAverageStyle = pcmn::Player::Style::Passive;
-			m_BotAverageStyleChoice->SetSelection(0);
-		}
-		else
-		{
-			m_CurrentParams.m_BotAverageStyle = static_cast<pcmn::Player::Style::Value>(int(m_CurrentParams.m_BotAverageStyle) + 1);
-			m_BotAverageStyleChoice->SetSelection(m_BotAverageStyleChoice->GetSelection() + 1);
-			return;
-		}
-	}
-
-	// most aggressive style
-	if (m_DangerCheck->IsChecked())
-	{
-		if (m_CurrentParams.m_Danger == pcmn::Danger::Max)
-		{
-			m_CurrentParams.m_Danger = pcmn::Danger::Low;
-			m_DangerChoice->SetSelection(0);
-		}
-		else
-		{
-			m_CurrentParams.m_Danger = static_cast<pcmn::Danger::Value>(int(m_CurrentParams.m_Danger) + 1);
-			m_DangerChoice->SetSelection(m_DangerChoice->GetSelection() + 1);
-			return;
-		}
-	}
-
-	// active players count
-	if (m_PlayersCheck->IsChecked())
-	{
-		if (m_CurrentParams.m_ActivePlayers == pcmn::Player::Count::Max)
-		{
-			m_CurrentParams.m_ActivePlayers = pcmn::Player::Count::One;
-			m_PlayersChoice->SetSelection(0);
-		}
-		else
-		{
-			m_CurrentParams.m_ActivePlayers = static_cast<pcmn::Player::Count::Value>(int(m_CurrentParams.m_ActivePlayers) + 1);
-			m_PlayersChoice->SetSelection(m_PlayersChoice->GetSelection() + 1);
-			return;
-		}
-	}
-
-	// bet stack size
-	if (m_StackRatioCheck->IsChecked())
-	{
-		if (m_CurrentParams.m_BetStackSize == pcmn::BetSize::Max)
-		{
-			m_CurrentParams.m_BetStackSize = pcmn::BetSize::VeryLow;
-			m_StackRateChoice->SetSelection(0);
-		}
-		else
-		{
-			m_CurrentParams.m_BetStackSize = static_cast<pcmn::BetSize::Value>(int(m_CurrentParams.m_BetStackSize) + 1);
-			m_StackRateChoice->SetSelection(m_StackRateChoice->GetSelection() + 1);
-			return;
-		}
-	}
-
-	// bet pot size
-	if (m_PotRatioCheck->IsChecked())
-	{
-		if (m_CurrentParams.m_BetPotSize == pcmn::BetSize::Max)
-		{
-			m_CurrentParams.m_BetPotSize = pcmn::BetSize::VeryLow;
-			m_PotRateChoice->SetSelection(0);
-		}
-		else
-		{
-			m_CurrentParams.m_BetPotSize = static_cast<pcmn::BetSize::Value>(int(m_CurrentParams.m_BetPotSize) + 1);
-			m_PotRateChoice->SetSelection(m_PotRateChoice->GetSelection() + 1);
-			return;
-		}
-	}
-
-	// bot position
-	if (m_PositionCheck->IsChecked())
-	{
-		if (m_CurrentParams.m_Position == pcmn::Player::Position::Max)
-		{
-			m_CurrentParams.m_Position = pcmn::Player::Position::Early;
-			m_PositionChoice->SetSelection(0);
-		}
-		else
-		{
-			m_CurrentParams.m_Position = static_cast<pcmn::Player::Position::Value>(int(m_CurrentParams.m_Position) + 1);
-			m_PositionChoice->SetSelection(m_PositionChoice->GetSelection() + 1);
-			return;
-		}
-	}
-
-	// win rate
-	if (m_WinRateCheck->IsChecked())
-	{
-		if (m_CurrentParams.m_WinRate == pcmn::WinRate::Max)
-		{
-			m_CurrentParams.m_WinRate = pcmn::WinRate::VeryLow;
-			m_WinRateChoice->SetSelection(0);
-		}
-		else
-		{
-			m_CurrentParams.m_WinRate = static_cast<pcmn::WinRate::Value>(int(m_CurrentParams.m_WinRate) + 1);
-			m_WinRateChoice->SetSelection(m_WinRateChoice->GetSelection() + 1);
-			return;
-		}
-	}
+	IncrementChecked();
 }
 
 void Teacher::OnLoad(wxCommandEvent& event)
@@ -393,6 +241,225 @@ void Teacher::SetGuiParams(const neuro::Params& params)
 		action = 2;
 
 	m_ActionRadio->SetSelection(action);
+}
+
+void Teacher::IncrementChecked()
+{
+	try
+	{
+		AddParameters();
+	}
+	catch (const std::exception& e)
+	{
+		wxMessageBox(e.what(), "Error", wxOK | wxICON_ERROR);
+		return;
+	}
+
+	// bot stack
+	if (m_BotStackCheck->IsChecked())
+	{
+		if (m_CurrentParams.m_BotStackSize == pcmn::StackSize::Max)
+		{
+			m_CurrentParams.m_BotStackSize = pcmn::StackSize::Small;
+			m_BostStackSizeChoice->SetSelection(0);
+		}
+		else
+		{
+			m_CurrentParams.m_BotStackSize = static_cast<pcmn::StackSize::Value>(int(m_CurrentParams.m_BotStackSize) + 1);
+			m_BostStackSizeChoice->SetSelection(m_BostStackSizeChoice->GetSelection() + 1);
+			return;
+		}
+	}
+
+	// bot style
+	if (m_BotStyleCheck->IsChecked())
+	{
+		if (m_CurrentParams.m_BotStyle == pcmn::Player::Style::Max)
+		{
+			m_CurrentParams.m_BotStyle = pcmn::Player::Style::Passive;
+			m_BotStyleChoice->SetSelection(0);
+		}
+		else
+		{
+			m_CurrentParams.m_BotStyle = static_cast<pcmn::Player::Style::Value>(int(m_CurrentParams.m_BotStyle) + 1);
+			m_BotStyleChoice->SetSelection(m_BotStyleChoice->GetSelection() + 1);
+			return;
+		}
+	}
+
+	// players unusual style
+	if (m_BotAverageStyleCheck->IsChecked())
+	{
+		if (m_CurrentParams.m_BotAverageStyle == pcmn::Player::Style::Max)
+		{
+			m_CurrentParams.m_BotAverageStyle = pcmn::Player::Style::Passive;
+			m_BotAverageStyleChoice->SetSelection(0);
+		}
+		else
+		{
+			m_CurrentParams.m_BotAverageStyle = static_cast<pcmn::Player::Style::Value>(int(m_CurrentParams.m_BotAverageStyle) + 1);
+			m_BotAverageStyleChoice->SetSelection(m_BotAverageStyleChoice->GetSelection() + 1);
+			return;
+		}
+	}
+
+	// most aggressive style
+	if (m_DangerCheck->IsChecked())
+	{
+		if (m_CurrentParams.m_Danger == pcmn::Danger::Max)
+		{
+			m_CurrentParams.m_Danger = pcmn::Danger::Low;
+			m_DangerChoice->SetSelection(0);
+		}
+		else
+		{
+			m_CurrentParams.m_Danger = static_cast<pcmn::Danger::Value>(int(m_CurrentParams.m_Danger) + 1);
+			m_DangerChoice->SetSelection(m_DangerChoice->GetSelection() + 1);
+			return;
+		}
+	}
+
+	// active players count
+	if (m_PlayersCheck->IsChecked())
+	{
+		if (m_CurrentParams.m_ActivePlayers == pcmn::Player::Count::Max)
+		{
+			m_CurrentParams.m_ActivePlayers = pcmn::Player::Count::One;
+			m_PlayersChoice->SetSelection(0);
+		}
+		else
+		{
+			m_CurrentParams.m_ActivePlayers = static_cast<pcmn::Player::Count::Value>(int(m_CurrentParams.m_ActivePlayers) + 1);
+			m_PlayersChoice->SetSelection(m_PlayersChoice->GetSelection() + 1);
+			return;
+		}
+	}
+
+	// bet stack size
+	if (m_StackRatioCheck->IsChecked())
+	{
+		if (m_CurrentParams.m_BetStackSize == pcmn::BetSize::Max)
+		{
+			m_CurrentParams.m_BetStackSize = pcmn::BetSize::VeryLow;
+			m_StackRateChoice->SetSelection(0);
+		}
+		else
+		{
+			m_CurrentParams.m_BetStackSize = static_cast<pcmn::BetSize::Value>(int(m_CurrentParams.m_BetStackSize) + 1);
+			m_StackRateChoice->SetSelection(m_StackRateChoice->GetSelection() + 1);
+			return;
+		}
+	}
+
+	// bet pot size
+	if (m_PotRatioCheck->IsChecked())
+	{
+		if (m_CurrentParams.m_BetPotSize == pcmn::BetSize::Max)
+		{
+			m_CurrentParams.m_BetPotSize = pcmn::BetSize::VeryLow;
+			m_PotRateChoice->SetSelection(0);
+		}
+		else
+		{
+			m_CurrentParams.m_BetPotSize = static_cast<pcmn::BetSize::Value>(int(m_CurrentParams.m_BetPotSize) + 1);
+			m_PotRateChoice->SetSelection(m_PotRateChoice->GetSelection() + 1);
+			return;
+		}
+	}
+
+	// bot position
+	if (m_PositionCheck->IsChecked())
+	{
+		if (m_CurrentParams.m_Position == pcmn::Player::Position::Max)
+		{
+			m_CurrentParams.m_Position = pcmn::Player::Position::Early;
+			m_PositionChoice->SetSelection(0);
+		}
+		else
+		{
+			m_CurrentParams.m_Position = static_cast<pcmn::Player::Position::Value>(int(m_CurrentParams.m_Position) + 1);
+			m_PositionChoice->SetSelection(m_PositionChoice->GetSelection() + 1);
+			return;
+		}
+	}
+
+	// win rate
+	if (m_WinRateCheck->IsChecked())
+	{
+		if (m_CurrentParams.m_WinRate == pcmn::WinRate::Max)
+		{
+			m_CurrentParams.m_WinRate = pcmn::WinRate::VeryLow;
+			m_WinRateChoice->SetSelection(0);
+		}
+		else
+		{
+			m_CurrentParams.m_WinRate = static_cast<pcmn::WinRate::Value>(int(m_CurrentParams.m_WinRate) + 1);
+			m_WinRateChoice->SetSelection(m_WinRateChoice->GetSelection() + 1);
+			return;
+		}
+	}
+}
+
+void Teacher::OnRange(wxCommandEvent& event)
+{
+	int totalCount = 1;
+
+	// bot stack
+	if (m_BotStackCheck->IsChecked())
+	{
+		totalCount *= m_BostStackSizeChoice->GetCount() - m_BostStackSizeChoice->GetSelection();
+	}
+
+	// bot style
+	if (m_BotStyleCheck->IsChecked())
+	{
+		totalCount *= m_BotStyleChoice->GetCount() - m_BotStyleChoice->GetSelection();
+	}
+
+	// players unusual style
+	if (m_BotAverageStyleCheck->IsChecked())
+	{
+		totalCount *= m_BotAverageStyleChoice->GetCount() - m_BotAverageStyleChoice->GetSelection();
+	}
+
+	// most aggressive style
+	if (m_DangerCheck->IsChecked())
+	{
+		totalCount *= m_DangerChoice->GetCount() - m_DangerChoice->GetSelection();
+	}
+
+	// active players count
+	if (m_PlayersCheck->IsChecked())
+	{
+		totalCount *= m_PlayersChoice->GetCount() - m_PlayersChoice->GetSelection();
+	}
+
+	// bet stack size
+	if (m_StackRatioCheck->IsChecked())
+	{
+		totalCount *= m_StackRateChoice->GetCount() - m_StackRateChoice->GetSelection();
+	}
+
+	// bet pot size
+	if (m_PotRatioCheck->IsChecked())
+	{
+		totalCount *= m_PotRateChoice->GetCount() - m_PotRateChoice->GetSelection();
+	}
+
+	// bot position
+	if (m_PositionCheck->IsChecked())
+	{
+		totalCount *= m_PositionChoice->GetCount() - m_PositionChoice->GetSelection();
+	}
+
+	// win rate
+	if (m_WinRateCheck->IsChecked())
+	{
+		totalCount *= m_WinRateChoice->GetCount() - m_WinRateChoice->GetSelection();
+	}
+
+	for (int i = 0 ; i < totalCount - 1; ++i)
+		IncrementChecked();
 }
 
 }

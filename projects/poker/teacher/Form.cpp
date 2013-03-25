@@ -191,6 +191,9 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_TestButton = new wxButton( this, wxID_ANY, wxT("Test"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer6->Add( m_TestButton, 0, wxALL, 5 );
 	
+	m_GenerateRange = new wxButton( this, wxID_ANY, wxT("Range"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer6->Add( m_GenerateRange, 0, wxALL, 5 );
+	
 	gSizer12->Add( fgSizer6, 1, wxEXPAND|wxALL, 5 );
 	
 	bSizer4->Add( gSizer12, 0, wxEXPAND, 5 );
@@ -215,6 +218,7 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_LoadButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnLoad ), NULL, this );
 	m_TeachButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnTeach ), NULL, this );
 	m_TestButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnTest ), NULL, this );
+	m_GenerateRange->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnRange ), NULL, this );
 }
 
 TeacherMainFrame::~TeacherMainFrame()
@@ -235,4 +239,5 @@ TeacherMainFrame::~TeacherMainFrame()
 	m_LoadButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnLoad ), NULL, this );
 	m_TeachButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnTeach ), NULL, this );
 	m_TestButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnTest ), NULL, this );
+	m_GenerateRange->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnRange ), NULL, this );
 }
