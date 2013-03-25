@@ -10,8 +10,8 @@ namespace pcmn
 		enum Value
 		{
 			Low			= 0,
-			Normal		= 2,
-			High		= 3,
+			Normal		= 1,
+			High		= 2,
 			Max			= High
 		};
 

@@ -25,11 +25,13 @@ private:
 	virtual void OnLoad( wxCommandEvent& event ) override;
 	virtual void OnTeach( wxCommandEvent& event ) override;
 	virtual void OnTest( wxCommandEvent& event ) override;
+	virtual void OnRange( wxCommandEvent& event ) override;
 
 private:
 
 	void AddParameters();
 	void SetGuiParams(const neuro::Params& params);
+	void IncrementChecked();
 
 private:
 

@@ -65,6 +65,7 @@ class TeacherMainFrame : public wxFrame
 		wxButton* m_LoadButton;
 		wxButton* m_TeachButton;
 		wxButton* m_TestButton;
+		wxButton* m_GenerateRange;
 		wxStatusBar* m_StatusBar;
 		
 		// Virtual event handlers, overide them in your derived class
@@ -83,6 +84,7 @@ class TeacherMainFrame : public wxFrame
 		virtual void OnLoad( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnTeach( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnTest( wxCommandEvent& event ){ event.Skip(); }
+		virtual void OnRange( wxCommandEvent& event ){ event.Skip(); }
 		
 	
 	public:
