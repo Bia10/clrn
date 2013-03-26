@@ -32,6 +32,8 @@ private:
 	void AddParameters();
 	void SetGuiParams(const neuro::Params& params);
 	void IncrementChecked();
+	void LoadParams(neuro::Params::Set& params);
+	void MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src);
 
 private:
 
@@ -39,7 +41,7 @@ private:
 	neuro::Params m_CurrentParams;
 
 	//! Parameters
-	neuro::Params::List m_Parameters;
+	neuro::Params::Set m_Parameters;
 
 };
 }

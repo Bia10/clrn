@@ -87,6 +87,12 @@ void Teacher::OnSave(wxCommandEvent& event)
 	{
 		AddParameters();
 
+		neuro::Params::Set oldParams;
+		LoadParams(oldParams);
+
+		MergeParams(oldParams, m_Parameters);
+		m_Parameters = oldParams;
+
 		const std::string path = fs::FullPath(cfg::DATA_FILE_NAME);
 		std::ofstream file(path.c_str(), std::ios_base::out);
 		CHECK(file.is_open(), path);
@@ -113,34 +119,16 @@ void Teacher::OnLoad(wxCommandEvent& event)
 {
 	try
 	{
-		const std::string path = fs::FullPath(cfg::DATA_FILE_NAME);
-		std::ifstream file(path.c_str(), std::ios_base::in);
-		CHECK(file.is_open(), path);
-
-		m_Parameters.clear();
-
-		std::vector<int> data;
-		std::copy(std::istream_iterator<int>(file), std::istream_iterator<int>(), std::back_inserter(data));
-
-		CHECK(!(data.size() % 12), data.size());
-
-		m_Parameters.resize(data.size() / 12);
-
-		std::vector<int>::const_iterator it = data.begin();
-		const std::vector<int>::const_iterator itEnd = data.end();
-		std::size_t counter = 0;
-		for (; it != itEnd; ++counter)
-			it = m_Parameters[counter].Deserialize(it);
+		LoadParams(m_Parameters);
 
 		if (!m_Parameters.empty())
 		{
-			m_CurrentParams = m_Parameters.back();
-
+			m_CurrentParams = *m_Parameters.rbegin();
 			SetGuiParams(m_CurrentParams);
 		}
 
 		std::ostringstream oss;
-		oss << "loaded " << m_Parameters.size() << " params from " << path;
+		oss << "loaded " << m_Parameters.size() << " params from " << cfg::DATA_FILE_NAME;
 		m_StatusBar->SetStatusText(oss.str());
 	}
 	catch (const std::exception& e)
@@ -206,18 +194,20 @@ void Teacher::AddParameters()
 
 	CHECK(counter == 1, "Only one output parameter must be set", counter);
 
-	if (!m_Parameters.empty() && !memcmp(&m_Parameters.back(), &m_CurrentParams, sizeof(neuro::Params)))
-	{
-		std::ostringstream oss;
-		oss << "parameters are same, save skipped";
-		m_StatusBar->SetStatusText(oss.str());
-		return;
-	}
+	const neuro::Params::Set previous = m_Parameters;
 
-	m_Parameters.push_back(m_CurrentParams);
+	neuro::Params::Set temp;
+	temp.insert(m_CurrentParams);
+	MergeParams(m_Parameters, temp);
 
 	std::ostringstream oss;
-	oss << "parameter " << m_Parameters.size() << " added";
+	oss << "parameter " << m_Parameters.size() << 
+		(
+			previous == m_Parameters ? " skipped" : 
+			(
+				previous.size() == m_Parameters.size() ? " replaced" : " added"
+			)
+		);
 	m_StatusBar->SetStatusText(oss.str());
 }
 
@@ -460,6 +450,66 @@ void Teacher::OnRange(wxCommandEvent& event)
 
 	for (int i = 0 ; i < totalCount - 1; ++i)
 		IncrementChecked();
+}
+
+void Teacher::LoadParams(neuro::Params::Set& params)
+{
+	const std::string path = fs::FullPath(cfg::DATA_FILE_NAME);
+	if (fs::Exists(path))
+		return;
+
+	std::ifstream file(path.c_str(), std::ios_base::in);
+	CHECK(file.is_open(), path);
+
+	std::vector<int> data;
+	std::copy(std::istream_iterator<int>(file), std::istream_iterator<int>(), std::back_inserter(data));
+
+	CHECK(!(data.size() % 12), data.size());
+
+	neuro::Params::List tempParams(data.size() / 12);
+
+	std::vector<int>::const_iterator it = data.begin();
+	const std::vector<int>::const_iterator itEnd = data.end();
+	std::size_t counter = 0;
+	for (; it != itEnd; ++counter)
+		it = tempParams[counter].Deserialize(it);
+
+	params.clear();
+	std::copy(tempParams.begin(), tempParams.end(), std::inserter(params, params.begin()));
+}
+
+void Teacher::MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src)
+{
+	for (const neuro::Params& params : src)
+	{
+		const neuro::Params::Set::const_iterator it = dst.find(params);
+		if (it != dst.end())
+		{
+			int result = wxYES;
+
+			if (!it->IsDecisionEquals(params))
+			{
+				std::ostringstream oss;
+				oss 
+					<< "Exists: " << std::endl << it->ToString() << std::endl << std::endl
+					<< "Replacing with: " << std::endl << params.ToString() << std::endl << std::endl
+					<< "Replace ?";
+
+				result = wxMessageBox(oss.str().c_str(), "Already exists", wxYES_NO | wxICON_QUESTION);
+			}
+
+			if (result == wxYES)
+				dst.erase(it);
+			else
+			if (result == wxCANCEL)
+				return;
+			else
+			if (result == wxNO)
+				continue;
+		}
+
+		dst.insert(params);
+	}
 }
 
 }
