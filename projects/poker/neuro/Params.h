@@ -8,12 +8,14 @@
 #include "Danger.h"
 
 #include <vector>
+#include <set>
 
 namespace neuro
 {
 	struct Params
 	{
 		typedef std::vector<Params> List;
+		typedef std::set<Params> Set;
 
 		Params();
 
@@ -61,6 +63,16 @@ namespace neuro
 
 		//! To neuro format
 		void ToNeuroFormat(std::vector<float>& in, std::vector<float>& out) const;
+
+		//! Comparison
+		bool operator < (const Params& other) const;
+		bool operator == (const Params& other) const;
+
+		//! To string
+		std::string ToString() const;
+
+		//! Is decision equals
+		bool IsDecisionEquals(const Params& other) const;
 	};
 
 }

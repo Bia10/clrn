@@ -1,5 +1,7 @@
 #include "Params.h"
 
+#include <boost/format.hpp>
+
 namespace neuro
 {
 
@@ -74,6 +76,60 @@ namespace neuro
 		out.push_back(static_cast<float>(m_CheckFold));
 		out.push_back(static_cast<float>(m_CheckCall));
 		out.push_back(static_cast<float>(m_BetRaise));
+	}
+
+	bool Params::operator < (const Params& other) const
+	{
+		if (m_WinRate != other.m_WinRate)
+			return m_WinRate < other.m_WinRate;
+		if (m_Position != other.m_Position)
+			return m_Position < other.m_Position;
+		if (m_BetPotSize != other.m_BetPotSize)
+			return m_BetPotSize < other.m_BetPotSize;
+		if (m_BetStackSize != other.m_BetStackSize)
+			return m_BetStackSize < other.m_BetStackSize;
+		if (m_ActivePlayers != other.m_ActivePlayers)
+			return m_ActivePlayers < other.m_ActivePlayers;
+		if (m_Danger != other.m_Danger)
+			return m_Danger < other.m_Danger;
+		if (m_BotAverageStyle != other.m_BotAverageStyle)
+			return m_BotAverageStyle < other.m_BotAverageStyle;
+		if (m_BotStyle != other.m_BotStyle)
+			return m_BotStyle < other.m_BotStyle;
+		if (m_BotStackSize != other.m_BotStackSize)
+			return m_BotStackSize < other.m_BotStackSize;
+		return false;
+	}
+
+	std::string Params::ToString() const
+	{
+		return (boost::format("win: [%s], pos: [%s], pot: [%s], stack: [%s], players: [%s], danger: [%s], bot avg style: [%s], bot style: [%s], bot stack: [%s], decision: [%s]")
+			% pcmn::WinRate::ToString(m_WinRate)
+			% pcmn::Player::Position::ToString(m_Position)
+			% pcmn::BetSize::ToString(m_BetPotSize)
+			% pcmn::BetSize::ToString(m_BetStackSize)
+			% pcmn::Player::Count::ToString(m_ActivePlayers)
+			% pcmn::Danger::ToString(m_Danger)
+			% pcmn::Player::Style::ToString(m_BotAverageStyle)
+			% pcmn::Player::Style::ToString(m_BotStyle)
+			% pcmn::StackSize::ToString(m_BotStackSize)
+			% (m_CheckFold ? "Check/Fold" : (m_CheckCall ? "Check/Call" : "Bet/Raise"))
+		).str();
+	}
+
+	bool Params::IsDecisionEquals(const Params& other) const
+	{
+		return 
+			m_CheckFold == other.m_CheckFold
+			&&
+			m_CheckCall == other.m_CheckCall
+			&&
+			m_BetRaise == other.m_BetRaise;
+	}
+
+	bool Params::operator == (const Params& other) const
+	{
+		return !memcmp(this, &other, sizeof(Params));
 	}
 
 }
