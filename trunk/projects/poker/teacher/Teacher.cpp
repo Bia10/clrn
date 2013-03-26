@@ -6,7 +6,8 @@
 #include "../neuro/NeuroNetwork.h"
 #include "Config.h"
 
-#include "wx/msgdlg.h"
+#include <wx/msgdlg.h>
+#include <wx/choicdlg.h>
 
 #include <fstream>
 #include <sstream>
@@ -480,14 +481,15 @@ void Teacher::LoadParams(neuro::Params::Set& params)
 
 void Teacher::MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src)
 {
+	bool all = false;
 	for (const neuro::Params& params : src)
 	{
 		const neuro::Params::Set::const_iterator it = dst.find(params);
 		if (it != dst.end())
 		{
-			int result = wxYES;
+			int result = 0;
 
-			if (!it->IsDecisionEquals(params))
+			if (all || !it->IsDecisionEquals(params))
 			{
 				std::ostringstream oss;
 				oss 
@@ -495,16 +497,22 @@ void Teacher::MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src
 					<< "Replacing with: " << std::endl << params.ToString() << std::endl << std::endl
 					<< "Replace ?";
 
-				result = wxMessageBox(oss.str().c_str(), "Already exists", wxYES_NO | wxICON_QUESTION);
+				static const wxString choices[] = {"Yes", "No", "All"};
+				result = wxGetSingleChoiceIndex(oss.str().c_str(), "Already exists", _countof(choices), choices, 0);
 			}
 
-			if (result == wxYES)
+			if (result == 0)
 				dst.erase(it);
 			else
-			if (result == wxCANCEL)
+			if (result == -1)
 				return;
 			else
-			if (result == wxNO)
+			if (result == 2)
+			{
+				all = true;
+				dst.erase(it);
+			}
+			if (result == 1)
 				continue;
 		}
 
