@@ -19,6 +19,7 @@
 #include <wx/checkbox.h>
 #include <wx/radiobox.h>
 #include <wx/button.h>
+#include <wx/gauge.h>
 #include <wx/statusbr.h>
 #include <wx/frame.h>
 
@@ -66,6 +67,7 @@ class TeacherMainFrame : public wxFrame
 		wxButton* m_TeachButton;
 		wxButton* m_TestButton;
 		wxButton* m_GenerateRange;
+		wxGauge* m_Gauge;
 		wxStatusBar* m_StatusBar;
 		
 		// Virtual event handlers, overide them in your derived class
@@ -88,7 +90,7 @@ class TeacherMainFrame : public wxFrame
 		
 	
 	public:
-		TeacherMainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Neuro network teacher"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1000,264 ), long style = wxCAPTION|wxCLOSE_BOX|wxTAB_TRAVERSAL );
+		TeacherMainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Neuro network teacher"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1000,284 ), long style = wxCAPTION|wxCLOSE_BOX|wxTAB_TRAVERSAL );
 		~TeacherMainFrame();
 	
 };

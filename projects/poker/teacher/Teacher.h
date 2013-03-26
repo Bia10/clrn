@@ -34,6 +34,7 @@ private:
 	void IncrementChecked();
 	void LoadParams(neuro::Params::Set& params);
 	void MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src);
+	void RangeThread(int count);
 
 private:
 
