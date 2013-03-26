@@ -158,7 +158,7 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	bSizer4->Add( gSizer211, 0, wxEXPAND|wxTOP|wxBOTTOM, 5 );
 	
 	wxGridSizer* gSizer12;
-	gSizer12 = new wxGridSizer( 1, 4, 0, 0 );
+	gSizer12 = new wxGridSizer( 1, 3, 0, 0 );
 	
 	wxGridSizer* gSizer4;
 	gSizer4 = new wxGridSizer( 1, 1, 0, 0 );
@@ -197,6 +197,9 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	gSizer12->Add( fgSizer6, 1, wxEXPAND|wxALL, 5 );
 	
 	bSizer4->Add( gSizer12, 0, wxEXPAND, 5 );
+	
+	m_Gauge = new wxGauge( this, wxID_ANY, 100, wxDefaultPosition, wxDefaultSize, wxGA_HORIZONTAL );
+	bSizer4->Add( m_Gauge, 0, wxALL|wxEXPAND, 5 );
 	
 	this->SetSizer( bSizer4 );
 	this->Layout();

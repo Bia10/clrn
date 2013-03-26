@@ -12,6 +12,9 @@
 #include <fstream>
 #include <sstream>
 
+#include <boost/bind.hpp>
+#include <boost/thread.hpp>
+
 namespace tchr
 {
 
@@ -21,6 +24,7 @@ Teacher::Teacher()
 	m_StatusBar->SetStatusText("ready");
 	SetGuiParams(m_CurrentParams);
 	m_CurrentParams.m_CheckFold = true;
+	m_Gauge->Hide();
 }
 
 void Teacher::OnWinRate(wxCommandEvent& event)
@@ -449,8 +453,7 @@ void Teacher::OnRange(wxCommandEvent& event)
 		totalCount *= m_WinRateChoice->GetCount() - m_WinRateChoice->GetSelection();
 	}
 
-	for (int i = 0 ; i < totalCount - 1; ++i)
-		IncrementChecked();
+	boost::thread(boost::bind(&Teacher::RangeThread, this, totalCount));
 }
 
 void Teacher::LoadParams(neuro::Params::Set& params)
@@ -482,8 +485,17 @@ void Teacher::LoadParams(neuro::Params::Set& params)
 void Teacher::MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src)
 {
 	bool all = false;
+
+	if (src.size() > 10)
+		m_Gauge->Show();
+
+	int count = 0;
+
 	for (const neuro::Params& params : src)
 	{
+		if (src.size() > 10)
+			m_Gauge->SetValue((count++ * 100) / src.size());
+
 		const neuro::Params::Set::const_iterator it = dst.find(params);
 		if (it != dst.end())
 		{
@@ -518,6 +530,21 @@ void Teacher::MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src
 
 		dst.insert(params);
 	}
+
+	if (src.size() > 10)
+		m_Gauge->Hide();
+}
+
+void Teacher::RangeThread(int count)
+{
+	m_Gauge->Show();
+	for (int i = 0 ; i < count - 1; ++i)
+	{
+		IncrementChecked();
+		m_Gauge->SetValue((i * 100) / count);
+	}
+
+	m_Gauge->Hide();
 }
 
 }
