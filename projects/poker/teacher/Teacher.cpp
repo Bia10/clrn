@@ -183,8 +183,11 @@ void Teacher::OnTeach(wxCommandEvent& event)
 
 	std::vector<float> in;
 	std::vector<float> out;
+
+    m_Gauge->Show();
 	for (std::size_t i = 0; i < cfg::TEACH_REPETITIONS_COUNT; ++i)
 	{
+        m_Gauge->SetValue((i * 100) / cfg::TEACH_REPETITIONS_COUNT);
 		for (const neuro::Params& params : m_Parameters)
 		{
 			params.ToNeuroFormat(in, out);
@@ -192,6 +195,7 @@ void Teacher::OnTeach(wxCommandEvent& event)
 		}
 	}
 
+    m_Gauge->Hide();
 	m_StatusBar->SetStatusText("trained");
 }
 
