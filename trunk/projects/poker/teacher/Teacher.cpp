@@ -8,12 +8,14 @@
 
 #include <wx/msgdlg.h>
 #include <wx/choicdlg.h>
+#include <wx/filedlg.h>
 
 #include <fstream>
 #include <sstream>
 
 #include <boost/bind.hpp>
 #include <boost/thread.hpp>
+
 
 namespace tchr
 {
@@ -90,15 +92,26 @@ void Teacher::OnSave(wxCommandEvent& event)
 {
 	try
 	{
-		AddParameters();
+        wxFileDialog dialog
+        (
+            NULL, 
+            "Choose a file to save", 
+            wxEmptyString, 
+            wxEmptyString, 
+            "Data files (*.txt)|*.txt",
+            wxFD_SAVE
+        );
+
+        dialog.ShowModal();
+        const wxString filePath = dialog.GetPath();
+        const std::string path = fs::FullPath(filePath.ToStdString());
 
 		neuro::Params::Set oldParams;
-		LoadParams(oldParams);
+		LoadParams(oldParams, path);
 
 		MergeParams(oldParams, m_Parameters);
 		m_Parameters = oldParams;
 
-		const std::string path = fs::FullPath(cfg::DATA_FILE_NAME);
 		std::ofstream file(path.c_str(), std::ios_base::out);
 		CHECK(file.is_open(), path);
 
@@ -124,7 +137,21 @@ void Teacher::OnLoad(wxCommandEvent& event)
 {
 	try
 	{
-		LoadParams(m_Parameters);
+        wxFileDialog dialog
+        (
+            NULL, 
+            "Choose a file to save", 
+            wxEmptyString, 
+            wxEmptyString, 
+            "Data files (*.txt)|*.txt",
+            wxFD_OPEN | wxFD_FILE_MUST_EXIST
+        );
+
+        dialog.ShowModal();
+        const wxString filePath = dialog.GetPath();
+        const std::string path = fs::FullPath(filePath.ToStdString());
+
+		LoadParams(m_Parameters, path);
 
 		if (!m_Parameters.empty())
 		{
@@ -133,7 +160,7 @@ void Teacher::OnLoad(wxCommandEvent& event)
 		}
 
 		std::ostringstream oss;
-		oss << "loaded " << m_Parameters.size() << " params from " << cfg::DATA_FILE_NAME;
+		oss << "loaded " << m_Parameters.size() << " params from " << path;
 		m_StatusBar->SetStatusText(oss.str());
 	}
 	catch (const std::exception& e)
@@ -456,10 +483,10 @@ void Teacher::OnRange(wxCommandEvent& event)
 	boost::thread(boost::bind(&Teacher::RangeThread, this, totalCount));
 }
 
-void Teacher::LoadParams(neuro::Params::Set& params)
+void Teacher::LoadParams(neuro::Params::Set& params, const std::string& filePath)
 {
-	const std::string path = fs::FullPath(cfg::DATA_FILE_NAME);
-	if (fs::Exists(path))
+	const std::string path = fs::FullPath(filePath);
+	if (!fs::Exists(path))
 		return;
 
 	std::ifstream file(path.c_str(), std::ios_base::in);
@@ -501,7 +528,10 @@ void Teacher::MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src
 		{
 			int result = 0;
 
-			if (all || !it->IsDecisionEquals(params))
+            if (all)
+                result = 2;
+            else
+			if (!it->IsDecisionEquals(params))
 			{
 				std::ostringstream oss;
 				oss 
