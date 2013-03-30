@@ -574,7 +574,7 @@ void Teacher::MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src
 void Teacher::RangeThread(int count)
 {
 	m_Gauge->Show();
-	for (int i = 0 ; i < count - 1; ++i)
+	for (int i = 0 ; i < count; ++i)
 	{
 		IncrementChecked();
 		m_Gauge->SetValue((i * 100) / count);
