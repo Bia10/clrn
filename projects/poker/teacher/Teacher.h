@@ -32,7 +32,7 @@ private:
 	void AddParameters();
 	void SetGuiParams(const neuro::Params& params);
 	void IncrementChecked();
-	void LoadParams(neuro::Params::Set& params);
+	void LoadParams(neuro::Params::Set& params, const std::string& path);
 	void MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src);
 	void RangeThread(int count);
 
