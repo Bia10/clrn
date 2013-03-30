@@ -44,5 +44,8 @@ private:
 	//! Parameters
 	neuro::Params::Set m_Parameters;
 
+    //! All selected
+    bool m_All;
+
 };
 }
