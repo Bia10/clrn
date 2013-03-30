@@ -15,7 +15,8 @@
 
 #include <boost/bind.hpp>
 #include <boost/thread.hpp>
-
+#include <boost/lexical_cast.hpp>
+#include <boost/assign.hpp>
 
 namespace tchr
 {
@@ -23,56 +24,71 @@ namespace tchr
 Teacher::Teacher() 
 	: TeacherMainFrame(NULL)
     , m_All(false)
+    , m_CurrentRow(0)
 {
 	m_StatusBar->SetStatusText("ready");
 	SetGuiParams(m_CurrentParams);
 	m_CurrentParams.m_CheckFold = true;
-	m_Gauge->Hide();
+	m_Gauge->Hide(); 
+
+    const unsigned paramsSize = neuro::Params::MaxHash();
+    m_Parameters.resize(paramsSize);
+    SetPramsValues();
+    UpdateGrid(m_CurrentRow);
 }
 
 void Teacher::OnWinRate(wxCommandEvent& event)
 {
 	m_CurrentParams.m_WinRate = static_cast<pcmn::WinRate::Value>(event.GetInt());
+    SetRowViewToCurrentParams();
 }
 
 void Teacher::OnPosition(wxCommandEvent& event)
 {
 	m_CurrentParams.m_Position = static_cast<pcmn::Player::Position::Value>(event.GetInt());
+    SetRowViewToCurrentParams();
 }
 
 void Teacher::OnPotRatio(wxCommandEvent& event)
 {
 	m_CurrentParams.m_BetPotSize = static_cast<pcmn::BetSize::Value>(event.GetInt());
+    SetRowViewToCurrentParams();
 }
 
 void Teacher::OnStackRatio(wxCommandEvent& event)
 {
 	m_CurrentParams.m_BetStackSize = static_cast<pcmn::BetSize::Value>(event.GetInt());
+    SetRowViewToCurrentParams();
 }
 
 void Teacher::OnPlayers(wxCommandEvent& event)
 {
 	m_CurrentParams.m_ActivePlayers = static_cast<pcmn::Player::Count::Value>(event.GetInt());
+    SetRowViewToCurrentParams();
 }
 
 void Teacher::OnPlayersStyle(wxCommandEvent& event)
 {
 	m_CurrentParams.m_Danger = static_cast<pcmn::Danger::Value>(event.GetInt());
+    SetRowViewToCurrentParams();
 }
 
 void Teacher::OnStyleChanges(wxCommandEvent& event)
 {
 	m_CurrentParams.m_BotAverageStyle = static_cast<pcmn::Player::Style::Value>(event.GetInt());
+    SetRowViewToCurrentParams();
 }
 
 void Teacher::OnBotStyle(wxCommandEvent& event)
 {
 	m_CurrentParams.m_BotStyle = static_cast<pcmn::Player::Style::Value>(event.GetInt());
+    SetRowViewToCurrentParams();
 }
 
 void Teacher::OnBotStackSize(wxCommandEvent& event)
 {
 	m_CurrentParams.m_BotStackSize = static_cast<pcmn::StackSize::Value>(event.GetInt());
+    SetRowViewToCurrentParams();
 }
 
 void Teacher::OnAction(wxCommandEvent& event)
@@ -110,9 +126,10 @@ void Teacher::OnSave(wxCommandEvent& event)
         if (path.empty())
             return;
 
-		neuro::Params::Set oldParams;
+		neuro::Params::List oldParams;
 		LoadParams(oldParams, path);
 
+        m_All = false;
 		MergeParams(oldParams, m_Parameters);
         m_All = false;
 		m_Parameters = oldParams;
@@ -163,8 +180,9 @@ void Teacher::OnLoad(wxCommandEvent& event)
 
 		if (!m_Parameters.empty())
 		{
-			m_CurrentParams = *m_Parameters.rbegin();
+			m_CurrentParams = m_Parameters.front();
 			SetGuiParams(m_CurrentParams);
+            UpdateGrid(m_CurrentRow);
 		}
 
 		std::ostringstream oss;
@@ -221,10 +239,10 @@ void Teacher::AddParameters()
 
 	CHECK(counter == 1, "Only one output parameter must be set", counter);
 
-	const neuro::Params::Set previous = m_Parameters;
+	const neuro::Params::List previous = m_Parameters;
 
-	neuro::Params::Set temp;
-	temp.insert(m_CurrentParams);
+	neuro::Params::List temp;
+	temp.push_back(m_CurrentParams);
 	MergeParams(m_Parameters, temp);
 
 	std::ostringstream oss;
@@ -264,6 +282,7 @@ void Teacher::IncrementChecked()
 {
 	try
 	{
+        m_All = false;
 		AddParameters();
 	}
 	catch (const std::exception& e)
@@ -475,11 +494,26 @@ void Teacher::OnRange(wxCommandEvent& event)
 		totalCount *= m_WinRateChoice->GetCount() - m_WinRateChoice->GetSelection();
 	}
 
-	boost::thread(boost::bind(&Teacher::RangeThread, this, totalCount));
+    const unsigned start = m_CurrentParams.Hash();
+    neuro::Params::List paramsCopy(m_Parameters.begin() + start, m_Parameters.begin() + start + totalCount);
+    for (neuro::Params& params : paramsCopy)
+    {
+        params.m_CheckFold = m_CurrentParams.m_CheckFold;
+        params.m_CheckCall = m_CurrentParams.m_CheckCall;
+        params.m_BetRaise = m_CurrentParams.m_BetRaise;
+    }
+
+    m_All = false;
+    MergeParams(m_Parameters, paramsCopy);
+    m_All = false;
+    UpdateGrid(start + totalCount);
 }
 
-void Teacher::LoadParams(neuro::Params::Set& params, const std::string& filePath)
+void Teacher::LoadParams(neuro::Params::List& params, const std::string& filePath)
 {
+    params.clear();
+    params.resize(neuro::Params::MaxHash());
+
 	const std::string path = fs::FullPath(filePath);
 	if (!fs::Exists(path))
 		return;
@@ -500,11 +534,11 @@ void Teacher::LoadParams(neuro::Params::Set& params, const std::string& filePath
 	for (; it != itEnd; ++counter)
 		it = tempParams[counter].Deserialize(it);
 
-	params.clear();
-	std::copy(tempParams.begin(), tempParams.end(), std::inserter(params, params.begin()));
+    for (const neuro::Params& params : tempParams)
+        m_Parameters[params.Hash()] = params;
 }
 
-void Teacher::MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src)
+void Teacher::MergeParams(neuro::Params::List& dst, const neuro::Params::List& src)
 {
 	if (src.size() > 10)
 		m_Gauge->Show();
@@ -516,42 +550,40 @@ void Teacher::MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src
 		if (src.size() > 10)
 			m_Gauge->SetValue((count++ * 100) / src.size());
 
-		const neuro::Params::Set::const_iterator it = dst.find(params);
-		if (it != dst.end())
+        const unsigned hash = params.Hash();
+
+        neuro::Params& dstParams = dst[hash];
+
+		int result = 0;
+
+        if (m_All)
+            result = 0;
+        else
+		if (!dstParams.IsDecisionEquals(params))
 		{
-			int result = 0;
+			std::ostringstream oss;
+			oss 
+				<< "Exists: " << std::endl << dstParams.ToString() << std::endl << std::endl
+				<< "Replacing with: " << std::endl << params.ToString() << std::endl << std::endl
+				<< "Replace ?";
 
-            if (m_All)
-                result = 2;
-            else
-			if (!it->IsDecisionEquals(params))
-			{
-				std::ostringstream oss;
-				oss 
-					<< "Exists: " << std::endl << it->ToString() << std::endl << std::endl
-					<< "Replacing with: " << std::endl << params.ToString() << std::endl << std::endl
-					<< "Replace ?";
-
-				static const wxString choices[] = {"Yes", "No", "All"};
-				result = wxGetSingleChoiceIndex(oss.str().c_str(), "Already exists", _countof(choices), choices, 0);
-			}
-
-			if (result == 0)
-				dst.erase(it);
-			else
-			if (result == -1)
-				return;
-			else
-			if (result == 2)
-			{
-				m_All = true;
-				dst.erase(it);
-			}
-			if (result == 1)
-				continue;
+			static const wxString choices[] = {"Yes", "No", "All"};
+			result = wxGetSingleChoiceIndex(oss.str().c_str(), "Already exists", _countof(choices), choices, 0);
 		}
 
-		dst.insert(params);
+		if (result == 0)
+			dstParams = params;
+		else
+		if (result == -1)
+			return;
+		else
+		if (result == 2)
+		{
+			m_All = true;
+            dstParams = params;
+		}
+		if (result == 1)
+			continue;
 	}
 
 	if (src.size() > 10)
@@ -579,9 +611,10 @@ void Teacher::TeachThread()
     std::vector<float> out;
 
     m_Gauge->Show();
-    for (std::size_t i = 0; i < cfg::TEACH_REPETITIONS_COUNT; ++i)
+    const unsigned count = 1000;//cfg::TEACH_REPETITIONS_COUNT;
+    for (std::size_t i = 0; i < count; ++i)
     {
-        m_Gauge->SetValue((i * 100) / cfg::TEACH_REPETITIONS_COUNT);
+        m_Gauge->SetValue((i * 100) / count);
         for (const neuro::Params& params : m_Parameters)
         {
             params.ToNeuroFormat(in, out);
@@ -591,6 +624,143 @@ void Teacher::TeachThread()
 
     m_Gauge->Hide();
     m_StatusBar->SetStatusText("trained");
+}
+
+void Teacher::UpdateGrid(unsigned paramsRow)
+{
+    const unsigned max = m_Grid->GetRows();
+
+    if (paramsRow > max / 2)
+    {
+        paramsRow -= max / 2;
+        m_Grid->SelectRow(max / 2);
+    }
+    else
+    {
+        m_Grid->SelectRow(paramsRow);
+        paramsRow = 0;
+    }
+
+    if (m_Parameters.size() - paramsRow <= max)
+        paramsRow = m_Parameters.size() - max;
+
+    for (unsigned row = 0; row < max; ++row, ++paramsRow)
+    {       
+        const neuro::Params& params = m_Parameters[paramsRow];
+        
+        m_Grid->SetCellValue(row, 0, pcmn::WinRate::ToString(params.m_WinRate));
+        m_Grid->SetCellValue(row, 1, pcmn::Player::Position::ToString(params.m_Position));
+        m_Grid->SetCellValue(row, 2, pcmn::BetSize::ToString(params.m_BetPotSize));
+        m_Grid->SetCellValue(row, 3, pcmn::BetSize::ToString(params.m_BetStackSize));
+        m_Grid->SetCellValue(row, 4, pcmn::Player::Count::ToString(params.m_ActivePlayers));
+        m_Grid->SetCellValue(row, 5, pcmn::Danger::ToString(params.m_Danger));
+        m_Grid->SetCellValue(row, 6, pcmn::Player::Style::ToString(params.m_BotAverageStyle));
+        m_Grid->SetCellValue(row, 7, pcmn::Player::Style::ToString(params.m_BotStyle));
+        m_Grid->SetCellValue(row, 8, pcmn::StackSize::ToString(params.m_BotStackSize));
+        
+        if (params.m_CheckFold)
+            m_Grid->SetCellValue(row, 9, "Check/Fold");
+        else
+        if (params.m_CheckCall)
+            m_Grid->SetCellValue(row, 9, "Check/Call");
+        else
+        if (params.m_BetRaise)
+            m_Grid->SetCellValue(row, 9, "Bet/Raise");
+        else
+            m_Grid->SetCellValue(row, 9, "Not set");
+
+        m_Grid->SetRowLabelValue(row, boost::lexical_cast<std::string>(paramsRow));
+    }
+}
+
+void Teacher::SetPramsValues()
+{
+    for (unsigned i = 0; i < m_Parameters.size(); ++i)
+    {
+        neuro::Params& params = m_Parameters[i];
+        params.SetParams(i);
+    }
+}
+
+void Teacher::OnGridScroll(wxMouseEvent& event)
+{
+    if (event.m_wheelRotation > 0)
+    {
+        // up
+        GridUp();
+    }
+    else
+    if (event.m_wheelRotation < 0)
+    {
+        // down 
+        GridDown();
+    }
+}
+
+void Teacher::SetRowViewToCurrentParams()
+{
+    const unsigned hash = m_CurrentParams.Hash();
+    m_CurrentRow = hash;
+    UpdateGrid(hash);
+}
+
+void Teacher::OnKeyDown(wxKeyEvent& event)
+{
+    if (event.m_rawCode == 38)
+    {
+        // up
+        GridUp();
+    }
+    else
+    if (event.m_rawCode == 40)
+    {
+        // down
+        GridDown();
+    }
+
+    if (event.m_rawCode == 33)
+    {
+        // pg up
+        GridUp(m_Grid->GetRows() * 5);
+    }
+    else
+    if (event.m_rawCode == 34)
+    {
+        // pg down
+        GridDown(m_Grid->GetRows() * 5);
+    }
+
+    if (event.m_uniChar != 'R' && event.m_uniChar != 'C' && event.m_uniChar != 'F')
+        return;
+
+    m_CurrentParams.m_CheckFold = false;
+    m_CurrentParams.m_CheckCall = false;
+    m_CurrentParams.m_BetRaise = false;
+
+    switch (event.m_uniChar)
+    {
+    case 'F': m_CurrentParams.m_CheckFold = true; break;
+    case 'C': m_CurrentParams.m_CheckCall = true; break;
+    case 'R': m_CurrentParams.m_BetRaise = true; break;
+    }
+
+    const neuro::Params::List temp = boost::assign::list_of(m_CurrentParams);
+    MergeParams(m_Parameters, temp);
+    GridDown();
+}
+
+void Teacher::GridUp(unsigned amount)
+{
+    UpdateGrid(m_CurrentRow > amount ? m_CurrentRow -= amount : 0);
+    m_CurrentParams = m_Parameters[m_CurrentRow];
+    SetGuiParams(m_CurrentParams);
+}
+
+void Teacher::GridDown(unsigned amount)
+{
+    UpdateGrid((m_CurrentRow + amount) < m_Parameters.size() ? m_CurrentRow += amount : m_CurrentRow);
+    m_CurrentParams = m_Parameters[m_CurrentRow];
+    SetGuiParams(m_CurrentParams);
 }
 
 }
