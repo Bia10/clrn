@@ -179,24 +179,7 @@ void Teacher::OnLoad(wxCommandEvent& event)
 
 void Teacher::OnTeach(wxCommandEvent& event)
 {
-	neuro::NetworkTeacher teacher(cfg::NETWORK_FILE_NAME);
-
-	std::vector<float> in;
-	std::vector<float> out;
-
-    m_Gauge->Show();
-	for (std::size_t i = 0; i < cfg::TEACH_REPETITIONS_COUNT; ++i)
-	{
-        m_Gauge->SetValue((i * 100) / cfg::TEACH_REPETITIONS_COUNT);
-		for (const neuro::Params& params : m_Parameters)
-		{
-			params.ToNeuroFormat(in, out);
-			teacher.Process(in, out);
-		}
-	}
-
-    m_Gauge->Hide();
-	m_StatusBar->SetStatusText("trained");
+    boost::thread(boost::bind(&Teacher::TeachThread, this));
 }
 
 void Teacher::OnTest(wxCommandEvent& event)
@@ -586,6 +569,28 @@ void Teacher::RangeThread(int count)
 
 	m_Gauge->Hide();
     m_All = false;
+}
+
+void Teacher::TeachThread()
+{
+    neuro::NetworkTeacher teacher(cfg::NETWORK_FILE_NAME);
+
+    std::vector<float> in;
+    std::vector<float> out;
+
+    m_Gauge->Show();
+    for (std::size_t i = 0; i < cfg::TEACH_REPETITIONS_COUNT; ++i)
+    {
+        m_Gauge->SetValue((i * 100) / cfg::TEACH_REPETITIONS_COUNT);
+        for (const neuro::Params& params : m_Parameters)
+        {
+            params.ToNeuroFormat(in, out);
+            teacher.Process(in, out);
+        }
+    }
+
+    m_Gauge->Hide();
+    m_StatusBar->SetStatusText("trained");
 }
 
 }
