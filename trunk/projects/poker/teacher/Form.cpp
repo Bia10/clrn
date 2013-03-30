@@ -198,6 +198,42 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	
 	bSizer4->Add( gSizer12, 0, wxEXPAND, 5 );
 	
+	m_Grid = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
+	
+	// Grid
+	m_Grid->CreateGrid( 10, 10 );
+	m_Grid->EnableEditing( false );
+	m_Grid->EnableGridLines( true );
+	m_Grid->EnableDragGridSize( false );
+	m_Grid->SetMargins( 0, 0 );
+	
+	// Columns
+	m_Grid->EnableDragColMove( false );
+	m_Grid->EnableDragColSize( true );
+	m_Grid->SetColLabelSize( 30 );
+	m_Grid->SetColLabelValue( 0, wxT("Win rate") );
+	m_Grid->SetColLabelValue( 1, wxT("Position") );
+	m_Grid->SetColLabelValue( 2, wxT("Pot ratio") );
+	m_Grid->SetColLabelValue( 3, wxT("Stack ratio") );
+	m_Grid->SetColLabelValue( 4, wxT("Players") );
+	m_Grid->SetColLabelValue( 5, wxT("Danger") );
+	m_Grid->SetColLabelValue( 6, wxT("Bot avg style") );
+	m_Grid->SetColLabelValue( 7, wxT("Bot style") );
+	m_Grid->SetColLabelValue( 8, wxT("Bot stack size") );
+	m_Grid->SetColLabelValue( 9, wxT("Result") );
+	m_Grid->SetColLabelAlignment( wxALIGN_CENTRE, wxALIGN_CENTRE );
+	
+	// Rows
+	m_Grid->EnableDragRowSize( true );
+	m_Grid->SetRowLabelSize( 80 );
+	m_Grid->SetRowLabelAlignment( wxALIGN_CENTRE, wxALIGN_CENTRE );
+	
+	// Label Appearance
+	
+	// Cell Defaults
+	m_Grid->SetDefaultCellAlignment( wxALIGN_LEFT, wxALIGN_TOP );
+	bSizer4->Add( m_Grid, 1, wxALL|wxEXPAND, 5 );
+	
 	m_Gauge = new wxGauge( this, wxID_ANY, 100, wxDefaultPosition, wxDefaultSize, wxGA_HORIZONTAL );
 	bSizer4->Add( m_Gauge, 0, wxALL|wxEXPAND, 5 );
 	
@@ -222,6 +258,8 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_TeachButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnTeach ), NULL, this );
 	m_TestButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnTest ), NULL, this );
 	m_GenerateRange->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnRange ), NULL, this );
+	m_Grid->Connect( wxEVT_KEY_DOWN, wxKeyEventHandler( TeacherMainFrame::OnKeyDown ), NULL, this );
+	m_Grid->Connect( wxEVT_MOUSEWHEEL, wxMouseEventHandler( TeacherMainFrame::OnGridScroll ), NULL, this );
 }
 
 TeacherMainFrame::~TeacherMainFrame()
@@ -243,4 +281,6 @@ TeacherMainFrame::~TeacherMainFrame()
 	m_TeachButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnTeach ), NULL, this );
 	m_TestButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnTest ), NULL, this );
 	m_GenerateRange->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnRange ), NULL, this );
+	m_Grid->Disconnect( wxEVT_KEY_DOWN, wxKeyEventHandler( TeacherMainFrame::OnKeyDown ), NULL, this );
+	m_Grid->Disconnect( wxEVT_MOUSEWHEEL, wxMouseEventHandler( TeacherMainFrame::OnGridScroll ), NULL, this );
 }

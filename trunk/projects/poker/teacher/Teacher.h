@@ -26,16 +26,23 @@ private:
 	virtual void OnTeach( wxCommandEvent& event ) override;
 	virtual void OnTest( wxCommandEvent& event ) override;
 	virtual void OnRange( wxCommandEvent& event ) override;
+    virtual void OnGridScroll( wxMouseEvent& event ) override;
+    virtual void OnKeyDown( wxKeyEvent& event ) override;
 
 private:
 
 	void AddParameters();
 	void SetGuiParams(const neuro::Params& params);
 	void IncrementChecked();
-	void LoadParams(neuro::Params::Set& params, const std::string& path);
-	void MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src);
+	void LoadParams(neuro::Params::List& params, const std::string& path);
+	void MergeParams(neuro::Params::List& dst, const neuro::Params::List& src);
 	void RangeThread(int count);
     void TeachThread();
+    void UpdateGrid(unsigned row);
+    void SetPramsValues();
+    void SetRowViewToCurrentParams();
+    void GridUp(unsigned amount = 1);
+    void GridDown(unsigned amount = 1);
 
 private:
 
@@ -43,7 +50,10 @@ private:
 	neuro::Params m_CurrentParams;
 
 	//! Parameters
-	neuro::Params::Set m_Parameters;
+	neuro::Params::List m_Parameters;
+
+    //! Current grid row
+    unsigned m_CurrentRow;
 
     //! All selected
     bool m_All;

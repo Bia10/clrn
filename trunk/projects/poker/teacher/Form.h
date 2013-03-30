@@ -19,6 +19,7 @@
 #include <wx/checkbox.h>
 #include <wx/radiobox.h>
 #include <wx/button.h>
+#include <wx/grid.h>
 #include <wx/gauge.h>
 #include <wx/statusbr.h>
 #include <wx/frame.h>
@@ -67,6 +68,7 @@ class TeacherMainFrame : public wxFrame
 		wxButton* m_TeachButton;
 		wxButton* m_TestButton;
 		wxButton* m_GenerateRange;
+		wxGrid* m_Grid;
 		wxGauge* m_Gauge;
 		wxStatusBar* m_StatusBar;
 		
@@ -87,10 +89,12 @@ class TeacherMainFrame : public wxFrame
 		virtual void OnTeach( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnTest( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnRange( wxCommandEvent& event ){ event.Skip(); }
+		virtual void OnKeyDown( wxKeyEvent& event ){ event.Skip(); }
+		virtual void OnGridScroll( wxMouseEvent& event ){ event.Skip(); }
 		
 	
 	public:
-		TeacherMainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Neuro network teacher"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1000,284 ), long style = wxCAPTION|wxCLOSE_BOX|wxTAB_TRAVERSAL );
+		TeacherMainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Neuro network teacher"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1004,510 ), long style = wxCAPTION|wxCLOSE_BOX|wxTAB_TRAVERSAL );
 		~TeacherMainFrame();
 	
 };

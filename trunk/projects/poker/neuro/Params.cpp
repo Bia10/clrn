@@ -113,7 +113,7 @@ namespace neuro
 			% pcmn::Player::Style::ToString(m_BotAverageStyle)
 			% pcmn::Player::Style::ToString(m_BotStyle)
 			% pcmn::StackSize::ToString(m_BotStackSize)
-			% (m_CheckFold ? "Check/Fold" : (m_CheckCall ? "Check/Call" : "Bet/Raise"))
+			% (m_CheckFold ? "Check/Fold" : (m_CheckCall ? "Check/Call" : m_BetRaise ? "Bet/Raise" : "Not set"))
 		).str();
 	}
 
@@ -131,5 +131,105 @@ namespace neuro
 	{
 		return !memcmp(this, &other, sizeof(Params));
 	}
+
+    unsigned Params::Hash() const
+    {
+        unsigned result = 0;
+        unsigned rate = 1;
+
+        result += rate * m_BotStackSize;
+        rate *= (pcmn::StackSize::Max + 1);
+
+        result += rate * m_BotStyle;
+        rate *= (pcmn::Player::Style::Max + 1);
+
+        result += rate * m_BotAverageStyle;
+        rate *= (pcmn::Player::Style::Max + 1);
+
+        result += rate * m_Danger;
+        rate *= (pcmn::Danger::Max + 1);
+
+        result += rate * m_ActivePlayers;
+        rate *= (pcmn::Player::Count::Max + 1);
+
+        result += rate * m_BetStackSize;
+        rate *= (pcmn::BetSize::Max + 1);
+
+        result += rate * m_BetPotSize;
+        rate *= (pcmn::BetSize::Max + 1);
+
+        result += rate * m_Position;
+        rate *= (pcmn::Player::Position::Max + 1);
+
+        result += rate * m_WinRate;
+        rate *= (pcmn::WinRate::Max + 1);
+
+        return result;
+    }
+
+    unsigned Params::MaxHash()
+    {
+        unsigned rate = 1;
+        rate *= (pcmn::StackSize::Max + 1);
+        rate *= (pcmn::Player::Style::Max + 1);
+        rate *= (pcmn::Player::Style::Max + 1);
+        rate *= (pcmn::Danger::Max + 1);
+        rate *= (pcmn::Player::Count::Max + 1);
+        rate *= (pcmn::BetSize::Max + 1);
+        rate *= (pcmn::BetSize::Max + 1);
+        rate *= (pcmn::Player::Position::Max + 1);
+        rate *= (pcmn::WinRate::Max + 1);
+        return rate;
+    }
+
+    void Params::SetParams(unsigned hash)
+    {
+        unsigned rate = 1;
+
+        rate = (pcmn::StackSize::Max + 1);
+        m_BotStackSize = static_cast<pcmn::StackSize::Value>(hash % rate);
+        hash -= m_BotStackSize;
+        hash /= rate;
+
+        rate = (pcmn::Player::Style::Max + 1);
+        m_BotStyle = static_cast<pcmn::Player::Style::Value>(hash % rate);
+        hash -= m_BotStyle;
+        hash /= rate;
+
+        rate = (pcmn::Player::Style::Max + 1);
+        m_BotAverageStyle = static_cast<pcmn::Player::Style::Value>(hash % rate);
+        hash -= m_BotAverageStyle;
+        hash /= rate;
+
+        rate = (pcmn::Danger::Max + 1);
+        m_Danger = static_cast<pcmn::Danger::Value>(hash % rate);
+        hash -= m_Danger;
+        hash /= rate;
+
+        rate = (pcmn::Player::Count::Max + 1);
+        m_ActivePlayers = static_cast<pcmn::Player::Count::Value>(hash % rate);
+        hash -= m_ActivePlayers;
+        hash /= rate;
+
+        rate = (pcmn::BetSize::Max + 1);
+        m_BetStackSize = static_cast<pcmn::BetSize::Value>(hash % rate);
+        hash -= m_BetStackSize;
+        hash /= rate;
+
+        rate = (pcmn::BetSize::Max + 1);
+        m_BetPotSize = static_cast<pcmn::BetSize::Value>(hash % rate);
+        hash -= m_BetPotSize;
+        hash /= rate;
+
+        rate = (pcmn::Player::Position::Max + 1);
+        m_Position = static_cast<pcmn::Player::Position::Value>(hash % rate);
+        hash -= m_Position;
+        hash /= rate;
+
+        rate = (pcmn::WinRate::Max + 1);
+        m_WinRate = static_cast<pcmn::WinRate::Value>(hash % rate);
+        hash -= m_WinRate;
+        hash /= rate;
+    }
 
 }

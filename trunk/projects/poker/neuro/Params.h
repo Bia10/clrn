@@ -8,14 +8,12 @@
 #include "Danger.h"
 
 #include <vector>
-#include <set>
 
 namespace neuro
 {
 	struct Params
 	{
 		typedef std::vector<Params> List;
-		typedef std::set<Params> Set;
 
 		Params();
 
@@ -73,6 +71,15 @@ namespace neuro
 
 		//! Is decision equals
 		bool IsDecisionEquals(const Params& other) const;
+
+        //! Get params hash
+        unsigned Hash() const;
+
+        //! Get max hash value
+        static unsigned MaxHash();
+
+        //! Set params value by hash
+        void SetParams(unsigned hash);
 	};
 
 }
