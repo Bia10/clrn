@@ -35,6 +35,7 @@ private:
 	void LoadParams(neuro::Params::Set& params, const std::string& path);
 	void MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src);
 	void RangeThread(int count);
+    void TeachThread();
 
 private:
 
