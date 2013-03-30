@@ -124,8 +124,19 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& 
 		{
 			reply.set_action(pcmn::Action::Raise);
 
-			unsigned amount = context.m_MaxBet ? context.m_MaxBet * 3 : context.m_BigBlind * 5;
-			amount = (amount / 10) * 10;
+            unsigned amount = 0;
+            if (!context.m_MaxBet)
+            {
+                amount = context.m_BigBlind * 5;
+                if (amount < context.m_Pot) 
+                    amount = context.m_Pot - context.m_Pot / 10;
+            }
+            else
+            {
+                 amount = context.m_MaxBet * 3;
+            }
+
+            amount = (amount / 10) * 10;
 
 			if (amount > player.Stack() / 2)
 				amount = player.Stack();
