@@ -22,6 +22,7 @@ namespace tchr
 
 Teacher::Teacher() 
 	: TeacherMainFrame(NULL)
+    , m_All(false)
 {
 	m_StatusBar->SetStatusText("ready");
 	SetGuiParams(m_CurrentParams);
@@ -106,10 +107,14 @@ void Teacher::OnSave(wxCommandEvent& event)
         const wxString filePath = dialog.GetPath();
         const std::string path = fs::FullPath(filePath.ToStdString());
 
+        if (path.empty())
+            return;
+
 		neuro::Params::Set oldParams;
 		LoadParams(oldParams, path);
 
 		MergeParams(oldParams, m_Parameters);
+        m_All = false;
 		m_Parameters = oldParams;
 
 		std::ofstream file(path.c_str(), std::ios_base::out);
@@ -150,6 +155,9 @@ void Teacher::OnLoad(wxCommandEvent& event)
         dialog.ShowModal();
         const wxString filePath = dialog.GetPath();
         const std::string path = fs::FullPath(filePath.ToStdString());
+
+        if (path.empty())
+            return;
 
 		LoadParams(m_Parameters, path);
 
@@ -511,8 +519,6 @@ void Teacher::LoadParams(neuro::Params::Set& params, const std::string& filePath
 
 void Teacher::MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src)
 {
-	bool all = false;
-
 	if (src.size() > 10)
 		m_Gauge->Show();
 
@@ -528,7 +534,7 @@ void Teacher::MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src
 		{
 			int result = 0;
 
-            if (all)
+            if (m_All)
                 result = 2;
             else
 			if (!it->IsDecisionEquals(params))
@@ -551,7 +557,7 @@ void Teacher::MergeParams(neuro::Params::Set& dst, const neuro::Params::Set& src
 			else
 			if (result == 2)
 			{
-				all = true;
+				m_All = true;
 				dst.erase(it);
 			}
 			if (result == 1)
@@ -575,6 +581,7 @@ void Teacher::RangeThread(int count)
 	}
 
 	m_Gauge->Hide();
+    m_All = false;
 }
 
 }
