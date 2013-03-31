@@ -1,6 +1,8 @@
 #include "Form.h"
 #include "../neuro/Params.h"
 
+#include <boost/date_time/posix_time/ptime.hpp>
+
 namespace tchr
 {
 class Teacher : public TeacherMainFrame
@@ -43,6 +45,7 @@ private:
     void SetRowViewToCurrentParams();
     void GridUp(unsigned amount = 1);
     void GridDown(unsigned amount = 1);
+    void TrainCallback(unsigned epoch, unsigned epochCount, float error, float desiredError, const boost::posix_time::ptime& start);
 
 private:
 
