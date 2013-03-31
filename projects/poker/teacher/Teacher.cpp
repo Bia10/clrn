@@ -17,6 +17,8 @@
 #include <boost/thread.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/assign.hpp>
+#include <boost/date_time/posix_time/ptime.hpp>
+#include <boost/date_time/posix_time/time_formatters.hpp>
 
 namespace tchr
 {
@@ -605,22 +607,42 @@ void Teacher::RangeThread(int count)
 
 void Teacher::TeachThread()
 {
-    neuro::NetworkTeacher teacher(cfg::NETWORK_FILE_NAME);
+    m_Gauge->Show();
+
+    m_StatusBar->SetStatusText("preparing file...");
+
+    const std::string filePath = fs::FullPath("train.temp.txt");
+    std::ofstream ofs(filePath.c_str(), std::ios::binary | std::ios::out);
+    CHECK(ofs.is_open(), filePath);
+    fs::ScopedFile guard(filePath);
+
+    /*
+    The first line consists of three numbers: 
+    The first is the number of training pairs in the file, the second is the number of inputs and the third is the number of outputs.  
+    The rest of the file is the actual training data, consisting of one line with inputs, one with outputs etc.
+    */
+
+    ofs << m_Parameters.size() << " " << cfg::INPUT_COUNT << " " << cfg::OUTPUT_COUNT << std::endl;
 
     std::vector<float> in;
     std::vector<float> out;
-
-    m_Gauge->Show();
-    const unsigned count = 1000;//cfg::TEACH_REPETITIONS_COUNT;
-    for (std::size_t i = 0; i < count; ++i)
+    for (const neuro::Params& params : m_Parameters)
     {
-        m_Gauge->SetValue((i * 100) / count);
-        for (const neuro::Params& params : m_Parameters)
-        {
-            params.ToNeuroFormat(in, out);
-            teacher.Process(in, out);
-        }
+        params.ToNeuroFormat(in, out);
+        
+        std::copy(in.begin(), in.end(), std::ostream_iterator<float>(ofs, " "));
+        ofs << std::endl;
+
+        std::copy(out.begin(), out.end(), std::ostream_iterator<float>(ofs, " "));
+        ofs << std::endl;
     }
+
+    ofs.close();
+
+    const boost::posix_time::ptime start = boost::posix_time::microsec_clock().local_time();
+
+    neuro::NetworkTeacher teacher(cfg::NETWORK_FILE_NAME);
+    teacher.TrainOnFile(filePath, boost::bind(&Teacher::TrainCallback, this, _1, _2, _3, _4, start));
 
     m_Gauge->Hide();
     m_StatusBar->SetStatusText("trained");
@@ -761,6 +783,32 @@ void Teacher::GridDown(unsigned amount)
     UpdateGrid((m_CurrentRow + amount) < m_Parameters.size() ? m_CurrentRow += amount : m_CurrentRow);
     m_CurrentParams = m_Parameters[m_CurrentRow];
     SetGuiParams(m_CurrentParams);
+}
+
+void Teacher::TrainCallback(unsigned epoch, unsigned epochCount, float error, float desiredError, const boost::posix_time::ptime& start)
+{
+    m_Gauge->SetValue((epoch * 100) / epochCount);
+
+    boost::posix_time::ptime now = boost::posix_time::microsec_clock().local_time();
+    const boost::posix_time::time_duration td(now - start);
+    const __int64 milliseconds = td.total_milliseconds();
+
+    const double oneEpochTime = milliseconds / epoch;
+
+    const unsigned elapsedEpochs = epochCount - epoch;
+    now += boost::posix_time::milliseconds(elapsedEpochs * oneEpochTime);
+
+    std::ostringstream oss;
+    oss 
+        << "epoch: " << epoch 
+        << ", total: " << epochCount 
+        << ", error: " << error 
+        << ", desired error: " << desiredError
+        << ", elapsed minutes: " << milliseconds / (60 * 1000)
+        << ", seconds: " << milliseconds / 1000
+        << ", complete in: " << boost::posix_time::to_simple_string(now);
+
+    m_StatusBar->SetStatusText(oss.str().c_str());
 }
 
 }

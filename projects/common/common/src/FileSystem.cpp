@@ -193,4 +193,20 @@ std::wstring GetExtension(const std::wstring& path)
 	CATCH_PASS_EXCEPTIONS(conv::cast<std::string>(path))
 }
 
+ScopedFile::ScopedFile(const std::string& name)
+{
+    m_Path = bfs::system_complete(name).wstring();
+}
+
+ScopedFile::ScopedFile(const std::wstring& name)
+{
+    m_Path = bfs::system_complete(name).wstring();
+}
+
+ScopedFile::~ScopedFile()
+{
+    bfs::remove(m_Path);
+}
+
 } // namespace fs
+

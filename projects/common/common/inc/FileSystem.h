@@ -45,6 +45,17 @@ namespace fs
 	void			Remove(const std::string& path);
 	void			Remove(const std::wstring& path);
 
+    //! Scoped file
+    class ScopedFile
+    {
+    public:
+        ScopedFile(const std::string& name);
+        ScopedFile(const std::wstring& name);
+        ~ScopedFile();
+    private:
+        std::wstring m_Path;
+    };
+
 
 } // namespace fs
 
