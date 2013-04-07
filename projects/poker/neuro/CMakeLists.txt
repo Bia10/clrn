@@ -1,5 +1,6 @@
 include_directories(
 	"${THIRD_PARTY}"
+	"${DB_INC}"
 )
 
 file(GLOB SOURCES "*.cpp")
@@ -11,4 +12,5 @@ target_link_libraries(neuro
 	common
 	pokercmn
 	fannfloat
+	db
 )

@@ -12,14 +12,14 @@ namespace neuro
 	{
 		CHECK(m_Net = fann_create_standard(cfg::LAYERS_COUNT, cfg::INPUT_COUNT, cfg::HIDDEN_NEIRONS_COUNT, cfg::OUTPUT_COUNT), "Failed to create network");
 
-// 		fann_set_activation_steepness_hidden(m_Net, 1);
-// 		fann_set_activation_steepness_output(m_Net, 1);
+ 		fann_set_activation_steepness_hidden(m_Net, 1);
+ 		fann_set_activation_steepness_output(m_Net, 1);
 
 		fann_set_activation_function_hidden(m_Net, FANN_SIGMOID_SYMMETRIC);
 		fann_set_activation_function_output(m_Net, FANN_SIGMOID_SYMMETRIC);
 
-// 		fann_set_train_stop_function(m_Net, FANN_STOPFUNC_BIT);
-// 		fann_set_bit_fail_limit(m_Net, 0.01f);
+ 		fann_set_train_stop_function(m_Net, FANN_STOPFUNC_BIT);
+ 		fann_set_bit_fail_limit(m_Net, 0.01f);
 
 		fann_print_parameters(m_Net);
 		fann_print_connections(m_Net);

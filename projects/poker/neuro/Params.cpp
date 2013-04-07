@@ -1,4 +1,7 @@
 #include "Params.h"
+#include "Recordset.h"
+#include "IDatabase.h"
+#include "Exception.h"
 
 #include <boost/format.hpp>
 
@@ -77,6 +80,35 @@ namespace neuro
 		out.push_back(static_cast<float>(m_CheckCall));
 		out.push_back(static_cast<float>(m_BetRaise));
 	}
+
+    void Params::FromNeuroFormat(const std::vector<float>& in, const std::vector<float>& out)
+    {
+        m_WinRate = pcmn::WinRate::FromValue(in[0] * 100);
+        m_Position = static_cast<pcmn::Player::Position::Value>(int(in[1] * pcmn::Player::Position::Max));
+        m_BetPotSize = pcmn::BetSize::FromPot(in[2]);
+        m_BetStackSize = pcmn::BetSize::FromStack(in[3]);
+        m_ActivePlayers = static_cast<pcmn::Player::Count::Value>(int(in[4] * pcmn::Player::Count::Max));
+        m_Danger = static_cast<pcmn::Danger::Value>(int(in[5] * pcmn::Danger::Max));
+        m_BotAverageStyle = static_cast<pcmn::Player::Style::Value>(int(in[6] * pcmn::Player::Style::Max));
+        m_BotStyle = static_cast<pcmn::Player::Style::Value>(int(in[7] * pcmn::Player::Style::Max));
+        m_BotStackSize = static_cast<pcmn::StackSize::Value>(int(in[8] * pcmn::StackSize::Max));
+
+        m_CheckFold = false;
+        m_CheckCall = false;
+        m_BetRaise = false;
+
+        if (out.empty())
+            return;
+
+        if (out[0] > out[1] && out[0] > out[2])
+			m_CheckFold = true;
+		else
+		if (out[1] > out[0] && out[1] > out[2])
+			m_CheckCall = true;
+		else
+		if (out[2] > out[0] && out[2] > out[1])
+			m_BetRaise = true;
+    }
 
 	bool Params::operator < (const Params& other) const
 	{
@@ -230,6 +262,125 @@ namespace neuro
         m_WinRate = static_cast<pcmn::WinRate::Value>(hash % rate);
         hash -= m_WinRate;
         hash /= rate;
+    }
+
+    void Params::Write(sql::IStatement& stmnt) const
+    {
+        int decision = 0;
+        if (m_CheckFold)
+            decision = 0;
+        else
+        if (m_CheckCall)
+            decision = 1;
+        else
+        if (m_BetRaise)
+            decision = 2;
+        else
+            assert(false);
+
+        stmnt 
+            << m_WinRate
+            << m_Position
+            << m_BetPotSize
+            << m_BetStackSize
+            << m_ActivePlayers
+            << m_Danger
+            << m_BotAverageStyle
+            << m_BotStyle
+            << m_BotStackSize
+            << decision;
+        stmnt.Execute();
+    }
+
+    void Params::Read(sql::Recordset& recordset)
+    {
+        m_BotStackSize = static_cast<pcmn::StackSize::Value>(recordset.Get<int>("bot_stack"));
+        m_BotStyle = static_cast<pcmn::Player::Style::Value>(recordset.Get<int>("bot_style"));
+        m_BotAverageStyle = static_cast<pcmn::Player::Style::Value>(recordset.Get<int>("bot_avg_style"));
+        m_Danger = static_cast<pcmn::Danger::Value>(recordset.Get<int>("danger"));
+        m_ActivePlayers = static_cast<pcmn::Player::Count::Value>(recordset.Get<int>("players"));
+        m_BetStackSize = static_cast<pcmn::BetSize::Value>(recordset.Get<int>("stack_rate"));
+        m_BetPotSize = static_cast<pcmn::BetSize::Value>(recordset.Get<int>("pot_rate"));
+        m_Position = static_cast<pcmn::Player::Position::Value>(recordset.Get<int>("position"));
+        m_WinRate = static_cast<pcmn::WinRate::Value>(recordset.Get<int>("win"));
+
+        const int decision = recordset.Get<int>("decision");
+        m_CheckFold = false;
+        m_CheckCall = false;
+        m_BetRaise = false;
+
+        switch (decision)
+        {
+        case 0: m_CheckFold = true; break;
+        case 1: m_CheckCall = true; break;
+        case 2: m_BetRaise = true; break;
+        default: assert(false); break;
+        }
+    }
+
+    void Params::ReadAll(List& params, sql::IDatabase& db, const std::string& where)
+    {
+        const bool empty = params.empty();
+        if (!empty)
+            CHECK(params.size() == MaxHash());
+
+        const sql::Recordset::Ptr statement = db.Fetch(
+            std::string(
+            "SELECT "
+                "win, "
+                "position, "
+                "pot_rate, "
+                "stack_rate, "
+                "players, "
+                "danger, "
+                "bot_avg_style, "
+                "bot_style, "
+                "bot_stack, "
+                "decision "
+                "FROM decisions ") + (where.empty() ? "" : (std::string("where ") + where))
+        );
+
+        while (!statement->Eof())
+        {
+            Params temp;
+            temp.Read(*statement);
+            if (empty)
+                params.push_back(temp);
+            else
+                params.at(temp.Hash()) = temp;
+            ++(*statement);
+        }
+    }
+
+    void Params::WriteAll(const List& params, sql::IDatabase& db)
+    {
+        const sql::IStatement::Ptr statement = db.CreateStatement
+        (
+            "INSERT INTO decisions "
+                        "(win, "
+                         "position, "
+                         "pot_rate, "
+                         "stack_rate, "
+                         "players, "
+                         "danger, "
+                         "bot_avg_style, "
+                         "bot_style, "
+                         "bot_stack, "
+                         "decision) "
+            "VALUES      ( ?, "
+                          "?, "
+                          "?, "
+                          "?, "
+                          "?, "
+                          "?, "
+                          "?, "
+                          "?, "
+                          "?, "
+                          "? ) "
+         );
+
+        for (const Params& p : params)
+            p.Write(*statement);
     }
 
 }

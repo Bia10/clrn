@@ -19,6 +19,7 @@
 #include <wx/checkbox.h>
 #include <wx/radiobox.h>
 #include <wx/button.h>
+#include <wx/richtext/richtextctrl.h>
 #include <wx/grid.h>
 #include <wx/gauge.h>
 #include <wx/statusbr.h>
@@ -68,6 +69,9 @@ class TeacherMainFrame : public wxFrame
 		wxButton* m_TeachButton;
 		wxButton* m_TestButton;
 		wxButton* m_GenerateRange;
+		wxButton* m_ReadButton;
+		wxButton* m_WriteButton;
+		wxRichTextCtrl* m_QueryText;
 		wxGrid* m_Grid;
 		wxGauge* m_Gauge;
 		wxStatusBar* m_StatusBar;
@@ -89,6 +93,8 @@ class TeacherMainFrame : public wxFrame
 		virtual void OnTeach( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnTest( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnRange( wxCommandEvent& event ){ event.Skip(); }
+		virtual void OnRead( wxCommandEvent& event ){ event.Skip(); }
+		virtual void OnWrite( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnKeyDown( wxKeyEvent& event ){ event.Skip(); }
 		virtual void OnGridScroll( wxMouseEvent& event ){ event.Skip(); }
 		
