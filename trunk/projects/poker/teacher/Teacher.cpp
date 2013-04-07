@@ -811,4 +811,14 @@ void Teacher::TrainCallback(unsigned epoch, unsigned epochCount, float error, fl
     m_StatusBar->SetStatusText(oss.str().c_str());
 }
 
+void Teacher::OnRead(wxCommandEvent& event)
+{
+
+}
+
+void Teacher::OnWrite(wxCommandEvent& event)
+{
+
+}
+
 }

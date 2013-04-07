@@ -17,10 +17,10 @@ namespace cfg
 	
 	// neuro
 	static const int LAYERS_COUNT = 3;
-	static const int HIDDEN_NEIRONS_COUNT = 3;
+	static const int HIDDEN_NEIRONS_COUNT = 18;
 	static const int INPUT_COUNT = 9;
 	static const int OUTPUT_COUNT = 3;
-	static const char NETWORK_FILE_NAME[] = "neuro.txt";
+	static const char NETWORK_FILE_NAME[] = "neuro.db";
 	static const int TEACH_REPETITIONS_COUNT = 50000;
 
 	// network

@@ -30,6 +30,9 @@ private:
 	virtual void OnRange( wxCommandEvent& event ) override;
     virtual void OnGridScroll( wxMouseEvent& event ) override;
     virtual void OnKeyDown( wxKeyEvent& event ) override;
+    virtual void OnRead( wxCommandEvent& event ) override;
+    virtual void OnWrite( wxCommandEvent& event ) override;
+
 
 private:
 

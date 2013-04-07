@@ -160,19 +160,14 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	wxGridSizer* gSizer12;
 	gSizer12 = new wxGridSizer( 1, 3, 0, 0 );
 	
-	wxGridSizer* gSizer4;
-	gSizer4 = new wxGridSizer( 1, 1, 0, 0 );
-	
 	wxString m_ActionRadioChoices[] = { wxT("Check/Fold"), wxT("Check/Call"), wxT("Bet/Raise") };
 	int m_ActionRadioNChoices = sizeof( m_ActionRadioChoices ) / sizeof( wxString );
 	m_ActionRadio = new wxRadioBox( this, wxID_ANY, wxT("Action"), wxDefaultPosition, wxDefaultSize, m_ActionRadioNChoices, m_ActionRadioChoices, 1, wxRA_SPECIFY_COLS );
 	m_ActionRadio->SetSelection( 0 );
-	gSizer4->Add( m_ActionRadio, 1, wxEXPAND|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	gSizer12->Add( gSizer4, 1, wxEXPAND, 5 );
+	gSizer12->Add( m_ActionRadio, 1, wxEXPAND|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
 	wxFlexGridSizer* fgSizer6;
-	fgSizer6 = new wxFlexGridSizer( 2, 3, 0, 0 );
+	fgSizer6 = new wxFlexGridSizer( 3, 3, 0, 0 );
 	fgSizer6->SetFlexibleDirection( wxBOTH );
 	fgSizer6->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
@@ -194,7 +189,16 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_GenerateRange = new wxButton( this, wxID_ANY, wxT("Range"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer6->Add( m_GenerateRange, 0, wxALL, 5 );
 	
+	m_ReadButton = new wxButton( this, wxID_ANY, wxT("Read"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer6->Add( m_ReadButton, 0, wxALL, 5 );
+	
+	m_WriteButton = new wxButton( this, wxID_ANY, wxT("Write"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer6->Add( m_WriteButton, 0, wxALL, 5 );
+	
 	gSizer12->Add( fgSizer6, 1, wxEXPAND|wxALL, 5 );
+	
+	m_QueryText = new wxRichTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0|wxVSCROLL|wxHSCROLL|wxNO_BORDER|wxWANTS_CHARS );
+	gSizer12->Add( m_QueryText, 0, wxEXPAND|wxALL, 5 );
 	
 	bSizer4->Add( gSizer12, 0, wxEXPAND, 5 );
 	
@@ -258,6 +262,8 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_TeachButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnTeach ), NULL, this );
 	m_TestButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnTest ), NULL, this );
 	m_GenerateRange->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnRange ), NULL, this );
+	m_ReadButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnRead ), NULL, this );
+	m_WriteButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnWrite ), NULL, this );
 	m_Grid->Connect( wxEVT_KEY_DOWN, wxKeyEventHandler( TeacherMainFrame::OnKeyDown ), NULL, this );
 	m_Grid->Connect( wxEVT_MOUSEWHEEL, wxMouseEventHandler( TeacherMainFrame::OnGridScroll ), NULL, this );
 }
@@ -281,6 +287,8 @@ TeacherMainFrame::~TeacherMainFrame()
 	m_TeachButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnTeach ), NULL, this );
 	m_TestButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnTest ), NULL, this );
 	m_GenerateRange->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnRange ), NULL, this );
+	m_ReadButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnRead ), NULL, this );
+	m_WriteButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnWrite ), NULL, this );
 	m_Grid->Disconnect( wxEVT_KEY_DOWN, wxKeyEventHandler( TeacherMainFrame::OnKeyDown ), NULL, this );
 	m_Grid->Disconnect( wxEVT_MOUSEWHEEL, wxMouseEventHandler( TeacherMainFrame::OnGridScroll ), NULL, this );
 }

@@ -9,6 +9,13 @@
 
 #include <vector>
 
+namespace sql
+{
+    class Recordset;
+    class IDatabase;
+    class IStatement;
+}
+
 namespace neuro
 {
 	struct Params
@@ -59,8 +66,11 @@ namespace neuro
 		//! Deserialize
 		std::vector<int>::const_iterator Deserialize(std::vector<int>::const_iterator it);
 
-		//! To neuro format
-		void ToNeuroFormat(std::vector<float>& in, std::vector<float>& out) const;
+        //! To neuro format
+        void ToNeuroFormat(std::vector<float>& in, std::vector<float>& out) const;
+
+        //! From neuro format
+        void FromNeuroFormat(const std::vector<float>& in, const std::vector<float>& out);
 
 		//! Comparison
 		bool operator < (const Params& other) const;
@@ -80,6 +90,18 @@ namespace neuro
 
         //! Set params value by hash
         void SetParams(unsigned hash);
+
+        //! Write to db
+        void Write(sql::IStatement& stmnt) const;
+
+        //! Read from db
+        void Read(sql::Recordset& recordset);
+
+        //! Read from db all params
+        static void ReadAll(List& params, sql::IDatabase& db, const std::string& where = "");
+
+        //! Write to db all params
+        static void WriteAll(const List& params, sql::IDatabase& db);
 	};
 
 }
