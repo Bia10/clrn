@@ -98,7 +98,7 @@ namespace neuro
         void Read(sql::Recordset& recordset);
 
         //! Read from db all params
-        static void ReadAll(List& params, sql::IDatabase& db, const std::string& where = "");
+        static std::size_t ReadAll(List& params, sql::IDatabase& db, const std::string& where = "");
 
         //! Write to db all params
         static void WriteAll(const List& params, sql::IDatabase& db);

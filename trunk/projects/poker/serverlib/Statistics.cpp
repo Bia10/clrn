@@ -78,7 +78,7 @@ const char SQL_GET_CARD_RANGES[] =
 		   "AND (%s) "
 	"GROUP  BY p.id, "
 			  "a.action "
-	"HAVING Count(c.value) > 1 ";
+	"HAVING Count(c.value) > 2 ";
 
 const char SQL_GET_LAST_ACTIONS[] = 
 	"SELECT a1.action, "
@@ -111,7 +111,7 @@ const char SQL_GET_PLAYER_EQUITIES[] =
 				"AND pc.street = a.street "
 	"WHERE  (%s) "
 	"GROUP  BY p.id "
-	"HAVING Count(DISTINCT a.game) > 1 ";
+	"HAVING Count(DISTINCT a.game) > 2 ";
 
 
 static const int CURRENT_MODULE_ID = Modules::Server;

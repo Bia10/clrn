@@ -4,7 +4,11 @@
 #include "FileSystem.h"
 #include "../neuro/NetworkTeacher.h"
 #include "../neuro/NeuroNetwork.h"
+#include "../neuro/DatabaseReader.h"
+#include "../neuro/DatabaseWriter.h"
 #include "Config.h"
+#include "Log.h"
+#include "SQLiteDB.h"
 
 #include <wx/msgdlg.h>
 #include <wx/choicdlg.h>
@@ -813,12 +817,90 @@ void Teacher::TrainCallback(unsigned epoch, unsigned epochCount, float error, fl
 
 void Teacher::OnRead(wxCommandEvent& event)
 {
+    try
+    {
+        Log logger;
+        sql::SQLiteDataBase db(logger);
+        db.Open(cfg::NETWORK_FILE_NAME);
 
+        std::string filter = m_QueryText->GetValue().ToStdString();
+        if (m_QueryText->HasSelection())
+        {
+            long begin = 0;
+            long end = 0;
+            m_QueryText->GetSelection(&begin, &end);
+
+            filter.assign(filter.substr(begin, end - begin));
+        }
+
+        const std::size_t count = neuro::Params::ReadAll(m_Parameters, db, filter);
+
+        std::ostringstream oss;
+        oss << "read " << count << " params from " << cfg::NETWORK_FILE_NAME;
+        m_StatusBar->SetStatusText(oss.str());
+    }
+    catch (const std::exception& e)
+    {
+        wxMessageBox(e.what(), "Error", wxOK | wxICON_ERROR);
+    }
 }
 
 void Teacher::OnWrite(wxCommandEvent& event)
 {
+    Log logger;
+    sql::SQLiteDataBase db(logger);
 
+    try
+    {
+        db.Open(cfg::NETWORK_FILE_NAME);
+        db.BeginTransaction();
+
+        neuro::Params::WriteAll(m_Parameters, db);
+        db.Commit();
+
+        std::ostringstream oss;
+        oss << "wrote " << m_Parameters.size() << " params to " << cfg::NETWORK_FILE_NAME;
+        m_StatusBar->SetStatusText(oss.str());
+    }
+    catch (const std::exception& e)
+    {
+        db.Rollback();
+        wxMessageBox(e.what(), "Error", wxOK | wxICON_ERROR);
+    }
+}
+
+void Teacher::OnExecute(wxCommandEvent& event)
+{
+    Log logger;
+    sql::SQLiteDataBase db(logger);
+
+    try
+    {
+        db.Open(cfg::NETWORK_FILE_NAME);
+        db.BeginTransaction();
+
+        std::string text = m_QueryText->GetValue().ToStdString();
+        if (m_QueryText->HasSelection())
+        {
+            long begin = 0;
+            long end = 0;
+            m_QueryText->GetSelection(&begin, &end);
+
+            text.assign(text.substr(begin, end - begin));
+        }
+
+        const std::size_t rows = db.Execute(text);
+        db.Commit();
+
+        std::ostringstream oss;
+        oss << "affected " << rows << " rows ";
+        m_StatusBar->SetStatusText(oss.str());
+    }
+    catch (const std::exception& e)
+    {
+        db.Rollback();
+        wxMessageBox(e.what(), "Error", wxOK | wxICON_ERROR);
+    }
 }
 
 }

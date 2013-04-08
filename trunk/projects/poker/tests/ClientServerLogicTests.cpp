@@ -9,6 +9,7 @@
 #include "../serverlib/DecisionMaker.h"
 #include "../serverlib/Parser.h"
 #include "../serverlib/Statistics.h"
+#include "../neuro/DatabaseReader.h"
 #include "Evaluator.h"
 #include "../neuro/NeuroNetwork.h"
 #include "Config.h"
@@ -75,7 +76,7 @@ class TestServer : public net::IConnection
 {
 public:
 	TestServer()
-		: m_Network(cfg::NETWORK_FILE_NAME)
+		: m_Network(m_Log, cfg::NETWORK_FILE_NAME)
 		, m_Statistics(m_Log)
 	{
 
@@ -103,7 +104,7 @@ private:
 	Log m_Log;
 	TestReadStatistics m_Statistics;
 	pcmn::Evaluator	m_Evaluator;
-	neuro::Network m_Network;
+	neuro::DatabaseReader m_Network;
 };
 
 

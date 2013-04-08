@@ -8,7 +8,7 @@
 #include "Statistics.h"
 #include "DecisionMaker.h"
 #include "Evaluator.h"
-#include "../neuro/NeuroNetwork.h"
+#include "../neuro/DatabaseReader.h"
 
 #include <iostream>
 #include <atomic>
@@ -28,7 +28,7 @@ public:
 		: m_Client(new net::UDPHost(m_Log, cfg::THREADS_COUNT - 1))
 		, m_Statistics(m_Log)
 		, m_RequestsCount(0)
-		, m_Network(cfg::NETWORK_FILE_NAME)
+		, m_Network(m_Log, cfg::NETWORK_FILE_NAME)
 	{
 		m_Log.Open("1", Modules::Server, ILog::Level::Trace);
 		m_Log.Open("1", Modules::TableLogic, ILog::Level::Trace);
@@ -101,7 +101,7 @@ private:
 	pcmn::Evaluator						m_Evaluator;
 
 	//! Neuro network
-	neuro::Network						m_Network;
+	neuro::DatabaseReader				m_Network;
 };
 
 void Server::Run()

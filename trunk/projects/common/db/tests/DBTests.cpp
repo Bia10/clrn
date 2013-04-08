@@ -23,7 +23,7 @@ TEST(SQLite, InsertFetch)
 
 	const sql::IStatement::Ptr stmnt = db.CreateStatement("insert into emp values(?, ?)");
 
-	const std::size_t rows = 1000;
+	const std::size_t rows = 100000;
 	for (std::size_t i = 0 ; i < rows; ++i)
 	{
 		const std::string name = std::string("employee_") + boost::lexical_cast<std::string>(i);

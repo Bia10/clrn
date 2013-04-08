@@ -134,10 +134,12 @@ namespace pcmn
 
 	void Player::DeleteLinks()
 	{
-		assert (m_Previous.lock() && m_Next.lock());
+		assert(m_Previous.lock() && m_Next.lock());
 
 		m_Previous.lock()->m_Next = m_Next;
 		m_Next.lock()->m_Previous = m_Previous;
+        m_Previous.reset();
+        m_Next.reset();
 	}
 
 	void Player::PushAction(unsigned street, Action::Value value, float potAmount)

@@ -32,6 +32,7 @@ private:
     virtual void OnKeyDown( wxKeyEvent& event ) override;
     virtual void OnRead( wxCommandEvent& event ) override;
     virtual void OnWrite( wxCommandEvent& event ) override;
+    virtual void OnExecute( wxCommandEvent& event ) override;
 
 
 private:
