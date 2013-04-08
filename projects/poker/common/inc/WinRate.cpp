@@ -20,9 +20,9 @@ namespace pcmn
 
 	WinRate::Value WinRate::FromValue(float value)
 	{
-		if (value < 20)
+		if (value < 15)
 			return WinRate::VeryLow;
-		if (value < 30)
+		if (value < 25)
 			return WinRate::Low;
 		if (value < 40)
 			return WinRate::Normal;

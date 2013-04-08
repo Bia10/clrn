@@ -106,7 +106,7 @@ bool Logic::Run(TableContext& context)
 	
 				try
 				{
-                    if (playerQueue.empty())
+                    if (playerQueue.empty() && m_Players.size() == 1)
                         return true;
 
 					const unsigned previousBet = current->Bet();
