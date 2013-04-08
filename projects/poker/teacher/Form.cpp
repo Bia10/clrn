@@ -195,6 +195,9 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_WriteButton = new wxButton( this, wxID_ANY, wxT("Write"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer6->Add( m_WriteButton, 0, wxALL, 5 );
 	
+	m_ExecuteButton = new wxButton( this, wxID_ANY, wxT("Execute"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer6->Add( m_ExecuteButton, 0, wxALL, 5 );
+	
 	gSizer12->Add( fgSizer6, 1, wxEXPAND|wxALL, 5 );
 	
 	m_QueryText = new wxRichTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0|wxVSCROLL|wxHSCROLL|wxNO_BORDER|wxWANTS_CHARS );
@@ -264,6 +267,7 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_GenerateRange->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnRange ), NULL, this );
 	m_ReadButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnRead ), NULL, this );
 	m_WriteButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnWrite ), NULL, this );
+	m_ExecuteButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnExecute ), NULL, this );
 	m_Grid->Connect( wxEVT_KEY_DOWN, wxKeyEventHandler( TeacherMainFrame::OnKeyDown ), NULL, this );
 	m_Grid->Connect( wxEVT_MOUSEWHEEL, wxMouseEventHandler( TeacherMainFrame::OnGridScroll ), NULL, this );
 }
@@ -289,6 +293,7 @@ TeacherMainFrame::~TeacherMainFrame()
 	m_GenerateRange->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnRange ), NULL, this );
 	m_ReadButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnRead ), NULL, this );
 	m_WriteButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnWrite ), NULL, this );
+	m_ExecuteButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TeacherMainFrame::OnExecute ), NULL, this );
 	m_Grid->Disconnect( wxEVT_KEY_DOWN, wxKeyEventHandler( TeacherMainFrame::OnKeyDown ), NULL, this );
 	m_Grid->Disconnect( wxEVT_MOUSEWHEEL, wxMouseEventHandler( TeacherMainFrame::OnGridScroll ), NULL, this );
 }

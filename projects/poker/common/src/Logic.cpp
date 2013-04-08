@@ -20,6 +20,34 @@ Logic::Logic(ILog& logger, IActionsQueue& action, IDecisionCallback& callback, c
 	Parse();
 }
 
+bool Logic::IsEmpty(const PlayerQueue& players) const
+{
+    const PlayerQueue::const_iterator it = std::find_if(players.begin(), players.end(), 
+        [](const PlayerQueue::value_type& player)
+        {
+            return player->State() != pcmn::Player::State::AllIn;
+        }
+    );
+
+    return it == players.end();
+}
+
+const Logic::PlayerQueue::value_type& Logic::GetLastActive(const PlayerQueue& players) const
+{
+    const std::reverse_iterator<PlayerQueue::const_iterator> it = std::find_if
+    (
+        players.rbegin(), 
+        players.rend(), 
+        [](const PlayerQueue::value_type& player)
+        {
+            return player->State() != pcmn::Player::State::AllIn;
+        }
+    );
+
+    CHECK(it != players.rend(), "Failed to find last active player", players.size());
+    return *it;
+}
+
 bool Logic::Run(TableContext& context)
 {
 	SCOPED_LOG(m_Log);
@@ -63,19 +91,24 @@ bool Logic::Run(TableContext& context)
 			for (const pcmn::Player::Ptr& player : m_Players)
 				player->Bet(0);
 	
-			while (!playerQueue.empty())
+			while (!IsEmpty(playerQueue))
 			{
 				const pcmn::Player::Ptr current = playerQueue.front();
-				playerQueue.pop_front();
-	
-				if (current->State() == pcmn::Player::State::AllIn)
-				{
-					EraseActivePlayer(playerQueue, current);
-					continue;
-				}
+                playerQueue.pop_front();
+
+                if (current->State() == pcmn::Player::State::AllIn)
+                {
+                    if (current->GetNext() && current->GetPrevious())
+                        current->DeleteLinks();
+                    playerQueue.push_back(current); // move to the end
+                    continue;
+                }
 	
 				try
 				{
+                    if (playerQueue.empty())
+                        return true;
+
 					const unsigned previousBet = current->Bet();
 					const pcmn::IActionsQueue::Event::Value result = current->Do(m_Actions, context);
 					const Player::Position::Value position = GetPlayerPosition(m_Players, current);
@@ -104,16 +137,17 @@ bool Logic::Run(TableContext& context)
 	
 					if (result == pcmn::IActionsQueue::Event::Raise)
 					{
-						pcmn::Player::Ptr next = playerQueue.empty() ? current->GetNext() : playerQueue.back()->GetNext();
+						pcmn::Player::Ptr next = IsEmpty(playerQueue) ? current->GetNext() : GetLastActive(playerQueue)->GetNext();
 						while (next != current)
 						{
-							playerQueue.push_back(next);
+                            if (next->State() != pcmn::Player::State::AllIn)
+							    playerQueue.push_back(next);
 	
 							next = next->GetNext();
 						}
 					}
 	
-					if (result == pcmn::IActionsQueue::Event::Fold || current->State() == pcmn::Player::State::AllIn)
+					if (result == pcmn::IActionsQueue::Event::Fold)
 						EraseActivePlayer(playerQueue, current);
 				}
 				catch (const pcmn::Player::BadIndex& e)

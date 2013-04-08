@@ -217,11 +217,20 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
 
 	// fill card ranges
 	std::vector<short> cardRanges;
-
+     
 	for (const IStatistics::PlayerInfo& info : ranges)
 	{
-		if (info.m_CardRange)
-			cardRanges.push_back(info.m_CardRange);
+        int range = info.m_CardRange;
+        if (!range)
+            continue;
+
+        if (range < cfg::MIN_CARD_RANGE)
+            range = cfg::MIN_CARD_RANGE;
+
+        if (range > cfg::CARD_DECK_SIZE)
+            range = cfg::CARD_DECK_SIZE;
+
+        cardRanges.push_back(range);
 	}
 
 	unsigned size = activePlayers.size();
@@ -229,11 +238,9 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
 		size = cfg::MAX_EQUITY_PLAYERS;
 
 	if (cardRanges.size() > size)
-	{
-		// remove bigger values(biggest value - worst hand)
-		std::sort(cardRanges.begin(), cardRanges.end());
-		cardRanges.resize(size);
-	}
+		std::sort(cardRanges.begin(), cardRanges.end()); // remove bigger values(biggest value - worst hand)
+
+    cardRanges.resize(size, cfg::CARD_DECK_SIZE);
 	
 	const float percents = m_Evaluator.GetEquity
 	(
@@ -309,16 +316,16 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const Play
 	// fetch statistics
 	const unsigned count = m_Stat.GetEquities(equities);
 
-	// player list empty - unknown value(normal) - else all players have less than bot
-	if ((activePlayers.size() - 1) / 2 > count)
-		return pcmn::Danger::Normal;
-
 	// compare equities
 	for (const IStatistics::PlayerInfo& equity : equities)
 	{
 		if (equity.m_WinRate > botRate)
 			return pcmn::Danger::High;
 	}
+
+	// player list empty - unknown value(normal) - else all players have less than bot
+	if ((activePlayers.size() - 1) / 2 > count)
+		return pcmn::Danger::Normal;
 
 	return pcmn::Danger::Low;
 }
@@ -338,7 +345,9 @@ pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const pcmn::Player&
 		}
 	);
 
-	CHECK(it != activePlayers.end(), "Failed to find any another player");
+    // failed to find any players
+	if (it == activePlayers.end())
+        return pcmn::Player::Style::Normal;
 
 	int checks = 0;
 	int calls = 0;

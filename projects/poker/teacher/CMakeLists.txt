@@ -1,6 +1,7 @@
 include_directories(
 	"${THIRD_PARTY}/wxWidgets/include/"
 	"${THIRD_PARTY}/wxWidgets/include/msvc/"
+	"${DB_INC}"
 )
 
 file(GLOB SOURCES "*.cpp")

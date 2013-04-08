@@ -276,7 +276,7 @@ namespace neuro
         if (m_BetRaise)
             decision = 2;
         else
-            assert(false);
+            CHECK(false, "Empty parameter", Hash());
 
         stmnt 
             << m_WinRate
@@ -289,7 +289,7 @@ namespace neuro
             << m_BotStyle
             << m_BotStackSize
             << decision;
-        stmnt.Execute();
+        CHECK(stmnt.Execute() == 1, "Failed to insert");
     }
 
     void Params::Read(sql::Recordset& recordset)
@@ -318,7 +318,7 @@ namespace neuro
         }
     }
 
-    void Params::ReadAll(List& params, sql::IDatabase& db, const std::string& where)
+    std::size_t Params::ReadAll(List& params, sql::IDatabase& db, const std::string& where)
     {
         const bool empty = params.empty();
         if (!empty)
@@ -340,6 +340,7 @@ namespace neuro
                 "FROM decisions ") + (where.empty() ? "" : (std::string("where ") + where))
         );
 
+        std::size_t result = 0;
         while (!statement->Eof())
         {
             Params temp;
@@ -349,7 +350,9 @@ namespace neuro
             else
                 params.at(temp.Hash()) = temp;
             ++(*statement);
+            ++result;
         }
+        return result;
     }
 
     void Params::WriteAll(const List& params, sql::IDatabase& db)

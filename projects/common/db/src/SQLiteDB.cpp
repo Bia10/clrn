@@ -16,7 +16,7 @@ catch(CppSQLite3Exception& e)														\
 	std::ostringstream oss;															\
 	oss << "SQLite error: [" << e.errorCode() << "] Message: ["						\
 	<< e.errorMessage() << "] Sql: [" << message << "]";							\
-	throw CExcept(__FILE__, __LINE__, oss.str());				\
+	throw CExcept(__FILE__, __LINE__, oss.str());				                    \
 }
 
 #define CATCH_PASS_SQLITE_EXCEPTIONS(message)										\
@@ -114,7 +114,7 @@ public:
 
 			return Recordset::Ptr(new Recordset(m_DataBase.execQuery(sql.c_str())));
 		}
-		CATCH_PASS_SQLITE_EXCEPTIONS("Fetch failed.")
+		CATCH_PASS_SQLITE_EXCEPTIONS(sql)
 	}
 
 	std::size_t ExecuteScalar(const std::string& sql)
@@ -125,7 +125,7 @@ public:
 
 			return m_DataBase.execScalar(sql.c_str());
 		}
-		CATCH_PASS_SQLITE_EXCEPTIONS("ExecuteScalar failed.")
+		CATCH_PASS_SQLITE_EXCEPTIONS(sql)
 	}
 
 	__int64 LastRowId()

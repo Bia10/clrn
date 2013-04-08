@@ -71,6 +71,7 @@ class TeacherMainFrame : public wxFrame
 		wxButton* m_GenerateRange;
 		wxButton* m_ReadButton;
 		wxButton* m_WriteButton;
+		wxButton* m_ExecuteButton;
 		wxRichTextCtrl* m_QueryText;
 		wxGrid* m_Grid;
 		wxGauge* m_Gauge;
@@ -95,6 +96,7 @@ class TeacherMainFrame : public wxFrame
 		virtual void OnRange( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnRead( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnWrite( wxCommandEvent& event ){ event.Skip(); }
+		virtual void OnExecute( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnKeyDown( wxKeyEvent& event ){ event.Skip(); }
 		virtual void OnGridScroll( wxMouseEvent& event ){ event.Skip(); }
 		
