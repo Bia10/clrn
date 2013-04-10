@@ -259,7 +259,7 @@ void ActionsParser::ParsePlayerListByActions(std::vector<std::string>& players, 
 	{
 		const ITable::ActionDesc& action = actions[i];
 
-		if (i == actions.size() - 1) // small blind or last action
+		if (i == actions.size() - 1 || i && action.m_Name == actions.front().m_Name) // small blind or last action
 		{
 			if (isBigBlindExists)
 				break;
@@ -270,6 +270,12 @@ void ActionsParser::ParsePlayerListByActions(std::vector<std::string>& players, 
 				players.insert(players.begin() + 1, actions[i + 1].m_Name); // next action exists
 				break;
 			}
+            else
+            if (!isNeedDecision)
+            {
+                players.insert(players.begin() + 1, actions[i + 1].m_Name); // this player on BB
+                break;
+            }
 			else
 			{
 				const pcmn::Player::Ptr smallBlind = GetPlayer(actions.front().m_Name);
