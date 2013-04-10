@@ -442,7 +442,7 @@ void Table::PressButtonThread(const float x, const float y)
 {
 	SCOPED_LOG(m_Log);
 
-	boost::random::uniform_int_distribution<> wait(1000, 3000);
+	boost::random::uniform_int_distribution<> wait(1000, 2000);
 
 	boost::this_thread::interruptible_wait(wait(g_Random));
 

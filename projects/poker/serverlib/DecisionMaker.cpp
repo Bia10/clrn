@@ -10,6 +10,7 @@
 #include "Exception.h"
 
 #include <cassert>
+#include <sstream>
 
 namespace srv
 {
@@ -144,19 +145,38 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& 
 			reply.set_amount(amount);
 		}
 
-		LOG_TRACE("Decision input: win: [%s]:[%s], pos: [%s], pot: [%s], stack: [%s], players: [%s], danger: [%s], bot avg style: [%s], bot style: [%s], bot stack: [%s]")
-			% pcmn::WinRate::ToString(params.m_WinRate)
-			% int(winRate * 100)
-			% pcmn::Player::Position::ToString(params.m_Position)
-			% pcmn::BetSize::ToString(params.m_BetPotSize)
-			% pcmn::BetSize::ToString(params.m_BetStackSize)
-			% pcmn::Player::Count::ToString(params.m_ActivePlayers)
-			% pcmn::Danger::ToString(params.m_Danger)
-			% pcmn::Player::Style::ToString(params.m_BotAverageStyle)
-			% pcmn::Player::Style::ToString(params.m_BotStyle)
-			% pcmn::StackSize::ToString(params.m_BotStackSize);
+        if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Trace))
+        {
+            std::ostringstream oss;
+            oss << "Cards: ";
+            for (const pcmn::Card& card : player.Cards())
+                oss << "('" << pcmn::Card::ToString(card.m_Value) << "' of '" << pcmn::Suit::ToString(card.m_Suit) << "')";
 
-		LOG_TRACE("Decision output: [%s]") % reply.ShortDebugString();
+            oss << ", Flop: ";
+            for (const int cardValue : context.m_Data.m_Flop)
+            {
+                pcmn::Card card;
+                card.FromEvalFormat(cardValue);
+                oss << "('" << pcmn::Card::ToString(card.m_Value) << "' of '" << pcmn::Suit::ToString(card.m_Suit) << "')";
+            }
+
+            LOG_TRACE("Max bet: [%s], pot: [%s], bot stack: [%s], cards: [%s]") % context.m_MaxBet % context.m_Pot % player.Stack() % oss.str();
+
+            LOG_TRACE("Decision input: win: [%s]:[%s], pos: [%s], pot: [%s], stack: [%s], players: [%s], danger: [%s], bot avg style: [%s], bot style: [%s], bot stack: [%s]")
+                % pcmn::WinRate::ToString(params.m_WinRate)
+                % int(winRate * 100)
+                % pcmn::Player::Position::ToString(params.m_Position)
+                % pcmn::BetSize::ToString(params.m_BetPotSize)
+                % pcmn::BetSize::ToString(params.m_BetStackSize)
+                % pcmn::Player::Count::ToString(params.m_ActivePlayers)
+                % pcmn::Danger::ToString(params.m_Danger)
+                % pcmn::Player::Style::ToString(params.m_BotAverageStyle)
+                % pcmn::Player::Style::ToString(params.m_BotStyle)
+                % pcmn::StackSize::ToString(params.m_BotStackSize);
+
+            LOG_TRACE("Decision output: [%s]") % reply.ShortDebugString();
+        }
+
 	
 		m_Connection.Send(reply);
 	}
@@ -241,6 +261,13 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
 		std::sort(cardRanges.begin(), cardRanges.end()); // remove bigger values(biggest value - worst hand)
 
     cardRanges.resize(size, cfg::CARD_DECK_SIZE);
+
+    if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Trace))
+    {
+        std::ostringstream oss;
+        std::copy(cardRanges.begin(), cardRanges.end(), std::ostream_iterator<int>(oss, " "));
+        LOG_TRACE("Ranges: [%s]") % oss.str();
+    }
 	
 	const float percents = m_Evaluator.GetEquity
 	(
@@ -309,6 +336,8 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const Play
 
 		current.m_PotAmount = actions.back().m_PotAmount;
 	}
+
+    LOG_TRACE("Equities size: [%s]") % equities.size();
 
 	if (equities.empty())
 		return pcmn::Danger::Normal;

@@ -136,8 +136,8 @@ public:
 
 		void Commit()	
 		{ 
+            m_Done = true; 
 			m_DB.Commit();
-			m_Done = true; 
 		}
 
 	private:
@@ -243,6 +243,8 @@ unsigned int InsertCards(const std::vector<int>& cards)
 {
 	TRY 
 	{
+        SCOPED_LOG(m_Log);
+
 		// this flop id
 		const unsigned int result = m_DB->ExecuteScalar(SQL_SELECT_MAX_FLOP) + 1;
 	
@@ -262,6 +264,8 @@ unsigned int InsertPlayer(const std::string& name)
 {
 	TRY 
 	{
+        SCOPED_LOG(m_Log);
+
 		const std::map<std::string, unsigned int>::const_iterator it = m_Players.find(name);
 		if (it != m_Players.end())
 			return it->second; // player already inserted
@@ -290,6 +294,8 @@ unsigned GetRanges(PlayerInfo::List& players)
 {
 	TRY
 	{
+        SCOPED_LOG(m_Log);
+
 		std::map<std::string, unsigned> indexes;
 		const std::string filter = GetPlayersFilter(players, indexes);
 
@@ -305,6 +311,8 @@ unsigned GetRanges(PlayerInfo::List& players)
 			const unsigned index = indexes[name];
 			players[index].m_CardRange = range;
 
+            LOG_TRACE("Player: [%s], range: [%s]") % players[index].m_Name % range;
+
 			++(*recordset);
 			++count;
 		}
@@ -317,6 +325,8 @@ void GetLastActions(const std::string& target, const std::string& opponent, int&
 {
 	TRY
 	{
+        SCOPED_LOG(m_Log);
+
 		checkFolds = 0;
 		calls = 0;
 		raises = 0;
@@ -328,6 +338,8 @@ void GetLastActions(const std::string& target, const std::string& opponent, int&
 		{
 			const pcmn::Action::Value action = static_cast<pcmn::Action::Value>(recordset->Get<int>(0));
 			const int count = recordset->Get<int>(1);
+
+            LOG_TRACE("Last actions with: [%s], action: [%s], count: [%s]") % opponent % pcmn::Action::ToString(action) % count;
 
 			switch (action)
 			{
@@ -354,6 +366,8 @@ unsigned GetEquities(PlayerInfo::List& players)
 {
 	TRY
 	{
+        SCOPED_LOG(m_Log);
+
 		std::map<std::string, unsigned> indexes;
 		const std::string filter = GetPlayersFilter(players, indexes);
 
@@ -369,6 +383,7 @@ unsigned GetEquities(PlayerInfo::List& players)
 			const unsigned index = indexes[name];
 			players[index].m_WinRate = static_cast<float>(rate);
 			
+            LOG_TRACE("Player: [%s], win rate: [%s]") % name % rate;
 
 			++(*recordset);
 			++count;
