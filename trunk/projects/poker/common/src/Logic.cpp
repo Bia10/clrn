@@ -111,7 +111,7 @@ bool Logic::Run(TableContext& context)
 
 					const unsigned previousBet = current->Bet();
 					const pcmn::IActionsQueue::Event::Value result = current->Do(m_Actions, context);
-					const Player::Position::Value position = GetPlayerPosition(m_Players, current);
+					const Player::Position::Value position = GetPlayerPosition(playerQueue, current);
 
 					context.m_Data.m_Players[current->Index()].m_TotalBet += current->Bet() - previousBet;
 	
@@ -193,19 +193,25 @@ pcmn::Player::Position::Value Logic::GetPlayerPosition(const PlayerQueue& player
 	SCOPED_LOG(m_Log);
 
 	const PlayerQueue::const_iterator it = std::find(players.begin(), players.end(), player);
-	const std::size_t playerIndex = std::distance(players.begin(), it) - 1;
+    if (it == players.end())
+        return pcmn::Player::Position::Early; // this player is not in the queue because he need to do action now
+
+	const std::size_t playerIndex = std::distance(players.begin(), it);
+
+    pcmn::Player::Position::Value result = pcmn::Player::Position::Middle;
 
 	std::size_t step = players.size() / 3;
 	if (!step)
 		step = 1;
 
-	if (playerIndex <= step)
-		return pcmn::Player::Position::Early;
-	else
 	if (playerIndex >= players.size() - step)
-		return pcmn::Player::Position::Later;
+		result = pcmn::Player::Position::Later;
 	else
-		return pcmn::Player::Position::Middle;
+	if (playerIndex <= step)
+		result = pcmn::Player::Position::Early;
+
+    LOG_TRACE("Players: [%s], index: [%s], step: [%s], result: [%s]") % players.size() % playerIndex % step % result;
+    return result;
 }
 
 void Logic::Parse()

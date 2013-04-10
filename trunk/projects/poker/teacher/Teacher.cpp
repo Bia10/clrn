@@ -823,17 +823,7 @@ void Teacher::OnRead(wxCommandEvent& event)
         sql::SQLiteDataBase db(logger);
         db.Open(cfg::NETWORK_FILE_NAME);
 
-        std::string filter = m_QueryText->GetValue().ToStdString();
-        if (m_QueryText->HasSelection())
-        {
-            long begin = 0;
-            long end = 0;
-            m_QueryText->GetSelection(&begin, &end);
-
-            filter.assign(filter.substr(begin, end - begin));
-        }
-
-        const std::size_t count = neuro::Params::ReadAll(m_Parameters, db, filter);
+        const std::size_t count = neuro::Params::ReadAll(m_Parameters, db);
 
         std::ostringstream oss;
         oss << "read " << count << " params from " << cfg::NETWORK_FILE_NAME;
@@ -891,6 +881,8 @@ void Teacher::OnExecute(wxCommandEvent& event)
 
         const std::size_t rows = db.Execute(text);
         db.Commit();
+
+        neuro::Params::ReadAll(m_Parameters, db);
 
         std::ostringstream oss;
         oss << "affected " << rows << " rows ";

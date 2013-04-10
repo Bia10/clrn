@@ -112,6 +112,8 @@ public:
 		{
 			SCOPED_LOG(m_Log);
 
+            LOG_TRACE("Fetching: [%s]") % sql;
+
 			return Recordset::Ptr(new Recordset(m_DataBase.execQuery(sql.c_str())));
 		}
 		CATCH_PASS_SQLITE_EXCEPTIONS(sql)
@@ -122,6 +124,8 @@ public:
 		TRY 
 		{
 			SCOPED_LOG(m_Log);
+
+            LOG_TRACE("Scalar execute: [%s]") % sql;
 
 			return m_DataBase.execScalar(sql.c_str());
 		}
