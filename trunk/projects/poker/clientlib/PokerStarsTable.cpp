@@ -122,7 +122,7 @@ void Table::HandleMessage(const dasm::WindowMessage& message)
 void Table::PlayerAction(const std::string& name, const pcmn::Action::Value action, const std::size_t amount)
 {
 	LOG_TRACE("Player: '%s', action: '%s', amount: '%s'") % name % pcmn::Action::ToString(action) % amount;
-	const std::string botName = pcmn::Player::ThisPlayer().Name();
+	static const std::string& botName = pcmn::Player::ThisPlayer().Name();
 
 	if (action == pcmn::Action::ShowCards)
 	{
@@ -238,6 +238,7 @@ void Table::FlopCards(const pcmn::Card::List& cards)
 	{
 	case 3: 
 		phase = Phase::Flop; 
+        m_ActionsParser.Parse(false, m_Button); 
 		break;
 	case 4: 
 		phase = Phase::Turn; 
@@ -248,7 +249,6 @@ void Table::FlopCards(const pcmn::Card::List& cards)
 	default: assert(false);
 	}
 
-	m_ActionsParser.Parse(false, m_Button); 
 	m_FlopCards = cards;
 	SetPhase(phase);
 	MakeDecisionIfNext(m_Button);
