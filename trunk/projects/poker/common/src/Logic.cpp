@@ -20,16 +20,14 @@ Logic::Logic(ILog& logger, IActionsQueue& action, IDecisionCallback& callback, c
 	Parse();
 }
 
-bool Logic::IsEmpty(const PlayerQueue& players) const
+std::size_t Logic::GetSize(const PlayerQueue& players) const
 {
-    const PlayerQueue::const_iterator it = std::find_if(players.begin(), players.end(), 
+    return std::count_if(players.begin(), players.end(), 
         [](const PlayerQueue::value_type& player)
         {
             return player->State() != pcmn::Player::State::AllIn;
         }
     );
-
-    return it == players.end();
 }
 
 const Logic::PlayerQueue::value_type& Logic::GetLastActive(const PlayerQueue& players) const
@@ -91,7 +89,7 @@ bool Logic::Run(TableContext& context)
 			for (const pcmn::Player::Ptr& player : m_Players)
 				player->Bet(0);
 	
-			while (!IsEmpty(playerQueue))
+			while (GetSize(playerQueue))
 			{
 				const pcmn::Player::Ptr current = playerQueue.front();
                 playerQueue.pop_front();
@@ -111,7 +109,7 @@ bool Logic::Run(TableContext& context)
 
 					const unsigned previousBet = current->Bet();
 					const pcmn::IActionsQueue::Event::Value result = current->Do(m_Actions, context);
-					const Player::Position::Value position = GetPlayerPosition(playerQueue, current);
+					const Player::Position::Value position = GetPlayerPosition(m_Players, current);
 
 					context.m_Data.m_Players[current->Index()].m_TotalBet += current->Bet() - previousBet;
 	
@@ -137,7 +135,7 @@ bool Logic::Run(TableContext& context)
 	
 					if (result == pcmn::IActionsQueue::Event::Raise)
 					{
-						pcmn::Player::Ptr next = IsEmpty(playerQueue) ? current->GetNext() : GetLastActive(playerQueue)->GetNext();
+						pcmn::Player::Ptr next = !GetSize(playerQueue) ? current->GetNext() : GetLastActive(playerQueue)->GetNext();
 						while (next != current)
 						{
                             if (next->State() != pcmn::Player::State::AllIn)
@@ -178,7 +176,7 @@ bool Logic::Run(TableContext& context)
 				}
 			}
 	
-			if (m_Players.size() < 2)
+			if (GetSize(m_Players) < 2)
 				break;
 		}
 	}
@@ -193,10 +191,9 @@ pcmn::Player::Position::Value Logic::GetPlayerPosition(const PlayerQueue& player
 	SCOPED_LOG(m_Log);
 
 	const PlayerQueue::const_iterator it = std::find(players.begin(), players.end(), player);
-    if (it == players.end())
-        return pcmn::Player::Position::Early; // this player is not in the queue because he need to do action now
+    CHECK(it != players.end(), "Failed to find player in list", player->Name());
 
-	const std::size_t playerIndex = std::distance(players.begin(), it);
+	const std::size_t playerIndex = std::distance<PlayerQueue::const_iterator>(players.begin(), it);
 
     pcmn::Player::Position::Value result = pcmn::Player::Position::Middle;
 

@@ -36,6 +36,8 @@ bool ActionsParser::Parse(const bool isNeedDecision, std::string& button)
 {
     SCOPED_LOG(m_Log);
 
+    LOG_TRACE("Is need decision: [%s]") % isNeedDecision;
+
 	if (ParseByAnte(button))
 		return true;
 

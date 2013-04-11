@@ -296,6 +296,8 @@ unsigned GetRanges(PlayerInfo::List& players)
 	{
         SCOPED_LOG(m_Log);
 
+        boost::mutex::scoped_lock lock(m_Mutex);
+
 		std::map<std::string, unsigned> indexes;
 		const std::string filter = GetPlayersFilter(players, indexes);
 
@@ -327,7 +329,9 @@ void GetLastActions(const std::string& target, const std::string& opponent, int&
 	{
         SCOPED_LOG(m_Log);
 
-		checkFolds = 0;
+        boost::mutex::scoped_lock lock(m_Mutex);
+
+        checkFolds = 0;
 		calls = 0;
 		raises = 0;
 
@@ -368,7 +372,9 @@ unsigned GetEquities(PlayerInfo::List& players)
 	{
         SCOPED_LOG(m_Log);
 
-		std::map<std::string, unsigned> indexes;
+        boost::mutex::scoped_lock lock(m_Mutex);
+
+        std::map<std::string, unsigned> indexes;
 		const std::string filter = GetPlayersFilter(players, indexes);
 
 		const std::string sql = (boost::format(SQL_GET_PLAYER_EQUITIES) % filter).str();
