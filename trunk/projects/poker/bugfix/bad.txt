@@ -1,0 +1,5 @@
+pending:
+
+fixed:
+[TRACE  ][6][2013-04-10T23:32:23.594577]:[4752]: Decision input: win: [Normal]:[29], pos: [Later], pot: [Normal], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */
+[TRACE  ][6][2013-04-10T23:37:54.535506]:[5988]: Decision input: win: [Normal]:[31], pos: [Later], pot: [High], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */

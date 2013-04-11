@@ -121,6 +121,8 @@ void Table::HandleMessage(const dasm::WindowMessage& message)
 
 void Table::PlayerAction(const std::string& name, const pcmn::Action::Value action, const std::size_t amount)
 {
+    SCOPED_LOG(m_Log);
+
 	LOG_TRACE("Player: '%s', action: '%s', amount: '%s'") % name % pcmn::Action::ToString(action) % amount;
 	static const std::string& botName = pcmn::Player::ThisPlayer().Name();
 
@@ -137,7 +139,10 @@ void Table::PlayerAction(const std::string& name, const pcmn::Action::Value acti
 	if (action == pcmn::Action::BigBlind)
 	{
 		if (!m_Actions[m_Phase].empty() && m_Actions[m_Phase].back().m_Value == pcmn::Action::BigBlind)
+        {
+            LOG_TRACE("BB is duplicated, ignoring");
 			return; // duplicated
+        }
 	}
 
 	if (action == pcmn::Action::SmallBlind || action == pcmn::Action::MoneyReturn)
@@ -339,6 +344,8 @@ void Table::SetPhase(const Phase::Value phase)
 
 void Table::SendStatistic()
 {
+    SCOPED_LOG(m_Log);
+
 	if (!m_ActionsParser.Parse(m_IsNeedDecision, m_Button))
 		return;
 
@@ -392,6 +399,7 @@ void Table::SendStatistic()
 
 	try
 	{
+        LOG_TRACE("Packet: [%s]") % packet.DebugString();
 		m_Connection->Send(packet);
 	}
 	catch (const std::exception& e)
@@ -442,25 +450,32 @@ void Table::PressButtonThread(const float x, const float y)
 {
 	SCOPED_LOG(m_Log);
 
-	boost::random::uniform_int_distribution<> wait(1000, 2000);
+    try
+    {
+        boost::random::uniform_int_distribution<> wait(1000, 2000);
 
-	boost::this_thread::interruptible_wait(wait(g_Random));
+        boost::this_thread::interruptible_wait(wait(g_Random));
 
-	RECT rect;
-	CHECK(GetWindowRect(m_Window, &rect));
+        RECT rect;
+        CHECK(GetWindowRect(m_Window, &rect));
 
-	const float resultX = static_cast<float>(rect.right - rect.left) / x;
-	const float resultY = static_cast<float>(rect.bottom - rect.top) / y;
+        const float resultX = static_cast<float>(rect.right - rect.left) / x;
+        const float resultY = static_cast<float>(rect.bottom - rect.top) / y;
 
-	LOG_TRACE("Pressing to: x='%s', y='%s'") % resultX % resultY;
+        LOG_TRACE("Pressing to: x='%s', y='%s'") % resultX % resultY;
 
-	const LPARAM param = MAKELPARAM(resultX, resultY);
-	CHECK(PostMessage(m_Window, WM_LBUTTONDOWN, (WPARAM)MK_LBUTTON, param));
+        const LPARAM param = MAKELPARAM(resultX, resultY);
+        CHECK(PostMessage(m_Window, WM_LBUTTONDOWN, (WPARAM)MK_LBUTTON, param));
 
-	boost::random::uniform_int_distribution<> up(100, 200);
+        boost::random::uniform_int_distribution<> up(100, 200);
 
-	boost::this_thread::interruptible_wait(up(g_Random));
-	CHECK(PostMessage(m_Window, WM_LBUTTONUP, NULL, param));
+        boost::this_thread::interruptible_wait(up(g_Random));
+        CHECK(PostMessage(m_Window, WM_LBUTTONUP, NULL, param));
+    }
+    catch (const std::exception& e)
+    {
+        LOG_ERROR("Failed to press button: [%s]") % e.what();
+    }
 }
 
 void Table::Fold()
@@ -501,15 +516,22 @@ void Table::ErasePlayer(const std::string& name)
 	);
 
 	if (it == m_Players.end())
+    {
+        LOG_TRACE("Failed to erase player: [%s], not found") % name;
 		return;
+    }
 
-	(*it)->DeleteLinks();
+    LOG_TRACE("Erasing player: [%s]") % name;
+
+    (*it)->DeleteLinks();
 	m_Players.erase(it);
 	m_Stacks.erase(name);
 }
 
 void Table::MakeDecisionIfNext(const std::string& current)
 {
+    SCOPED_LOG(m_Log);
+
 	pcmn::Player::Ptr currentPlayer = GetPlayer(current);
 	if (!currentPlayer)
 		return;
@@ -520,7 +542,9 @@ void Table::MakeDecisionIfNext(const std::string& current)
 		if (!currentPlayer)
 			break;
 
-		if (m_FoldedPlayers[currentPlayer->Name()])
+        LOG_TRACE("Current: [%s], folded: [%s]") % currentPlayer->Name() % m_FoldedPlayers[currentPlayer->Name()];
+
+        if (m_FoldedPlayers[currentPlayer->Name()])
 			continue;
 
 		if (currentPlayer->Name() == pcmn::Player::ThisPlayer().Name())
