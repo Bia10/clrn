@@ -225,8 +225,17 @@ void Table::PlayerAction(const std::string& name, const pcmn::Action::Value acti
 	if (action == pcmn::Action::Fold)
 		m_FoldedPlayers[name] = true;
 
-	if (m_FoldedPlayers[botName] || m_WaitingPlayers[botName])
+	if (m_FoldedPlayers[botName])
+    {
+        LOG_TRACE("Bot folded, skipping next player check: [%s]") % botName;
 		return;
+    }
+
+    if (m_WaitingPlayers[botName])
+    {
+        LOG_TRACE("Bot waiting, skipping next player check: [%s]") % botName;
+        return;
+    }
 
 	if (action == pcmn::Action::SecondsLeft || action == pcmn::Action::Ante || action == pcmn::Action::ShowCards)
 		return; // no need to check next player
@@ -236,6 +245,8 @@ void Table::PlayerAction(const std::string& name, const pcmn::Action::Value acti
 
 void Table::FlopCards(const pcmn::Card::List& cards)
 {
+    SCOPED_LOG(m_Log);
+
 	m_Bets.clear();
 	m_WaitingPlayers.clear();
 	Phase::Value phase = Phase::Preflop;
@@ -261,6 +272,8 @@ void Table::FlopCards(const pcmn::Card::List& cards)
 
 void Table::BotCards(const pcmn::Card& first, const pcmn::Card& second)
 {
+    SCOPED_LOG(m_Log);
+
 	m_PlayerCards[pcmn::Player::ThisPlayer().Name()] = boost::assign::list_of(first)(second);
 
 	if (m_IsNeedDecision)
@@ -269,6 +282,8 @@ void Table::BotCards(const pcmn::Card& first, const pcmn::Card& second)
 
 void Table::PlayersInfo(const pcmn::Player::List& players)
 {
+    SCOPED_LOG(m_Log);
+
 	for (const pcmn::Player::Ptr& player : players)
 		m_Stacks[player->Name()] = player->Stack();
 }
@@ -293,6 +308,8 @@ pcmn::Player::Ptr Table::GetPlayer(const std::string& name)
 
 void Table::OnBotAction()
 {
+    SCOPED_LOG(m_Log);
+
 	// make a decision and react
 	m_IsNeedDecision = true;
 
@@ -306,11 +323,15 @@ void Table::OnBotAction()
 
 void Table::PlayerCards(const std::string& name, const pcmn::Card::List& cards)
 {
+    SCOPED_LOG(m_Log);
+
 	m_PlayerCards[name] = cards;
 }
 
 void Table::ResetPhase()
 {
+    SCOPED_LOG(m_Log);
+
 	for (const std::string& name : m_Loosers)
 		ErasePlayer(name);
 	m_Loosers.clear();
@@ -332,6 +353,8 @@ void Table::ResetPhase()
 
 void Table::SetPhase(const Phase::Value phase)
 {
+    SCOPED_LOG(m_Log);
+
 	for (const pcmn::Player::Ptr& p : m_Players)
 	{
 		p->Bet(0);
@@ -345,6 +368,8 @@ void Table::SetPhase(const Phase::Value phase)
 void Table::SendStatistic()
 {
     SCOPED_LOG(m_Log);
+
+    LOG_TRACE("Is need decision: [%s]") % m_IsNeedDecision;
 
 	if (!m_ActionsParser.Parse(m_IsNeedDecision, m_Button))
 		return;
@@ -443,6 +468,7 @@ void Table::ReceiveFromServerCallback(const google::protobuf::Message& message)
 
 void Table::PressButton(const float x, const float y)
 {
+    SCOPED_LOG(m_Log);
 	boost::thread(boost::bind(&Table::PressButtonThread, this, x, y));
 }
 
@@ -480,11 +506,14 @@ void Table::PressButtonThread(const float x, const float y)
 
 void Table::Fold()
 {
+    SCOPED_LOG(m_Log);
 	PressButton(FOLD_X, FOLD_Y);
 }
 
 void Table::CheckCall()
 {
+    SCOPED_LOG(m_Log);
+
 	PressButton(CHECK_CALL_X, CHECK_CALL_Y);
 	boost::this_thread::interruptible_wait(3000);
 	PressButton(BET_X, BET_Y); // in case of all in call
@@ -492,6 +521,8 @@ void Table::CheckCall()
 
 void Table::BetRaise(unsigned amount)
 {
+    SCOPED_LOG(m_Log);
+
 	const HWND slider = FindWindowEx(m_Window, NULL, "PokerStarsSliderClass", NULL);	
 	CHECK(slider != NULL, "Failed to find slider");
 	const HWND editor = FindWindowEx(slider, NULL, "PokerStarsSliderEditorClass", NULL);
@@ -505,6 +536,8 @@ void Table::BetRaise(unsigned amount)
 
 void Table::ErasePlayer(const std::string& name)
 {
+    SCOPED_LOG(m_Log);
+
 	const pcmn::Player::List::iterator it = std::find_if
 	(
 		m_Players.begin(),

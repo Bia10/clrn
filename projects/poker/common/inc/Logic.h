@@ -52,8 +52,8 @@ private:
 	//! Get player position
 	Player::Position::Value GetPlayerPosition(const PlayerQueue& players, const Player::Ptr& player);
 
-    //! Is queue empty
-    bool IsEmpty(const PlayerQueue& players) const;
+    //! Get queue size
+    std::size_t GetSize(const PlayerQueue& players) const;
 
     //! Get last active player
     const PlayerQueue::value_type& GetLastActive(const PlayerQueue& players) const;
