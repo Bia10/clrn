@@ -3,27 +3,16 @@
 #include "Logic.h"
 #include "TableActionsQueue.h"
 #include "TableContext.h"
+#include "Modules.h"
+
+#include <sstream>
 
 #include <boost/make_shared.hpp>
 
 namespace clnt
 {
 
-class FakeDecisionMaker : public pcmn::IDecisionCallback
-{
-public:
-	FakeDecisionMaker() : m_IsValid(true) {}
-	virtual void MakeDecision(const pcmn::Player& player, const PlayerQueue& /*activePlayers*/, const pcmn::TableContext& /*context*/, const pcmn::Player::Position::Value /*position*/) 
-	{
-		m_Name = player.Name();
-		m_IsValid = m_Name == pcmn::Player::ThisPlayer().Name();
-	}
-	bool IsValid() const { return m_IsValid; }
-	std::string Name() const { return m_Name; }
-private:
-	bool m_IsValid;
-	std::string m_Name;
-};
+unsigned CURRENT_MODULE_ID = Modules::TableLogic;
 
 //! Unique add
 template<typename C, typename V>
@@ -45,6 +34,8 @@ ActionsParser::ActionsParser(ILog& logger, Actions& actions, pcmn::Player::List&
 
 bool ActionsParser::Parse(const bool isNeedDecision, std::string& button)
 {
+    SCOPED_LOG(m_Log);
+
 	if (ParseByAnte(button))
 		return true;
 
@@ -53,6 +44,8 @@ bool ActionsParser::Parse(const bool isNeedDecision, std::string& button)
 
 bool ActionsParser::ParseByAnte(std::string& button)
 {
+    SCOPED_LOG(m_Log);
+
 	std::vector<std::string> players;
 
 	for (const ITable::ActionDesc& action : m_Actions.front())
@@ -99,6 +92,17 @@ bool ActionsParser::ParseByAnte(std::string& button)
 
 void ActionsParser::LinkPlayers(pcmn::Player::List& players)
 {
+    SCOPED_LOG(m_Log);
+
+    if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Trace))
+    {
+        std::ostringstream oss;
+        for (const pcmn::Player::Ptr& player : m_Players)
+            oss << player->Name() << " ";
+
+        LOG_TRACE("Players: [%s]") % oss.str();
+    }
+
 	// make links
 	players.front()->SetPrevious(players.back());
 	players.back()->SetNext(players.front());
@@ -112,6 +116,8 @@ void ActionsParser::LinkPlayers(pcmn::Player::List& players)
 
 void ActionsParser::RemoveUselessActions()
 {
+    SCOPED_LOG(m_Log);
+
 	for (ITable::Actions& actions : m_Actions)
 	{
 		actions.erase
@@ -132,6 +138,8 @@ void ActionsParser::RemoveUselessActions()
 
 bool ActionsParser::ParseByBlinds(std::string& button, const bool isNeedDecision)
 {
+    SCOPED_LOG(m_Log);
+
 	RemoveUselessActions();
 
 	ITable::Actions& actions = m_Actions.front();
@@ -168,6 +176,8 @@ bool ActionsParser::ParseByBlinds(std::string& button, const bool isNeedDecision
 
 pcmn::Player::Ptr ActionsParser::GetPlayer(const std::string& name) 
 {
+    SCOPED_LOG(m_Log);
+
 	const pcmn::Player::List::iterator it = std::find_if
 	(
 		m_Players.begin(),
@@ -186,12 +196,16 @@ pcmn::Player::Ptr ActionsParser::GetPlayer(const std::string& name)
 
 void ActionsParser::CreateUnknown()
 {
+    SCOPED_LOG(m_Log);
+
 	assert(!GetPlayer("Unknown"));
 	m_Players.push_back(boost::make_shared<pcmn::Player>("Unknown", 0));
 }
 
 void ActionsParser::InsertBigBlind()
 {
+    SCOPED_LOG(m_Log);
+
 	ITable::Actions& actions = m_Actions.front();
 	assert(actions.front().m_Value == pcmn::Action::SmallBlind);
 
@@ -207,6 +221,8 @@ void ActionsParser::InsertBigBlind()
 
 bool ActionsParser::ParseOneAction(std::string& button, bool isNeedDecision)
 {
+    SCOPED_LOG(m_Log);
+
 	ITable::Actions& actions = m_Actions.front();
 
 	if (actions.size() != 1)
@@ -244,6 +260,8 @@ bool ActionsParser::ParseOneAction(std::string& button, bool isNeedDecision)
 
 void ActionsParser::ParsePlayerListByActions(std::vector<std::string>& players, bool isNeedDecision)
 {
+    SCOPED_LOG(m_Log);
+
 	ITable::Actions& actions = m_Actions.front();
 
 	unsigned i = 0;
@@ -254,6 +272,8 @@ void ActionsParser::ParsePlayerListByActions(std::vector<std::string>& players, 
 		[](const ITable::ActionDesc& action)
 		{return action.m_Value == pcmn::Action::BigBlind;}
 	) != actions.end();
+
+    LOG_TRACE("Big blind existence: [%s]") % isBigBlindExists;
 
 	for (; i < actions.size(); ++i)
 	{
@@ -267,13 +287,15 @@ void ActionsParser::ParsePlayerListByActions(std::vector<std::string>& players, 
 			// end of circle, next player on the big blind
 			if (i + 1 < actions.size())
 			{
+                LOG_TRACE("Insert player by next: [%s]") % actions[i + 1].m_Name;
 				players.insert(players.begin() + 1, actions[i + 1].m_Name); // next action exists
 				break;
 			}
             else
             if (!isNeedDecision)
             {
-                players.insert(players.begin() + 1, actions[i + 1].m_Name); // this player on BB
+                LOG_TRACE("Insert current player: [%s]") % actions[i].m_Name;
+                players.insert(players.begin() + 1, actions[i].m_Name); // this player on BB
                 break;
             }
 			else
@@ -284,6 +306,7 @@ void ActionsParser::ParsePlayerListByActions(std::vector<std::string>& players, 
 					const pcmn::Player::Ptr bigBlind = smallBlind->GetNext();
 					if (bigBlind)
 					{
+                        LOG_TRACE("Insert player from get next: [%s]") % bigBlind->Name();
 						players.insert(players.begin() + 1, bigBlind->Name());
 						break;
 					}
@@ -295,12 +318,14 @@ void ActionsParser::ParsePlayerListByActions(std::vector<std::string>& players, 
 					const pcmn::Player::Ptr prevPlayer = thisPlayer->GetPrevious();
 					if (prevPlayer)
 					{
+                        LOG_TRACE("Insert player from get prev: [%s]") % prevPlayer->Name();
 						players.insert(players.begin() + 1, prevPlayer->Name());
 						break;
 					}
 				}
 
 				// not found player on big blind
+                LOG_TRACE("Insert unknown player");
 				players.insert(players.begin() + 1, "Unknown");
 				m_Players.clear(); // old players list are not valid
 				break;
@@ -317,10 +342,21 @@ void ActionsParser::ParsePlayerListByActions(std::vector<std::string>& players, 
 
 	if (isNeedDecision && std::find(players.begin(), players.end(), pcmn::Player::ThisPlayer().Name()) == players.end())
 		players.push_back(pcmn::Player::ThisPlayer().Name());
+
+    if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Trace))
+    {
+        std::ostringstream oss;
+        for (const std::string& player : players)
+            oss << player << " ";
+
+        LOG_TRACE("Players: [%s]") % oss.str();
+    }
 }
 
 bool ActionsParser::ArePlayersMatches(const std::vector<std::string>& players)
 {
+    SCOPED_LOG(m_Log);
+
 	ITable::Actions& actions = m_Actions.front();
 
 	for (std::size_t i = 0 ; i < players.size() - 1; ++i)
@@ -331,11 +367,17 @@ bool ActionsParser::ArePlayersMatches(const std::vector<std::string>& players)
 		const pcmn::Player::Ptr currentPlayer = GetPlayer(current);
 
 		if (!currentPlayer)
+        {
+            LOG_TRACE("Failed to find current, current: [%s], next: [%s]") % current % next;
 			return false;
+        }
 
 		const pcmn::Player::Ptr nextPlayer = currentPlayer->GetNext();
 		if (!nextPlayer || nextPlayer->Name() != next)
+        {
+            LOG_TRACE("Failed to find next, current: [%s], next: [%s]") % current % next;
 			return false;
+        }
 	}
 
 	return true;
