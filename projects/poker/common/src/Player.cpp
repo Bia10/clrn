@@ -83,7 +83,7 @@ namespace pcmn
 		switch (action)
 		{
 		case pcmn::Action::Fold: 
-			m_State = State::Fold;
+			m_State = State::Folded;
 			return IActionsQueue::Event::Fold;
 		case pcmn::Action::Bet: 
 		case pcmn::Action::Raise:
@@ -93,7 +93,7 @@ namespace pcmn
 				if (static_cast<int>(m_Stack) < 0)
 					m_Stack = 0;
 
-				m_State = m_Stack ? State::Waiting : State::AllIn;
+				m_State = m_Stack ? State::Called : State::AllIn;
 				table.m_Pot += difference;
 				m_Bet += difference;
 				if (m_Bet > table.m_MaxBet)
@@ -108,7 +108,7 @@ namespace pcmn
 				m_Stack = 0;
 
 			if (m_Stack)
-				m_State = action == pcmn::Action::Call ? State::Waiting : State::InPot;
+				m_State = action == pcmn::Action::Call ? State::Called : State::Waiting;
 			else
 				m_State = State::AllIn;	
 

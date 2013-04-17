@@ -8,6 +8,7 @@
 #include <vector>
 #include <cassert>
 #include <exception>
+#include <deque>
 
 #include <boost/shared_ptr.hpp>
 #include <boost/weak_ptr.hpp>
@@ -56,11 +57,10 @@ public:
 	{
 		enum Value
 		{
-			Waiting	= 0,
-			Fold	= 1,
-			InPot	= 2,
-			AllIn	= 3,
-			AFK		= 4
+			Called	= 0,    // player called all bets
+			Folded	= 1,    // player folded
+			Waiting	= 2,    // player waiting for its turn
+			AllIn	= 3     // player all in
 		};
 	};
 	
@@ -116,6 +116,7 @@ public:
 	typedef std::vector<Player::Ptr> List;
 	typedef std::vector<Style::Value> Styles;
 	typedef std::vector<ActionDesc> Actions;
+    typedef std::deque<Player::Ptr> Queue;
 
 	Player()
 		: m_Name()
@@ -124,8 +125,9 @@ public:
 		, m_Bet(0)
 		, m_WinSize(0)
 		, m_Result()
-		, m_State(State::Waiting)
+		, m_State(State::Called)
 		, m_Index(0)
+        , m_TotalBet(0)
 	{
 		m_Styles.resize(4, Style::Normal);
 	}
@@ -137,8 +139,9 @@ public:
 		, m_Bet(0)
 		, m_WinSize(0)
 		, m_Result()
-		, m_State(State::Waiting)
+		, m_State(State::Called)
 		, m_Index(0)
+        , m_TotalBet(0)
 	{
 		m_Styles.resize(4, Style::Normal);
 	}
@@ -163,6 +166,8 @@ public:
 	std::size_t Index() const				{ return m_Index; }
 	void Index(std::size_t val)				{ m_Index = val; }
 	const Actions& GetActions() const		{ return m_Actions; }
+    std::size_t TotalBet() const            { return m_TotalBet; }
+    void TotalBet(std::size_t val)          { m_TotalBet = val; }
 
 	void SetStyle(std::size_t phase, Style::Value style)
 	{
@@ -201,7 +206,9 @@ private:
 	std::size_t m_Bet;				//!< player bet on this street
 	Card::List m_Cards;				//!< player cards
 	State::Value m_State;			//!< player state
-	Actions m_Actions;				//!< player actions
+    std::size_t m_TotalBet;         //! player total bet
+
+    Actions m_Actions;				//!< player actions
 	Player::WeakPtr m_Next;			//!< next player on the table
 	Player::WeakPtr m_Previous;		//!< previous player on the table
 	std::size_t m_Index;			//!< player index

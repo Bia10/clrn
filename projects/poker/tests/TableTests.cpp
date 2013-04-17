@@ -112,10 +112,10 @@ public:
 			if (playerIndex >= m_Players.size())
 				playerIndex = 0;
 
-			if (m_Moves[playerIndex] == Player::State::Fold)
+			if (m_Moves[playerIndex] == Player::State::Folded)
 				continue;
 
-			if (m_Moves[playerIndex] == Player::State::InPot)
+			if (m_Moves[playerIndex] == Player::State::Waiting)
 				break;
 
 			Player* player = m_Players[playerIndex].get();
@@ -131,12 +131,12 @@ public:
 				if (player->Bet() == m_MaxBet)
 				{
 					action = Action::Check;
-					m_Moves[playerIndex] = Player::State::InPot;
+					m_Moves[playerIndex] = Player::State::Waiting;
 				}
 				else
 				{
 					action = Action::Fold; 
-					m_Moves[playerIndex] = Player::State::Fold;
+					m_Moves[playerIndex] = Player::State::Folded;
 				}
 				break;
 			case 1: 
@@ -152,7 +152,7 @@ public:
 					amount = m_MaxBet;
 				}
 				
-				m_Moves[playerIndex] = Player::State::InPot;
+				m_Moves[playerIndex] = Player::State::Waiting;
 				player->Bet(amount);
 				break;
 			case 2: 
@@ -163,25 +163,25 @@ public:
 
 				for (Player::State::Value& state : m_Moves)
 				{
-					if (state != Player::State::Fold)
-						state = Player::State::Waiting;
+					if (state != Player::State::Folded)
+						state = Player::State::Called;
 				}
 
-				m_Moves[playerIndex] = Player::State::InPot;
+				m_Moves[playerIndex] = Player::State::Waiting;
 				break;
 			}
 
 			m_Table->PlayerAction(player->Name(), action, amount);
 		}
 
-		const std::size_t playersLeft = std::count(m_Moves.begin(), m_Moves.end(), Player::State::InPot);
+		const std::size_t playersLeft = std::count(m_Moves.begin(), m_Moves.end(), Player::State::Waiting);
 		if (playersLeft < 2)
 			throw NoPlayers();
 
 		for (Player::State::Value& state : m_Moves)
 		{
-			if (state != Player::State::Fold)
-				state = Player::State::Waiting;
+			if (state != Player::State::Folded)
+				state = Player::State::Called;
 		}
 
 		NextButton();
