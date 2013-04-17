@@ -69,6 +69,7 @@ Table::Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection)
 	, m_IsNeedDecision(false)
 	, m_ActionsParser(m_Log, m_Actions, m_Players)
 	, m_IsCardsShowed(false)
+    , m_Logic(m_Log, *this)
 {
 	SCOPED_LOG(m_Log);
 
@@ -124,6 +125,9 @@ void Table::PlayerAction(const std::string& name, const pcmn::Action::Value acti
     SCOPED_LOG(m_Log);
 
 	LOG_TRACE("Player: '%s', action: '%s', amount: '%s'") % name % pcmn::Action::ToString(action) % amount;
+
+    m_Logic.PushAction(name, action, amount);
+    /*
 	static const std::string& botName = pcmn::Player::ThisPlayer().Name();
 
 	if (action == pcmn::Action::ShowCards)
@@ -241,51 +245,61 @@ void Table::PlayerAction(const std::string& name, const pcmn::Action::Value acti
 		return; // no need to check next player
 
 	MakeDecisionIfNext(name);
+    */
 }
 
 void Table::FlopCards(const pcmn::Card::List& cards)
 {
     SCOPED_LOG(m_Log);
 
-	m_Bets.clear();
-	m_WaitingPlayers.clear();
-	Phase::Value phase = Phase::Preflop;
+	//m_Bets.clear();
+	//m_WaitingPlayers.clear();
+	//Phase::Value phase = Phase::Preflop;
+    m_Logic.SetFlopCards(cards);
 	switch (cards.size())
 	{
 	case 3: 
-		phase = Phase::Flop; 
-        m_ActionsParser.Parse(false, m_Button); 
+        m_Logic.SetPhase(pcmn::TableLogic::Phase::Flop);
+		//phase = Phase::Flop; 
+        //m_ActionsParser.Parse(false, m_Button); 
 		break;
 	case 4: 
-		phase = Phase::Turn; 
+        m_Logic.SetPhase(pcmn::TableLogic::Phase::Turn);
+		//phase = Phase::Turn; 
 		break;
 	case 5: 
-		phase = Phase::River; 
+        m_Logic.SetPhase(pcmn::TableLogic::Phase::River);
+		//phase = Phase::River; 
 		break;
 	default: assert(false);
 	}
 
-	m_FlopCards = cards;
-	SetPhase(phase);
-	MakeDecisionIfNext(m_Button);
+	//m_FlopCards = cards;
+	//SetPhase(phase);
+	//MakeDecisionIfNext(m_Button);
 }
 
 void Table::BotCards(const pcmn::Card& first, const pcmn::Card& second)
 {
     SCOPED_LOG(m_Log);
 
-	m_PlayerCards[pcmn::Player::ThisPlayer().Name()] = boost::assign::list_of(first)(second);
+    m_Logic.SetPlayerCards(pcmn::Player::ThisPlayer().Name(), boost::assign::list_of(first)(second));
 
-	if (m_IsNeedDecision)
-		OnBotAction();
+// 	m_PlayerCards[pcmn::Player::ThisPlayer().Name()] = boost::assign::list_of(first)(second);
+// 
+// 	if (m_IsNeedDecision)
+// 		OnBotAction();
 }
 
 void Table::PlayersInfo(const pcmn::Player::List& players)
 {
     SCOPED_LOG(m_Log);
 
-	for (const pcmn::Player::Ptr& player : players)
-		m_Stacks[player->Name()] = player->Stack();
+    for (const pcmn::Player::Ptr& player : players)
+        m_Logic.SetPlayerStack(player->Name(), player->Stack());
+
+// 	for (const pcmn::Player::Ptr& player : players)
+// 		m_Stacks[player->Name()] = player->Stack();
 }
 
 pcmn::Player::Ptr Table::GetPlayer(const std::string& name) 
@@ -325,7 +339,8 @@ void Table::PlayerCards(const std::string& name, const pcmn::Card::List& cards)
 {
     SCOPED_LOG(m_Log);
 
-	m_PlayerCards[name] = cards;
+    m_Logic.SetPlayerCards(name, cards);
+	//m_PlayerCards[name] = cards;
 }
 
 void Table::ResetPhase()
@@ -358,8 +373,8 @@ void Table::SetPhase(const Phase::Value phase)
 	for (const pcmn::Player::Ptr& p : m_Players)
 	{
 		p->Bet(0);
-		if (p->State() != pcmn::Player::State::Fold && p->State() != pcmn::Player::State::AllIn)
-			p->State(pcmn::Player::State::Waiting);
+		if (p->State() != pcmn::Player::State::Folded && p->State() != pcmn::Player::State::AllIn)
+			p->State(pcmn::Player::State::Called);
 	}
 
 	m_Phase = phase;
@@ -587,8 +602,19 @@ void Table::MakeDecisionIfNext(const std::string& current)
 	}
 }
 
+void Table::SendRequest(const net::Packet& packet)
+{
+    throw std::exception("The method or operation is not implemented.");
+}
+
+void Table::MakeDecision(const pcmn::Player& player, const pcmn::Player::Queue& activePlayers, const pcmn::TableContext& context, const pcmn::Player::Position::Value position)
+{
+    throw std::exception("The method or operation is not implemented.");
+}
+
 } // namespace ps
 } // namespace clnt
+
 
 
 

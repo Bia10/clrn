@@ -22,6 +22,7 @@
 #include <boost/regex.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/make_shared.hpp>
+#include <boost/filesystem.hpp>
 
 using namespace pcmn;
 using namespace clnt;
@@ -244,23 +245,30 @@ void ParseData(const std::string& data, ITable& table)
 
 void RunTest()
 {
-	static const std::string file = "messages.txt";
-	const std::string full = fs::FullPath(file);
+    boost::filesystem::directory_iterator it("../../../poker/logs/");
+    boost::filesystem::directory_iterator end;
 
-	// read file data
-	std::ifstream ifs(full.c_str(), std::ios_base::binary);
-	ASSERT_TRUE(ifs.is_open()) << full;
+    for (; it != end; ++it)
+    {
+        const std::string full = boost::filesystem::system_complete(it->path()).string();
 
-	ifs >> std::noskipws;
+        std::cout << "Processing: '" << full << "' ..." << std::endl;
 
-	std::string content;
-	std::copy(std::istream_iterator<char>(ifs), std::istream_iterator<char>(), std::back_inserter(content));
-	
-	Log log;
-	net::IConnection::Ptr connection(new TestServer());
+        // read file data
+        std::ifstream ifs(full.c_str(), std::ios_base::binary);
+        ASSERT_TRUE(ifs.is_open()) << full;
 
-	ps::Table table(log, NULL, connection);
-	ParseData(content, table);
+        ifs >> std::noskipws;
+
+        std::string content;
+        std::copy(std::istream_iterator<char>(ifs), std::istream_iterator<char>(), std::back_inserter(content));
+
+        Log log;
+        net::IConnection::Ptr connection(new TestServer());
+
+        ps::Table table(log, NULL, connection);
+        ParseData(content, table);
+    }
 }
 
 TEST(Logic, ClientServerByLogs)

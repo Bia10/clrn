@@ -723,6 +723,7 @@
 [TRACE  ][0][2013-03-14T21:56:36.664384]:[6116]: Player: 'Baboshin', stack: '524' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-14T21:56:36.665384]:[6116]: Player: 'Baboshin', stack: '2944' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-14T21:56:36.666384]:[6116]: Player: 'Baboshin', stack: '370' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-14T21:55:39.972142]:[6116]: Cards received: ('Five' of 'Clubs')('King' of 'Diamonds')('Five' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
 [TRACE  ][0][2013-03-14T21:56:39.774562]:[6116]: Player: 'sliperydon', action: 'Bet', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-14T21:56:39.775562]:[6116]: Player: 'sliperydon', stack: '2894' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-14T21:56:42.635726]:[6116]: Player: 'Harley Rolf', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
@@ -1045,6 +1046,7 @@
 [TRACE  ][0][2013-03-14T22:05:49.725017]:[6116]: Player: 'Harley Rolf', stack: '1430' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-14T22:05:49.726017]:[6116]: Player: 'Harley Rolf', stack: '835' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-14T22:05:49.726017]:[6116]: Player: 'Harley Rolf', stack: '3182' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-14T22:06:13.620384]:[6116]: Cards received: ('Jack' of 'Hearts')('Five' of 'Hearts')('Six' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
 [TRACE  ][0][2013-03-14T22:05:52.507177]:[6116]: Player: 'birdshot567', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-14T22:05:56.792422]:[6116]: Player: 'de AAngelis', action: 'Bet', amount: '300' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-14T22:05:56.793422]:[6116]: Player: 'de AAngelis', stack: '2882' /* clnt::ps::msg::PlayerAction::Process */
@@ -1223,6 +1225,8 @@
 [TRACE  ][0][2013-03-14T22:09:44.351437]:[6116]: Player: 'birdshot567', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-14T22:09:47.081593]:[6116]: Player: 'de AAngelis', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-14T22:09:48.153655]:[6116]: Player cards: ('Six' of 'Spades')('Queen' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-14T22:09:05.700227]:[6116]: Player: 'de AAngelis', action: 'SmallBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-14T22:09:05.702227]:[6116]: Player: 'CLRN', action: 'BigBlind', amount: '100' /* clnt::ps::msg::BeforePreflopActions::Process */
 [TRACE  ][0][2013-03-14T22:09:53.282948]:[6116]: Player: 'birdshot567', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-14T22:09:53.582965]:[6116]: Player: 'Harley Rolf', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-14T22:09:53.583965]:[6116]: Player: 'Harley Rolf', stack: '2760' /* clnt::ps::msg::PlayerAction::Process */
@@ -1253,6 +1257,7 @@
 [TRACE  ][0][2013-03-14T22:10:23.375669]:[6116]: Player: 'Harley Rolf', stack: '2710' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-14T22:10:23.375669]:[6116]: Player: 'Harley Rolf', stack: '385' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-14T22:10:23.376669]:[6116]: Player: 'Harley Rolf', stack: '2602' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-14T22:10:29.861040]:[6116]: Cards received: ('Nine' of 'Clubs')('Ace' of 'Spades')('Ten' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
 [TRACE  ][0][2013-03-14T22:10:26.031821]:[6116]: Player: 'birdshot567', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-14T22:10:29.700031]:[6116]: Player: 'de AAngelis', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-14T22:10:29.861040]:[6116]: Cards received: ('Nine' of 'Clubs')('Ace' of 'Spades')('Ten' of 'Diamonds')('Seven' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */

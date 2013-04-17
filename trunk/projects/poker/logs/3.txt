@@ -1415,6 +1415,8 @@
 [TRACE  ][0][2013-03-17T15:17:57.343159]:[3192]: Player: 'olamaps', action: 'MoneyReturn', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-17T15:17:59.376276]:[3192]: Player: 'olamaps', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-17T15:18:00.753354]:[3192]: Player cards: ('Seven' of 'Hearts')('Ace' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-17T15:17:24.065256]:[3192]: Player: 'vstana', action: 'SmallBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-17T15:17:24.067256]:[3192]: Player: 'Benzali123', action: 'BigBlind', amount: '100' /* clnt::ps::msg::BeforePreflopActions::Process */
 [TRACE  ][0][2013-03-17T15:18:03.062486]:[3192]: Player: 'irish3696176', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-17T15:18:11.443966]:[3192]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-17T15:18:19.208410]:[3192]: Player: 'CLRN', stack: '1865' /* clnt::ps::msg::PlayerAction::Process */
@@ -1441,6 +1443,8 @@
 [TRACE  ][0][2013-03-17T15:18:54.542431]:[3192]: Player: 'Benzali123', stack: '1565' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-17T15:18:54.542431]:[3192]: Player: 'Benzali123', action: 'ShowCards', cards: 'Qc6c' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-17T15:18:57.414595]:[3192]: Player cards: ('Four' of 'Clubs')('Four' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-17T15:17:24.065256]:[3192]: Player: 'Benzali123', action: 'SmallBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-17T15:17:24.067256]:[3192]: Player: 'irish3696176', action: 'BigBlind', amount: '100' /* clnt::ps::msg::BeforePreflopActions::Process */
 [TRACE  ][0][2013-03-17T15:19:01.301818]:[3192]: Player: 'CLRN', stack: '1465' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-17T15:19:01.302818]:[3192]: Player: 'CLRN', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-17T15:19:03.039917]:[3192]: Player: 'olamaps', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
@@ -2352,6 +2356,8 @@
 [TRACE  ][0][2013-03-17T15:37:29.444200]:[3192]: Player: 'olamaps', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-17T15:37:30.899283]:[3192]: Player: 'olamaps', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-17T15:37:33.099409]:[3192]: Player: 'vstana', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-17T15:37:07.123923]:[3192]: Player: 'Benzali123', action: 'SmallBlind', amount: '100' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-17T15:37:07.124923]:[3192]: Player: 'CLRN', action: 'BigBlind', amount: '200' /* clnt::ps::msg::BeforePreflopActions::Process */
 [TRACE  ][0][2013-03-17T15:37:34.695500]:[3192]: Player cards: ('Jack' of 'Diamonds')('Seven' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
 [TRACE  ][0][2013-03-17T15:37:36.981631]:[3192]: Player: 'olamaps', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
 [TRACE  ][0][2013-03-17T15:37:37.302649]:[3192]: Player: 'vstana', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
