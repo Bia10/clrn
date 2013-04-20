@@ -81,6 +81,11 @@ class FakeDecisionMaker : public pcmn::ITableLogicCallback
 
     virtual void MakeDecision(const Player& player, const Player::Queue& activePlayers, const TableContext& context, const Player::Position::Value position) override
     {
+        std::cout << "Decision for: " << player.Name() << std::endl;
+    }
+
+    virtual void WriteStatistics(TableContext::Data& data) override
+    {
     }
 
 };
@@ -100,14 +105,6 @@ public:
         FakeDecisionMaker maker;
         TableLogic logic(m_Log, maker, m_Evaluator);
         logic.Parse(static_cast<const net::Packet&>(message));
-
-// 		TestClient client;
-// 		srv::DecisionMaker decisionMaker(m_Log, m_Evaluator, m_Statistics, m_Network, client);
-// 
-// 		srv::Parser parser(m_Log, m_Evaluator, dynamic_cast<const net::Packet&>(message), decisionMaker);
-// 
-// 		if (parser.Parse())  // write statistics, game completed
-// 			m_Statistics.Write(parser.GetResult());
 
 		static int counter = 0;
 		std::cout << "Requests: " << counter++ << std::endl;

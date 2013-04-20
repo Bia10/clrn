@@ -401,7 +401,19 @@ void BeforePreflopActions::Process(const dasm::WindowMessage& message, ITable& t
 	for (int i = 0 ; i < 5 && data < end; ++i)
 		data = std::find(data + 1, end, 0xff);
 
-	ITable::Actions actions;
+    struct ActionDesc
+    {
+        ActionDesc(const std::string& name, pcmn::Action::Value value, unsigned amount)
+            : m_Name(name)
+            , m_Value(value)
+            , m_Amount(amount)
+        {}
+        std::string m_Name;
+        pcmn::Action::Value m_Value;
+        unsigned m_Amount;
+    };
+
+	std::vector<ActionDesc> actions;
 	while (data < end)
 	{
 		data += 0x14;
@@ -420,7 +432,7 @@ void BeforePreflopActions::Process(const dasm::WindowMessage& message, ITable& t
 			continue;
 
 		if (actionValue != pcmn::Action::Unknown)
-			actions.push_back(ITable::ActionDesc(name, actionValue, amount));
+			actions.push_back(ActionDesc(name, actionValue, amount));
 
 		players.push_back(Player(name, 0));
 	
@@ -464,7 +476,7 @@ void BeforePreflopActions::Process(const dasm::WindowMessage& message, ITable& t
 
 	table.PlayersInfo(players);
 
-	for (const ITable::ActionDesc& action : actions)
+	for (const ActionDesc& action : actions)
 	{
 		LOG_TRACE("Player: '%s', action: '%p', amount: '%s'") % action.m_Name % Action::ToString(action.m_Value) % action.m_Amount;
 		table.PlayerAction(action.m_Name, action.m_Value, action.m_Amount);

@@ -27,11 +27,12 @@ namespace pcmn
 #undef CASE
 	}
 
-	bool Action::IsActive(Value value)
+	bool Action::IsUseful(Value value)
 	{
 		switch (value)
 		{
-			case Check:
+            case Fold:
+            case Check:
 			case Call:
 			case Bet:
 			case Raise:

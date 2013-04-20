@@ -18,7 +18,6 @@ struct TableContext
 			std::string m_Name;
 			unsigned int m_Index; // row id from sqlite 
 			std::vector<float> m_Percents; // player percents on different streets
-			unsigned m_TotalBet;
 		};
 
 		struct Action
@@ -49,8 +48,6 @@ struct TableContext
 	TableContext()
 		: m_MaxBet(0)
 		, m_Pot(0)
-		, m_LastAction()
-		, m_LastAmount(0)
 		, m_BigBlind(0)
 	{
 
@@ -58,8 +55,6 @@ struct TableContext
 
 	unsigned m_MaxBet;
 	unsigned m_Pot;
-	Action::Value m_LastAction;
-	unsigned m_LastAmount;
 	unsigned m_BigBlind;
 	Data m_Data;
 };
