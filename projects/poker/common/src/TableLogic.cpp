@@ -4,6 +4,8 @@
 #include "Evaluator.h"
 #include "TableContext.h"
 
+#include <boost/assign/list_of.hpp>
+
 namespace pcmn
 {
 const unsigned CURRENT_MODULE_ID = Modules::TableLogic;
@@ -194,6 +196,9 @@ void TableLogic::ParsePlayers(TableContext& context, const net::Packet& packet)
         pcmn::TableContext::Data::Player p;
         p.m_Name = player.name();
 
+        m_Sequence.push_back(player.name());
+        CHECK(m_Players.insert(std::make_pair(player.name(), Player(player.name(), player.stack()))).second, "Player name must be unique", player.name());
+
         if (player.cards_size() == 2)
         {
             pcmn::TableContext::Data::Hand hand;
@@ -204,11 +209,10 @@ void TableLogic::ParsePlayers(TableContext& context, const net::Packet& packet)
             context.m_Data.m_Hands.push_back(hand);
 
             p.m_Percents = GetPlayerEquities(player.cards(0), player.cards(1), packet, context);
+            GetPlayer(p.m_Name).Cards(boost::assign::list_of(Card().FromEvalFormat(player.cards(0)))(Card().FromEvalFormat(player.cards(1))));
         }
 
         context.m_Data.m_Players.push_back(p);
-        m_Sequence.push_back(player.name());
-        CHECK(m_Players.insert(std::make_pair(player.name(), Player(player.name(), player.stack()))).second, "Player name must be unique", player.name());
     }
 
     m_Button = context.m_Data.m_Players.at(packet.info().button()).m_Name;
@@ -347,6 +351,8 @@ void TableLogic::Parse(const net::Packet& packet)
                     context.m_MaxBet = amount;
             }
         }
+
+        context.m_Pot = m_Pot;
 
         Player::Queue activePlayers;
         GetActivePlayers(activePlayers);
