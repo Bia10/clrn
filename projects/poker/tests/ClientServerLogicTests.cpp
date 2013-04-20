@@ -7,7 +7,6 @@
 #include "IConnection.h"
 #include "../serverlib/IStatistics.h"
 #include "../serverlib/DecisionMaker.h"
-#include "../serverlib/Parser.h"
 #include "../serverlib/Statistics.h"
 #include "../neuro/DatabaseReader.h"
 #include "Evaluator.h"
@@ -73,6 +72,19 @@ class TestClient : public net::IConnection
 
 };
 
+class FakeDecisionMaker : public pcmn::ITableLogicCallback
+{
+    virtual void SendRequest(const net::Packet& packet, bool statistics) override
+    {
+        throw std::exception("The method or operation is not implemented.");
+    }
+
+    virtual void MakeDecision(const Player& player, const Player::Queue& activePlayers, const TableContext& context, const Player::Position::Value position) override
+    {
+    }
+
+};
+
 class TestServer : public net::IConnection
 {
 public:
@@ -85,13 +97,17 @@ public:
 
 	virtual void Send(const google::protobuf::Message& message) 
 	{
-		TestClient client;
-		srv::DecisionMaker decisionMaker(m_Log, m_Evaluator, m_Statistics, m_Network, client);
+        FakeDecisionMaker maker;
+        TableLogic logic(m_Log, maker, m_Evaluator);
+        logic.Parse(static_cast<const net::Packet&>(message));
 
-		srv::Parser parser(m_Log, m_Evaluator, dynamic_cast<const net::Packet&>(message), decisionMaker);
-
-		if (parser.Parse())  // write statistics, game completed
-			m_Statistics.Write(parser.GetResult());
+// 		TestClient client;
+// 		srv::DecisionMaker decisionMaker(m_Log, m_Evaluator, m_Statistics, m_Network, client);
+// 
+// 		srv::Parser parser(m_Log, m_Evaluator, dynamic_cast<const net::Packet&>(message), decisionMaker);
+// 
+// 		if (parser.Parse())  // write statistics, game completed
+// 			m_Statistics.Write(parser.GetResult());
 
 		static int counter = 0;
 		std::cout << "Requests: " << counter++ << std::endl;
@@ -163,7 +179,7 @@ void ParseData(const std::string& data, ITable& table)
 				const std::string& name = (*it)[1];
 				const unsigned stack = boost::lexical_cast<unsigned>((*it)[2]);
 
-				players.push_back(boost::make_shared<Player>(name, stack));
+				players.push_back(Player(name, stack));
 				++it;
 			}
 		}
@@ -248,6 +264,8 @@ void RunTest()
     boost::filesystem::directory_iterator it("../../../poker/logs/");
     boost::filesystem::directory_iterator end;
 
+    pcmn::Evaluator evaluator;
+
     for (; it != end; ++it)
     {
         const std::string full = boost::filesystem::system_complete(it->path()).string();
@@ -266,7 +284,7 @@ void RunTest()
         Log log;
         net::IConnection::Ptr connection(new TestServer());
 
-        ps::Table table(log, NULL, connection);
+        ps::Table table(log, NULL, connection, evaluator);
         ParseData(content, table);
     }
 }

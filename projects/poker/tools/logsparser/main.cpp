@@ -28,7 +28,7 @@ void Process(const std::string& input, std::ostream& output)
 
 			while (it != end)
 			{
-				output << "\t(boost::make_shared<Player>(\"" << (*it)[1] << "\", " << (*it)[2] << "))" << std::endl;
+				output << "\t(Player(\"" << (*it)[1] << "\", " << (*it)[2] << "))" << std::endl;
 				++it;
 			}
 		}

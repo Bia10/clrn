@@ -10,7 +10,6 @@
 #include <sstream>
 #include <iomanip>
 
-#include <boost/make_shared.hpp>
 #include <boost/assign.hpp>
 
 using namespace pcmn;
@@ -144,7 +143,7 @@ void ParsePlayers(const dasm::WindowMessage& message, pcmn::Player::List& player
 
 		const unsigned amount = parser.GetInt(1);
 
-		players.push_back(boost::make_shared<Player>(name, amount));
+		players.push_back(Player(name, amount));
 	}
 }
 
@@ -233,7 +232,7 @@ void PlayerAction::Process(const dasm::WindowMessage& message, ITable& table) co
 		const int stack = _byteswap_ulong(*reinterpret_cast<const int*>(stackData + 1));	
 
 		LOG_TRACE("Player: '%s', stack: '%s'") % name % stack;
-		table.PlayersInfo(boost::assign::list_of(boost::make_shared<pcmn::Player>(name, stack)));
+		table.PlayersInfo(boost::assign::list_of(pcmn::Player(name, stack)));
 		break;
 	}
 
@@ -375,8 +374,8 @@ void CashGameInfo::Process(const dasm::WindowMessage& message, ITable& table) co
 
 		LOG_TRACE("Player: '%s', stack: '%s', country: '%s'") % name % stack % country;
 
-		const Player::Ptr player = boost::make_shared<Player>(name, stack);
-		player->Country(country);
+		Player player(name, stack);
+		player.Country(country);
 
 		players.push_back(player);
 	}
@@ -423,7 +422,7 @@ void BeforePreflopActions::Process(const dasm::WindowMessage& message, ITable& t
 		if (actionValue != pcmn::Action::Unknown)
 			actions.push_back(ITable::ActionDesc(name, actionValue, amount));
 
-		players.push_back(boost::make_shared<Player>(name, 0));
+		players.push_back(Player(name, 0));
 	
 		for (int i = 0 ; i < 3 && data < end; ++i)
 			data = std::find(data + 1, end, 0xff);
@@ -453,13 +452,13 @@ void BeforePreflopActions::Process(const dasm::WindowMessage& message, ITable& t
 		if (index == players.size())
 			break;
 
-		players[index++]->Stack(amount);
+		players[index++].Stack(amount);
 	}
 
 	const unsigned ante = ParseAnte(message);
 
-	for (const Player::Ptr& p : players)
-		LOG_TRACE("Player: '%s', stack: '%s'") % p->Name() % p->Stack();
+	for (const Player& p : players)
+		LOG_TRACE("Player: '%s', stack: '%s'") % p.Name() % p.Stack();
 
 	LOG_TRACE("Ante: '%s'") % ante;
 
@@ -487,8 +486,8 @@ void TableInfo::Process(const dasm::WindowMessage& message, ITable& table) const
 	pcmn::Player::List players;
 	ParsePlayers(message, players);
 
-	for (const Player::Ptr& p : players)
-		LOG_TRACE("Player: '%s', stack: '%s'") % p->Name() % p->Stack();
+	for (const Player& p : players)
+		LOG_TRACE("Player: '%s', stack: '%s'") % p.Name() % p.Stack();
 
 	table.PlayersInfo(players);
 
