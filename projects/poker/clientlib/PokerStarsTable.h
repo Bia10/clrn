@@ -20,9 +20,6 @@ namespace ps
 class Table : public ITable, public pcmn::ITableLogicCallback
 {
 	typedef cmn::functional::Factory<IMessage, std::size_t, cmn::functional::IgnoreErrorPolicy> Factory;
-	typedef std::vector<Actions> GameActions;
-	typedef std::map<std::string, pcmn::Card::List> Cards;
-	typedef std::map<std::string, bool> ActiveMap;
 public:
 	Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection, const pcmn::Evaluator& evaluator);
 
@@ -33,16 +30,12 @@ private:
 	virtual void BotCards(const pcmn::Card& first, const pcmn::Card& second) override;
 	virtual void PlayersInfo(const pcmn::Player::List& players) override;
 	virtual void PlayerCards(const std::string& name, const pcmn::Card::List& cards) override;
+   
     virtual void SendRequest(const net::Packet& packet, bool statistics) override;
     virtual void MakeDecision(const pcmn::Player& player, const pcmn::Player::Queue& activePlayers, const pcmn::TableContext& context, const pcmn::Player::Position::Value position) override;
+    virtual void WriteStatistics(pcmn::TableContext::Data& data) override;
 
 private:
-
-	//! On bot action
-	void OnBotAction();
-
-	//! Clear player bets
-	void SetPhase(const Phase::Value phase);
 
 	//! Close window
 	void CloseTableWindow();

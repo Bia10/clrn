@@ -24,6 +24,7 @@ TableLogic::TableLogic(ILog& logger, ITableLogicCallback& callback, const Evalua
     , m_Phase(Phase::Preflop)
     , m_Evaluator(evaluator)
     , m_SmallBlindAmount(0)
+    , m_Pot(0)
 {
 
 }
@@ -69,6 +70,8 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
             if (m_State == State::Server)
                 current.Stack(current.Stack() - difference);
 
+            m_Pot += difference;
+
             if (m_State != State::Uninited)
             {
                 // validate
@@ -103,6 +106,7 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
             break;
         }
     case pcmn::Action::Call: 
+        m_Pot += amount;
         current.State(Player::State::Called);
         current.Bet(current.Bet() + amount);
         current.TotalBet(current.TotalBet() + amount);
@@ -111,6 +115,7 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
        break;
     case pcmn::Action::SmallBlind:
     case pcmn::Action::BigBlind:
+        m_Pot += amount;
         current.Bet(current.Bet() + amount);
         current.TotalBet(current.TotalBet() + amount);
         if (m_State == State::Server)
@@ -237,6 +242,41 @@ void TableLogic::SetNextRoundData(const pcmn::Player::List& players)
     m_NextRoundData = players;
 }
 
+void TableLogic::GetActivePlayers(Player::Queue& players)
+{
+    for (const std::string& player : m_Sequence)
+    {
+        const Player& current = GetPlayer(player);
+        if (current.State() != Player::State::Folded)
+            UniqueAdd(players, current);
+    }
+}
+
+Player::Position::Value TableLogic::GetPlayerPosition(const Player::Queue& players, const Player& player)
+{
+    SCOPED_LOG(m_Log);
+
+    const Player::Queue::const_iterator it = std::find(players.begin(), players.end(), player);
+    CHECK(it != players.end(), "Failed to find player in list", player.Name());
+
+    const std::size_t playerIndex = std::distance(players.begin(), it);
+
+    pcmn::Player::Position::Value result = pcmn::Player::Position::Middle;
+
+    std::size_t step = players.size() / 3;
+    if (!step)
+        step = 1;
+
+    if (playerIndex >= players.size() - step)
+        result = pcmn::Player::Position::Later;
+    else
+    if (playerIndex <= step)
+        result = pcmn::Player::Position::Early;
+
+    LOG_TRACE("Players: [%s], index: [%s], step: [%s], result: [%s]") % players.size() % playerIndex % step % result;
+    return result;
+}
+
 void TableLogic::Parse(const net::Packet& packet)
 {
     TRY 
@@ -261,6 +301,8 @@ void TableLogic::Parse(const net::Packet& packet)
         // parse players and flop
         ParseFlopCards(context, packet);
         ParsePlayers(context, packet); 
+        m_Pot = 0;
+        context.m_BigBlind = m_SmallBlindAmount * 2;
 
         // simulate logic
         for (Phase::Value phase = Phase::Preflop ; phase < packet.phases_size(); phase = static_cast<Phase::Value>(phase + 1))
@@ -270,30 +312,61 @@ void TableLogic::Parse(const net::Packet& packet)
             for (int i = 0; i < packet.phases(phase).actions_size(); ++i)
             {
                 const Action::Value action = static_cast<Action::Value>(packet.phases(phase).actions(i).id());
+
+                // skip useless actions
+                if (!Action::IsUseful(action))
+                    continue;
+
+                const std::size_t playerIndex = static_cast<std::size_t>(packet.phases(phase).actions(i).player());
                 const unsigned amount = static_cast<unsigned>(packet.phases(phase).actions(i).amount());
-                const std::string& player = context.m_Data.m_Players.at(static_cast<std::size_t>(packet.phases(phase).actions(i).player())).m_Name;
+                const std::string& player = context.m_Data.m_Players.at(playerIndex).m_Name;
+
+                Player& current = GetPlayer(player);
+                Player::Queue activePlayers;
+                GetActivePlayers(activePlayers);
+                
+                const Player::Position::Value position = GetPlayerPosition(activePlayers, current);
 
                 PushAction(player, action, amount);
+
+                TableContext::Data::Action resultAction;
+                resultAction.m_Action = action;
+                resultAction.m_PlayerIndex = playerIndex;
+                resultAction.m_Street = phase;
+                resultAction.m_PotAmount = m_Pot ? static_cast<float>(amount) / m_Pot : 1;
+                resultAction.m_StackAmount = current.Stack() ? static_cast<float>(amount) / current.Stack() : 1;
+                resultAction.m_Position = static_cast<int>(position);
+
+                assert(resultAction.m_PotAmount >= 0);
+                assert(resultAction.m_StackAmount >= 0);
+
+                current.PushAction(phase, action, resultAction.m_PotAmount);
+                context.m_Data.m_Actions.push_back(resultAction);
+
+                if (context.m_MaxBet < amount)
+                    context.m_MaxBet = amount;
             }
         }
 
-        /*
-        TableContext::Data::Action resultAction;
-        resultAction.m_Action = context.m_LastAction;
-        resultAction.m_PlayerIndex = m_PlayersIndexes[current->Name()];
-        resultAction.m_Street = street;
-        resultAction.m_PotAmount = context.m_Pot ? static_cast<float>(context.m_LastAmount) / context.m_Pot : 1;
-        resultAction.m_StackAmount = current->Stack() ? static_cast<float>(context.m_LastAmount) / current->Stack() : 1;
-        resultAction.m_Position = static_cast<int>(position);
+        Player::Queue activePlayers;
+        GetActivePlayers(activePlayers);
 
-        assert(resultAction.m_PotAmount >= 0);
-        assert(resultAction.m_StackAmount >= 0);
+        const unsigned size = std::count_if(activePlayers.begin(), activePlayers.end(), [](const Player& player){ return player.Stack(); });
 
-        current->PushAction(street, context.m_LastAction, resultAction.m_PotAmount);
-        context.m_Data.m_Actions.push_back(resultAction);
+        if (!m_Queue.empty() && size > 1)
+        {
+            // need a decision
+            const Player& current = GetPlayer(m_Queue.front());
+            assert(current.Name() == "CLRN");
+            const Player::Position::Value position = GetPlayerPosition(activePlayers, current);
 
-        */
-
+            m_Callback.MakeDecision(current, activePlayers, context, position);
+        }
+        else
+        {
+            // write statistics here
+            m_Callback.WriteStatistics(context.m_Data);
+        }
     }
     CATCH_PASS_EXCEPTIONS("Failed to parse packet")
 }
@@ -469,7 +542,6 @@ void TableLogic::SetPhase(Phase::Value phase)
 
 Player& TableLogic::GetPlayer(const std::string& name)
 {
-    //CHECK(m_Players.count(name), "Failed to find player by name", name, m_State);
     if (!m_Players.count(name))
         m_Players.insert(std::make_pair(name, Player(name, 1500)));
     return m_Players[name];
@@ -626,6 +698,7 @@ void TableLogic::ResetPhase(const std::string& smallBlind)
         SetPlayerStack(player.Name(), player.Stack());
 
     m_NextRoundData.clear();
+    m_Pot = 0;
 
     SetPhase(Phase::Preflop);
 }

@@ -33,6 +33,9 @@ public:
 		const Player::Position::Value position
 	) = 0;
 
+    //! Write statistics to db
+    virtual void WriteStatistics(TableContext::Data& data) = 0;
+
 };
 
 //! Table logic implementation
@@ -152,6 +155,12 @@ private:
     //! Get player equity
     std::vector<float> GetPlayerEquities(const int first, const int second, const net::Packet& packet, TableContext& context);
 
+    //! Get active players
+    void GetActivePlayers(Player::Queue& players);
+
+    //! Get player position
+    Player::Position::Value GetPlayerPosition(const Player::Queue& players, const Player& player);
+
 private:
 
     //! Logger reference
@@ -192,6 +201,9 @@ private:
 
     //! Small blind amount
     unsigned m_SmallBlindAmount;
+
+    //! Pot size
+    unsigned m_Pot;
 };
 
 }

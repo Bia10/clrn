@@ -177,13 +177,11 @@ void Table::PlayersInfo(const pcmn::Player::List& players)
         m_Logic.SetPlayerStack(player.Name(), player.Stack());
 }
 
-
 void Table::PlayerCards(const std::string& name, const pcmn::Card::List& cards)
 {
     SCOPED_LOG(m_Log);
 
     m_Logic.SetPlayerCards(name, cards);
-	//m_PlayerCards[name] = cards;
 }
 
 void Table::CloseTableWindow()
@@ -307,9 +305,13 @@ void Table::MakeDecision(const pcmn::Player& player, const pcmn::Player::Queue& 
     throw std::exception("The method or operation is not implemented.");
 }
 
+void Table::WriteStatistics(pcmn::TableContext::Data& data)
+{
+    throw std::exception("The method or operation is not implemented.");
+}
+
 } // namespace ps
 } // namespace clnt
-
 
 
 

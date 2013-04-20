@@ -27,7 +27,7 @@ public:
 	(
 		ILog& logger, 
 		const pcmn::Evaluator& evaluator, 
-		const IStatistics& stats, 
+		IStatistics& stats, 
 		neuro::INetwork<float>& net,
 		net::IConnection& connection
 	);
@@ -61,6 +61,8 @@ private:
 
     virtual void SendRequest(const net::Packet& packet, bool statistics) override;
 
+    virtual void WriteStatistics(pcmn::TableContext::Data& data) override;
+
 private:
 
 	//! Logger
@@ -70,7 +72,7 @@ private:
 	const pcmn::Evaluator& m_Evaluator;
 
 	//! Statistics
-	const srv::IStatistics& m_Stat;
+	srv::IStatistics& m_Stat;
 
 	//! Neuro network
 	neuro::INetwork<float>& m_Net;

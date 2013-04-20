@@ -8,6 +8,7 @@
 #include "DecisionMaker.h"
 #include "Evaluator.h"
 #include "../neuro/DatabaseReader.h"
+#include "TableLogic.h"
 
 #include <iostream>
 #include <atomic>
@@ -61,11 +62,8 @@ private:
 			LOG_DEBUG("Request: [%s]") % message.DebugString();
 
 			DecisionMaker decisionMaker(m_Log, m_Evaluator, m_Statistics, m_Network, *connection);
-
-// 			Parser parser(m_Log, m_Evaluator, dynamic_cast<const net::Packet&>(message), decisionMaker);
-// 
-// 			if (parser.Parse())  // write statistics, game completed
-// 				m_Statistics.Write(parser.GetResult());
+            pcmn::TableLogic logic(m_Log, decisionMaker, m_Evaluator);
+            logic.Parse(static_cast<const net::Packet&>(message));
 
 			LOG_WARNING("Requests processed: [%s]") % m_RequestsCount++;
 		}

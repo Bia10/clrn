@@ -21,7 +21,7 @@ DecisionMaker::DecisionMaker
 (
 	ILog& logger, 
 	const pcmn::Evaluator& evaluator, 
-	const srv::IStatistics& stats, 
+	srv::IStatistics& stats, 
 	neuro::INetwork<float>& net,
 	net::IConnection& connection
 ) 
@@ -37,6 +37,11 @@ DecisionMaker::DecisionMaker
 void DecisionMaker::SendRequest(const net::Packet& /*packet*/, bool /*statistics*/)
 {
     throw std::exception("The method or operation is not implemented.");
+}
+
+void DecisionMaker::WriteStatistics(pcmn::TableContext::Data& data)
+{
+    m_Stat.Write(data);
 }
 
 void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player::Queue& activePlayers, const pcmn::TableContext& context, const pcmn::Player::Position::Value position)
