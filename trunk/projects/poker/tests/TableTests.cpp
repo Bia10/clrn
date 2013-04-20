@@ -18,7 +18,6 @@
 #include <boost/random/uniform_int_distribution.hpp>
 #include <boost/random/random_device.hpp>
 #include <boost/lexical_cast.hpp>
-#include <boost/make_shared.hpp>
 #include <boost/thread.hpp>
 
 using namespace pcmn;
@@ -60,7 +59,8 @@ public:
 	{
 		//m_Log.Open("tests.log", Modules::Table, ILog::Level::Debug);
 		m_Sender = m_Server->Connect("127.0.0.1", cfg::DEFAULT_PORT);
-		m_Table.reset(new ps::Table(m_Log, NULL, m_Sender));
+        const static pcmn::Evaluator evaluator;
+		m_Table.reset(new ps::Table(m_Log, NULL, m_Sender, evaluator));
 		memset(m_DeadCards, 0, _countof(m_DeadCards));
 
 		Player::ThisPlayer().Name("CLRN");
@@ -68,16 +68,16 @@ public:
 		Evaluator ev;
 		for (int i = 0 ; i < ::std::tr1::get<0>(GetParam()); ++i)
 		{
-			const Player::Ptr player = boost::make_shared<Player>(std::string("Player_") + boost::lexical_cast<std::string>(i), 10000000);
+			Player player(std::string("Player_") + boost::lexical_cast<std::string>(i), 10000000);
 			 
 			Card::List cards(2);
 			cards[0].FromEvalFormat(ev.GetRandomCard(m_DeadCards));
 			cards[1].FromEvalFormat(ev.GetRandomCard(m_DeadCards));
 
-			player->Cards(cards);
+			player.Cards(cards);
 
 			m_Players.push_back(player);
-			m_Table->PlayerCards(player->Name(), player->Cards());
+			m_Table->PlayerCards(player.Name(), player.Cards());
 		}
 
 		m_Moves.resize(m_Players.size());
@@ -92,8 +92,8 @@ public:
 
 	void ClearBets()
 	{
-		for (const Player::Ptr& p : m_Players)
-			p->Bet(0);
+		for (Player& p : m_Players)
+			p.Bet(0);
 
 		m_MaxBet = 0;
 	}
@@ -118,7 +118,7 @@ public:
 			if (m_Moves[playerIndex] == Player::State::Waiting)
 				break;
 
-			Player* player = m_Players[playerIndex].get();
+			Player* player = &m_Players[playerIndex];
 
 			Action::Value action = Action::Unknown;
 			std::size_t amount = 0;
@@ -190,13 +190,13 @@ public:
 	void Preflop()
 	{
 		m_Table->PlayersInfo(m_Players);
-		Player::Ptr player = m_Players[m_Button];
-		player->Bet(g_SmallBlind);
+		Player& player = m_Players[m_Button];
+		player.Bet(g_SmallBlind);
 
-		m_Table->PlayerAction(player->Name(), Action::SmallBlind, g_SmallBlind);
+		m_Table->PlayerAction(player.Name(), Action::SmallBlind, g_SmallBlind);
 
 		player = m_Players[m_Button + 1];
-		player->Bet(g_SmallBlind * 2);
+		player.Bet(g_SmallBlind * 2);
 
 		m_MaxBet = g_SmallBlind * 2;
 		GameLoop(m_Button + 2);
@@ -243,15 +243,15 @@ public:
 	{
 		{
 			m_Players = boost::assign::list_of
-				(boost::make_shared<Player>("deathfight58", 416))
-				(boost::make_shared<Player>("batispedro", 476))
-				(boost::make_shared<Player>("BOIRA52", 476))
-				(boost::make_shared<Player>("lili544", 496))
-				(boost::make_shared<Player>("Mr.Speedy66", 634))
-				(boost::make_shared<Player>("gogo7211", 496))
-				(boost::make_shared<Player>("Robertilio", 496))
-				(boost::make_shared<Player>("isaac1111", 496))
-				(boost::make_shared<Player>("521710", 496))
+				(Player("deathfight58", 416))
+				(Player("batispedro", 476))
+				(Player("BOIRA52", 476))
+				(Player("lili544", 496))
+				(Player("Mr.Speedy66", 634))
+				(Player("gogo7211", 496))
+				(Player("Robertilio", 496))
+				(Player("isaac1111", 496))
+				(Player("521710", 496))
 				;
 			m_Table->PlayersInfo(m_Players);
 
@@ -306,14 +306,14 @@ public:
 		
 		{
 			m_Players = boost::assign::list_of
-				(boost::make_shared<Player>("ttommi", 488))
-				(boost::make_shared<Player>("tonycry75", 970))
-				(boost::make_shared<Player>("Shaggs1981", 398))
-				(boost::make_shared<Player>("sevenup_king", 308))
-				(boost::make_shared<Player>("PaulV39", 378))
-				(boost::make_shared<Player>("TRUKHANOFF", 576))
-				(boost::make_shared<Player>("LE CHACAL53", 692))
-				(boost::make_shared<Player>("fialka03", 666));
+				(Player("ttommi", 488))
+				(Player("tonycry75", 970))
+				(Player("Shaggs1981", 398))
+				(Player("sevenup_king", 308))
+				(Player("PaulV39", 378))
+				(Player("TRUKHANOFF", 576))
+				(Player("LE CHACAL53", 692))
+				(Player("fialka03", 666));
 
 
 			m_Table->PlayersInfo(m_Players);
@@ -331,14 +331,14 @@ public:
 
 		{
 			m_Players = boost::assign::list_of
-				(boost::make_shared<Player>("ttommi", 488))
-				(boost::make_shared<Player>("tonycry75", 970))
-				(boost::make_shared<Player>("Shaggs1981", 398))
-				(boost::make_shared<Player>("sevenup_king", 308))
-				(boost::make_shared<Player>(Player::ThisPlayer().Name(), 378))
-				(boost::make_shared<Player>("TRUKHANOFF", 576))
-				(boost::make_shared<Player>("LE CHACAL53", 692))
-				(boost::make_shared<Player>("fialka03", 666));
+				(Player("ttommi", 488))
+				(Player("tonycry75", 970))
+				(Player("Shaggs1981", 398))
+				(Player("sevenup_king", 308))
+				(Player(Player::ThisPlayer().Name(), 378))
+				(Player("TRUKHANOFF", 576))
+				(Player("LE CHACAL53", 692))
+				(Player("fialka03", 666));
 
 
 			m_Table->PlayersInfo(m_Players);
@@ -364,13 +364,13 @@ public:
 
 		{
 			m_Players = boost::assign::list_of
-				(boost::make_shared<Player>("loboda1968", 40))
-				(boost::make_shared<Player>("sevenup_king", 524))
-				(boost::make_shared<Player>("anatoliw", 1270))
-				(boost::make_shared<Player>("pittipopo", 441))
-				(boost::make_shared<Player>("LECHACAL53", 190))
-				(boost::make_shared<Player>("Kuksman", 1255))
-				(boost::make_shared<Player>("=Foksimus1=", 752))
+				(Player("loboda1968", 40))
+				(Player("sevenup_king", 524))
+				(Player("anatoliw", 1270))
+				(Player("pittipopo", 441))
+				(Player("LECHACAL53", 190))
+				(Player("Kuksman", 1255))
+				(Player("=Foksimus1=", 752))
 				;
 			m_Table->PlayersInfo(m_Players);
 

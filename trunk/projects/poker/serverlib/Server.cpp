@@ -4,7 +4,6 @@
 #include "Exception.h"
 #include "UDPHost.h"
 #include "Modules.h"
-#include "Parser.h"
 #include "Statistics.h"
 #include "DecisionMaker.h"
 #include "Evaluator.h"
@@ -63,10 +62,10 @@ private:
 
 			DecisionMaker decisionMaker(m_Log, m_Evaluator, m_Statistics, m_Network, *connection);
 
-			Parser parser(m_Log, m_Evaluator, dynamic_cast<const net::Packet&>(message), decisionMaker);
-
-			if (parser.Parse())  // write statistics, game completed
-				m_Statistics.Write(parser.GetResult());
+// 			Parser parser(m_Log, m_Evaluator, dynamic_cast<const net::Packet&>(message), decisionMaker);
+// 
+// 			if (parser.Parse())  // write statistics, game completed
+// 				m_Statistics.Write(parser.GetResult());
 
 			LOG_WARNING("Requests processed: [%s]") % m_RequestsCount++;
 		}

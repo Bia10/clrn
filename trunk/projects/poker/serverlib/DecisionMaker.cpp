@@ -34,7 +34,12 @@ DecisionMaker::DecisionMaker
 	 SCOPED_LOG(m_Log);
 }
 
-void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& activePlayers, const pcmn::TableContext& context, const pcmn::Player::Position::Value position)
+void DecisionMaker::SendRequest(const net::Packet& /*packet*/, bool /*statistics*/)
+{
+    throw std::exception("The method or operation is not implemented.");
+}
+
+void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player::Queue& activePlayers, const pcmn::TableContext& context, const pcmn::Player::Position::Value position)
 {
 	SCOPED_LOG(m_Log);
 
@@ -183,7 +188,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const PlayerQueue& 
 	CATCH_PASS_EXCEPTIONS("Failed to make a dicision");
 }	
 
-float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::TableContext& context, const PlayerQueue& activePlayers) const
+float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::TableContext& context, const pcmn::Player::Queue& activePlayers) const
 {
 	SCOPED_LOG(m_Log);
 
@@ -192,17 +197,17 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
 	// prepare request
 	IStatistics::PlayerInfo::List ranges;
 	ranges.reserve(activePlayers.size());
-	for (const pcmn::Player::Ptr& player : activePlayers)
+	for (const pcmn::Player& player : activePlayers)
 	{
-		pcmn::Player::Actions actions = player->GetActions();
-		if (actions.empty() || player->Name() == bot.Name())
+		pcmn::Player::Actions actions = player.GetActions();
+		if (actions.empty() || player.Name() == bot.Name())
 			continue;
 
 		ranges.resize(ranges.size() + 1);
 		IStatistics::PlayerInfo& current = ranges.back();
 
 		// player name
-		current.m_Name = player->Name();
+		current.m_Name = player.Name();
 
 		// find max action
 		std::sort
@@ -280,17 +285,17 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
 	return percents / 100;
 }
 
-pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const PlayerQueue& activePlayers, float botRate) const
+pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn::Player::Queue& activePlayers, float botRate) const
 {
 	SCOPED_LOG(m_Log);
 
 	// prepare request
 	IStatistics::PlayerInfo::List equities;
 	equities.reserve(activePlayers.size());
-	for (const pcmn::Player::Ptr& player : activePlayers)
+	for (const pcmn::Player& player : activePlayers)
 	{
-		pcmn::Player::Actions actions = player->GetActions();
-		if (actions.empty() || player->Name() == bot.Name())
+		pcmn::Player::Actions actions = player.GetActions();
+		if (actions.empty() || player.Name() == bot.Name())
 			continue;
 
 		// only aggressive actions if we have much players
@@ -314,7 +319,7 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const Play
 		IStatistics::PlayerInfo& current = equities.back();
 
 		// player name
-		current.m_Name = player->Name();
+		current.m_Name = player.Name();
 		
 		// copy all actions
 		for (const pcmn::Player::ActionDesc& action : actions)
@@ -359,18 +364,18 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const Play
 	return pcmn::Danger::Low;
 }
 
-pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const pcmn::Player& player, const PlayerQueue& activePlayers) const
+pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const pcmn::Player& player, const pcmn::Player::Queue& activePlayers) const
 {
 	SCOPED_LOG(m_Log);
 
 	// get any player
-	const PlayerQueue::const_iterator it = std::find_if
+	const pcmn::Player::Queue::const_iterator it = std::find_if
 	(
 		activePlayers.begin(),
 		activePlayers.end(),
-		[&](const pcmn::Player::Ptr& current)
+		[&](const pcmn::Player& current)
 		{
-			return current->Name() != player.Name();
+			return current.Name() != player.Name();
 		}
 	);
 
@@ -381,7 +386,7 @@ pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const pcmn::Player&
 	int checks = 0;
 	int calls = 0;
 	int raises = 0;
-	m_Stat.GetLastActions(player.Name(), (*it)->Name(), checks, calls, raises);
+	m_Stat.GetLastActions(player.Name(), it->Name(), checks, calls, raises);
 
 	if (checks + calls + raises < 20)
 		return pcmn::Player::Style::Normal;
@@ -413,33 +418,33 @@ pcmn::Player::Style::Value DecisionMaker::GetBotStyle(const pcmn::Player& bot) c
 	return (calls > 1) ? pcmn::Player::Style::Normal : pcmn::Player::Style::Passive;
 }
 
-unsigned DecisionMaker::GetMaxStack(const PlayerQueue& activePlayers) const
+unsigned DecisionMaker::GetMaxStack(const  pcmn::Player::Queue& activePlayers) const
 {
 	SCOPED_LOG(m_Log);
 	unsigned max = 0;
 
-	for (const pcmn::Player::Ptr& player : activePlayers)
+	for (const pcmn::Player& player : activePlayers)
 	{
-		if (player->Stack() > max)
-			max = player->Stack();
+		if (player.Stack() > max)
+			max = player.Stack();
 	}
 	return max;
 }
 
-const pcmn::Player& DecisionMaker::GetPlayer(const PlayerQueue& activePlayers, const std::string& name) const
+const pcmn::Player& DecisionMaker::GetPlayer(const  pcmn::Player::Queue& activePlayers, const std::string& name) const
 {
-	const PlayerQueue::const_iterator it = std::find_if
+	const  pcmn::Player::Queue::const_iterator it = std::find_if
 	(
 		activePlayers.begin(),
 		activePlayers.end(),
-		[&](const pcmn::Player::Ptr& player)
+		[&](const pcmn::Player& player)
 		{
-			return player->Name() == name;
+			return player.Name() == name;
 		}
 	);
 
 	CHECK(activePlayers.end() != it, "Failed to find player by name", name);
-	return **it;
+	return *it;
 }
 
 }

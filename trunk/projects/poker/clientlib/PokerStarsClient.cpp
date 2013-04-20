@@ -45,8 +45,9 @@ void Client::HandleMessage(HWND hWnd, UINT Msg, WPARAM /*wParam*/, LPARAM lParam
 		Tables::const_iterator it = m_Tables.find(hWnd);
 		if (it == m_Tables.end())
 		{
+            const static pcmn::Evaluator evaluator;
 			const net::IConnection::Ptr connection = m_Server->Connect("127.0.0.1", cfg::DEFAULT_PORT);
-			it = m_Tables.insert(std::make_pair(hWnd, ITable::Ptr(new ps::Table(m_Log, hWnd, connection)))).first;
+			it = m_Tables.insert(std::make_pair(hWnd, ITable::Ptr(new ps::Table(m_Log, hWnd, connection, evaluator)))).first;
 		}
 	
 		lock.unlock();

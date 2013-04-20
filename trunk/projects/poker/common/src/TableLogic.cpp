@@ -2,18 +2,28 @@
 #include "Modules.h"
 #include "Exception.h"
 #include "Evaluator.h"
-
-#include <boost/make_shared.hpp>
+#include "TableContext.h"
 
 namespace pcmn
 {
 const unsigned CURRENT_MODULE_ID = Modules::TableLogic;
 
-TableLogic::TableLogic(ILog& logger, ITableLogicCallback& callback)
+//! Unique add
+template<typename C, typename V>
+void UniqueAdd(C& c, const V& value)
+{
+    const typename C::const_iterator it = std::find(c.begin(), c.end(), value);
+    if (it == c.end())
+        c.push_back(value);
+}
+
+TableLogic::TableLogic(ILog& logger, ITableLogicCallback& callback, const Evaluator& evaluator)
     : m_Log(logger)
     , m_Callback(callback)
     , m_State(State::Uninited)
     , m_Phase(Phase::Preflop)
+    , m_Evaluator(evaluator)
+    , m_SmallBlindAmount(0)
 {
 
 }
@@ -24,7 +34,10 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
     CHECK(m_Phase <= Phase::River, m_Phase, name, action, amount);
 
     if (action == Action::SmallBlind)
+    {
+        m_SmallBlindAmount = amount;
         ResetPhase(name);
+    }
 
     if 
     (
@@ -53,6 +66,8 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
             const unsigned difference = amount - current.Bet();
             current.Bet(current.Bet() + difference);
             current.TotalBet(current.TotalBet() + difference);
+            if (m_State == State::Server)
+                current.Stack(current.Stack() - difference);
 
             if (m_State != State::Uninited)
             {
@@ -75,7 +90,7 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
                     {
                         Player& currentPlayer = GetPlayer(m_Sequence[i]);
 
-                        if (currentPlayer.State() == Player::State::Called)
+                        if (currentPlayer.State() == Player::State::Called && currentPlayer.Stack())
                         {
                             currentPlayer.State(Player::State::Waiting);
                             m_Queue.push_back(currentPlayer.Name());
@@ -84,20 +99,22 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
                 }
             }
 
-            if (current.State() != Player::State::AllIn)
-                current.State(Player::State::Called);
+            current.State(Player::State::Called);
             break;
         }
     case pcmn::Action::Call: 
-        if (current.State() != Player::State::AllIn)
-            current.State(Player::State::Called);
+        current.State(Player::State::Called);
         current.Bet(current.Bet() + amount);
         current.TotalBet(current.TotalBet() + amount);
-        break;
+        if (m_State == State::Server)
+            current.Stack(current.Stack() - amount);
+       break;
     case pcmn::Action::SmallBlind:
     case pcmn::Action::BigBlind:
         current.Bet(current.Bet() + amount);
         current.TotalBet(current.TotalBet() + amount);
+        if (m_State == State::Server)
+            current.Stack(current.Stack() - amount);
         break;
     case pcmn::Action::Check:
         current.State(Player::State::Called);
@@ -130,37 +147,231 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
         const std::string& botName = Player::ThisPlayer().Name();
         CHECK(!botName.empty(), "Bot name not inited, can't get next");
         if (m_Queue.front() == botName)
-            SendRequest();
+            SendRequest(false);
     }
 }
 
 void TableLogic::SetPlayerStack(const std::string& name, unsigned stack)
 {
     if (!m_Players.count(name))
-        m_Players[name] = boost::make_shared<pcmn::Player>(name, stack);
+        m_Players[name] = pcmn::Player(name, stack);
     else
         GetPlayer(name).Stack(stack);
-
-    if (!stack)
-        GetPlayer(name).State(Player::State::AllIn);
 }
 
 void TableLogic::SetPlayerCards(const std::string& name, const Card::List& cards)
 {
     if (!m_Players.count(name))
-        m_Players[name] = boost::make_shared<pcmn::Player>(name, 0);
+        m_Players[name] = pcmn::Player(name, 0);
 
     GetPlayer(name).Cards(cards);
 }
 
-void TableLogic::Parse(const net::Packet& packet)
+void TableLogic::ParseFlopCards(TableContext& context, const net::Packet& packet)
 {
+    SCOPED_LOG(m_Log);
 
+    for (int i = 0 ; i < packet.info().cards_size(); ++i)
+    {
+        context.m_Data.m_Flop.push_back(packet.info().cards(i));
+        m_Flop.push_back(Card().FromEvalFormat(packet.info().cards(i)));
+    }
 }
 
-void TableLogic::SendRequest()
+void TableLogic::ParsePlayers(TableContext& context, const net::Packet& packet)
 {
+    SCOPED_LOG(m_Log);
 
+    for (int i = 0 ; i < packet.info().players_size(); ++i)
+    {
+        const net::Packet::Player& player = packet.info().players(i);
+
+        pcmn::TableContext::Data::Player p;
+        p.m_Name = player.name();
+
+        if (player.cards_size() == 2)
+        {
+            pcmn::TableContext::Data::Hand hand;
+            hand.m_Cards.push_back(player.cards(0));
+            hand.m_Cards.push_back(player.cards(1));
+            hand.m_PlayerIndex = i;
+
+            context.m_Data.m_Hands.push_back(hand);
+
+            p.m_Percents = GetPlayerEquities(player.cards(0), player.cards(1), packet, context);
+        }
+
+        context.m_Data.m_Players.push_back(p);
+        m_Sequence.push_back(player.name());
+        CHECK(m_Players.insert(std::make_pair(player.name(), Player(player.name(), player.stack()))).second, "Player name must be unique", player.name());
+    }
+
+    m_Button = context.m_Data.m_Players.at(packet.info().button()).m_Name;
+}
+
+std::vector<float> TableLogic::GetPlayerEquities(const int first, const int second, const net::Packet& packet, TableContext& context)
+{
+    SCOPED_LOG(m_Log);
+
+    std::vector<float> result;
+    std::vector<int> flop;
+    for (int i = 0 ; i < packet.phases_size(); ++i)
+    {
+        const net::Packet::Phase& phase = packet.phases(i);
+
+        const std::vector<short> ranges(cfg::MAX_EQUITY_PLAYERS, cfg::CARD_DECK_SIZE);
+
+        if (i == 1 && context.m_Data.m_Flop.size() >= 3)
+            std::copy(context.m_Data.m_Flop.begin(), context.m_Data.m_Flop.begin() + 3, std::back_inserter(flop));
+        else
+        if (i && static_cast<int>(context.m_Data.m_Flop.size()) >= 2 + i)
+            flop.push_back(context.m_Data.m_Flop[1 + i]);
+
+        result.push_back(m_Evaluator.GetEquity(first, second, flop, ranges));
+    }
+    return result;
+}
+
+void TableLogic::SetNextRoundData(const pcmn::Player::List& players)
+{
+    m_NextRoundData = players;
+}
+
+void TableLogic::Parse(const net::Packet& packet)
+{
+    TRY 
+    {
+        m_State = State::Server;
+
+        TableContext context;
+
+        // get small blind amount
+        const auto it =
+        std::find_if
+        (
+            packet.phases(0).actions().begin(), 
+            packet.phases(0).actions().end(),
+            [](const net::Packet::Action& actionDsc) { return actionDsc.id() == Action::SmallBlind; }
+        );
+
+        m_SmallBlindAmount = 0;
+        if (it != packet.phases(0).actions().end())
+            m_SmallBlindAmount = it->amount();
+
+        // parse players and flop
+        ParseFlopCards(context, packet);
+        ParsePlayers(context, packet); 
+
+        // simulate logic
+        for (Phase::Value phase = Phase::Preflop ; phase < packet.phases_size(); phase = static_cast<Phase::Value>(phase + 1))
+        {
+            SetPhase(phase);
+
+            for (int i = 0; i < packet.phases(phase).actions_size(); ++i)
+            {
+                const Action::Value action = static_cast<Action::Value>(packet.phases(phase).actions(i).id());
+                const unsigned amount = static_cast<unsigned>(packet.phases(phase).actions(i).amount());
+                const std::string& player = context.m_Data.m_Players.at(static_cast<std::size_t>(packet.phases(phase).actions(i).player())).m_Name;
+
+                PushAction(player, action, amount);
+            }
+        }
+
+        /*
+        TableContext::Data::Action resultAction;
+        resultAction.m_Action = context.m_LastAction;
+        resultAction.m_PlayerIndex = m_PlayersIndexes[current->Name()];
+        resultAction.m_Street = street;
+        resultAction.m_PotAmount = context.m_Pot ? static_cast<float>(context.m_LastAmount) / context.m_Pot : 1;
+        resultAction.m_StackAmount = current->Stack() ? static_cast<float>(context.m_LastAmount) / current->Stack() : 1;
+        resultAction.m_Position = static_cast<int>(position);
+
+        assert(resultAction.m_PotAmount >= 0);
+        assert(resultAction.m_StackAmount >= 0);
+
+        current->PushAction(street, context.m_LastAction, resultAction.m_PotAmount);
+        context.m_Data.m_Actions.push_back(resultAction);
+
+        */
+
+    }
+    CATCH_PASS_EXCEPTIONS("Failed to parse packet")
+}
+
+void TableLogic::SendRequest(bool statistics)
+{
+    TRY 
+    {
+	    if (m_State == State::Server)
+            return;
+	
+	    PlayerQueue playerNames;
+	    if (m_State == State::InitedClient)
+	        playerNames = m_Sequence;
+	    else
+	    {
+	        for (std::size_t i = 0 ; i < m_Actions[Phase::Preflop].size(); ++i)    
+	        {
+	            const ActionDesc& action = m_Actions[Phase::Preflop][i];
+	            UniqueAdd(playerNames, action.m_Name);
+	        }
+	
+	        const std::string& botName = Player::ThisPlayer().Name();
+	        CHECK(!botName.empty());
+	        UniqueAdd(playerNames, botName);
+	        m_Button = playerNames.back();
+	    }
+	
+	    net::Packet packet;
+	
+	    net::Packet::Table& table = *packet.mutable_info();
+	
+	    for (const pcmn::Card& card : m_Flop)
+	        table.mutable_cards()->Add(card.ToEvalFormat());	
+	
+	    std::size_t counter = 0;
+	    std::map<std::string, std::size_t> players;
+	    for (const std::string& playerName : playerNames)
+	    {
+	        const Player& player = GetPlayer(playerName);
+	
+	        net::Packet::Player& added = *table.add_players();
+	        added.set_bet(player.Bet());
+	        added.set_name(playerName);
+	
+	        const unsigned stack = player.Stack() + player.TotalBet();
+	        added.set_stack(stack);
+	
+	        const pcmn::Card::List& cards = player.Cards();
+	        for (const pcmn::Card& card : cards)
+	            added.mutable_cards()->Add(card.ToEvalFormat());
+	
+	        if (playerName == m_Button)
+	            table.set_button(counter);
+	
+	        players[playerName] = counter;
+	        ++counter;
+	    }
+	
+	    for (unsigned i = 0 ; i <= Phase::River; ++i)
+	    {
+	        const ActionDesc::List& actions = m_Actions[i];
+	        if (actions.empty())
+	            break;
+	
+	        net::Packet::Phase& phase = *packet.add_phases();
+	        for (const ActionDesc& dsc : actions)
+	        {
+	            net::Packet::Action& action = *phase.add_actions();
+	            action.set_amount(dsc.m_Amount);
+	            action.set_id(dsc.m_Value);
+	            action.set_player(players[dsc.m_Name]);
+	        }
+	    }
+
+        m_Callback.SendRequest(packet, statistics);
+    }
+    CATCH_PASS_EXCEPTIONS("Failed to send request by table logic")
 }
 
 void TableLogic::SetPhase(Phase::Value phase)
@@ -172,6 +383,7 @@ void TableLogic::SetPhase(Phase::Value phase)
 
     CHECK(!m_Sequence.empty(), "Players sequence is empty", m_Phase);
     CHECK(!m_Button.empty(), "Failed to find player on button", m_Phase);
+    CHECK(std::find(m_Sequence.begin(), m_Sequence.end(), m_Button) != m_Sequence.end(), "Failed to find player on button in sequence", m_Button);
 
     // add players to queue
     bool found = false;
@@ -187,27 +399,38 @@ void TableLogic::SetPhase(Phase::Value phase)
         else
         if (found && current.Name() == m_Button)
         {
-            if (current.State() != Player::State::AllIn && current.State() != Player::State::Folded)
+            if (current.Stack() && current.State() != Player::State::Folded)
                 m_Queue.push_back(current.Name());
             break;
         }
         else
-        if (found && current.State() != Player::State::AllIn && current.State() != Player::State::Folded)
-            m_Queue.push_back(current.Name());
+        if (found)
+        {
+            if (current.Stack() && current.State() != Player::State::Folded)
+                m_Queue.push_back(current.Name());
+            else
+            if (m_Phase == Phase::Preflop && m_Queue.size() < 2) // workaround in case when small blind is all in
+                m_Queue.push_back(current.Name());
+        }
     }
 
     if (m_Phase == Phase::Preflop)
     {
+        // workaround, client doesn't know real stack size at preflop moment
+        const unsigned smallBlindValue = State::Server == m_State ? m_SmallBlindAmount : 0;
+
         if (m_Sequence.size() > 2)
         {
             // add players on blinds
             const std::string& smallBlind = GetNextPlayerName(m_Button);
             const std::string& bigBlind = GetNextPlayerName(smallBlind);
 
-            if (GetPlayer(smallBlind).Stack())
+            const Player& smallBlindPlayer = GetPlayer(smallBlind);
+            if (smallBlindPlayer.Stack() + smallBlindPlayer.TotalBet() > smallBlindValue)
                 m_Queue.push_back(smallBlind);
 
-            if (GetPlayer(bigBlind).Stack())
+            const Player& bigBlindPlayer = GetPlayer(bigBlind);
+            if (bigBlindPlayer.Stack() + bigBlindPlayer.TotalBet() > smallBlindValue * 2)
                 m_Queue.push_back(bigBlind);
         }
         else
@@ -215,11 +438,13 @@ void TableLogic::SetPhase(Phase::Value phase)
             m_Queue.push_back(m_Queue.front());
             m_Queue.pop_front();
 
-            if (GetPlayer(m_Button).Stack())
+            const Player& smallBlindPlayer = GetPlayer(m_Button);
+            if (smallBlindPlayer.Stack() + smallBlindPlayer.TotalBet() > smallBlindValue)
                 m_Queue.push_back(m_Button);
 
             const std::string& next = GetNextPlayerName(m_Button);
-            if (GetPlayer(next).Stack())
+            const Player& bigBlindPlayer = GetPlayer(next);
+            if (bigBlindPlayer.Stack() + bigBlindPlayer.TotalBet() > smallBlindValue * 2)
                 m_Queue.push_back(next);
         }
     }
@@ -231,14 +456,23 @@ void TableLogic::SetPhase(Phase::Value phase)
         currentPlayer.State(Player::State::Waiting);
         currentPlayer.Bet(0);
     }
+
+    if (m_State == State::InitedClient && !m_Queue.empty() && m_Phase != Phase::Preflop)
+    {
+        // ignore on preflop
+        const std::string& botName = Player::ThisPlayer().Name();
+        CHECK(!botName.empty(), "Bot name not inited, can't get next");
+        if (m_Queue.front() == botName)
+            SendRequest(false);
+    }
 }
 
 Player& TableLogic::GetPlayer(const std::string& name)
 {
     //CHECK(m_Players.count(name), "Failed to find player by name", name, m_State);
     if (!m_Players.count(name))
-        m_Players.insert(std::make_pair(name, boost::make_shared<Player>(name, 1500)));
-    return *m_Players[name];
+        m_Players.insert(std::make_pair(name, Player(name, 1500)));
+    return m_Players[name];
 }
 
 Player& TableLogic::GetNextPlayer(const std::string& name)
@@ -290,6 +524,7 @@ void TableLogic::ResetPhase(const std::string& smallBlind)
         return;
 
     ParseActionsIfNeeded();
+    SendRequest(true);
 
     struct Hand
     {
@@ -304,7 +539,7 @@ void TableLogic::ResetPhase(const std::string& smallBlind)
     for (const std::string& player : m_Sequence)
     {
         Player& currentPlayer = GetPlayer(player);
-        if (currentPlayer.State() == Player::State::AllIn)
+        if (!currentPlayer.Stack())
             allInPlayers.push_back(player);
 
         if (currentPlayer.State() == Player::State::Folded)
@@ -315,16 +550,22 @@ void TableLogic::ResetPhase(const std::string& smallBlind)
 
         Card::List cards = m_Flop;
         std::copy(currentPlayer.Cards().begin(), currentPlayer.Cards().end(), std::back_inserter(cards));
-
-        static const Evaluator eval;
-        
-        const short rank = eval.GetRank(cards);
+       
+        const short rank = m_Evaluator.GetRank(cards);
 
         const Hand hand = {player, rank};
         hands.push_back(hand);
     }
 
     m_Flop.clear();
+
+    if (allInPlayers.size() == 1 && hands.empty())
+    {
+        // workaround in case when all players folds we must set player stack back
+        Player& currentPlayer = GetPlayer(allInPlayers.front());
+        if (!currentPlayer.Stack())
+            currentPlayer.Stack(currentPlayer.TotalBet());
+    }
 
     if (!allInPlayers.empty() && !hands.empty())
     {
@@ -337,14 +578,23 @@ void TableLogic::ResetPhase(const std::string& smallBlind)
         // find loosers
         for (const Hand& hand : hands)
         {
+            bool skip = false;
             if (std::find(allInPlayers.begin(), allInPlayers.end(), hand.m_Player) == allInPlayers.end())
-                continue; // player is not all in
+                skip = true; // player is not all in
 
             if (hand.m_Player == winner.m_Player || hand.m_Rank == winner.m_Rank)
-                continue; // winner or draw
+                skip = true; // winner or draw
 
             if (GetPlayer(winner.m_Player).TotalBet() < GetPlayer(hand.m_Player).TotalBet())
-                continue; // loose not all money
+                skip = true; // loose not all money
+
+            // workaround, all in players may win without info about stacks, so they haven't stack and will be assumed as all in again
+            if (skip)
+            {
+                if (!GetPlayer(hand.m_Player).Stack())
+                    GetPlayer(hand.m_Player).Stack(m_SmallBlindAmount * 2 + 1);
+                continue;
+            }
 
             // looser
             if (m_Button == hand.m_Player)
@@ -371,16 +621,13 @@ void TableLogic::ResetPhase(const std::string& smallBlind)
     else
         m_Button = smallBlind;
 
-    SetPhase(Phase::Preflop);
-}
+    // set data from this round
+    for (const pcmn::Player& player : m_NextRoundData)
+        SetPlayerStack(player.Name(), player.Stack());
 
-//! Unique add
-template<typename C, typename V>
-void UniqueAdd(C& c, const V& value)
-{
-    const typename C::const_iterator it = std::find(c.begin(), c.end(), value);
-    if (it == c.end())
-        c.push_back(value);
+    m_NextRoundData.clear();
+
+    SetPhase(Phase::Preflop);
 }
 
 void TableLogic::ParseActionsIfNeeded()

@@ -7,6 +7,7 @@
 #include "TableContext.h"
 #include "Actions.h"
 #include "ITable.h"
+#include "Evaluator.h"
 
 #include <map>
 
@@ -21,7 +22,7 @@ class ITableLogicCallback
 public:
 
     //! On send data to server
-    virtual void SendRequest(const net::Packet& packet) = 0;
+    virtual void SendRequest(const net::Packet& packet, bool statistics) = 0;
 
     //! On need decision
     virtual void MakeDecision
@@ -53,7 +54,7 @@ public:
 
 private:
     //! Players data map
-    typedef std::map<std::string, Player::Ptr> PlayersMap;
+    typedef std::map<std::string, Player> PlayersMap;
 
     //! Players queue
     typedef std::deque<std::string> PlayerQueue;    
@@ -93,7 +94,7 @@ private:
 
 
 public:
-    TableLogic(ILog& logger, ITableLogicCallback& callback);
+    TableLogic(ILog& logger, ITableLogicCallback& callback, const Evaluator& evaluator);
 
     //! Push action
     void PushAction(const std::string& name, Action::Value action, unsigned amount);
@@ -114,12 +115,15 @@ public:
     void SetPhase(Phase::Value phase);
 
     //! Pack request and send
-    void SendRequest();
+    void SendRequest(bool statistics);
 
     //! Remove player
     void RemovePlayer(const std::string& name);
 
-private:
+    //! Set data from next round
+    void SetNextRoundData(const pcmn::Player::List& players);
+
+private: 
 
     //! Get player by name
     Player& GetPlayer(const std::string& name);
@@ -138,6 +142,15 @@ private:
 
     //! Parse actions if needed
     void ParseActionsIfNeeded();
+
+    //! ParseFlopCards
+    void ParseFlopCards(TableContext& context, const net::Packet& packet);
+
+    //! Parse players
+    void ParsePlayers(TableContext& context, const net::Packet& packet);
+
+    //! Get player equity
+    std::vector<float> GetPlayerEquities(const int first, const int second, const net::Packet& packet, TableContext& context);
 
 private:
 
@@ -170,6 +183,15 @@ private:
 
     //! Player on button
     std::string m_Button;
+
+    //! Hands evaluator
+    const Evaluator& m_Evaluator;
+
+    //! Next round data
+    pcmn::Player::List m_NextRoundData;
+
+    //! Small blind amount
+    unsigned m_SmallBlindAmount;
 };
 
 }

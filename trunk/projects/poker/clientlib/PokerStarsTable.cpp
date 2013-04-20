@@ -3,7 +3,7 @@
 #include "PokerStars.h"
 #include "Modules.h"
 #include "packet.pb.h"
-#include "Logic.h"
+#include "TableLogic.h"
 
 #include <windows.h>
 
@@ -59,17 +59,13 @@ void BytesToString(Stream& stream, const void* data, std::size_t size)
 	}
 }
 
-Table::Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection) 
+Table::Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection, const pcmn::Evaluator& evaluator) 
 	: m_Log(logger)
 	, m_Window(window)
-	, m_Phase(Phase::Preflop)
-	, m_Evaluator(new pcmn::Evaluator())
-	, m_Actions(4)
+	, m_Evaluator(evaluator)
 	, m_Connection(connection)
-	, m_IsNeedDecision(false)
-	, m_ActionsParser(m_Log, m_Actions, m_Players)
-	, m_IsCardsShowed(false)
-    , m_Logic(m_Log, *this)
+	, m_IsRoundFinished(false)
+    , m_Logic(m_Log, *this, m_Evaluator)
 {
 	SCOPED_LOG(m_Log);
 
@@ -126,157 +122,37 @@ void Table::PlayerAction(const std::string& name, const pcmn::Action::Value acti
 
 	LOG_TRACE("Player: '%s', action: '%s', amount: '%s'") % name % pcmn::Action::ToString(action) % amount;
 
+    // workaround for case when players info arrives after players show the cards and before next game starts
+    if (!m_IsRoundFinished && (action == pcmn::Action::ShowCards || action == pcmn::Action::MoneyReturn))
+        m_IsRoundFinished = true;
+    if (m_IsRoundFinished && action == pcmn::Action::SmallBlind)
+        m_IsRoundFinished = false;
+
     m_Logic.PushAction(name, action, amount);
-    /*
-	static const std::string& botName = pcmn::Player::ThisPlayer().Name();
 
-	if (action == pcmn::Action::ShowCards)
-	{
-		if (!m_IsCardsShowed)
-			m_LastStacks = m_Stacks;
-
-		m_IsCardsShowed = true;
-		m_WaitingPlayers[name] = false;	
-		return;
-	}
-
-	if (action == pcmn::Action::BigBlind)
-	{
-		if (!m_Actions[m_Phase].empty() && m_Actions[m_Phase].back().m_Value == pcmn::Action::BigBlind)
-        {
-            LOG_TRACE("BB is duplicated, ignoring");
-			return; // duplicated
-        }
-	}
-
-	if (action == pcmn::Action::SmallBlind || action == pcmn::Action::MoneyReturn)
-	{
-		// remove loosers
-		const pcmn::Player::List::const_iterator it = std::remove_if
-		(
-			m_Players.begin(),
-			m_Players.end(),
-			[&](const pcmn::Player::Ptr& player)
-			{
-				if (player->Name() == name)
-					return false;
-				return !m_Stacks[player->Name()];
-			}
-		);
-
-		m_Players.erase(it, m_Players.end());
-
-
-		SendStatistic();
-		ResetPhase();
-	}
-
-	if (action == pcmn::Action::Rank)
-	{
-		m_Loosers.push_back(name);
-		if (amount < 3 || name == botName)
-		{
-			// game finished
-			SendStatistic();
-			CloseTableWindow(); 
-			ResetPhase();
-			return;
-		}
-	}	
-
-	switch (action)
-	{
-	case pcmn::Action::Bet: 
-	case pcmn::Action::Raise:
-		{
-			const unsigned difference = amount - m_Bets[name];
-			m_Bets[name] += difference;
-			m_TotalBets[name] += difference;
-			m_WaitingPlayers.clear();
-			m_WaitingPlayers[name] = true;
-			break;
-		}
-	case pcmn::Action::Call: 
-		m_WaitingPlayers[name] = true;
-	case pcmn::Action::SmallBlind: 
-	case pcmn::Action::BigBlind:
-		m_TotalBets[name] += amount;
-		m_Bets[name] += amount;
-		break;
-	case pcmn::Action::Check:
-		m_WaitingPlayers[name] = true;
-		break;
-	default:
-		break;
-	}
-
-	if (action == pcmn::Action::SecondsLeft && botName == name)
-		OnBotAction(); // our turn to play
-
-	m_Actions[m_Phase].push_back(ActionDesc(name, action, amount));
-
-	if (action == pcmn::Action::SmallBlind)
-	{
-		pcmn::Player::Ptr currentPlayer = GetPlayer(name);
-		if (!currentPlayer)
-			return;
-
-		currentPlayer = currentPlayer->GetNext();
-		if (currentPlayer)
-			PlayerAction(currentPlayer->Name(), pcmn::Action::BigBlind, amount * 2);
-	}
-
-	if (action == pcmn::Action::Fold)
-		m_FoldedPlayers[name] = true;
-
-	if (m_FoldedPlayers[botName])
-    {
-        LOG_TRACE("Bot folded, skipping next player check: [%s]") % botName;
-		return;
-    }
-
-    if (m_WaitingPlayers[botName])
-    {
-        LOG_TRACE("Bot waiting, skipping next player check: [%s]") % botName;
-        return;
-    }
-
-	if (action == pcmn::Action::SecondsLeft || action == pcmn::Action::Ante || action == pcmn::Action::ShowCards)
-		return; // no need to check next player
-
-	MakeDecisionIfNext(name);
-    */
+    static const std::string& botName = pcmn::Player::ThisPlayer().Name();
+    if (action == pcmn::Action::SecondsLeft && botName == name)
+        m_Logic.SendRequest(false); // our turn to play
 }
 
 void Table::FlopCards(const pcmn::Card::List& cards)
 {
     SCOPED_LOG(m_Log);
 
-	//m_Bets.clear();
-	//m_WaitingPlayers.clear();
-	//Phase::Value phase = Phase::Preflop;
     m_Logic.SetFlopCards(cards);
 	switch (cards.size())
 	{
 	case 3: 
         m_Logic.SetPhase(pcmn::TableLogic::Phase::Flop);
-		//phase = Phase::Flop; 
-        //m_ActionsParser.Parse(false, m_Button); 
 		break;
 	case 4: 
         m_Logic.SetPhase(pcmn::TableLogic::Phase::Turn);
-		//phase = Phase::Turn; 
 		break;
 	case 5: 
         m_Logic.SetPhase(pcmn::TableLogic::Phase::River);
-		//phase = Phase::River; 
 		break;
 	default: assert(false);
 	}
-
-	//m_FlopCards = cards;
-	//SetPhase(phase);
-	//MakeDecisionIfNext(m_Button);
 }
 
 void Table::BotCards(const pcmn::Card& first, const pcmn::Card& second)
@@ -284,56 +160,23 @@ void Table::BotCards(const pcmn::Card& first, const pcmn::Card& second)
     SCOPED_LOG(m_Log);
 
     m_Logic.SetPlayerCards(pcmn::Player::ThisPlayer().Name(), boost::assign::list_of(first)(second));
-
-// 	m_PlayerCards[pcmn::Player::ThisPlayer().Name()] = boost::assign::list_of(first)(second);
-// 
-// 	if (m_IsNeedDecision)
-// 		OnBotAction();
 }
 
 void Table::PlayersInfo(const pcmn::Player::List& players)
 {
     SCOPED_LOG(m_Log);
 
-    for (const pcmn::Player::Ptr& player : players)
-        m_Logic.SetPlayerStack(player->Name(), player->Stack());
+    if (m_IsRoundFinished)
+    {
+        // this info from next round
+        m_Logic.SetNextRoundData(players);
+        return;
+    }
 
-// 	for (const pcmn::Player::Ptr& player : players)
-// 		m_Stacks[player->Name()] = player->Stack();
+    for (const pcmn::Player& player : players)
+        m_Logic.SetPlayerStack(player.Name(), player.Stack());
 }
 
-pcmn::Player::Ptr Table::GetPlayer(const std::string& name) 
-{
-	const pcmn::Player::List::iterator it = std::find_if
-	(
-		m_Players.begin(),
-		m_Players.end(),
-		[&](const pcmn::Player::Ptr& player)
-		{
-			return player ? player->Name() == name : false;
-		}
-	);
-
-	if (it != m_Players.end())
-		return *it;
-
-	return pcmn::Player::Ptr();
-}
-
-void Table::OnBotAction()
-{
-    SCOPED_LOG(m_Log);
-
-	// make a decision and react
-	m_IsNeedDecision = true;
-
-	if (!m_PlayerCards.count(pcmn::Player::ThisPlayer().Name()))
-		return; // wait for bot cards
-
-	SendStatistic();
-
-	m_Connection->Receive(boost::bind(&Table::ReceiveFromServerCallback, this, _1), &net::Reply());
-}
 
 void Table::PlayerCards(const std::string& name, const pcmn::Card::List& cards)
 {
@@ -341,112 +184,6 @@ void Table::PlayerCards(const std::string& name, const pcmn::Card::List& cards)
 
     m_Logic.SetPlayerCards(name, cards);
 	//m_PlayerCards[name] = cards;
-}
-
-void Table::ResetPhase()
-{
-    SCOPED_LOG(m_Log);
-
-	for (const std::string& name : m_Loosers)
-		ErasePlayer(name);
-	m_Loosers.clear();
-
-	m_Phase = Phase::Preflop;
-	m_FlopCards.clear();
-	m_Actions.clear();
-	m_Actions.resize(4);
-	m_PlayerCards.clear();
-	m_IsNeedDecision = false;
-	m_Bets.clear();
-	m_Loosers.clear();
-	m_FoldedPlayers.clear();
-	m_TotalBets.clear();
-	m_Button.clear();
-	m_WaitingPlayers.clear();
-	m_IsCardsShowed = false;
-}
-
-void Table::SetPhase(const Phase::Value phase)
-{
-    SCOPED_LOG(m_Log);
-
-	for (const pcmn::Player::Ptr& p : m_Players)
-	{
-		p->Bet(0);
-		if (p->State() != pcmn::Player::State::Folded && p->State() != pcmn::Player::State::AllIn)
-			p->State(pcmn::Player::State::Called);
-	}
-
-	m_Phase = phase;
-}
-
-void Table::SendStatistic()
-{
-    SCOPED_LOG(m_Log);
-
-    LOG_TRACE("Is need decision: [%s]") % m_IsNeedDecision;
-
-	if (!m_ActionsParser.Parse(m_IsNeedDecision, m_Button))
-		return;
-
-	assert(!m_Button.empty());
-
-	m_IsNeedDecision = false;
-
-	net::Packet packet;
-
-	net::Packet::Table& table = *packet.mutable_info();
-
-	for (const pcmn::Card& card : m_FlopCards)
-		table.mutable_cards()->Add(card.ToEvalFormat());	
-
-	std::size_t counter = 0;
-	std::map<std::string, std::size_t> players;
-	for (const pcmn::Player::Ptr& player : m_Players)
-	{
-		net::Packet::Player& added = *table.add_players();
-		added.set_bet(player->Bet());
-		added.set_name(player->Name());
-
-		const unsigned stack = (m_IsCardsShowed ? m_LastStacks[player->Name()] : m_Stacks[player->Name()]) + m_TotalBets[player->Name()];
-		added.set_stack(stack);
-
-		const pcmn::Card::List& cards = m_PlayerCards[player->Name()];
-		for (const pcmn::Card& card : cards)
-			added.mutable_cards()->Add(card.ToEvalFormat());
-
-		if (player->Name() == m_Button)
-			table.set_button(counter);
-
-		players[player->Name()] = counter;
-		++counter;
-	}
-
-	for (const Actions& actions : m_Actions)
-	{
-		if (actions.empty())
-			break;
-
-		net::Packet::Phase& phase = *packet.add_phases();
-		for (const ActionDesc& dsc : actions)
-		{
-			net::Packet::Action& action = *phase.add_actions();
-			action.set_amount(dsc.m_Amount);
-			action.set_id(dsc.m_Value);
-			action.set_player(players[dsc.m_Name]);
-		}
-	}
-
-	try
-	{
-        LOG_TRACE("Packet: [%s]") % packet.DebugString();
-		m_Connection->Send(packet);
-	}
-	catch (const std::exception& e)
-	{
-		LOG_WARNING("Failed to send statistics, error: [%s]") % e.what();
-	}
-
 }
 
 void Table::CloseTableWindow()
@@ -465,7 +202,6 @@ void Table::ReceiveFromServerCallback(const google::protobuf::Message& message)
 	switch (action)
 	{
 	case pcmn::Action::Fold:
-		m_FoldedPlayers[pcmn::Player::ThisPlayer().Name()] = true;
 		Fold();
 		break;
 	case pcmn::Action::Check:
@@ -549,62 +285,21 @@ void Table::BetRaise(unsigned amount)
 	PressButton(BET_X, BET_Y);
 }
 
-void Table::ErasePlayer(const std::string& name)
+void Table::SendRequest(const net::Packet& packet, bool statistics)
 {
-    SCOPED_LOG(m_Log);
-
-	const pcmn::Player::List::iterator it = std::find_if
-	(
-		m_Players.begin(),
-		m_Players.end(),
-		[&](const pcmn::Player::Ptr& player)
-		{
-			return player ? player->Name() == name : false;
-		}
-	);
-
-	if (it == m_Players.end())
+    try
     {
-        LOG_TRACE("Failed to erase player: [%s], not found") % name;
-		return;
+        LOG_TRACE("Packet: [%s]") % packet.DebugString();
+        m_Connection->Send(packet);
+
+        if (!statistics)
+            m_Connection->Receive(boost::bind(&Table::ReceiveFromServerCallback, this, _1), &net::Reply());
     }
-
-    LOG_TRACE("Erasing player: [%s]") % name;
-
-    (*it)->DeleteLinks();
-	m_Players.erase(it);
-	m_Stacks.erase(name);
-}
-
-void Table::MakeDecisionIfNext(const std::string& current)
-{
-    SCOPED_LOG(m_Log);
-
-	pcmn::Player::Ptr currentPlayer = GetPlayer(current);
-	if (!currentPlayer)
-		return;
-
-	for (;;)
-	{
-		currentPlayer = currentPlayer->GetNext();
-		if (!currentPlayer)
-			break;
-
-        LOG_TRACE("Current: [%s], folded: [%s]") % currentPlayer->Name() % m_FoldedPlayers[currentPlayer->Name()];
-
-        if (m_FoldedPlayers[currentPlayer->Name()])
-			continue;
-
-		if (currentPlayer->Name() == pcmn::Player::ThisPlayer().Name())
-			OnBotAction(); // our turn to play
-
-		break;
-	}
-}
-
-void Table::SendRequest(const net::Packet& packet)
-{
-    throw std::exception("The method or operation is not implemented.");
+    catch (const std::exception& e)
+    {
+        LOG_WARNING("Failed to send statistics, error: [%s]") % e.what();
+        Fold();
+    }
 }
 
 void Table::MakeDecision(const pcmn::Player& player, const pcmn::Player::Queue& activePlayers, const pcmn::TableContext& context, const pcmn::Player::Position::Value position)

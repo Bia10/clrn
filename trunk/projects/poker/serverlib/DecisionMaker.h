@@ -1,7 +1,7 @@
 #ifndef DecisionMaker_h__
 #define DecisionMaker_h__
 
-#include "Logic.h"
+#include "TableLogic.h"
 #include "ILog.h"
 #include "WinRate.h"
 #include "Player.h"
@@ -20,7 +20,7 @@ namespace pcmn
 namespace srv
 {
 
-class DecisionMaker : public pcmn::IDecisionCallback, boost::noncopyable
+class DecisionMaker : public pcmn::ITableLogicCallback, boost::noncopyable
 {
 public:
 	DecisionMaker
@@ -35,29 +35,31 @@ public:
 private:
 
 	virtual void MakeDecision(const pcmn::Player& player, 
-		const PlayerQueue& activePlayers,
+		const pcmn::Player::Queue& activePlayers,
 		const pcmn::TableContext& context,
 		const pcmn::Player::Position::Value position) override;
 
 private:
 
 	//! Get player win rate
-	float GetPlayerWinRate(const pcmn::Player& player, const pcmn::TableContext& context, const PlayerQueue& activePlayers) const;
+	float GetPlayerWinRate(const pcmn::Player& player, const pcmn::TableContext& context, const  pcmn::Player::Queue& activePlayers) const;
 
 	//! Get most aggressive player style
-	pcmn::Danger::Value GetDanger(const pcmn::Player& player, const PlayerQueue& activePlayers, float botRate) const;
+	pcmn::Danger::Value GetDanger(const pcmn::Player& player, const  pcmn::Player::Queue& activePlayers, float botRate) const;
 
 	//! Get unusual player style
-	pcmn::Player::Style::Value GetBotAverageStyle(const pcmn::Player& player, const PlayerQueue& activePlayers) const;
+	pcmn::Player::Style::Value GetBotAverageStyle(const pcmn::Player& player, const  pcmn::Player::Queue& activePlayers) const;
 
 	//! Get bot style
 	pcmn::Player::Style::Value GetBotStyle(const pcmn::Player& bot) const;
 
 	//! Get max stack size
-	unsigned GetMaxStack(const PlayerQueue& activePlayers) const;
+	unsigned GetMaxStack(const  pcmn::Player::Queue& activePlayers) const;
 
 	//! Get player by name
-	const pcmn::Player& GetPlayer(const PlayerQueue& activePlayers, const std::string& name) const;
+	const pcmn::Player& GetPlayer(const  pcmn::Player::Queue& activePlayers, const std::string& name) const;
+
+    virtual void SendRequest(const net::Packet& packet, bool statistics) override;
 
 private:
 

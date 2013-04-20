@@ -55,74 +55,6 @@ namespace pcmn
 			return ThreeOrMore;
 	}
 
-	IActionsQueue::Event::Value Player::Do(IActionsQueue& actions, TableContext& table)
-	{
-		Action::Value action = Action::Unknown;
-		unsigned amount = 0;
-		unsigned player = 0;
-
-		if (!actions.Extract(action, amount, player))
-			return IActionsQueue::Event::NeedDecision;
-
-		if (player != m_Index)
-			throw pcmn::Player::BadIndex(m_Index, player);
-
-		if (!table.m_BigBlind)
-		{
-			if (action == Action::Value::SmallBlind)
-				table.m_BigBlind = amount * 2;
-			else
-			if (action == Action::Value::BigBlind)
-				table.m_BigBlind = amount;
-		}
-
-
-		table.m_LastAction = action;
-		table.m_LastAmount = amount;
-
-		switch (action)
-		{
-		case pcmn::Action::Fold: 
-			m_State = State::Folded;
-			return IActionsQueue::Event::Fold;
-		case pcmn::Action::Bet: 
-		case pcmn::Action::Raise:
-			{
-				const unsigned difference = amount - m_Bet;
-				m_Stack -= difference;
-				if (static_cast<int>(m_Stack) < 0)
-					m_Stack = 0;
-
-				m_State = m_Stack ? State::Called : State::AllIn;
-				table.m_Pot += difference;
-				m_Bet += difference;
-				if (m_Bet > table.m_MaxBet)
-					table.m_MaxBet = m_Bet;
-				return IActionsQueue::Event::Raise;
-			}
-		case pcmn::Action::Call: 
-		case pcmn::Action::SmallBlind: 
-		case pcmn::Action::BigBlind:
-			m_Stack -= amount;
-			if (static_cast<int>(m_Stack) < 0)
-				m_Stack = 0;
-
-			if (m_Stack)
-				m_State = action == pcmn::Action::Call ? State::Called : State::Waiting;
-			else
-				m_State = State::AllIn;	
-
-			table.m_Pot += amount;
-			m_Bet += amount;
-			if (m_Bet > table.m_MaxBet)
-				table.m_MaxBet = m_Bet;
-			break;
-		
-		}
-
-		return IActionsQueue::Event::Call;
-	}
-
 	bool Player::operator==(const Player& other) const
 	{
 		return m_Name == other.m_Name;
@@ -130,16 +62,6 @@ namespace pcmn
 
 	Player::~Player()
 	{
-	}
-
-	void Player::DeleteLinks()
-	{
-		assert(m_Previous.lock() && m_Next.lock());
-
-		m_Previous.lock()->m_Next = m_Next;
-		m_Next.lock()->m_Previous = m_Previous;
-        m_Previous.reset();
-        m_Next.reset();
 	}
 
 	void Player::PushAction(unsigned street, Action::Value value, float potAmount)
