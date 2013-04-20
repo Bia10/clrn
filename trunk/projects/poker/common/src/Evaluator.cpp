@@ -72,7 +72,9 @@ float Evaluator::GetEquity(short player1, short player2, const std::vector<int>&
 		// get random cards for flop
 		for (std::size_t i = flopCardsCount; i < 5; ++i)
 		{
-			const int temp =  GetRandomCard(deadCards);
+			const int temp = GetRandomCard(deadCards);
+            assert(temp != player1);
+            assert(temp != player2);
 			flopCards[i] = temp;
 			deadCards[temp] = true;
 			outs.push_back(temp);

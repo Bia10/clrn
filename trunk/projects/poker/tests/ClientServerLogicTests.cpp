@@ -102,7 +102,10 @@ public:
 
 	virtual void Send(const google::protobuf::Message& message) 
 	{
-        FakeDecisionMaker maker;
+        //FakeDecisionMaker maker;
+        net::IConnection::Ptr connection(new TestClient());
+        neuro::DatabaseReader net(m_Log, cfg::NETWORK_FILE_NAME);
+        srv::DecisionMaker maker(m_Log, m_Evaluator, m_Statistics, net, *connection);
         TableLogic logic(m_Log, maker, m_Evaluator);
         logic.Parse(static_cast<const net::Packet&>(message));
 
