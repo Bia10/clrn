@@ -28,6 +28,7 @@ TableLogic::TableLogic(ILog& logger, ITableLogicCallback& callback, const Evalua
     , m_Evaluator(evaluator)
     , m_SmallBlindAmount(0)
     , m_Pot(0)
+    , m_IsNeedDecision(false)
 {
 
 }
@@ -37,7 +38,7 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
     LOG_TRACE("Name: [%s], action: [%s], amount: [%s]") % name % Action::ToString(action) % amount;
     CHECK(m_Phase <= Phase::River, m_Phase, name, action, amount);
 
-    if (action == Action::SmallBlind)
+    if (action == Action::SmallBlind && m_State != State::Server)
     {
         m_SmallBlindAmount = amount;
         ResetPhase(name);
@@ -155,7 +156,12 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
         const std::string& botName = Player::ThisPlayer().Name();
         CHECK(!botName.empty(), "Bot name not inited, can't get next");
         if (m_Queue.front() == botName)
-            SendRequest(false);
+        {
+            if (GetPlayer(botName).Cards().empty()) // workaround, cards may be received after decision needed
+                m_IsNeedDecision = true;
+            else
+                SendRequest(false);
+        }
     }
 }
 
@@ -173,6 +179,13 @@ void TableLogic::SetPlayerCards(const std::string& name, const Card::List& cards
         m_Players[name] = pcmn::Player(name, 0);
 
     GetPlayer(name).Cards(cards);
+
+    // workaround, cards may be received after decision needed
+    if (Player::ThisPlayer().Name() == name && m_IsNeedDecision)
+    {
+        SendRequest(false);
+        m_IsNeedDecision = false;
+    }
 }
 
 void TableLogic::ParseFlopCards(TableContext& context, const net::Packet& packet)
@@ -245,6 +258,7 @@ std::vector<float> TableLogic::GetPlayerEquities(const int first, const int seco
 void TableLogic::SetNextRoundData(const pcmn::Player::List& players)
 {
     m_NextRoundData = players;
+    //std::copy(players.begin(), players.end(), std::back_inserter(m_NextRoundData));
 }
 
 void TableLogic::GetActivePlayers(Player::Queue& players)
@@ -430,6 +444,7 @@ void TableLogic::SendRequest(bool statistics)
 	        ++counter;
 	    }
 	
+        bool anyUsefullActionsFound = false;
 	    for (unsigned i = 0 ; i <= Phase::River; ++i)
 	    {
 	        const ActionDesc::List& actions = m_Actions[i];
@@ -439,6 +454,9 @@ void TableLogic::SendRequest(bool statistics)
 	        net::Packet::Phase& phase = *packet.add_phases();
 	        for (const ActionDesc& dsc : actions)
 	        {
+                if (!anyUsefullActionsFound && Action::IsUseful(dsc.m_Value))
+                    anyUsefullActionsFound = true;
+
 	            net::Packet::Action& action = *phase.add_actions();
 	            action.set_amount(dsc.m_Amount);
 	            action.set_id(dsc.m_Value);
@@ -446,7 +464,8 @@ void TableLogic::SendRequest(bool statistics)
 	        }
 	    }
 
-        m_Callback.SendRequest(packet, statistics);
+        if (anyUsefullActionsFound)
+            m_Callback.SendRequest(packet, statistics);
     }
     CATCH_PASS_EXCEPTIONS("Failed to send request by table logic")
 }
@@ -455,6 +474,7 @@ void TableLogic::SetPhase(Phase::Value phase)
 {
     m_Phase = phase;
     m_Queue.clear();
+    m_IsNeedDecision = false;
 
     ParseActionsIfNeeded();
 
@@ -621,7 +641,18 @@ void TableLogic::ResetPhase(const std::string& smallBlind)
         if (currentPlayer.State() == Player::State::Folded)
             continue;
 
-        if (m_Flop.size() != 5 || currentPlayer.Cards().size() != 2)
+        if (m_Flop.size() != 5)
+            continue;
+
+        // workaround for case when player not showed cards
+        if (currentPlayer.Cards().size() != 2 && !currentPlayer.Stack())
+        {
+            const Hand hand = {player, 0};
+            hands.push_back(hand);
+            continue;
+        }
+        else
+        if (currentPlayer.Cards().size() != 2)
             continue;
 
         Card::List cards = m_Flop;
@@ -687,9 +718,7 @@ void TableLogic::ResetPhase(const std::string& smallBlind)
     {
         Player& currentPlayer = GetPlayer(player);
 
-        currentPlayer.State(Player::State::Waiting);
-        currentPlayer.Bet(0);
-        currentPlayer.TotalBet(0);
+        currentPlayer.Reset();
     }
 
     if (m_Sequence.size() > 2)
@@ -699,7 +728,12 @@ void TableLogic::ResetPhase(const std::string& smallBlind)
 
     // set data from this round
     for (const pcmn::Player& player : m_NextRoundData)
-        SetPlayerStack(player.Name(), player.Stack());
+    {
+        if (!player.Cards().empty())
+            SetPlayerCards(player.Name(), player.Cards());
+        else
+            SetPlayerStack(player.Name(), player.Stack());
+    }
 
     m_NextRoundData.clear();
     m_Pot = 0;

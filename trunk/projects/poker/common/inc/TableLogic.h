@@ -204,6 +204,9 @@ private:
 
     //! Pot size
     unsigned m_Pot;
+
+    //! Need decision
+    bool m_IsNeedDecision;
 };
 
 }

@@ -76,4 +76,14 @@ namespace pcmn
 		actionDesc.m_Street = street;
 	}
 
+    void Player::Reset()
+    {
+        m_TotalBet = 0;
+        m_Bet = 0;
+        m_Cards.clear();
+        m_State = State::Waiting;
+        m_Actions.clear();
+        m_Styles.clear();
+    }
+
 }

@@ -16,7 +16,7 @@ namespace pcmn
 class Evaluator
 {
 public:
-	Evaluator();
+	Evaluator(unsigned repititions = cfg::NUMBER_OF_REPITITIONS);
 	~Evaluator();
 	short GetRank(const Card::List& cards) const;
 	short GetRandomCard(bool* dead, const short minValue = cfg::CARD_DECK_SIZE) const; 
@@ -24,6 +24,7 @@ public:
 private:
 	SevenEval* m_RanksEvaluator;
 	HandEval* m_HandsEvaluator;
+    unsigned m_Repititions;
 };
 }
 #endif // CombinationsCalculator_h__
