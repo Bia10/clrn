@@ -30,25 +30,22 @@ namespace neuro
 		//! Second parameter - position
 		pcmn::Player::Position::Value m_Position;
 
-		//! Third parameter - bet pot size
-		pcmn::BetSize::Value m_BetPotSize;
+		//! Third parameter - bet size
+		pcmn::BetSize::Value m_BetSize;
 
-		//! Fourth parameter - bet stack size
-		pcmn::BetSize::Value m_BetStackSize;
-
-		//! Fifth parameter - active players count
+		//! Fourth parameter - active players count
 		pcmn::Player::Count::Value m_ActivePlayers;
 
-		//! Six parameter - danger
+		//! Fifth parameter - danger
 		pcmn::Danger::Value m_Danger;
 
-		//! Seven parameter - bot average style
+		//! Six parameter - bot average style
 		pcmn::Player::Style::Value m_BotAverageStyle;
 
-		//! Eight parameter - bot style on previous street
+		//! Seven parameter - bot style on previous street
 		pcmn::Player::Style::Value m_BotStyle;
 
-		//! Nine parameter - stack size
+		//! Eight parameter - stack size
 		pcmn::StackSize::Value m_BotStackSize;
 
 		//! First out parameter - check/fold action

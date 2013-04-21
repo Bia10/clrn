@@ -24,14 +24,14 @@ public:
 		typedef std::vector<pcmn::Action::Value> Actions;
 		typedef std::vector<PlayerInfo> List;
 
-		PlayerInfo() : m_PotAmount(0), m_WinRate(0), m_CardRange(cfg::CARD_DECK_SIZE)
+		PlayerInfo() : m_Bet(0), m_WinRate(0), m_CardRange(cfg::CARD_DECK_SIZE)
 		{
 
 		}
 
 		std::string m_Name;
 		Actions m_Actions;
-		float m_PotAmount;
+        int m_Bet;
 		float m_WinRate;
 		int m_CardRange;
 	};

@@ -33,8 +33,7 @@ namespace neuro
                 (
                     " win = %s "
                     "AND position = %s "
-                    "AND pot_rate = %s "
-                    "AND stack_rate = %s "
+                    "AND bet = %s "
                     "AND players = %s "
                     "AND danger = %s "
                     "AND bot_avg_style = %s "
@@ -43,8 +42,7 @@ namespace neuro
                 ) 
                 % params.m_WinRate
                 % params.m_Position
-                % params.m_BetPotSize
-                % params.m_BetStackSize
+                % params.m_BetSize
                 % params.m_ActivePlayers
                 % params.m_Danger
                 % params.m_BotAverageStyle

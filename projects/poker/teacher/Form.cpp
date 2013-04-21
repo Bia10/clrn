@@ -17,7 +17,7 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	bSizer4 = new wxBoxSizer( wxVERTICAL );
 	
 	wxGridSizer* gSizer21;
-	gSizer21 = new wxGridSizer( 1, 9, 0, 0 );
+	gSizer21 = new wxGridSizer( 1, 8, 0, 0 );
 	
 	m_staticText23 = new wxStaticText( this, wxID_ANY, wxT("Win rate"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText23->Wrap( -1 );
@@ -27,13 +27,9 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_staticText24->Wrap( -1 );
 	gSizer21->Add( m_staticText24, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 	
-	m_staticText25 = new wxStaticText( this, wxID_ANY, wxT("Pot ratio"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText25 = new wxStaticText( this, wxID_ANY, wxT("Bet size"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText25->Wrap( -1 );
 	gSizer21->Add( m_staticText25, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
-	
-	m_staticText26 = new wxStaticText( this, wxID_ANY, wxT("Stack ratio"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText26->Wrap( -1 );
-	gSizer21->Add( m_staticText26, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 	
 	m_staticText27 = new wxStaticText( this, wxID_ANY, wxT("Players"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText27->Wrap( -1 );
@@ -58,7 +54,7 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	bSizer4->Add( gSizer21, 0, wxEXPAND, 5 );
 	
 	wxGridSizer* gSizer2;
-	gSizer2 = new wxGridSizer( 1, 9, 0, 0 );
+	gSizer2 = new wxGridSizer( 1, 8, 0, 0 );
 	
 	wxString m_WinRateChoiceChoices[] = { wxT("Very low"), wxT("Low"), wxT("Normal"), wxT("Good"), wxT("Very good"), wxT("Best") };
 	int m_WinRateChoiceNChoices = sizeof( m_WinRateChoiceChoices ) / sizeof( wxString );
@@ -72,17 +68,11 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_PositionChoice->SetSelection( 0 );
 	gSizer2->Add( m_PositionChoice, 0, wxALL|wxEXPAND, 5 );
 	
-	wxString m_PotRateChoiceChoices[] = { wxT("Very low"), wxT("Low"), wxT("Normal"), wxT("High"), wxT("Huge") };
-	int m_PotRateChoiceNChoices = sizeof( m_PotRateChoiceChoices ) / sizeof( wxString );
-	m_PotRateChoice = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_PotRateChoiceNChoices, m_PotRateChoiceChoices, 0 );
-	m_PotRateChoice->SetSelection( 0 );
-	gSizer2->Add( m_PotRateChoice, 0, wxALL|wxEXPAND, 5 );
-	
-	wxString m_StackRateChoiceChoices[] = { wxT("Very low"), wxT("Low"), wxT("Normal"), wxT("High"), wxT("Huge") };
-	int m_StackRateChoiceNChoices = sizeof( m_StackRateChoiceChoices ) / sizeof( wxString );
-	m_StackRateChoice = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_StackRateChoiceNChoices, m_StackRateChoiceChoices, 0 );
-	m_StackRateChoice->SetSelection( 0 );
-	gSizer2->Add( m_StackRateChoice, 0, wxALL|wxEXPAND, 5 );
+	wxString m_BetSizeChoiceChoices[] = { wxT("Very low"), wxT("Low"), wxT("Normal"), wxT("High"), wxT("Huge") };
+	int m_BetSizeChoiceNChoices = sizeof( m_BetSizeChoiceChoices ) / sizeof( wxString );
+	m_BetSizeChoice = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_BetSizeChoiceNChoices, m_BetSizeChoiceChoices, 0 );
+	m_BetSizeChoice->SetSelection( 0 );
+	gSizer2->Add( m_BetSizeChoice, 0, wxALL|wxEXPAND, 5 );
 	
 	wxString m_PlayersChoiceChoices[] = { wxT("One"), wxT("Two"), wxT("Three or more") };
 	int m_PlayersChoiceNChoices = sizeof( m_PlayersChoiceChoices ) / sizeof( wxString );
@@ -114,10 +104,10 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_BostStackSizeChoice->SetSelection( 0 );
 	gSizer2->Add( m_BostStackSizeChoice, 0, wxALL|wxEXPAND, 5 );
 	
-	bSizer4->Add( gSizer2, 0, 0, 5 );
+	bSizer4->Add( gSizer2, 0, wxEXPAND, 5 );
 	
 	wxGridSizer* gSizer211;
-	gSizer211 = new wxGridSizer( 1, 9, 0, 0 );
+	gSizer211 = new wxGridSizer( 1, 8, 0, 0 );
 	
 	m_WinRateCheck = new wxCheckBox( this, wxID_ANY, wxT("autoincrement"), wxDefaultPosition, wxDefaultSize, 0 );
 	
@@ -127,13 +117,9 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	
 	gSizer211->Add( m_PositionCheck, 0, wxALL, 5 );
 	
-	m_PotRatioCheck = new wxCheckBox( this, wxID_ANY, wxT("autoincrement"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_BetSizeCheck = new wxCheckBox( this, wxID_ANY, wxT("autoincrement"), wxDefaultPosition, wxDefaultSize, 0 );
 	
-	gSizer211->Add( m_PotRatioCheck, 0, wxALL, 5 );
-	
-	m_StackRatioCheck = new wxCheckBox( this, wxID_ANY, wxT("autoincrement"), wxDefaultPosition, wxDefaultSize, 0 );
-	
-	gSizer211->Add( m_StackRatioCheck, 0, wxALL, 5 );
+	gSizer211->Add( m_BetSizeCheck, 0, wxALL, 5 );
 	
 	m_PlayersCheck = new wxCheckBox( this, wxID_ANY, wxT("autoincrement"), wxDefaultPosition, wxDefaultSize, 0 );
 	
@@ -208,7 +194,7 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_Grid = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
 	
 	// Grid
-	m_Grid->CreateGrid( 10, 10 );
+	m_Grid->CreateGrid( 10, 9 );
 	m_Grid->EnableEditing( false );
 	m_Grid->EnableGridLines( true );
 	m_Grid->EnableDragGridSize( false );
@@ -220,14 +206,13 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_Grid->SetColLabelSize( 30 );
 	m_Grid->SetColLabelValue( 0, wxT("Win rate") );
 	m_Grid->SetColLabelValue( 1, wxT("Position") );
-	m_Grid->SetColLabelValue( 2, wxT("Pot ratio") );
-	m_Grid->SetColLabelValue( 3, wxT("Stack ratio") );
-	m_Grid->SetColLabelValue( 4, wxT("Players") );
-	m_Grid->SetColLabelValue( 5, wxT("Danger") );
-	m_Grid->SetColLabelValue( 6, wxT("Bot avg style") );
-	m_Grid->SetColLabelValue( 7, wxT("Bot style") );
-	m_Grid->SetColLabelValue( 8, wxT("Bot stack size") );
-	m_Grid->SetColLabelValue( 9, wxT("Result") );
+	m_Grid->SetColLabelValue( 2, wxT("Bet size") );
+	m_Grid->SetColLabelValue( 3, wxT("Players") );
+	m_Grid->SetColLabelValue( 4, wxT("Danger") );
+	m_Grid->SetColLabelValue( 5, wxT("Bot avg style") );
+	m_Grid->SetColLabelValue( 6, wxT("Bot style") );
+	m_Grid->SetColLabelValue( 7, wxT("Bot stack size") );
+	m_Grid->SetColLabelValue( 8, wxT("Result") );
 	m_Grid->SetColLabelAlignment( wxALIGN_CENTRE, wxALIGN_CENTRE );
 	
 	// Rows
@@ -251,8 +236,7 @@ TeacherMainFrame::TeacherMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	// Connect Events
 	m_WinRateChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnWinRate ), NULL, this );
 	m_PositionChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPosition ), NULL, this );
-	m_PotRateChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPotRatio ), NULL, this );
-	m_StackRateChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnStackRatio ), NULL, this );
+	m_BetSizeChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPotRatio ), NULL, this );
 	m_PlayersChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPlayers ), NULL, this );
 	m_DangerChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPlayersStyle ), NULL, this );
 	m_BotAverageStyleChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnStyleChanges ), NULL, this );
@@ -277,8 +261,7 @@ TeacherMainFrame::~TeacherMainFrame()
 	// Disconnect Events
 	m_WinRateChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnWinRate ), NULL, this );
 	m_PositionChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPosition ), NULL, this );
-	m_PotRateChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPotRatio ), NULL, this );
-	m_StackRateChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnStackRatio ), NULL, this );
+	m_BetSizeChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPotRatio ), NULL, this );
 	m_PlayersChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPlayers ), NULL, this );
 	m_DangerChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnPlayersStyle ), NULL, this );
 	m_BotAverageStyleChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( TeacherMainFrame::OnStyleChanges ), NULL, this );

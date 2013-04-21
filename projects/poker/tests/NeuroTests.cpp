@@ -33,16 +33,16 @@ void CompareVectors(const std::vector<float>& in1, const std::vector<float>& in2
 
 TEST(Neuro, Simple)
 {
-	std::vector<float> in1 = boost::assign::list_of(0.1f)(0.2f)(0.3f)(0.4f)(0.5f)(0.6f)(0.7f)(0.8f)(0.9f);
+	std::vector<float> in1 = boost::assign::list_of(0.1f)(0.2f)(0.3f)(0.4f)(0.5f)(0.6f)(0.7f)(0.8f);
 	std::vector<float> out1 = boost::assign::list_of(0.0f)(0.5f)(1.0f);
 
-	std::vector<float> in2 = boost::assign::list_of(0.4f)(0.2f)(0.1f)(0.9f)(0.2f)(1.0f)(0.4f)(0.5f)(0.2f);
+	std::vector<float> in2 = boost::assign::list_of(0.4f)(0.2f)(0.1f)(0.9f)(0.2f)(1.0f)(0.4f)(0.5f);
 	std::vector<float> out2 = boost::assign::list_of(0.1f)(0.5f)(0.0f);
 
-	std::vector<float> in3 = boost::assign::list_of(0.2f)(0.8f)(0.1f)(0.0f)(0.9f)(0.6f)(0.5f)(0.1f)(0.8f);
+	std::vector<float> in3 = boost::assign::list_of(0.2f)(0.8f)(0.1f)(0.0f)(0.9f)(0.6f)(0.5f)(0.1f);
 	std::vector<float> out3 = boost::assign::list_of(0.8f)(0.1f)(0.2f);
 
-	std::vector<float> in4 = boost::assign::list_of(0.6f)(0.2f)(0.6f)(0.1f)(0.9f)(0.5f)(0.1f)(0.9f)(0.2f);
+	std::vector<float> in4 = boost::assign::list_of(0.6f)(0.2f)(0.6f)(0.1f)(0.9f)(0.5f)(0.1f)(0.9f);
 	std::vector<float> out4 = boost::assign::list_of(0.0f)(0.0f)(1.0f);
 
 	{
@@ -94,8 +94,7 @@ TEST(Neuro, Database)
         neuro::Params params;
         params.m_WinRate = pcmn::WinRate::Good;
         params.m_Position = pcmn::Player::Position::Later;
-        params.m_BetPotSize = pcmn::BetSize::Huge;
-        params.m_BetStackSize = pcmn::BetSize::Normal;
+        params.m_BetSize = pcmn::BetSize::Huge;
         params.m_ActivePlayers = pcmn::Player::Count::ThreeOrMore;
         params.m_Danger = pcmn::Danger::Low;
         params.m_BotAverageStyle = pcmn::Player::Style::Aggressive;
@@ -110,8 +109,7 @@ TEST(Neuro, Database)
         neuro::Params params;
         params.m_WinRate = pcmn::WinRate::VeryLow;
         params.m_Position = pcmn::Player::Position::Middle;
-        params.m_BetPotSize = pcmn::BetSize::Huge;
-        params.m_BetStackSize = pcmn::BetSize::Normal;
+        params.m_BetSize = pcmn::BetSize::Huge;
         params.m_ActivePlayers = pcmn::Player::Count::ThreeOrMore;
         params.m_Danger = pcmn::Danger::Low;
         params.m_BotAverageStyle = pcmn::Player::Style::Passive;
@@ -126,8 +124,7 @@ TEST(Neuro, Database)
         neuro::Params params;
         params.m_WinRate = pcmn::WinRate::Nuts;
         params.m_Position = pcmn::Player::Position::Early;
-        params.m_BetPotSize = pcmn::BetSize::VeryLow;
-        params.m_BetStackSize = pcmn::BetSize::Huge;
+        params.m_BetSize = pcmn::BetSize::VeryLow;
         params.m_ActivePlayers = pcmn::Player::Count::ThreeOrMore;
         params.m_Danger = pcmn::Danger::High;
         params.m_BotAverageStyle = pcmn::Player::Style::Aggressive;
@@ -142,8 +139,7 @@ TEST(Neuro, Database)
         neuro::Params params;
         params.m_WinRate = pcmn::WinRate::Low;
         params.m_Position = pcmn::Player::Position::Middle;
-        params.m_BetPotSize = pcmn::BetSize::Huge;
-        params.m_BetStackSize = pcmn::BetSize::Normal;
+        params.m_BetSize = pcmn::BetSize::Huge;
         params.m_ActivePlayers = pcmn::Player::Count::Two;
         params.m_Danger = pcmn::Danger::Low;
         params.m_BotAverageStyle = pcmn::Player::Style::Passive;

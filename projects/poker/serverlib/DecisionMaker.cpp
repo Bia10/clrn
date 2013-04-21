@@ -65,16 +65,10 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 		params.m_Position = position;
 		in.push_back(static_cast<float>(position) / pcmn::Player::Position::Max);
 	
-		// bet pot rate
-		float potRate;
-		params.m_BetPotSize = pcmn::BetSize::FromPot(player.Bet(), context.m_MaxBet, context.m_Pot, potRate);
-		in.push_back(potRate);
-	
-		// bet stack rate
-		float stackRate;
-		params.m_BetStackSize = pcmn::BetSize::FromStack(player.Bet(), context.m_MaxBet, player.Stack(), stackRate);
-		in.push_back(stackRate);
-	
+		// bet size
+		params.m_BetSize = pcmn::BetSize::FromParams(player.Bet(), context.m_MaxBet, context.m_Pot, player.Stack(), context.m_BigBlind);
+		in.push_back(static_cast<float>(params.m_BetSize) / pcmn::BetSize::Max);
+		
 		// active players
 		params.m_ActivePlayers = pcmn::Player::Count::FromValue(activePlayers.size() - 1);
 		in.push_back(static_cast<float>(params.m_ActivePlayers) / pcmn::Player::Count::Max);
@@ -171,20 +165,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
             }
 
             LOG_TRACE("Max bet: [%s], pot: [%s], bot stack: [%s], cards: [%s]") % context.m_MaxBet % context.m_Pot % player.Stack() % oss.str();
-
-            LOG_TRACE("Decision input: win: [%s]:[%s], pos: [%s], pot: [%s], stack: [%s], players: [%s], danger: [%s], bot avg style: [%s], bot style: [%s], bot stack: [%s]")
-                % pcmn::WinRate::ToString(params.m_WinRate)
-                % int(winRate * 100)
-                % pcmn::Player::Position::ToString(params.m_Position)
-                % pcmn::BetSize::ToString(params.m_BetPotSize)
-                % pcmn::BetSize::ToString(params.m_BetStackSize)
-                % pcmn::Player::Count::ToString(params.m_ActivePlayers)
-                % pcmn::Danger::ToString(params.m_Danger)
-                % pcmn::Player::Style::ToString(params.m_BotAverageStyle)
-                % pcmn::Player::Style::ToString(params.m_BotStyle)
-                % pcmn::StackSize::ToString(params.m_BotStackSize);
-
-            LOG_TRACE("Decision output: [%s]") % reply.ShortDebugString();
+            LOG_TRACE("Decision input: [%s], output: [%s]") % params.ToString() % reply.ShortDebugString();
         }
 
 	
@@ -234,11 +215,11 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
 			actions.end(), 
 			[](const pcmn::Player::ActionDesc& lhs, const pcmn::Player::ActionDesc& rhs)
 			{
-				return lhs.m_PotAmount < rhs.m_PotAmount;
+				return lhs.m_Value < rhs.m_Value;
 			}
 		);
 
-		current.m_PotAmount = actions.back().m_PotAmount;
+		current.m_Bet = static_cast<int>(actions.back().m_Value);
 	}
 
 	// fetch statistics
@@ -340,11 +321,11 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
 			actions.end(), 
 			[](const pcmn::Player::ActionDesc& lhs, const pcmn::Player::ActionDesc& rhs)
 			{
-				return lhs.m_PotAmount < rhs.m_PotAmount;
+				return lhs.m_Value < rhs.m_Value;
 			}
 		);
 
-		current.m_PotAmount = actions.back().m_PotAmount;
+		current.m_Bet = actions.back().m_Value;
 	}
 
     LOG_TRACE("Equities size: [%s]") % equities.size();

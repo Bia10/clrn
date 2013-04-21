@@ -58,10 +58,9 @@ const char SQL_INSERT_ACTIONS[] =
 				 "player, "
 				 "street, "
 				 "action, "
-				 "pot_amount, "
-				 "stack_amount, "
+				 "bet, "
 				 "position) "
-	"VALUES     (?, ?, ?, ?, ?, ?, ?) ";
+	"VALUES     (?, ?, ?, ?, ?, ?) ";
 
 const char SQL_GET_CARD_RANGES[] = 
 	"SELECT p.name name, "
@@ -226,8 +225,7 @@ void Write(pcmn::TableContext::Data& data)
 				<< data.m_Players[action.m_PlayerIndex].m_Index
 				<< action.m_Street
 				<< action.m_Action
-				<< action.m_PotAmount
-				<< action.m_StackAmount
+				<< action.m_Bet
 				<< action.m_Position;
 
 			statement->Execute();
@@ -423,7 +421,7 @@ std::string GetPlayersFilter(PlayerInfo::List& players, std::map<std::string, un
 		if (count)
 			oss << " OR ";
 		oss 
-			<< "(a.pot_amount > " << player.m_PotAmount << " "
+			<< "(a.bet = " << player.m_Bet << " "
 			<< "AND a.action IN (" << GetActionsFilter(player.m_Actions) << ") "
 			<< "AND p.name = '" << player.m_Name << "' )";
 

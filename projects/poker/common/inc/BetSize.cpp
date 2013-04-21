@@ -17,70 +17,21 @@ namespace pcmn
 #undef CASE
 	}
 
-	BetSize::Value BetSize::FromStack(unsigned bet, unsigned maxBet, unsigned stack, float& value)
+	BetSize::Value BetSize::FromParams(unsigned bet, unsigned maxBet, unsigned pot, unsigned stack, unsigned bigBlind)
 	{
-		value = stack ? static_cast<float>(maxBet - bet) / stack : 0;
-        return FromStack(value);
-	}
+        if (!bet)
+            return BetSize::VeryLow; 
 
-    BetSize::Value BetSize::FromStack(const float value)
-    {
-        if (value < 0.05f)
-            return BetSize::VeryLow;
-        if (value < 0.1f)
+        if (bet <= bigBlind)
             return BetSize::Low;
-        if (value < 0.3f)
+
+        const float value = static_cast<float>(maxBet - bet) / pot;
+        if (bet <= bigBlind * 3 && value < 0.6f)
             return BetSize::Normal;
-        if (value < 0.6f)
+        if (value < 1.5f)
             return BetSize::High;
 
         return BetSize::Huge;
-    }
-
-	BetSize::Value BetSize::FromPot(unsigned bet, unsigned maxBet, unsigned pot, float& value)
-	{
-		value = static_cast<float>(maxBet - bet) / pot;
-        return FromPot(value);
-	}
-
-    BetSize::Value BetSize::FromPot(const float value)
-    {
-        if (value < 0.1f)
-            return BetSize::VeryLow;
-        if (value < 0.3f)
-            return BetSize::Low;
-        if (value < 0.6f)
-            return BetSize::Normal;
-        if (value < 2.0f)
-            return BetSize::High;
-
-        return BetSize::Huge;
-    }
-
-	float BetSize::ToPot(Value value)
-	{
-		switch (value)
-		{
-			case VeryLow:	return 0.0f;
-			case Low:		return 0.3f;
-			case Normal:	return 0.5f;
-			case High:		return 0.7f;
-			case Huge:		return 1.0f;
-			default: return VeryLow;
-		}
-	}
-
-	float BetSize::ToStack(Value value)
-	{
-		switch (value)
-		{
-			case VeryLow:	return 0.0f;
-			case Low:		return 0.3f;
-			case Normal:	return 0.5f;
-			case High:		return 0.7f;
-			case Huge:		return 1.0f;
-			default: return VeryLow;
-		}
 	}
 
 };

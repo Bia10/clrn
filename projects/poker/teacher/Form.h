@@ -38,7 +38,6 @@ class TeacherMainFrame : public wxFrame
 		wxStaticText* m_staticText23;
 		wxStaticText* m_staticText24;
 		wxStaticText* m_staticText25;
-		wxStaticText* m_staticText26;
 		wxStaticText* m_staticText27;
 		wxStaticText* m_staticText28;
 		wxStaticText* m_staticText29;
@@ -46,8 +45,7 @@ class TeacherMainFrame : public wxFrame
 		wxStaticText* m_staticText301;
 		wxChoice* m_WinRateChoice;
 		wxChoice* m_PositionChoice;
-		wxChoice* m_PotRateChoice;
-		wxChoice* m_StackRateChoice;
+		wxChoice* m_BetSizeChoice;
 		wxChoice* m_PlayersChoice;
 		wxChoice* m_DangerChoice;
 		wxChoice* m_BotAverageStyleChoice;
@@ -55,8 +53,7 @@ class TeacherMainFrame : public wxFrame
 		wxChoice* m_BostStackSizeChoice;
 		wxCheckBox* m_WinRateCheck;
 		wxCheckBox* m_PositionCheck;
-		wxCheckBox* m_PotRatioCheck;
-		wxCheckBox* m_StackRatioCheck;
+		wxCheckBox* m_BetSizeCheck;
 		wxCheckBox* m_PlayersCheck;
 		wxCheckBox* m_DangerCheck;
 		wxCheckBox* m_BotAverageStyleCheck;
@@ -81,7 +78,6 @@ class TeacherMainFrame : public wxFrame
 		virtual void OnWinRate( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnPosition( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnPotRatio( wxCommandEvent& event ){ event.Skip(); }
-		virtual void OnStackRatio( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnPlayers( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnPlayersStyle( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OnStyleChanges( wxCommandEvent& event ){ event.Skip(); }

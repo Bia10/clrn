@@ -57,13 +57,7 @@ void Teacher::OnPosition(wxCommandEvent& event)
 
 void Teacher::OnPotRatio(wxCommandEvent& event)
 {
-	m_CurrentParams.m_BetPotSize = static_cast<pcmn::BetSize::Value>(event.GetInt());
-    SetRowViewToCurrentParams();
-}
-
-void Teacher::OnStackRatio(wxCommandEvent& event)
-{
-	m_CurrentParams.m_BetStackSize = static_cast<pcmn::BetSize::Value>(event.GetInt());
+	m_CurrentParams.m_BetSize = static_cast<pcmn::BetSize::Value>(event.GetInt());
     SetRowViewToCurrentParams();
 }
 
@@ -266,8 +260,7 @@ void Teacher::SetGuiParams(const neuro::Params& params)
 {
 	m_WinRateChoice->SetSelection(params.m_WinRate);
 	m_PositionChoice->SetSelection(params.m_Position);
-	m_PotRateChoice->SetSelection(params.m_BetPotSize);
-	m_StackRateChoice->SetSelection(params.m_BetStackSize);
+	m_BetSizeChoice->SetSelection(params.m_BetSize);
 	m_PlayersChoice->SetSelection(params.m_ActivePlayers);
 	m_DangerChoice->SetSelection(params.m_Danger);
 	m_BotAverageStyleChoice->SetSelection(params.m_BotAverageStyle);
@@ -377,34 +370,18 @@ void Teacher::IncrementChecked()
 		}
 	}
 
-	// bet stack size
-	if (m_StackRatioCheck->IsChecked())
+	// bet size
+	if (m_BetSizeCheck->IsChecked())
 	{
-		if (m_CurrentParams.m_BetStackSize == pcmn::BetSize::Max)
+		if (m_CurrentParams.m_BetSize == pcmn::BetSize::Max)
 		{
-			m_CurrentParams.m_BetStackSize = pcmn::BetSize::VeryLow;
-			m_StackRateChoice->SetSelection(0);
+			m_CurrentParams.m_BetSize = pcmn::BetSize::VeryLow;
+			m_BetSizeChoice->SetSelection(0);
 		}
 		else
 		{
-			m_CurrentParams.m_BetStackSize = static_cast<pcmn::BetSize::Value>(int(m_CurrentParams.m_BetStackSize) + 1);
-			m_StackRateChoice->SetSelection(m_StackRateChoice->GetSelection() + 1);
-			return;
-		}
-	}
-
-	// bet pot size
-	if (m_PotRatioCheck->IsChecked())
-	{
-		if (m_CurrentParams.m_BetPotSize == pcmn::BetSize::Max)
-		{
-			m_CurrentParams.m_BetPotSize = pcmn::BetSize::VeryLow;
-			m_PotRateChoice->SetSelection(0);
-		}
-		else
-		{
-			m_CurrentParams.m_BetPotSize = static_cast<pcmn::BetSize::Value>(int(m_CurrentParams.m_BetPotSize) + 1);
-			m_PotRateChoice->SetSelection(m_PotRateChoice->GetSelection() + 1);
+			m_CurrentParams.m_BetSize = static_cast<pcmn::BetSize::Value>(int(m_CurrentParams.m_BetSize) + 1);
+			m_BetSizeChoice->SetSelection(m_BetSizeChoice->GetSelection() + 1);
 			return;
 		}
 	}
@@ -476,16 +453,10 @@ void Teacher::OnRange(wxCommandEvent& event)
 		totalCount *= m_PlayersChoice->GetCount() - m_PlayersChoice->GetSelection();
 	}
 
-	// bet stack size
-	if (m_StackRatioCheck->IsChecked())
+	// bet size
+	if (m_BetSizeCheck->IsChecked())
 	{
-		totalCount *= m_StackRateChoice->GetCount() - m_StackRateChoice->GetSelection();
-	}
-
-	// bet pot size
-	if (m_PotRatioCheck->IsChecked())
-	{
-		totalCount *= m_PotRateChoice->GetCount() - m_PotRateChoice->GetSelection();
+		totalCount *= m_BetSizeChoice->GetCount() - m_BetSizeChoice->GetSelection();
 	}
 
 	// bot position
@@ -674,26 +645,26 @@ void Teacher::UpdateGrid(unsigned paramsRow)
     {       
         const neuro::Params& params = m_Parameters[paramsRow];
         
-        m_Grid->SetCellValue(row, 0, pcmn::WinRate::ToString(params.m_WinRate));
-        m_Grid->SetCellValue(row, 1, pcmn::Player::Position::ToString(params.m_Position));
-        m_Grid->SetCellValue(row, 2, pcmn::BetSize::ToString(params.m_BetPotSize));
-        m_Grid->SetCellValue(row, 3, pcmn::BetSize::ToString(params.m_BetStackSize));
-        m_Grid->SetCellValue(row, 4, pcmn::Player::Count::ToString(params.m_ActivePlayers));
-        m_Grid->SetCellValue(row, 5, pcmn::Danger::ToString(params.m_Danger));
-        m_Grid->SetCellValue(row, 6, pcmn::Player::Style::ToString(params.m_BotAverageStyle));
-        m_Grid->SetCellValue(row, 7, pcmn::Player::Style::ToString(params.m_BotStyle));
-        m_Grid->SetCellValue(row, 8, pcmn::StackSize::ToString(params.m_BotStackSize));
+        unsigned c = 0;
+        m_Grid->SetCellValue(row, c++, pcmn::WinRate::ToString(params.m_WinRate));
+        m_Grid->SetCellValue(row, c++, pcmn::Player::Position::ToString(params.m_Position));
+        m_Grid->SetCellValue(row, c++, pcmn::BetSize::ToString(params.m_BetSize));
+        m_Grid->SetCellValue(row, c++, pcmn::Player::Count::ToString(params.m_ActivePlayers));
+        m_Grid->SetCellValue(row, c++, pcmn::Danger::ToString(params.m_Danger));
+        m_Grid->SetCellValue(row, c++, pcmn::Player::Style::ToString(params.m_BotAverageStyle));
+        m_Grid->SetCellValue(row, c++, pcmn::Player::Style::ToString(params.m_BotStyle));
+        m_Grid->SetCellValue(row, c++, pcmn::StackSize::ToString(params.m_BotStackSize));
         
         if (params.m_CheckFold)
-            m_Grid->SetCellValue(row, 9, "Check/Fold");
+            m_Grid->SetCellValue(row, c++, "Check/Fold");
         else
         if (params.m_CheckCall)
-            m_Grid->SetCellValue(row, 9, "Check/Call");
+            m_Grid->SetCellValue(row, c++, "Check/Call");
         else
         if (params.m_BetRaise)
-            m_Grid->SetCellValue(row, 9, "Bet/Raise");
+            m_Grid->SetCellValue(row, c++, "Bet/Raise");
         else
-            m_Grid->SetCellValue(row, 9, "Not set");
+            m_Grid->SetCellValue(row, c++, "Not set");
 
         m_Grid->SetRowLabelValue(row, boost::lexical_cast<std::string>(paramsRow));
     }
