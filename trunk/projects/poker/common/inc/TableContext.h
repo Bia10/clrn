@@ -26,8 +26,7 @@ struct TableContext
 			std::size_t m_PlayerIndex; // reference to one of the m_Players(index in the vector)
 			int m_Street;
 			int m_Action;
-			float m_PotAmount;
-			float m_StackAmount;
+            int m_Bet;
 			int m_Position;
 		};
 

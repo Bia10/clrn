@@ -3,6 +3,7 @@
 #include "Exception.h"
 #include "Evaluator.h"
 #include "TableContext.h"
+#include "BetSize.h"
 
 #include <boost/assign/list_of.hpp>
 
@@ -330,6 +331,7 @@ void TableLogic::Parse(const net::Packet& packet)
                 GetActivePlayers(activePlayers);
                 
                 const Player::Position::Value position = GetPlayerPosition(activePlayers, current);
+                const BetSize::Value betValue = BetSize::FromParams(amount, context.m_MaxBet, context.m_Pot, current.Stack(), context.m_BigBlind);
 
                 PushAction(player, action, amount);
 
@@ -337,14 +339,10 @@ void TableLogic::Parse(const net::Packet& packet)
                 resultAction.m_Action = action;
                 resultAction.m_PlayerIndex = playerIndex;
                 resultAction.m_Street = phase;
-                resultAction.m_PotAmount = m_Pot ? static_cast<float>(amount) / m_Pot : 1;
-                resultAction.m_StackAmount = current.Stack() ? static_cast<float>(amount) / current.Stack() : 1;
+                resultAction.m_Bet = static_cast<int>(betValue);
                 resultAction.m_Position = static_cast<int>(position);
 
-                assert(resultAction.m_PotAmount >= 0);
-                assert(resultAction.m_StackAmount >= 0);
-
-                current.PushAction(phase, action, resultAction.m_PotAmount);
+                current.PushAction(phase, action, betValue);
                 context.m_Data.m_Actions.push_back(resultAction);
 
                 if (context.m_MaxBet < amount)

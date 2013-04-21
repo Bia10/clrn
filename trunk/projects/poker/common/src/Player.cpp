@@ -64,16 +64,16 @@ namespace pcmn
 	{
 	}
 
-	void Player::PushAction(unsigned street, Action::Value value, float potAmount)
+	void Player::PushAction(unsigned street, Action::Value action, BetSize::Value value)
 	{
-		if (value > pcmn::Action::Raise)
+        if (!Action::IsUseful(action))
 			return; // don't collect useless for statistics actions
 
 		m_Actions.push_back(ActionDesc());
-		ActionDesc& action = m_Actions.back();
-		action.m_Action = value;
-		action.m_PotAmount = potAmount;
-		action.m_Street = street;
+		ActionDesc& actionDesc = m_Actions.back();
+		actionDesc.m_Action = action;
+		actionDesc.m_Value = value;
+		actionDesc.m_Street = street;
 	}
 
 }

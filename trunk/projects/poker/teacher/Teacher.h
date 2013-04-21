@@ -15,7 +15,6 @@ private:
 	virtual void OnWinRate( wxCommandEvent& event ) override;
 	virtual void OnPosition( wxCommandEvent& event ) override;
 	virtual void OnPotRatio( wxCommandEvent& event ) override;
-	virtual void OnStackRatio( wxCommandEvent& event ) override;
 	virtual void OnPlayers( wxCommandEvent& event ) override;
 	virtual void OnPlayersStyle( wxCommandEvent& event ) override;
 	virtual void OnStyleChanges( wxCommandEvent& event ) override;

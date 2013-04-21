@@ -3,6 +3,7 @@
 
 #include "Cards.h"
 #include "Actions.h"
+#include "BetSize.h"
 
 #include <string>
 #include <vector>
@@ -90,7 +91,7 @@ public:
 	{
 		unsigned m_Street;
 		Action::Value m_Action;
-		float m_PotAmount;
+		BetSize::Value m_Value;
 	};
 
 	typedef std::vector<Player> List;
@@ -157,7 +158,7 @@ public:
 	bool operator == (const Player& other) const;
 
 	//! Add player action
-	void PushAction(unsigned street, Action::Value action, float potAmount);
+	void PushAction(unsigned street, Action::Value action, BetSize::Value value);
 
 
 private:
