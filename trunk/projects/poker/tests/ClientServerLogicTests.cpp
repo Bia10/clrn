@@ -96,7 +96,7 @@ public:
 	TestServer()
 		: m_Network(m_Log, cfg::NETWORK_FILE_NAME)
 		, m_Statistics(m_Log)
-        , m_Evaluator(1)
+        , m_Evaluator()
 	{
 
 	}

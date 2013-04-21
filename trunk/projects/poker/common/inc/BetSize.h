@@ -18,7 +18,15 @@ namespace pcmn
 		};
 
 		static std::string ToString(Value value);
-        static Value FromParams
+        static Value FromAction
+        (
+            unsigned bet, 
+            unsigned pot, 
+            unsigned stack, 
+            unsigned bigBlind
+        );
+
+        static Value FromDecision
         (
             unsigned bet, 
             unsigned maxBet, 
