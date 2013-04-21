@@ -271,28 +271,26 @@ void TableLogic::GetActivePlayers(Player::Queue& players)
     }
 }
 
-Player::Position::Value TableLogic::GetPlayerPosition(const Player::Queue& players, const Player& player)
+Player::Position::Value TableLogic::GetNextPlayerPosition()
 {
     SCOPED_LOG(m_Log);
 
-    const Player::Queue::const_iterator it = std::find(players.begin(), players.end(), player);
-    CHECK(it != players.end(), "Failed to find player in list", player.Name());
-
-    const std::size_t playerIndex = std::distance(players.begin(), it);
+    const std::size_t totalPlayers = m_Sequence.size();
+    const std::size_t leftInQueue = m_Queue.size();
 
     pcmn::Player::Position::Value result = pcmn::Player::Position::Middle;
 
-    std::size_t step = players.size() / 3;
+    std::size_t step = m_Sequence.size() / 3;
     if (!step)
         step = 1;
 
-    if (playerIndex >= players.size() - step)
+    if (leftInQueue <= step)
         result = pcmn::Player::Position::Later;
     else
-    if (playerIndex <= step)
+    if (leftInQueue >= step * 2)
         result = pcmn::Player::Position::Early;
 
-    LOG_TRACE("Players: [%s], index: [%s], step: [%s], result: [%s]") % players.size() % playerIndex % step % result;
+    LOG_TRACE("Players: [%s], left: [%s], step: [%s], result: [%s]") % totalPlayers % leftInQueue % step % result;
     return result;
 }
 
@@ -344,8 +342,8 @@ void TableLogic::Parse(const net::Packet& packet)
                 Player::Queue activePlayers;
                 GetActivePlayers(activePlayers);
                 
-                const Player::Position::Value position = GetPlayerPosition(activePlayers, current);
-                const BetSize::Value betValue = BetSize::FromParams(amount, context.m_MaxBet, context.m_Pot, current.Stack(), context.m_BigBlind);
+                const Player::Position::Value position = GetNextPlayerPosition();
+                const BetSize::Value betValue = BetSize::FromParams(amount, context.m_MaxBet, m_Pot, current.Stack(), context.m_BigBlind);
 
                 PushAction(player, action, amount);
 
@@ -376,7 +374,7 @@ void TableLogic::Parse(const net::Packet& packet)
             // need a decision
             const Player& current = GetPlayer(m_Queue.front());
             assert(current.Name() == "CLRN");
-            const Player::Position::Value position = GetPlayerPosition(activePlayers, current);
+            const Player::Position::Value position = GetNextPlayerPosition();
 
             m_Callback.MakeDecision(current, activePlayers, context, position);
         }
