@@ -369,7 +369,7 @@ void TableLogic::Parse(const net::Packet& packet)
                 GetActivePlayers(activePlayers);
                 
                 const Player::Position::Value position = GetNextPlayerPosition();
-                const BetSize::Value betValue = BetSize::FromParams(amount, context.m_MaxBet, m_Pot, current.Stack(), context.m_BigBlind);
+                const BetSize::Value betValue = BetSize::FromAction(amount, m_Pot, current.Stack(), context.m_BigBlind);
 
                 PushAction(player, action, amount);
 

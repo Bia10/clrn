@@ -66,7 +66,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 		in.push_back(static_cast<float>(position) / pcmn::Player::Position::Max);
 	
 		// bet size
-		params.m_BetSize = pcmn::BetSize::FromParams(player.Bet(), context.m_MaxBet, context.m_Pot, player.Stack(), context.m_BigBlind);
+		params.m_BetSize = pcmn::BetSize::FromDecision(player.Bet(), context.m_MaxBet, context.m_Pot, player.Stack(), context.m_BigBlind);
 		in.push_back(static_cast<float>(params.m_BetSize) / pcmn::BetSize::Max);
 		
 		// active players
