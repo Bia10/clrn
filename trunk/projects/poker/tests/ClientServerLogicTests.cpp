@@ -96,7 +96,7 @@ public:
 	TestServer()
 		: m_Network(m_Log, cfg::NETWORK_FILE_NAME)
 		, m_Statistics(m_Log)
-        , m_Evaluator()
+        , m_Evaluator(1)
 	{
 
 	}
@@ -120,8 +120,8 @@ public:
 
 private:
 	Log m_Log;
-	TestReadStatistics m_Statistics;
-    //EmptyTestStatistics m_Statistics;
+	//TestReadStatistics m_Statistics;
+    EmptyTestStatistics m_Statistics;
 	pcmn::Evaluator	m_Evaluator;
 	neuro::DatabaseReader m_Network;
 };
