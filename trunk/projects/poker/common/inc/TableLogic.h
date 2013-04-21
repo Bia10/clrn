@@ -159,7 +159,7 @@ private:
     void GetActivePlayers(Player::Queue& players);
 
     //! Get player position
-    Player::Position::Value GetPlayerPosition(const Player::Queue& players, const Player& player);
+    Player::Position::Value GetNextPlayerPosition();
 
 private:
 

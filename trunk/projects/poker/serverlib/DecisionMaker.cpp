@@ -74,7 +74,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 		in.push_back(static_cast<float>(params.m_ActivePlayers) / pcmn::Player::Count::Max);
 	
 		// danger
-		params.m_Danger = GetDanger(player, activePlayers, winRate);
+		params.m_Danger = GetDanger(player, activePlayers, winRate * 100);
 		in.push_back(static_cast<float>(params.m_Danger) / pcmn::Danger::Max);
 	
 		// bot average style
@@ -186,6 +186,10 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
 	for (const pcmn::Player& player : activePlayers)
 	{
 		pcmn::Player::Actions actions = player.GetActions();
+
+        // remove useless actions
+        actions.erase(std::remove_if(actions.begin(), actions.end(), [](const pcmn::Player::ActionDesc& a){ return a.m_Action > pcmn::Action::Raise; }), actions.end());
+
 		if (actions.empty() || player.Name() == bot.Name())
 			continue;
 
@@ -281,6 +285,10 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
 	for (const pcmn::Player& player : activePlayers)
 	{
 		pcmn::Player::Actions actions = player.GetActions();
+
+        // remove useless actions
+        actions.erase(std::remove_if(actions.begin(), actions.end(), [](const pcmn::Player::ActionDesc& a){ return a.m_Action > pcmn::Action::Raise; }), actions.end());
+
 		if (actions.empty() || player.Name() == bot.Name())
 			continue;
 
@@ -374,11 +382,11 @@ pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const pcmn::Player&
 	int raises = 0;
 	m_Stat.GetLastActions(player.Name(), it->Name(), checks, calls, raises);
 
+    if (raises >= 10)
+        return pcmn::Player::Style::Aggressive;
+
 	if (checks + calls + raises < 20)
 		return pcmn::Player::Style::Normal;
-
-	if (raises > 10)
-		return pcmn::Player::Style::Aggressive;
 
 	if (raises > 1)
 		return pcmn::Player::Style::Normal;
