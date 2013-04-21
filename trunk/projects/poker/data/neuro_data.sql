@@ -81,7 +81,7 @@ UPDATE decisions
 SET    decision = 1 
 WHERE  win IN ( 2 ) 
        AND position IN ( 0, 1, 2 ) 
-       AND bet IN ( 0, 1 ) 
+       AND bet IN ( 0, 1, 2 ) 
        AND players IN ( 0, 1, 2 ) 
        AND danger IN ( 0, 1 ) 
        AND bot_avg_style IN ( 0, 1, 2 ) 

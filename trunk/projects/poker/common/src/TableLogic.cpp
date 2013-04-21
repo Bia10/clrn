@@ -92,19 +92,19 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
                         if (!found && m_Sequence[i] == name)
                             found = true;
                         else
-                            if (found && m_Sequence[i] == name)
-                                break;
-                            else
-                                if (found)
-                                {
-                                    Player& currentPlayer = GetPlayer(m_Sequence[i]);
+                        if (found && m_Sequence[i] == name)
+                            break;
+                        else
+                        if (found)
+                        {
+                            Player& currentPlayer = GetPlayer(m_Sequence[i]);
 
-                                    if (currentPlayer.State() == Player::State::Called && currentPlayer.Stack())
-                                    {
-                                        currentPlayer.State(Player::State::Waiting);
-                                        m_Queue.push_back(currentPlayer.Name());
-                                    }
-                                }
+                            if (currentPlayer.State() == Player::State::Called && currentPlayer.Stack())
+                            {
+                                currentPlayer.State(Player::State::Waiting);
+                                m_Queue.push_back(currentPlayer.Name());
+                            }
+                        }
                     }
                 }
 
@@ -139,6 +139,22 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
 
         if (m_State != State::Uninited)
         {
+            if (m_Queue.empty())
+            {
+                // workaround, client may not send small/big blinds
+                const std::string& bigBlind = GetPreviousPlayerName(name);
+                const std::string& smallBlind = GetPreviousPlayerName(bigBlind);
+
+                const ActionDesc lastAction = m_Actions[m_Phase].back();
+                m_Actions[m_Phase].pop_back();
+
+                PushAction(smallBlind, pcmn::Action::SmallBlind, m_SmallBlindAmount);
+                m_Actions[m_Phase].push_back(lastAction);
+                if (action != Action::Fold)
+                    current.State(Player::State::Called);
+                else
+                    current.State(Player::State::Folded);
+            }
             CHECK(!m_Queue.empty(), "Unexpected player actions sequence, queue is empty", name);
             CHECK(name == m_Queue.front(), "Incorrect player actions sequence", name, m_Queue.front());
             m_Queue.pop_front();
