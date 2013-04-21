@@ -65,7 +65,7 @@ private:
             pcmn::TableLogic logic(m_Log, decisionMaker, m_Evaluator);
             logic.Parse(static_cast<const net::Packet&>(message));
 
-			LOG_WARNING("Requests processed: [%s]") % m_RequestsCount++;
+			LOG_WARNING("Requests processed: [%s]") % ++m_RequestsCount;
 		}
 		catch (const std::exception& e)
 		{

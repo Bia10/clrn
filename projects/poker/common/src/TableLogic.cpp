@@ -35,133 +35,143 @@ TableLogic::TableLogic(ILog& logger, ITableLogicCallback& callback, const Evalua
 
 void TableLogic::PushAction(const std::string& name, Action::Value action, unsigned amount)
 {
-    LOG_TRACE("Name: [%s], action: [%s], amount: [%s]") % name % Action::ToString(action) % amount;
-    CHECK(m_Phase <= Phase::River, m_Phase, name, action, amount);
-
-    if (action == Action::SmallBlind && m_State != State::Server)
+    try
     {
-        m_SmallBlindAmount = amount;
-        ResetPhase(name);
-    }
+        LOG_TRACE("Name: [%s], action: [%s], amount: [%s]") % name % Action::ToString(action) % amount;
+        CHECK(m_Phase <= Phase::River, m_Phase, name, action, amount);
 
-    if 
-    (
-        action == Action::BigBlind 
-        && 
-        std::find_if
-        (
-            m_Actions[Phase::Preflop].begin(), 
-            m_Actions[Phase::Preflop].end(),
-            [](const ActionDesc& actionDsc) { return actionDsc.m_Value == Action::BigBlind; }
-        ) != m_Actions[Phase::Preflop].end()
-    )
-        return; // big blind duplicated
-
-    ActionDesc actionData(name, action, amount);
-    if (m_Actions[m_Phase].empty() || m_Actions[m_Phase].back() != actionData)
-        m_Actions[m_Phase].push_back(actionData);
-
-    Player& current = GetPlayer(name);
-
-    switch (action)
-    {
-    case pcmn::Action::Bet: 
-    case pcmn::Action::Raise:
+        if (action == Action::SmallBlind && m_State != State::Server)
         {
-            const unsigned difference = amount - current.Bet();
-            current.Bet(current.Bet() + difference);
-            current.TotalBet(current.TotalBet() + difference);
-            if (m_State == State::Server)
-                current.Stack(current.Stack() - difference);
+            m_SmallBlindAmount = amount;
+            ResetPhase(name);
+        }
 
-            m_Pot += difference;
+        if 
+        (
+            action == Action::BigBlind 
+            && 
+            std::find_if
+            (
+                m_Actions[Phase::Preflop].begin(), 
+                m_Actions[Phase::Preflop].end(),
+                [](const ActionDesc& actionDsc) { return actionDsc.m_Value == Action::BigBlind; }
+            ) != m_Actions[Phase::Preflop].end()
+        )
+            return; // big blind duplicated
 
-            if (m_State != State::Uninited)
+        ActionDesc actionData(name, action, amount);
+        if (m_Actions[m_Phase].empty() || m_Actions[m_Phase].back() != actionData)
+            m_Actions[m_Phase].push_back(actionData);
+
+        Player& current = GetPlayer(name);
+
+        switch (action)
+        {
+        case pcmn::Action::Bet: 
+        case pcmn::Action::Raise:
             {
-                // validate
-                CHECK(std::find(m_Sequence.begin(), m_Sequence.end(), name) != m_Sequence.end(), "Failed to find player in sequence", name);
+                const unsigned difference = amount - current.Bet();
+                current.Bet(current.Bet() + difference);
+                current.TotalBet(current.TotalBet() + difference);
+                if (m_State == State::Server)
+                    current.Stack(current.Stack() - difference);
 
-                bool found = false;
-                for (std::size_t i = 0; ; ++i)
+                m_Pot += difference;
+
+                if (m_State != State::Uninited)
                 {
-                    if (i == m_Sequence.size())
-                        i = 0;
+                    // validate
+                    CHECK(std::find(m_Sequence.begin(), m_Sequence.end(), name) != m_Sequence.end(), "Failed to find player in sequence", name);
 
-                    if (!found && m_Sequence[i] == name)
-                        found = true;
-                    else
-                    if (found && m_Sequence[i] == name)
-                        break;
-                    else
-                    if (found)
+                    bool found = false;
+                    for (std::size_t i = 0; ; ++i)
                     {
-                        Player& currentPlayer = GetPlayer(m_Sequence[i]);
+                        if (i == m_Sequence.size())
+                            i = 0;
 
-                        if (currentPlayer.State() == Player::State::Called && currentPlayer.Stack())
-                        {
-                            currentPlayer.State(Player::State::Waiting);
-                            m_Queue.push_back(currentPlayer.Name());
-                        }
+                        if (!found && m_Sequence[i] == name)
+                            found = true;
+                        else
+                            if (found && m_Sequence[i] == name)
+                                break;
+                            else
+                                if (found)
+                                {
+                                    Player& currentPlayer = GetPlayer(m_Sequence[i]);
+
+                                    if (currentPlayer.State() == Player::State::Called && currentPlayer.Stack())
+                                    {
+                                        currentPlayer.State(Player::State::Waiting);
+                                        m_Queue.push_back(currentPlayer.Name());
+                                    }
+                                }
                     }
                 }
-            }
 
+                current.State(Player::State::Called);
+                break;
+            }
+        case pcmn::Action::Call: 
+            m_Pot += amount;
+            current.State(Player::State::Called);
+            current.Bet(current.Bet() + amount);
+            current.TotalBet(current.TotalBet() + amount);
+            if (m_State == State::Server)
+                current.Stack(current.Stack() - amount);
+            break;
+        case pcmn::Action::SmallBlind:
+        case pcmn::Action::BigBlind:
+            m_Pot += amount;
+            current.Bet(current.Bet() + amount);
+            current.TotalBet(current.TotalBet() + amount);
+            if (m_State == State::Server)
+                current.Stack(current.Stack() - amount);
+            break;
+        case pcmn::Action::Check:
             current.State(Player::State::Called);
             break;
+        case pcmn::Action::Fold:
+            current.State(Player::State::Folded);
+            break;
+        default:
+            return;
         }
-    case pcmn::Action::Call: 
-        m_Pot += amount;
-        current.State(Player::State::Called);
-        current.Bet(current.Bet() + amount);
-        current.TotalBet(current.TotalBet() + amount);
-        if (m_State == State::Server)
-            current.Stack(current.Stack() - amount);
-       break;
-    case pcmn::Action::SmallBlind:
-    case pcmn::Action::BigBlind:
-        m_Pot += amount;
-        current.Bet(current.Bet() + amount);
-        current.TotalBet(current.TotalBet() + amount);
-        if (m_State == State::Server)
-            current.Stack(current.Stack() - amount);
-        break;
-    case pcmn::Action::Check:
-        current.State(Player::State::Called);
-        break;
-    case pcmn::Action::Fold:
-        current.State(Player::State::Folded);
-        break;
-    default:
-        return;
-    }
 
-    if (m_State != State::Uninited)
-    {
-        CHECK(!m_Queue.empty(), "Unexpected player actions sequence, queue is empty", name);
-        CHECK(name == m_Queue.front(), "Incorrect player actions sequence", name, m_Queue.front());
-        m_Queue.pop_front();
-
-        if (action == pcmn::Action::SmallBlind)
-            PushAction(m_Queue.front(), pcmn::Action::BigBlind, amount * 2);
-
-        if (m_Queue.empty())
+        if (m_State != State::Uninited)
         {
-            if (m_Phase != Phase::River)
-                SetPhase(static_cast<Phase::Value>(m_Phase + 1));
+            CHECK(!m_Queue.empty(), "Unexpected player actions sequence, queue is empty", name);
+            CHECK(name == m_Queue.front(), "Incorrect player actions sequence", name, m_Queue.front());
+            m_Queue.pop_front();
+
+            if (action == pcmn::Action::SmallBlind)
+                PushAction(m_Queue.front(), pcmn::Action::BigBlind, amount * 2);
+
+            if (m_Queue.empty())
+            {
+                if (m_Phase != Phase::River)
+                    SetPhase(static_cast<Phase::Value>(m_Phase + 1));
+            }
+        }
+
+        if (m_State == State::InitedClient && !m_Queue.empty())
+        {
+            const std::string& botName = Player::ThisPlayer().Name();
+            CHECK(!botName.empty(), "Bot name not inited, can't get next");
+            if (m_Queue.front() == botName)
+            {
+                if (GetPlayer(botName).Cards().empty()) // workaround, cards may be received after decision needed
+                    m_IsNeedDecision = true;
+                else
+                    SendRequest(false);
+            }
         }
     }
-
-    if (m_State == State::InitedClient && !m_Queue.empty())
+    catch (CExcept& e)
     {
-        const std::string& botName = Player::ThisPlayer().Name();
-        CHECK(!botName.empty(), "Bot name not inited, can't get next");
-        if (m_Queue.front() == botName)
-        {
-            if (GetPlayer(botName).Cards().empty()) // workaround, cards may be received after decision needed
-                m_IsNeedDecision = true;
-            else
-                SendRequest(false);
-        }
+        LOG_ERROR("Failed to push action: [%s], name: [%s], amount: [%s], error: [%s]") % name % Action::ToString(action) % amount % e.what();
+        APPEND_ARGS(e, name, action, amount);
+        m_State = State::Uninited;
+        throw;
     }
 }
 
@@ -292,6 +302,22 @@ Player::Position::Value TableLogic::GetNextPlayerPosition()
 
     LOG_TRACE("Players: [%s], left: [%s], step: [%s], result: [%s]") % totalPlayers % leftInQueue % step % result;
     return result;
+}
+
+void TableLogic::ResetData()
+{
+    for (unsigned i = 0 ; i <= Phase::River; ++i)
+        m_Actions[i].clear();
+
+    for (PlayersMap::value_type& player : m_Players)
+        player.second.Reset();
+
+    m_Phase = Phase::Preflop;
+    m_NextRoundData.clear();
+    m_Pot = 0;
+    m_Flop.clear();
+    m_NextRoundData.clear();
+    m_Pot = 0;
 }
 
 void TableLogic::Parse(const net::Packet& packet)
@@ -474,7 +500,8 @@ void TableLogic::SetPhase(Phase::Value phase)
     m_Queue.clear();
     m_IsNeedDecision = false;
 
-    ParseActionsIfNeeded();
+    if (!ParseActionsIfNeeded())
+        return;
 
     CHECK(!m_Sequence.empty(), "Players sequence is empty", m_Phase);
     CHECK(!m_Button.empty(), "Failed to find player on button", m_Phase);
@@ -614,10 +641,12 @@ const std::string& TableLogic::GetPreviousPlayerName(const std::string& name) co
 
 void TableLogic::ResetPhase(const std::string& smallBlind)
 {
-    if (m_Actions[Phase::Preflop].empty())
-        return;
+    if (!ParseActionsIfNeeded())
+    {
+        ResetData();
+        return; // not complete data
+    }
 
-    ParseActionsIfNeeded();
     SendRequest(true);
 
     struct Hand
@@ -661,9 +690,7 @@ void TableLogic::ResetPhase(const std::string& smallBlind)
         const Hand hand = {player, rank};
         hands.push_back(hand);
     }
-
-    m_Flop.clear();
-
+    
     if (allInPlayers.size() == 1 && hands.empty())
     {
         // workaround in case when all players folds we must set player stack back
@@ -709,23 +736,19 @@ void TableLogic::ResetPhase(const std::string& smallBlind)
         }
     }
 
-    for (unsigned i = 0 ; i <= Phase::River; ++i)
-        m_Actions[i].clear();
-
-    for (const std::string& player : m_Sequence)
-    {
-        Player& currentPlayer = GetPlayer(player);
-
-        currentPlayer.Reset();
-    }
-
     if (m_Sequence.size() > 2)
         m_Button = GetPreviousPlayerName(smallBlind);
     else
         m_Button = smallBlind;
 
+    // back up next round data
+    const Player::List nextRoundData = m_NextRoundData;
+
+    // reset all data
+    ResetData();
+
     // set data from this round
-    for (const pcmn::Player& player : m_NextRoundData)
+    for (const pcmn::Player& player : nextRoundData)
     {
         if (!player.Cards().empty())
             SetPlayerCards(player.Name(), player.Cards());
@@ -733,20 +756,27 @@ void TableLogic::ResetPhase(const std::string& smallBlind)
             SetPlayerStack(player.Name(), player.Stack());
     }
 
-    m_NextRoundData.clear();
-    m_Pot = 0;
-
     SetPhase(Phase::Preflop);
 }
 
-void TableLogic::ParseActionsIfNeeded()
+bool TableLogic::ParseActionsIfNeeded()
 {
     if (m_State != State::Uninited)
-        return;
+        return true;
 
-    CHECK(m_Queue.empty());
-    CHECK(m_Sequence.empty());
-    CHECK(!m_Actions[Phase::Preflop].empty());
+    const auto it =
+    std::find_if
+    (
+        m_Actions[Phase::Preflop].begin(), 
+        m_Actions[Phase::Preflop].end(),
+        [](const ActionDesc& actionDsc) { return actionDsc.m_Value == Action::SmallBlind || actionDsc.m_Value == Action::Ante; }
+    );
+
+    if (it == m_Actions[Phase::Preflop].end())
+        return false; // not complete data
+
+    m_Queue.clear();
+    m_Sequence.clear();
 
     // init player queue from actions list
     const ActionDesc::List& actions = m_Actions[Phase::Preflop];
@@ -781,6 +811,7 @@ void TableLogic::ParseActionsIfNeeded()
         m_Button = m_Sequence.front(); // parsed by ante, without blinds
 
     m_State = State::InitedClient;
+    return true;
 }
 
 void TableLogic::SetFlopCards(const Card::List& cards)

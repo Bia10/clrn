@@ -144,7 +144,7 @@ private:
     void ResetPhase(const std::string& smallBlind);
 
     //! Parse actions if needed
-    void ParseActionsIfNeeded();
+    bool ParseActionsIfNeeded();
 
     //! ParseFlopCards
     void ParseFlopCards(TableContext& context, const net::Packet& packet);
@@ -160,6 +160,9 @@ private:
 
     //! Get player position
     Player::Position::Value GetNextPlayerPosition();
+
+    //! Reset data
+    void ResetData();
 
 private:
 
