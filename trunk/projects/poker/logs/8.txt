@@ -1,0 +1,193 @@
+[NONE   ][0][2013-04-22T00:33:47.041667]:[6188]: Logger started, module: [0], level: [3], source: [logs/messages.txt].
+[TRACE  ][0][2013-04-22T00:34:37.438550]:[6780]: Player: 'GeorgeD55', stack: '1490' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:34:37.438550]:[6780]: Player: 'HotelConfide', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:34:37.438550]:[6780]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:34:37.439550]:[6780]: Player: 'GeorgeD55', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:34:37.441550]:[6780]: Player: 'HotelConfide', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:34:37.500553]:[6780]: Player cards: ('King' of 'Hearts')('Six' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T00:34:41.517783]:[6780]: Player: 'cheneto29', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:34:49.621247]:[6780]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:34:54.558529]:[6780]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:34:57.031670]:[6780]: Player: 'apollei', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:34:57.031670]:[6780]: Player: 'apollei', action: 'Raise', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:00.025842]:[6780]: Player: 'YANIS231', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:05.161135]:[6780]: Player: 'ASED555', stack: '1280' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:05.163135]:[6780]: Player: 'ASED555', action: 'Raise', amount: '220' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:07.337260]:[6780]: Player: 'Staki1972', stack: '1280' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:07.338260]:[6780]: Player: 'Staki1972', action: 'Call', amount: '220' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:14.857690]:[6780]: Player: 'belvis501', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:14.859690]:[6780]: Player: 'belvis501', action: 'Raise', amount: '1500' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:15.137706]:[6780]: Player: 'GeorgeD55', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:18.619905]:[6780]: Player: 'HotelConfide', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:22.601133]:[6780]: Player: 'apollei', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:25.043273]:[6780]: Player: 'ASED555', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:25.044273]:[6780]: Player: 'ASED555', action: 'Call', amount: '1280' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:29.952553]:[6780]: Player: 'Staki1972', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:30.417580]:[6780]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:31.989670]:[6780]: Cards received: ('Three' of 'Diamonds')('Eight' of 'Clubs')('Eight' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T00:35:33.880778]:[6780]: Cards received: ('Three' of 'Diamonds')('Eight' of 'Clubs')('Eight' of 'Hearts')('Six' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T00:35:35.365863]:[6780]: Cards received: ('Three' of 'Diamonds')('Eight' of 'Clubs')('Eight' of 'Hearts')('Six' of 'Clubs')('Five' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T00:35:36.991956]:[6780]: Player: 'ASED555', action: 'ShowCards', cards: '6h3s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:37.000957]:[6780]: Player: 'belvis501', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:37.002957]:[6780]: Player: 'belvis501', action: 'ShowCards', cards: 'AhKs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:38.249028]:[6780]: Player: 'belvis501', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:38.250028]:[6780]: Player: 'belvis501', action: 'Rank', amount: '9' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:35:44.007357]:[6780]: Player: 'HotelConfide', stack: '1470' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:35:44.009357]:[6780]: Player: 'cheneto29', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:35:44.009357]:[6780]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:35:44.011357]:[6780]: Player: 'HotelConfide', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:35:44.023358]:[6780]: Player: 'cheneto29', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:35:44.026358]:[6780]: Player cards: ('Seven' of 'Hearts')('Three' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T00:35:49.516672]:[6780]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:04.547532]:[6780]: Player: 'apollei', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:04.548532]:[6780]: Player: 'apollei', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:04.554532]:[6780]: Player: 'YANIS231', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:04.556533]:[6780]: Player: 'YANIS231', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:04.563533]:[6780]: Player: 'ASED555', stack: '3290' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:04.564533]:[6780]: Player: 'ASED555', action: 'Raise', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:04.576534]:[6780]: Player: 'Staki1972', stack: '1160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:04.577534]:[6780]: Player: 'Staki1972', action: 'Raise', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:04.588534]:[6780]: Player: 'GeorgeD55', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:04.599535]:[6780]: Player: 'HotelConfide', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:10.476871]:[6780]: Player: 'cheneto29', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:10.758887]:[6780]: Player: 'apollei', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:11.055904]:[6780]: Player: 'YANIS231', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:15.774174]:[6780]: Player: 'ASED555', stack: '3210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:15.775174]:[6780]: Player: 'ASED555', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:16.388209]:[6780]: Cards received: ('King' of 'Spades')('Nine' of 'Clubs')('Ace' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T00:36:20.740458]:[6780]: Player: 'ASED555', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:29.062934]:[6780]: Player: 'Staki1972', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:29.544962]:[6780]: Player: 'Staki1972', stack: '1040' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:29.546962]:[6780]: Player: 'Staki1972', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:32.629138]:[6780]: Player: 'ASED555', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:32.637139]:[6780]: Player: 'Staki1972', stack: '3210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:32.639139]:[6780]: Player: 'Staki1972', action: 'MoneyReturn', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:36.429356]:[6780]: Player: 'cheneto29', stack: '1470' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:36:36.430356]:[6780]: Player: 'CLRN', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:36:36.430356]:[6780]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:36:36.432356]:[6780]: Player: 'cheneto29', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:36:36.441356]:[6780]: Player: 'CLRN', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:36:36.447357]:[6780]: Player cards: ('Ace' of 'Hearts')('Six' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T00:36:40.007560]:[6780]: Player: 'apollei', stack: '1380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:40.009560]:[6780]: Player: 'apollei', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:41.335636]:[6780]: Player: 'YANIS231', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:41.337636]:[6780]: Player: 'YANIS231', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:44.112795]:[6780]: Player: 'ASED555', stack: '3170' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:44.114795]:[6780]: Player: 'ASED555', action: 'Raise', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:47.997017]:[6780]: Player: 'Staki1972', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:48.279033]:[6780]: Player: 'GeorgeD55', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:49.617110]:[6780]: Player: 'HotelConfide', stack: '1430' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:49.618110]:[6780]: Player: 'HotelConfide', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:53.035305]:[6780]: Player: 'cheneto29', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:53.036305]:[6780]: Player: 'cheneto29', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:56.408498]:[6780]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:56.698515]:[6780]: Player: 'apollei', stack: '1360' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:56.700515]:[6780]: Player: 'apollei', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:58.831637]:[6780]: Player: 'YANIS231', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:58.832637]:[6780]: Player: 'YANIS231', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:36:59.457673]:[6780]: Cards received: ('King' of 'Hearts')('Four' of 'Hearts')('Five' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T00:37:03.666914]:[6780]: Player: 'cheneto29', stack: '1380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:03.668914]:[6780]: Player: 'cheneto29', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:06.088052]:[6780]: Player: 'apollei', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:06.369068]:[6780]: Player: 'YANIS231', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:08.658199]:[6780]: Player: 'ASED555', stack: '3050' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:08.659199]:[6780]: Player: 'ASED555', action: 'Raise', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:09.922271]:[6780]: Player: 'HotelConfide', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:15.121569]:[6780]: Player: 'cheneto29', stack: '1220' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:15.123569]:[6780]: Player: 'cheneto29', action: 'Raise', amount: '220' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:20.299865]:[6780]: Player: 'ASED555', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:24.006077]:[6780]: Player: 'CLRN', stack: '1470' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:37:24.007077]:[6780]: Player: 'apollei', stack: '1340' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:37:24.007077]:[6780]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:37:24.009077]:[6780]: Player: 'CLRN', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:37:24.014077]:[6780]: Player: 'apollei', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:37:24.017077]:[6780]: Player cards: ('Ace' of 'Spades')('Jack' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T00:37:26.843239]:[6780]: Player: 'YANIS231', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:26.844239]:[6780]: Player: 'YANIS231', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:30.100425]:[6780]: Player: 'ASED555', stack: '3010' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:30.102426]:[6780]: Player: 'ASED555', action: 'Raise', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:38.106883]:[6780]: Player: 'Staki1972', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:40.938045]:[6780]: Player: 'Staki1972', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:41.220061]:[6780]: Player: 'GeorgeD55', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:42.873156]:[6780]: Player: 'HotelConfide', stack: '1390' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:42.875156]:[6780]: Player: 'HotelConfide', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:45.294294]:[6780]: Player: 'cheneto29', stack: '1680' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:45.296295]:[6780]: Player: 'cheneto29', action: 'Raise', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:47.884443]:[6780]: Player: 'CLRN', stack: '1380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:47.886443]:[6780]: Player: 'CLRN', action: 'Call', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:50.992620]:[6780]: Player: 'apollei', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:53.341755]:[6780]: Player: 'YANIS231', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:53.343755]:[6780]: Player: 'YANIS231', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:59.853127]:[6780]: Player: 'ASED555', stack: '2950' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:37:59.855127]:[6780]: Player: 'ASED555', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:00.937189]:[6780]: Player: 'HotelConfide', stack: '1330' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:00.939189]:[6780]: Player: 'HotelConfide', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:01.820240]:[6780]: Cards received: ('King' of 'Clubs')('Jack' of 'Clubs')('Four' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T00:38:04.800410]:[6780]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:06.164488]:[6780]: Player: 'YANIS231', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:12.674861]:[6780]: Player: 'ASED555', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:12.958877]:[6780]: Player: 'HotelConfide', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:15.372015]:[6780]: Player: 'cheneto29', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:15.578027]:[6780]: Cards received: ('King' of 'Clubs')('Jack' of 'Clubs')('Four' of 'Diamonds')('Queen' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T00:38:19.276238]:[6780]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:20.312297]:[6780]: Player: 'YANIS231', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:26.856672]:[6780]: Player: 'ASED555', stack: '2890' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:26.858672]:[6780]: Player: 'ASED555', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:27.143688]:[6780]: Player: 'HotelConfide', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:30.730893]:[6780]: Player: 'cheneto29', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:34.028082]:[6780]: Player: 'CLRN', stack: '1320' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:34.030082]:[6780]: Player: 'CLRN', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:35.535168]:[6780]: Player: 'YANIS231', stack: '1280' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:35.536168]:[6780]: Player: 'YANIS231', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:36.421219]:[6780]: Cards received: ('King' of 'Clubs')('Jack' of 'Clubs')('Four' of 'Diamonds')('Queen' of 'Clubs')('Ten' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T00:38:36.791240]:[6780]: Player: 'CLRN', stack: '1300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:36.792240]:[6780]: Player: 'CLRN', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:41.267496]:[6780]: Player: 'YANIS231', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:41.269496]:[6780]: Player: 'YANIS231', action: 'Raise', amount: '1280' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:49.520968]:[6780]: Player: 'ASED555', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:49.802984]:[6780]: Player: 'ASED555', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:38:57.958451]:[6780]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:01.838673]:[6780]: Player: 'CLRN', stack: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:01.840673]:[6780]: Player: 'CLRN', action: 'Call', amount: '1260' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:02.401705]:[6780]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:03.924792]:[6780]: Player: 'YANIS231', action: 'ShowCards', cards: '8cAc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:03.932792]:[6780]: Player: 'CLRN', stack: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:03.934792]:[6780]: Player: 'CLRN', action: 'ShowCards', cards: 'AsJd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:07.146976]:[6780]: Player: 'apollei', stack: '1330' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:39:07.147976]:[6780]: Player: 'YANIS231', stack: '3240' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:39:07.147976]:[6780]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:39:07.149976]:[6780]: Player: 'apollei', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:39:07.156977]:[6780]: Player: 'YANIS231', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T00:39:07.159977]:[6780]: Player cards: ('Ten' of 'Clubs')('Ace' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T00:39:13.377333]:[6780]: Player: 'ASED555', stack: '2810' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:13.379333]:[6780]: Player: 'ASED555', action: 'Raise', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:17.298557]:[6780]: Player: 'Staki1972', stack: '1330' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:17.300557]:[6780]: Player: 'Staki1972', action: 'Raise', amount: '140' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:17.747582]:[6780]: Player: 'GeorgeD55', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:20.183722]:[6780]: Player: 'HotelConfide', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:25.779042]:[6780]: Player: 'cheneto29', stack: '1220' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:25.781042]:[6780]: Player: 'cheneto29', action: 'Raise', amount: '460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:26.188065]:[6780]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:26.189065]:[6780]: Player: 'CLRN', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:27.042114]:[6780]: Player: 'apollei', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:27.050115]:[6780]: Player: 'YANIS231', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:31.518370]:[6780]: Player: 'ASED555', stack: '2110' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:31.520370]:[6780]: Player: 'ASED555', action: 'Raise', amount: '780' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:34.354532]:[6780]: Player: 'Staki1972', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:37.040686]:[6780]: Player: 'cheneto29', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:37.042686]:[6780]: Player: 'cheneto29', action: 'Raise', amount: '1680' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:39.489826]:[6780]: Player: 'ASED555', stack: '1210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:39.491826]:[6780]: Player: 'ASED555', action: 'Call', amount: '900' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:40.406879]:[6780]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:41.849961]:[6780]: Cards received: ('Six' of 'Spades')('Three' of 'Diamonds')('Four' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T00:39:43.698067]:[6780]: Cards received: ('Six' of 'Spades')('Three' of 'Diamonds')('Four' of 'Clubs')('Three' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T00:39:45.066145]:[6780]: Cards received: ('Six' of 'Spades')('Three' of 'Diamonds')('Four' of 'Clubs')('Three' of 'Clubs')('Seven' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T00:39:46.622234]:[6780]: Player: 'ASED555', action: 'ShowCards', cards: 'Ad8h' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:46.631235]:[6780]: Player: 'cheneto29', stack: '1210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:46.632235]:[6780]: Player: 'cheneto29', action: 'ShowCards', cards: 'JhJs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:47.921308]:[6780]: Player: 'cheneto29', stack: '3380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:47.922308]:[6780]: Player: 'cheneto29', action: 'WinCards', pot: '3380', cards: 'JhJs3d3c7c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:47.925309]:[6780]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:47.926309]:[6780]: Player: 'CLRN', action: 'ShowCards', cards: 'TcAh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:48.951367]:[6780]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T00:39:48.951367]:[6780]: Player: 'CLRN', action: 'Rank', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
