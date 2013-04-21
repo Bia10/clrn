@@ -137,6 +137,7 @@ public:
 	const Actions& GetActions() const		{ return m_Actions; }
     std::size_t TotalBet() const            { return m_TotalBet; }
     void TotalBet(std::size_t val)          { m_TotalBet = val; }
+    void Reset();
 
 	void SetStyle(std::size_t phase, Style::Value style)
 	{

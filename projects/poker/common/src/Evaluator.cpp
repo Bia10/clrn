@@ -11,9 +11,12 @@
 namespace pcmn
 {
 
-Evaluator::Evaluator() : m_RanksEvaluator(new SevenEval()), m_HandsEvaluator(new HandEval())
+Evaluator::Evaluator(unsigned repititions) 
+    : m_RanksEvaluator(new SevenEval())
+    , m_HandsEvaluator(new HandEval())
+    , m_Repititions(repititions)
 {
-	srand ( ( unsigned int ) time ( 0 ) );
+	srand((unsigned int) time(0));
 }
 
 Evaluator::~Evaluator()
@@ -50,6 +53,9 @@ float Evaluator::GetEquity(short player1, short player2, const std::vector<int>&
 {
 	bool deadCards[cfg::CARD_DECK_SIZE] = {false};
 
+    assert(std::find(flop.begin(), flop.end(), player1) == flop.end());
+    assert(std::find(flop.begin(), flop.end(), player2) == flop.end());
+
 	deadCards[player1] = true;
 	deadCards[player2] = true;
 
@@ -65,7 +71,7 @@ float Evaluator::GetEquity(short player1, short player2, const std::vector<int>&
 
 	std::size_t looses = 0;
 	std::vector<int> outs;
-	for (std::size_t repetition = 0 ; repetition < cfg::NUMBER_OF_REPITITIONS; ++repetition)
+	for (std::size_t repetition = 0 ; repetition < m_Repititions; ++repetition)
 	{
 		outs.clear();
 

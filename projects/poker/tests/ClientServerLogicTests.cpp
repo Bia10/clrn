@@ -29,17 +29,17 @@ using testing::Range;
 using testing::Combine;
 
 
-class TestStatistics : public srv::IStatistics
+class EmptyTestStatistics : public srv::IStatistics
 {
 public:
-	TestStatistics()
+	EmptyTestStatistics(ILog& logger)
 	{
 
 	}
 	virtual void Write(pcmn::TableContext::Data& data) {}
-	virtual unsigned GetRanges(PlayerInfo::List& players) const override {}
+	virtual unsigned GetRanges(PlayerInfo::List& players) const override { return 0; }
 	virtual void GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises) const override{}
-	virtual unsigned GetEquities(PlayerInfo::List& players) const override{}
+	virtual unsigned GetEquities(PlayerInfo::List& players) const override{ return 0; }
 
 };
 
@@ -96,6 +96,7 @@ public:
 	TestServer()
 		: m_Network(m_Log, cfg::NETWORK_FILE_NAME)
 		, m_Statistics(m_Log)
+        , m_Evaluator(100)
 	{
 
 	}
@@ -119,7 +120,8 @@ public:
 
 private:
 	Log m_Log;
-	TestReadStatistics m_Statistics;
+	//TestReadStatistics m_Statistics;
+    EmptyTestStatistics m_Statistics;
 	pcmn::Evaluator	m_Evaluator;
 	neuro::DatabaseReader m_Network;
 };
@@ -204,7 +206,10 @@ void ParseData(const std::string& data, ITable& table)
 				if (cards.empty())
 				{
 					const unsigned amount = boost::lexical_cast<unsigned>((*it)[5]);
-					table.PlayerAction(name, Action::FromString(action), amount);
+                    const pcmn::Action::Value actionValue = Action::FromString(action);
+                    if (actionValue == pcmn::Action::SmallBlind)
+                        std::cout << "small blind" << std::endl;
+					table.PlayerAction(name, actionValue, amount);
 				}
 				else
 				if (cards.size() == 4)

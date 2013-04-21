@@ -159,6 +159,15 @@ void Table::BotCards(const pcmn::Card& first, const pcmn::Card& second)
 {
     SCOPED_LOG(m_Log);
 
+    if (m_IsRoundFinished)
+    {
+        // this info from next round
+        pcmn::Player::List data = boost::assign::list_of(pcmn::Player(pcmn::Player::ThisPlayer().Name(), 0));
+        data.back().Cards(boost::assign::list_of(first)(second));
+        m_Logic.SetNextRoundData(data);
+        return;
+    }
+
     m_Logic.SetPlayerCards(pcmn::Player::ThisPlayer().Name(), boost::assign::list_of(first)(second));
 }
 

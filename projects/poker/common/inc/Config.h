@@ -14,7 +14,7 @@ namespace cfg
 		10
 #endif
 		;
-    static const int MIN_CARD_RANGE = 10;
+    static const int MIN_CARD_RANGE = 15;
 	
 	// neuro
 	static const int LAYERS_COUNT = 3;
