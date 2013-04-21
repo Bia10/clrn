@@ -296,6 +296,7 @@ void Table::SendRequest(const net::Packet& packet, bool statistics)
 {
     try
     {
+        m_IsRoundFinished = false;
         LOG_TRACE("Packet: [%s]") % packet.DebugString();
         m_Connection->Send(packet);
 

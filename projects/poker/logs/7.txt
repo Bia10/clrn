@@ -1,0 +1,849 @@
+[NONE   ][0][2013-04-21T23:24:33.665108]:[5504]: Logger started, module: [0], level: [3], source: [logs/messages.txt].
+[TRACE  ][0][2013-04-21T23:25:24.026988]:[5488]: Ante: '0' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-21T23:25:24.039989]:[5488]: Player: 'GeWe40', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-21T23:25:24.039989]:[5488]: Player: 'Vilochka1405', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-21T23:25:24.039989]:[5488]: Player: 'Frunzelhuhn', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-21T23:25:24.039989]:[5488]: Player: 'Loomis59', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-21T23:25:24.040989]:[5488]: Player: 'sharky6969', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-21T23:25:24.040989]:[5488]: Player: '3FingerJimbo', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-21T23:25:24.040989]:[5488]: Player: 'Suzi_Q_121', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-21T23:25:24.040989]:[5488]: Player: 'CLRN', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-21T23:26:21.687286]:[5488]: Player: 'Vilochka1405', stack: '1490' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:26:21.687286]:[5488]: Player: 'PS*Bill', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:26:21.688286]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:26:21.689286]:[5488]: Player: 'Vilochka1405', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:26:21.691286]:[5488]: Player: 'PS*Bill', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:26:21.694287]:[5488]: Player cards: ('Seven' of 'Clubs')('King' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:26:25.966531]:[5488]: Player: 'Frunzelhuhn', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:25.968531]:[5488]: Player: 'Frunzelhuhn', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:27.341610]:[5488]: Player: 'Loomis59', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:27.343610]:[5488]: Player: 'Loomis59', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:27.629626]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:27.918643]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:29.130712]:[5488]: Player: 'Suzi_Q_121', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:29.132712]:[5488]: Player: 'Suzi_Q_121', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:37.262177]:[5488]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:40.224346]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:42.606483]:[5488]: Player: 'GeWe40', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:42.607483]:[5488]: Player: 'GeWe40', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:43.177515]:[5488]: Player: 'Vilochka1405', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:43.178515]:[5488]: Player: 'Vilochka1405', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:43.463532]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:44.082567]:[5488]: Cards received: ('Eight' of 'Clubs')('King' of 'Clubs')('Queen' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:26:47.724775]:[5488]: Player: 'Vilochka1405', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:51.483990]:[5488]: Player: 'PS*Bill', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:51.485991]:[5488]: Player: 'PS*Bill', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:55.441217]:[5488]: Player: 'Frunzelhuhn', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:26:55.443217]:[5488]: Player: 'Frunzelhuhn', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:01.328554]:[5488]: Player: 'Loomis59', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:01.329554]:[5488]: Player: 'Loomis59', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:03.353669]:[5488]: Player: 'Suzi_Q_121', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:03.355669]:[5488]: Player: 'Suzi_Q_121', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:03.639686]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:03.923702]:[5488]: Player: 'Vilochka1405', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:04.549738]:[5488]: Cards received: ('Eight' of 'Clubs')('King' of 'Clubs')('Queen' of 'Hearts')('Eight' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:27:06.240834]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:14.406302]:[5488]: Player: 'Frunzelhuhn', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:19.651602]:[5488]: Player: 'Frunzelhuhn', stack: '1220' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:19.653602]:[5488]: Player: 'Frunzelhuhn', action: 'Bet', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:27.979078]:[5488]: Player: 'Loomis59', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:33.846413]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:34.132430]:[5488]: Player: 'Suzi_Q_121', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:34.416446]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:34.424446]:[5488]: Player: 'Frunzelhuhn', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:34.426447]:[5488]: Player: 'Frunzelhuhn', action: 'MoneyReturn', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:41.822870]:[5488]: Player: 'PS*Bill', stack: '1410' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:27:41.823870]:[5488]: Player: 'Frunzelhuhn', stack: '1760' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:27:41.823870]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:27:41.825870]:[5488]: Player: 'PS*Bill', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:27:41.832870]:[5488]: Player: 'Frunzelhuhn', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:27:41.858872]:[5488]: Player cards: ('Six' of 'Diamonds')('Nine' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:27:45.344071]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:49.711321]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:50.714378]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:51.916447]:[5488]: Player: 'Suzi_Q_121', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:51.918447]:[5488]: Player: 'Suzi_Q_121', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:54.960621]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:54.984622]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:58.339814]:[5488]: Player: 'Vilochka1405', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:27:58.341814]:[5488]: Player: 'Vilochka1405', action: 'Raise', amount: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:00.862959]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:04.153147]:[5488]: Player: 'Frunzelhuhn', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:07.434335]:[5488]: Player: 'Suzi_Q_121', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:11.133546]:[5488]: Player: 'Frunzelhuhn', stack: '1750' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:28:11.134546]:[5488]: Player: 'Loomis59', stack: '1400' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:28:11.134546]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:28:11.136546]:[5488]: Player: 'Frunzelhuhn', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:28:11.142547]:[5488]: Player: 'Loomis59', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:28:11.145547]:[5488]: Player cards: ('Eight' of 'Hearts')('Queen' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:28:14.535741]:[5488]: Player: 'sharky6969', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:14.537741]:[5488]: Player: 'sharky6969', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:14.818757]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:14.836758]:[5488]: Player: 'Suzi_Q_121', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:17.219894]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:19.426020]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:22.656205]:[5488]: Player: 'Vilochka1405', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:22.658205]:[5488]: Player: 'Vilochka1405', action: 'Raise', amount: '1530' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:24.643319]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:25.860388]:[5488]: Player: 'Frunzelhuhn', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:28.478538]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:29.399591]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:33.219809]:[5488]: Player: 'Loomis59', stack: '1390' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:28:33.220809]:[5488]: Player: 'sharky6969', stack: '1460' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:28:33.220809]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:28:33.221810]:[5488]: Player: 'Loomis59', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:28:33.224810]:[5488]: Player: 'sharky6969', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:28:33.250811]:[5488]: Player cards: ('Ten' of 'Clubs')('Seven' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:28:36.250983]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:36.532999]:[5488]: Player: 'Suzi_Q_121', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:39.597174]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:40.171207]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:40.465224]:[5488]: Player: 'Vilochka1405', stack: '1560' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:40.467224]:[5488]: Player: 'Vilochka1405', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:40.477224]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:44.123433]:[5488]: Player: 'Frunzelhuhn', stack: '1730' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:44.123433]:[5488]: Player: 'Frunzelhuhn', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:48.410678]:[5488]: Player: 'Loomis59', stack: '1380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:48.412678]:[5488]: Player: 'Loomis59', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:48.828702]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:49.446738]:[5488]: Cards received: ('King' of 'Clubs')('Ace' of 'Hearts')('Five' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:28:58.289243]:[5488]: Player: 'Loomis59', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:28:59.745327]:[5488]: Player: 'Loomis59', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:00.034343]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:02.610490]:[5488]: Player: 'Vilochka1405', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:02.899507]:[5488]: Player: 'Frunzelhuhn', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:03.061516]:[5488]: Cards received: ('King' of 'Clubs')('Ace' of 'Hearts')('Five' of 'Diamonds')('Three' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:29:08.868848]:[5488]: Player: 'Loomis59', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:08.875849]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:10.317931]:[5488]: Player: 'Vilochka1405', stack: '1540' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:10.319931]:[5488]: Player: 'Vilochka1405', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:10.611948]:[5488]: Player: 'Frunzelhuhn', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:13.597119]:[5488]: Player: 'Loomis59', stack: '1360' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:13.599119]:[5488]: Player: 'Loomis59', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:21.926595]:[5488]: Player: 'sharky6969', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:25.694811]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:26.308846]:[5488]: Cards received: ('King' of 'Clubs')('Ace' of 'Hearts')('Five' of 'Diamonds')('Three' of 'Hearts')('Four' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:29:28.656980]:[5488]: Player: 'Loomis59', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:36.743443]:[5488]: Player: 'Vilochka1405', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:46.109978]:[5488]: Player: 'Vilochka1405', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:46.111979]:[5488]: Player: 'Vilochka1405', action: 'Bet', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:49.680183]:[5488]: Player: 'Loomis59', stack: '1160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:49.682183]:[5488]: Player: 'Loomis59', action: 'Call', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:50.261216]:[5488]: Player: 'Vilochka1405', action: 'ShowCards', cards: 'Ks9d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:50.266216]:[5488]: Player: 'Loomis59', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:50.268216]:[5488]: Player: 'Loomis59', action: 'ShowCards', cards: '3dKd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:53.510402]:[5488]: Player: 'sharky6969', stack: '1450' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:29:53.511402]:[5488]: Player: '3FingerJimbo', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:29:53.511402]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:29:53.513402]:[5488]: Player: 'sharky6969', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:29:53.523402]:[5488]: Player: '3FingerJimbo', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:29:53.529403]:[5488]: Player cards: ('Queen' of 'Spades')('Five' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:29:58.881709]:[5488]: Player: 'Suzi_Q_121', stack: '1320' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:29:58.883709]:[5488]: Player: 'Suzi_Q_121', action: 'Raise', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:02.221900]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:04.087007]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:05.880109]:[5488]: Player: 'Vilochka1405', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:05.882109]:[5488]: Player: 'Vilochka1405', action: 'Raise', amount: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:06.164126]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:10.036347]:[5488]: Player: 'Frunzelhuhn', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:11.263417]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:11.276418]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:14.387596]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:15.980687]:[5488]: Player: 'Suzi_Q_121', stack: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:15.982687]:[5488]: Player: 'Suzi_Q_121', action: 'Call', amount: '1260' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:16.519718]:[5488]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:18.138810]:[5488]: Cards received: ('Eight' of 'Clubs')('Ace' of 'Spades')('Four' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:30:20.127924]:[5488]: Cards received: ('Eight' of 'Clubs')('Ace' of 'Spades')('Four' of 'Diamonds')('Nine' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:30:21.632010]:[5488]: Cards received: ('Eight' of 'Clubs')('Ace' of 'Spades')('Four' of 'Diamonds')('Nine' of 'Spades')('Five' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:30:23.184099]:[5488]: Player: 'Suzi_Q_121', action: 'ShowCards', cards: 'KcKd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:23.192099]:[5488]: Player: 'Vilochka1405', stack: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:23.194100]:[5488]: Player: 'Vilochka1405', action: 'ShowCards', cards: '4c4h' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:26.237274]:[5488]: Player: '3FingerJimbo', stack: '1470' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:30:26.237274]:[5488]: Player: 'Suzi_Q_121', stack: '40' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:30:26.237274]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:30:26.238274]:[5488]: Player: '3FingerJimbo', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:30:26.242274]:[5488]: Player: 'Suzi_Q_121', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:30:26.264275]:[5488]: Player cards: ('Two' of 'Spades')('Ace' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:30:29.549463]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:32.878653]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:35.223788]:[5488]: Player: 'Vilochka1405', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:35.507804]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:39.633040]:[5488]: Player: 'Frunzelhuhn', stack: '1710' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:39.635040]:[5488]: Player: 'Frunzelhuhn', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:39.918056]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:40.195072]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:40.473088]:[5488]: Player: '3FingerJimbo', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:40.474088]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:42.116182]:[5488]: Player: 'Suzi_Q_121', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:42.737217]:[5488]: Cards received: ('Three' of 'Spades')('Eight' of 'Clubs')('Seven' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:30:46.598438]:[5488]: Player: '3FingerJimbo', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:47.170471]:[5488]: Player: 'Suzi_Q_121', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:49.001576]:[5488]: Player: 'Frunzelhuhn', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:30:49.163585]:[5488]: Cards received: ('Three' of 'Spades')('Eight' of 'Clubs')('Seven' of 'Clubs')('Eight' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:30:57.292050]:[5488]: Player: '3FingerJimbo', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:07.180615]:[5488]: Player: '3FingerJimbo', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:07.464632]:[5488]: Player: 'Suzi_Q_121', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:09.480747]:[5488]: Player: 'Frunzelhuhn', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:09.644756]:[5488]: Cards received: ('Three' of 'Spades')('Eight' of 'Clubs')('Seven' of 'Clubs')('Eight' of 'Hearts')('Six' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:31:16.897171]:[5488]: Player: '3FingerJimbo', stack: '1260' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:16.899171]:[5488]: Player: '3FingerJimbo', action: 'Bet', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:18.125241]:[5488]: Player: 'Suzi_Q_121', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:18.127242]:[5488]: Player: 'Suzi_Q_121', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:23.845569]:[5488]: Player: 'Frunzelhuhn', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:24.307595]:[5488]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:25.918687]:[5488]: Player: '3FingerJimbo', action: 'ShowCards', cards: '8d9c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:25.926688]:[5488]: Player: 'Suzi_Q_121', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:25.928688]:[5488]: Player: 'Suzi_Q_121', action: 'ShowCards', cards: 'As9s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:27.069753]:[5488]: Player: 'Suzi_Q_121', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:27.071753]:[5488]: Player: 'Suzi_Q_121', action: 'Rank', amount: '9' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:29.010864]:[5488]: Player: 'CLRN', stack: '1460' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:31:29.010864]:[5488]: Player: 'GeWe40', stack: '1490' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:31:29.011864]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:31:29.012864]:[5488]: Player: 'CLRN', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:31:29.021865]:[5488]: Player: 'GeWe40', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:31:29.024865]:[5488]: Player cards: ('Nine' of 'Hearts')('Two' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:31:30.840969]:[5488]: Player: 'Vilochka1405', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:32.442060]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:36.192275]:[5488]: Player: 'Frunzelhuhn', stack: '1670' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:36.193275]:[5488]: Player: 'Frunzelhuhn', action: 'Raise', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:43.696704]:[5488]: Player: 'Loomis59', stack: '1640' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:43.698704]:[5488]: Player: 'Loomis59', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:46.662874]:[5488]: Player: 'sharky6969', stack: '1410' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:46.664874]:[5488]: Player: 'sharky6969', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:46.946890]:[5488]: Player: '3FingerJimbo', stack: '1520' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:46.948890]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:49.924060]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:51.581155]:[5488]: Player: 'GeWe40', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:51.583155]:[5488]: Player: 'GeWe40', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:31:52.476206]:[5488]: Cards received: ('Five' of 'Clubs')('Three' of 'Clubs')('Jack' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:31:54.669332]:[5488]: Player: 'GeWe40', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:00.499665]:[5488]: Player: 'Frunzelhuhn', stack: '1650' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:00.501665]:[5488]: Player: 'Frunzelhuhn', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:03.328827]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:07.521067]:[5488]: Player: 'sharky6969', stack: '1390' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:07.522067]:[5488]: Player: 'sharky6969', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:08.431119]:[5488]: Player: '3FingerJimbo', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:08.433119]:[5488]: Player: '3FingerJimbo', action: 'Raise', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:08.720135]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:13.737422]:[5488]: Player: 'Frunzelhuhn', stack: '1610' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:13.738422]:[5488]: Player: 'Frunzelhuhn', action: 'Raise', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:15.930548]:[5488]: Player: 'sharky6969', stack: '1350' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:15.932548]:[5488]: Player: 'sharky6969', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:17.740651]:[5488]: Player: '3FingerJimbo', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:17.742651]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:18.635702]:[5488]: Cards received: ('Five' of 'Clubs')('Three' of 'Clubs')('Jack' of 'Diamonds')('Jack' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:32:22.056898]:[5488]: Player: 'Frunzelhuhn', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:24.554041]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:26.194135]:[5488]: Player: '3FingerJimbo', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:26.195135]:[5488]: Player: '3FingerJimbo', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:29.286312]:[5488]: Player: 'Frunzelhuhn', stack: '1590' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:29.288312]:[5488]: Player: 'Frunzelhuhn', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:30.553384]:[5488]: Player: 'sharky6969', stack: '1330' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:30.555384]:[5488]: Player: 'sharky6969', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:31.172420]:[5488]: Cards received: ('Five' of 'Clubs')('Three' of 'Clubs')('Jack' of 'Diamonds')('Jack' of 'Spades')('Five' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:32:34.279597]:[5488]: Player: 'Frunzelhuhn', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:38.617845]:[5488]: Player: 'sharky6969', stack: '1270' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:38.619845]:[5488]: Player: 'sharky6969', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:40.227937]:[5488]: Player: '3FingerJimbo', stack: '1380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:40.229938]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:44.565186]:[5488]: Player: 'Frunzelhuhn', stack: '1530' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:44.567186]:[5488]: Player: 'Frunzelhuhn', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:45.041213]:[5488]: Player: 'sharky6969', action: 'ShowCards', cards: 'JcKs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:47.009325]:[5488]: Player: '3FingerJimbo', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:49.086444]:[5488]: Player: 'Frunzelhuhn', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:52.270626]:[5488]: Player: 'GeWe40', stack: '1430' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:32:52.271626]:[5488]: Player: 'Vilochka1405', stack: '2690' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:32:52.271626]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:32:52.272626]:[5488]: Player: 'GeWe40', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:32:52.276627]:[5488]: Player: 'Vilochka1405', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:32:52.279627]:[5488]: Player cards: ('Queen' of 'Diamonds')('Five' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:32:54.609760]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:57.036899]:[5488]: Player: 'Frunzelhuhn', stack: '1510' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:57.038899]:[5488]: Player: 'Frunzelhuhn', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:58.876004]:[5488]: Player: 'Loomis59', stack: '1620' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:58.878004]:[5488]: Player: 'Loomis59', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:59.161020]:[5488]: Player: 'sharky6969', stack: '1880' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:59.163020]:[5488]: Player: 'sharky6969', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:32:59.446037]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:33:02.776227]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:33:03.061243]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:33:05.728396]:[5488]: Player: 'Vilochka1405', stack: '230' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:33:05.730396]:[5488]: Player: 'Vilochka1405', action: 'Raise', amount: '2480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:33:09.555615]:[5488]: Player: 'Frunzelhuhn', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:33:12.675793]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:33:12.958810]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:33:16.540014]:[5488]: Player: 'Vilochka1405', stack: '2770' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:33:16.541014]:[5488]: Player: 'PS*Bill', stack: '1390' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:33:16.541014]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:33:16.542014]:[5488]: Player: 'Vilochka1405', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:33:16.547015]:[5488]: Player: 'PS*Bill', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:33:16.549015]:[5488]: Player cards: ('Eight' of 'Hearts')('Two' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:33:20.296229]:[5488]: Player: 'Frunzelhuhn', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:33:28.459696]:[5488]: Player: 'Loomis59', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:33:31.753885]:[5488]: Player: 'Loomis59', stack: '1600' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:33:31.755885]:[5488]: Player: 'Loomis59', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:33:34.707053]:[5488]: Player: 'sharky6969', stack: '1860' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:33:34.709054]:[5488]: Player: 'sharky6969', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:33:42.663509]:[5488]: Player: '3FingerJimbo', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:06.663881]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '1' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:09.455041]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:09.754058]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:10.034074]:[5488]: Player: 'Vilochka1405', stack: '2760' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:10.036074]:[5488]: Player: 'Vilochka1405', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:10.319090]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:10.939126]:[5488]: Cards received: ('Jack' of 'Clubs')('Ace' of 'Clubs')('Ten' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:34:16.817462]:[5488]: Player: 'Vilochka1405', stack: '2700' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:16.819462]:[5488]: Player: 'Vilochka1405', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:18.502558]:[5488]: Player: 'PS*Bill', stack: '1330' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:18.504559]:[5488]: Player: 'PS*Bill', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:26.894038]:[5488]: Player: 'Loomis59', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:33.169397]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:41.332864]:[5488]: Player: 'sharky6969', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:48.681285]:[5488]: Player: 'sharky6969', stack: '640' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:48.683285]:[5488]: Player: 'sharky6969', action: 'Raise', amount: '1220' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:53.037534]:[5488]: Player: 'Vilochka1405', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:53.039534]:[5488]: Player: 'Vilochka1405', action: 'Raise', amount: '2760' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:53.051535]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:56.470730]:[5488]: Player: 'sharky6969', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:56.472730]:[5488]: Player: 'sharky6969', action: 'Call', amount: '640' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:57.207772]:[5488]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:34:59.117881]:[5488]: Cards received: ('Jack' of 'Clubs')('Ace' of 'Clubs')('Ten' of 'Spades')('Jack' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:35:00.616967]:[5488]: Cards received: ('Jack' of 'Clubs')('Ace' of 'Clubs')('Ten' of 'Spades')('Jack' of 'Spades')('Five' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:35:02.116053]:[5488]: Player: 'Vilochka1405', action: 'ShowCards', cards: 'Qs3c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:02.128054]:[5488]: Player: 'sharky6969', stack: '900' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:02.130054]:[5488]: Player: 'sharky6969', action: 'ShowCards', cards: 'QhKs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:05.207230]:[5488]: Player: 'PS*Bill', stack: '1320' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:35:05.207230]:[5488]: Player: 'Frunzelhuhn', stack: '1490' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:35:05.208230]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:35:05.208230]:[5488]: Player: 'PS*Bill', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:35:05.212230]:[5488]: Player: 'Frunzelhuhn', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:35:05.216230]:[5488]: Player cards: ('Two' of 'Spades')('Two' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:35:12.957673]:[5488]: Player: 'Loomis59', stack: '1580' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:12.959673]:[5488]: Player: 'Loomis59', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:16.215859]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:16.509876]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:19.384041]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:19.683058]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:22.107196]:[5488]: Player: 'Vilochka1405', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:22.109197]:[5488]: Player: 'Vilochka1405', action: 'Raise', amount: '900' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:23.916300]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:25.070366]:[5488]: Player: 'Frunzelhuhn', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:33.383841]:[5488]: Player: 'Loomis59', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:35.992991]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:39.567195]:[5488]: Player: 'Frunzelhuhn', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:35:39.567195]:[5488]: Player: 'Loomis59', stack: '1560' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:35:39.568195]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:35:39.569195]:[5488]: Player: 'Frunzelhuhn', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:35:39.576196]:[5488]: Player: 'Loomis59', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:35:39.582196]:[5488]: Player cards: ('Five' of 'Diamonds')('Seven' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:35:43.220404]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:43.514421]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:46.159572]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:46.441588]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:48.482705]:[5488]: Player: 'Vilochka1405', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:48.484705]:[5488]: Player: 'Vilochka1405', action: 'Raise', amount: '950' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:53.173973]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:55.612113]:[5488]: Player: 'Frunzelhuhn', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:57.569225]:[5488]: Player: 'Loomis59', stack: '630' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:57.571225]:[5488]: Player: 'Loomis59', action: 'Call', amount: '930' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:58.139257]:[5488]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:35:59.719348]:[5488]: Cards received: ('Six' of 'Hearts')('Queen' of 'Hearts')('King' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:36:01.797467]:[5488]: Cards received: ('Six' of 'Hearts')('Queen' of 'Hearts')('King' of 'Hearts')('Four' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:36:03.403558]:[5488]: Cards received: ('Six' of 'Hearts')('Queen' of 'Hearts')('King' of 'Hearts')('Four' of 'Hearts')('Nine' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:36:05.096655]:[5488]: Player: 'Loomis59', action: 'ShowCards', cards: 'AdJh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:05.105656]:[5488]: Player: 'Vilochka1405', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:05.107656]:[5488]: Player: 'Vilochka1405', action: 'ShowCards', cards: 'JcKs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:05.914702]:[5488]: Player: 'Vilochka1405', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:05.916702]:[5488]: Player: 'Vilochka1405', action: 'Rank', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:07.892815]:[5488]: Player: 'Loomis59', stack: '2530' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:36:07.893815]:[5488]: Player: 'sharky6969', stack: '3840' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:36:07.893815]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:36:07.895815]:[5488]: Player: 'Loomis59', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:36:07.901816]:[5488]: Player: 'sharky6969', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:36:07.904816]:[5488]: Player cards: ('Queen' of 'Clubs')('Six' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:36:11.116000]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:14.345184]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:17.664374]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:17.950390]:[5488]: Player: 'PS*Bill', stack: '1300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:17.951391]:[5488]: Player: 'PS*Bill', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:20.419532]:[5488]: Player: 'Frunzelhuhn', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:20.702548]:[5488]: Player: 'Loomis59', stack: '2520' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:20.703548]:[5488]: Player: 'Loomis59', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:24.741779]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:25.439819]:[5488]: Cards received: ('King' of 'Spades')('Ten' of 'Diamonds')('Ace' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:36:33.716292]:[5488]: Player: 'Loomis59', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:37.455506]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:39.706635]:[5488]: Player: 'PS*Bill', stack: '1240' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:39.706635]:[5488]: Player: 'PS*Bill', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:47.801098]:[5488]: Player: 'Loomis59', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:49.332185]:[5488]: Player: 'Loomis59', stack: '2460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:49.334186]:[5488]: Player: 'Loomis59', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:49.618202]:[5488]: Player: 'sharky6969', stack: '3780' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:49.620202]:[5488]: Player: 'sharky6969', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:50.234237]:[5488]: Cards received: ('King' of 'Spades')('Ten' of 'Diamonds')('Ace' of 'Clubs')('Nine' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:36:54.223465]:[5488]: Player: 'Loomis59', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:36:56.827614]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:01.994910]:[5488]: Player: 'PS*Bill', stack: '1120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:01.996910]:[5488]: Player: 'PS*Bill', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:08.571286]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:08.857302]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:08.866303]:[5488]: Player: 'PS*Bill', stack: '1240' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:08.868303]:[5488]: Player: 'PS*Bill', action: 'MoneyReturn', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:11.459451]:[5488]: Player: 'PS*Bill', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:16.423735]:[5488]: Player: 'sharky6969', stack: '3765' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:37:16.423735]:[5488]: Player: '3FingerJimbo', stack: '1350' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:37:16.423735]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:37:16.424735]:[5488]: Player: 'sharky6969', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:37:16.434736]:[5488]: Player: '3FingerJimbo', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:37:16.454737]:[5488]: Player cards: ('Four' of 'Spades')('Jack' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:37:25.498254]:[5488]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:32.326645]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:33.837731]:[5488]: Player: 'GeWe40', stack: '1370' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:33.839731]:[5488]: Player: 'GeWe40', action: 'Raise', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:34.122747]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:37.758955]:[5488]: Player: 'Frunzelhuhn', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:37.760955]:[5488]: Player: 'Frunzelhuhn', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:43.104261]:[5488]: Player: 'Loomis59', stack: '2400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:43.106261]:[5488]: Player: 'Loomis59', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:47.190495]:[5488]: Player: 'sharky6969', stack: '3720' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:47.191495]:[5488]: Player: 'sharky6969', action: 'Call', amount: '45' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:47.478511]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:48.097547]:[5488]: Cards received: ('Queen' of 'Clubs')('Jack' of 'Clubs')('King' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:37:50.621691]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:53.440852]:[5488]: Player: 'GeWe40', stack: '1280' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:37:53.442852]:[5488]: Player: 'GeWe40', action: 'Bet', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:01.633321]:[5488]: Player: 'Frunzelhuhn', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:07.407651]:[5488]: Player: 'Frunzelhuhn', stack: '1330' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:07.409651]:[5488]: Player: 'Frunzelhuhn', action: 'Call', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:10.440825]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:10.720841]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:11.339876]:[5488]: Cards received: ('Queen' of 'Clubs')('Jack' of 'Clubs')('King' of 'Clubs')('Three' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:38:16.628178]:[5488]: Player: 'GeWe40', stack: '1160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:16.630179]:[5488]: Player: 'GeWe40', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:20.146380]:[5488]: Player: 'Frunzelhuhn', stack: '1210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:20.148380]:[5488]: Player: 'Frunzelhuhn', action: 'Call', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:20.764415]:[5488]: Cards received: ('Queen' of 'Clubs')('Jack' of 'Clubs')('King' of 'Clubs')('Three' of 'Diamonds')('Jack' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:38:27.183782]:[5488]: Player: 'GeWe40', stack: '1040' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:27.185782]:[5488]: Player: 'GeWe40', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:29.875936]:[5488]: Player: 'Frunzelhuhn', stack: '1090' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:29.877936]:[5488]: Player: 'Frunzelhuhn', action: 'Call', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:30.662981]:[5488]: Player: 'GeWe40', action: 'ShowCards', cards: 'QdKd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:32.770102]:[5488]: Player: 'Frunzelhuhn', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:35.859278]:[5488]: Player: '3FingerJimbo', stack: '1335' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:38:35.860278]:[5488]: Player: 'CLRN', stack: '1460' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:38:35.860278]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:38:35.862279]:[5488]: Player: '3FingerJimbo', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:38:35.868279]:[5488]: Player: 'CLRN', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:38:35.871279]:[5488]: Player cards: ('Seven' of 'Hearts')('Six' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:38:38.443426]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:39.581491]:[5488]: Player: 'PS*Bill', stack: '1450' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:39.583491]:[5488]: Player: 'PS*Bill', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:43.802733]:[5488]: Player: 'Frunzelhuhn', stack: '1060' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:43.804733]:[5488]: Player: 'Frunzelhuhn', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:51.837192]:[5488]: Player: 'Loomis59', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:52.123209]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:52.409225]:[5488]: Player: 'sharky6969', stack: '3690' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:52.411225]:[5488]: Player: 'sharky6969', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:52.694241]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:38:59.135610]:[5488]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:00.030661]:[5488]: Cards received: ('Jack' of 'Hearts')('Two' of 'Spades')('Eight' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:39:02.634810]:[5488]: Player: 'CLRN', stack: '1430' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:02.635810]:[5488]: Player: 'CLRN', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:03.944885]:[5488]: Player: 'PS*Bill', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:03.946885]:[5488]: Player: 'PS*Bill', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:06.625038]:[5488]: Player: 'Frunzelhuhn', stack: '1000' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:06.627038]:[5488]: Player: 'Frunzelhuhn', action: 'Raise', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:09.622210]:[5488]: Player: 'sharky6969', stack: '3630' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:09.624210]:[5488]: Player: 'sharky6969', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:12.477373]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:12.769390]:[5488]: Player: 'PS*Bill', stack: '1390' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:12.769390]:[5488]: Player: 'PS*Bill', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:13.393425]:[5488]: Cards received: ('Jack' of 'Hearts')('Two' of 'Spades')('Eight' of 'Hearts')('Nine' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:39:15.575550]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:17.370653]:[5488]: Player: 'Frunzelhuhn', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:19.577779]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:19.741788]:[5488]: Cards received: ('Jack' of 'Hearts')('Two' of 'Spades')('Eight' of 'Hearts')('Nine' of 'Diamonds')('Eight' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:39:21.475888]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:23.014976]:[5488]: Player: 'Frunzelhuhn', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:26.555178]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:27.145212]:[5488]: Player: 'PS*Bill', action: 'ShowCards', cards: '9sQc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:29.337337]:[5488]: Player: 'Frunzelhuhn', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:31.335451]:[5488]: Player: 'sharky6969', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:34.424628]:[5488]: Player: 'CLRN', stack: '1940' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:39:34.425628]:[5488]: Player: 'GeWe40', stack: '1415' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:39:34.425628]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:39:34.426628]:[5488]: Player: 'CLRN', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:39:34.431629]:[5488]: Player: 'GeWe40', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:39:34.435629]:[5488]: Player cards: ('Nine' of 'Diamonds')('Ace' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:39:36.980774]:[5488]: Player: 'PS*Bill', stack: '1705' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:36.981774]:[5488]: Player: 'PS*Bill', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:38.684872]:[5488]: Player: 'Frunzelhuhn', stack: '970' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:38.685872]:[5488]: Player: 'Frunzelhuhn', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:41.233018]:[5488]: Player: 'Loomis59', stack: '2370' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:41.235018]:[5488]: Player: 'Loomis59', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:41.512034]:[5488]: Player: 'sharky6969', stack: '3600' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:41.514034]:[5488]: Player: 'sharky6969', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:41.792050]:[5488]: Player: '3FingerJimbo', stack: '1305' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:41.794050]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:44.639212]:[5488]: Player: 'CLRN', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:44.641212]:[5488]: Player: 'CLRN', action: 'Call', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:44.654213]:[5488]: Player: 'GeWe40', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:45.327252]:[5488]: Cards received: ('Jack' of 'Hearts')('Jack' of 'Clubs')('Two' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:39:47.513377]:[5488]: Player: 'CLRN', stack: '1370' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:47.515377]:[5488]: Player: 'CLRN', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:49.451488]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:49.737504]:[5488]: Player: 'PS*Bill', stack: '1675' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:49.739504]:[5488]: Player: 'PS*Bill', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:54.332767]:[5488]: Player: 'Frunzelhuhn', stack: '940' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:54.333767]:[5488]: Player: 'Frunzelhuhn', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:56.276878]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:56.566895]:[5488]: Player: 'sharky6969', stack: '3570' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:56.568895]:[5488]: Player: 'sharky6969', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:56.842910]:[5488]: Player: '3FingerJimbo', stack: '1275' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:56.844911]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:39:57.472946]:[5488]: Cards received: ('Jack' of 'Hearts')('Jack' of 'Clubs')('Two' of 'Diamonds')('Four' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:40:00.652128]:[5488]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:00.942145]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:02.647242]:[5488]: Player: 'Frunzelhuhn', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:02.935259]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:03.228276]:[5488]: Player: '3FingerJimbo', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:03.394285]:[5488]: Cards received: ('Jack' of 'Hearts')('Jack' of 'Clubs')('Two' of 'Diamonds')('Four' of 'Spades')('Ten' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:40:07.744534]:[5488]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:08.033550]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:11.449746]:[5488]: Player: 'Frunzelhuhn', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:16.446032]:[5488]: Player: 'sharky6969', stack: '3450' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:16.448032]:[5488]: Player: 'sharky6969', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:16.821053]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:20.121242]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:22.099355]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:30.213819]:[5488]: Player: 'Frunzelhuhn', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:30.499835]:[5488]: Player: 'sharky6969', stack: '940' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:30.501836]:[5488]: Player: 'sharky6969', action: 'MoneyReturn', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:34.017037]:[5488]: Player: 'GeWe40', stack: '1925' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:40:34.018037]:[5488]: Player: 'PS*Bill', stack: '1645' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:40:34.018037]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:40:34.020037]:[5488]: Player: 'GeWe40', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:40:34.028037]:[5488]: Player: 'PS*Bill', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:40:34.049038]:[5488]: Player cards: ('King' of 'Clubs')('Ace' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:40:36.270166]:[5488]: Player: 'Frunzelhuhn', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:39.370343]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:45.677704]:[5488]: Player: 'sharky6969', stack: '3900' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:45.678704]:[5488]: Player: 'sharky6969', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:45.685704]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:48.615872]:[5488]: Player: 'CLRN', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:48.616872]:[5488]: Player: 'CLRN', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:48.903888]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:49.186904]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:49.797939]:[5488]: Cards received: ('Seven' of 'Diamonds')('Ace' of 'Spades')('Nine' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:40:52.523095]:[5488]: Player: 'PS*Bill', stack: '1615' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:52.525095]:[5488]: Player: 'PS*Bill', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:54.380201]:[5488]: Player: 'sharky6969', stack: '3870' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:54.382201]:[5488]: Player: 'sharky6969', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:58.248423]:[5488]: Player: 'CLRN', stack: '1250' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:58.249423]:[5488]: Player: 'CLRN', action: 'Raise', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:59.627501]:[5488]: Player: 'PS*Bill', stack: '1555' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:40:59.629502]:[5488]: Player: 'PS*Bill', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:01.518610]:[5488]: Player: 'sharky6969', stack: '3810' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:01.519610]:[5488]: Player: 'sharky6969', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:02.434662]:[5488]: Cards received: ('Seven' of 'Diamonds')('Ace' of 'Spades')('Nine' of 'Diamonds')('Nine' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:41:03.543725]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:05.731851]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:09.933091]:[5488]: Player: 'CLRN', stack: '980' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:09.933091]:[5488]: Player: 'CLRN', action: 'Bet', amount: '270' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:11.512181]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:15.959436]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:16.007438]:[5488]: Player: 'CLRN', stack: '3810' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:16.009438]:[5488]: Player: 'CLRN', action: 'MoneyReturn', amount: '270' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:19.781654]:[5488]: Player: 'PS*Bill', stack: '1540' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:41:19.781654]:[5488]: Player: 'Frunzelhuhn', stack: '910' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:41:19.781654]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:41:19.782654]:[5488]: Player: 'PS*Bill', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:41:19.785654]:[5488]: Player: 'Frunzelhuhn', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:41:19.790655]:[5488]: Player cards: ('Eight' of 'Hearts')('Three' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:41:23.775883]:[5488]: Player: 'Loomis59', stack: '2340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:23.777883]:[5488]: Player: 'Loomis59', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:24.060899]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:24.346915]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:26.903062]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:27.205079]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:27.480095]:[5488]: Player: 'PS*Bill', stack: '1525' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:27.482095]:[5488]: Player: 'PS*Bill', action: 'Call', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:30.191250]:[5488]: Player: 'Frunzelhuhn', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:31.086301]:[5488]: Cards received: ('Ten' of 'Hearts')('Queen' of 'Spades')('Ten' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:41:33.262425]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:34.761511]:[5488]: Player: 'Frunzelhuhn', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:40.045813]:[5488]: Player: 'Loomis59', stack: '2250' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:40.047813]:[5488]: Player: 'Loomis59', action: 'Bet', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:41.649905]:[5488]: Player: 'PS*Bill', stack: '1435' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:41.650905]:[5488]: Player: 'PS*Bill', action: 'Call', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:43.562014]:[5488]: Player: 'Frunzelhuhn', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:44.176050]:[5488]: Cards received: ('Ten' of 'Hearts')('Queen' of 'Spades')('Ten' of 'Diamonds')('Nine' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:41:45.670135]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:48.751311]:[5488]: Player: 'Loomis59', stack: '2130' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:48.753311]:[5488]: Player: 'Loomis59', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:50.244397]:[5488]: Player: 'PS*Bill', stack: '1315' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:50.246397]:[5488]: Player: 'PS*Bill', action: 'Call', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:51.140448]:[5488]: Cards received: ('Ten' of 'Hearts')('Queen' of 'Spades')('Ten' of 'Diamonds')('Nine' of 'Hearts')('Three' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:41:52.159506]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:56.177736]:[5488]: Player: 'Loomis59', stack: '1950' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:56.179736]:[5488]: Player: 'Loomis59', action: 'Bet', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:57.639820]:[5488]: Player: 'PS*Bill', stack: '1135' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:57.641820]:[5488]: Player: 'PS*Bill', action: 'Call', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:58.394863]:[5488]: Player: 'Loomis59', action: 'ShowCards', cards: 'TsJc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:41:58.498869]:[5488]: Player: 'PS*Bill', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:01.571044]:[5488]: Player: 'Frunzelhuhn', stack: '895' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:42:01.572044]:[5488]: Player: 'Loomis59', stack: '2790' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:42:01.572044]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:42:01.573045]:[5488]: Player: 'Frunzelhuhn', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:42:01.576045]:[5488]: Player: 'Loomis59', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:42:01.578045]:[5488]: Player cards: ('Three' of 'Spades')('Seven' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:42:06.265313]:[5488]: Player: 'sharky6969', stack: '3780' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:06.266313]:[5488]: Player: 'sharky6969', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:09.260484]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:12.089646]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:15.067816]:[5488]: Player: 'GeWe40', stack: '1865' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:15.068816]:[5488]: Player: 'GeWe40', action: 'Raise', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:15.354833]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:17.551958]:[5488]: Player: 'Frunzelhuhn', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:17.836975]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:19.258056]:[5488]: Player: 'sharky6969', stack: '3750' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:19.259056]:[5488]: Player: 'sharky6969', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:20.160108]:[5488]: Cards received: ('Ace' of 'Hearts')('Jack' of 'Diamonds')('Ace' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:42:25.041387]:[5488]: Player: 'sharky6969', stack: '3720' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:25.043387]:[5488]: Player: 'sharky6969', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:27.307516]:[5488]: Player: 'GeWe40', stack: '1805' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:27.309517]:[5488]: Player: 'GeWe40', action: 'Raise', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:30.605705]:[5488]: Player: 'sharky6969', stack: '3660' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:30.607705]:[5488]: Player: 'sharky6969', action: 'Raise', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:31.980784]:[5488]: Player: 'GeWe40', stack: '1775' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:31.982784]:[5488]: Player: 'GeWe40', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:32.607820]:[5488]: Cards received: ('Ace' of 'Hearts')('Jack' of 'Diamonds')('Ace' of 'Clubs')('Eight' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:42:36.011014]:[5488]: Player: 'sharky6969', stack: '3600' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:36.013014]:[5488]: Player: 'sharky6969', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:37.523101]:[5488]: Player: 'GeWe40', stack: '1715' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:37.525101]:[5488]: Player: 'GeWe40', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:38.141136]:[5488]: Cards received: ('Ace' of 'Hearts')('Jack' of 'Diamonds')('Ace' of 'Clubs')('Eight' of 'Diamonds')('Seven' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:42:46.337605]:[5488]: Player: 'sharky6969', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:53.742028]:[5488]: Player: 'sharky6969', stack: '1890' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:53.743029]:[5488]: Player: 'sharky6969', action: 'Bet', amount: '1710' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:57.455241]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:57.549246]:[5488]: Player: 'sharky6969', stack: '1715' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:42:57.551246]:[5488]: Player: 'sharky6969', action: 'MoneyReturn', amount: '1710' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:01.253458]:[5488]: Player cards: ('Four' of 'Hearts')('Two' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:43:04.733657]:[5488]: Player: '3FingerJimbo', stack: '1245' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:04.735657]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:13.959185]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:14.260202]:[5488]: Player: 'GeWe40', stack: '1685' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:14.262202]:[5488]: Player: 'GeWe40', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:14.530217]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:20.841578]:[5488]: Player: 'Frunzelhuhn', stack: '835' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:20.843579]:[5488]: Player: 'Frunzelhuhn', action: 'Raise', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:29.368066]:[5488]: Player: 'Loomis59', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:35.456414]:[5488]: Player: 'Loomis59', stack: '2730' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:35.457414]:[5488]: Player: 'Loomis59', action: 'Call', amount: '45' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:35.745431]:[5488]: Player: 'sharky6969', stack: '4005' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:35.746431]:[5488]: Player: 'sharky6969', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:36.042448]:[5488]: Player: '3FingerJimbo', stack: '1215' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:36.043448]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:38.954614]:[5488]: Player: 'GeWe40', stack: '1655' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:38.956615]:[5488]: Player: 'GeWe40', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:39.850666]:[5488]: Cards received: ('Ace' of 'Clubs')('Ten' of 'Spades')('Ten' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:43:42.126796]:[5488]: Player: 'Loomis59', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:46.321036]:[5488]: Player: 'sharky6969', stack: '3975' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:46.323036]:[5488]: Player: 'sharky6969', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:48.288148]:[5488]: Player: '3FingerJimbo', stack: '1185' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:48.290148]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:48.568164]:[5488]: Player: 'GeWe40', stack: '1625' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:48.570164]:[5488]: Player: 'GeWe40', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:56.462616]:[5488]: Player: 'Frunzelhuhn', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:57.043649]:[5488]: Player: 'Frunzelhuhn', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:57.045649]:[5488]: Player: 'Frunzelhuhn', action: 'Raise', amount: '835' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:43:57.570679]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:02.030934]:[5488]: Player: 'sharky6969', stack: '3170' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:02.032934]:[5488]: Player: 'sharky6969', action: 'Call', amount: '805' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:04.146055]:[5488]: Player: '3FingerJimbo', stack: '380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:04.148055]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '805' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:04.712088]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:05.328123]:[5488]: Cards received: ('Ace' of 'Clubs')('Ten' of 'Spades')('Ten' of 'Hearts')('Queen' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:44:08.800322]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:21.873069]:[5488]: Player: '3FingerJimbo', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:22.032078]:[5488]: Cards received: ('Ace' of 'Clubs')('Ten' of 'Spades')('Ten' of 'Hearts')('Queen' of 'Spades')('Three' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:44:22.035079]:[5488]: Player: 'sharky6969', stack: '3140' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:22.036079]:[5488]: Player: 'sharky6969', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:22.804123]:[5488]: Player: '3FingerJimbo', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:22.807123]:[5488]: Player: '3FingerJimbo', action: 'Raise', amount: '380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:28.133427]:[5488]: Player: 'sharky6969', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:28.898471]:[5488]: Player: 'sharky6969', stack: '2790' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:28.900471]:[5488]: Player: 'sharky6969', action: 'Call', amount: '350' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:29.640514]:[5488]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:31.102597]:[5488]: Player: '3FingerJimbo', action: 'ShowCards', cards: '8sJs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:31.111598]:[5488]: Player: 'sharky6969', stack: '2790' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:31.113598]:[5488]: Player: 'sharky6969', action: 'ShowCards', cards: '9hTc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:32.271664]:[5488]: Player: '3FingerJimbo', stack: '760' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:32.273664]:[5488]: Player: '3FingerJimbo', action: 'WinCards', pot: '760', cards: 'QsJsTs8s3s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:32.278664]:[5488]: Player: 'Frunzelhuhn', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:32.281665]:[5488]: Player: 'Frunzelhuhn', action: 'ShowCards', cards: '4c4s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:33.440731]:[5488]: Player: 'Frunzelhuhn', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:33.442731]:[5488]: Player: 'Frunzelhuhn', action: 'Rank', amount: '7' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:34.959818]:[5488]: Player: 'sharky6969', stack: '2775' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:44:34.959818]:[5488]: Player: '3FingerJimbo', stack: '3565' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:44:34.959818]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:44:34.960818]:[5488]: Player: 'sharky6969', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:44:34.966818]:[5488]: Player: '3FingerJimbo', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:44:34.968818]:[5488]: Player cards: ('Two' of 'Hearts')('King' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:44:37.729976]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:41.417187]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:41.708204]:[5488]: Player: 'PS*Bill', stack: '1105' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:41.709204]:[5488]: Player: 'PS*Bill', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:49.988677]:[5488]: Player: 'Loomis59', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:44:50.909730]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:04.243493]:[5488]: Player: 'sharky6969', stack: '2760' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:04.245493]:[5488]: Player: 'sharky6969', action: 'Call', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:04.252493]:[5488]: Player: '3FingerJimbo', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:04.863528]:[5488]: Cards received: ('Five' of 'Spades')('Four' of 'Spades')('Six' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:45:05.156545]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:05.161545]:[5488]: Player: '3FingerJimbo', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:05.165545]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:05.323554]:[5488]: Cards received: ('Five' of 'Spades')('Four' of 'Spades')('Six' of 'Clubs')('Five' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:45:05.326555]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:05.470563]:[5488]: Player: '3FingerJimbo', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:07.606685]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:08.046710]:[5488]: Cards received: ('Five' of 'Spades')('Four' of 'Spades')('Six' of 'Clubs')('Five' of 'Hearts')('King' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:45:10.335841]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:11.474906]:[5488]: Player: '3FingerJimbo', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:11.759923]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:12.375958]:[5488]: Player: 'sharky6969', action: 'ShowCards', cards: '8c2d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:12.385958]:[5488]: Player: '3FingerJimbo', stack: '2760' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:12.387959]:[5488]: Player: '3FingerJimbo', action: 'ShowCards', cards: '7dTs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:12.396959]:[5488]: Player: 'PS*Bill', stack: '3565' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:12.398959]:[5488]: Player: 'PS*Bill', action: 'ShowCards', cards: '9hJc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:15.224121]:[5488]: Player: '3FingerJimbo', stack: '3550' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:45:15.224121]:[5488]: Player: 'CLRN', stack: '1595' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:45:15.224121]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:45:15.225121]:[5488]: Player: '3FingerJimbo', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:45:15.229121]:[5488]: Player: 'CLRN', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:45:15.232121]:[5488]: Player cards: ('Five' of 'Diamonds')('Five' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:45:17.903274]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:18.188290]:[5488]: Player: 'PS*Bill', stack: '1165' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:18.189290]:[5488]: Player: 'PS*Bill', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:21.233464]:[5488]: Player: 'Loomis59', stack: '2700' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:21.235465]:[5488]: Player: 'Loomis59', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:22.967564]:[5488]: Player: 'sharky6969', stack: '2730' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:22.969564]:[5488]: Player: 'sharky6969', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:23.253580]:[5488]: Player: '3FingerJimbo', stack: '3535' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:23.254580]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:27.440820]:[5488]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:28.335871]:[5488]: Cards received: ('Ten' of 'Spades')('Nine' of 'Spades')('Six' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:45:31.031025]:[5488]: Player: '3FingerJimbo', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:33.689177]:[5488]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:34.114201]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:40.383560]:[5488]: Player: 'Loomis59', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:40.668576]:[5488]: Player: 'sharky6969', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:40.832585]:[5488]: Cards received: ('Ten' of 'Spades')('Nine' of 'Spades')('Six' of 'Spades')('Ace' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:45:42.286669]:[5488]: Player: '3FingerJimbo', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:46.267896]:[5488]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:46.278897]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:48.319014]:[5488]: Player: 'Loomis59', stack: '2670' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:48.321014]:[5488]: Player: 'Loomis59', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:50.676149]:[5488]: Player: 'sharky6969', stack: '2700' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:50.679149]:[5488]: Player: 'sharky6969', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:51.242181]:[5488]: Player: '3FingerJimbo', stack: '3505' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:51.244181]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:54.839387]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:56.000453]:[5488]: Player: 'PS*Bill', stack: '1135' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:56.002453]:[5488]: Player: 'PS*Bill', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:45:56.617488]:[5488]: Cards received: ('Ten' of 'Spades')('Nine' of 'Spades')('Six' of 'Spades')('Ace' of 'Clubs')('Queen' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:46:02.209808]:[5488]: Player: '3FingerJimbo', stack: '3205' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:02.211808]:[5488]: Player: '3FingerJimbo', action: 'Bet', amount: '300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:04.489939]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:05.497996]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:07.582115]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:07.591116]:[5488]: Player: '3FingerJimbo', stack: '2700' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:07.593116]:[5488]: Player: '3FingerJimbo', action: 'MoneyReturn', amount: '300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:10.261269]:[5488]: Player: '3FingerJimbo', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:11.402334]:[5488]: Player: 'CLRN', stack: '1595' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:46:11.402334]:[5488]: Player: 'GeWe40', stack: '1580' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:46:11.403334]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:46:11.404334]:[5488]: Player: 'CLRN', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:46:11.413335]:[5488]: Player: 'GeWe40', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:46:11.418335]:[5488]: Player cards: ('Six' of 'Hearts')('Seven' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:46:13.172435]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:15.098545]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:15.637576]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:16.014598]:[5488]: Player: '3FingerJimbo', stack: '3745' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:16.016598]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:19.402792]:[5488]: Player: 'CLRN', stack: '1565' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:19.404792]:[5488]: Player: 'CLRN', action: 'Call', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:19.687808]:[5488]: Player: 'GeWe40', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:20.319844]:[5488]: Cards received: ('Eight' of 'Spades')('Ace' of 'Diamonds')('Three' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:46:21.954938]:[5488]: Player: 'CLRN', stack: '1535' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:21.956938]:[5488]: Player: 'CLRN', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:23.555029]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:24.978110]:[5488]: Player: '3FingerJimbo', stack: '3685' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:24.980111]:[5488]: Player: '3FingerJimbo', action: 'Raise', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:27.774270]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:30.917450]:[5488]: Player: '3FingerJimbo', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:35.561716]:[5488]: Player: 'GeWe40', stack: '1570' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:46:35.562716]:[5488]: Player: 'PS*Bill', stack: '1085' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:46:35.562716]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:46:35.563716]:[5488]: Player: 'GeWe40', action: 'SmallBlind', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:46:35.567716]:[5488]: Player: 'PS*Bill', action: 'BigBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:46:35.571716]:[5488]: Player cards: ('Jack' of 'Clubs')('Seven' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:46:39.000913]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:42.313102]:[5488]: Player: 'sharky6969', stack: '2650' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:42.315102]:[5488]: Player: 'sharky6969', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:42.601118]:[5488]: Player: '3FingerJimbo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:45.110262]:[5488]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:45.406279]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:45.416279]:[5488]: Player: 'PS*Bill', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:46.031315]:[5488]: Cards received: ('Six' of 'Clubs')('Ten' of 'Hearts')('Nine' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:46:48.191438]:[5488]: Player: 'PS*Bill', stack: '1035' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:48.193438]:[5488]: Player: 'PS*Bill', action: 'Bet', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:50.896593]:[5488]: Player: 'sharky6969', stack: '2600' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:50.898593]:[5488]: Player: 'sharky6969', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:51.511628]:[5488]: Cards received: ('Six' of 'Clubs')('Ten' of 'Hearts')('Nine' of 'Clubs')('Eight' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:46:53.090718]:[5488]: Player: 'PS*Bill', stack: '985' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:53.092719]:[5488]: Player: 'PS*Bill', action: 'Bet', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:55.255842]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:55.264843]:[5488]: Player: 'PS*Bill', stack: '1035' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:55.266843]:[5488]: Player: 'PS*Bill', action: 'MoneyReturn', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:58.083004]:[5488]: Player: 'PS*Bill', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:46:58.887050]:[5488]: Player: 'PS*Bill', stack: '1235' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:46:58.888050]:[5488]: Player: 'Loomis59', stack: '2620' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:46:58.888050]:[5488]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:46:58.890050]:[5488]: Player: 'PS*Bill', action: 'SmallBlind', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:46:58.898051]:[5488]: Player: 'Loomis59', action: 'BigBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-21T23:46:58.904051]:[5488]: Player cards: ('King' of 'Spades')('Queen' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-21T23:47:02.028230]:[5488]: Player: 'sharky6969', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:02.313246]:[5488]: Player: '3FingerJimbo', stack: '3815' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:02.315246]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:05.073404]:[5488]: Player: 'CLRN', stack: '1485' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:05.074404]:[5488]: Player: 'CLRN', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:07.731556]:[5488]: Player: 'GeWe40', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:07.733556]:[5488]: Player: 'GeWe40', action: 'Raise', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:09.330647]:[5488]: Player: 'PS*Bill', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:17.822133]:[5488]: Player: 'Loomis59', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:19.460227]:[5488]: Player: '3FingerJimbo', stack: '3715' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:19.462227]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:24.207498]:[5488]: Player: 'CLRN', stack: '1385' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:24.209498]:[5488]: Player: 'CLRN', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:25.096549]:[5488]: Cards received: ('Six' of 'Hearts')('Queen' of 'Spades')('Ace' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:47:28.552747]:[5488]: Player: '3FingerJimbo', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:31.683926]:[5488]: Player: 'CLRN', stack: '935' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:31.685926]:[5488]: Player: 'CLRN', action: 'Bet', amount: '450' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:34.938112]:[5488]: Player: 'GeWe40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:35.224128]:[5488]: Player: '3FingerJimbo', stack: '3265' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:35.226128]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '450' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:35.844164]:[5488]: Cards received: ('Six' of 'Hearts')('Queen' of 'Spades')('Ace' of 'Hearts')('Five' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:47:39.643381]:[5488]: Player: '3FingerJimbo', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:42.887567]:[5488]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:42.889567]:[5488]: Player: 'CLRN', action: 'Bet', amount: '935' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:44.917683]:[5488]: Player: '3FingerJimbo', stack: '2330' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:44.918683]:[5488]: Player: '3FingerJimbo', action: 'Call', amount: '935' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:45.495716]:[5488]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:46.947799]:[5488]: Cards received: ('Six' of 'Hearts')('Queen' of 'Spades')('Ace' of 'Hearts')('Five' of 'Spades')('Jack' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-21T23:47:48.490887]:[5488]: Player: '3FingerJimbo', action: 'ShowCards', cards: '7h8h' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:48.497888]:[5488]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:48.499888]:[5488]: Player: 'CLRN', action: 'ShowCards', cards: 'KsQd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:49.906968]:[5488]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-21T23:47:49.908968]:[5488]: Player: 'CLRN', action: 'Rank', amount: '6' /* clnt::ps::msg::PlayerAction::Process */
