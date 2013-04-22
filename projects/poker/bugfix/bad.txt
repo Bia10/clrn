@@ -3,6 +3,11 @@ pending:
 [TRACE  ][6][2013-04-22T22:36:46.016246]:[5376]: Decision >>>>: [win: [Good], pos: [Later], bet: [Normal], players: [One], danger: [Low], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
 Decision <<<<: [Action: 4 Amount: 540] /* srv::DecisionMaker::MakeDecision */
 
+[TRACE  ][6][2013-04-23T00:14:54.930073]:[5072]: Win: [0.27655], bet: [0], max bet: [150], pot: [375], bot stack: [675], cards: [Cards: ('King' of 'Spades')('Jack' of 'Spades'), Flop: ] /* srv::DecisionMaker::MakeDecision */
+[TRACE  ][6][2013-04-23T00:14:54.940073]:[5072]: 
+Decision >>>>: [win: [Normal], pos: [Later], bet: [Low], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Small], decision: [Not set]]
+Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
+
 fixed:
 [TRACE  ][6][2013-04-10T23:32:23.594577]:[4752]: Decision input: win: [Normal]:[29], pos: [Later], pot: [Normal], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */
 [TRACE  ][6][2013-04-10T23:37:54.535506]:[5988]: Decision input: win: [Normal]:[31], pos: [Later], pot: [High], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */

@@ -302,7 +302,10 @@ Player::Position::Value TableLogic::GetNextPlayerPosition()
     SCOPED_LOG(m_Log);
 
     const std::size_t totalPlayers = m_Sequence.size();
-    const std::size_t leftInQueue = m_Queue.size();
+    std::size_t leftInQueue = m_Queue.size();
+
+    if (m_Phase == Phase::Preflop && leftInQueue > 2)
+        leftInQueue -= 2; // don't calculate blinds
 
     pcmn::Player::Position::Value result = pcmn::Player::Position::Middle;
 
