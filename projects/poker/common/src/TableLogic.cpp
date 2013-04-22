@@ -202,7 +202,7 @@ void TableLogic::SetPlayerStack(const std::string& name, unsigned stack)
 void TableLogic::SetPlayerCards(const std::string& name, const Card::List& cards)
 {
     if (!m_Players.count(name))
-        m_Players[name] = pcmn::Player(name, 0);
+        m_Players[name] = pcmn::Player(name, cfg::DEFAULT_STACK);
 
     GetPlayer(name).Cards(cards);
 
@@ -445,6 +445,7 @@ void TableLogic::SendRequest(bool statistics)
 	        {
 	            const ActionDesc& action = m_Actions[Phase::Preflop][i];
 	            UniqueAdd(playerNames, action.m_Name);
+                GetPlayer(action.m_Name); // insert player if not exists
 	        }
 	
 	        const std::string& botName = Player::ThisPlayer().Name();
@@ -608,7 +609,7 @@ void TableLogic::SetPhase(Phase::Value phase)
 Player& TableLogic::GetPlayer(const std::string& name)
 {
     if (!m_Players.count(name))
-        m_Players.insert(std::make_pair(name, Player(name, 1500)));
+        m_Players.insert(std::make_pair(name, Player(name, cfg::DEFAULT_STACK)));
     return m_Players[name];
 }
 
