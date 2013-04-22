@@ -343,6 +343,8 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
 
 	// fetch statistics
 	const unsigned count = m_Stat.GetEquities(equities);
+    if (!count)
+        return pcmn::Danger::Normal;
 
 	// compare equities
 	for (const IStatistics::PlayerInfo& equity : equities)
