@@ -1,0 +1,57 @@
+[NONE   ][0][2013-04-22T22:30:15.437906]:[4420]: Logger started, module: [0], level: [3], source: [logs/messages.txt].
+[TRACE  ][0][2013-04-22T22:31:16.796416]:[5684]: Ante: '0' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:31:16.819417]:[5684]: Player: 'dglvr', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:31:16.819417]:[5684]: Player: 'conradbeggs', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:31:16.819417]:[5684]: Player: 'evgeni197905', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:31:16.820417]:[5684]: Player: 'dragonfee', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:31:16.820417]:[5684]: Player: 'CLRN', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:31:16.820417]:[5684]: Player: 'ssrlmroo', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:31:16.820417]:[5684]: Player: 'dude1948', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:32:14.686727]:[5684]: Player cards: ('Seven' of 'Spades')('Six' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T22:32:17.718900]:[5684]: Player: 'evgeni197905', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:19.592008]:[5684]: Player: 'aleks-ss15', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:19.594008]:[5684]: Player: 'aleks-ss15', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:21.438113]:[5684]: Player: 'dragonfee', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:21.440113]:[5684]: Player: 'dragonfee', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:29.546577]:[5684]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:32.512747]:[5684]: Player: 'CLRN', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:32.514747]:[5684]: Player: 'CLRN', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:32.794763]:[5684]: Player: 'ssrlmroo', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:33.070779]:[5684]: Player: 'dude1948', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:35.401912]:[5684]: Player: 'dglvr', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:36.274962]:[5684]: Player: 'zodró', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:36.275962]:[5684]: Player: 'zodró', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:36.555978]:[5684]: Player: 'conradbeggs', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:37.171013]:[5684]: Cards received: ('Three' of 'Hearts')('Ten' of 'Hearts')('Ace' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T22:32:38.325079]:[5684]: Player: 'zodró', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:40.615210]:[5684]: Player: 'conradbeggs', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:42.429314]:[5684]: Player: 'aleks-ss15', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:43.787392]:[5684]: Player: 'dragonfee', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:47.651613]:[5684]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:47.886626]:[5684]: Cards received: ('Three' of 'Hearts')('Ten' of 'Hearts')('Ace' of 'Spades')('Two' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T22:32:50.725788]:[5684]: Player: 'zodró', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:50.741789]:[5684]: Player: 'conradbeggs', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:52.740904]:[5684]: Player: 'aleks-ss15', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:54.388998]:[5684]: Player: 'dragonfee', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:57.941201]:[5684]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:32:58.375226]:[5684]: Cards received: ('Three' of 'Hearts')('Ten' of 'Hearts')('Ace' of 'Spades')('Two' of 'Hearts')('Ten' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T22:33:00.720360]:[5684]: Player: 'zodró', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:33:02.744476]:[5684]: Player: 'conradbeggs', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:33:05.536636]:[5684]: Player: 'aleks-ss15', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:33:05.813651]:[5684]: Player: 'dragonfee', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:33:08.597811]:[5684]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:33:09.116840]:[5684]: Player: 'zodró', action: 'ShowCards', cards: '7h9c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:33:09.122841]:[5684]: Player: 'conradbeggs', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:33:09.123841]:[5684]: Player: 'conradbeggs', action: 'ShowCards', cards: '2sQd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:33:11.494976]:[5684]: Player: 'aleks-ss15', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:33:12.154014]:[5684]: Player: 'dragonfee', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:33:13.582096]:[5684]: Player: 'CLRN', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:33:20.790508]:[5684]: Player: 'conradbeggs', stack: '1570' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T22:33:20.791508]:[5684]: Player: 'evgeni197905', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T22:33:20.791508]:[5684]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T22:33:20.793508]:[5684]: Player: 'conradbeggs', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T22:33:20.795508]:[5684]: Player: 'evgeni197905', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T22:33:20.801509]:[5684]: Player cards: ('Three' of 'Clubs')('Nine' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T22:33:23.871684]:[5684]: Player: 'aleks-ss15', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:33:24.807738]:[5684]: Player: 'dragonfee', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:33:27.720904]:[5684]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
