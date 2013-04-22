@@ -4,8 +4,9 @@
 #include "Exception.h"
 #include "Config.h"
 
-#include <boost/thread/mutex.hpp>
+#include <boost/thread/shared_mutex.hpp>
 #include <boost/format.hpp>
+#include <boost/thread/locks.hpp>
 
 namespace srv
 {
@@ -95,7 +96,7 @@ const char SQL_GET_LAST_ACTIONS[] =
 							  "AND p2.name = '%s') "                                                    
 	"GROUP  BY a1.game, "
 			  "a1.action "
-	"ORDER  BY 1 desc "
+	"ORDER  BY a1.game DESC "
 	"limit 20 ";
 
 const char SQL_GET_PLAYER_EQUITIES[] = 
@@ -122,7 +123,7 @@ public:
 	class ScopedTransaction
 	{
 	public:
-		ScopedTransaction(sql::IDatabase& db, boost::mutex& mutex) : m_DB(db), m_Done(false), m_Lock(mutex)
+		ScopedTransaction(sql::IDatabase& db, boost::shared_mutex& mutex) : m_DB(db), m_Done(false), m_Lock(mutex)
 		{
 			m_DB.BeginTransaction();
 		}
@@ -142,7 +143,7 @@ public:
 	private:
 		bool m_Done;
 		sql::IDatabase& m_DB;
-		boost::mutex::scoped_lock m_Lock;
+		boost::unique_lock<boost::shared_mutex> m_Lock;
 	};
 
 Impl(ILog& logger) : m_Log(logger), m_DB(new sql::SQLiteDataBase(m_Log))
@@ -294,7 +295,7 @@ unsigned GetRanges(PlayerInfo::List& players)
 	{
         SCOPED_LOG(m_Log);
 
-        boost::mutex::scoped_lock lock(m_Mutex);
+        boost::shared_lock<boost::shared_mutex> lock(m_Mutex);
 
 		std::map<std::string, unsigned> indexes;
 		const std::string filter = GetPlayersFilter(players, indexes);
@@ -327,7 +328,7 @@ void GetLastActions(const std::string& target, const std::string& opponent, int&
 	{
         SCOPED_LOG(m_Log);
 
-        boost::mutex::scoped_lock lock(m_Mutex);
+        boost::shared_lock<boost::shared_mutex> lock(m_Mutex);
 
         checkFolds = 0;
 		calls = 0;
@@ -370,7 +371,7 @@ unsigned GetEquities(PlayerInfo::List& players)
 	{
         SCOPED_LOG(m_Log);
 
-        boost::mutex::scoped_lock lock(m_Mutex);
+        boost::shared_lock<boost::shared_mutex> lock(m_Mutex);
 
         std::map<std::string, unsigned> indexes;
 		const std::string filter = GetPlayersFilter(players, indexes);
@@ -434,7 +435,7 @@ std::string GetPlayersFilter(PlayerInfo::List& players, std::map<std::string, un
 private:
 	ILog& m_Log;
 	sql::IDatabase::Ptr m_DB;
-	boost::mutex m_Mutex;
+	boost::shared_mutex m_Mutex;
 	std::map<std::string, unsigned int> m_Players;
 };
 

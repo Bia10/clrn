@@ -58,11 +58,14 @@ public:
 	}*/
 };
 
+unsigned g_Answers = 0;
+
 class TestClient : public net::IConnection
 {
 	virtual void Send(const google::protobuf::Message& message) 
 	{
-		std::cout << message.DebugString() << std::endl;
+		std::cout << "Answer number: " << g_Answers++ << " " << message.DebugString() << std::endl;
+        ASSERT_FALSE(g_Answers > 1);
 	}
 
 	virtual void Receive(const Callback& callback, const google::protobuf::Message* message = 0) 
@@ -104,6 +107,7 @@ public:
 	virtual void Send(const google::protobuf::Message& message) 
 	{
         //FakeDecisionMaker maker;
+        g_Answers = 0;
         net::IConnection::Ptr connection(new TestClient());
         neuro::DatabaseReader net(m_Log, cfg::NETWORK_FILE_NAME);
         srv::DecisionMaker maker(m_Log, m_Evaluator, m_Statistics, net, *connection);
@@ -112,6 +116,7 @@ public:
 
 		static int counter = 0;
 		std::cout << "Requests: " << counter++ << std::endl;
+        g_Answers = 0;
 	}
 
 	virtual void Receive(const Callback& callback, const google::protobuf::Message* message = 0) 
