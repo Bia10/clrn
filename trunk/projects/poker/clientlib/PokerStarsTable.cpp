@@ -271,10 +271,7 @@ void Table::Fold()
 void Table::CheckCall()
 {
     SCOPED_LOG(m_Log);
-
 	PressButton(CHECK_CALL_X, CHECK_CALL_Y);
-	boost::this_thread::interruptible_wait(3000);
-	PressButton(BET_X, BET_Y); // in case of all in call
 }
 
 void Table::BetRaise(unsigned amount)
