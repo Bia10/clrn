@@ -165,7 +165,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
             }
 
             LOG_TRACE("Max bet: [%s], pot: [%s], bot stack: [%s], cards: [%s]") % context.m_MaxBet % context.m_Pot % player.Stack() % oss.str();
-            LOG_TRACE("Decision input: [%s], output: [%s]") % params.ToString() % reply.ShortDebugString();
+            LOG_TRACE("Decision >>>>: [%s]\nDecision <<<<: [%s]") % params.ToString() % reply.ShortDebugString();
         }
 
 	
