@@ -164,7 +164,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
                 oss << "('" << pcmn::Card::ToString(card.m_Value) << "' of '" << pcmn::Suit::ToString(card.m_Suit) << "')";
             }
 
-            LOG_TRACE("Bet: [%s], max bet: [%s], pot: [%s], bot stack: [%s], cards: [%s]") % player.Bet() % context.m_MaxBet % context.m_Pot % player.Stack() % oss.str();
+            LOG_TRACE("Win: [%s], bet: [%s], max bet: [%s], pot: [%s], bot stack: [%s], cards: [%s]") % winRate % player.Bet() % context.m_MaxBet % context.m_Pot % player.Stack() % oss.str();
             LOG_TRACE("\nDecision >>>>: [%s]\nDecision <<<<: [%s]") % params.ToString() % reply.ShortDebugString();
         }
 
