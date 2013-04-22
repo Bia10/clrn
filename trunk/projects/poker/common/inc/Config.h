@@ -33,6 +33,9 @@ namespace cfg
 
 	// teacher
 	static const char DATA_FILE_NAME[] = "train_data.txt";
+
+    // logic
+    static const int DEFAULT_STACK = 1500;
 };
 
 #endif // Config_h__
