@@ -1,4 +1,7 @@
 pending:
+[TRACE  ][6][2013-04-22T22:36:45.996245]:[5376]: Max bet: [180], pot: [560], bot stack: [1220], cards: [Cards: ('Nine' of 'Clubs')('Four' of 'Clubs'), Flop: ('King' of 'Clubs')('Nine' of 'Spades')('Queen' of 'Clubs')('Three' of 'Spades')('Queen' of 'Diamonds')] /* srv::DecisionMaker::MakeDecision */
+[TRACE  ][6][2013-04-22T22:36:46.016246]:[5376]: Decision >>>>: [win: [Good], pos: [Later], bet: [Normal], players: [One], danger: [Low], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+Decision <<<<: [Action: 4 Amount: 540] /* srv::DecisionMaker::MakeDecision */
 
 fixed:
 [TRACE  ][6][2013-04-10T23:32:23.594577]:[4752]: Decision input: win: [Normal]:[29], pos: [Later], pot: [Normal], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */
