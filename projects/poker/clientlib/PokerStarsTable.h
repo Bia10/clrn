@@ -75,9 +75,6 @@ private:
 	//! Data sender interface
 	net::IConnection::Ptr			m_Connection;
 
-	//! Is cards showed / game finished
-	bool							m_IsRoundFinished;
-
     //! Table logic 
     pcmn::TableLogic                m_Logic;
 };

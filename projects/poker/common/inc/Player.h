@@ -106,6 +106,7 @@ public:
 		, m_Bet(0)
 		, m_State(State::Called)
         , m_TotalBet(0)
+        , m_Afk(false)
 	{
 		m_Styles.resize(4, Style::Normal);
 	}
@@ -117,6 +118,7 @@ public:
 		, m_Bet(0)
 		, m_State(State::Called)
 		, m_TotalBet(0)
+        , m_Afk(false)
 	{
 		m_Styles.resize(4, Style::Normal);
 	}
@@ -137,6 +139,9 @@ public:
 	const Actions& GetActions() const		{ return m_Actions; }
     std::size_t TotalBet() const            { return m_TotalBet; }
     void TotalBet(std::size_t val)          { m_TotalBet = val; }
+    bool Afk() const                        { return m_Afk; }
+    void Afk(bool val)                      { m_Afk = val; }
+
     void Reset();
 
 	void SetStyle(std::size_t phase, Style::Value style)
@@ -173,6 +178,7 @@ private:
     Actions m_Actions;				//!< player actions
 	std::string m_Country;	
 	Styles m_Styles;				//!< player styles during this game
+    bool m_Afk;                     //!< is player away from keyboard
 };
 }
 
