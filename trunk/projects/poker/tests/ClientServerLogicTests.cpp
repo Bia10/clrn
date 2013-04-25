@@ -278,6 +278,9 @@ void RunTest()
 
     for (; it != end; ++it)
     {
+        if (boost::filesystem::is_directory(it->path()))
+            continue;
+
         const std::string full = boost::filesystem::system_complete(it->path()).string();
 
         std::cout << "Processing: '" << full << "' ..." << std::endl;

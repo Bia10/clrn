@@ -55,13 +55,6 @@ public:
         };
     };
 
-private:
-    //! Players data map
-    typedef std::map<std::string, Player> PlayersMap;
-
-    //! Players queue
-    typedef std::deque<std::string> PlayerQueue;    
-
     //! Action description
     struct ActionDesc
     {
@@ -77,11 +70,22 @@ private:
         {
             return m_Name != other.m_Name || m_Value != other.m_Value || m_Amount != other.m_Amount;
         }
+        bool operator == (const ActionDesc& other) const
+        {
+            return !(*this != other);
+        }
 
         std::string m_Name;
         pcmn::Action::Value m_Value;
         unsigned m_Amount;
     };
+
+private:
+    //! Players data map
+    typedef std::map<std::string, Player> PlayersMap;
+
+    //! Players queue
+    typedef std::deque<std::string> PlayerQueue;    
 
     //! Logic state
     struct State
@@ -126,6 +130,9 @@ public:
     //! Set data from next round
     void SetNextRoundData(const pcmn::Player::List& players);
 
+    //! Is round finished
+    bool IsRoundCompleted() const { return m_IsRoundFinished; }
+
 private: 
 
     //! Get player by name
@@ -141,7 +148,7 @@ private:
     const std::string& GetPreviousPlayerName(const std::string& name) const;
 
     //! Rest phase
-    void ResetPhase(const std::string& smallBlind);
+    void ResetPhase();
 
     //! Parse actions if needed
     bool ParseActionsIfNeeded();
@@ -158,11 +165,17 @@ private:
     //! Get active players
     void GetActivePlayers(Player::Queue& players);
 
+    //! Get players in pot
+    unsigned GetPlayersInPot();
+
     //! Get player position
     Player::Position::Value GetNextPlayerPosition();
 
     //! Reset data
     void ResetData();
+
+    //! Process small blind
+    bool FindExistingSmallBlind(const std::string& name, unsigned amount);
 
 private:
 
@@ -210,6 +223,9 @@ private:
 
     //! Need decision
     bool m_IsNeedDecision;
+
+    //! Is round finished
+    bool m_IsRoundFinished;
 };
 
 }

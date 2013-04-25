@@ -64,7 +64,6 @@ Table::Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection,
 	, m_Window(window)
 	, m_Evaluator(evaluator)
 	, m_Connection(connection)
-	, m_IsRoundFinished(false)
     , m_Logic(m_Log, *this, m_Evaluator)
 {
 	SCOPED_LOG(m_Log);
@@ -122,12 +121,6 @@ void Table::PlayerAction(const std::string& name, const pcmn::Action::Value acti
 
 	LOG_TRACE("Player: '%s', action: '%s', amount: '%s'") % name % pcmn::Action::ToString(action) % amount;
 
-    // workaround for case when players info arrives after players show the cards and before next game starts
-    if (!m_IsRoundFinished && (action == pcmn::Action::ShowCards || action == pcmn::Action::MoneyReturn))
-        m_IsRoundFinished = true;
-    if (m_IsRoundFinished && action == pcmn::Action::SmallBlind)
-        m_IsRoundFinished = false;
-
     m_Logic.PushAction(name, action, amount);
 
     static const std::string& botName = pcmn::Player::ThisPlayer().Name();
@@ -140,6 +133,9 @@ void Table::FlopCards(const pcmn::Card::List& cards)
     SCOPED_LOG(m_Log);
 
     m_Logic.SetFlopCards(cards);
+    if (m_Logic.IsRoundCompleted())
+        return;
+
 	switch (cards.size())
 	{
 	case 3: 
@@ -159,7 +155,7 @@ void Table::BotCards(const pcmn::Card& first, const pcmn::Card& second)
 {
     SCOPED_LOG(m_Log);
 
-    if (m_IsRoundFinished)
+    if (m_Logic.IsRoundCompleted())
     {
         // this info from next round
         pcmn::Player::List data = boost::assign::list_of(pcmn::Player(pcmn::Player::ThisPlayer().Name(), 0));
@@ -175,7 +171,7 @@ void Table::PlayersInfo(const pcmn::Player::List& players)
 {
     SCOPED_LOG(m_Log);
 
-    if (m_IsRoundFinished)
+    if (m_Logic.IsRoundCompleted())
     {
         // this info from next round
         m_Logic.SetNextRoundData(players);
@@ -293,7 +289,6 @@ void Table::SendRequest(const net::Packet& packet, bool statistics)
 {
     try
     {
-        m_IsRoundFinished = false;
         LOG_TRACE("Packet: [%s]") % packet.DebugString();
         m_Connection->Send(packet);
 
