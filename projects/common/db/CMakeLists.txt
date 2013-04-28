@@ -13,4 +13,6 @@ set_target_properties(db PROPERTIES FOLDER "common")
 
 target_link_libraries(db
 	sqlite3
+	ws2_32
+	dbghelp
 )
