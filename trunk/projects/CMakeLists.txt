@@ -17,7 +17,7 @@ set(TOOLSET "vc110")
 set(THIRD_PARTY "d:/svn/trunk/ThirdParty/")
 link_directories(
 	"${THIRD_PARTY}/lib"
-	"${THIRD_PARTY}/lib/${CMAKE_CFG_INTDIR}_${TOOLSET}"
+	"${THIRD_PARTY}/lib/${CMAKE_CFG_INTDIR}"
 	"${LIBRARY_OUTPUT_PATH}"
 )
 include_directories(
