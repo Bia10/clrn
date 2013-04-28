@@ -1,0 +1,1 @@
+bjam --prefix=../ --build-type=complete
