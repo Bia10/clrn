@@ -89,14 +89,15 @@ public:
 	//! Player action descriptor
 	struct ActionDesc
 	{
-		unsigned m_Street;
-		Action::Value m_Action;
-		BetSize::Value m_Value;
+        typedef std::vector<ActionDesc> List;
+		Action::Value m_Id;
+		BetSize::Value m_Amount;
+        Position::Value m_Position;
 	};
 
 	typedef std::vector<Player> List;
 	typedef std::vector<Style::Value> Styles;
-	typedef std::vector<ActionDesc> Actions;
+	typedef std::vector<ActionDesc::List> Actions;
     typedef std::deque<Player> Queue;
 
 	Player()
@@ -142,6 +143,8 @@ public:
     bool Afk() const                        { return m_Afk; }
     void Afk(bool val)                      { m_Afk = val; }
 
+    const std::vector<float>& Equities() const { return m_Equities; }
+
     void Reset();
 
 	void SetStyle(std::size_t phase, Style::Value style)
@@ -164,8 +167,10 @@ public:
 	bool operator == (const Player& other) const;
 
 	//! Add player action
-	void PushAction(unsigned street, Action::Value action, BetSize::Value value);
+	void PushAction(unsigned street, Action::Value action, BetSize::Value value, Position::Value pos);
 
+    //! Add player equity
+    void PushEquity(float val) { m_Equities.push_back(val); }
 
 private:
 	std::string m_Name;		
@@ -178,6 +183,7 @@ private:
     Actions m_Actions;				//!< player actions
 	std::string m_Country;	
 	Styles m_Styles;				//!< player styles during this game
+    std::vector<float> m_Equities;  //!< player equities on streets
     bool m_Afk;                     //!< is player away from keyboard
 };
 }

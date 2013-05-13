@@ -10,5 +10,4 @@ target_link_libraries(db_tests
 	db
 	gtest
 	gtest_main
-	mongoclient
 )

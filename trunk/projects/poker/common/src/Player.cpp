@@ -2,6 +2,8 @@
 #include "TableContext.h"
 #include "Exception.h"
 
+//#include <mongo/bson/bson.h>
+
 namespace pcmn
 {
 	std::string Player::Style::ToString(Value value)
@@ -64,16 +66,19 @@ namespace pcmn
 	{
 	}
 
-	void Player::PushAction(unsigned street, Action::Value action, BetSize::Value value)
+	void Player::PushAction(unsigned street, Action::Value action, BetSize::Value value, Position::Value pos)
 	{
         if (!Action::IsUseful(action))
 			return; // don't collect useless for statistics actions
 
-		m_Actions.push_back(ActionDesc());
-		ActionDesc& actionDesc = m_Actions.back();
-		actionDesc.m_Action = action;
-		actionDesc.m_Value = value;
-		actionDesc.m_Street = street;
+        if (m_Actions.size() <= street)
+            m_Actions.resize(street + 1);
+
+		m_Actions[street].push_back(ActionDesc());
+        ActionDesc& actionDesc = m_Actions[street].back();
+        actionDesc.m_Id = action;
+        actionDesc.m_Amount = value;
+        actionDesc.m_Position = pos;
 	}
 
     void Player::Reset()

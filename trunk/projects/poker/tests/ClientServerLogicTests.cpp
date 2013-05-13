@@ -7,7 +7,8 @@
 #include "IConnection.h"
 #include "../serverlib/IStatistics.h"
 #include "../serverlib/DecisionMaker.h"
-#include "../serverlib/Statistics.h"
+#include "../serverlib/SqliteStatistics.h"
+#include "../serverlib/MongoStatistics.h"
 #include "../neuro/DatabaseReader.h"
 #include "Evaluator.h"
 #include "../neuro/NeuroNetwork.h"
@@ -43,19 +44,19 @@ public:
 
 };
 
-class TestReadStatistics : public srv::Statistics
+class TestReadWriteStatistics : public srv::MongoStatistics
 {
 public:
-	TestReadStatistics(ILog& logger) : srv::Statistics(logger)
+	TestReadWriteStatistics(ILog& logger) : srv::MongoStatistics(logger)
 	{
 
 	}
-/*
+
 
 	virtual void Write(pcmn::TableContext::Data& data) override
 	{
 
-	}*/
+	}
 };
 
 unsigned g_Answers = 0;
@@ -99,7 +100,7 @@ public:
 	TestServer()
 		: m_Network(m_Log, cfg::NETWORK_FILE_NAME)
 		, m_Statistics(m_Log)
-        , m_Evaluator(0)
+        , m_Evaluator(/*0*/)
 	{
 
 	}
@@ -125,8 +126,8 @@ public:
 
 private:
 	Log m_Log;
-	//TestReadStatistics m_Statistics;
-    EmptyTestStatistics m_Statistics;
+	TestReadWriteStatistics m_Statistics;
+    //EmptyTestStatistics m_Statistics;
 	pcmn::Evaluator	m_Evaluator;
 	neuro::DatabaseReader m_Network;
 };

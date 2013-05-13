@@ -1,5 +1,5 @@
-#ifndef Statistics_h__
-#define Statistics_h__
+#ifndef MongoStatistics_h__
+#define MongoStatistics_h__
 
 #include "IStatistics.h"
 
@@ -7,12 +7,12 @@ namespace srv
 {
 
 //! Stats writer/reader
-class Statistics : public IStatistics
+class MongoStatistics : public IStatistics
 {
 public:
 
-	Statistics(ILog& logger);
-	~Statistics();
+	MongoStatistics(ILog& logger);
+	~MongoStatistics();
 
 	virtual void Write(pcmn::TableContext::Data& data) override;
 	virtual unsigned GetRanges(PlayerInfo::List& players) const override;
@@ -27,4 +27,4 @@ private:
 
 } // namespace srv
 
-#endif // Statistics_h__
+#endif // MongoStatistics_h__

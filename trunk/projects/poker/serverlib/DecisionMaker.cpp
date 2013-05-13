@@ -185,13 +185,16 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
 	ranges.reserve(activePlayers.size());
 	for (const pcmn::Player& player : activePlayers)
 	{
-		pcmn::Player::Actions actions = player.GetActions();
+        if (player.GetActions().empty() || player.Name() == bot.Name())
+            continue;
+
+		pcmn::Player::ActionDesc::List actions = player.GetActions().front();
 
         // remove useless actions
-        actions.erase(std::remove_if(actions.begin(), actions.end(), [](const pcmn::Player::ActionDesc& a){ return a.m_Action > pcmn::Action::Raise; }), actions.end());
+        actions.erase(std::remove_if(actions.begin(), actions.end(), [](const pcmn::Player::ActionDesc& a){ return a.m_Id > pcmn::Action::Raise; }), actions.end());
 
-		if (actions.empty() || player.Name() == bot.Name())
-			continue;
+        if (actions.empty())
+            continue;
 
 		ranges.resize(ranges.size() + 1);
 		IStatistics::PlayerInfo& current = ranges.back();
@@ -199,31 +202,8 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
 		// player name
 		current.m_Name = player.Name();
 
-		// find max action
-		std::sort
-		(
-			actions.begin(), 
-			actions.end(), 
-			[](const pcmn::Player::ActionDesc& lhs, const pcmn::Player::ActionDesc& rhs)
-			{
-				return lhs.m_Action < rhs.m_Action;
-			}
-		);
-
-		current.m_Actions.push_back(actions.back().m_Action);
-
-		// get max pot range
-		std::sort
-		(
-			actions.begin(), 
-			actions.end(), 
-			[](const pcmn::Player::ActionDesc& lhs, const pcmn::Player::ActionDesc& rhs)
-			{
-				return lhs.m_Value < rhs.m_Value;
-			}
-		);
-
-		current.m_Bet = static_cast<int>(actions.back().m_Value);
+        // actions
+        current.m_Actions = actions;
 	}
 
 	// fetch statistics
@@ -282,59 +262,59 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
 	// prepare request
 	IStatistics::PlayerInfo::List equities;
 	equities.reserve(activePlayers.size());
-	for (const pcmn::Player& player : activePlayers)
-	{
-		pcmn::Player::Actions actions = player.GetActions();
-
-        // remove useless actions
-        actions.erase(std::remove_if(actions.begin(), actions.end(), [](const pcmn::Player::ActionDesc& a){ return a.m_Action > pcmn::Action::Raise; }), actions.end());
-
-		if (actions.empty() || player.Name() == bot.Name())
-			continue;
-
-		// only aggressive actions if we have much players
-		if (activePlayers.size() > 2)
-		{
-			std::sort
-			(
-				actions.begin(), 
-				actions.end(), 
-				[](const pcmn::Player::ActionDesc& lhs, const pcmn::Player::ActionDesc& rhs)
-				{
-					return lhs.m_Action < rhs.m_Action;
-				}
-			);
-
-			if (actions.back().m_Action < pcmn::Action::Bet)
-				continue;
-		}
-
-		equities.resize(equities.size() + 1);
-		IStatistics::PlayerInfo& current = equities.back();
-
-		// player name
-		current.m_Name = player.Name();
-		
-		// copy all actions
-		for (const pcmn::Player::ActionDesc& action : actions)
-		{
-			if (std::find(current.m_Actions.begin(), current.m_Actions.end(), action.m_Action) == current.m_Actions.end())
-				current.m_Actions.push_back(action.m_Action);
-		}
-
-		// get max pot range
-		std::sort
-		(
-			actions.begin(), 
-			actions.end(), 
-			[](const pcmn::Player::ActionDesc& lhs, const pcmn::Player::ActionDesc& rhs)
-			{
-				return lhs.m_Value < rhs.m_Value;
-			}
-		);
-
-		current.m_Bet = actions.back().m_Value;
-	}
+// 	for (const pcmn::Player& player : activePlayers)
+// 	{
+// 		pcmn::Player::Actions actions = player.GetActions();
+// 
+//         // remove useless actions
+//         actions.erase(std::remove_if(actions.begin(), actions.end(), [](const pcmn::Player::ActionDesc& a){ return a.m_Action > pcmn::Action::Raise; }), actions.end());
+// 
+// 		if (actions.empty() || player.Name() == bot.Name())
+// 			continue;
+// 
+// 		// only aggressive actions if we have much players
+// 		if (activePlayers.size() > 2)
+// 		{
+// 			std::sort
+// 			(
+// 				actions.begin(), 
+// 				actions.end(), 
+// 				[](const pcmn::Player::ActionDesc& lhs, const pcmn::Player::ActionDesc& rhs)
+// 				{
+// 					return lhs.m_Action < rhs.m_Action;
+// 				}
+// 			);
+// 
+// 			if (actions.back().m_Action < pcmn::Action::Bet)
+// 				continue;
+// 		}
+// 
+// 		equities.resize(equities.size() + 1);
+// 		IStatistics::PlayerInfo& current = equities.back();
+// 
+// 		// player name
+// 		current.m_Name = player.Name();
+// 		
+// 		// copy all actions
+// 		for (const pcmn::Player::ActionDesc& action : actions)
+// 		{
+// 			if (std::find(current.m_Actions.begin(), current.m_Actions.end(), action.m_Action) == current.m_Actions.end())
+// 				current.m_Actions.push_back(action.m_Action);
+// 		}
+// 
+// 		// get max pot range
+// 		std::sort
+// 		(
+// 			actions.begin(), 
+// 			actions.end(), 
+// 			[](const pcmn::Player::ActionDesc& lhs, const pcmn::Player::ActionDesc& rhs)
+// 			{
+// 				return lhs.m_Value < rhs.m_Value;
+// 			}
+// 		);
+// 
+// 		current.m_Bet = actions.back().m_Value;
+// 	}
 
     LOG_TRACE("Equities size: [%s]") % equities.size();
 
@@ -401,13 +381,16 @@ pcmn::Player::Style::Value DecisionMaker::GetBotStyle(const pcmn::Player& bot) c
 	SCOPED_LOG(m_Log);
 
 	int calls = 0;
-	for (const pcmn::Player::ActionDesc& action : bot.GetActions())
+	for (const pcmn::Player::ActionDesc::List& actions : bot.GetActions())
 	{
-		if (action.m_Action == pcmn::Action::Bet || action.m_Action == pcmn::Action::Raise)
-			return pcmn::Player::Style::Aggressive;
-		else
-		if (action.m_Action == pcmn::Action::Call)
-			++calls;
+        for (const pcmn::Player::ActionDesc& action : actions)
+        {
+            if (action.m_Id == pcmn::Action::Bet || action.m_Id == pcmn::Action::Raise)
+                return pcmn::Player::Style::Aggressive;
+            else
+            if (action.m_Id == pcmn::Action::Call)
+                ++calls;
+        }
 	}
 
 	// more than one call it's a normal style(one call from preflop), else - call and checks - it's passive style
