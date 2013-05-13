@@ -1,4 +1,4 @@
-#include "Statistics.h"
+#include "SqliteStatistics.h"
 #include "SQLiteDB.h"
 #include "FileSystem.h"
 #include "Exception.h"
@@ -115,7 +115,7 @@ const char SQL_GET_PLAYER_EQUITIES[] =
 
 static const int CURRENT_MODULE_ID = Modules::Server;
 
-class Statistics::Impl
+class SqliteStatistics::Impl
 {
 public:
 
@@ -407,7 +407,7 @@ std::string GetActionsFilter(const PlayerInfo::Actions& actions)
 	{
 		if (i)
 			oss << ", ";
-		oss << actions[i];
+		oss << actions[i].m_Id;
 	}
 	return oss.str();
 }
@@ -438,32 +438,32 @@ private:
 	std::map<std::string, unsigned int> m_Players;
 };
 
-Statistics::Statistics(ILog& logger) : m_Impl(new Impl(logger))
+SqliteStatistics::SqliteStatistics(ILog& logger) : m_Impl(new Impl(logger))
 {
 
 }
 
-Statistics::~Statistics()
+SqliteStatistics::~SqliteStatistics()
 {
 	delete m_Impl;
 }
 
-void Statistics::Write(pcmn::TableContext::Data& data)
+void SqliteStatistics::Write(pcmn::TableContext::Data& data)
 {
 	m_Impl->Write(data);
 }
 
-unsigned Statistics::GetRanges(PlayerInfo::List& players) const
+unsigned SqliteStatistics::GetRanges(PlayerInfo::List& players) const
 {
 	return m_Impl->GetRanges(players);
 }
 
-void Statistics::GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises) const
+void SqliteStatistics::GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises) const
 {
 	m_Impl->GetLastActions(target, opponent, checkFolds, calls, raises);
 }
 
-unsigned Statistics::GetEquities(PlayerInfo::List& players) const
+unsigned SqliteStatistics::GetEquities(PlayerInfo::List& players) const
 {
 	return m_Impl->GetEquities(players);
 }

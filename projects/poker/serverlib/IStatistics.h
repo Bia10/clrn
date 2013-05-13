@@ -5,6 +5,7 @@
 #include "TableContext.h"
 #include "Actions.h"
 #include "Config.h"
+#include "Player.h"
 
 #include <vector>
 #include <string>
@@ -21,7 +22,7 @@ public:
 	//! Player equities
 	struct PlayerInfo
 	{
-		typedef std::vector<pcmn::Action::Value> Actions;
+		typedef std::vector<pcmn::Player::ActionDesc> Actions;
 		typedef std::vector<PlayerInfo> List;
 
 		PlayerInfo() : m_Bet(0), m_WinRate(0), m_CardRange(cfg::CARD_DECK_SIZE)

@@ -144,14 +144,7 @@ public:
 	ILog&		Debug(unsigned int module, const std::string& szFunction, const std::wstring& szText);
 
 	//! Write formatted argument
-	ILog&		operator % (const unsigned int value);
-	ILog&		operator % (const int value);
-	ILog&		operator % (const double value);
-	ILog&		operator % (const unsigned long value);
-	ILog&		operator % (const long value);
-
-	ILog&		operator % (const std::string& value);
-	ILog&		operator % (const std::wstring& value);
+	ILog&		operator % (const LogAnyHolder& value) override;
 
 
 	//! Make scoped log

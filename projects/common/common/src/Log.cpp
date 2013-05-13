@@ -310,87 +310,17 @@ ILog& Log::Debug(unsigned int module, const std::string& func, const std::wstrin
 	return Debug(module, func, conv::cast<std::string>(text).c_str());
 }
 
-ILog& Log::operator%(const unsigned int value)
+ILog& Log::operator%(const LogAnyHolder& value)
 {
-	if (!m_Format.remaining_args())
-		return *this;
+    if (!m_Format.remaining_args())
+        return *this;
 
-	m_Format.operator %(value);
+    m_Format.operator % (value.operator std::string());
 
-	if (!m_Format.remaining_args())
-		Write(m_CurrentLevel);
+    if (!m_Format.remaining_args())
+        Write(m_CurrentLevel);
 
-	return *this;
-}
-
-ILog& Log::operator%(const int value)
-{
-	if (!m_Format.remaining_args())
-		return *this;
-
-	m_Format.operator %(value);
-
-	if (!m_Format.remaining_args())
-		Write(m_CurrentLevel);
-
-	return *this;
-}
-
-ILog& Log::operator%(const double value)
-{
-	if (!m_Format.remaining_args())
-		return *this;
-
-	m_Format.operator %(value);
-
-	if (!m_Format.remaining_args())
-		Write(m_CurrentLevel);
-
-	return *this;
-}
-
-ILog& Log::operator%(const unsigned long value)
-{
-	if (!m_Format.remaining_args())
-		return *this;
-
-	m_Format.operator %(value);
-
-	if (!m_Format.remaining_args())
-		Write(m_CurrentLevel);
-
-	return *this;
-}
-
-ILog& Log::operator%(const long value)
-{
-	if (!m_Format.remaining_args())
-		return *this;
-
-	m_Format.operator %(value);
-
-	if (!m_Format.remaining_args())
-		Write(m_CurrentLevel);
-
-	return *this;
-}
-
-ILog& Log::operator%(const std::wstring& value)
-{
-	return operator % (conv::cast<std::string>(value));
-}
-
-ILog& Log::operator%(const std::string& value)
-{
-	if (!m_Format.remaining_args())
-		return *this;
-
-	m_Format.operator %(value);
-
-	if (!m_Format.remaining_args())
-		Write(m_CurrentLevel);
-
-	return *this;
+    return *this;
 }
 
 const char* Log::Level2String(const Level::Enum_t level) const

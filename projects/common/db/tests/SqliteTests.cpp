@@ -49,6 +49,7 @@ TEST(SQLite, InsertFetch)
 
 void ReadThread()
 {
+    boost::this_thread::interruptible_wait(100);
 	sql::SQLiteDataBase db(g_Logger);
 	db.Open("test.db");
 
@@ -72,6 +73,7 @@ void ReadThread()
 		}
 		catch (const std::exception& e)
 		{
+            FAIL() << e.what();
 			std::cout << e.what() << std::endl;
 		}
 	}
@@ -107,6 +109,7 @@ void WriteThread()
 		}
 		catch (const std::exception& e)
 		{
+            FAIL() << e.what();
 			std::cout << e.what() << std::endl;
 		}
 	}

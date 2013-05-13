@@ -36,7 +36,7 @@ void Register(F& factory, A& arg)
 {
 	SCOPED_LOG(arg);
 
-	T message(arg);
+	const T message(arg);
 	const std::size_t id = static_cast<const IMessage&>(message).GetId();
 	factory.Register(id, boost::bind(boost::factory<T*>(), boost::ref(arg)));
 }

@@ -1,6 +1,8 @@
 #ifndef ILog_h__
 #define ILog_h__
 
+#include "Conversion.h"
+
 #include <string>
 #include <vector>
 
@@ -21,6 +23,7 @@
 
 //! Forward declarations
 class CScopedLog;
+class LogAnyHolder;
 
 //! Logger interface
 //!
@@ -76,20 +79,45 @@ public:
 	virtual ILog&		Debug(unsigned int module, const std::string& func,	const std::wstring& text)		= 0;
 
 	//! Write formatted argument
-	virtual ILog&		operator % (const unsigned int value)	= 0;
-	virtual ILog&		operator % (const int value)			= 0;
-	virtual ILog&		operator % (const double value)			= 0;
-	virtual ILog&		operator % (const unsigned long value)	= 0;
-	virtual ILog&		operator % (const long value)			= 0;
-
-	virtual ILog&		operator % (const std::string& value)	= 0;
-	virtual ILog&		operator % (const std::wstring& value)	= 0;
+	virtual ILog&		operator % (const LogAnyHolder& value)	= 0;
 
 	//! Make scoped log
 	virtual ScopedLogPtr MakeScopedLog(unsigned int module, const std::string& func)	= 0;
 
 	//! Destructor
 	virtual ~ILog() {}
+};
+
+//! Any value holder
+class LogAnyHolder
+{
+public:
+
+    template<typename T>
+    LogAnyHolder(const T& arg)
+    {
+        m_Buffer = conv::cast<std::string>(arg);
+    }
+
+    template<typename T>
+    LogAnyHolder(const std::vector<T>& arg)
+    {
+        if (arg.empty())
+            return;
+
+        std::ostringstream oss;
+        for (const T& val : arg)
+            oss << val << ",";
+
+        m_Buffer = oss.str().substr(0, std::size_t(oss.tellp()) - 1);
+    }
+
+    operator std::string() const
+    {
+        return m_Buffer;
+    }
+private:
+    std::string m_Buffer;
 };
 
 #endif // ILog_h__

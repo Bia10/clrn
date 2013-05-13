@@ -1,0 +1,45 @@
+все игроки у которых в массиве действий есть действие с id == 1
+{
+actions: { $elemMatch: { id: 1} }
+}
+
+все игроки у которых на префлопе первое действие чек
+{
+"streets.0.actions.0.id": 1					
+}
+
+// все игры, в которых CLRN на префлопе чекал
+{
+	players: {
+		$elemMatch: {
+			name: "CLRN",
+			"streets.0.actions": {
+				$elemMatch: {
+					id: 1
+				}
+			}
+		}
+	}
+}
+
+// игра, в которой CLRN имеет бет с размером 4 на любой улице и известны его карты
+{
+	players: {
+		$elemMatch: {
+			name: "CLRN",
+			streets: {
+				$elemMatch: {
+					actions: {
+						$elemMatch: {
+							id: 3,
+							amount: 4
+						}
+					}
+				}
+			},
+			cards: {
+				$size: 2
+			}
+		}
+	}
+}

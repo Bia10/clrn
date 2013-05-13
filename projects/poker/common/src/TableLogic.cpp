@@ -256,7 +256,8 @@ void TableLogic::ParsePlayers(TableContext& context, const net::Packet& packet)
         p.m_Name = player.name();
 
         m_Sequence.push_back(player.name());
-        CHECK(m_Players.insert(std::make_pair(player.name(), Player(player.name(), player.stack()))).second, "Player name must be unique", player.name());
+        const PlayersMap::_Pairib inserted = m_Players.insert(std::make_pair(player.name(), Player(player.name(), player.stack())));
+        CHECK(inserted.second, "Player name must be unique", player.name());
 
         if (player.cards_size() == 2)
         {
@@ -268,7 +269,10 @@ void TableLogic::ParsePlayers(TableContext& context, const net::Packet& packet)
             context.m_Data.m_Hands.push_back(hand);
 
             p.m_Percents = GetPlayerEquities(player.cards(0), player.cards(1), packet, context);
-            GetPlayer(p.m_Name).Cards(boost::assign::list_of(Card().FromEvalFormat(player.cards(0)))(Card().FromEvalFormat(player.cards(1))));
+            inserted.first->second.Cards(boost::assign::list_of(Card().FromEvalFormat(player.cards(0)))(Card().FromEvalFormat(player.cards(1))));
+            
+            for (const float eq : p.m_Percents)
+                inserted.first->second.PushEquity(eq);
         }
 
         context.m_Data.m_Players.push_back(p);
@@ -490,7 +494,7 @@ void TableLogic::Parse(const net::Packet& packet)
                 resultAction.m_Bet = static_cast<int>(betValue);
                 resultAction.m_Position = static_cast<int>(position);
 
-                current.PushAction(phase, action, betValue);
+                current.PushAction(phase, action, betValue, position);
                 context.m_Data.m_Actions.push_back(resultAction);
 
                 if (context.m_MaxBet < amount)
@@ -511,6 +515,9 @@ void TableLogic::Parse(const net::Packet& packet)
             const Player& current = GetPlayer(m_Queue.front());
             assert(current.Name() == "CLRN");
             const Player::Position::Value position = GetNextPlayerPosition();
+
+            for (const pcmn::Player& player : activePlayers)
+                context.m_Data.m_PlayersData.push_back(GetPlayer(player.Name()));
 
             m_Callback.MakeDecision(current, activePlayers, context, position);
         }

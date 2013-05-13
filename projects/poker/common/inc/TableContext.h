@@ -41,7 +41,12 @@ struct TableContext
 		Player::List m_Players;
 		Action::List m_Actions;
 		Hand::List m_Hands;	
+
+        //! Table flop cards
 		std::vector<int> m_Flop;
+
+        //! List of players with complete actions and hands
+        pcmn::Player::List m_PlayersData;
 	};
 
 	TableContext()
