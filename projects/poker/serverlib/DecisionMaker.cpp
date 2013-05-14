@@ -306,7 +306,11 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
             return pcmn::Danger::High;
 
         if (winRate > pcmn::WinRate::Low)
+        {
             onlyLow = false;
+            if (equity.m_WinRate > botRate)
+                return pcmn::Danger::High;
+        }
 	}
 
 	// player list empty - unknown value(normal) - else all players have less than bot

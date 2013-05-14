@@ -67,4 +67,18 @@ namespace pcmn
 		return Unknown;
 	}
 
+    bool Action::IsActive(Value value)
+    {
+        switch (value)
+        {
+        case Fold:
+        case Check:
+        case Call:
+        case Bet:
+        case Raise:
+            return true;
+        }
+        return false;
+    }
+
 }
