@@ -76,18 +76,24 @@ void TestOperations()
             (bson::bob().append("id", 1).append("amount", 0).obj())
             (bson::bob().append("id", 2).append("amount", 1).obj());
 
-        static const bson::bo returnProjection = bson::bob().append("players.$", 1).append("_id", 0).obj();
+        static const bson::bo returnProjection = bson::bob().append("players.$", 1).obj();
+
+
+        mongo::Query query =             
+        BSON("players" << BSON("$all" 
+                                    << BSON_ARRAY(
+                                            BSON("$elemMatch" 
+                                                << BSON("name" << "CLRN"))
+                                            << BSON("$elemMatch" 
+                                                << BSON("name" << "2L84H8"))
+                                        )));
+        query.sort("_id", 0);
 
         const std::auto_ptr<mongo::DBClientCursor> cursor = c.query
         (
             "stat.games", 
-            BSON("players" << BSON("$elemMatch" 
-                                    << BSON("name" << "CLRN" 
-                                            << "cards" << BSON("$size" << 2)
-                                            << "streets" << BSON("$elemMatch" 
-                                                            << BSON("actions" << BSON("$all"
-                                                                << actions)))))),
-            0, 
+            query,
+            20, 
             0, 
             &returnProjection
         );
@@ -104,7 +110,7 @@ void TestOperations()
 //             cards.elems(cardsElems);
 
 
-            std::cout << p["name"].str() << std::endl;
+            std::cout << p["_id"].str() << std::endl;
         }
     } 
 }

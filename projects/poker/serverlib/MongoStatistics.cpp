@@ -119,6 +119,67 @@ void GetLastActions(const std::string& target, const std::string& opponent, int&
 	{
         SCOPED_LOG(m_Log);
 
+        LOG_TRACE("Fetching last actions: [%s], opponent: [%s]") % target % opponent;
+
+        mongo::Query query =             
+        BSON("players" << BSON("$all" 
+                                    << BSON_ARRAY(
+                                            BSON("$elemMatch" 
+                                                << BSON("name" << target))
+                                            << BSON("$elemMatch" 
+                                                << BSON("name" << opponent))
+                                        )));
+        query.sort("_id", 0);
+
+        // fetch 
+        const std::auto_ptr<mongo::DBClientCursor> cursor = m_Connection.query
+        (
+            STAT_COLLECTION_NAME, 
+            query,
+            20
+        );
+
+        while (cursor->more()) 
+        {
+            const bson::bo data = cursor->next();
+            LOG_TRACE("Fetched last actions: [%s]") % data.toString();
+
+            const std::vector<bson::be> players = data["players"].Array();
+            for (const bson::be& elem : players)
+            {
+                const bson::bo player = elem.Obj();
+                if (player["name"].String() != target)
+                    continue;
+
+                // found target player, enum all actions
+                const std::vector<bson::be> streets = player["streets"].Array();
+                for (const bson::be& street : streets)
+                {
+                    const std::vector<bson::be> actions = street["actions"].Array();
+                    for (const bson::be& action : actions)
+                    {
+                        const pcmn::Action::Value id = static_cast<pcmn::Action::Value>(action["id"].Int());
+
+                        switch (id)
+                        {
+                        case pcmn::Action::Check:
+                        case pcmn::Action::Fold:
+                            ++checkFolds;
+                            break;
+                        case pcmn::Action::Call:
+                            ++calls;
+                            break;
+                        case pcmn::Action::Bet:
+                        case pcmn::Action::Raise:
+                            ++raises;
+                            break;
+                        }
+                    }
+                }
+                break;
+            }
+        }
+
 	}
 	CATCH_PASS_EXCEPTIONS("GetLastActions failed")
 }

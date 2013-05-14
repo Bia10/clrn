@@ -63,3 +63,19 @@ actions: { $elemMatch: { id: 1} }
 		}
 	}
 }
+
+// все игры в которых участвовали CLRN и 2L84H8
+{
+	players: {
+		"$all": [{
+			"$elemMatch": {
+				name: "CLRN"
+			}
+		},
+		{
+			"$elemMatch": {
+				name: "2L84H8"
+			}
+		}]
+	}
+}
