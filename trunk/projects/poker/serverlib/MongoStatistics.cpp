@@ -137,7 +137,7 @@ unsigned GetEquities(PlayerInfo::List& players, unsigned street)
         {
             std::vector<double> equities;
 
-            // query all games with cards info about this player
+            // query all games with equity info about this player
             const std::string& name = info.m_Name;
 
             // prepare list of actions
@@ -155,7 +155,7 @@ unsigned GetEquities(PlayerInfo::List& players, unsigned street)
                 STAT_COLLECTION_NAME, 
                 BSON("players" << BSON("$elemMatch" 
                                         << BSON("name" << name
-                                                << "cards" << BSON("$size" << 2)
+                                                << "equities.0" << BSON("$exists" << 1)
                                                 << "streets" << BSON("$elemMatch" 
                                                                 << BSON("actions" << BSON("$all"
                                                                     << actions)))))),
@@ -170,9 +170,10 @@ unsigned GetEquities(PlayerInfo::List& players, unsigned street)
                 LOG_TRACE("Fetched player equities: [%s], data: [%s]") % name % data.toString();
 
                 const std::vector<bson::be> equitiesArray = data.getFieldDotted("players.0.equities").Array();
-
-                CHECK(equitiesArray.size() > street, "Failed to get equity for street", street, equitiesArray.size());
-                equities.push_back(equitiesArray[street].Double());
+                if (equitiesArray.size() <= street && !equitiesArray.empty())
+                    equities.push_back(equitiesArray.back().Double());
+                else
+                    equities.push_back(equitiesArray[street].Double());
             }
 
             if (equities.empty())

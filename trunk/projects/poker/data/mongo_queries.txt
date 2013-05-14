@@ -43,3 +43,23 @@ actions: { $elemMatch: { id: 1} }
 		}
 	}
 }
+{
+	players: {
+		$elemMatch: {
+			name: "CLRN",
+			streets: {
+				$elemMatch: {
+					actions: {
+						$elemMatch: {
+							id: 3,
+							amount: 4
+						}
+					}
+				}
+			},
+			'cards.1': {
+				$exists: 1
+			}
+		}
+	}
+}

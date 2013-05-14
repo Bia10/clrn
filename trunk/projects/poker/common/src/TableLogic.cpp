@@ -433,8 +433,7 @@ void TableLogic::Parse(const net::Packet& packet)
         TableContext context;
 
         // get small blind amount
-        auto it =
-        std::find_if
+        auto it = std::find_if
         (
             packet.phases(0).actions().begin(), 
             packet.phases(0).actions().end(),
@@ -444,8 +443,7 @@ void TableLogic::Parse(const net::Packet& packet)
         m_SmallBlindAmount = 0;
         if (it == packet.phases(0).actions().end())
         {
-            it =
-            std::find_if
+            it = std::find_if
             (
                 packet.phases(0).actions().begin(), 
                 packet.phases(0).actions().end(),
@@ -468,6 +466,7 @@ void TableLogic::Parse(const net::Packet& packet)
         {
             SetPhase(phase);
 
+            BetSize::Value lastBigBet = BetSize::VeryLow;
             for (int i = 0; i < packet.phases(phase).actions_size(); ++i)
             {
                 context.m_Street = phase;
@@ -495,11 +494,32 @@ void TableLogic::Parse(const net::Packet& packet)
                 resultAction.m_Bet = static_cast<int>(betValue);
                 resultAction.m_Position = static_cast<int>(position);
 
-                current.PushAction(phase, action, betValue, position);
                 context.m_Data.m_Actions.push_back(resultAction);
 
                 if (context.m_MaxBet < amount)
                     context.m_MaxBet = amount;
+
+                if (betValue > lastBigBet)
+                    lastBigBet = betValue;
+
+                if (action == pcmn::Action::Fold)
+                    lastBigBet  = lastBigBet;
+
+                if (action == pcmn::Action::Fold && lastBigBet <= BetSize::Normal && current.Equities().empty() && !current.GetActions().empty())
+                {
+                    // player folded, assuming that he has bad equities in case when bet is low
+                    float eq = 0;
+                    switch (lastBigBet)
+                    {
+                    case BetSize::VeryLow: eq = 5.0f; break;
+                    case BetSize::Low: eq = 15.0f; break;
+                    case BetSize::Normal: eq = 20.0f; break;
+                    }
+                    for (Phase::Value i = Phase::Preflop ; i <= Phase::River; i = static_cast<Phase::Value>(i + 1))
+                        current.PushEquity(eq);
+                }
+
+                current.PushAction(phase, action, betValue, position);
             }
         }
 
@@ -524,6 +544,9 @@ void TableLogic::Parse(const net::Packet& packet)
         }
         else
         {
+            for (const std::string& player : m_Sequence)
+                context.m_Data.m_PlayersData.push_back(GetPlayer(player));
+
             // write statistics here
             m_Callback.WriteStatistics(context.m_Data);
         }

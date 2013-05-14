@@ -68,7 +68,7 @@ namespace pcmn
 
 	void Player::PushAction(unsigned street, Action::Value action, BetSize::Value value, Position::Value pos)
 	{
-        if (!Action::IsUseful(action))
+        if (!Action::IsActive(action))
 			return; // don't collect useless for statistics actions
 
         if (m_Actions.size() <= street)
