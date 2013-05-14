@@ -17,6 +17,7 @@
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/foreach.hpp>
+#include <boost/locale.hpp>
 
 /*
 const char * const CContentParser::ms_szItemsExpression =
@@ -154,6 +155,22 @@ bool CContentParser::ParseSite(const std::string& sURL, boost::property_tree::pt
 
 			std::string sBuffer;
 			Dwnldr.Read(sBuffer);
+
+            const std::string::size_type encoding = sBuffer.find("charset=");
+            if (encoding != std::string::npos)
+            {
+                const std::string::size_type encodingEnd = sBuffer.find("\"", encoding);
+                if (encodingEnd != std::string::npos)
+                {
+                    const std::string encodingValue(sBuffer.substr(encoding + 8, encodingEnd - encoding - 8));
+
+                    if (boost::algorithm::iequals(encodingValue, "utf-8"))
+                    {
+                        const std::wstring out = boost::locale::conv::utf_to_utf<wchar_t, char>(sBuffer);
+                        sBuffer = boost::locale::conv::from_utf<wchar_t>(out, "cp1251");
+                    }
+                }
+            }
 
 			std::vector< std::string > vecItems;
 			ParsePage(sBuffer, vecItems);

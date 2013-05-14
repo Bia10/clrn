@@ -53,6 +53,7 @@ struct TableContext
 		: m_MaxBet(0)
 		, m_Pot(0)
 		, m_BigBlind(0)
+        , m_Street(0)
 	{
 
 	}
@@ -60,6 +61,7 @@ struct TableContext
 	unsigned m_MaxBet;
 	unsigned m_Pot;
 	unsigned m_BigBlind;
+    unsigned m_Street;
 	Data m_Data;
 };
 }

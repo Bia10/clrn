@@ -54,7 +54,7 @@ void CSettings::MakeDefaultSettings()
 	m_xmlData.put(GetCompletePath(TAG_NAME_FILE_PHONES), "phones");
 	m_xmlData.put(GetCompletePath(TAG_NAME_FILE_AGGREGATED), "aggregated");
 
-	boost::property_tree::xml_parser::xml_writer_settings< char > Settings = boost::property_tree::xml_parser::xml_writer_make_settings< char >(' ', 1, "windows-1251", true);
+	boost::property_tree::xml_parser::xml_writer_settings< char > Settings = boost::property_tree::xml_parser::xml_writer_make_settings< char >(' ', 1, "windows-1251");
 	boost::property_tree::xml_parser::write_xml(SETTINGS_FILE_NAME, m_xmlData, std::locale(), Settings);
 }
 

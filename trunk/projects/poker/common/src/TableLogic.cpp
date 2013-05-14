@@ -470,6 +470,7 @@ void TableLogic::Parse(const net::Packet& packet)
 
             for (int i = 0; i < packet.phases(phase).actions_size(); ++i)
             {
+                context.m_Street = phase;
                 const Action::Value action = static_cast<Action::Value>(packet.phases(phase).actions(i).id());
 
                 // skip useless actions

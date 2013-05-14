@@ -72,64 +72,24 @@ void TestOperations()
     }
 
     {
-        mongo::fromjson("{$exists : true}");
-
-        bson::bob toReturn;
-        toReturn.append("players.$", 1).append("flop", 1).append("_id", 0);
-
         const std::vector<bson::bo> actions = boost::assign::list_of
             (bson::bob().append("id", 1).append("amount", 0).obj())
             (bson::bob().append("id", 2).append("amount", 1).obj());
 
-        const bson::bo filter = bson::bob().append
-        (
-            "players",
-            bson::bob().append
-            (
-                "$elemMatch",
-                bson::bob().append
-                (
-                    "name",
-                    "CLRN"
-                ).append
-                (
-                    "streets",
-                    bson::bob().append
-                    (
-                        "$elemMatch",
-                        bson::bob().append
-                        (
-                            "actions",
-                            /*bson::bob().append
-                            (
-                                "$elemMatch",
-                                bson::bob().append
-                                (
-                                    "id",
-                                    1
-                                ).append
-                                (
-                                    "amount",
-                                    0
-                                ).obj()
-                            ).obj()*/
-                            actions
-                        ).obj()
-                    ).obj()
-                ).obj()
-            ).obj()
-        ).obj();
+        static const bson::bo returnProjection = bson::bob().append("players.$", 1).append("_id", 0).obj();
 
         const std::auto_ptr<mongo::DBClientCursor> cursor = c.query
         (
             "stat.games", 
             BSON("players" << BSON("$elemMatch" 
-                                    << BSON("cards" << BSON("$size" << 2)
+                                    << BSON("name" << "CLRN" 
+                                            << "cards" << BSON("$size" << 2)
                                             << "streets" << BSON("$elemMatch" 
-                                                << BSON("actions" << actions))))),
+                                                            << BSON("actions" << BSON("$all"
+                                                                << actions)))))),
             0, 
             0, 
-            &toReturn.obj()
+            &returnProjection
         );
 
         while (cursor->more()) 
