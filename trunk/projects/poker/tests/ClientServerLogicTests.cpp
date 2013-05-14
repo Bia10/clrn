@@ -65,7 +65,7 @@ class TestClient : public net::IConnection
 {
 	virtual void Send(const google::protobuf::Message& message) 
 	{
-		std::cout << "Answer number: " << g_Answers++ << " " << message.DebugString() << std::endl;
+		// std::cout << "Answer number: " << g_Answers++ << " " << message.DebugString() << std::endl;
         ASSERT_FALSE(g_Answers > 1);
 	}
 
@@ -85,7 +85,7 @@ class FakeDecisionMaker : public pcmn::ITableLogicCallback
 
     virtual void MakeDecision(const Player& player, const Player::Queue& activePlayers, const TableContext& context, const Player::Position::Value position) override
     {
-        std::cout << "Decision for: " << player.Name() << std::endl;
+        // std::cout << "Decision for: " << player.Name() << std::endl;
     }
 
     virtual void WriteStatistics(TableContext::Data& data) override
@@ -100,7 +100,7 @@ public:
 	TestServer()
 		: m_Network(m_Log, cfg::NETWORK_FILE_NAME)
 		, m_Statistics(m_Log)
-        , m_Evaluator(/*0*/)
+        , m_Evaluator(0)
 	{
 
 	}
@@ -116,7 +116,7 @@ public:
         logic.Parse(static_cast<const net::Packet&>(message));
 
 		static int counter = 0;
-		std::cout << "Requests: " << counter++ << std::endl;
+		// std::cout << "Requests: " << counter++ << std::endl;
         g_Answers = 0;
 	}
 
@@ -214,7 +214,7 @@ void ParseData(const std::string& data, ITable& table)
 					const unsigned amount = boost::lexical_cast<unsigned>((*it)[5]);
                     const pcmn::Action::Value actionValue = Action::FromString(action);
                     if (actionValue == pcmn::Action::SmallBlind)
-                        std::cout << "small blind" << std::endl;
+                        // std::cout << "small blind" << std::endl;
 					table.PlayerAction(name, actionValue, amount);
 				}
 				else
@@ -284,7 +284,7 @@ void RunTest()
 
         const std::string full = boost::filesystem::system_complete(it->path()).string();
 
-        std::cout << "Processing: '" << full << "' ..." << std::endl;
+        // std::cout << "Processing: '" << full << "' ..." << std::endl;
 
         // read file data
         std::ifstream ifs(full.c_str(), std::ios_base::binary);
