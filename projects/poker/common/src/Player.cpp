@@ -94,7 +94,7 @@ namespace pcmn
 
     bool Player::ActionDesc::operator==(const ActionDesc& other) const
     {
-        return m_Id == other.m_Id && m_Amount == other.m_Amount && m_Position == other.m_Position;
+        return m_Id == other.m_Id && m_Amount == other.m_Amount;
     }
 
 }

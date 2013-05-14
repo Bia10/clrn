@@ -97,7 +97,7 @@ unsigned GetRanges(PlayerInfo::List& players)
                     cards.push_back(elem.Int());
             }
 
-            if (cards.empty())
+            if (cards.size() < 4)
                 continue;
 
             ++count;
