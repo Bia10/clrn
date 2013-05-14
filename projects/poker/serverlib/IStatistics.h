@@ -55,7 +55,7 @@ public:
 	virtual void GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises) const = 0;
 
 	//! Get equities
-	virtual unsigned GetEquities(PlayerInfo::List& players) const = 0;
+	virtual unsigned GetEquities(PlayerInfo::List& players, unsigned street) const = 0;
 
 
 };

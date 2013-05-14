@@ -93,6 +93,8 @@ public:
 		Action::Value m_Id;
 		BetSize::Value m_Amount;
         Position::Value m_Position;
+
+        bool operator == (const ActionDesc& other) const;
 	};
 
 	typedef std::vector<Player> List;

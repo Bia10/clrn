@@ -74,7 +74,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 		in.push_back(static_cast<float>(params.m_ActivePlayers) / pcmn::Player::Count::Max);
 	
 		// danger
-		params.m_Danger = GetDanger(player, activePlayers, winRate * 100);
+		params.m_Danger = GetDanger(player, activePlayers, winRate * 100, context.m_Street);
 		in.push_back(static_cast<float>(params.m_Danger) / pcmn::Danger::Max);
 	
 		// bot average style
@@ -237,13 +237,8 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
 
     cardRanges.resize(size, cfg::CARD_DECK_SIZE);
 
-    if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Trace))
-    {
-        std::ostringstream oss;
-        std::copy(cardRanges.begin(), cardRanges.end(), std::ostream_iterator<int>(oss, " "));
-        LOG_TRACE("Ranges: [%s]") % oss.str();
-    }
-	
+    LOG_TRACE("Ranges: [%s]") % cardRanges;
+
 	const float percents = m_Evaluator.GetEquity
 	(
 		bot.Cards()[0].ToEvalFormat(),
@@ -255,66 +250,39 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
 	return percents / 100;
 }
 
-pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn::Player::Queue& activePlayers, float botRate) const
+pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn::Player::Queue& activePlayers, float botRate, unsigned street) const
 {
 	SCOPED_LOG(m_Log);
 
 	// prepare request
 	IStatistics::PlayerInfo::List equities;
 	equities.reserve(activePlayers.size());
-// 	for (const pcmn::Player& player : activePlayers)
-// 	{
-// 		pcmn::Player::Actions actions = player.GetActions();
-// 
-//         // remove useless actions
-//         actions.erase(std::remove_if(actions.begin(), actions.end(), [](const pcmn::Player::ActionDesc& a){ return a.m_Action > pcmn::Action::Raise; }), actions.end());
-// 
-// 		if (actions.empty() || player.Name() == bot.Name())
-// 			continue;
-// 
-// 		// only aggressive actions if we have much players
-// 		if (activePlayers.size() > 2)
-// 		{
-// 			std::sort
-// 			(
-// 				actions.begin(), 
-// 				actions.end(), 
-// 				[](const pcmn::Player::ActionDesc& lhs, const pcmn::Player::ActionDesc& rhs)
-// 				{
-// 					return lhs.m_Action < rhs.m_Action;
-// 				}
-// 			);
-// 
-// 			if (actions.back().m_Action < pcmn::Action::Bet)
-// 				continue;
-// 		}
-// 
-// 		equities.resize(equities.size() + 1);
-// 		IStatistics::PlayerInfo& current = equities.back();
-// 
-// 		// player name
-// 		current.m_Name = player.Name();
-// 		
-// 		// copy all actions
-// 		for (const pcmn::Player::ActionDesc& action : actions)
-// 		{
-// 			if (std::find(current.m_Actions.begin(), current.m_Actions.end(), action.m_Action) == current.m_Actions.end())
-// 				current.m_Actions.push_back(action.m_Action);
-// 		}
-// 
-// 		// get max pot range
-// 		std::sort
-// 		(
-// 			actions.begin(), 
-// 			actions.end(), 
-// 			[](const pcmn::Player::ActionDesc& lhs, const pcmn::Player::ActionDesc& rhs)
-// 			{
-// 				return lhs.m_Value < rhs.m_Value;
-// 			}
-// 		);
-// 
-// 		current.m_Bet = actions.back().m_Value;
-// 	}
+	for (const pcmn::Player& player : activePlayers)
+	{
+        if (player.GetActions().empty() || player.Name() == bot.Name())
+            continue;
+
+		pcmn::Player::ActionDesc::List actions = player.GetActions().back();
+
+        // remove useless actions
+        actions.erase(std::remove_if(actions.begin(), actions.end(), [](const pcmn::Player::ActionDesc& a){ return a.m_Id > pcmn::Action::Raise; }), actions.end());
+
+		if (actions.empty())
+			continue;
+
+		equities.resize(equities.size() + 1);
+		IStatistics::PlayerInfo& current = equities.back();
+
+		// player name
+		current.m_Name = player.Name();
+		
+		// copy all actions, exclude duplicates
+		for (const pcmn::Player::ActionDesc& action : actions)
+		{
+			if (std::find(current.m_Actions.begin(), current.m_Actions.end(), action) == current.m_Actions.end())
+				current.m_Actions.push_back(action);
+		}
+	}
 
     LOG_TRACE("Equities size: [%s]") % equities.size();
 
@@ -322,22 +290,30 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
 		return pcmn::Danger::Normal;
 
 	// fetch statistics
-	const unsigned count = m_Stat.GetEquities(equities);
+	const unsigned count = m_Stat.GetEquities(equities, street);
     if (!count)
         return pcmn::Danger::Normal;
 
 	// compare equities
+    bool onlyLow = true;
 	for (const IStatistics::PlayerInfo& equity : equities)
 	{
-		if (equity.m_WinRate > botRate)
-			return pcmn::Danger::High;
+        if (!equity.m_WinRate)
+            continue;
+
+        const pcmn::WinRate::Value winRate = pcmn::WinRate::FromValue(equity.m_WinRate);
+        if (winRate >= pcmn::WinRate::Good)
+            return pcmn::Danger::High;
+
+        if (winRate > pcmn::WinRate::Low)
+            onlyLow = false;
 	}
 
 	// player list empty - unknown value(normal) - else all players have less than bot
 	if ((activePlayers.size() - 1) / 2 > count)
 		return pcmn::Danger::Normal;
 
-	return pcmn::Danger::Low;
+	return onlyLow ? pcmn::Danger::Low : pcmn::Danger::Normal;
 }
 
 pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const pcmn::Player& player, const pcmn::Player::Queue& activePlayers) const

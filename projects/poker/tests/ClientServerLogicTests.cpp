@@ -40,7 +40,7 @@ public:
 	virtual void Write(pcmn::TableContext::Data& data) {}
 	virtual unsigned GetRanges(PlayerInfo::List& players) const override { return 0; }
 	virtual void GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises) const override{}
-	virtual unsigned GetEquities(PlayerInfo::List& players) const override{ return 0; }
+	virtual unsigned GetEquities(PlayerInfo::List& players, unsigned) const override{ return 0; }
 
 };
 

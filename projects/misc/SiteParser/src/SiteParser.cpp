@@ -66,7 +66,7 @@ int main(const int nArg, const char * pArgs[])
 
 		if (nArg < 3)
 		{
-			throw std::runtime_error("argument is empty!");
+			throw std::runtime_error("3 arguments expected");
 		}
 
 		std::cout << (boost::format("Command: [%s]. Argument: [%s].") % pArgs[1] % pArgs[2]).str() << std::endl;
@@ -78,11 +78,11 @@ int main(const int nArg, const char * pArgs[])
 			boost::property_tree::ptree xmlResult;
 
 			if (!Parser.ParseSite(pArgs[2], xmlResult))
-				throw std::runtime_error("Not finded any matches. Result is empty.");
+				throw std::runtime_error("Not found any matches. Result is empty.");
 
 			const std::string sItems = MakeCompleteFileName(Settings::Instance().GetResultsFileName().c_str());
 			std::cout << (boost::format("Saving results to: [%s].") % sItems).str() << std::endl;
-			boost::property_tree::xml_parser::write_xml(sItems, xmlResult, std::locale(), boost::property_tree::xml_writer_make_settings(' ', 1));
+			boost::property_tree::xml_parser::write_xml(sItems, xmlResult, std::locale(), boost::property_tree::xml_parser::xml_writer_make_settings< char >(' ', 1, "windows-1251"));
 
 			CContentParser::TPhones mpPhones;
 			Parser.GetPhones(mpPhones);
@@ -90,7 +90,7 @@ int main(const int nArg, const char * pArgs[])
 
 			const std::string sPhones = MakeCompleteFileName(Settings::Instance().GetPhonesFileName().c_str());
 			std::cout << (boost::format("Saving phones to: [%s].") % sPhones).str() << std::endl;
-			boost::property_tree::xml_parser::write_xml(sPhones, xmlResult, std::locale(), boost::property_tree::xml_writer_make_settings(' ', 1));
+			boost::property_tree::xml_parser::write_xml(sPhones, xmlResult, std::locale(), boost::property_tree::xml_parser::xml_writer_make_settings< char >(' ', 1, "windows-1251"));
 		}
 		else if (strcmp(CMD_AGGR, pArgs[1]) == 0)
 		{
@@ -106,7 +106,7 @@ int main(const int nArg, const char * pArgs[])
 
 			const std::string sAggr = MakeCompleteFileName(Settings::Instance().GetAggregatedFileName().c_str());
 			std::cout << (boost::format("Saving aggregated phone data to: [%s].") % sAggr).str() << std::endl;
-			boost::property_tree::xml_parser::write_xml(sAggr, xmlResult, std::locale(), boost::property_tree::xml_writer_make_settings(' ', 1));
+			boost::property_tree::xml_parser::write_xml(sAggr, xmlResult, std::locale(), boost::property_tree::xml_parser::xml_writer_make_settings< char >(' ', 1, "windows-1251"));
 		}
 		else
 			throw std::runtime_error("unknown command!");

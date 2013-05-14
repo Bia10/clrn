@@ -463,7 +463,7 @@ void SqliteStatistics::GetLastActions(const std::string& target, const std::stri
 	m_Impl->GetLastActions(target, opponent, checkFolds, calls, raises);
 }
 
-unsigned SqliteStatistics::GetEquities(PlayerInfo::List& players) const
+unsigned SqliteStatistics::GetEquities(PlayerInfo::List& players, unsigned) const
 {
 	return m_Impl->GetEquities(players);
 }

@@ -50,6 +50,7 @@ unsigned GetRanges(PlayerInfo::List& players)
 {
 	TRY
 	{
+        // get all games with specified actions on preflop
         SCOPED_LOG(m_Log);
 
         // return projection
@@ -89,14 +90,14 @@ unsigned GetRanges(PlayerInfo::List& players)
             while (cursor->more()) 
             {
                 const bson::bo data = cursor->next();
+                LOG_TRACE("Fetched player range: [%s], data: [%s]") % name % data.toString();
+
                 const std::vector<bson::be> cardsArray = data.getFieldDotted("players.0.cards").Array();
                 for (const bson::be& elem : cardsArray)
                     cards.push_back(elem.Int());
-
-                LOG_TRACE("Fatched player range: [%s], data: [%s]") % name % data.toString();
             }
 
-            if(cards.empty())
+            if (cards.empty())
                 continue;
 
             ++count;
@@ -106,8 +107,7 @@ unsigned GetRanges(PlayerInfo::List& players)
             LOG_TRACE("Player: [%s], cards: [%s], summ: [%s], count: [%s]") % name % cards % summ % count;
             info.m_CardRange = summ / cards.size();
         }
-
-        // get all games with specified actions on preflop
+   
         return count;
 	}
 	CATCH_PASS_EXCEPTIONS("GetRanges failed")
@@ -119,18 +119,74 @@ void GetLastActions(const std::string& target, const std::string& opponent, int&
 	{
         SCOPED_LOG(m_Log);
 
-
 	}
 	CATCH_PASS_EXCEPTIONS("GetLastActions failed")
 }
 
-unsigned GetEquities(PlayerInfo::List& players)
+unsigned GetEquities(PlayerInfo::List& players, unsigned street)
 {
     TRY
     {
         SCOPED_LOG(m_Log);
 
-        return 0;
+        // return projection
+        static const bson::bo returnProjection = bson::bob().append("players.$", 1).append("_id", 0).obj();
+
+        unsigned count = 0;
+        for (PlayerInfo& info : players)
+        {
+            std::vector<double> equities;
+
+            // query all games with cards info about this player
+            const std::string& name = info.m_Name;
+
+            // prepare list of actions
+            std::vector<bson::bo> actions;
+            for (const pcmn::Player::ActionDesc& actionDsc : info.m_Actions)
+            {
+                const bson::bo object = BSON("id" << actionDsc.m_Id << "amount" << actionDsc.m_Amount);
+                LOG_TRACE("Fetching player equities: [%s], actions: [%s]") % name % object.toString();
+                actions.push_back(object);
+            }
+
+            // fetch 
+            const std::auto_ptr<mongo::DBClientCursor> cursor = m_Connection.query
+            (
+                STAT_COLLECTION_NAME, 
+                BSON("players" << BSON("$elemMatch" 
+                                        << BSON("name" << name
+                                                << "cards" << BSON("$size" << 2)
+                                                << "streets" << BSON("$elemMatch" 
+                                                                << BSON("actions" << BSON("$all"
+                                                                    << actions)))))),
+                0, 
+                0, 
+                &returnProjection
+            );
+
+            while (cursor->more()) 
+            {
+                const bson::bo data = cursor->next();
+                LOG_TRACE("Fetched player equities: [%s], data: [%s]") % name % data.toString();
+
+                const std::vector<bson::be> equitiesArray = data.getFieldDotted("players.0.equities").Array();
+
+                CHECK(equitiesArray.size() > street, "Failed to get equity for street", street, equitiesArray.size());
+                equities.push_back(equitiesArray[street].Double());
+            }
+
+            if (equities.empty())
+                continue;
+
+            ++count;
+
+            // find average value
+            const double summ = std::accumulate(equities.begin(), equities.end(), double());
+            LOG_TRACE("Player: [%s], cards: [%s], summ: [%s], count: [%s]") % name % equities % summ % count;
+            info.m_WinRate = static_cast<float>(summ / equities.size());
+        }
+   
+        return count;
     }
     CATCH_PASS_EXCEPTIONS("GetEquities failed")
 }
@@ -197,9 +253,9 @@ void MongoStatistics::GetLastActions(const std::string& target, const std::strin
 	m_Impl->GetLastActions(target, opponent, checkFolds, calls, raises);
 }
 
-unsigned MongoStatistics::GetEquities(PlayerInfo::List& players) const
+unsigned MongoStatistics::GetEquities(PlayerInfo::List& players, unsigned street) const
 {
-	return m_Impl->GetEquities(players);
+	return m_Impl->GetEquities(players, street);
 }
 
 }
