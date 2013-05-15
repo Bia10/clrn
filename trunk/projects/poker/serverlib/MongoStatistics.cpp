@@ -14,7 +14,7 @@
 
 namespace srv
 {
-static const int CURRENT_MODULE_ID = Modules::Server;
+static const int CURRENT_MODULE_ID = Modules::DataBase;
 
 static const char STAT_COLLECTION_NAME[] = "stat.games";
 

@@ -177,6 +177,12 @@ private:
     //! Process small blind
     bool FindExistingSmallBlind(const std::string& name, unsigned amount);
 
+    //! Parse small blind amount
+    void ParseSmallBlind(const net::Packet& packet);
+
+    //! Parse player loose
+    void ParsePlayerLoose(Player& current, BetSize::Value lastBigBet, Action::Value action);
+
 private:
 
     //! Logger reference

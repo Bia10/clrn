@@ -113,7 +113,7 @@ const char SQL_GET_PLAYER_EQUITIES[] =
 	"HAVING Count(DISTINCT a.game) > 2 ";
 
 
-static const int CURRENT_MODULE_ID = Modules::Server;
+static const int CURRENT_MODULE_ID = Modules::DataBase;
 
 class SqliteStatistics::Impl
 {
