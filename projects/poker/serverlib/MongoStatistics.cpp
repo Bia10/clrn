@@ -190,62 +190,18 @@ unsigned GetEquities(PlayerInfo::List& players, unsigned street)
     {
         SCOPED_LOG(m_Log);
 
-        // return projection
-        static const bson::bo returnProjection = bson::bob().append("players.$", 1).append("_id", 0).obj();
-
         unsigned count = 0;
         for (PlayerInfo& info : players)
         {
-            std::vector<double> equities;
+            info.m_WinRate = GetEquity(info.m_Actions, street, info.m_Name);
 
-            // query all games with equity info about this player
-            const std::string& name = info.m_Name;
-
-            // prepare list of actions
-            std::vector<bson::bo> actions;
-            for (const pcmn::Player::ActionDesc& actionDsc : info.m_Actions)
+            if (!info.m_WinRate)
             {
-                const bson::bo object = BSON("id" << actionDsc.m_Id << "amount" << actionDsc.m_Amount);
-                LOG_TRACE("Fetching player equities: [%s], actions: [%s]") % name % object.toString();
-                actions.push_back(object);
+                LOG_TRACE("Failed to find equity by player name: [%s], getting from all statistics") % info.m_Name;
+                info.m_WinRate = GetEquity(info.m_Actions, street);
             }
-
-            // fetch 
-            const std::auto_ptr<mongo::DBClientCursor> cursor = m_Connection.query
-            (
-                STAT_COLLECTION_NAME, 
-                BSON("players" << BSON("$elemMatch" 
-                                        << BSON("name" << name
-                                                << "equities.0" << BSON("$exists" << 1)
-                                                << "streets" << BSON("$elemMatch" 
-                                                                << BSON("actions" << BSON("$all"
-                                                                    << actions)))))),
-                0, 
-                0, 
-                &returnProjection
-            );
-
-            while (cursor->more()) 
-            {
-                const bson::bo data = cursor->next();
-                LOG_TRACE("Fetched player equities: [%s], data: [%s]") % name % data.toString();
-
-                const std::vector<bson::be> equitiesArray = data.getFieldDotted("players.0.equities").Array();
-                if (equitiesArray.size() <= street && !equitiesArray.empty())
-                    equities.push_back(equitiesArray.back().Double());
-                else
-                    equities.push_back(equitiesArray[street].Double());
-            }
-
-            if (equities.empty())
-                continue;
 
             ++count;
-
-            // find average value
-            const double summ = std::accumulate(equities.begin(), equities.end(), double());
-            LOG_TRACE("Player: [%s], equities: [%s], summ: [%s], count: [%s]") % name % equities % summ % count;
-            info.m_WinRate = static_cast<float>(summ / equities.size());
         }
    
         return count;
@@ -254,6 +210,82 @@ unsigned GetEquities(PlayerInfo::List& players, unsigned street)
 }
 
 private:
+
+float GetEquity(const PlayerInfo::Actions& actionDescs, unsigned street, const std::string& name = std::string())
+{
+    try
+    {
+        // return projection
+        static const bson::bo returnProjection = bson::bob().append("players.$", 1).append("_id", 0).obj();
+
+        std::vector<double> equities;
+
+        // query all games with equity info about this player
+
+        // prepare list of actions
+        std::vector<bson::bo> actions;
+        for (const pcmn::Player::ActionDesc& actionDsc : actionDescs)
+        {
+            const bson::bo object = BSON("id" << actionDsc.m_Id << "amount" << actionDsc.m_Amount);
+            LOG_TRACE("Fetching player equities: [%s], actions: [%s]") % name % object.toString();
+            actions.push_back(object);
+        }
+
+        // prepare query
+        mongo::Query query;
+        if (name.empty())
+        {
+            const std::string streetsAndActions = std::string("streets.") + conv::cast<std::string>(street) + std::string(".actions");
+            query = 
+            BSON("players" << BSON("$elemMatch" 
+                    << BSON("equities.0" << BSON("$exists" << 1)
+                            << streetsAndActions << BSON("$all"
+                                                    << actions))));
+            query.sort("_id", 0);
+        }
+        else
+        {
+            query = 
+            BSON("players" << BSON("$elemMatch" 
+                                    << BSON("name" << name
+                                            << "equities.0" << BSON("$exists" << 1)
+                                            << "streets" << BSON("$elemMatch" 
+                                                            << BSON("actions" << BSON("$all"
+                                                                << actions))))));
+        }
+
+        // fetch 
+        const std::auto_ptr<mongo::DBClientCursor> cursor = m_Connection.query
+        (
+            STAT_COLLECTION_NAME, 
+            query,
+            name.empty() ? 100 : 0,
+            0, 
+            &returnProjection
+        );
+
+        while (cursor->more()) 
+        {
+            const bson::bo data = cursor->next();
+            LOG_TRACE("Fetched player equities: [%s], data: [%s]") % name % data.toString();
+
+            const std::vector<bson::be> equitiesArray = data.getFieldDotted("players.0.equities").Array();
+            if (equitiesArray.size() <= street && !equitiesArray.empty())
+                equities.push_back(equitiesArray.back().Double());
+            else
+                equities.push_back(equitiesArray[street].Double());
+        }
+
+        if (equities.empty())
+            return 0;
+
+        // find average value
+        const double summ = std::accumulate(equities.begin(), equities.end(), double());
+        LOG_TRACE("Player: [%s], equities: [%s], summ: [%s]") % name % equities % summ;
+        return static_cast<float>(summ / equities.size());
+    }
+    CATCH_PASS_EXCEPTIONS("GetEquity failed", name)
+}
 
 bson::bo BuildPlayer(const pcmn::Player& player) const
 {
