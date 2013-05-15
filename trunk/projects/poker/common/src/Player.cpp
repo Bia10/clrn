@@ -97,4 +97,10 @@ namespace pcmn
         return m_Id == other.m_Id && m_Amount == other.m_Amount;
     }
 
+    std::ostream& operator<<(std::ostream& s, const Player& p)
+    {
+        s << p.Name() << ":" << p.Stack();
+        return s;
+    }
+
 }
