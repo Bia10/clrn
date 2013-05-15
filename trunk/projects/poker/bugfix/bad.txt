@@ -12,3 +12,9 @@ Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
 флешдро скинул: (все отлично, у оппонента при таких ставках в среднем было 40%)
 Decision >>>>: [win: [Good], pos: [Early], bet: [Normal], players: [Two], danger: [High], bot avg style: [Normal], bot style: [Normal], bot stack: [Normal], decision: [Not set]]
 Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
+
+добавлен колл для случаев ниже с bet: Very low
+Decision >>>>: [win: [Low], pos: [Later], bet: [Normal], players: [One], danger: [Low], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
+Decision >>>>: [win: [Low], pos: [Later], bet: [Normal], players: [Two], danger: [High], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */

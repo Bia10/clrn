@@ -42,7 +42,10 @@ namespace pcmn
         if (bet >= maxBet * 2 / 3)
             return BetSize::VeryLow; // bet already more than 2/3
 
-        if (maxBet <= bigBlind)
+        if (bet >= maxBet / 2 && maxBet <= bigBlind * 3)
+            return BetSize::VeryLow; // bet at least half in small bet
+
+        if (maxBet - bet <= bigBlind)
             return BetSize::Low;
 
         const bool isBigBetToStack = maxBet > 0.8f * stack;
@@ -52,8 +55,7 @@ namespace pcmn
         if (value < 1.5f && !isBigBetToStack)
             return BetSize::High;
 
-        return BetSize::Huge;
-        
+        return BetSize::Huge;   
     }
 
 };

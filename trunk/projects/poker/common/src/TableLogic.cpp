@@ -199,6 +199,7 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
             CHECK(!botName.empty(), "Bot name not inited, can't get next");
             if (m_Queue.front() == botName)
             {
+                LOG_TRACE("Next player is bot, cards: [%s]") % GetPlayer(botName).Cards().size();
                 if (GetPlayer(botName).Cards().empty()) // workaround, cards may be received after decision needed
                     m_IsNeedDecision = true;
                 else
@@ -225,6 +226,8 @@ void TableLogic::SetPlayerStack(const std::string& name, unsigned stack)
 
 void TableLogic::SetPlayerCards(const std::string& name, const Card::List& cards)
 {
+    LOG_TRACE("Player: [%s], cards: [%s]") % name % cards;
+
     if (!m_Players.count(name))
         m_Players[name] = pcmn::Player(name, cfg::DEFAULT_STACK);
 
@@ -360,8 +363,13 @@ Player::Position::Value TableLogic::GetNextPlayerPosition()
     const std::size_t totalPlayers = m_Sequence.size();
     std::size_t leftInQueue = m_Queue.size();
 
-    if (m_Phase == Phase::Preflop && leftInQueue > 2)
-        leftInQueue -= 2; // don't calculate blinds
+    if (m_Phase == Phase::Preflop)
+    {
+        if (leftInQueue <= 2)
+            leftInQueue = 0;
+        else
+            leftInQueue -= 2; // don't calculate blinds
+    }
 
     pcmn::Player::Position::Value result = pcmn::Player::Position::Middle;
 
@@ -664,6 +672,8 @@ void TableLogic::SendRequest(bool statistics)
 	        UniqueAdd(playerNames, botName);
 	        m_Button = playerNames.back();
 	    }
+
+        LOG_TRACE("Preparing server request, stats: [%s], state: [%s], players: [%s], button: [%s]") % statistics % m_State % playerNames % m_Button;
 	
 	    net::Packet packet;
 	

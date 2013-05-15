@@ -59,6 +59,8 @@ namespace pcmn
 		Suit::Value m_Suit;
 	};
 
+    //! Stream operator
+    std::ostream& operator << (std::ostream& s, const pcmn::Card& c);
 }
 
 #endif // Cards_h__

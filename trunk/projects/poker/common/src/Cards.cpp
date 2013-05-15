@@ -131,3 +131,9 @@ std::string pcmn::Suit::ToString(Value value)
 #undef CASE
 	return "";
 }
+
+std::ostream& pcmn::operator<<(std::ostream& s, const Card& c)
+{
+    s << Card::ToString(c.m_Value) << " " << Suit::ToString(c.m_Suit);
+    return s;
+}
