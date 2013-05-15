@@ -1,38 +1,14 @@
 pending:
-[TRACE  ][6][2013-04-22T22:36:45.996245]:[5376]: Max bet: [180], pot: [560], bot stack: [1220], cards: [Cards: ('Nine' of 'Clubs')('Four' of 'Clubs'), Flop: ('King' of 'Clubs')('Nine' of 'Spades')('Queen' of 'Clubs')('Three' of 'Spades')('Queen' of 'Diamonds')] /* srv::DecisionMaker::MakeDecision */
-[TRACE  ][6][2013-04-22T22:36:46.016246]:[5376]: Decision >>>>: [win: [Good], pos: [Later], bet: [Normal], players: [One], danger: [Low], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
-Decision <<<<: [Action: 4 Amount: 540] /* srv::DecisionMaker::MakeDecision */
-
-пуш неудался:
-[TRACE  ][6][2013-05-14T22:48:56.783317]:[4124]: Win: [0.715210021], bet: [0], max bet: [540], pot: [1590], bot stack: [5430], cards: [Cards: ('King' of 'Diamonds')('Ace' of 'Spades'), Flop: ('Ten' of 'Clubs')('Six' of 'Clubs')('Ace' of 'Hearts')('Eight' of 'Diamonds')] /* srv::DecisionMaker::MakeDecision */
-[TRACE  ][6][2013-05-14T22:48:56.799318]:[4124]: 
-Decision >>>>: [win: [VeryGood], pos: [Early], bet: [Normal], players: [One], danger: [Normal], bot avg style: [Aggressive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
-Decision <<<<: [Action: 4 Amount: 1620] /* srv::DecisionMaker::MakeDecision */
-[WARNING][6][2013-05-14T22:48:56.815319]:[4124]: Requests processed: [34] /* srv::Server::Impl::HandleRequest */
-[TRACE  ][6][2013-05-14T22:48:56.825319]:[5812]: Win: [0.714369953], bet: [0], max bet: [540], pot: [1590], bot stack: [5430], cards: [Cards: ('King' of 'Diamonds')('Ace' of 'Spades'), Flop: ('Ten' of 'Clubs')('Six' of 'Clubs')('Ace' of 'Hearts')('Eight' of 'Diamonds')] /* srv::DecisionMaker::MakeDecision */
-[TRACE  ][6][2013-05-14T22:48:56.842320]:[5812]: 
-Decision >>>>: [win: [VeryGood], pos: [Early], bet: [Normal], players: [One], danger: [Normal], bot avg style: [Aggressive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
-Decision <<<<: [Action: 4 Amount: 1620] /* srv::DecisionMaker::MakeDecision */
-[WARNING][6][2013-05-14T22:48:56.861321]:[5812]: Requests processed: [35] /* srv::Server::Impl::HandleRequest */
-[TRACE  ][6][2013-05-14T22:48:57.398352]:[5328]: Ranges: [52,52] /* srv::DecisionMaker::GetPlayerWinRate */
-[TRACE  ][6][2013-05-14T22:48:57.527359]:[5328]: Equities size: [1] /* srv::DecisionMaker::GetDanger */
-[TRACE  ][6][2013-05-14T22:48:57.539360]:[5328]: Win: [0.502439976], bet: [0], max bet: [540], pot: [1590], bot stack: [5430], cards: [Cards: ('King' of 'Diamonds')('Ace' of 'Spades'), Flop: ('Ten' of 'Clubs')('Six' of 'Clubs')('Ace' of 'Hearts')('Eight' of 'Diamonds')('Seven' of 'Spades')] /* srv::DecisionMaker::MakeDecision */
-[TRACE  ][6][2013-05-14T22:48:57.554361]:[5328]: 
-Decision >>>>: [win: [VeryGood], pos: [Early], bet: [Normal], players: [One], danger: [Normal], bot avg style: [Aggressive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
-Decision <<<<: [Action: 4 Amount: 1620] /* srv::DecisionMaker::MakeDecision */
-[WARNING][6][2013-05-14T22:48:57.571362]:[5328]: Requests processed: [36] /* srv::Server::Impl::HandleRequest */
-[WARNING][6][2013-05-14T22:49:01.626594]:[5328]: Requests processed: [37] /* srv::Server::Impl::HandleRequest */
-[WARNING][6][2013-05-14T22:49:10.018074]:[4124]: Requests processed: [38] /* srv::Server::Impl::HandleRequest */
-[WARNING][6][2013-05-14T22:49:18.546562]:[5812]: Requests processed: [39] /* srv::Server::Impl::HandleRequest */
-
-флешдро скинул:
-Decision >>>>: [win: [Good], pos: [Early], bet: [Normal], players: [Two], danger: [High], bot avg style: [Normal], bot style: [Normal], bot stack: [Normal], decision: [Not set]]
-Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
 
 fixed:
 [TRACE  ][6][2013-04-10T23:32:23.594577]:[4752]: Decision input: win: [Normal]:[29], pos: [Later], pot: [Normal], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */
 [TRACE  ][6][2013-04-10T23:37:54.535506]:[5988]: Decision input: win: [Normal]:[31], pos: [Later], pot: [High], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */
 [TRACE  ][6][2013-04-21T23:39:11.065292]:[6252]: Decision input: [win: [Normal], pos: [Later], bet: [Normal], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]], output: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
+
 не заходил в пот из поздней позиции с неплохими картами при маленьком стеке
 Decision >>>>: [win: [Normal], pos: [Later], bet: [Low], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Small], decision: [Not set]]
+Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
+
+флешдро скинул: (все отлично, у оппонента при таких ставках в среднем было 40%)
+Decision >>>>: [win: [Good], pos: [Early], bet: [Normal], players: [Two], danger: [High], bot avg style: [Normal], bot style: [Normal], bot stack: [Normal], decision: [Not set]]
 Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
