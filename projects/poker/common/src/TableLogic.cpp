@@ -109,9 +109,12 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
 
                             if (currentPlayer.State() == Player::State::Called && currentPlayer.Stack())
                             {
+                                LOG_TRACE("Adding to queue: [%s], state: [%s], stack: [%s]") % currentPlayer.Name() % currentPlayer.State() % currentPlayer.Stack();
                                 currentPlayer.State(Player::State::Waiting);
                                 m_Queue.push_back(currentPlayer.Name());
                             }
+                            else
+                                LOG_TRACE("Skipping add to queue: [%s], state: [%s], stack: [%s]") % currentPlayer.Name() % currentPlayer.State() % currentPlayer.Stack();
                         }
                     }
                 }
@@ -178,6 +181,7 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
             Player::Queue activePlayers;
             GetActivePlayers(activePlayers);
 
+            LOG_TRACE("Detecting round finish: in pot: [%s], queue: [%s], phase: [%s], active: [%s]") % playersInPot % m_Queue % m_Phase % activePlayers;
             if (playersInPot < 2 || m_Queue.empty() && (m_Phase == Phase::River || activePlayers.size() < 2))
                 m_IsRoundFinished = true;
 
@@ -188,6 +192,7 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
                 SetPhase(static_cast<Phase::Value>(m_Phase + 1));
         }
 
+        LOG_TRACE("Detect next player: finished: [%s], state: [%s], queue: [%s], action: [%s]") % m_IsRoundFinished % m_State % m_Queue % action;
         if (!m_IsRoundFinished && m_State == State::InitedClient && !m_Queue.empty() && action != Action::SmallBlind)
         {
             const std::string& botName = Player::ThisPlayer().Name();
@@ -306,8 +311,24 @@ std::vector<float> TableLogic::GetPlayerEquities(const int first, const int seco
 
 void TableLogic::SetNextRoundData(const pcmn::Player::List& players)
 {
-    //m_NextRoundData = players;
     std::copy(players.begin(), players.end(), std::back_inserter(m_NextRoundData));
+
+    if (players.size() == 1 && players.front().Name() == Player::ThisPlayer().Name() && players.front().Cards() != Player::ThisPlayer().Cards())
+    {
+        // this is new player cards, it means that this is new round
+        // we must send statistics before
+        if (m_IsRoundFinished)
+        {
+            SendRequest(true);
+            ResetPhase();
+
+            if (!m_Queue.empty())
+            {
+                PushAction(m_Queue.front(), pcmn::Action::SmallBlind, m_SmallBlindAmount);
+                PushAction(m_Queue.front(), pcmn::Action::BigBlind, m_SmallBlindAmount * 2);
+            }
+        }
+    }
 }
 
 void TableLogic::GetActivePlayers(Player::Queue& players)
@@ -783,6 +804,8 @@ void TableLogic::SetPhase(Phase::Value phase)
         currentPlayer.State(Player::State::Waiting);
         currentPlayer.Bet(0);
     }
+
+    LOG_TRACE("Phase set to: [%s], queue: [%s], state: [%s]") % m_Phase % m_Queue % m_State;
 
     if (m_State == State::InitedClient && !m_Queue.empty() && m_Phase != Phase::Preflop)
     {

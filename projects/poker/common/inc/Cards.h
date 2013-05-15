@@ -53,6 +53,7 @@ namespace pcmn
 		short ToEvalFormat() const;
 		const Card& FromEvalFormat(short value); 
 		bool IsValid() const;
+        bool operator == (const Card& other) const;
 
 		Value m_Value;
 		Suit::Value m_Suit;

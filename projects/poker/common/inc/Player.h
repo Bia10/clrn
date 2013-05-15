@@ -188,6 +188,10 @@ private:
     std::vector<float> m_Equities;  //!< player equities on streets
     bool m_Afk;                     //!< is player away from keyboard
 };
+
+//! Stream operator
+std::ostream& operator << (std::ostream& s, const pcmn::Player& p);
+
 }
 
 #endif // Player_h__

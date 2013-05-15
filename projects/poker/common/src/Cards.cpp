@@ -112,6 +112,11 @@ bool pcmn::Card::IsValid() const
 	return m_Value >= Two && m_Value <= Ace && (m_Suit == Suit::Hearts || m_Suit == Suit::Clubs || m_Suit == Suit::Spades || m_Suit == Suit::Diamonds);
 }
 
+bool pcmn::Card::operator==(const Card& other) const
+{
+    return m_Value == other.m_Value && m_Suit == other.m_Suit;
+}
+
 std::string pcmn::Suit::ToString(Value value)
 {
 #define CASE(x) case x: return #x;

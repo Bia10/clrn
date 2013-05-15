@@ -112,6 +112,19 @@ public:
         m_Buffer = oss.str().substr(0, std::size_t(oss.tellp()) - 1);
     }
 
+    template<typename T>
+    LogAnyHolder(const std::deque<T>& arg)
+    {
+        if (arg.empty())
+            return;
+
+        std::ostringstream oss;
+        for (const T& val : arg)
+            oss << val << ",";
+
+        m_Buffer = oss.str().substr(0, std::size_t(oss.tellp()) - 1);
+    }
+
     operator std::string() const
     {
         return m_Buffer;
