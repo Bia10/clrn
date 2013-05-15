@@ -424,6 +424,103 @@ bool TableLogic::FindExistingSmallBlind(const std::string& name, unsigned amount
     return false;
 }
 
+void TableLogic::ParseSmallBlind(const net::Packet& packet)
+{
+    auto it = std::find_if
+    (
+        packet.phases(0).actions().begin(), 
+        packet.phases(0).actions().end(),
+        [](const net::Packet::Action& actionDsc) { return actionDsc.id() == Action::SmallBlind; }
+    );
+
+    m_SmallBlindAmount = 0;
+    if (it == packet.phases(0).actions().end())
+    {
+        it = std::find_if
+        (
+            packet.phases(0).actions().begin(), 
+            packet.phases(0).actions().end(),
+            [](const net::Packet::Action& actionDsc) { return actionDsc.id() == Action::Call; }
+        );
+
+        m_SmallBlindAmount = it == packet.phases(0).actions().end() ? 10 : it->amount();
+    }
+    else
+        m_SmallBlindAmount = it->amount();
+}
+
+void TableLogic::ParsePlayerLoose(Player& current, BetSize::Value lastBigBet, Action::Value action)
+{
+    if (!current.Equities().empty() || current.GetActions().empty())
+        return;
+   
+    if (lastBigBet <= BetSize::Normal && action == pcmn::Action::Fold)
+    {
+        // player folded, assuming that he has bad equities in case when bet is low
+        float eq = 0;
+        switch (lastBigBet)
+        {
+        case BetSize::VeryLow: eq = 5.0f; break;
+        case BetSize::Low: eq = 15.0f; break;
+        case BetSize::Normal: eq = 20.0f; break;
+        }
+        for (Phase::Value i = Phase::Preflop ; i <= Phase::River; i = static_cast<Phase::Value>(i + 1))
+            current.PushEquity(eq);
+    }
+    else
+    if (action == pcmn::Action::Loose)
+    {
+        Player::Queue activePlayers;
+        GetActivePlayers(activePlayers);
+
+        activePlayers.erase
+        (
+            std::remove_if
+            (
+                activePlayers.begin(), 
+                activePlayers.end(), 
+                [](const Player& lhs)
+                {
+                    return lhs.Equities().empty();
+                }
+            ),
+            activePlayers.end()
+        );
+
+        // find player with smallest equity
+        std::sort
+        (
+            activePlayers.begin(), 
+            activePlayers.end(), 
+            [](const Player& lhs, const Player& rhs)
+            {
+                return lhs.Equities().back() < rhs.Equities().back();
+            }
+        );
+
+        float ratio = 0.1f;
+        switch (lastBigBet)
+        {
+        case BetSize::VeryLow: ratio = 0.3f; break;
+        case BetSize::Low: ratio = 0.4f; break;
+        case BetSize::Normal: ratio = 0.6f; break;
+        case BetSize::High: ratio = 0.8f; break;
+        case BetSize::Huge: ratio = 1.0f; break;
+        }
+        float smallestEquity = activePlayers.empty() ? 20.0f : (activePlayers.front().Equities().back() * ratio);
+        if (smallestEquity > 50)
+            return; // undefined equity, to much scattered
+        if (smallestEquity < 10)
+            smallestEquity = 10;
+
+        const float step = smallestEquity / 3 / (Phase::River - Phase::Preflop);
+        float val = smallestEquity * 2 / 3;
+        for (Phase::Value i = Phase::Preflop ; i <= Phase::River; i = static_cast<Phase::Value>(i + 1), val += step)
+            current.PushEquity(val);    
+    }
+    
+}
+
 void TableLogic::Parse(const net::Packet& packet)
 {
     TRY 
@@ -433,33 +530,13 @@ void TableLogic::Parse(const net::Packet& packet)
         TableContext context;
 
         // get small blind amount
-        auto it = std::find_if
-        (
-            packet.phases(0).actions().begin(), 
-            packet.phases(0).actions().end(),
-            [](const net::Packet::Action& actionDsc) { return actionDsc.id() == Action::SmallBlind; }
-        );
-
-        m_SmallBlindAmount = 0;
-        if (it == packet.phases(0).actions().end())
-        {
-            it = std::find_if
-            (
-                packet.phases(0).actions().begin(), 
-                packet.phases(0).actions().end(),
-                [](const net::Packet::Action& actionDsc) { return actionDsc.id() == Action::Call; }
-            );
-
-            m_SmallBlindAmount = it == packet.phases(0).actions().end() ? 10 : it->amount();
-        }
-        else
-            m_SmallBlindAmount = it->amount();
+        ParseSmallBlind(packet);
+        context.m_BigBlind = m_SmallBlindAmount * 2;
 
         // parse players and flop
         ParseFlopCards(context, packet);
         ParsePlayers(context, packet); 
         m_Pot = 0;
-        context.m_BigBlind = m_SmallBlindAmount * 2;
 
         // simulate logic
         for (Phase::Value phase = Phase::Preflop ; phase < packet.phases_size(); phase = static_cast<Phase::Value>(phase + 1))
@@ -471,55 +548,41 @@ void TableLogic::Parse(const net::Packet& packet)
             {
                 context.m_Street = phase;
                 const Action::Value action = static_cast<Action::Value>(packet.phases(phase).actions(i).id());
-
-                // skip useless actions
-                if (!Action::IsUseful(action))
-                    continue;
-
                 const std::size_t playerIndex = static_cast<std::size_t>(packet.phases(phase).actions(i).player());
-                const unsigned amount = static_cast<unsigned>(packet.phases(phase).actions(i).amount());
                 const std::string& player = context.m_Data.m_Players.at(playerIndex).m_Name;
+                const unsigned amount = static_cast<unsigned>(packet.phases(phase).actions(i).amount());
 
                 Player& current = GetPlayer(player);
-                
+
                 const Player::Position::Value position = GetNextPlayerPosition();
                 const BetSize::Value betValue = BetSize::FromAction(amount, m_Pot, current.Stack(), context.m_BigBlind);
 
-                PushAction(player, action, amount);
-
-                TableContext::Data::Action resultAction;
-                resultAction.m_Action = action;
-                resultAction.m_PlayerIndex = playerIndex;
-                resultAction.m_Street = phase;
-                resultAction.m_Bet = static_cast<int>(betValue);
-                resultAction.m_Position = static_cast<int>(position);
-
-                context.m_Data.m_Actions.push_back(resultAction);
-
-                if (context.m_MaxBet < amount)
-                    context.m_MaxBet = amount;
-
-                if (betValue > lastBigBet)
-                    lastBigBet = betValue;
-
-                if (action == pcmn::Action::Fold)
-                    lastBigBet  = lastBigBet;
-
-                if (action == pcmn::Action::Fold && lastBigBet <= BetSize::Normal && current.Equities().empty() && !current.GetActions().empty())
+                // skip useless actions
+                const bool isUseful = Action::IsUseful(action);
+                if (isUseful)
                 {
-                    // player folded, assuming that he has bad equities in case when bet is low
-                    float eq = 0;
-                    switch (lastBigBet)
-                    {
-                    case BetSize::VeryLow: eq = 5.0f; break;
-                    case BetSize::Low: eq = 15.0f; break;
-                    case BetSize::Normal: eq = 20.0f; break;
-                    }
-                    for (Phase::Value i = Phase::Preflop ; i <= Phase::River; i = static_cast<Phase::Value>(i + 1))
-                        current.PushEquity(eq);
+                    PushAction(player, action, amount);
+
+                    TableContext::Data::Action resultAction;
+                    resultAction.m_Action = action;
+                    resultAction.m_PlayerIndex = playerIndex;
+                    resultAction.m_Street = phase;
+                    resultAction.m_Bet = static_cast<int>(betValue);
+                    resultAction.m_Position = static_cast<int>(position);
+
+                    context.m_Data.m_Actions.push_back(resultAction);
+
+                    if (context.m_MaxBet < amount)
+                        context.m_MaxBet = amount;
+
+                    if (betValue > lastBigBet)
+                        lastBigBet = betValue;
                 }
 
-                current.PushAction(phase, action, betValue, position);
+                ParsePlayerLoose(current, lastBigBet, action);
+
+                if (isUseful)
+                    current.PushAction(phase, action, betValue, position);
             }
         }
 

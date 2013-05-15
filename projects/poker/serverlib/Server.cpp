@@ -4,7 +4,7 @@
 #include "Exception.h"
 #include "UDPHost.h"
 #include "Modules.h"
-#include "SqliteStatistics.h"
+#include "MongoStatistics.h"
 #include "DecisionMaker.h"
 #include "Evaluator.h"
 #include "../neuro/DatabaseReader.h"
@@ -90,7 +90,7 @@ private:
 	std::auto_ptr<net::IHost>			m_Client;
 
 	//! Server statistics
-	SqliteStatistics							m_Statistics;
+	MongoStatistics						m_Statistics;
 
 	//! Requests count
 	std::atomic<std::size_t>			m_RequestsCount;
