@@ -99,7 +99,7 @@ namespace pcmn
 
     std::ostream& operator<<(std::ostream& s, const Player& p)
     {
-        s << p.Name() << ":" << p.Stack();
+        s << p.Name() << ":" << p.Stack() << "(" << p.Cards().size() << ")";
         return s;
     }
 

@@ -141,4 +141,15 @@ WHERE  win IN ( 2 )
        AND bot_stack IN ( 0, 1, 2 ) 
        AND decision IN ( 0 ) 		   
 	   
-	   
+-- call low bet with low win from later positions with nomal or big stacks with high danger
+UPDATE decisions 
+SET    decision = 1 
+WHERE  win IN ( 1 ) 
+       AND position IN ( 2 ) 
+       AND bet IN ( 0 ) 
+       AND players IN ( 0, 1 ) 
+       AND danger IN ( 0, 1, 2 ) 
+       AND bot_avg_style IN ( 0, 1, 2 ) 
+       AND bot_style IN ( 0, 1, 2 ) 
+       AND bot_stack IN ( 1, 2 ) 
+       AND decision IN ( 0 ) 		   
