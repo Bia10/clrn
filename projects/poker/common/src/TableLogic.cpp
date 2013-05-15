@@ -375,7 +375,7 @@ Player::Position::Value TableLogic::GetNextPlayerPosition()
     if (leftInQueue >= step * 2)
         result = pcmn::Player::Position::Early;
 
-    LOG_TRACE("Players: [%s], left: [%s], step: [%s], result: [%s]") % totalPlayers % leftInQueue % step % result;
+    LOG_TRACE("Sequence: [%s], queue: [%s], step: [%s], result: [%s]") % m_Sequence % m_Queue % step % result;
     return result;
 }
 
@@ -576,6 +576,7 @@ void TableLogic::Parse(const net::Packet& packet)
                 Player& current = GetPlayer(player);
 
                 const Player::Position::Value position = GetNextPlayerPosition();
+                LOG_TRACE("Position for: [%s] is: [%s]") % player % position;
                 const BetSize::Value betValue = BetSize::FromAction(amount, m_Pot, current.Stack(), context.m_BigBlind);
 
                 // skip useless actions
@@ -620,6 +621,7 @@ void TableLogic::Parse(const net::Packet& packet)
             const Player& current = GetPlayer(m_Queue.front());
             assert(current.Name() == "CLRN");
             const Player::Position::Value position = GetNextPlayerPosition();
+            LOG_TRACE("Position for decision: [%s] is: [%s]") % current.Name() % position;
 
             for (const pcmn::Player& player : activePlayers)
                 context.m_Data.m_PlayersData.push_back(GetPlayer(player.Name()));

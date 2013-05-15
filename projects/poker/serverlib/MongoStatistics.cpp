@@ -244,7 +244,7 @@ unsigned GetEquities(PlayerInfo::List& players, unsigned street)
 
             // find average value
             const double summ = std::accumulate(equities.begin(), equities.end(), double());
-            LOG_TRACE("Player: [%s], cards: [%s], summ: [%s], count: [%s]") % name % equities % summ % count;
+            LOG_TRACE("Player: [%s], equities: [%s], summ: [%s], count: [%s]") % name % equities % summ % count;
             info.m_WinRate = static_cast<float>(summ / equities.size());
         }
    
