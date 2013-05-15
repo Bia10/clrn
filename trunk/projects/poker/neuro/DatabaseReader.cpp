@@ -5,6 +5,7 @@
 #include "Params.h"
 
 #include <boost/format.hpp>
+#include <boost/thread/mutex.hpp>
 
 namespace neuro
 {
@@ -20,6 +21,9 @@ namespace neuro
 
 	void DatabaseReader::Process(const std::vector<float>& input, std::vector<float>& output)
 	{
+        static boost::mutex mx;
+        boost::mutex::scoped_lock lock(mx);
+
 		CHECK(input.size() == cfg::INPUT_COUNT);
         output.clear();
 
