@@ -618,13 +618,20 @@ void TableLogic::Parse(const net::Packet& packet)
 
         context.m_Pot = m_Pot;
 
-        Player::Queue activePlayers;
-        GetActivePlayers(activePlayers);
+        unsigned activePlayers = 0;
+        Player::Queue playersInPot;
+        for (const std::string& player : m_Sequence)
+        {
+            const Player& current = GetPlayer(player);
+            if (current.State() != Player::State::Folded)
+            {
+                if (current.Stack())
+                    ++activePlayers;
+                UniqueAdd(playersInPot, current);
+            }
+        }
 
-        const unsigned size = std::count_if(activePlayers.begin(), activePlayers.end(), [](const Player& player){ return player.Stack(); });
-        const unsigned playersInPot = GetPlayersInPot();
-
-        if (!m_Queue.empty() && (size > 1 || size && playersInPot > 1))
+        if (!m_Queue.empty() && (activePlayers > 1 || activePlayers && playersInPot.size() > 1))
         {
             // need a decision
             const Player& current = GetPlayer(m_Queue.front());
@@ -632,10 +639,10 @@ void TableLogic::Parse(const net::Packet& packet)
             const Player::Position::Value position = GetNextPlayerPosition();
             LOG_TRACE("Position for decision: [%s] is: [%s]") % current.Name() % position;
 
-            for (const pcmn::Player& player : activePlayers)
+            for (const pcmn::Player& player : playersInPot)
                 context.m_Data.m_PlayersData.push_back(GetPlayer(player.Name()));
 
-            m_Callback.MakeDecision(current, activePlayers, context, position);
+            m_Callback.MakeDecision(current, playersInPot, context, position);
         }
         else
         {

@@ -1,0 +1,97 @@
+[NONE   ][0][2013-05-15T18:46:16.537769]:[5276]: Logger started, module: [0], level: [3], source: [logs/messages.txt].
+[TRACE  ][0][2013-05-15T18:46:49.522656]:[4312]: Ante: '0' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T18:46:49.534656]:[4312]: Player: 'pnwfish', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T18:46:49.534656]:[4312]: Player: 'Heiner01', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T18:46:49.534656]:[4312]: Player: 'Antontim', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T18:46:49.535656]:[4312]: Player: 'SalvTrip', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T18:46:49.535656]:[4312]: Player: 'CLRN', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T18:46:49.535656]:[4312]: Player: 'Lobo37', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T18:46:49.535656]:[4312]: Player: 'Cristianjal1', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T18:46:49.535656]:[4312]: Player: 'Sammygeniux', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T18:47:46.805932]:[4312]: Player: 'Heiner01', stack: '1490' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T18:47:46.805932]:[4312]: Player: 'Antontim', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T18:47:46.805932]:[4312]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T18:47:46.806932]:[4312]: Player: 'Heiner01', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T18:47:46.808932]:[4312]: Player: 'Antontim', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T18:47:46.812933]:[4312]: Player cards: ('Eight' of 'Diamonds')('Six' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-15T18:47:50.815161]:[4312]: Player: 'SalvTrip', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:47:59.291646]:[4312]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:02.110808]:[4312]: Player: 'CLRN', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:02.112808]:[4312]: Player: 'CLRN', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:04.517945]:[4312]: Player: 'Lobo37', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:04.518945]:[4312]: Player: 'Lobo37', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:07.850136]:[4312]: Player: 'Cristianjal1', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:07.852136]:[4312]: Player: 'Cristianjal1', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:10.058262]:[4312]: Player: 'yaroslav.dob', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:10.060262]:[4312]: Player: 'yaroslav.dob', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:10.747301]:[4312]: Player: 'Sammygeniux', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:14.291504]:[4312]: Player: 'pnwfish', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:14.291504]:[4312]: Player: 'pnwfish', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:16.123609]:[4312]: Player: 'Heiner01', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:16.124609]:[4312]: Player: 'Heiner01', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:18.276732]:[4312]: Player: 'Antontim', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:18.894768]:[4312]: Cards received: ('Ace' of 'Spades')('Queen' of 'Hearts')('Three' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T18:48:21.372909]:[4312]: Player: 'Heiner01', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:23.284019]:[4312]: Player: 'Antontim', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:25.978173]:[4312]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:26.325193]:[4312]: Player: 'Lobo37', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:30.193414]:[4312]: Player: 'Cristianjal1', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:30.195414]:[4312]: Player: 'Cristianjal1', action: 'Bet', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:35.041691]:[4312]: Player: 'yaroslav.dob', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:37.932856]:[4312]: Player: 'pnwfish', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:40.088980]:[4312]: Player: 'Heiner01', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:40.093980]:[4312]: Player: 'Heiner01', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:42.231102]:[4312]: Player: 'Antontim', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:42.232102]:[4312]: Player: 'Antontim', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:44.409227]:[4312]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:46.861367]:[4312]: Player: 'Lobo37', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:47.818422]:[4312]: Cards received: ('Ace' of 'Spades')('Queen' of 'Hearts')('Three' of 'Clubs')('Five' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T18:48:51.113610]:[4312]: Player: 'Heiner01', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:48:53.315736]:[4312]: Player: 'Antontim', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:00.653156]:[4312]: Player: 'Cristianjal1', stack: '1180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:00.657156]:[4312]: Player: 'Cristianjal1', action: 'Bet', amount: '220' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:02.662271]:[4312]: Player: 'Heiner01', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:03.986347]:[4312]: Player: 'Antontim', stack: '1180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:03.988347]:[4312]: Player: 'Antontim', action: 'Call', amount: '220' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:04.874397]:[4312]: Cards received: ('Ace' of 'Spades')('Queen' of 'Hearts')('Three' of 'Clubs')('Five' of 'Clubs')('Six' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T18:49:08.600611]:[4312]: Player: 'Antontim', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:16.813080]:[4312]: Player: 'Cristianjal1', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:22.994434]:[4312]: Player: 'Cristianjal1', stack: '860' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:22.996434]:[4312]: Player: 'Cristianjal1', action: 'Bet', amount: '320' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:27.104669]:[4312]: Player: 'Antontim', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:27.115670]:[4312]: Player: 'Cristianjal1', stack: '1180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:27.117670]:[4312]: Player: 'Cristianjal1', action: 'MoneyReturn', amount: '320' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:30.126842]:[4312]: Player: 'Cristianjal1', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:34.493091]:[4312]: Player: 'Antontim', stack: '1170' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T18:49:34.494092]:[4312]: Player: 'SalvTrip', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T18:49:34.494092]:[4312]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T18:49:34.496092]:[4312]: Player: 'Antontim', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T18:49:34.510092]:[4312]: Player: 'SalvTrip', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T18:49:34.514093]:[4312]: Player cards: ('Ace' of 'Clubs')('Ten' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-15T18:49:37.113241]:[4312]: Player: 'CLRN', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:37.115241]:[4312]: Player: 'CLRN', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:42.957576]:[4312]: Player: 'Lobo37', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:51.260050]:[4312]: Player: 'Cristianjal1', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:51.268051]:[4312]: Player: 'Cristianjal1', stack: '1880' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:51.270051]:[4312]: Player: 'Cristianjal1', action: 'Raise', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:54.296224]:[4312]: Player: 'yaroslav.dob', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:54.652245]:[4312]: Player: 'Sammygeniux', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:49:59.166503]:[4312]: Player: 'pnwfish', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:50:00.908602]:[4312]: Player: 'Heiner01', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:50:05.603871]:[4312]: Player: 'Antontim', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:50:06.157903]:[4312]: Player: 'SalvTrip', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:50:08.298025]:[4312]: Player: 'CLRN', stack: '1120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:50:08.300025]:[4312]: Player: 'CLRN', action: 'Raise', amount: '360' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:50:14.852400]:[4312]: Player: 'Cristianjal1', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:50:14.854400]:[4312]: Player: 'Cristianjal1', action: 'Raise', amount: '2000' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:50:17.049526]:[4312]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:50:17.051526]:[4312]: Player: 'CLRN', action: 'Call', amount: '1120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:50:17.850571]:[4312]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:50:19.277653]:[4312]: Cards received: ('Eight' of 'Hearts')('Five' of 'Hearts')('King' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T18:50:21.213764]:[4312]: Cards received: ('Eight' of 'Hearts')('Five' of 'Hearts')('King' of 'Diamonds')('Queen' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T18:50:22.945863]:[4312]: Cards received: ('Eight' of 'Hearts')('Five' of 'Hearts')('King' of 'Diamonds')('Queen' of 'Spades')('Four' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T18:50:24.215935]:[4312]: Player: 'CLRN', action: 'ShowCards', cards: 'AcTh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:50:24.224936]:[4312]: Player: 'Cristianjal1', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:50:24.225936]:[4312]: Player: 'Cristianjal1', action: 'ShowCards', cards: 'QcJd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:50:25.580013]:[4312]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T18:50:25.582014]:[4312]: Player: 'CLRN', action: 'Rank', amount: '9' /* clnt::ps::msg::PlayerAction::Process */
