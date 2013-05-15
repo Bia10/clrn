@@ -15,6 +15,8 @@
 
 #include <boost/bind.hpp>
 #include <boost/function.hpp>
+#include <boost/shared_ptr.hpp>
+#include <boost/thread/mutex.hpp>
 
 namespace srv
 {
@@ -23,10 +25,13 @@ const int CURRENT_MODULE_ID = Modules::Server;
 
 class Server::Impl
 {
+    //! Statistics to thread id map
+    typedef std::map<unsigned, boost::shared_ptr<IStatistics>> StatisticsMap;
+
 public:
 	Impl() 
 		: m_Client(new net::UDPHost(m_Log, cfg::THREADS_COUNT - 1))
-		, m_Statistics(m_Log)
+        , m_Statistics()
 		, m_RequestsCount(0)
 		, m_Network(m_Log, cfg::NETWORK_FILE_NAME)
 	{
@@ -61,7 +66,16 @@ private:
 #endif
 			LOG_DEBUG("Request: [%s]") % message.DebugString();
 
-			DecisionMaker decisionMaker(m_Log, m_Evaluator, m_Statistics, m_Network, *connection);
+            IStatistics* stats = 0;
+            {
+                boost::mutex::scoped_lock lock(m_StatsMutex);
+                StatisticsMap::iterator it = m_Statistics.find(GetCurrentThreadId());
+                if (it == m_Statistics.end())
+                    it = m_Statistics.insert(std::make_pair(GetCurrentThreadId(), boost::shared_ptr<IStatistics>(new MongoStatistics(m_Log)))).first;
+                stats = it->second.get();
+            }
+
+			DecisionMaker decisionMaker(m_Log, m_Evaluator, *stats, m_Network, *connection);
             pcmn::TableLogic logic(m_Log, decisionMaker, m_Evaluator);
             logic.Parse(static_cast<const net::Packet&>(message));
 
@@ -90,7 +104,10 @@ private:
 	std::auto_ptr<net::IHost>			m_Client;
 
 	//! Server statistics
-	MongoStatistics						m_Statistics;
+	StatisticsMap						m_Statistics;
+
+    //! Statistics mutex
+    boost::mutex                        m_StatsMutex;
 
 	//! Requests count
 	std::atomic<std::size_t>			m_RequestsCount;

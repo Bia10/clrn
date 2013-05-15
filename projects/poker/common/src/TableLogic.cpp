@@ -622,8 +622,9 @@ void TableLogic::Parse(const net::Packet& packet)
         GetActivePlayers(activePlayers);
 
         const unsigned size = std::count_if(activePlayers.begin(), activePlayers.end(), [](const Player& player){ return player.Stack(); });
+        const unsigned playersInPot = GetPlayersInPot();
 
-        if (!m_Queue.empty() && size > 1)
+        if (!m_Queue.empty() && (size > 1 || size && playersInPot > 1))
         {
             // need a decision
             const Player& current = GetPlayer(m_Queue.front());
