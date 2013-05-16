@@ -45,6 +45,9 @@ namespace pcmn
         if (bet >= maxBet / 2 && maxBet <= bigBlind * 3)
             return BetSize::VeryLow; // bet at least half in small bet
 
+        if (maxBet - bet < pot / 5)
+            return BetSize::VeryLow; // pot is so big
+
         if (maxBet - bet <= bigBlind)
             return BetSize::Low;
 
