@@ -1,0 +1,398 @@
+[NONE   ][0][2013-05-16T16:13:20.791523]:[5612]: Logger started, module: [0], level: [3], source: [logs/messages.txt].
+[TRACE  ][0][2013-05-16T16:15:17.549201]:[2916]: Ante: '0' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-16T16:15:17.562202]:[2916]: Player: 'CLRN', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-16T16:15:17.562202]:[2916]: Player: 'Yung_blood94', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-16T16:15:17.563202]:[2916]: Player: 'DonnaH', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-16T16:15:17.563202]:[2916]: Player: 'ADT Keystone', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-16T16:15:17.563202]:[2916]: Player: 'chainz_863', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-16T16:15:17.563202]:[2916]: Player: 'diounky', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-16T16:15:17.563202]:[2916]: Player: 'TAZ 2087', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-16T16:15:17.564202]:[2916]: Player: 'linnc54', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-16T16:15:17.564202]:[2916]: Player: 'bigdawg1026', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-16T16:16:15.305505]:[2916]: Player: 'Yung_blood94', stack: '1490' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:16:15.305505]:[2916]: Player: 'DonnaH', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:16:15.306505]:[2916]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:16:15.308505]:[2916]: Player: 'Yung_blood94', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:16:15.312505]:[2916]: Player: 'DonnaH', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:16:15.320506]:[2916]: Player cards: ('Nine' of 'Diamonds')('Four' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-16T16:16:16.436569]:[2916]: Player: 'ADT Keystone', stack: '1500' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:16.438570]:[2916]: Player: 'ADT Keystone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:18.312677]:[2916]: Player: 'chainz_863', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:18.314677]:[2916]: Player: 'chainz_863', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:19.804762]:[2916]: Player: 'diounky', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:19.806762]:[2916]: Player: 'diounky', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:24.840050]:[2916]: Player: 'TAZ 2087', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:25.423083]:[2916]: Player: 'linnc54', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:25.425084]:[2916]: Player: 'linnc54', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:25.713100]:[2916]: Player: 'bigdawg1026', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:34.106580]:[2916]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:36.509718]:[2916]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:36.809735]:[2916]: Player: 'Yung_blood94', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:37.090751]:[2916]: Player: 'DonnaH', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:37.701786]:[2916]: Cards received: ('Four' of 'Spades')('Ace' of 'Hearts')('Two' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:16:41.470001]:[2916]: Player: 'DonnaH', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:41.849023]:[2916]: Player: 'chainz_863', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:48.140383]:[2916]: Player: 'diounky', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:48.142383]:[2916]: Player: 'diounky', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:50.210501]:[2916]: Player: 'linnc54', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:51.943600]:[2916]: Player: 'DonnaH', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:52.324622]:[2916]: Player: 'chainz_863', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:52.335623]:[2916]: Player: 'diounky', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:52.338623]:[2916]: Player: 'diounky', action: 'MoneyReturn', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:54.228731]:[2916]: Player: 'diounky', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:16:59.836052]:[2916]: Player: 'DonnaH', stack: '1470' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:16:59.837052]:[2916]: Player: 'ADT Keystone', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:16:59.837052]:[2916]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:16:59.839052]:[2916]: Player: 'DonnaH', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:16:59.849053]:[2916]: Player: 'ADT Keystone', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:16:59.856053]:[2916]: Player cards: ('Four' of 'Hearts')('Ace' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-16T16:17:02.986232]:[2916]: Player: 'chainz_863', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:02.988232]:[2916]: Player: 'chainz_863', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:03.280249]:[2916]: Player: 'diounky', stack: '1550' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:03.283249]:[2916]: Player: 'diounky', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:04.083295]:[2916]: Player: 'TAZ 2087', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:04.520320]:[2916]: Player: 'linnc54', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:04.522320]:[2916]: Player: 'linnc54', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:04.539321]:[2916]: Player: 'bigdawg1026', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:04.540321]:[2916]: Player: 'bigdawg1026', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:07.471489]:[2916]: Player: 'CLRN', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:07.472489]:[2916]: Player: 'CLRN', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:07.760505]:[2916]: Player: 'Yung_blood94', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:08.050522]:[2916]: Player: 'DonnaH', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:08.052522]:[2916]: Player: 'DonnaH', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:08.878569]:[2916]: Player: 'ADT Keystone', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:09.584609]:[2916]: Cards received: ('Eight' of 'Clubs')('Six' of 'Clubs')('Two' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:17:11.942744]:[2916]: Player: 'DonnaH', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:13.011805]:[2916]: Player: 'ADT Keystone', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:13.308822]:[2916]: Player: 'chainz_863', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:14.055865]:[2916]: Player: 'diounky', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:14.352882]:[2916]: Player: 'linnc54', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:16.381998]:[2916]: Player: 'bigdawg1026', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:19.246162]:[2916]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:19.411171]:[2916]: Cards received: ('Eight' of 'Clubs')('Six' of 'Clubs')('Two' of 'Diamonds')('Three' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:17:21.324281]:[2916]: Player: 'DonnaH', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:22.786364]:[2916]: Player: 'ADT Keystone', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:23.076381]:[2916]: Player: 'chainz_863', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:26.131556]:[2916]: Player: 'diounky', stack: '1390' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:26.133556]:[2916]: Player: 'diounky', action: 'Bet', amount: '160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:31.064838]:[2916]: Player: 'linnc54', stack: '1300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:31.066838]:[2916]: Player: 'linnc54', action: 'Call', amount: '160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:32.124899]:[2916]: Player: 'bigdawg1026', stack: '1320' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:32.126899]:[2916]: Player: 'bigdawg1026', action: 'Call', amount: '160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:34.477033]:[2916]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:35.057066]:[2916]: Player: 'DonnaH', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:35.068067]:[2916]: Player: 'ADT Keystone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:37.280193]:[2916]: Player: 'chainz_863', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:37.897229]:[2916]: Cards received: ('Eight' of 'Clubs')('Six' of 'Clubs')('Two' of 'Diamonds')('Three' of 'Diamonds')('King' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:17:41.250421]:[2916]: Player: 'diounky', stack: '1150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:41.252421]:[2916]: Player: 'diounky', action: 'Bet', amount: '240' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:44.973634]:[2916]: Player: 'linnc54', stack: '820' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:44.974634]:[2916]: Player: 'linnc54', action: 'Raise', amount: '480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:46.629728]:[2916]: Player: 'bigdawg1026', stack: '840' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:46.631728]:[2916]: Player: 'bigdawg1026', action: 'Call', amount: '480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:53.413116]:[2916]: Player: 'diounky', action: 'ShowCards', cards: 'Ah6d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:54.862199]:[2916]: Player: 'diounky', stack: '1150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:54.863199]:[2916]: Player: 'diounky', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:55.139215]:[2916]: Player: 'linnc54', action: 'ShowCards', cards: '9dQd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:55.147215]:[2916]: Player: 'bigdawg1026', stack: '820' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:55.148215]:[2916]: Player: 'bigdawg1026', action: 'ShowCards', cards: '2c2s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:58.207390]:[2916]: Player: 'ADT Keystone', stack: '1470' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:17:58.207390]:[2916]: Player: 'chainz_863', stack: '1440' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:17:58.208391]:[2916]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:17:58.209391]:[2916]: Player: 'ADT Keystone', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:17:58.219391]:[2916]: Player: 'chainz_863', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:17:58.222391]:[2916]: Player cards: ('Seven' of 'Spades')('Five' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-16T16:17:59.986492]:[2916]: Player: 'diounky', stack: '1130' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:17:59.986492]:[2916]: Player: 'diounky', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:08.131958]:[2916]: Player: 'TAZ 2087', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:16.397431]:[2916]: Player: 'TAZ 2087', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:16.399431]:[2916]: Player: 'TAZ 2087', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:16.685447]:[2916]: Player: 'linnc54', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:18.524553]:[2916]: Player: 'bigdawg1026', stack: '2640' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:18.526553]:[2916]: Player: 'bigdawg1026', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:21.036696]:[2916]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:21.058697]:[2916]: Player: 'Yung_blood94', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:21.324713]:[2916]: Player: 'DonnaH', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:21.325713]:[2916]: Player: 'DonnaH', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:23.059812]:[2916]: Player: 'ADT Keystone', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:23.061812]:[2916]: Player: 'ADT Keystone', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:23.350829]:[2916]: Player: 'chainz_863', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:23.973864]:[2916]: Cards received: ('Five' of 'Spades')('Ace' of 'Spades')('Two' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:18:27.112044]:[2916]: Player: 'ADT Keystone', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:27.407061]:[2916]: Player: 'chainz_863', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:27.693077]:[2916]: Player: 'diounky', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:32.980379]:[2916]: Player: 'TAZ 2087', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:35.699535]:[2916]: Player: 'bigdawg1026', stack: '2520' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:35.701535]:[2916]: Player: 'bigdawg1026', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:36.122559]:[2916]: Player: 'DonnaH', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:37.237623]:[2916]: Player: 'ADT Keystone', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:37.239623]:[2916]: Player: 'ADT Keystone', action: 'Call', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:38.733708]:[2916]: Player: 'chainz_863', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:39.022725]:[2916]: Player: 'diounky', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:40.482808]:[2916]: Player: 'TAZ 2087', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:41.383860]:[2916]: Cards received: ('Five' of 'Spades')('Ace' of 'Spades')('Two' of 'Hearts')('Three' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:18:44.280026]:[2916]: Player: 'ADT Keystone', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:46.910176]:[2916]: Player: 'bigdawg1026', stack: '2440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:46.912176]:[2916]: Player: 'bigdawg1026', action: 'Bet', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:47.776226]:[2916]: Player: 'ADT Keystone', stack: '1260' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:47.778226]:[2916]: Player: 'ADT Keystone', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:48.671277]:[2916]: Cards received: ('Five' of 'Spades')('Ace' of 'Spades')('Two' of 'Hearts')('Three' of 'Spades')('Four' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:18:53.080529]:[2916]: Player: 'ADT Keystone', stack: '780' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:53.081529]:[2916]: Player: 'ADT Keystone', action: 'Bet', amount: '480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:54.219594]:[2916]: Player: 'bigdawg1026', stack: '1960' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:54.221594]:[2916]: Player: 'bigdawg1026', action: 'Call', amount: '480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:54.985638]:[2916]: Player: 'ADT Keystone', action: 'ShowCards', cards: 'QdAh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:54.990638]:[2916]: Player: 'bigdawg1026', action: 'ShowCards', cards: '5hAd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:18:58.030812]:[2916]: Player: 'chainz_863', stack: '1430' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:18:58.031812]:[2916]: Player: 'diounky', stack: '1110' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:18:58.031812]:[2916]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:18:58.033812]:[2916]: Player: 'chainz_863', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:18:58.046813]:[2916]: Player: 'diounky', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:18:58.050813]:[2916]: Player cards: ('Six' of 'Hearts')('Eight' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-16T16:19:02.267054]:[2916]: Player: 'TAZ 2087', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:02.268055]:[2916]: Player: 'TAZ 2087', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:03.355117]:[2916]: Player: 'linnc54', stack: '780' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:03.357117]:[2916]: Player: 'linnc54', action: 'Raise', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:03.644133]:[2916]: Player: 'bigdawg1026', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:06.170278]:[2916]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:06.488296]:[2916]: Player: 'Yung_blood94', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:08.875432]:[2916]: Player: 'DonnaH', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:09.162449]:[2916]: Player: 'ADT Keystone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:10.933550]:[2916]: Player: 'chainz_863', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:10.935550]:[2916]: Player: 'chainz_863', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:10.949551]:[2916]: Player: 'diounky', stack: '1090' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:10.952551]:[2916]: Player: 'diounky', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:11.352574]:[2916]: Player: 'TAZ 2087', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:11.353574]:[2916]: Player: 'TAZ 2087', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:11.979610]:[2916]: Cards received: ('Four' of 'Clubs')('King' of 'Spades')('Six' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:19:14.835773]:[2916]: Player: 'chainz_863', stack: '1360' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:14.836773]:[2916]: Player: 'chainz_863', action: 'Bet', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:15.894834]:[2916]: Player: 'diounky', stack: '1050' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:15.895834]:[2916]: Player: 'diounky', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:16.431865]:[2916]: Player: 'TAZ 2087', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:16.432865]:[2916]: Player: 'TAZ 2087', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:17.561929]:[2916]: Player: 'linnc54', stack: '740' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:17.562929]:[2916]: Player: 'linnc54', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:18.461981]:[2916]: Cards received: ('Four' of 'Clubs')('King' of 'Spades')('Six' of 'Diamonds')('King' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:19:20.430093]:[2916]: Player: 'chainz_863', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:21.343146]:[2916]: Player: 'diounky', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:29.208595]:[2916]: Player: 'TAZ 2087', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:30.276657]:[2916]: Player: 'linnc54', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:30.720682]:[2916]: Cards received: ('Four' of 'Clubs')('King' of 'Spades')('Six' of 'Diamonds')('King' of 'Clubs')('King' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:19:38.550130]:[2916]: Player: 'chainz_863', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:41.043272]:[2916]: Player: 'chainz_863', stack: '1140' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:41.045272]:[2916]: Player: 'chainz_863', action: 'Bet', amount: '220' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:42.568360]:[2916]: Player: 'diounky', stack: '830' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:42.569360]:[2916]: Player: 'diounky', action: 'Call', amount: '220' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:50.170794]:[2916]: Player: 'TAZ 2087', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:52.265914]:[2916]: Player: 'linnc54', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:53.012957]:[2916]: Player: 'chainz_863', action: 'ShowCards', cards: 'TcKh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:54.380035]:[2916]: Player: 'diounky', stack: '830' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:54.381035]:[2916]: Player: 'diounky', action: 'ShowCards', cards: '6s5c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:19:57.426209]:[2916]: Player: 'diounky', stack: '820' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:19:57.427209]:[2916]: Player: 'TAZ 2087', stack: '1380' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:19:57.427209]:[2916]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:19:57.429210]:[2916]: Player: 'diounky', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:19:57.444210]:[2916]: Player: 'TAZ 2087', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:19:57.446211]:[2916]: Player cards: ('Four' of 'Diamonds')('Jack' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-16T16:19:59.981356]:[2916]: Player: 'linnc54', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:01.265429]:[2916]: Player: 'bigdawg1026', stack: '2680' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:01.267429]:[2916]: Player: 'bigdawg1026', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:03.667566]:[2916]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:03.961583]:[2916]: Player: 'Yung_blood94', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:06.885750]:[2916]: Player: 'DonnaH', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:06.887751]:[2916]: Player: 'DonnaH', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:06.897751]:[2916]: Player: 'ADT Keystone', stack: '1520' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:06.899751]:[2916]: Player: 'ADT Keystone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:07.175767]:[2916]: Player: 'chainz_863', stack: '1880' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:07.177767]:[2916]: Player: 'chainz_863', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:08.245828]:[2916]: Player: 'diounky', stack: '790' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:08.247828]:[2916]: Player: 'diounky', action: 'Raise', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:12.040045]:[2916]: Player: 'TAZ 2087', stack: '1360' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:12.042045]:[2916]: Player: 'TAZ 2087', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:15.642251]:[2916]: Player: 'bigdawg1026', stack: '2660' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:15.644251]:[2916]: Player: 'bigdawg1026', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:16.937325]:[2916]: Player: 'DonnaH', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:16.938325]:[2916]: Player: 'DonnaH', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:17.519359]:[2916]: Player: 'chainz_863', stack: '1860' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:17.521359]:[2916]: Player: 'chainz_863', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:18.145394]:[2916]: Cards received: ('Five' of 'Clubs')('Three' of 'Clubs')('Queen' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:20:21.196569]:[2916]: Player: 'diounky', stack: '730' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:21.198569]:[2916]: Player: 'diounky', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:22.553647]:[2916]: Player: 'TAZ 2087', stack: '1300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:22.555647]:[2916]: Player: 'TAZ 2087', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:24.345749]:[2916]: Player: 'bigdawg1026', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:24.640766]:[2916]: Player: 'DonnaH', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:24.926782]:[2916]: Player: 'chainz_863', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:25.551818]:[2916]: Cards received: ('Five' of 'Clubs')('Three' of 'Clubs')('Queen' of 'Spades')('Ace' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:20:26.631880]:[2916]: Player: 'diounky', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:29.002015]:[2916]: Player: 'TAZ 2087', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:29.167025]:[2916]: Cards received: ('Five' of 'Clubs')('Three' of 'Clubs')('Queen' of 'Spades')('Ace' of 'Clubs')('King' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:20:31.168139]:[2916]: Player: 'diounky', stack: '690' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:31.170139]:[2916]: Player: 'diounky', action: 'Bet', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:33.087249]:[2916]: Player: 'TAZ 2087', stack: '1260' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:33.088249]:[2916]: Player: 'TAZ 2087', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:33.890295]:[2916]: Player: 'diounky', action: 'ShowCards', cards: 'QhAs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:36.110422]:[2916]: Player: 'TAZ 2087', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:39.232601]:[2916]: Player: 'TAZ 2087', stack: '1250' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:20:39.232601]:[2916]: Player: 'linnc54', stack: '720' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:20:39.232601]:[2916]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:20:39.233601]:[2916]: Player: 'TAZ 2087', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:20:39.242601]:[2916]: Player: 'linnc54', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:20:39.245601]:[2916]: Player cards: ('Ace' of 'Clubs')('Two' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-16T16:20:43.297833]:[2916]: Player: 'bigdawg1026', stack: '2640' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:43.298833]:[2916]: Player: 'bigdawg1026', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:46.139996]:[2916]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:46.444013]:[2916]: Player: 'Yung_blood94', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:48.632138]:[2916]: Player: 'DonnaH', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:48.926155]:[2916]: Player: 'ADT Keystone', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:48.927155]:[2916]: Player: 'ADT Keystone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:48.931155]:[2916]: Player: 'chainz_863', stack: '1840' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:48.932155]:[2916]: Player: 'chainz_863', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:50.001216]:[2916]: Player: 'diounky', stack: '1070' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:50.002217]:[2916]: Player: 'diounky', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:50.393239]:[2916]: Player: 'TAZ 2087', stack: '1240' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:50.395239]:[2916]: Player: 'TAZ 2087', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:50.684256]:[2916]: Player: 'linnc54', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:51.312291]:[2916]: Cards received: ('Seven' of 'Diamonds')('Ten' of 'Clubs')('Four' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:20:54.637482]:[2916]: Player: 'TAZ 2087', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:55.770546]:[2916]: Player: 'linnc54', stack: '700' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:55.772547]:[2916]: Player: 'linnc54', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:57.887668]:[2916]: Player: 'bigdawg1026', stack: '2620' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:20:57.889668]:[2916]: Player: 'bigdawg1026', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:05.888125]:[2916]: Player: 'chainz_863', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:19.494903]:[2916]: Player: 'chainz_863', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:19.790920]:[2916]: Player: 'diounky', stack: '1050' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:19.792920]:[2916]: Player: 'diounky', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:21.098995]:[2916]: Player: 'TAZ 2087', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:21.715030]:[2916]: Cards received: ('Seven' of 'Diamonds')('Ten' of 'Clubs')('Four' of 'Spades')('King' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:21:23.629140]:[2916]: Player: 'linnc54', stack: '680' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:23.631140]:[2916]: Player: 'linnc54', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:24.935215]:[2916]: Player: 'bigdawg1026', stack: '2600' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:24.938215]:[2916]: Player: 'bigdawg1026', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:26.095281]:[2916]: Player: 'diounky', stack: '1030' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:26.095281]:[2916]: Player: 'diounky', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:26.712316]:[2916]: Cards received: ('Seven' of 'Diamonds')('Ten' of 'Clubs')('Four' of 'Spades')('King' of 'Spades')('King' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:21:28.226403]:[2916]: Player: 'linnc54', stack: '660' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:28.228403]:[2916]: Player: 'linnc54', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:29.247461]:[2916]: Player: 'bigdawg1026', stack: '2580' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:29.248461]:[2916]: Player: 'bigdawg1026', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:32.016620]:[2916]: Player: 'diounky', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:32.018620]:[2916]: Player: 'diounky', action: 'Raise', amount: '1030' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:37.642941]:[2916]: Player: 'linnc54', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:38.226975]:[2916]: Player: 'bigdawg1026', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:41.903185]:[2916]: Player: 'linnc54', stack: '650' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:21:41.903185]:[2916]: Player: 'bigdawg1026', stack: '2560' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:21:41.903185]:[2916]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:21:41.904185]:[2916]: Player: 'linnc54', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:21:41.911186]:[2916]: Player: 'bigdawg1026', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:21:41.914186]:[2916]: Player cards: ('Five' of 'Diamonds')('Two' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-16T16:21:44.839353]:[2916]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:46.772464]:[2916]: Player: 'Yung_blood94', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:49.073595]:[2916]: Player: 'DonnaH', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:49.084596]:[2916]: Player: 'ADT Keystone', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:49.086596]:[2916]: Player: 'ADT Keystone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:51.020707]:[2916]: Player: 'chainz_863', stack: '1820' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:51.023707]:[2916]: Player: 'chainz_863', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:51.037708]:[2916]: Player: 'diounky', stack: '1270' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:51.040708]:[2916]: Player: 'diounky', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:51.312723]:[2916]: Player: 'TAZ 2087', stack: '1220' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:51.314723]:[2916]: Player: 'TAZ 2087', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:51.889756]:[2916]: Player: 'linnc54', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:52.181773]:[2916]: Player: 'bigdawg1026', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:52.809809]:[2916]: Cards received: ('Eight' of 'Spades')('Nine' of 'Diamonds')('Six' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:21:55.561966]:[2916]: Player: 'bigdawg1026', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:56.917044]:[2916]: Player: 'chainz_863', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:21:57.208061]:[2916]: Player: 'diounky', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:01.134285]:[2916]: Player: 'TAZ 2087', stack: '1180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:01.136285]:[2916]: Player: 'TAZ 2087', action: 'Bet', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:02.275350]:[2916]: Player: 'bigdawg1026', stack: '2520' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:02.276350]:[2916]: Player: 'bigdawg1026', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:03.271407]:[2916]: Player: 'chainz_863', stack: '1780' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:03.273407]:[2916]: Player: 'chainz_863', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:03.566424]:[2916]: Player: 'diounky', stack: '1230' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:03.568424]:[2916]: Player: 'diounky', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:04.192460]:[2916]: Cards received: ('Eight' of 'Spades')('Nine' of 'Diamonds')('Six' of 'Diamonds')('Queen' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:22:05.904558]:[2916]: Player: 'bigdawg1026', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:09.771779]:[2916]: Player: 'chainz_863', stack: '1700' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:09.773779]:[2916]: Player: 'chainz_863', action: 'Bet', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:10.066796]:[2916]: Player: 'diounky', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:13.037966]:[2916]: Player: 'TAZ 2087', stack: '1100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:13.038966]:[2916]: Player: 'TAZ 2087', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:14.103027]:[2916]: Player: 'bigdawg1026', stack: '2440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:14.105027]:[2916]: Player: 'bigdawg1026', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:14.726062]:[2916]: Cards received: ('Eight' of 'Spades')('Nine' of 'Diamonds')('Six' of 'Diamonds')('Queen' of 'Diamonds')('Four' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:22:17.576225]:[2916]: Player: 'bigdawg1026', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:17.578226]:[2916]: Player: 'bigdawg1026', action: 'Bet', amount: '2440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:18.874300]:[2916]: Player: 'chainz_863', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:18.876300]:[2916]: Player: 'chainz_863', action: 'Call', amount: '1700' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:20.758408]:[2916]: Player: 'TAZ 2087', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:21.217434]:[2916]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:22.525509]:[2916]: Player: 'bigdawg1026', action: 'ShowCards', cards: '7dKd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:22.535509]:[2916]: Player: 'chainz_863', stack: '740' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:22.537509]:[2916]: Player: 'chainz_863', action: 'ShowCards', cards: 'QsAd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:25.846699]:[2916]: Player: 'bigdawg1026', stack: '1460' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:22:25.847699]:[2916]: Player: 'CLRN', stack: '730' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:22:25.847699]:[2916]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:22:25.849699]:[2916]: Player: 'bigdawg1026', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:22:25.859699]:[2916]: Player: 'CLRN', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:22:25.861699]:[2916]: Player cards: ('Three' of 'Spades')('Nine' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-16T16:22:29.862928]:[2916]: Player: 'Yung_blood94', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:32.552082]:[2916]: Player: 'DonnaH', stack: '1380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:32.554082]:[2916]: Player: 'DonnaH', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:32.844099]:[2916]: Player: 'ADT Keystone', stack: '1520' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:32.845099]:[2916]: Player: 'ADT Keystone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:35.116229]:[2916]: Player: 'chainz_863', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:35.407245]:[2916]: Player: 'diounky', stack: '1210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:35.409245]:[2916]: Player: 'diounky', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:35.698262]:[2916]: Player: 'TAZ 2087', stack: '1080' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:35.700262]:[2916]: Player: 'TAZ 2087', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:36.733321]:[2916]: Player: 'linnc54', stack: '610' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:36.735321]:[2916]: Player: 'linnc54', action: 'Raise', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:37.760380]:[2916]: Player: 'bigdawg1026', stack: '700' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:37.762380]:[2916]: Player: 'bigdawg1026', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:40.002508]:[2916]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:42.012623]:[2916]: Player: 'DonnaH', stack: '1360' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:42.014623]:[2916]: Player: 'DonnaH', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:42.403646]:[2916]: Player: 'diounky', stack: '1190' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:42.405646]:[2916]: Player: 'diounky', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:42.694662]:[2916]: Player: 'TAZ 2087', stack: '1060' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:42.696662]:[2916]: Player: 'TAZ 2087', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:43.318698]:[2916]: Cards received: ('Queen' of 'Hearts')('Ace' of 'Spades')('Ace' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:22:45.843842]:[2916]: Player: 'bigdawg1026', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:45.845842]:[2916]: Player: 'bigdawg1026', action: 'Bet', amount: '700' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:47.707949]:[2916]: Player: 'DonnaH', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:53.652289]:[2916]: Player: 'diounky', stack: '490' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:53.654289]:[2916]: Player: 'diounky', action: 'Call', amount: '700' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:53.947306]:[2916]: Player: 'TAZ 2087', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:55.243380]:[2916]: Player: 'linnc54', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:55.245380]:[2916]: Player: 'linnc54', action: 'Call', amount: '610' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:56.166433]:[2916]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:22:57.889531]:[2916]: Cards received: ('Queen' of 'Hearts')('Ace' of 'Spades')('Ace' of 'Diamonds')('Seven' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:22:59.386617]:[2916]: Cards received: ('Queen' of 'Hearts')('Ace' of 'Spades')('Ace' of 'Diamonds')('Seven' of 'Spades')('Five' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-16T16:23:01.028711]:[2916]: Player: 'bigdawg1026', action: 'ShowCards', cards: '8cQs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:01.037711]:[2916]: Player: 'diounky', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:01.039711]:[2916]: Player: 'diounky', action: 'ShowCards', cards: 'TsAh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:02.061770]:[2916]: Player: 'diounky', stack: '670' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:02.063770]:[2916]: Player: 'diounky', action: 'WinCards', pot: '180', cards: 'AhAsAdQhTs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:02.067770]:[2916]: Player: 'linnc54', stack: '670' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:02.069770]:[2916]: Player: 'linnc54', action: 'ShowCards', cards: 'AcKc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:03.085828]:[2916]: Player: 'bigdawg1026', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:03.086829]:[2916]: Player: 'bigdawg1026', action: 'Rank', amount: '9' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:05.068942]:[2916]: Player: 'Yung_blood94', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:23:05.068942]:[2916]: Player: 'DonnaH', stack: '1340' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:23:05.069942]:[2916]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:23:05.070942]:[2916]: Player: 'Yung_blood94', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:23:05.081943]:[2916]: Player: 'DonnaH', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-16T16:23:05.086943]:[2916]: Player cards: ('Seven' of 'Hearts')('Two' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-16T16:23:06.149004]:[2916]: Player: 'ADT Keystone', stack: '1520' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:06.150004]:[2916]: Player: 'ADT Keystone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:07.562085]:[2916]: Player: 'chainz_863', stack: '3870' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:07.564085]:[2916]: Player: 'chainz_863', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:08.563142]:[2916]: Player: 'diounky', stack: '630' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:08.565142]:[2916]: Player: 'diounky', action: 'Raise', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:10.168234]:[2916]: Player: 'TAZ 2087', stack: '1020' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:10.170234]:[2916]: Player: 'TAZ 2087', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:10.459250]:[2916]: Player: 'linnc54', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:18.852730]:[2916]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-16T16:23:21.811900]:[2916]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */

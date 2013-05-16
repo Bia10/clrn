@@ -968,7 +968,18 @@ void TableLogic::ResetPhase()
             if (hand.m_Player == winner.m_Player || hand.m_Rank == winner.m_Rank)
                 skip = true; // winner or draw
 
-            if (GetPlayer(winner.m_Player).TotalBet() < GetPlayer(hand.m_Player).TotalBet())
+            // find all players with better hand
+            unsigned maxBet = 0;
+            for (const Hand& h : hands)
+            {
+                if (h.m_Rank <= hand.m_Rank)
+                    continue;
+                const unsigned bet = GetPlayer(h.m_Player).TotalBet();
+                if (bet > maxBet)
+                    maxBet = bet;
+            }
+
+            if (maxBet < GetPlayer(hand.m_Player).TotalBet())
                 skip = true; // loose not all money
 
             // workaround, all in players may win without info about stacks, so they haven't stack and will be assumed as all in again

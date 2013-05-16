@@ -4,7 +4,8 @@
 namespace cfg
 {
 	// evaluator
-	static const int MAX_EQUITY_PLAYERS = 4;
+    static const int MAX_EQUITY_PLAYERS = 4;
+    static const int MIN_EQUITY_PLAYERS = 2; 
 	static const int CARD_DECK_SIZE = 52;
 	static const int MAX_PLAYERS = 9;
 	static const int NUMBER_OF_REPITITIONS = 
