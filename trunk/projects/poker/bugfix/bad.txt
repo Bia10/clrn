@@ -1,5 +1,19 @@
 pending:
 
+
+испугался:
+[TRACE  ][6][2013-05-16T17:36:44.565723]:[5644]: Processing by neuro network, in: [0.46985,1,0.5,0,1,0.5,1,0.5], out: [1,0,0] /* srv::DecisionMaker::MakeDecision */
+[TRACE  ][6][2013-05-16T17:36:44.573723]:[5644]: Win: [0.469850004], bet: [0], max bet: [370], pot: [1270], bot stack: [3675], cards: [Cards: ('King' of 'Spades')('Seven' of 'Clubs'), Flop: ('Four' of 'Hearts')('Ten' of 'Spades')('King' of 'Hearts')] /* srv::DecisionMaker::MakeDecision */
+[TRACE  ][6][2013-05-16T17:36:44.586724]:[5644]: 
+Decision >>>>: [win: [Good], pos: [Later], bet: [Normal], players: [One], danger: [High], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
+
+скинул АК на рейз:
+[TRACE  ][6][2013-05-16T17:50:03.650428]:[6288]: Win: [0.413310021], bet: [150], max bet: [4905], pot: [5055], bot stack: [5935], cards: [Cards: ('Ace' of 'Spades')('King' of 'Clubs'), Flop: ] /* srv::DecisionMaker::MakeDecision */
+[TRACE  ][6][2013-05-16T17:50:03.660428]:[6288]: 
+Decision >>>>: [win: [Good], pos: [Later], bet: [Huge], players: [One], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
+
 fixed:
 [TRACE  ][6][2013-04-10T23:32:23.594577]:[4752]: Decision input: win: [Normal]:[29], pos: [Later], pot: [Normal], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */
 [TRACE  ][6][2013-04-10T23:37:54.535506]:[5988]: Decision input: win: [Normal]:[31], pos: [Later], pot: [High], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */
@@ -15,9 +29,10 @@ Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
 
 добавлен колл для случаев ниже с bet: Very low
 Decision >>>>: [win: [Low], pos: [Later], bet: [Normal], players: [One], danger: [Low], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
-Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
 Decision >>>>: [win: [Low], pos: [Later], bet: [Normal], players: [Two], danger: [High], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
-Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
 
 скинул туз даму на префлопе
 Decision >>>>: [win: [Normal], pos: [Later], bet: [High], players: [ThreeOrMore], danger: [Low], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+
+скинул туз-валет
+Decision >>>>: [win: [Normal], pos: [Early], bet: [Low], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Small], decision: [Not set]]
