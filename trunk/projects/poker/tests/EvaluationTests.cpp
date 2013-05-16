@@ -1,7 +1,7 @@
-/*
-#include "CombinationsCalculator.h"
+#include "Evaluator.h"
 #include "../../evaluator/HandEval.h"
 #include "../../evaluator/SevenEval.h"
+#include "Config.h"
 
 #include "gtest/gtest.h"
 
@@ -24,12 +24,13 @@ public:
 
 	void Do()
 	{
-		std::vector<short> ranges(::std::tr1::get<2>(GetParam()) - 1, Evaluator::CARD_DECK_SIZE);
+		std::vector<short> ranges(::std::tr1::get<2>(GetParam()) - 1, cfg::CARD_DECK_SIZE);
 		std::vector<int> flop;
 
 		const float percents =  m_Calc.GetEquity(std::tr1::get<0>(GetParam()), std::tr1::get<1>(GetParam()), flop, ranges);
+        const float param = std::tr1::get<3>(GetParam());
 
-		ASSERT_TRUE(fabs(percents - std::tr1::get<3>(GetParam())) < 1.0f) << percents;
+		ASSERT_TRUE(fabs(percents - param) < 1.0f) << percents << " must be: " << param;
 	}
 private:
 	Evaluator m_Calc;
@@ -41,7 +42,7 @@ public:
 
 	void Do()
 	{
-		std::vector<short> ranges(::std::tr1::get<3>(GetParam()) - 1, Evaluator::CARD_DECK_SIZE);
+		std::vector<short> ranges(::std::tr1::get<3>(GetParam()) - 1, cfg::CARD_DECK_SIZE);
 
 		Card::List flopCards = std::tr1::get<2>(GetParam());
 
@@ -62,7 +63,7 @@ TEST(Cards, Convertion)
 	Evaluator ev;
 	for (int i = 0 ; i < 1000; ++i)
 	{
-		bool dead[Evaluator::CARD_DECK_SIZE] = {false};
+		bool dead[cfg::CARD_DECK_SIZE] = {false};
 		const short evalValue = ev.GetRandomCard(dead);
 		Card card;
 		card.FromEvalFormat(evalValue);
@@ -215,7 +216,8 @@ INSTANTIATE_TEST_CASE_P
 	TestHands,
 	Values
 	(
-		ParamsWithoutFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), 2, 67.054f),
+        ParamsWithoutFlop(Card(Card::King, Suit::Clubs).ToEvalFormat(), Card(Card::Three, Suit::Hearts).ToEvalFormat(), 3, 30.120f),
+        ParamsWithoutFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), 2, 67.054f),
 		ParamsWithoutFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), 3, 50.700f),
 		ParamsWithoutFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), 4, 41.435f),
 		ParamsWithoutFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), 5, 35.444f),
@@ -244,4 +246,4 @@ INSTANTIATE_TEST_CASE_P
 		ParamsWithFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), flop, 8, 9.003f),
 		ParamsWithFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), flop, 9, 7.639f)
 	)
-);*/
+);
