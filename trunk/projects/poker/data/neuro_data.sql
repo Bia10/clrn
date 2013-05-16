@@ -192,4 +192,16 @@ WHERE  win IN ( 2 )
        AND bot_style IN ( 0, 1, 2 ) 
        AND bot_stack IN ( 0, 1, 2 ) 
        AND decision IN ( 0 ) 
-	   	   
+
+-- call normal bets with good rate and high danger
+UPDATE decisions 
+SET    decision = 1 
+WHERE  win IN ( 3 ) 
+       AND position IN ( 0, 1, 2 ) 
+       AND bet IN ( 0, 1, 2 ) 
+       AND players IN ( 0, 1 ) 
+       AND danger IN ( 2 ) 
+       AND bot_avg_style IN ( 0, 1, 2 ) 
+       AND bot_style IN ( 0, 1, 2 ) 
+       AND bot_stack IN ( 0, 1, 2 ) 
+       AND decision IN ( 0 ) 	   
