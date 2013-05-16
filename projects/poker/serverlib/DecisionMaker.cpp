@@ -357,7 +357,7 @@ pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const pcmn::Player&
 	m_Stat.GetLastActions(player.Name(), it->Name(), checks, calls, raises);
 
     const int summ = checks + calls + raises;
-    if (raises >= summ / 2)
+    if (raises >= summ / 3)
         return pcmn::Player::Style::Aggressive;
 
 	if (raises > 1)

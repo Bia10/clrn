@@ -363,7 +363,7 @@ Player::Position::Value TableLogic::GetNextPlayerPosition()
     const std::size_t totalPlayers = m_Sequence.size();
     std::size_t leftInQueue = m_Queue.size();
 
-    if (m_Phase == Phase::Preflop)
+    if (m_Phase == Phase::Preflop && m_Sequence.size() > 3)
     {
         if (leftInQueue <= 2)
             leftInQueue = 0;
@@ -573,6 +573,7 @@ void TableLogic::Parse(const net::Packet& packet)
             SetPhase(phase);
 
             BetSize::Value lastBigBet = BetSize::VeryLow;
+            context.m_MaxBet = 0;
             for (int i = 0; i < packet.phases(phase).actions_size(); ++i)
             {
                 context.m_Street = phase;
