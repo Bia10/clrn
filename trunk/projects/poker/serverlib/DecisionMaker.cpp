@@ -144,7 +144,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
             amount = (amount / 10) * 10;
 
 			if (amount > player.Stack() / 2)
-				amount = player.Stack();
+				amount = player.Stack() + player.Bet();
 
 			reply.set_amount(amount);
 		}
@@ -228,7 +228,7 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
         cardRanges.push_back(range);
 	}
 
-	unsigned size = activePlayers.size();
+	unsigned size = activePlayers.size() - 1;
 	if (size > cfg::MAX_EQUITY_PLAYERS)
 		size = cfg::MAX_EQUITY_PLAYERS;
 
