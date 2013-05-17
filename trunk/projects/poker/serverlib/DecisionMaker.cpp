@@ -381,8 +381,11 @@ pcmn::Player::Style::Value DecisionMaker::GetBotStyle(const pcmn::Player& bot) c
         }
 	}
 
+    // if bot checks bb than style is normal
+    const bool checkedFromBigBlind = !bot.GetActions().empty() && bot.GetActions().front().size() == 1 && bot.GetActions().front().front().m_Id == pcmn::Action::Check;
+
 	// more than one call it's a normal style(one call from preflop), else - call and checks - it's passive style
-	return (calls > 1) ? pcmn::Player::Style::Normal : pcmn::Player::Style::Passive;
+	return (calls > 1 || checkedFromBigBlind) ? pcmn::Player::Style::Normal : pcmn::Player::Style::Passive;
 }
 
 unsigned DecisionMaker::GetMaxStack(const  pcmn::Player::Queue& activePlayers) const
