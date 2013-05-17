@@ -91,18 +91,8 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 		params.m_BotStackSize = pcmn::StackSize::FromValue(player.Stack(), context.m_BigBlind, GetMaxStack(activePlayers));
 		in.push_back(static_cast<float>(params.m_BotStackSize) / pcmn::StackSize::Max);
 
-        // continuation bet
         std::vector<float> out;
-        if (context.m_Street == 1 && params.m_BotStyle == pcmn::Player::Style::Aggressive && params.m_BotAverageStyle != pcmn::Player::Style::Aggressive && params.m_Danger == pcmn::Danger::Low && params.m_BetSize < pcmn::BetSize::Normal && context.m_Pot * 2 < player.Stack())
-        {
-            out = boost::assign::list_of(0.0f)(0.0f)(1.0f);
-            LOG_TRACE("Making continuation bet: [%s]") % out;
-        }
-        else
-        {
-		    m_Net.Process(in, out);
-            LOG_TRACE("Processing by neuro network, in: [%s], out: [%s]") % in % out;
-        }
+        m_Net.Process(in, out);
 	
 		net::Reply reply;
 	
