@@ -1,5 +1,13 @@
 pending:
 
+тут надо ссс
+[TRACE  ][6][2013-05-17T13:49:25.688473]:[4992]: Processing by neuro network, in: [0.33291,1,1,1,0.5,0,0,0], out: [1,0,0] /* srv::DecisionMaker::MakeDecision */
+[TRACE  ][6][2013-05-17T13:49:25.696474]:[4992]: Win: [0.332910001], bet: [0], max bet: [1240], pot: [1840], bot stack: [1455], cards: [Cards: ('King' of 'Spades')('Ace' of 'Diamonds'), Flop: ] /* srv::DecisionMaker::MakeDecision */
+[TRACE  ][6][2013-05-17T13:49:25.706474]:[4992]: 
+Decision >>>>: [win: [Normal], pos: [Later], bet: [Huge], players: [ThreeOrMore], danger: [Normal], bot avg style: [Passive], bot style: [Passive], bot stack: [Small], decision: [Not set]]
+Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
+
+
 fixed:
 [TRACE  ][6][2013-04-10T23:32:23.594577]:[4752]: Decision input: win: [Normal]:[29], pos: [Later], pot: [Normal], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */
 [TRACE  ][6][2013-04-10T23:37:54.535506]:[5988]: Decision input: win: [Normal]:[31], pos: [Later], pot: [High], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */
