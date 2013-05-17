@@ -1,12 +1,5 @@
 pending:
 
-тут надо ссс
-[TRACE  ][6][2013-05-17T13:49:25.688473]:[4992]: Processing by neuro network, in: [0.33291,1,1,1,0.5,0,0,0], out: [1,0,0] /* srv::DecisionMaker::MakeDecision */
-[TRACE  ][6][2013-05-17T13:49:25.696474]:[4992]: Win: [0.332910001], bet: [0], max bet: [1240], pot: [1840], bot stack: [1455], cards: [Cards: ('King' of 'Spades')('Ace' of 'Diamonds'), Flop: ] /* srv::DecisionMaker::MakeDecision */
-[TRACE  ][6][2013-05-17T13:49:25.706474]:[4992]: 
-Decision >>>>: [win: [Normal], pos: [Later], bet: [Huge], players: [ThreeOrMore], danger: [Normal], bot avg style: [Passive], bot style: [Passive], bot stack: [Small], decision: [Not set]]
-Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
-
 тут надо конбет:
 [TRACE  ][6][2013-05-17T15:08:39.187358]:[4320]: Win: [0.293749988], bet: [0], max bet: [100], pot: [250], bot stack: [101], cards: [Cards: ('Queen' of 'Clubs')('Ace' of 'Hearts'), Flop: ] /* srv::DecisionMaker::MakeDecision */
 [TRACE  ][6][2013-05-17T15:08:39.200359]:[4320]: 
@@ -54,3 +47,6 @@ Decision >>>>: [win: [Good], pos: [Later], bet: [Huge], players: [One], danger: 
 при хедсапе колирует/рейзит на младшей паре:
 Decision >>>>: [win: [Good], pos: [Later], bet: [High], players: [One], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
 Decision >>>>: [win: [Good], pos: [Later], bet: [Normal], players: [One], danger: [Normal], bot avg style: [Normal], bot style: [Normal], bot stack: [Normal], decision: [Not set]]
+
+тут надо ссс
+Decision >>>>: [win: [Normal], pos: [Later], bet: [Huge], players: [ThreeOrMore], danger: [Normal], bot avg style: [Passive], bot style: [Passive], bot stack: [Small], decision: [Not set]]
