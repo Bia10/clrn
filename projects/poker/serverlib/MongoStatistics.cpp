@@ -59,53 +59,9 @@ unsigned GetRanges(PlayerInfo::List& players)
         unsigned count = 0;
         for (PlayerInfo& info : players)
         {
-            std::vector<int> cards;
-
-            // query all games with cards info about this player
-            const std::string& name = info.m_Name;
-
-            // prepare list of actions
-            std::vector<bson::bo> actions;
-            for (const pcmn::Player::ActionDesc& actionDsc : info.m_Actions)
-            {
-                const bson::bo object = BSON("id" << actionDsc.m_Id << "amount" << actionDsc.m_Amount);
-                LOG_TRACE("Fetching player range: [%s], actions: [%s]") % name % object.toString();
-                actions.push_back(object);
-            }
-
-            // fetch 
-            const std::auto_ptr<mongo::DBClientCursor> cursor = m_Connection.query
-            (
-                STAT_COLLECTION_NAME, 
-                BSON("players" << BSON("$elemMatch" 
-                                        << BSON("name" << name 
-                                                << "cards" << BSON("$size" << 2)
-                                                << "streets.0.actions" << BSON("$all"
-                                                    << actions)))),
-                0, 
-                0, 
-                &returnProjection
-            );
-
-            while (cursor->more()) 
-            {
-                const bson::bo data = cursor->next();
-                LOG_TRACE("Fetched player range: [%s], data: [%s]") % name % data.toString();
-
-                const std::vector<bson::be> cardsArray = data.getFieldDotted("players.0.cards").Array();
-                for (const bson::be& elem : cardsArray)
-                    cards.push_back(elem.Int());
-            }
-
-            if (cards.size() < 4)
-                continue;
-
-            ++count;
-
-            // find average value
-            const unsigned summ = std::accumulate(cards.begin(), cards.end(), 0);
-            LOG_TRACE("Player: [%s], cards: [%s], summ: [%s], count: [%s]") % name % cards % summ % count;
-            info.m_CardRange = summ / cards.size();
+            info.m_CardRange = GetRange(info.m_Actions, info.m_Name);
+            if (!info.m_CardRange)
+                info.m_CardRange = GetRange(info.m_Actions);
         }
    
         return count;
@@ -223,6 +179,76 @@ unsigned GetEquities(PlayerInfo::List& players, unsigned street)
 }
 
 private:
+
+unsigned GetRange(const pcmn::Player::ActionDesc::List& actionDescs, const std::string& name = std::string())
+{
+	TRY
+	{
+        // get all games with specified actions on preflop
+        SCOPED_LOG(m_Log);
+
+        // return projection
+        static const bson::bo returnProjection = bson::bob().append("players.$", 1).append("_id", 0).obj();
+
+        std::vector<int> cards;
+
+        // query all games with cards info about this player or for all stats
+
+        // prepare list of actions
+        std::vector<bson::bo> actions;
+        for (const pcmn::Player::ActionDesc& actionDsc : actionDescs)
+        {
+            const bson::bo object = BSON("id" << actionDsc.m_Id << "amount" << actionDsc.m_Amount);
+            LOG_TRACE("Fetching player range: [%s], actions: [%s]") % name % object.toString();
+            actions.push_back(object);
+        }
+
+        mongo::Query query = 
+            name.empty() ? 
+        BSON("players" << BSON("$elemMatch" 
+                                << BSON("cards" << BSON("$size" << 2)
+                                        << "streets.0.actions" << BSON("$all"
+                                            << actions))))
+            :
+        BSON("players" << BSON("$elemMatch" 
+                        << BSON("name" << name 
+                                << "cards" << BSON("$size" << 2)
+                                << "streets.0.actions" << BSON("$all"
+                                    << actions))))
+            ;
+
+        query.sort("_id", 0);
+
+        // fetch 
+        const std::auto_ptr<mongo::DBClientCursor> cursor = m_Connection.query
+        (
+            STAT_COLLECTION_NAME, 
+            query,
+            100, 
+            0, 
+            &returnProjection
+        );
+
+        while (cursor->more()) 
+        {
+            const bson::bo data = cursor->next();
+            LOG_TRACE("Fetched player range: [%s], data: [%s]") % name % data.toString();
+
+            const std::vector<bson::be> cardsArray = data.getFieldDotted("players.0.cards").Array();
+            for (const bson::be& elem : cardsArray)
+                cards.push_back(elem.Int());
+        }
+
+        if (cards.size() < 4)
+            return 0;
+
+        // find average value
+        const unsigned summ = std::accumulate(cards.begin(), cards.end(), 0);
+        LOG_TRACE("Player: [%s], cards: [%s], summ: [%s]") % name % cards % summ;
+        return summ / cards.size();
+	}
+	CATCH_PASS_EXCEPTIONS("GetRanges failed")
+}
 
 bool IsActionsMatch(const bson::bo& street, const PlayerInfo::Actions& actionsDescs)
 {

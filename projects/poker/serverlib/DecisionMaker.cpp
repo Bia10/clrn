@@ -205,7 +205,7 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
         // remove useless actions
         actions.erase(std::remove_if(actions.begin(), actions.end(), [](const pcmn::Player::ActionDesc& a){ return a.m_Id > pcmn::Action::Raise; }), actions.end());
 
-        if (actions.empty())
+        if (actions.empty() || actions.size() == 1 && actions.front().m_Amount <= pcmn::BetSize::Low) // don't calculate ranges for small bets
             continue;
 
 		ranges.resize(ranges.size() + 1);
@@ -244,7 +244,8 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
 	if (size > cfg::MAX_EQUITY_PLAYERS)
 		size = cfg::MAX_EQUITY_PLAYERS;
 
-    const unsigned minPlayers = context.m_Street ? cfg::MIN_EQUITY_PLAYERS : 1;
+    // if we have more than one opponents in the game or we have turn or river - calculate equity for 3 players
+    const unsigned minPlayers = (context.m_Data.m_Players.size() > 2 || context.m_Street > 1) ? cfg::MIN_EQUITY_PLAYERS : 1;
     if (size < minPlayers)
         size = minPlayers;
 
