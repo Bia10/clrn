@@ -257,3 +257,16 @@ WHERE  win IN ( 0, 1 )
        AND bot_style IN ( 2 ) 
        AND bot_stack IN ( 2 ) 
        AND decision IN ( 0 ) 		   
+	   
+-- push bets with low danger and normal win rate
+UPDATE decisions 
+SET    decision = 2 
+WHERE  win IN ( 2 ) 
+       AND position IN ( 0, 1, 2 ) 
+       AND bet IN ( 0 ) 
+       AND players IN ( 0, 1, 2 ) 
+       AND danger IN ( 0 ) 
+       AND bot_avg_style IN ( 0, 1 ) 
+       AND bot_style IN ( 2 ) 
+       AND bot_stack IN ( 2 ) 
+       AND decision IN ( 0, 1 ) 		   
