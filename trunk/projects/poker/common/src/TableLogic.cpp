@@ -41,6 +41,12 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
         LOG_TRACE("Name: [%s], action: [%s], amount: [%s]") % name % Action::ToString(action) % amount;
         CHECK(m_Phase <= Phase::River, m_Phase, name, action, amount);
 
+        if (action == Action::SecondsLeft)
+        {
+            m_State = State::Uninited;
+            return;
+        }
+
         const bool resetOnly = (m_State == State::Uninited && action == Action::SmallBlind);
         if (resetOnly || m_IsRoundFinished && Action::IsUseful(action))
         {
