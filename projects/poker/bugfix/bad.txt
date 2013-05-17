@@ -1,20 +1,5 @@
 pending:
 
-тут надо конбет:
-[TRACE  ][6][2013-05-17T15:08:39.187358]:[4320]: Win: [0.293749988], bet: [0], max bet: [100], pot: [250], bot stack: [101], cards: [Cards: ('Queen' of 'Clubs')('Ace' of 'Hearts'), Flop: ] /* srv::DecisionMaker::MakeDecision */
-[TRACE  ][6][2013-05-17T15:08:39.200359]:[4320]: 
-Decision >>>>: [win: [Normal], pos: [Middle], bet: [Low], players: [ThreeOrMore], danger: [Normal], bot avg style: [Aggressive], bot style: [Passive], bot stack: [Small], decision: [Not set]]
-Decision <<<<: [Action: 4 Amount: 101] /* srv::DecisionMaker::MakeDecision */
-[WARNING][6][2013-05-17T15:08:39.218360]:[4320]: Requests processed: [65] /* srv::Server::Impl::HandleRequest */
-[WARNING][6][2013-05-17T15:08:54.580238]:[1208]: Requests processed: [66] /* srv::Server::Impl::HandleRequest */
-[TRACE  ][6][2013-05-17T15:08:55.550294]:[4320]: Ranges: [21,52] /* srv::DecisionMaker::GetPlayerWinRate */
-[TRACE  ][6][2013-05-17T15:08:55.714303]:[4320]: Equities size: [1] /* srv::DecisionMaker::GetDanger */
-[TRACE  ][6][2013-05-17T15:08:55.751305]:[4320]: Processing by neuro network, in: [0.26658,1,0,0,0,1,1,0.5], out: [0,1,0] /* srv::DecisionMaker::MakeDecision */
-[TRACE  ][6][2013-05-17T15:08:55.759306]:[4320]: Win: [0.266580015], bet: [0], max bet: [0], pot: [550], bot stack: [1150], cards: [Cards: ('Queen' of 'Clubs')('Ace' of 'Hearts'), Flop: ('Ten' of 'Spades')('Four' of 'Diamonds')('Jack' of 'Clubs')] /* srv::DecisionMaker::MakeDecision */
-[TRACE  ][6][2013-05-17T15:08:55.771306]:[4320]: 
-Decision >>>>: [win: [Normal], pos: [Later], bet: [VeryLow], players: [One], danger: [Low], bot avg style: [Aggressive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
-Decision <<<<: [Action: 1 Amount: 0] /* srv::DecisionMaker::MakeDecision */
-
 fixed:
 [TRACE  ][6][2013-04-10T23:32:23.594577]:[4752]: Decision input: win: [Normal]:[29], pos: [Later], pot: [Normal], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */
 [TRACE  ][6][2013-04-10T23:37:54.535506]:[5988]: Decision input: win: [Normal]:[31], pos: [Later], pot: [High], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */
@@ -50,3 +35,11 @@ Decision >>>>: [win: [Good], pos: [Later], bet: [Normal], players: [One], danger
 
 тут надо ссс
 Decision >>>>: [win: [Normal], pos: [Later], bet: [Huge], players: [ThreeOrMore], danger: [Normal], bot avg style: [Passive], bot style: [Passive], bot stack: [Small], decision: [Not set]]
+
+тут надо конбет:
+Decision >>>>: [win: [Normal], pos: [Later], bet: [VeryLow], players: [One], danger: [Low], bot avg style: [Aggressive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+
+тут олл ин - решилось в плюсовом коде (олл ин вместо рейза при маленьком стеке):
+Decision >>>>: [win: [Normal], pos: [Later], bet: [Huge], players: [Two], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+Decision >>>>: [win: [Good], pos: [Later], bet: [VeryLow], players: [One], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Small], decision: [Not set]]
+Decision >>>>: [win: [VeryGood], pos: [Early], bet: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Small], decision: [Not set]]

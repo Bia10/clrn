@@ -15,13 +15,17 @@ namespace pcmn
 #undef CASE
 	}
 
-	StackSize::Value StackSize::FromValue(std::size_t value, std::size_t bigBlind, std::size_t maxStack)
+	StackSize::Value StackSize::FromValue(unsigned value, unsigned bigBlind, unsigned maxStack, unsigned pot)
 	{
 		if (value < bigBlind * 10)
 			return StackSize::Small;
 
+        if (value < pot)
+            return StackSize::Small;
+
 		if (value < maxStack * 2)
 			return StackSize::Normal;
+
 		return StackSize::Big;
 	}
 
