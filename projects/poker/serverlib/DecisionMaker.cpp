@@ -244,8 +244,9 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
 	if (size > cfg::MAX_EQUITY_PLAYERS)
 		size = cfg::MAX_EQUITY_PLAYERS;
 
-    if (size < cfg::MIN_EQUITY_PLAYERS)
-        size = cfg::MIN_EQUITY_PLAYERS;
+    const unsigned minPlayers = context.m_Street ? cfg::MIN_EQUITY_PLAYERS : 1;
+    if (size < minPlayers)
+        size = minPlayers;
 
 	if (cardRanges.size() > size)
 		std::sort(cardRanges.begin(), cardRanges.end()); // remove bigger values(biggest value - worst hand)
