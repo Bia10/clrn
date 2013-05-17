@@ -28,3 +28,7 @@ Decision >>>>: [win: [Good], pos: [Later], bet: [Normal], players: [One], danger
 
 скинул АК на рейз:
 Decision >>>>: [win: [Good], pos: [Later], bet: [Huge], players: [One], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+
+при хедсапе колирует/рейзит на младшей паре:
+Decision >>>>: [win: [Good], pos: [Later], bet: [High], players: [One], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+Decision >>>>: [win: [Good], pos: [Later], bet: [Normal], players: [One], danger: [Normal], bot avg style: [Normal], bot style: [Normal], bot stack: [Normal], decision: [Not set]]
