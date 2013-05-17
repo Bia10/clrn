@@ -145,7 +145,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 
             amount = (amount / 10) * 10;
 
-			if (amount > player.Stack() / 2)
+			if (amount > player.Stack() / 2 || params.m_BotStackSize == pcmn::StackSize::Small) // all in with small stack
 				amount = player.Stack() + player.Bet();
 
 			reply.set_amount(amount);
@@ -352,6 +352,9 @@ pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const pcmn::Player&
 	m_Stat.GetLastActions(player.Name(), it->Name(), checks, calls, raises);
 
     const int summ = checks + calls + raises;
+    if (!summ)
+        return pcmn::Player::Style::Normal;
+
     if (raises >= summ / 2)
         return pcmn::Player::Style::Aggressive;
 
