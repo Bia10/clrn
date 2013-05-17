@@ -212,6 +212,9 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
         LOG_ERROR("Failed to push action: [%s], name: [%s], amount: [%s], error: [%s]") % name % Action::ToString(action) % amount % e.what();
         APPEND_ARGS(e, name, action, amount);
         m_State = State::Uninited;
+        ResetData();
+        m_Sequence.clear();
+        m_Queue.clear();
         throw;
     }
 }
