@@ -141,6 +141,10 @@ void GetLastActions(const std::string& target, const std::string& opponent, int&
 
         while (cursor->more()) 
         {
+            unsigned passiveActions = 0;
+            unsigned normalActions = 0;
+            unsigned aggressiveActions = 0;
+
             const bson::bo data = cursor->next();
             LOG_TRACE("Fetched last actions: [%s]") % data.toString();
 
@@ -150,6 +154,7 @@ void GetLastActions(const std::string& target, const std::string& opponent, int&
                 const bson::bo player = elem.Obj();
                 if (player["name"].String() != target)
                     continue;
+
 
                 // found target player, enum all actions
                 const std::vector<bson::be> streets = player["streets"].Array();
@@ -164,20 +169,28 @@ void GetLastActions(const std::string& target, const std::string& opponent, int&
                         {
                         case pcmn::Action::Check:
                         case pcmn::Action::Fold:
-                            ++checkFolds;
+                            ++passiveActions;
                             break;
                         case pcmn::Action::Call:
-                            ++calls;
+                            ++normalActions;
                             break;
                         case pcmn::Action::Bet:
                         case pcmn::Action::Raise:
-                            ++raises;
+                            ++aggressiveActions;
                             break;
                         }
                     }
                 }
                 break;
             }
+
+            if (aggressiveActions)
+                ++raises;
+            else
+            if (normalActions)
+                ++calls;
+            else
+                ++checkFolds;
         }
 
 	}
