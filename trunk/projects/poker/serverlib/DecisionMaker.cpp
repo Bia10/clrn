@@ -264,32 +264,32 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
 
 	// prepare request
 	IStatistics::PlayerInfo::List equities;
-	equities.reserve(activePlayers.size());
 	for (const pcmn::Player& player : activePlayers)
 	{
         if (player.GetActions().empty() || player.Name() == bot.Name())
             continue;
 
-		pcmn::Player::ActionDesc::List actions = player.GetActions().back();
+        for (pcmn::Player::ActionDesc::List actions : player.GetActions())
+        {
+            // remove useless actions
+            actions.erase(std::remove_if(actions.begin(), actions.end(), [](const pcmn::Player::ActionDesc& a){ return a.m_Id > pcmn::Action::Raise; }), actions.end());
 
-        // remove useless actions
-        actions.erase(std::remove_if(actions.begin(), actions.end(), [](const pcmn::Player::ActionDesc& a){ return a.m_Id > pcmn::Action::Raise; }), actions.end());
+            if (actions.empty())
+                continue;
 
-		if (actions.empty())
-			continue;
+            equities.push_back(IStatistics::PlayerInfo());
+            IStatistics::PlayerInfo& current = equities.back();
 
-		equities.resize(equities.size() + 1);
-		IStatistics::PlayerInfo& current = equities.back();
+            // player name
+            current.m_Name = player.Name();
 
-		// player name
-		current.m_Name = player.Name();
-		
-		// copy all actions, exclude duplicates
-		for (const pcmn::Player::ActionDesc& action : actions)
-		{
-			if (std::find(current.m_Actions.begin(), current.m_Actions.end(), action) == current.m_Actions.end())
-				current.m_Actions.push_back(action);
-		}
+            // copy all actions, exclude duplicates
+            for (const pcmn::Player::ActionDesc& action : actions)
+            {
+                if (std::find(current.m_Actions.begin(), current.m_Actions.end(), action) == current.m_Actions.end())
+                    current.m_Actions.push_back(action);
+            }
+        }
 	}
 
     LOG_TRACE("Equities size: [%s]") % equities.size();

@@ -244,7 +244,7 @@ unsigned GetRange(const pcmn::Player::ActionDesc::List& actionDescs, const std::
 
         // find average value
         const unsigned summ = std::accumulate(cards.begin(), cards.end(), 0);
-        LOG_TRACE("Player: [%s], cards: [%s], summ: [%s]") % name % cards % summ;
+        LOG_TRACE("Player: [%s], cards: [%s], summ: [%s], result: [%s]") % name % cards % summ % (summ / cards.size());
         return summ / cards.size();
 	}
 	CATCH_PASS_EXCEPTIONS("GetRanges failed")
@@ -356,7 +356,7 @@ float GetEquity(const PlayerInfo::Actions& actionDescs, unsigned streetId, const
 
         // find average value
         const double summ = std::accumulate(equities.begin(), equities.end(), double());
-        LOG_TRACE("Player: [%s], equities: [%s], summ: [%s]") % name % equities % summ;
+        LOG_TRACE("Player: [%s], equities: [%s], summ: [%s], result: [%s]") % name % equities % summ % static_cast<float>(summ / equities.size());
         return static_cast<float>(summ / equities.size());
     }
     CATCH_PASS_EXCEPTIONS("GetEquity failed", name)
@@ -417,7 +417,7 @@ float GetEquity(const PlayerInfo::Actions& actionDescs, unsigned street)
 
         // find average value
         const double summ = std::accumulate(equities.begin(), equities.end(), double());
-        LOG_TRACE("All stats equities: [%s], summ: [%s]") % equities % summ;
+        LOG_TRACE("All stats equities: [%s], summ: [%s], result: [%s]") % equities % summ % static_cast<float>(summ / equities.size());
         return static_cast<float>(summ / equities.size());
     }
     CATCH_PASS_EXCEPTIONS("GetEquity from all stats failed")
