@@ -568,14 +568,8 @@ void TableLogic::Parse(const net::Packet& packet)
         m_Pot = 0;
 
         // simulate logic
-        for (Phase::Value phase = Phase::Preflop; ; phase = static_cast<Phase::Value>(phase + 1))
+        for (Phase::Value phase = Phase::Preflop ; phase < packet.phases_size(); phase = static_cast<Phase::Value>(phase + 1))
         {
-            if (phase == packet.phases_size())
-            {
-                context.m_MaxBet = 0;
-                break;
-            }
-
             SetPhase(phase);
 
             BetSize::Value lastBigBet = BetSize::VeryLow;
@@ -598,7 +592,10 @@ void TableLogic::Parse(const net::Packet& packet)
                 const bool isUseful = Action::IsUseful(action);
                 if (isUseful)
                 {
+                    const Phase::Value previous = m_Phase;
                     PushAction(player, action, amount);
+                    if (m_Phase != previous)
+                        context.m_MaxBet = 0;
 
                     TableContext::Data::Action resultAction;
                     resultAction.m_Action = action;
