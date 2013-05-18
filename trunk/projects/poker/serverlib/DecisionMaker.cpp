@@ -136,7 +136,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
             {
                 amount = context.m_BigBlind * 5;
                 if (amount < context.m_Pot) 
-                    amount = context.m_Pot - context.m_Pot / 10;
+                    amount = context.m_Pot;
             }
             else
             {
