@@ -154,10 +154,10 @@ private:
     bool ParseActionsIfNeeded();
 
     //! ParseFlopCards
-    void ParseFlopCards(TableContext& context, const net::Packet& packet);
+    void ParseFlopCards(const net::Packet& packet);
 
     //! Parse players
-    void ParsePlayers(TableContext& context, const net::Packet& packet);
+    void ParsePlayers(const net::Packet& packet);
 
     //! Get player equity
     std::vector<float> GetPlayerEquities(const int first, const int second, const net::Packet& packet, TableContext& context);
@@ -206,6 +206,9 @@ private:
     //! Logic state
     State::Value m_State;
 
+    //! Table context
+    TableContext m_Context;
+
     //! Current phase
     Phase::Value m_Phase;
 
@@ -220,12 +223,6 @@ private:
 
     //! Next round data
     pcmn::Player::List m_NextRoundData;
-
-    //! Small blind amount
-    unsigned m_SmallBlindAmount;
-
-    //! Pot size
-    unsigned m_Pot;
 
     //! Need decision
     bool m_IsNeedDecision;
