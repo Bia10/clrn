@@ -13,6 +13,7 @@
 #include <sstream>
 
 #include <boost/assign/list_of.hpp>
+#include <boost/scope_exit.hpp>
 
 namespace srv
 {
@@ -303,8 +304,18 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
 
 	// compare equities
     bool onlyLow = true;
+    std::vector<float> equitiesTrace;
+
+    BOOST_SCOPE_EXIT(&equitiesTrace, &m_Log)
+    {
+        LOG_TRACE("Equities: [%s]") % equitiesTrace;
+    }
+    BOOST_SCOPE_EXIT_END
+
 	for (const IStatistics::PlayerInfo& equity : equities)
 	{
+        equitiesTrace.push_back(equity.m_WinRate);
+
         if (!equity.m_WinRate)
             continue;
 
