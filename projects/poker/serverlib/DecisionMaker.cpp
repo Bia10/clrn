@@ -355,7 +355,7 @@ pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const pcmn::Player&
     if (!summ)
         return pcmn::Player::Style::Normal;
 
-    const unsigned limit = totalPlayers > 2 ? summ / 2 : summ * 3 / 4;
+    const int limit = totalPlayers > 2 ? summ / 2 : summ * 3 / 4;
 
     if (raises >= limit)
         return pcmn::Player::Style::Aggressive;
