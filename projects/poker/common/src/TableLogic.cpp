@@ -26,8 +26,6 @@ TableLogic::TableLogic(ILog& logger, ITableLogicCallback& callback, const Evalua
     , m_State(State::Uninited)
     , m_Phase(Phase::Preflop)
     , m_Evaluator(evaluator)
-    , m_SmallBlindAmount(0)
-    , m_Pot(0)
     , m_IsNeedDecision(false)
     , m_IsRoundFinished(false)
 {
@@ -52,8 +50,8 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
 
             if (!m_Queue.empty())
             {
-                PushAction(m_Queue.front(), pcmn::Action::SmallBlind, m_SmallBlindAmount);
-                PushAction(m_Queue.front(), pcmn::Action::BigBlind, m_SmallBlindAmount * 2);
+                PushAction(m_Queue.front(), pcmn::Action::SmallBlind, m_Context.m_BigBlind / 2);
+                PushAction(m_Queue.front(), pcmn::Action::BigBlind, m_Context.m_BigBlind);
             }
         }
 
@@ -84,7 +82,7 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
                     current.Stack(current.Stack() - difference);
                 }
 
-                m_Pot += difference;
+                m_Context.m_Pot += difference;
 
                 if (m_State != State::Uninited)
                 {
@@ -123,7 +121,7 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
                 break;
             }
         case pcmn::Action::Call: 
-            m_Pot += amount;
+            m_Context.m_Pot += amount;
             current.State(Player::State::Called);
             current.Bet(current.Bet() + amount);
             current.TotalBet(current.TotalBet() + amount);
@@ -134,9 +132,9 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
             }
             break;
         case pcmn::Action::SmallBlind:
-            m_SmallBlindAmount = amount;
+            m_Context.m_BigBlind = amount * 2;
         case pcmn::Action::BigBlind:
-            m_Pot += amount;
+            m_Context.m_Pot += amount;
             current.Bet(current.Bet() + amount);
             current.TotalBet(current.TotalBet() + amount);
             if (m_State == State::Server)
@@ -241,18 +239,18 @@ void TableLogic::SetPlayerCards(const std::string& name, const Card::List& cards
     }
 }
 
-void TableLogic::ParseFlopCards(TableContext& context, const net::Packet& packet)
+void TableLogic::ParseFlopCards(const net::Packet& packet)
 {
     SCOPED_LOG(m_Log);
 
     for (int i = 0 ; i < packet.info().cards_size(); ++i)
     {
-        context.m_Data.m_Flop.push_back(packet.info().cards(i));
+        m_Context.m_Data.m_Flop.push_back(packet.info().cards(i));
         m_Flop.push_back(Card().FromEvalFormat(packet.info().cards(i)));
     }
 }
 
-void TableLogic::ParsePlayers(TableContext& context, const net::Packet& packet)
+void TableLogic::ParsePlayers(const net::Packet& packet)
 {
     SCOPED_LOG(m_Log);
 
@@ -274,19 +272,19 @@ void TableLogic::ParsePlayers(TableContext& context, const net::Packet& packet)
             hand.m_Cards.push_back(player.cards(1));
             hand.m_PlayerIndex = i;
 
-            context.m_Data.m_Hands.push_back(hand);
+            m_Context.m_Data.m_Hands.push_back(hand);
 
-            p.m_Percents = GetPlayerEquities(player.cards(0), player.cards(1), packet, context);
+            p.m_Percents = GetPlayerEquities(player.cards(0), player.cards(1), packet, m_Context);
             inserted.first->second.Cards(boost::assign::list_of(Card().FromEvalFormat(player.cards(0)))(Card().FromEvalFormat(player.cards(1))));
             
             for (const float eq : p.m_Percents)
                 inserted.first->second.PushEquity(eq);
         }
 
-        context.m_Data.m_Players.push_back(p);
+        m_Context.m_Data.m_Players.push_back(p);
     }
 
-    m_Button = context.m_Data.m_Players.at(packet.info().button()).m_Name;
+    m_Button = m_Context.m_Data.m_Players.at(packet.info().button()).m_Name;
 }
 
 std::vector<float> TableLogic::GetPlayerEquities(const int first, const int second, const net::Packet& packet, TableContext& context)
@@ -327,8 +325,8 @@ void TableLogic::SetNextRoundData(const pcmn::Player::List& players)
 
             if (!m_Queue.empty())
             {
-                PushAction(m_Queue.front(), pcmn::Action::SmallBlind, m_SmallBlindAmount);
-                PushAction(m_Queue.front(), pcmn::Action::BigBlind, m_SmallBlindAmount * 2);
+                PushAction(m_Queue.front(), pcmn::Action::SmallBlind, m_Context.m_BigBlind / 2);
+                PushAction(m_Queue.front(), pcmn::Action::BigBlind, m_Context.m_BigBlind);
             }
         }
     }
@@ -397,10 +395,9 @@ void TableLogic::ResetData()
 
     m_Phase = Phase::Preflop;
     m_NextRoundData.clear();
-    m_Pot = 0;
+    m_Context.m_Pot = 0;
     m_Flop.clear();
     m_NextRoundData.clear();
-    m_Pot = 0;
     m_IsRoundFinished = false;
 }
 
@@ -418,13 +415,13 @@ bool TableLogic::FindExistingSmallBlind(const std::string& name, unsigned amount
 
                 desc.m_Amount = amount;
                 m_Actions[Phase::Preflop][i + 1].m_Amount = amount * 2; 
-                m_SmallBlindAmount = amount;
+                m_Context.m_BigBlind = amount * 2;
 
                 {
                     Player& smallBlind = GetPlayer(name);
                     smallBlind.Bet(smallBlind.Bet() + diff);
                     smallBlind.TotalBet(smallBlind.TotalBet() + diff);
-                    m_Pot += diff;
+                    m_Context.m_Pot += diff;
                     if (m_State == State::Server)
                     {
                         assert(smallBlind.Stack() >= diff);
@@ -438,7 +435,7 @@ bool TableLogic::FindExistingSmallBlind(const std::string& name, unsigned amount
                     Player& bigBlind = GetPlayer(m_Actions[Phase::Preflop][i + 1].m_Name);
                     bigBlind.Bet(bigBlind.Bet() + diff);
                     bigBlind.TotalBet(bigBlind.TotalBet() + diff);
-                    m_Pot += diff;
+                    m_Context.m_Pot += diff;
                     if (m_State == State::Server)
                     {
                         assert(bigBlind.Stack() >= diff);
@@ -462,7 +459,7 @@ void TableLogic::ParseSmallBlind(const net::Packet& packet)
         [](const net::Packet::Action& actionDsc) { return actionDsc.id() == Action::SmallBlind; }
     );
 
-    m_SmallBlindAmount = 0;
+    m_Context.m_BigBlind = 0;
     if (it == packet.phases(0).actions().end())
     {
         it = std::find_if
@@ -472,10 +469,10 @@ void TableLogic::ParseSmallBlind(const net::Packet& packet)
             [](const net::Packet::Action& actionDsc) { return actionDsc.id() == Action::Call; }
         );
 
-        m_SmallBlindAmount = it == packet.phases(0).actions().end() ? 10 : it->amount();
+        m_Context.m_BigBlind = (it == packet.phases(0).actions().end() ? 10 : it->amount()) * 2;
     }
     else
-        m_SmallBlindAmount = it->amount();
+        m_Context.m_BigBlind = it->amount() * 2;
 }
 
 void TableLogic::ParsePlayerLoose(Player& current, BetSize::Value lastBigBet, Action::Value action)
@@ -555,17 +552,15 @@ void TableLogic::Parse(const net::Packet& packet)
     TRY 
     {
         m_State = State::Server;
-
-        TableContext context;
+        m_Context = TableContext();
 
         // get small blind amount
         ParseSmallBlind(packet);
-        context.m_BigBlind = m_SmallBlindAmount * 2;
 
         // parse players and flop
-        ParseFlopCards(context, packet);
-        ParsePlayers(context, packet); 
-        m_Pot = 0;
+        ParseFlopCards(packet);
+        ParsePlayers(packet); 
+        m_Context.m_Pot = 0;
 
         // simulate logic
         for (Phase::Value phase = Phase::Preflop ; phase < packet.phases_size(); phase = static_cast<Phase::Value>(phase + 1))
@@ -573,29 +568,26 @@ void TableLogic::Parse(const net::Packet& packet)
             SetPhase(phase);
 
             BetSize::Value lastBigBet = BetSize::VeryLow;
-            context.m_MaxBet = 0;
+            m_Context.m_MaxBet = 0;
             for (int i = 0; i < packet.phases(phase).actions_size(); ++i)
             {
-                context.m_Street = phase;
+                m_Context.m_Street = phase;
                 const Action::Value action = static_cast<Action::Value>(packet.phases(phase).actions(i).id());
                 const std::size_t playerIndex = static_cast<std::size_t>(packet.phases(phase).actions(i).player());
-                const std::string& player = context.m_Data.m_Players.at(playerIndex).m_Name;
+                const std::string& player = m_Context.m_Data.m_Players.at(playerIndex).m_Name;
                 const unsigned amount = static_cast<unsigned>(packet.phases(phase).actions(i).amount());
 
                 Player& current = GetPlayer(player);
 
                 const Player::Position::Value position = GetNextPlayerPosition();
                 LOG_TRACE("Position for: [%s] is: [%s]") % player % position;
-                const BetSize::Value betValue = BetSize::FromAction(amount, m_Pot, current.Stack(), context.m_BigBlind);
+                const BetSize::Value betValue = BetSize::FromAction(amount, m_Context.m_Pot, current.Stack(), m_Context.m_BigBlind);
 
                 // skip useless actions
                 const bool isUseful = Action::IsUseful(action);
                 if (isUseful)
                 {
-                    const Phase::Value previous = m_Phase;
                     PushAction(player, action, amount);
-                    if (m_Phase != previous)
-                        context.m_MaxBet = 0;
 
                     TableContext::Data::Action resultAction;
                     resultAction.m_Action = action;
@@ -604,10 +596,10 @@ void TableLogic::Parse(const net::Packet& packet)
                     resultAction.m_Bet = static_cast<int>(betValue);
                     resultAction.m_Position = static_cast<int>(position);
 
-                    context.m_Data.m_Actions.push_back(resultAction);
+                    m_Context.m_Data.m_Actions.push_back(resultAction);
 
-                    if (context.m_MaxBet < amount)
-                        context.m_MaxBet = amount;
+                    if (m_Context.m_MaxBet < amount)
+                        m_Context.m_MaxBet = amount;
 
                     if (betValue > lastBigBet)
                         lastBigBet = betValue;
@@ -619,8 +611,6 @@ void TableLogic::Parse(const net::Packet& packet)
                     current.PushAction(phase, action, betValue, position);
             }
         }
-
-        context.m_Pot = m_Pot;
 
         unsigned activePlayers = 0;
         Player::Queue playersInPot;
@@ -644,17 +634,17 @@ void TableLogic::Parse(const net::Packet& packet)
             LOG_TRACE("Position for decision: [%s] is: [%s]") % current.Name() % position;
 
             for (const pcmn::Player& player : playersInPot)
-                context.m_Data.m_PlayersData.push_back(GetPlayer(player.Name()));
+                m_Context.m_Data.m_PlayersData.push_back(GetPlayer(player.Name()));
 
-            m_Callback.MakeDecision(current, playersInPot, context, position);
+            m_Callback.MakeDecision(current, playersInPot, m_Context, position);
         }
         else
         {
             for (const std::string& player : m_Sequence)
-                context.m_Data.m_PlayersData.push_back(GetPlayer(player));
+                m_Context.m_Data.m_PlayersData.push_back(GetPlayer(player));
 
             // write statistics here
-            m_Callback.WriteStatistics(context.m_Data);
+            m_Callback.WriteStatistics(m_Context.m_Data);
         }
     }
     CATCH_PASS_EXCEPTIONS("Failed to parse packet")
@@ -749,6 +739,7 @@ void TableLogic::SetPhase(Phase::Value phase)
     m_Phase = phase;
     m_Queue.clear();
     m_IsNeedDecision = false;
+    m_Context.m_MaxBet = 0;
 
     if (!ParseActionsIfNeeded())
         return;
@@ -789,7 +780,7 @@ void TableLogic::SetPhase(Phase::Value phase)
     if (m_Phase == Phase::Preflop)
     {
         // workaround, client doesn't know real stack size at preflop moment
-        const unsigned smallBlindValue = State::Server == m_State ? m_SmallBlindAmount : 0;
+        const unsigned smallBlindValue = State::Server == m_State ? m_Context.m_BigBlind / 2 : 0;
 
         if (m_Sequence.size() > 2)
         {
@@ -989,7 +980,7 @@ void TableLogic::ResetPhase()
             if (skip)
             {
                 if (!GetPlayer(hand.m_Player).Stack())
-                    GetPlayer(hand.m_Player).Stack(m_SmallBlindAmount * 2 + 1);
+                    GetPlayer(hand.m_Player).Stack(m_Context.m_BigBlind + 1);
                 continue;
             }
 

@@ -48,7 +48,7 @@ private:
 	pcmn::Danger::Value GetDanger(const pcmn::Player& player, const  pcmn::Player::Queue& activePlayers, float botRate, unsigned street) const;
 
 	//! Get unusual player style
-	pcmn::Player::Style::Value GetBotAverageStyle(const pcmn::Player& player, const  pcmn::Player::Queue& activePlayers) const;
+	pcmn::Player::Style::Value GetBotAverageStyle(const pcmn::Player& player, const  pcmn::Player::Queue& activePlayers, unsigned totalPlayers) const;
 
 	//! Get bot style
 	pcmn::Player::Style::Value GetBotStyle(const pcmn::Player& bot) const;

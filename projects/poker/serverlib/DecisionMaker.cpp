@@ -80,7 +80,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 		in.push_back(static_cast<float>(params.m_Danger) / pcmn::Danger::Max);
 	
 		// bot average style
-		params.m_BotAverageStyle = GetBotAverageStyle(player, activePlayers);
+		params.m_BotAverageStyle = GetBotAverageStyle(player, activePlayers, context.m_Data.m_Players.size());
 		in.push_back(static_cast<float>(params.m_BotAverageStyle) / pcmn::Player::Style::Max);
 	
 		// bot play style
@@ -327,7 +327,7 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
 	return onlyLow ? pcmn::Danger::Low : pcmn::Danger::Normal;
 }
 
-pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const pcmn::Player& player, const pcmn::Player::Queue& activePlayers) const
+pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const pcmn::Player& player, const pcmn::Player::Queue& activePlayers, unsigned totalPlayers) const
 {
 	SCOPED_LOG(m_Log);
 
@@ -355,7 +355,9 @@ pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const pcmn::Player&
     if (!summ)
         return pcmn::Player::Style::Normal;
 
-    if (raises >= summ / 2)
+    const unsigned limit = totalPlayers > 2 ? summ / 2 : summ * 3 / 4;
+
+    if (raises >= limit)
         return pcmn::Player::Style::Aggressive;
 
 	if (raises > 1)
