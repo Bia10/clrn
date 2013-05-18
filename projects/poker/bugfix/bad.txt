@@ -46,3 +46,15 @@ Decision >>>>: [win: [VeryGood], pos: [Early], bet: [VeryLow], players: [ThreeOr
 
 АК скинул:
 Decision >>>>: [win: [Good], pos: [Early], bet: [Low], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Small], decision: [Not set]]
+
+конбеты нужны:
+Decision >>>>: [win: [Normal], pos: [Later], bet: [Low], players: [Two], danger: [Normal], bot avg style: [Passive], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+Decision <<<<: [Action: 4 Amount: 90] /* srv::DecisionMaker::MakeDecision */
+Decision >>>>: [win: [Low], pos: [Later], bet: [VeryLow], players: [One], danger: [Low], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+Decision >>>>: [win: [Low], pos: [Later], bet: [VeryLow], players: [One], danger: [Low], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+
+тут тоже:
+Decision >>>>: [win: [Normal], pos: [Early], bet: [Normal], players: [One], danger: [Low], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+Decision <<<<: [Action: 2 Amount: 90] /* srv::DecisionMaker::MakeDecision */
+Decision >>>>: [win: [VeryLow], pos: [Early], bet: [Normal], players: [One], danger: [Low], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+Decision >>>>: [win: [VeryLow], pos: [Early], bet: [VeryLow], players: [One], danger: [Low], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]

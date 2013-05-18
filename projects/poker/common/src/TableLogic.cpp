@@ -568,8 +568,14 @@ void TableLogic::Parse(const net::Packet& packet)
         m_Pot = 0;
 
         // simulate logic
-        for (Phase::Value phase = Phase::Preflop ; phase < packet.phases_size(); phase = static_cast<Phase::Value>(phase + 1))
+        for (Phase::Value phase = Phase::Preflop; ; phase = static_cast<Phase::Value>(phase + 1))
         {
+            if (phase == packet.phases_size())
+            {
+                context.m_MaxBet = 0;
+                break;
+            }
+
             SetPhase(phase);
 
             BetSize::Value lastBigBet = BetSize::VeryLow;
