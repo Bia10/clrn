@@ -58,3 +58,6 @@ Decision >>>>: [win: [Normal], pos: [Early], bet: [Normal], players: [One], dang
 Decision <<<<: [Action: 2 Amount: 90] /* srv::DecisionMaker::MakeDecision */
 Decision >>>>: [win: [VeryLow], pos: [Early], bet: [Normal], players: [One], danger: [Low], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
 Decision >>>>: [win: [VeryLow], pos: [Early], bet: [VeryLow], players: [One], danger: [Low], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+
+олл ин:
+Decision >>>>: [win: [Good], pos: [Later], bet: [Huge], players: [One], danger: [Normal], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Small], decision: [Not set]]
