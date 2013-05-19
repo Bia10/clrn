@@ -283,3 +283,16 @@ WHERE  win IN ( 3, 4, 5 )
        AND bot_style IN ( 0 ) 
        AND bot_stack IN ( 0 ) 
        AND decision IN ( 0, 1 ) 		   
+	   
+-- all in with small stack and good win rate in heads up
+UPDATE decisions 
+SET    decision = 2 
+WHERE  win IN ( 3, 4, 5 ) 
+       AND position IN ( 0, 1, 2 ) 
+       AND bet IN ( 0, 1, 2, 3, 4 ) 
+       AND players IN ( 0 ) 
+       AND danger IN ( 0, 1 ) 
+       AND bot_avg_style IN ( 0, 1, 2 ) 
+       AND bot_style IN ( 0, 1, 2 ) 
+       AND bot_stack IN ( 0 ) 
+       AND decision IN ( 0, 1 ) 	   
