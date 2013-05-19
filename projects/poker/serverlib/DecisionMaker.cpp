@@ -89,7 +89,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 		in.push_back(static_cast<float>(params.m_BotStyle) / pcmn::Player::Style::Max);
 	
 		// bot stack size
-		params.m_BotStackSize = pcmn::StackSize::FromValue(player.Stack(), context.m_BigBlind, GetMaxStack(activePlayers), context.m_Pot);
+		params.m_BotStackSize = pcmn::StackSize::FromValue(player.Stack(), context.m_BigBlind, GetMaxStack(activePlayers), context.m_Pot, context.m_MaxBet);
 		in.push_back(static_cast<float>(params.m_BotStackSize) / pcmn::StackSize::Max);
 
         std::vector<float> out;

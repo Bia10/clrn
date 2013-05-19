@@ -351,7 +351,7 @@ float GetEquity(const PlayerInfo::Actions& actionDescs, unsigned streetId, const
             }
         }
 
-        if (equities.empty())
+        if (equities.size() < 2)
             return 0;
 
         // find average value

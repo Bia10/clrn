@@ -16,7 +16,7 @@ namespace pcmn
 		};
 
 		static std::string ToString(Value value);
-		static Value FromValue(unsigned value, unsigned bigBlind, unsigned maxStack, unsigned pot);
+		static Value FromValue(unsigned value, unsigned bigBlind, unsigned maxStack, unsigned pot, unsigned maxBet);
 	};
 
 };
