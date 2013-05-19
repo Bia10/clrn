@@ -269,8 +269,13 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
         if (player.GetActions().empty() || player.Name() == bot.Name())
             continue;
 
-        for (pcmn::Player::ActionDesc::List actions : player.GetActions())
+        auto it = player.GetActions().rbegin();
+        const auto itEnd = player.GetActions().rend();
+
+        for (unsigned i = 0; it != itEnd && i < 2; ++it, ++i)
         {
+            pcmn::Player::ActionDesc::List actions = *it;
+
             // remove useless actions
             actions.erase(std::remove_if(actions.begin(), actions.end(), [](const pcmn::Player::ActionDesc& a){ return a.m_Id > pcmn::Action::Raise; }), actions.end());
 
