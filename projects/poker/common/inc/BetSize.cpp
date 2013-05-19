@@ -36,6 +36,9 @@ namespace pcmn
 
     BetSize::Value BetSize::FromDecision(unsigned bet, unsigned maxBet, unsigned pot, unsigned stack, unsigned bigBlind)
     {
+        if (pot > maxBet)
+            pot -= maxBet; // minus max bet
+
         if (!maxBet)
             return BetSize::VeryLow; 
 
