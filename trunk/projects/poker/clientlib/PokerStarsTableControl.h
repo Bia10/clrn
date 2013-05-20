@@ -14,6 +14,7 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/system/error_code.hpp>
 #include <boost/asio/deadline_timer.hpp>
+#include <boost/function/function_fwd.hpp>
 
 namespace clnt
 {
@@ -28,9 +29,10 @@ public:
 
     virtual void Fold() override;
     virtual void CheckCall() override;
-    virtual void BetRaise() override;
+    virtual void BetRaise(unsigned amount) override;
 private:
-    virtual void TimerCallback(const boost::system::error_code& e, HWND window, unsigned key, TimerPtr);
+    virtual void TimerCallback(const boost::system::error_code& e, HWND window, unsigned key, TimerPtr, const boost::function<void()>& work);
+    void SetBetAmount(unsigned amount);
 private:
     ILog& m_Log;
     boost::asio::io_service& m_Io;

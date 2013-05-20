@@ -3,6 +3,7 @@
 #include "FileSystem.h"
 #include "Cards.h"
 #include "../clientlib/PokerStarsTable.h"
+#include "../clientlib/ITableControl.h"
 #include "Log.h"
 #include "IConnection.h"
 #include "../serverlib/IStatistics.h"
@@ -29,6 +30,22 @@ using namespace clnt;
 using testing::Range;
 using testing::Combine;
 
+class FakeControl : public clnt::ITableControl
+{
+public:
+    virtual void Fold() override
+    {
+
+    }
+    virtual void CheckCall() override
+    {
+
+    }
+    virtual void BetRaise(unsigned amount) override
+    {
+
+    }
+};
 
 class EmptyTestStatistics : public srv::IStatistics
 {
@@ -298,7 +315,8 @@ void RunTest()
         Log log;
         net::IConnection::Ptr connection(new TestServer());
 
-        ps::Table table(log, NULL, connection, evaluator);
+        clnt::ITableControl* ctrl = new FakeControl();
+        ps::Table table(log, NULL, connection, evaluator, ctrl);
         ParseData(content, table);
     }
 }

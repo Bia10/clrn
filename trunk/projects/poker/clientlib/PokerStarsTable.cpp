@@ -22,14 +22,6 @@ namespace ps
 
 Table::Factory Table::s_Factory;
 const std::size_t CURRENT_MODULE_ID = Modules::Table;
-const float FOLD_X = 1.7864864864864864864864864864865f;
-const float FOLD_Y = 1.0579374275782155272305909617613f;
-const float CHECK_CALL_X = 1.3628865979381443298969072164948f;
-const float CHECK_CALL_Y = FOLD_Y;
-const float BET_X = 1.1016666666666666666666666666667f;
-const float BET_Y = FOLD_Y;
-
-static boost::random::random_device g_Random;
 
 template<typename T, typename F, typename A>
 void Register(F& factory, A& arg)
@@ -59,12 +51,13 @@ void BytesToString(Stream& stream, const void* data, std::size_t size)
 	}
 }
 
-Table::Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection, const pcmn::Evaluator& evaluator) 
+Table::Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection, const pcmn::Evaluator& evaluator, ITableControl* ctrl) 
 	: m_Log(logger)
 	, m_Window(window)
 	, m_Evaluator(evaluator)
 	, m_Connection(connection)
     , m_Logic(m_Log, *this, m_Evaluator)
+    , m_Control(ctrl)
 {
 	SCOPED_LOG(m_Log);
 
@@ -205,84 +198,19 @@ void Table::ReceiveFromServerCallback(const google::protobuf::Message& message)
 	switch (action)
 	{
 	case pcmn::Action::Fold:
-		Fold();
+		m_Control->Fold();
 		break;
 	case pcmn::Action::Check:
 	case pcmn::Action::Call:
-		CheckCall();
+		m_Control->CheckCall();
 		break;
 	case pcmn::Action::Bet:
 	case pcmn::Action::Raise:
-		BetRaise(reply.amount());
+		m_Control->BetRaise(reply.amount());
 		break;
 	default:
 		assert(false);
 	}
-}
-
-void Table::PressButton(const float x, const float y)
-{
-    SCOPED_LOG(m_Log);
-	boost::thread(boost::bind(&Table::PressButtonThread, this, x, y));
-}
-
-void Table::PressButtonThread(const float x, const float y)
-{
-	SCOPED_LOG(m_Log);
-
-    try
-    {
-        boost::random::uniform_int_distribution<> wait(1000, 2000);
-
-        boost::this_thread::interruptible_wait(wait(g_Random));
-
-        RECT rect;
-        CHECK(GetWindowRect(m_Window, &rect));
-
-        const float resultX = static_cast<float>(rect.right - rect.left) / x;
-        const float resultY = static_cast<float>(rect.bottom - rect.top) / y;
-
-        LOG_TRACE("Pressing to: x='%s', y='%s'") % resultX % resultY;
-
-        const LPARAM param = MAKELPARAM(resultX, resultY);
-        CHECK(PostMessage(m_Window, WM_LBUTTONDOWN, (WPARAM)MK_LBUTTON, param));
-
-        boost::random::uniform_int_distribution<> up(100, 200);
-
-        boost::this_thread::interruptible_wait(up(g_Random));
-        CHECK(PostMessage(m_Window, WM_LBUTTONUP, NULL, param));
-    }
-    catch (const std::exception& e)
-    {
-        LOG_ERROR("Failed to press button: [%s]") % e.what();
-    }
-}
-
-void Table::Fold()
-{
-    SCOPED_LOG(m_Log);
-	PressButton(FOLD_X, FOLD_Y);
-}
-
-void Table::CheckCall()
-{
-    SCOPED_LOG(m_Log);
-	PressButton(CHECK_CALL_X, CHECK_CALL_Y);
-}
-
-void Table::BetRaise(unsigned amount)
-{
-    SCOPED_LOG(m_Log);
-
-	const HWND slider = FindWindowEx(m_Window, NULL, "PokerStarsSliderClass", NULL);	
-	CHECK(slider != NULL, "Failed to find slider");
-	const HWND editor = FindWindowEx(slider, NULL, "PokerStarsSliderEditorClass", NULL);
-	CHECK(editor != NULL, "Failed to find editor");
-
-	const std::string value = boost::lexical_cast<std::string>(amount);
-	SendMessage(editor, WM_SETTEXT, NULL, reinterpret_cast<LPARAM>(value.c_str()));
-
-	PressButton(BET_X, BET_Y);
 }
 
 void Table::SendRequest(const net::Packet& packet, bool statistics)
@@ -298,7 +226,8 @@ void Table::SendRequest(const net::Packet& packet, bool statistics)
     catch (const std::exception& e)
     {
         LOG_WARNING("Failed to send statistics, error: [%s]") % e.what();
-        Fold();
+        if (!statistics)
+            m_Control->Fold();
     }
 }
 

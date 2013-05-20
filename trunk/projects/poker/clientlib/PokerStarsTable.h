@@ -9,6 +9,7 @@
 #include "Cards.h"
 #include "IConnection.h"
 #include "TableLogic.h"
+#include "ITableControl.h"
 
 #include <map>
 
@@ -21,7 +22,7 @@ class Table : public ITable, public pcmn::ITableLogicCallback
 {
 	typedef cmn::functional::Factory<IMessage, std::size_t, cmn::functional::IgnoreErrorPolicy> Factory;
 public:
-	Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection, const pcmn::Evaluator& evaluator);
+	Table(ILog& logger, HWND window, const net::IConnection::Ptr& connection, const pcmn::Evaluator& evaluator, ITableControl* ctrl);
 
 private:
 	virtual void HandleMessage(const dasm::WindowMessage& message) override;
@@ -49,15 +50,6 @@ private:
 	//! Press button thread
 	void PressButtonThread(const float x, const float y);
 
-	//! Fold
-	void Fold();
-
-	//! Call or check
-	void CheckCall();
-
-	//! Bet or raise
-	void BetRaise(unsigned amount);
-
 private:
 
 	//! Message factory
@@ -77,6 +69,9 @@ private:
 
     //! Table logic 
     pcmn::TableLogic                m_Logic;
+
+    //! Table control interface
+    std::auto_ptr<ITableControl>    m_Control;
 };
 
 } // namespace ps

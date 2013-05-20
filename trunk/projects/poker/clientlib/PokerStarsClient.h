@@ -5,6 +5,7 @@
 #include "ITable.h"
 #include "Log.h"
 #include "IHost.h"
+#include "IConfig.h"
 
 #include <map>
 #include <vector>
@@ -53,6 +54,9 @@ private:
 
 	//! Data sender
 	std::auto_ptr<net::IHost> m_Server;
+
+    //! Client configuration
+    std::auto_ptr<IConfig> m_Cfg;
 };
 
 } // namespace ps
