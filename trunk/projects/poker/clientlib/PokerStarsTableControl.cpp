@@ -113,7 +113,7 @@ void TableControl::TimerCallback(const boost::system::error_code& e, HWND window
 
         if (lastWindow != window)
         {
-            ShowWindow(lastWindow, SW_SHOWNORMAL);
+            //ShowWindow(lastWindow, SW_SHOWDEFAULT);
             SetForegroundWindow(lastWindow);
         }
     }

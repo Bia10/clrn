@@ -135,16 +135,19 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
             unsigned amount = 0;
             if (!context.m_MaxBet)
             {
-                amount = context.m_BigBlind * 5;
+                amount = context.m_BigBlind * 4;
                 if (amount < context.m_Pot) 
-                    amount = context.m_Pot;
+                    amount = context.m_Pot * 3 / 4;
             }
             else
             {
                  amount = context.m_MaxBet * 3;
             }
 
-            amount = (amount / 10) * 10;
+            if (amount > 100)
+                amount = (amount / 100) * 100;
+            else
+                amount = (amount / 10) * 10;
 
 			if (amount > player.Stack() / 2 || params.m_BotStackSize == pcmn::StackSize::Small) // all in with small stack
 				amount = player.Stack() + player.Bet();
