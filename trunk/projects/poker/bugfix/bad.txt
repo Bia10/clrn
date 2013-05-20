@@ -64,3 +64,10 @@ Decision >>>>: [win: [Good], pos: [Later], bet: [Huge], players: [One], danger: 
 
 КК скинул:
 Decision >>>>: [win: [Good], pos: [Early], bet: [High], players: [ThreeOrMore], danger: [Normal], bot avg style: [Passive], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+
+скинул 20:
+[TRACE  ][6][2013-05-20T15:46:07.144121]:[6840]: Win: [0.0311500002], bet: [0], max bet: [20], pot: [390], bot stack: [1240], cards: [Cards: ('Two' of 'Diamonds')('King' of 'Clubs'), Flop: ('Queen' of 'Clubs')('Jack' of 'Clubs')('Jack' of 'Spades')('Queen' of 'Diamonds')('Four' of 'Spades')] /* srv::DecisionMaker::MakeDecision */
+[TRACE  ][6][2013-05-20T15:46:07.159122]:[6840]: 
+Decision >>>>: [win: [VeryLow], pos: [Later], bet: [VeryLow], players: [One], danger: [High], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
+
