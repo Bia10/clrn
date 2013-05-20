@@ -587,6 +587,12 @@ void TableLogic::Parse(const net::Packet& packet)
                 const bool isUseful = Action::IsUseful(action);
                 if (isUseful)
                 {
+                    if (m_Context.m_MaxBet < amount)
+                        m_Context.m_MaxBet = amount;
+                    
+                    if (betValue > lastBigBet)
+                        lastBigBet = betValue;
+
                     PushAction(player, action, amount);
 
                     TableContext::Data::Action resultAction;
@@ -597,12 +603,6 @@ void TableLogic::Parse(const net::Packet& packet)
                     resultAction.m_Position = static_cast<int>(position);
 
                     m_Context.m_Data.m_Actions.push_back(resultAction);
-
-                    if (m_Context.m_MaxBet < amount)
-                        m_Context.m_MaxBet = amount;
-
-                    if (betValue > lastBigBet)
-                        lastBigBet = betValue;
                 }
 
                 ParsePlayerLoose(current, lastBigBet, action);
