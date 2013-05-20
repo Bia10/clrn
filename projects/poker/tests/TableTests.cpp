@@ -60,7 +60,7 @@ public:
 		//m_Log.Open("tests.log", Modules::Table, ILog::Level::Debug);
 		m_Sender = m_Server->Connect("127.0.0.1", cfg::DEFAULT_PORT);
         const static pcmn::Evaluator evaluator;
-		m_Table.reset(new ps::Table(m_Log, NULL, m_Sender, evaluator));
+		m_Table.reset(new ps::Table(m_Log, NULL, m_Sender, evaluator, 0));
 		memset(m_DeadCards, 0, _countof(m_DeadCards));
 
 		Player::ThisPlayer().Name("CLRN");

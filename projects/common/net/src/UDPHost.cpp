@@ -158,6 +158,10 @@ public:
 		return connection;
 	}
 
+    IHost::Service& GetService()
+    {
+        return m_Service;
+    }
 
 private:
 
@@ -227,6 +231,11 @@ void UDPHost::Receive(const IHost::Callback& callback, const google::protobuf::M
 void UDPHost::Wait()
 {
 	m_Impl->Wait();
+}
+
+IHost::Service& UDPHost::GetService()
+{
+    return m_Impl->GetService();
 }
 
 

@@ -13,7 +13,7 @@ public:
 
     virtual void Fold() = 0;
     virtual void CheckCall() = 0;
-    virtual void BetRaise() = 0;
+    virtual void BetRaise(unsigned amount) = 0;
 };
 
 }

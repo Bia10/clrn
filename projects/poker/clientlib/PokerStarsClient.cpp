@@ -7,6 +7,8 @@
 #include "UDPHost.h"
 #include "Player.h"
 #include "Config.h"
+#include "PokerStarsTableControl.h"
+#include "PokerStarsConfig.h"
 
 #include <windows.h>
 
@@ -47,7 +49,9 @@ void Client::HandleMessage(HWND hWnd, UINT Msg, WPARAM /*wParam*/, LPARAM lParam
 		{
             const static pcmn::Evaluator evaluator;
 			const net::IConnection::Ptr connection = m_Server->Connect("127.0.0.1", cfg::DEFAULT_PORT);
-			it = m_Tables.insert(std::make_pair(hWnd, ITable::Ptr(new ps::Table(m_Log, hWnd, connection, evaluator)))).first;
+            std::auto_ptr<ITableControl> ctrl(new TableControl(m_Log, m_Server->GetService(), *m_Cfg, hWnd));
+			it = m_Tables.insert(std::make_pair(hWnd, ITable::Ptr(new ps::Table(m_Log, hWnd, connection, evaluator, ctrl.get())))).first;
+            ctrl.release();
 		}
 	
 		lock.unlock();
@@ -68,7 +72,7 @@ void Client::HandleMessage(HWND hWnd, UINT Msg, WPARAM /*wParam*/, LPARAM lParam
 	}
 }
 
-Client::Client() : m_Server(new net::UDPHost(m_Log, 1))
+Client::Client() : m_Server(new net::UDPHost(m_Log, 1)), m_Cfg(new Config(m_Log))
 {
 	TRY 
 	{

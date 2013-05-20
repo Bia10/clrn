@@ -17,6 +17,7 @@ public:
 	virtual void				Run() override;
 	virtual void				Stop() override;
 	virtual void				Wait() override;
+    virtual Service&            GetService() override;
 private:
 
 	class Impl;

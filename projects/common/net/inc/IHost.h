@@ -8,6 +8,14 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/function.hpp>
 
+namespace boost
+{
+    namespace asio
+    {
+        class io_service;
+    }
+}
+
 namespace net
 {
 
@@ -15,6 +23,9 @@ namespace net
 class IHost
 {
 public:
+
+    //! Service type
+    typedef boost::asio::io_service Service;
 
 	virtual ~IHost(){}
 
@@ -41,6 +52,9 @@ public:
 
 	//! Wait for server stop
 	virtual void				Wait() = 0;
+
+    //! Get host service
+    virtual Service&            GetService() = 0;
 };
 
 
