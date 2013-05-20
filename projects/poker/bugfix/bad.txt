@@ -61,3 +61,6 @@ Decision >>>>: [win: [VeryLow], pos: [Early], bet: [VeryLow], players: [One], da
 
 олл ин:
 Decision >>>>: [win: [Good], pos: [Later], bet: [Huge], players: [One], danger: [Normal], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Small], decision: [Not set]]
+
+КК скинул:
+Decision >>>>: [win: [Good], pos: [Early], bet: [High], players: [ThreeOrMore], danger: [Normal], bot avg style: [Passive], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
