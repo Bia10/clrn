@@ -64,3 +64,8 @@ Decision >>>>: [win: [Good], pos: [Later], bet: [Huge], players: [One], danger: 
 
 КК скинул:
 Decision >>>>: [win: [Good], pos: [Early], bet: [High], players: [ThreeOrMore], danger: [Normal], bot avg style: [Passive], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+
+конбет: неверно определился bet size!
+Decision >>>>: [win: [Low], pos: [Early], bet: [Normal], players: [One], danger: [Low], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+
+
