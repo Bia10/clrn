@@ -103,9 +103,15 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 			if (player.Bet() == context.m_MaxBet)
 				reply.set_action(pcmn::Action::Check);
 			else
-				reply.set_action(pcmn::Action::Fold);
+            {
+
+                if (params.m_BetSize == pcmn::BetSize::VeryLow)
+                    out = boost::assign::list_of(0.0f)(1.0f)(0.0f);
+                else
+				    reply.set_action(pcmn::Action::Fold);
+            }
 		}
-		else
+		
 		if (out[1] > out[0] && out[1] > out[2])
 		{
 			if (context.m_MaxBet)
