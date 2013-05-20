@@ -275,8 +275,12 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
         auto it = player.GetActions().rbegin();
         const auto itEnd = player.GetActions().rend();
 
+        const pcmn::Player::ActionDesc::List* actionsBegin = &player.GetActions().front();
         for (unsigned i = 0; it != itEnd && i < 2; ++it, ++i)
         {
+            if (street && &*it == actionsBegin) // ignore actions from preflop when we processing not a preflop
+                break;
+
             pcmn::Player::ActionDesc::List actions = *it;
 
             // remove useless actions
