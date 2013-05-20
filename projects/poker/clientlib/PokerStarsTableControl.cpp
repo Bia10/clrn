@@ -88,9 +88,12 @@ void TableControl::TimerCallback(const boost::system::error_code& e, HWND window
     TRY 
     {
 	    const HWND lastWindow = GetForegroundWindow();
-	    ShowWindow(window, SW_HIDE);
-	    SetForegroundWindow(window);
-	    ShowWindow(window, SW_SHOWMINIMIZED);
+        if (lastWindow != window)
+        {
+            ShowWindow(window, SW_HIDE);
+            SetForegroundWindow(window);
+            ShowWindow(window, SW_SHOWMINIMIZED);
+        }
 	
 	    if (work)
 	        work();
@@ -107,8 +110,12 @@ void TableControl::TimerCallback(const boost::system::error_code& e, HWND window
 	    input.ki = kbinput;
 	
 	    SendInput(1, &input, sizeof(input));
-	    ShowWindow(lastWindow, SW_SHOWNORMAL);
-	    SetForegroundWindow(lastWindow);
+
+        if (lastWindow != window)
+        {
+            ShowWindow(lastWindow, SW_SHOWNORMAL);
+            SetForegroundWindow(lastWindow);
+        }
     }
     CATCH_IGNORE_EXCEPTIONS(m_Log, "Timer callback failed", window, key)
 }
