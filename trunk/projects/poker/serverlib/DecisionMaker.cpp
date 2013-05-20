@@ -110,16 +110,8 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 		{
 			if (context.m_MaxBet)
 			{
-				if (player.Stack() < context.m_BigBlind * 3)
-				{
-					reply.set_action(pcmn::Action::Raise);
-					reply.set_amount(player.Stack());
-				}
-				else
-				{
-					reply.set_action(pcmn::Action::Call);
-					reply.set_amount(context.m_MaxBet - player.Bet());
-				}
+    			reply.set_action(pcmn::Action::Call);
+				reply.set_amount(context.m_MaxBet - player.Bet());
 			}
 			else
 			{
@@ -238,7 +230,7 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
 	if (size > cfg::MAX_EQUITY_PLAYERS)
 		size = cfg::MAX_EQUITY_PLAYERS;
 
-    // if we have more than one opponents in the game or we have turn or river - calculate equity for 3 players
+    // if we have more than one opponents in the game or we have turn or river - calculate equity minimum for 3 players
     const unsigned minPlayers = (context.m_Data.m_Players.size() > 2 || context.m_Street > 1) ? cfg::MIN_EQUITY_PLAYERS : 1;
     if (size < minPlayers)
         size = minPlayers;
