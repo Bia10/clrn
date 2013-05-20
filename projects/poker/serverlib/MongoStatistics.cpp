@@ -154,7 +154,7 @@ pcmn::Player::Style::Value GetAverageStyle(const std::string& target, const std:
 
             ++count;
 
-            if (count == 2 && raises == 2)
+            if (count == 4 && raises > 1)
                 return pcmn::Player::Style::Aggressive;
         }
 
