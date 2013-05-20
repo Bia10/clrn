@@ -23,9 +23,9 @@ void DoTest()
     const clnt::IConfig::Settings settings = cfg.Get();
 
     clnt::IConfig::Settings newSettings;
-    newSettings.m_FoldButton = 15;
-    newSettings.m_CheckCallButton = 17;
-    newSettings.m_RaiseButton = 20;
+    newSettings.m_FoldButton = 65;
+    newSettings.m_CheckCallButton = 66;
+    newSettings.m_RaiseButton = 67;
 
     cfg.Set(newSettings);
 
@@ -43,7 +43,7 @@ void DoTest()
     cfg.Write();
 }
 
-TEST(Settings, Simple)
+TEST(Settings, PokerStars)
 {
     DoTest();
 }

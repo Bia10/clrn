@@ -17,18 +17,36 @@ namespace ps
         CHECK(!key.empty());
         CHECK(key.front() == 'K', "Invalid key in ini file", key);
 
-        std::stringstream ss;
-        ss << std::hex << conv::cast<unsigned>(key.substr(1));
-        const unsigned result = conv::cast<unsigned>(ss.str()) / 10000;
-        CHECK(!ss.fail(), "Failed to convert hex key to dec value", key); 
+        unsigned result = 0;
+        {
+            std::stringstream ss;
+            ss << std::hex << conv::cast<unsigned>(key.substr(1));
+            result = conv::cast<unsigned>(ss.str()) / 10000;
+            CHECK(!ss.fail(), "Failed to convert hex key to dec value", key); 
+        }
+
+        {
+            std::stringstream ss;
+            ss << conv::cast<std::string>(result);
+            ss >> std::hex >> result;
+            CHECK(!ss.fail(), "Failed to convert key to hex value", key); 
+        }
 
         return result;
     }
 
     std::string ValueToConfig(const unsigned value)
     {
+        unsigned hexValue = 0;
+        {
+            std::stringstream ss;
+            ss << std::hex << value;
+            hexValue = conv::cast<unsigned>(ss.str()) * 10000;
+            CHECK(!ss.fail(), "Failed to convert hex key to dec value", value); 
+        }
+
         std::stringstream ss;
-        ss << conv::cast<std::string>(value * 10000);
+        ss << conv::cast<std::string>(hexValue);
         unsigned res = 0;
         ss >> std::hex >> res;
         CHECK(!ss.fail(), "Failed to convert key to hex value", value); 
