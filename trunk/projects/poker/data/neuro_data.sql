@@ -321,4 +321,17 @@ WHERE  win IN ( 5 )
        AND bot_avg_style IN ( 0, 1, 2 ) 
        AND bot_style IN ( 1, 2 ) 
        AND bot_stack IN ( 1, 2 ) 
+       AND decision IN ( 0, 2 ) 	
+	   
+-- check/call with very good wins when danger is not low and early position
+UPDATE decisions 
+SET    decision = 1
+WHERE  win IN ( 4 ) 
+       AND position IN ( 0 ) 
+       AND bet IN ( 0, 1 ) 
+       AND players IN ( 1, 2, 3 ) 
+       AND danger IN ( 1, 2 ) 
+       AND bot_avg_style IN ( 0, 1, 2 ) 
+       AND bot_style IN ( 1, 2 ) 
+       AND bot_stack IN ( 1, 2 ) 
        AND decision IN ( 0, 2 ) 		   
