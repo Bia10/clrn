@@ -362,24 +362,7 @@ pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const pcmn::Player&
 	if (it == activePlayers.end())
         return pcmn::Player::Style::Normal;
 
-	int checks = 0;
-	int calls = 0;
-	int raises = 0;
-	m_Stat.GetLastActions(player.Name(), it->Name(), checks, calls, raises);
-
-    const int summ = checks + calls + raises;
-    if (!summ)
-        return pcmn::Player::Style::Normal;
-
-    const int limit = totalPlayers > 2 ? summ / 2 : summ * 3 / 4;
-
-    if (raises >= limit)
-        return pcmn::Player::Style::Aggressive;
-
-	if (raises > 1)
-		return pcmn::Player::Style::Normal;
-
-	return pcmn::Player::Style::Passive;
+	return m_Stat.GetAverageStyle(player.Name(), it->Name());
 }
 
 pcmn::Player::Style::Value DecisionMaker::GetBotStyle(const pcmn::Player& bot) const

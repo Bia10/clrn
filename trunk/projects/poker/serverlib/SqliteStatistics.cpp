@@ -458,14 +458,29 @@ unsigned SqliteStatistics::GetRanges(PlayerInfo::List& players) const
 	return m_Impl->GetRanges(players);
 }
 
-void SqliteStatistics::GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises) const
-{
-	m_Impl->GetLastActions(target, opponent, checkFolds, calls, raises);
-}
-
 unsigned SqliteStatistics::GetEquities(PlayerInfo::List& players, unsigned) const
 {
 	return m_Impl->GetEquities(players);
+}
+
+pcmn::Player::Style::Value srv::SqliteStatistics::GetAverageStyle(const std::string& target, const std::string& opponent) const 
+{
+    int checks = 0;
+    int calls = 0;
+    int raises = 0;
+    m_Impl->GetLastActions(target, opponent, checks, calls, raises);
+
+    const int summ = checks + calls + raises;
+    if (!summ)
+        return pcmn::Player::Style::Normal;
+
+    if (raises >= summ / 2)
+        return pcmn::Player::Style::Aggressive;
+
+    if (raises > 1)
+        return pcmn::Player::Style::Normal;
+
+    return pcmn::Player::Style::Passive;
 }
 
 }

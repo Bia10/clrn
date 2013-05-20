@@ -69,7 +69,7 @@ unsigned GetRanges(PlayerInfo::List& players)
 	CATCH_PASS_EXCEPTIONS("GetRanges failed")
 }
 
-void GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises)
+pcmn::Player::Style::Value GetAverageStyle(const std::string& target, const std::string& opponent)
 {
 	TRY
 	{
@@ -92,8 +92,13 @@ void GetLastActions(const std::string& target, const std::string& opponent, int&
         (
             STAT_COLLECTION_NAME, 
             query,
-            20
+            10
         );
+
+        int checkFolds = 0;
+        int calls = 0;
+        int raises = 0;
+        unsigned count = 0;
 
         while (cursor->more()) 
         {
@@ -110,7 +115,6 @@ void GetLastActions(const std::string& target, const std::string& opponent, int&
                 const bson::bo player = elem.Obj();
                 if (player["name"].String() != target)
                     continue;
-
 
                 // found target player, enum all actions
                 const std::vector<bson::be> streets = player["streets"].Array();
@@ -147,8 +151,24 @@ void GetLastActions(const std::string& target, const std::string& opponent, int&
                 ++calls;
             else
                 ++checkFolds;
+
+            ++count;
+
+            if (count == 2 && raises == 2)
+                return pcmn::Player::Style::Aggressive;
         }
 
+        const int summ = checkFolds + calls + raises;
+        if (!summ)
+            return pcmn::Player::Style::Normal;
+
+        if (raises >= summ / 2)
+            return pcmn::Player::Style::Aggressive;
+
+	    if (raises > 1)
+		    return pcmn::Player::Style::Normal;
+
+	    return pcmn::Player::Style::Passive;
 	}
 	CATCH_PASS_EXCEPTIONS("GetLastActions failed")
 }
@@ -478,14 +498,14 @@ unsigned MongoStatistics::GetRanges(PlayerInfo::List& players) const
 	return m_Impl->GetRanges(players);
 }
 
-void MongoStatistics::GetLastActions(const std::string& target, const std::string& opponent, int& checkFolds, int& calls, int& raises) const
-{
-	m_Impl->GetLastActions(target, opponent, checkFolds, calls, raises);
-}
-
 unsigned MongoStatistics::GetEquities(PlayerInfo::List& players, unsigned street) const
 {
 	return m_Impl->GetEquities(players, street);
+}
+
+pcmn::Player::Style::Value srv::MongoStatistics::GetAverageStyle(const std::string& target, const std::string& opponent) const 
+{
+    return m_Impl->GetAverageStyle(target, opponent);
 }
 
 }

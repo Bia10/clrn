@@ -91,6 +91,8 @@ namespace ps
 	            }
 	        }
 
+            const bool needWrite = !m_Data.m_FoldButton || !m_Data.m_CheckCallButton || !m_Data.m_RaiseButton;
+
             if (!m_Data.m_FoldButton)
                 m_Data.m_FoldButton = 61; // num 1
             if (!m_Data.m_CheckCallButton)
@@ -98,7 +100,8 @@ namespace ps
             if (!m_Data.m_RaiseButton)
                 m_Data.m_RaiseButton = 63; // num 3
 
-            Write();
+            if (needWrite)
+                Write();
         }
         CATCH_PASS_EXCEPTIONS("Failed to read settings")
     }
