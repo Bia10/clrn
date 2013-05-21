@@ -1,5 +1,14 @@
 pending:
 
+скинул топ пару:
+[TRACE  ][6][2013-05-21T22:41:06.452695]:[7704]: Ranges: [15,52] /* srv::DecisionMaker::GetPlayerWinRate */
+[TRACE  ][6][2013-05-21T22:41:06.596704]:[7704]: Equities size: [4] /* srv::DecisionMaker::GetDanger */
+[TRACE  ][6][2013-05-21T22:41:06.624705]:[7704]: Equities: [50.9097] /* srv::DecisionMaker::GetDanger::boost_se_guard_t_19::boost_se_body */
+[TRACE  ][6][2013-05-21T22:41:06.631706]:[7704]: Win: [0.358783007], bet: [0], max bet: [50], pot: [350], bot stack: [715], cards: [Cards: ('Three' of 'Hearts')('Queen' of 'Hearts'), Flop: ('Ten' of 'Clubs')('Queen' of 'Spades')('Seven' of 'Diamonds')('Six' of 'Spades')] /* srv::DecisionMaker::MakeDecision */
+[TRACE  ][6][2013-05-21T22:41:06.645706]:[7704]: 
+Decision >>>>: [win: [Normal], pos: [Middle], bet: [VeryLow], players: [Two], danger: [High], bot avg style: [Aggressive], bot style: [Normal], bot stack: [Normal], decision: [Not set]]
+Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
+
 fixed:
 [TRACE  ][6][2013-04-10T23:32:23.594577]:[4752]: Decision input: win: [Normal]:[29], pos: [Later], pot: [Normal], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */
 [TRACE  ][6][2013-04-10T23:37:54.535506]:[5988]: Decision input: win: [Normal]:[31], pos: [Later], pot: [High], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */
