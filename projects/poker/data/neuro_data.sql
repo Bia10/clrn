@@ -387,3 +387,16 @@ WHERE  win IN ( 2 )
        AND bot_style IN ( 0, 1, 2 ) 
        AND bot_stack IN ( 1, 2 ) 
        AND decision IN ( 0 ) 
+	   
+-- call with good rate and high danger instead of raise
+UPDATE decisions 
+SET    decision = 1
+WHERE  win IN ( 3, 4 ) 
+       AND position IN ( 1, 2 ) 
+       AND bet IN ( 0, 1, 2, 3, 4 ) 
+       AND players IN ( 0, 1, 2 ) 
+       AND danger IN ( 2 ) 
+       AND bot_avg_style IN ( 0, 1, 2 ) 
+       AND bot_style IN ( 1, 2 ) 
+       AND bot_stack IN ( 0, 1, 2 ) 
+       AND decision IN ( 2 ) 	   

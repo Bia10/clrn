@@ -83,3 +83,9 @@ Decision >>>>: [win: [Normal], pos: [Middle], bet: [High], players: [ThreeOrMore
 скинул:
 Decision >>>>: [win: [Good], pos: [Later], bet: [VeryLow], players: [Two], danger: [Low], bot avg style: [Aggressive], bot style: [Passive], bot stack: [Small], decision: [Not set]]
 Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
+
+проиграл тут:
+Decision >>>>: [win: [VeryGood], pos: [Later], bet: [VeryLow], players: [One], danger: [High], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Small], decision: [Not set]]
+Decision <<<<: [Action: 4 Amount: 900] /* srv::DecisionMaker::MakeDecision */
+Decision >>>>: [win: [Good], pos: [Later], bet: [VeryLow], players: [One], danger: [High], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Small], decision: [Not set]]
+Decision <<<<: [Action: 4 Amount: 900] /* srv::DecisionMaker::MakeDecision */
