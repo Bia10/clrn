@@ -316,7 +316,7 @@ SET    decision = 1
 WHERE  win IN ( 5 ) 
        AND position IN ( 0, 1 ) 
        AND bet IN ( 0, 1, 2, 3, 4, 5 ) 
-       AND players IN ( 1, 2, 3 ) 
+       AND players IN ( 0, 1, 2 ) 
        AND danger IN ( 1, 2 ) 
        AND bot_avg_style IN ( 0, 1, 2 ) 
        AND bot_style IN ( 1, 2 ) 
@@ -329,7 +329,7 @@ SET    decision = 1
 WHERE  win IN ( 4 ) 
        AND position IN ( 0 ) 
        AND bet IN ( 0, 1 ) 
-       AND players IN ( 1, 2, 3 ) 
+       AND players IN ( 0, 1, 2 ) 
        AND danger IN ( 1, 2 ) 
        AND bot_avg_style IN ( 0, 1, 2 ) 
        AND bot_style IN ( 1, 2 ) 
@@ -342,9 +342,35 @@ SET    decision = 1
 WHERE  win IN ( 2 ) 
        AND position IN ( 0, 1, 2 ) 
        AND bet IN ( 2, 3 ) 
-       AND players IN ( 1, 2, 3 ) 
+       AND players IN ( 0, 1, 2 ) 
        AND danger IN ( 0, 1 ) 
        AND bot_avg_style IN ( 0, 1, 2 ) 
        AND bot_style IN ( 0 ) 
        AND bot_stack IN ( 1, 2 ) 
        AND decision IN ( 0 ) 		   
+	   
+-- do not bluff without normal stack on preflop with many people
+UPDATE decisions 
+SET    decision = 1
+WHERE  win IN ( 0, 1 ) 
+       AND position IN ( 0, 1, 2 ) 
+       AND bet IN ( 0, 1, 2 ) 
+       AND players IN ( 1, 2 ) 
+       AND danger IN ( 0, 1 ) 
+       AND bot_avg_style IN ( 0, 1 ) 
+       AND bot_style IN ( 0 ) 
+       AND bot_stack IN ( 1 ) 
+       AND decision IN ( 2 ) 	
+	   
+-- call with low rate from later or middle positions on preflop
+UPDATE decisions 
+SET    decision = 1
+WHERE  win IN ( 1 ) 
+       AND position IN ( 1, 2 ) 
+       AND bet IN ( 0, 1, 2 ) 
+       AND players IN ( 0, 1, 2 ) 
+       AND danger IN ( 0, 1 ) 
+       AND bot_avg_style IN ( 0, 1, 2 ) 
+       AND bot_style IN ( 0 ) 
+       AND bot_stack IN ( 1, 2 ) 
+       AND decision IN ( 0, 2 ) 		   
