@@ -358,8 +358,8 @@ Player::Position::Value TableLogic::GetNextPlayerPosition()
 {
     SCOPED_LOG(m_Log);
 
-    const std::size_t totalPlayers = m_Sequence.size();
-    std::size_t leftInQueue = m_Queue.size();
+    const unsigned totalPlayers = m_Sequence.size();
+    unsigned leftInQueue = m_Queue.size();
 
     if (m_Phase == Phase::Preflop && m_Sequence.size() > 3)
     {
@@ -371,14 +371,14 @@ Player::Position::Value TableLogic::GetNextPlayerPosition()
 
     pcmn::Player::Position::Value result = pcmn::Player::Position::Middle;
 
-    std::size_t step = m_Sequence.size() / 3;
-    if (!step)
+    float step = static_cast<float>(m_Sequence.size()) / 3;
+    if (step < 1)
         step = 1;
 
     if (leftInQueue <= step)
         result = pcmn::Player::Position::Later;
     else
-    if (leftInQueue >= step * 2)
+    if (leftInQueue >= step * 2.5f)
         result = pcmn::Player::Position::Early;
 
     LOG_TRACE("Sequence: [%s], queue: [%s], step: [%s], result: [%s]") % m_Sequence % m_Queue % step % result;
