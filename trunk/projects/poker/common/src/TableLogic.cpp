@@ -32,28 +32,17 @@ TableLogic::TableLogic(ILog& logger, ITableLogicCallback& callback, const Evalua
 
 }
 
-void TableLogic::PushAction(const std::string& name, Action::Value action, unsigned amount)
+void TableLogic::PushAction(const std::string name, Action::Value action, unsigned amount)
 {
     try
     {
         LOG_TRACE("Name: [%s], action: [%s], amount: [%s]") % name % Action::ToString(action) % amount;
         CHECK(m_Phase <= Phase::River, m_Phase, name, action, amount);
 
-        const bool resetOnly = (m_State == State::Uninited && action == Action::SmallBlind);
-        if (resetOnly || m_IsRoundFinished && Action::IsUseful(action))
-        {
-            m_IsRoundFinished = true;
-            if (!resetOnly)
-                SendRequest(true);
-
-            ResetPhase();
-
-            if (!m_Queue.empty())
-            {
-                PushAction(m_Queue.front(), pcmn::Action::SmallBlind, m_Context.m_BigBlind / 2);
-                PushAction(m_Queue.front(), pcmn::Action::BigBlind, m_Context.m_BigBlind);
-            }
-        }
+        if (action == Action::SmallBlind)
+            TryToResolveUnexpectedSmallBlind(name);
+              
+        CheckForNewRound(action);
 
         if (action == Action::SmallBlind && FindExistingSmallBlind(name, amount))
             return;
@@ -61,6 +50,20 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
         ActionDesc actionData(name, action, amount);
         if (!m_Actions[m_Phase].empty() && m_Actions[m_Phase].back() == actionData)
             return; // duplicated
+
+        // validate action sequence
+        if (Action::IsUseful(action) && m_State != State::Uninited)
+        {
+            CHECK(!m_Queue.empty(), "Unexpected player actions sequence, queue is empty", name);
+            ValidateSequenceAndTryToResolve(name);
+            CheckForNewRound(action);
+
+            if (!m_Queue.empty())
+            {
+                m_LastBeforeRaise = m_Queue.back();
+                m_Queue.pop_front();
+            }
+        }
 
         m_Actions[m_Phase].push_back(actionData);
 
@@ -73,7 +76,7 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
         case pcmn::Action::Bet: 
         case pcmn::Action::Raise:
             {
-                const unsigned difference = amount - current.Bet();
+                const unsigned difference = (action == pcmn::Action::Raise) ? amount - current.Bet() : amount;
                 current.Bet(current.Bet() + difference);
                 current.TotalBet(current.TotalBet() + difference);
                 if (m_State == State::Server)
@@ -156,39 +159,16 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
             while (m_Queue.size() > 1)
                 PushAction(m_Queue.front(), Action::Fold, 0);
             return;
+        case pcmn::Action::SecondsLeft:
+            if (name == Player::ThisPlayer().Name())
+                ValidateSequenceAndTryToResolve(name);
+            return;
         default:
             return;
         }          
 
         if (m_State != State::Uninited)
-        {
-            CHECK(!m_Queue.empty(), "Unexpected player actions sequence, queue is empty", name);
-            if (name != m_Queue.front())
-            {
-                while (GetPlayer(m_Queue.front()).Afk())
-                {
-                    PushAction(m_Queue.front(), Action::Fold, 0);
-                    std::swap(*(m_Actions[m_Phase].end() - 1), *(m_Actions[m_Phase].end() - 2));
-                }
-            }
-
-            CHECK(name == m_Queue.front(), "Incorrect player actions sequence", name, m_Queue.front());
-            m_Queue.pop_front();
-
-            const unsigned playersInPot = GetPlayersInPot();
-            Player::Queue activePlayers;
-            GetActivePlayers(activePlayers);
-
-            LOG_TRACE("Detecting round finish: in pot: [%s], queue: [%s], phase: [%s], active: [%s]") % playersInPot % m_Queue % m_Phase % activePlayers;
-            if (playersInPot < 2 || m_Queue.empty() && (m_Phase == Phase::River || activePlayers.size() < 2))
-                m_IsRoundFinished = true;
-
-            if (m_State == State::Server && m_IsRoundFinished)
-                return;
-
-            if (m_Queue.empty() && !m_IsRoundFinished)
-                SetPhase(static_cast<Phase::Value>(m_Phase + 1));
-        }
+            HandleRoundFinish();
 
         LOG_TRACE("Detect next player: finished: [%s], state: [%s], queue: [%s], action: [%s]") % m_IsRoundFinished % m_State % m_Queue % action;
         if (!m_IsRoundFinished && m_State == State::InitedClient && !m_Queue.empty() && action != Action::SmallBlind)
@@ -399,6 +379,7 @@ void TableLogic::ResetData()
     m_Flop.clear();
     m_NextRoundData.clear();
     m_IsRoundFinished = false;
+    m_LastBeforeRaise.clear();
 }
 
 bool TableLogic::FindExistingSmallBlind(const std::string& name, unsigned amount)
@@ -547,6 +528,165 @@ void TableLogic::ParsePlayerLoose(Player& current, BetSize::Value lastBigBet, Ac
     
 }
 
+void TableLogic::ValidateSequenceAndTryToResolve(const std::string& name)
+{
+    if (m_Queue.empty() || name == m_Queue.front())
+        return; // state is ok
+
+    LOG_TRACE("Validating sequence: [%s], name: [%s], queue: [%s]") % m_Sequence % name % m_Queue;
+
+    if (std::find(m_Sequence.begin(), m_Sequence.end(), name) == m_Sequence.end())
+        return;
+
+    // action is out of sequence, process all invalid players
+    while (!m_Queue.empty() && m_Queue.front() != name)
+        PushAction(m_Queue.front(), Action::Fold, 0);
+}
+
+void TableLogic::TryToResolveUnexpectedSmallBlind(const std::string& name)
+{
+    if (m_IsRoundFinished)
+        return;
+    
+    for (unsigned i = 0; i < m_Actions[Phase::Preflop].size(); ++i)
+    {
+        ActionDesc& desc = m_Actions[Phase::Preflop][i];
+        if (desc.m_Value == Action::SmallBlind)
+        {
+            if (desc.m_Name != name) // wrong player name 
+            {
+                while (!m_Queue.empty())
+                {
+                    const std::string player = m_Queue.front();
+                    PushAction(player, pcmn::Action::Fold, 0);
+                    if (!m_Queue.empty() && player == m_Queue.front())
+                        m_Queue.pop_front();
+                }
+                HandleRoundFinish();
+                m_IsNeedDecision = false;
+            }
+            else
+            if (m_Actions[Phase::Preflop].size() > 2) // small blind during preflop
+            {
+                SetPhase(Phase::Preflop);
+                m_Actions[Phase::Preflop].resize(2); // erase all invalid actions
+
+                // remove blinds
+                m_Queue.pop_front();
+                m_Queue.pop_front();
+
+                HandleRoundFinish();
+                m_IsNeedDecision = false;
+            }
+            return;
+        }
+    }
+}
+
+void TableLogic::HandleRoundFinish()
+{
+    const unsigned playersInPot = GetPlayersInPot();
+    Player::Queue activePlayers;
+    GetActivePlayers(activePlayers);
+
+    LOG_TRACE("Detecting round finish: in pot: [%s], queue: [%s], phase: [%s], active: [%s]") % playersInPot % m_Queue % m_Phase % activePlayers;
+    if (playersInPot < 2 || m_Queue.empty() && (m_Phase == Phase::River || activePlayers.size() < 2))
+        m_IsRoundFinished = true;
+
+    if (m_State == State::Server && m_IsRoundFinished)
+        return;
+
+    if (m_Queue.empty() && !m_IsRoundFinished)
+        SetPhase(static_cast<Phase::Value>(m_Phase + 1));
+}
+
+TableLogic::ActionDesc TableLogic::PopAction()
+{
+    CHECK(!m_Actions[m_Phase].empty(), "Empty actions list, can't pop", m_Phase);
+    const ActionDesc lastAction = m_Actions[m_Phase].back();
+    m_Actions[m_Phase].pop_back();
+    /*
+    Player& current = GetPlayer(lastAction.m_Name);
+    current.State(Player::State::Waiting); // set state back to waiting
+
+    switch (lastAction.m_Value)
+    {
+    case pcmn::Action::Bet: 
+    case pcmn::Action::Raise:
+        {
+            const unsigned difference = lastAction.m_Amount;
+            current.Bet(current.Bet() - difference);
+            current.TotalBet(current.TotalBet() - difference);
+            if (m_State == State::Server)
+            {
+                assert(current.Stack() >= difference);
+                current.Stack(current.Stack() + difference);
+            }
+
+            m_Context.m_Pot -= difference;
+
+            // remove added players
+            while (!m_Queue.empty() && m_Queue.back() != m_LastBeforeRaise)
+            {
+                Player& currentPlayer = GetPlayer(m_Queue.back());
+                currentPlayer.State(Player::State::Called);
+                m_Queue.pop_back();
+            }
+
+            m_Queue.push_back(lastAction.m_Name);
+
+            break;
+        }
+    case pcmn::Action::Call: 
+        m_Context.m_Pot -= lastAction.m_Amount;
+        current.Bet(current.Bet() - lastAction.m_Amount);
+        current.TotalBet(current.TotalBet() - lastAction.m_Amount);
+        if (m_State == State::Server)
+        {
+            assert(current.Stack() >= lastAction.m_Amount);
+            current.Stack(current.Stack() + lastAction.m_Amount);
+        }
+        break;
+    case pcmn::Action::SmallBlind:
+    case pcmn::Action::BigBlind:
+        m_Context.m_Pot -= lastAction.m_Amount;
+        current.Bet(current.Bet() - lastAction.m_Amount);
+        current.TotalBet(current.TotalBet() - lastAction.m_Amount);
+        if (m_State == State::Server)
+        {
+            assert(current.Stack() >= lastAction.m_Amount);
+            current.Stack(current.Stack() + lastAction.m_Amount);
+        }
+        break;
+    default:
+        break;
+    }    
+    */
+    return lastAction;
+}
+
+void TableLogic::CheckForNewRound(Action::Value action)
+{
+    if (m_State == State::Server)
+        return;
+
+    const bool resetOnly = (m_State == State::Uninited && action == Action::SmallBlind);
+    if (resetOnly || m_IsRoundFinished && Action::IsUseful(action))
+    {
+        m_IsRoundFinished = true;
+        if (!resetOnly)
+            SendRequest(true);
+
+        ResetPhase();
+
+        if (!m_Queue.empty())
+        {
+            PushAction(m_Queue.front(), pcmn::Action::SmallBlind, m_Context.m_BigBlind / 2);
+            PushAction(m_Queue.front(), pcmn::Action::BigBlind, m_Context.m_BigBlind);
+        }
+    }
+}
+
 void TableLogic::Parse(const net::Packet& packet)
 {
     TRY 
@@ -650,12 +790,15 @@ void TableLogic::Parse(const net::Packet& packet)
     CATCH_PASS_EXCEPTIONS("Failed to parse packet")
 }
 
-void TableLogic::SendRequest(bool statistics)
+void TableLogic::SendRequest(const bool statistics)
 {
     TRY 
     {
 	    if (m_State == State::Server)
             return;
+
+        if (statistics)
+            m_IsNeedDecision = false;
 	
 	    PlayerQueue playerNames;
 	    if (m_State == State::InitedClient)
@@ -747,6 +890,7 @@ void TableLogic::SetPhase(Phase::Value phase)
     CHECK(!m_Sequence.empty(), "Players sequence is empty", m_Phase);
     CHECK(!m_Button.empty(), "Failed to find player on button", m_Phase);
     CHECK(std::find(m_Sequence.begin(), m_Sequence.end(), m_Button) != m_Sequence.end(), "Failed to find player on button in sequence", m_Button);
+    CHECK(m_Sequence.size() > 1, "Invalid player sequence size", m_Sequence.size());
 
     // add players to queue
     bool found = false;
@@ -828,7 +972,12 @@ void TableLogic::SetPhase(Phase::Value phase)
         const std::string& botName = Player::ThisPlayer().Name();
         CHECK(!botName.empty(), "Bot name not inited, can't get next");
         if (m_Queue.front() == botName)
-            SendRequest(false);
+        {
+            if (m_Phase == Phase::Flop && m_Flop.size() == 3 || m_Phase == Phase::Turn && m_Flop.size() == 4 || m_Phase == Phase::River && m_Flop.size() == 5)
+                SendRequest(false);
+            else
+                m_IsNeedDecision = true;
+        }
     }
 
     if (m_State == State::InitedClient && m_Queue.empty()) // there is no active players
@@ -1091,6 +1240,13 @@ void TableLogic::SetFlopCards(const Card::List& cards)
 {
     CHECK(cards.size() >= 3 && cards.size() <= 5, cards.size());
     m_Flop = cards;
+
+    // workaround, cards may be received after decision needed
+    if (m_IsNeedDecision)
+    {
+        SendRequest(false);
+        m_IsNeedDecision = false;
+    }
 }
 
 void TableLogic::RemovePlayer(const std::string& name)
