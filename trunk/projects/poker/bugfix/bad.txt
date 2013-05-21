@@ -68,4 +68,6 @@ Decision >>>>: [win: [Good], pos: [Early], bet: [High], players: [ThreeOrMore], 
 конбет: неверно определился bet size!
 Decision >>>>: [win: [Low], pos: [Early], bet: [Normal], players: [One], danger: [Low], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
 
+АК скинул:
+Decision >>>>: [win: [Normal], pos: [Middle], bet: [High], players: [ThreeOrMore], danger: [Normal], bot avg style: [Aggressive], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
 
