@@ -71,3 +71,6 @@ Decision >>>>: [win: [Low], pos: [Early], bet: [Normal], players: [One], danger:
 АК скинул:
 Decision >>>>: [win: [Normal], pos: [Middle], bet: [High], players: [ThreeOrMore], danger: [Normal], bot avg style: [Aggressive], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
 
+скинул:
+Decision >>>>: [win: [Good], pos: [Later], bet: [VeryLow], players: [Two], danger: [Low], bot avg style: [Aggressive], bot style: [Passive], bot stack: [Small], decision: [Not set]]
+Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
