@@ -61,6 +61,11 @@ public:
         //! Actions list
         typedef std::vector<ActionDesc> List;
 
+        ActionDesc()
+            : m_Name()
+            , m_Value()
+            , m_Amount()
+        {}
         ActionDesc(const std::string& name, pcmn::Action::Value value, unsigned amount)
             : m_Name(name)
             , m_Value(value)
@@ -104,7 +109,7 @@ public:
     TableLogic(ILog& logger, ITableLogicCallback& callback, const Evaluator& evaluator);
 
     //! Push action
-    void PushAction(const std::string& name, Action::Value action, unsigned amount);
+    void PushAction(const std::string name, Action::Value action, unsigned amount);
 
     //! Set player info
     void SetPlayerStack(const std::string& name, unsigned stack);
@@ -132,6 +137,9 @@ public:
 
     //! Is round finished
     bool IsRoundCompleted() const { return m_IsRoundFinished; }
+
+    //! Is table logic state valid
+    bool IsValid() const { return m_State != State::Uninited; }
 
 private: 
 
@@ -183,6 +191,21 @@ private:
     //! Parse player loose
     void ParsePlayerLoose(Player& current, BetSize::Value lastBigBet, Action::Value action);
 
+    //! Try to resolve player actions
+    void ValidateSequenceAndTryToResolve(const std::string& name);
+
+    //! Try to resolve unexpected small blind
+    void TryToResolveUnexpectedSmallBlind(const std::string& name);
+
+    //! Handle round finish
+    void HandleRoundFinish();
+
+    //! Pop action 
+    ActionDesc PopAction();
+
+    //! Check for new round
+    void CheckForNewRound(Action::Value action);
+
 private:
 
     //! Logger reference
@@ -229,6 +252,9 @@ private:
 
     //! Is round finished
     bool m_IsRoundFinished;
+
+    //! Last player in queue before raise
+    std::string m_LastBeforeRaise;
 };
 
 }

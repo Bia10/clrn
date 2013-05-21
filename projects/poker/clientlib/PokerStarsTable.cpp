@@ -126,22 +126,22 @@ void Table::FlopCards(const pcmn::Card::List& cards)
     SCOPED_LOG(m_Log);
 
     m_Logic.SetFlopCards(cards);
-    if (m_Logic.IsRoundCompleted())
+    if (m_Logic.IsRoundCompleted() || m_Logic.IsValid())
         return;
 
-	switch (cards.size())
-	{
-	case 3: 
+    switch (cards.size())
+    {
+    case 3: 
         m_Logic.SetPhase(pcmn::TableLogic::Phase::Flop);
-		break;
-	case 4: 
+        break;
+    case 4: 
         m_Logic.SetPhase(pcmn::TableLogic::Phase::Turn);
-		break;
-	case 5: 
+        break;
+    case 5: 
         m_Logic.SetPhase(pcmn::TableLogic::Phase::River);
-		break;
-	default: assert(false);
-	}
+        break;
+    default: assert(false);
+    }
 }
 
 void Table::BotCards(const pcmn::Card& first, const pcmn::Card& second)
