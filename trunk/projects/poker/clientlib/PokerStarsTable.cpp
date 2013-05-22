@@ -114,11 +114,22 @@ void Table::PlayerAction(const std::string& name, const pcmn::Action::Value acti
 
 	LOG_TRACE("Player: '%s', action: '%s', amount: '%s'") % name % pcmn::Action::ToString(action) % amount;
 
-    m_Logic.PushAction(name, action, amount);
+    try
+    {
+        m_Logic.PushAction(name, action, amount);
 
-    static const std::string& botName = pcmn::Player::ThisPlayer().Name();
-    if (action == pcmn::Action::SecondsLeft && botName == name)
-        m_Logic.SendRequest(false); // our turn to play
+        static const std::string& botName = pcmn::Player::ThisPlayer().Name();
+        if (action == pcmn::Action::SecondsLeft && botName == name)
+        {
+            LOG_TRACE("Invoking logic - send request");
+            m_Logic.SendRequest(false); // our turn to play
+        }
+    }
+    catch (const std::exception& e)
+    {
+        LOG_WARNING("Failed to process player: [%s] action: [%s], error: [%s]") % name % pcmn::Action::ToString(action) % e.what();
+        m_Control->Fold();
+    }
 }
 
 void Table::FlopCards(const pcmn::Card::List& cards)

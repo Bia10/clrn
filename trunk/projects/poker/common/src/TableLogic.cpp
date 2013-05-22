@@ -65,7 +65,7 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
         m_Actions[m_Phase].push_back(actionData);
 
         Player& current = GetPlayer(name);
-        if (current.Afk() && Action::IsUseful(action) && action != Action::SmallBlind && action != Action::BigBlind)
+        if (current.Afk() && Action::IsUseful(action) && action != Action::SmallBlind && action != Action::BigBlind && action != Action::Fold)
             current.Afk(false);
 
         switch (action)
@@ -160,6 +160,7 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
             return;
         }          
 
+        bool phaseChanged = false;
         if (m_State != State::Uninited)
         {
             CHECK(!m_Queue.empty(), "Unexpected player actions sequence, queue is empty", name);
@@ -187,7 +188,7 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
                 return;
 
             if (m_Queue.empty() && !m_IsRoundFinished)
-                SetPhase(static_cast<Phase::Value>(m_Phase + 1));
+                SetPhase(static_cast<Phase::Value>(m_Phase + 1)), phaseChanged = true;
         }
 
         LOG_TRACE("Detect next player: finished: [%s], state: [%s], queue: [%s], action: [%s]") % m_IsRoundFinished % m_State % m_Queue % action;
@@ -198,7 +199,7 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
             if (m_Queue.front() == botName)
             {
                 LOG_TRACE("Next player is bot, cards: [%s]") % GetPlayer(botName).Cards().size();
-                if (GetPlayer(botName).Cards().empty()) // workaround, cards may be received after decision needed
+                if (phaseChanged || GetPlayer(botName).Cards().empty()) // workaround, cards may be received after decision needed
                     m_IsNeedDecision = true;
                 else
                     SendRequest(false);
@@ -656,6 +657,8 @@ void TableLogic::SendRequest(bool statistics)
     {
 	    if (m_State == State::Server)
             return;
+
+        CHECK(statistics || m_Phase == Phase::Preflop && m_Flop.empty() || m_Phase == Phase::Flop && m_Flop.size() >= 3 || m_Phase == Phase::Turn && m_Flop.size() >= 4 || m_Phase == Phase::River && m_Flop.size() == 5, "Invalid cards size of phase", m_Flop.size(), m_Phase);
 	
 	    PlayerQueue playerNames;
 	    if (m_State == State::InitedClient)
@@ -828,7 +831,7 @@ void TableLogic::SetPhase(Phase::Value phase)
         const std::string& botName = Player::ThisPlayer().Name();
         CHECK(!botName.empty(), "Bot name not inited, can't get next");
         if (m_Queue.front() == botName)
-            SendRequest(false);
+            m_IsNeedDecision = true;
     }
 
     if (m_State == State::InitedClient && m_Queue.empty()) // there is no active players
@@ -1091,6 +1094,11 @@ void TableLogic::SetFlopCards(const Card::List& cards)
 {
     CHECK(cards.size() >= 3 && cards.size() <= 5, cards.size());
     m_Flop = cards;
+    if (m_IsNeedDecision)
+    {
+        SendRequest(false);
+        m_IsNeedDecision = false;
+    }
 }
 
 void TableLogic::RemovePlayer(const std::string& name)
