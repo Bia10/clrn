@@ -51,7 +51,7 @@ private:
 	pcmn::Player::Style::Value GetBotAverageStyle(const pcmn::Player& player, const  pcmn::Player::Queue& activePlayers, unsigned totalPlayers) const;
 
 	//! Get bot style
-	pcmn::Player::Style::Value GetBotStyle(const pcmn::Player& bot) const;
+	pcmn::Player::Style::Value GetBotStyle(const pcmn::Player& bot, unsigned street) const;
 
     //! Get max stack size
     unsigned GetMaxStack(const pcmn::Player::Queue& activePlayers) const;

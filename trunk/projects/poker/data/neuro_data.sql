@@ -413,3 +413,16 @@ WHERE  win IN ( 2 )
        AND bot_style IN ( 1, 2 ) 
        AND bot_stack IN ( 2 ) 
        AND decision IN ( 0 ) 		   
+	   
+-- fold with very good rate and high danger
+UPDATE decisions 
+SET    decision = 0
+WHERE  win IN ( 4 ) 
+       AND position IN ( 0, 1, 2 ) 
+       AND bet IN ( 3, 4 ) 
+       AND players IN ( 1, 2 ) 
+       AND danger IN ( 2 )  
+       AND bot_avg_style IN ( 0, 1, 2 ) 
+       AND bot_style IN ( 1 ) -- means that bot anly calls here
+       AND bot_stack IN ( 0, 1 ) 
+       AND decision IN ( 1, 2 ) 		   
