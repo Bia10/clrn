@@ -327,13 +327,13 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
             continue;
 
         const pcmn::WinRate::Value winRate = pcmn::WinRate::FromValue(equity.m_WinRate);
-        if (winRate >= pcmn::WinRate::Good)
+        if (winRate >= pcmn::WinRate::Good && botWinRate < pcmn::WinRate::Nuts)
             return pcmn::Danger::High;
 
         if (winRate > pcmn::WinRate::Low)
         {
             onlyLow = false;
-            if (street && equity.m_WinRate > botRate || winRate - botWinRate <= 1)
+            if (street && equity.m_WinRate > botRate)
                 return pcmn::Danger::High;
         }
 	}
