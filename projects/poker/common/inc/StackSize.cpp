@@ -23,11 +23,11 @@ namespace pcmn
         if (value < (pot - maxBet) / 2)
             return StackSize::Small;
 
+        if (value > bigBlind * 20 || value > minStack + (maxStack - minStack) / 2)
+            return StackSize::Big;
+
         if (value < minStack * 3 / 2)
             return StackSize::Small;
-
-        if (value > bigBlind * 20 || value > maxStack * 2 / 3)
-            return StackSize::Big;
 
         return StackSize::Normal;
 	}
