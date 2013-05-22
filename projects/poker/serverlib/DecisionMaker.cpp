@@ -318,6 +318,7 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
     }
     BOOST_SCOPE_EXIT_END
 
+    const pcmn::WinRate::Value botWinRate = pcmn::WinRate::FromValue(botRate);
 	for (const IStatistics::PlayerInfo& equity : equities)
 	{
         equitiesTrace.push_back(equity.m_WinRate);
@@ -332,7 +333,7 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
         if (winRate > pcmn::WinRate::Low)
         {
             onlyLow = false;
-            if (street && equity.m_WinRate > botRate)
+            if (street && equity.m_WinRate > botRate || winRate - botWinRate <= 1)
                 return pcmn::Danger::High;
         }
 	}
