@@ -20,7 +20,7 @@ namespace pcmn
 		if (value < bigBlind * 10)
 			return StackSize::Small;
 
-        if (value < (pot - maxBet) * 3 / 2)
+        if (value < (pot - maxBet) / 2)
             return StackSize::Small;
 
         if (value > bigBlind * 20 || value > maxStack * 2 / 3)
