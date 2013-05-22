@@ -53,8 +53,11 @@ private:
 	//! Get bot style
 	pcmn::Player::Style::Value GetBotStyle(const pcmn::Player& bot) const;
 
-	//! Get max stack size
-	unsigned GetMaxStack(const  pcmn::Player::Queue& activePlayers) const;
+    //! Get max stack size
+    unsigned GetMaxStack(const pcmn::Player::Queue& activePlayers) const;
+
+    //! Get max stack size
+    unsigned GetMinStack(const pcmn::Player::Queue& activePlayers) const;
 
 	//! Get player by name
 	const pcmn::Player& GetPlayer(const  pcmn::Player::Queue& activePlayers, const std::string& name) const;

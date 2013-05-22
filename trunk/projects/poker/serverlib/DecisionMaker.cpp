@@ -15,6 +15,8 @@
 #include <boost/assign/list_of.hpp>
 #include <boost/scope_exit.hpp>
 
+#undef max
+
 namespace srv
 {
 
@@ -89,7 +91,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 		in.push_back(static_cast<float>(params.m_BotStyle) / pcmn::Player::Style::Max);
 	
 		// bot stack size
-		params.m_BotStackSize = pcmn::StackSize::FromValue(player.Stack(), context.m_BigBlind, GetMaxStack(activePlayers), context.m_Pot, context.m_MaxBet);
+		params.m_BotStackSize = pcmn::StackSize::FromValue(player.Stack(), context.m_BigBlind, GetMaxStack(activePlayers), GetMinStack(activePlayers), context.m_Pot, context.m_MaxBet);
 		in.push_back(static_cast<float>(params.m_BotStackSize) / pcmn::StackSize::Max);
 
         std::vector<float> out;
@@ -399,6 +401,19 @@ unsigned DecisionMaker::GetMaxStack(const  pcmn::Player::Queue& activePlayers) c
 			max = player.Stack();
 	}
 	return max;
+}
+
+unsigned DecisionMaker::GetMinStack(const pcmn::Player::Queue& activePlayers) const
+{
+    SCOPED_LOG(m_Log);
+    unsigned min = std::numeric_limits<unsigned>::max();
+
+    for (const pcmn::Player& player : activePlayers)
+    {
+        if (player.Stack() < min)
+            min = player.Stack();
+    }
+    return min;
 }
 
 const pcmn::Player& DecisionMaker::GetPlayer(const  pcmn::Player::Queue& activePlayers, const std::string& name) const
