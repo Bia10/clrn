@@ -87,7 +87,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 		in.push_back(static_cast<float>(params.m_BotAverageStyle) / pcmn::Player::Style::Max);
 	
 		// bot play style
-		params.m_BotStyle = GetBotStyle(player);
+		params.m_BotStyle = GetBotStyle(player, context.m_Street);
 		in.push_back(static_cast<float>(params.m_BotStyle) / pcmn::Player::Style::Max);
 	
 		// bot stack size
@@ -367,7 +367,7 @@ pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const pcmn::Player&
 	return m_Stat.GetAverageStyle(player.Name(), it->Name());
 }
 
-pcmn::Player::Style::Value DecisionMaker::GetBotStyle(const pcmn::Player& bot) const
+pcmn::Player::Style::Value DecisionMaker::GetBotStyle(const pcmn::Player& bot, unsigned street) const
 {
 	SCOPED_LOG(m_Log);
 
@@ -388,7 +388,10 @@ pcmn::Player::Style::Value DecisionMaker::GetBotStyle(const pcmn::Player& bot) c
     const bool checkedFromBigBlind = !bot.GetActions().empty() && bot.GetActions().front().size() == 1 && bot.GetActions().front().front().m_Id == pcmn::Action::Check;
 
 	// more than one call it's a normal style(one call from preflop), else - call and checks - it's passive style
-	return (calls > 1 || checkedFromBigBlind) ? pcmn::Player::Style::Normal : pcmn::Player::Style::Passive;
+	const pcmn::Player::Style::Value result = (calls > 1 || checkedFromBigBlind) ? pcmn::Player::Style::Normal : pcmn::Player::Style::Passive;
+    if (street && result == pcmn::Player::Style::Passive)
+        return pcmn::Player::Style::Normal;
+    return result;
 }
 
 unsigned DecisionMaker::GetMaxStack(const  pcmn::Player::Queue& activePlayers) const
