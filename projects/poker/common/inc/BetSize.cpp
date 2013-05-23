@@ -53,7 +53,7 @@ namespace pcmn
 
         const bool isBigBetToStack = maxBet > 0.8f * stack;
         const float value = static_cast<float>(maxBet - bet) / pot;
-        if (bet <= bigBlind * 3 && value < 0.6f && !isBigBetToStack)
+        if (bet <= bigBlind * 3 && value < 0.6f && !isBigBetToStack && maxBet - bet < bigBlind * 6)
             return BetSize::Normal;
         if (value < 1.5f && !isBigBetToStack)
             return BetSize::High;
