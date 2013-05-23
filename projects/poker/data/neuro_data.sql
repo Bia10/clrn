@@ -452,3 +452,16 @@ WHERE  win IN ( 2 )
        AND bot_style IN ( 2 ) -- means that bot raised before
        AND bot_stack IN ( 2 ) 
        AND decision IN ( 0 ) 		   
+	     
+-- raise with good win rate and small stack
+UPDATE decisions 
+SET    decision = 2
+WHERE  win IN ( 3 ) 
+       AND position IN ( 0, 1, 2 ) 
+       AND bet IN ( 0, 1, 2 ) 
+       AND players IN ( 0, 1, 2 ) 
+       AND danger IN ( 0, 1 )  
+       AND bot_avg_style IN ( 0, 1, 2 ) 
+       AND bot_style IN ( 1 ) -- means that bot raised before
+       AND bot_stack IN ( 0 ) 
+       AND decision IN ( 0, 1 ) 			   
