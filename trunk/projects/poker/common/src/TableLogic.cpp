@@ -154,7 +154,12 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
         case pcmn::Action::Win:
             // if we reached here some players are not folded, we must add fold actions for them
             while (m_Queue.size() > 1)
+            {
+                const unsigned size = m_Queue.size();
                 PushAction(m_Queue.front(), Action::Fold, 0);
+                if (size == m_Queue.size())
+                    m_Queue.pop_front();
+            }
             return;
         default:
             return;
@@ -168,7 +173,10 @@ void TableLogic::PushAction(const std::string& name, Action::Value action, unsig
             {
                 while (GetPlayer(m_Queue.front()).Afk())
                 {
+                    const unsigned size = m_Queue.size();
                     PushAction(m_Queue.front(), Action::Fold, 0);
+                    if (size == m_Queue.size())
+                        m_Queue.pop_front();
                     std::swap(*(m_Actions[m_Phase].end() - 1), *(m_Actions[m_Phase].end() - 2));
                 }
             }

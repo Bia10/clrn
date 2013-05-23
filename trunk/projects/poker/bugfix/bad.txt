@@ -99,3 +99,7 @@ Decision >>>>: [win: [VeryGood], pos: [Later], bet: [VeryLow], players: [One], d
 тут надо было скидывать:
 Decision >>>>: [win: [VeryGood], pos: [Middle], bet: [High], players: [Two], danger: [High], bot avg style: [Aggressive], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
 Decision >>>>: [win: [VeryGood], pos: [Later], bet: [Huge], players: [Two], danger: [High], bot avg style: [Aggressive], bot style: [Normal], bot stack: [Small], decision: [Not set]]
+
+скинул АА:
+Decision >>>>: [win: [Normal], pos: [Middle], bet: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Big], decision: [Not set]]
+Decision >>>>: [win: [Normal], pos: [Later], bet: [High], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Big], decision: [Not set]]
