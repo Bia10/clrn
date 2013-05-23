@@ -329,6 +329,8 @@ float GetEquity(const PlayerInfo::Actions& actionDescs, unsigned streetId, const
                                         << "streets" << BSON("$elemMatch" 
                                                         << BSON("actions" << BSON("$all"
                                                                 << actions))))));
+
+        query.sort("_id", 0);
         
 
         // fetch 
@@ -336,7 +338,7 @@ float GetEquity(const PlayerInfo::Actions& actionDescs, unsigned streetId, const
         (
             STAT_COLLECTION_NAME, 
             query,
-            0,
+            10, // ten last games
             0, 
             &returnProjection
         );
