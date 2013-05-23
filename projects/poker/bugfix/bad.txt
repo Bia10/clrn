@@ -107,3 +107,6 @@ Decision >>>>: [win: [Normal], pos: [Later], bet: [High], players: [ThreeOrMore]
 тут надо рейзить:
 Decision >>>>: [win: [Good], pos: [Middle], bet: [VeryLow], players: [ThreeOrMore], danger: [Low], bot avg style: [Passive], bot style: [Normal], bot stack: [Small], decision: [Not set]]
 Decision >>>>: [win: [Good], pos: [Middle], bet: [VeryLow], players: [ThreeOrMore], danger: [Low], bot avg style: [Passive], bot style: [Normal], bot stack: [Small], decision: [Not set]]
+
+конбет с нормал стеком:
+Decision >>>>: [win: [Low], pos: [Middle], bet: [VeryLow], players: [Two], danger: [Low], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]

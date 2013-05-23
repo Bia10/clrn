@@ -34,7 +34,7 @@ namespace pcmn
 
         const unsigned diff = maxStack - minStack;
         const unsigned medium = minStack + diff / 2;
-        return (value > medium) ? StackSize::Big : StackSize::Small;
+        return (value > medium) ? StackSize::Big : StackSize::Normal;
 	}
 
 };
