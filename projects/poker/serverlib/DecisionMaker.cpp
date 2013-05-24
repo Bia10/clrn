@@ -98,7 +98,8 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
         m_Net.Process(in, out);
 	
 		net::Reply reply;
-	
+
+        const bool allIn = !context.m_Street && params.m_WinRate >= pcmn::WinRate::Normal && params.m_Danger == pcmn::Danger::Low && params.m_Position == pcmn::Player::Position::Later;
 		if (out[0] > out[1] && out[0] > out[2])
 		{
 			reply.set_amount(0);
@@ -110,6 +111,11 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 		else
 		if (out[1] > out[0] && out[1] > out[2])
 		{
+            if (allIn)
+            {
+                out = boost::assign::list_of(0.0f)(0.0f)(1.0f);
+            }
+            else
 			if (context.m_MaxBet)
 			{
     			reply.set_action(pcmn::Action::Call);
@@ -121,7 +127,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 				reply.set_amount(0);
 			}
 		}
-		else
+		
 		if (out[2] > out[0] && out[2] > out[1])
 		{
 			reply.set_action(pcmn::Action::Raise);
@@ -143,7 +149,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 
             amount = (amount / 10) * 10;
 
-			if (amount > player.Stack() / 2 || (params.m_BotStackSize == pcmn::StackSize::Small && !context.m_Street)) // all in with small stack
+			if (allIn || amount > player.Stack() / 2 || (params.m_BotStackSize == pcmn::StackSize::Small && !context.m_Street)) // all in with small stack
 				amount = player.Stack() + player.Bet();
 
 			reply.set_amount(amount);
