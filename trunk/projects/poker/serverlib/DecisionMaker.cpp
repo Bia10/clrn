@@ -99,7 +99,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 	
 		net::Reply reply;
 
-        const bool allIn = !context.m_Street && params.m_WinRate >= pcmn::WinRate::Normal && params.m_Danger == pcmn::Danger::Low && params.m_Position == pcmn::Player::Position::Later;
+        const bool allIn = !context.m_Street && params.m_WinRate >= pcmn::WinRate::Normal && params.m_Danger == pcmn::Danger::Low && params.m_Position == pcmn::Player::Position::Later && params.m_BetSize >= pcmn::BetSize::High;
 		if (out[0] > out[1] && out[0] > out[2])
 		{
 			reply.set_amount(0);
