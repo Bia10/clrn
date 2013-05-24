@@ -1,13 +1,9 @@
 pending:
 
-скинул топ пару:
-[TRACE  ][6][2013-05-21T22:41:06.452695]:[7704]: Ranges: [15,52] /* srv::DecisionMaker::GetPlayerWinRate */
-[TRACE  ][6][2013-05-21T22:41:06.596704]:[7704]: Equities size: [4] /* srv::DecisionMaker::GetDanger */
-[TRACE  ][6][2013-05-21T22:41:06.624705]:[7704]: Equities: [50.9097] /* srv::DecisionMaker::GetDanger::boost_se_guard_t_19::boost_se_body */
-[TRACE  ][6][2013-05-21T22:41:06.631706]:[7704]: Win: [0.358783007], bet: [0], max bet: [50], pot: [350], bot stack: [715], cards: [Cards: ('Three' of 'Hearts')('Queen' of 'Hearts'), Flop: ('Ten' of 'Clubs')('Queen' of 'Spades')('Seven' of 'Diamonds')('Six' of 'Spades')] /* srv::DecisionMaker::MakeDecision */
-[TRACE  ][6][2013-05-21T22:41:06.645706]:[7704]: 
-Decision >>>>: [win: [Normal], pos: [Middle], bet: [VeryLow], players: [Two], danger: [High], bot avg style: [Aggressive], bot style: [Normal], bot stack: [Normal], decision: [Not set]]
-Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
+подумать, возможно тут стоит делать фолд(если повторится - переделать на фолд Huge bets)
+[TRACE  ][6][2013-05-23T20:48:43.561228]:[7580]: Win: [0.61293298], bet: [0], max bet: [1020], pot: [2010], bot stack: [1020], cards: [Cards: ('King' of 'Diamonds')('Five' of 'Diamonds'), Flop: ('Four' of 'Spades')('Six' of 'Clubs')('King' of 'Spades')('Seven' of 'Hearts')] /* srv::DecisionMaker::MakeDecision */
+Decision >>>>: [win: [VeryGood], pos: [Later], bet: [Huge], players: [One], danger: [High], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Big], decision: [Not set]]
+Decision <<<<: [Action: 2 Amount: 1020] /* srv::DecisionMaker::MakeDecision */
 
 fixed:
 [TRACE  ][6][2013-04-10T23:32:23.594577]:[4752]: Decision input: win: [Normal]:[29], pos: [Later], pot: [Normal], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */
@@ -110,3 +106,9 @@ Decision >>>>: [win: [Good], pos: [Middle], bet: [VeryLow], players: [ThreeOrMor
 
 конбет с нормал стеком:
 Decision >>>>: [win: [Low], pos: [Middle], bet: [VeryLow], players: [Two], danger: [Low], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+
+скинул топ пару:
+Decision >>>>: [win: [Normal], pos: [Middle], bet: [VeryLow], players: [Two], danger: [High], bot avg style: [Aggressive], bot style: [Normal], bot stack: [Normal], decision: [Not set]]
+
+рейз не в тему, позиция и стек не те:
+Decision >>>>: [win: [Normal], pos: [Middle], bet: [VeryLow], players: [Two], danger: [Low], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
