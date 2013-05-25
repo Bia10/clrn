@@ -18,7 +18,7 @@ typedef ::std::tr1::tuple<int, int, int, float>  ParamsWithoutFlop;
  
 typedef ::std::tr1::tuple<int, int, Card::List, int, float>  ParamsWithFlop;
 
-class TestHands : public testing::TestWithParam<ParamsWithoutFlop>
+class TestEvaluation : public testing::TestWithParam<ParamsWithoutFlop>
 {
 public:
 
@@ -36,7 +36,7 @@ private:
 	Evaluator m_Calc;
 };
 
-class TestHandsAndFlop : public testing::TestWithParam<ParamsWithFlop>
+class TestEvaluationAndFlop : public testing::TestWithParam<ParamsWithFlop>
 {
 public:
 
@@ -74,7 +74,7 @@ TEST(Cards, Convertion)
 	}
 }
 
-TEST(HandEval, Old)
+TEST(Evaluation, Old)
 {
 	std::auto_ptr<HandEval> eval(new HandEval());
 	int holeCards[4] = {0, 11, 37, 38}; // Two pairs of hole cards, the first
@@ -200,12 +200,12 @@ TEST(Evaluator, Ranks)
 
 }
 
-TEST_P(TestHands, Simple)
+TEST_P(TestEvaluation, Simple)
 {
 	Do();	
 }
 
-TEST_P(TestHandsAndFlop, Simple)
+TEST_P(TestEvaluationAndFlop, Simple)
 {
 	Do();	
 }
@@ -213,7 +213,7 @@ TEST_P(TestHandsAndFlop, Simple)
 INSTANTIATE_TEST_CASE_P
 (
 	Combined,
-	TestHands,
+	TestEvaluation,
 	Values
 	(
         ParamsWithoutFlop(Card(Card::King, Suit::Clubs).ToEvalFormat(), Card(Card::Three, Suit::Hearts).ToEvalFormat(), 3, 30.120f),
@@ -234,7 +234,7 @@ Card::List flop =  boost::assign::list_of(Card(Card::Five, Suit::Hearts))(Card(C
 INSTANTIATE_TEST_CASE_P
 (
 	Combined,
-	TestHandsAndFlop,
+	TestEvaluationAndFlop,
 	Values
 	(
 		ParamsWithFlop(Card(Card::Ace, Suit::Spades).ToEvalFormat(), Card(Card::King, Suit::Spades).ToEvalFormat(), flop, 2, 52.214f),
