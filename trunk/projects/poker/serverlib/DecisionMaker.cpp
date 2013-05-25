@@ -149,7 +149,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 
             amount = (amount / 10) * 10;
 
-			if (allIn || amount > player.Stack() / 2 || (params.m_BotStackSize == pcmn::StackSize::Small && !context.m_Street)) // all in with small stack
+			if (allIn || amount > player.Stack() * 2 / 3 || (params.m_BotStackSize == pcmn::StackSize::Small && !context.m_Street)) // all in with small stack
 				amount = player.Stack() + player.Bet();
 
 			reply.set_amount(amount);
