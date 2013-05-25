@@ -1,0 +1,541 @@
+[NONE   ][0][2013-05-15T16:43:51.486656]:[7020]: Logger started, module: [0], level: [3], source: [logs/messages.txt].
+[TRACE  ][0][2013-05-15T16:44:41.117495]:[1760]: Ante: '0' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T16:44:41.178498]:[1760]: Player: 'dendi76', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T16:44:41.179498]:[1760]: Player: 'shuriks', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T16:44:41.180499]:[1760]: Player: 'giuuu90', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T16:44:41.180499]:[1760]: Player: 'fryingpan123', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T16:44:41.181499]:[1760]: Player: 'pepe83333333', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T16:44:41.181499]:[1760]: Player: 'chasnikk', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T16:44:41.182499]:[1760]: Player: 'CLRN', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-15T16:45:38.880799]:[1760]: Player: 'shuriks', stack: '1490' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:45:38.881799]:[1760]: Player: 'giuuu90', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:45:38.881799]:[1760]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:45:38.882799]:[1760]: Player: 'shuriks', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:45:38.884799]:[1760]: Player: 'giuuu90', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:45:38.887799]:[1760]: Player cards: ('Jack' of 'Spades')('Two' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-15T16:45:49.050380]:[1760]: Player: 'fryingpan123', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:45:52.389571]:[1760]: Player: 'fryingpan123', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:45:52.391572]:[1760]: Player: 'fryingpan123', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:45:52.970605]:[1760]: Player: 'CH/Ivan/M', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:45:59.102955]:[1760]: Player: 'pepe83333333', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:02.454147]:[1760]: Player: 'Will^^^^1957', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:02.455147]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:10.646616]:[1760]: Player: 'chasnikk', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:13.134758]:[1760]: Player: 'chasnikk', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:13.136758]:[1760]: Player: 'chasnikk', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:21.370229]:[1760]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:23.691362]:[1760]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:25.669475]:[1760]: Player: 'dendi76', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:25.671475]:[1760]: Player: 'dendi76', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:29.410689]:[1760]: Player: 'shuriks', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:29.412689]:[1760]: Player: 'shuriks', action: 'Raise', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:29.421690]:[1760]: Player: 'giuuu90', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:29.423690]:[1760]: Player: 'giuuu90', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:31.749823]:[1760]: Player: 'fryingpan123', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:34.697991]:[1760]: Player: 'Will^^^^1957', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:34.699991]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:42.024410]:[1760]: Player: 'chasnikk', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:43.978522]:[1760]: Player: 'dendi76', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:43.980522]:[1760]: Player: 'dendi76', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:44.878574]:[1760]: Cards received: ('Two' of 'Diamonds')('Nine' of 'Hearts')('Eight' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:46:47.700735]:[1760]: Player: 'shuriks', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:51.726965]:[1760]: Player: 'Will^^^^1957', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:52.310999]:[1760]: Player: 'dendi76', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:52.476008]:[1760]: Cards received: ('Two' of 'Diamonds')('Nine' of 'Hearts')('Eight' of 'Clubs')('Jack' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:46:57.722308]:[1760]: Player: 'shuriks', stack: '1300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:57.722308]:[1760]: Player: 'shuriks', action: 'Bet', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:59.570414]:[1760]: Player: 'Will^^^^1957', stack: '1300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:46:59.572414]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:02.008553]:[1760]: Player: 'dendi76', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:02.641590]:[1760]: Cards received: ('Two' of 'Diamonds')('Nine' of 'Hearts')('Eight' of 'Clubs')('Jack' of 'Diamonds')('Four' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:47:08.823943]:[1760]: Player: 'shuriks', stack: '1140' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:08.824943]:[1760]: Player: 'shuriks', action: 'Bet', amount: '160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:10.603045]:[1760]: Player: 'Will^^^^1957', stack: '1140' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:10.605045]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:11.206079]:[1760]: Player: 'shuriks', action: 'ShowCards', cards: 'QhTh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:13.578215]:[1760]: Player: 'Will^^^^1957', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:20.647620]:[1760]: Player: 'giuuu90', stack: '1470' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:47:20.647620]:[1760]: Player: 'fryingpan123', stack: '1460' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:47:20.647620]:[1760]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:47:20.650620]:[1760]: Player: 'giuuu90', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:47:20.658620]:[1760]: Player: 'fryingpan123', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:47:20.663620]:[1760]: Player cards: ('Seven' of 'Diamonds')('Seven' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-15T16:47:24.700851]:[1760]: Player: 'CH/Ivan/M', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:24.702851]:[1760]: Player: 'CH/Ivan/M', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:27.694023]:[1760]: Player: 'pepe83333333', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:27.996040]:[1760]: Player: 'Will^^^^1957', stack: '1120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:27.998040]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:41.405807]:[1760]: Player: 'chasnikk', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:47.814173]:[1760]: Player: 'chasnikk', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:50.926351]:[1760]: Player: 'CLRN', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:50.928351]:[1760]: Player: 'CLRN', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:53.235483]:[1760]: Player: 'dendi76', stack: '1380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:53.237484]:[1760]: Player: 'dendi76', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:53.529500]:[1760]: Player: 'shuriks', stack: '2000' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:53.531500]:[1760]: Player: 'shuriks', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:57.316717]:[1760]: Player: 'giuuu90', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:58.742798]:[1760]: Player: 'fryingpan123', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:47:59.448839]:[1760]: Cards received: ('Four' of 'Spades')('Ten' of 'Diamonds')('Jack' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:48:05.922209]:[1760]: Player: 'fryingpan123', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:11.269515]:[1760]: Player: 'CH/Ivan/M', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:11.271515]:[1760]: Player: 'CH/Ivan/M', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:14.724713]:[1760]: Player: 'Will^^^^1957', stack: '1100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:14.725713]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:17.565875]:[1760]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:19.564989]:[1760]: Player: 'dendi76', stack: '1360' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:19.566990]:[1760]: Player: 'dendi76', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:21.103077]:[1760]: Player: 'shuriks', stack: '1980' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:21.104077]:[1760]: Player: 'shuriks', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:26.971413]:[1760]: Player: 'fryingpan123', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:27.879465]:[1760]: Cards received: ('Four' of 'Spades')('Ten' of 'Diamonds')('Jack' of 'Spades')('Two' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:48:31.964699]:[1760]: Player: 'CH/Ivan/M', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:31.966699]:[1760]: Player: 'CH/Ivan/M', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:36.136937]:[1760]: Player: 'Will^^^^1957', stack: '980' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:36.138937]:[1760]: Player: 'Will^^^^1957', action: 'Raise', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:38.439069]:[1760]: Player: 'dendi76', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:38.737086]:[1760]: Player: 'shuriks', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:40.644195]:[1760]: Player: 'CH/Ivan/M', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:40.646195]:[1760]: Player: 'CH/Ivan/M', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:41.276231]:[1760]: Cards received: ('Four' of 'Spades')('Ten' of 'Diamonds')('Jack' of 'Spades')('Two' of 'Clubs')('Two' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:48:47.176569]:[1760]: Player: 'CH/Ivan/M', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:51.172797]:[1760]: Player: 'Will^^^^1957', stack: '820' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:51.174797]:[1760]: Player: 'Will^^^^1957', action: 'Bet', amount: '160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:59.126252]:[1760]: Player: 'CH/Ivan/M', stack: '1180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:59.128252]:[1760]: Player: 'CH/Ivan/M', action: 'Call', amount: '160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:48:59.889296]:[1760]: Player: 'Will^^^^1957', action: 'ShowCards', cards: '4h2h' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:01.892410]:[1760]: Player: 'CH/Ivan/M', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:05.059592]:[1760]: Player: 'fryingpan123', stack: '1450' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:49:05.059592]:[1760]: Player: 'CH/Ivan/M', stack: '1160' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:49:05.059592]:[1760]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:49:05.061592]:[1760]: Player: 'fryingpan123', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:49:05.071592]:[1760]: Player: 'CH/Ivan/M', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:49:05.073592]:[1760]: Player cards: ('Eight' of 'Hearts')('Seven' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-15T16:49:10.669912]:[1760]: Player: 'pepe83333333', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:10.670912]:[1760]: Player: 'pepe83333333', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:13.413069]:[1760]: Player: 'Will^^^^1957', stack: '1510' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:13.415069]:[1760]: Player: 'Will^^^^1957', action: 'Raise', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:22.349580]:[1760]: Player: 'chasnikk', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:25.154741]:[1760]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:25.443757]:[1760]: Player: 'dendi76', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:26.688829]:[1760]: Player: 'shuriks', stack: '1900' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:26.689829]:[1760]: Player: 'shuriks', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:26.696829]:[1760]: Player: 'giuuu90', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:28.150912]:[1760]: Player: 'fryingpan123', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:30.684057]:[1760]: Player: 'CH/Ivan/M', stack: '1100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:30.685057]:[1760]: Player: 'CH/Ivan/M', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:35.024305]:[1760]: Player: 'pepe83333333', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:35.025305]:[1760]: Player: 'pepe83333333', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:35.931357]:[1760]: Cards received: ('Ace' of 'Hearts')('Three' of 'Diamonds')('Jack' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:49:44.419843]:[1760]: Player: 'CH/Ivan/M', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:49:58.189630]:[1760]: Player: 'CH/Ivan/M', action: 'SecondsLeft', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:03.410929]:[1760]: Player: 'CH/Ivan/M', stack: '1100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:03.411929]:[1760]: Player: 'CH/Ivan/M', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:12.305438]:[1760]: Player: 'pepe83333333', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:15.449618]:[1760]: Player: 'pepe83333333', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:16.033651]:[1760]: Player: 'Will^^^^1957', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:19.856870]:[1760]: Player: 'shuriks', stack: '1820' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:19.858870]:[1760]: Player: 'shuriks', action: 'Bet', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:26.253236]:[1760]: Player: 'CH/Ivan/M', stack: '1020' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:26.253236]:[1760]: Player: 'CH/Ivan/M', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:27.863328]:[1760]: Player: 'pepe83333333', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:27.869328]:[1760]: Player: 'Will^^^^1957', stack: '1430' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:27.870328]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:28.483363]:[1760]: Cards received: ('Ace' of 'Hearts')('Three' of 'Diamonds')('Jack' of 'Hearts')('Four' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:50:35.296753]:[1760]: Player: 'CH/Ivan/M', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:35.589770]:[1760]: Player: 'Will^^^^1957', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:38.230921]:[1760]: Player: 'shuriks', stack: '1740' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:38.231921]:[1760]: Player: 'shuriks', action: 'Bet', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:39.807011]:[1760]: Player: 'CH/Ivan/M', stack: '940' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:39.809011]:[1760]: Player: 'CH/Ivan/M', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:42.359157]:[1760]: Player: 'Will^^^^1957', stack: '1350' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:42.361157]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:42.983192]:[1760]: Cards received: ('Ace' of 'Hearts')('Three' of 'Diamonds')('Jack' of 'Hearts')('Four' of 'Diamonds')('Nine' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:50:45.172318]:[1760]: Player: 'CH/Ivan/M', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:46.394388]:[1760]: Player: 'Will^^^^1957', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:47.529452]:[1760]: Player: 'shuriks', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:48.314497]:[1760]: Player: 'CH/Ivan/M', action: 'ShowCards', cards: 'Qd2d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:48.323498]:[1760]: Player: 'Will^^^^1957', stack: '940' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:48.325498]:[1760]: Player: 'Will^^^^1957', action: 'ShowCards', cards: 'TcTd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:48.333498]:[1760]: Player: 'shuriks', stack: '1350' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:48.334499]:[1760]: Player: 'shuriks', action: 'ShowCards', cards: 'QhJd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:51.332670]:[1760]: Player: 'CH/Ivan/M', stack: '930' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:50:51.332670]:[1760]: Player: 'pepe83333333', stack: '1400' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:50:51.333670]:[1760]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:50:51.334670]:[1760]: Player: 'CH/Ivan/M', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:50:51.342671]:[1760]: Player: 'pepe83333333', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:50:51.346671]:[1760]: Player cards: ('Ace' of 'Hearts')('Three' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-15T16:50:55.248894]:[1760]: Player: 'Will^^^^1957', stack: '1330' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:50:55.249894]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:10.413761]:[1760]: Player: 'chasnikk', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:11.784840]:[1760]: Player: 'chasnikk', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:14.053970]:[1760]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:16.049084]:[1760]: Player: 'dendi76', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:16.345101]:[1760]: Player: 'shuriks', stack: '2530' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:16.347101]:[1760]: Player: 'shuriks', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:16.634117]:[1760]: Player: 'giuuu90', stack: '1450' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:16.636117]:[1760]: Player: 'giuuu90', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:19.137260]:[1760]: Player: 'fryingpan123', stack: '1430' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:19.138260]:[1760]: Player: 'fryingpan123', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:21.612402]:[1760]: Player: 'CH/Ivan/M', stack: '920' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:21.613402]:[1760]: Player: 'CH/Ivan/M', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:24.542570]:[1760]: Player: 'pepe83333333', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:25.445621]:[1760]: Cards received: ('Nine' of 'Spades')('Ace' of 'Diamonds')('Seven' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:51:29.202836]:[1760]: Player: 'CH/Ivan/M', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:32.678035]:[1760]: Player: 'pepe83333333', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:35.631204]:[1760]: Player: 'Will^^^^1957', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:39.484424]:[1760]: Player: 'shuriks', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:41.496539]:[1760]: Player: 'giuuu90', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:45.306757]:[1760]: Player: 'fryingpan123', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:45.471767]:[1760]: Cards received: ('Nine' of 'Spades')('Ace' of 'Diamonds')('Seven' of 'Clubs')('Nine' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:51:49.439994]:[1760]: Player: 'CH/Ivan/M', stack: '900' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:49.441994]:[1760]: Player: 'CH/Ivan/M', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:56.846417]:[1760]: Player: 'pepe83333333', stack: '1380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:51:56.848417]:[1760]: Player: 'pepe83333333', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:00.005598]:[1760]: Player: 'Will^^^^1957', stack: '1310' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:00.007598]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:00.292614]:[1760]: Player: 'shuriks', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:00.583631]:[1760]: Player: 'giuuu90', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:02.806758]:[1760]: Player: 'fryingpan123', stack: '1390' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:02.808758]:[1760]: Player: 'fryingpan123', action: 'Raise', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:06.598975]:[1760]: Player: 'CH/Ivan/M', stack: '860' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:06.600975]:[1760]: Player: 'CH/Ivan/M', action: 'Raise', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:15.454482]:[1760]: Player: 'pepe83333333', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:15.748498]:[1760]: Player: 'Will^^^^1957', stack: '1270' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:15.750498]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:21.441824]:[1760]: Player: 'fryingpan123', stack: '1370' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:21.443824]:[1760]: Player: 'fryingpan123', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:22.355876]:[1760]: Cards received: ('Nine' of 'Spades')('Ace' of 'Diamonds')('Seven' of 'Clubs')('Nine' of 'Hearts')('Jack' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:52:25.542058]:[1760]: Player: 'CH/Ivan/M', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:25.544059]:[1760]: Player: 'CH/Ivan/M', action: 'Bet', amount: '860' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:28.733241]:[1760]: Player: 'Will^^^^1957', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:32.958483]:[1760]: Player: 'fryingpan123', stack: '510' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:32.959483]:[1760]: Player: 'fryingpan123', action: 'Call', amount: '860' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:33.705525]:[1760]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:35.262614]:[1760]: Player: 'CH/Ivan/M', action: 'ShowCards', cards: '9cTs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:35.270615]:[1760]: Player: 'fryingpan123', stack: '510' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:35.272615]:[1760]: Player: 'fryingpan123', action: 'ShowCards', cards: 'As3s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:38.282787]:[1760]: Player: 'pepe83333333', stack: '1370' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:52:38.282787]:[1760]: Player: 'Will^^^^1957', stack: '1250' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:52:38.282787]:[1760]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:52:38.283787]:[1760]: Player: 'pepe83333333', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:52:38.293788]:[1760]: Player: 'Will^^^^1957', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:52:38.296788]:[1760]: Player cards: ('Seven' of 'Diamonds')('Five' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-15T16:52:47.464312]:[1760]: Player: 'chasnikk', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:47.466312]:[1760]: Player: 'chasnikk', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:49.570433]:[1760]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:49.953455]:[1760]: Player: 'dendi76', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:49.969456]:[1760]: Player: 'shuriks', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:50.242471]:[1760]: Player: 'giuuu90', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:56.018802]:[1760]: Player: 'fryingpan123', stack: '470' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:56.020802]:[1760]: Player: 'fryingpan123', action: 'Raise', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:52:58.386937]:[1760]: Player: 'CH/Ivan/M', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:07.141438]:[1760]: Player: 'pepe83333333', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:12.190727]:[1760]: Player: 'pepe83333333', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:12.191727]:[1760]: Player: 'pepe83333333', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:14.598864]:[1760]: Player: 'Will^^^^1957', stack: '1230' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:14.600864]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:19.391138]:[1760]: Player: 'chasnikk', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:19.393139]:[1760]: Player: 'chasnikk', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:20.014174]:[1760]: Cards received: ('King' of 'Spades')('Four' of 'Spades')('Ten' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:53:28.883681]:[1760]: Player: 'pepe83333333', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:33.085922]:[1760]: Player: 'Will^^^^1957', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:34.216986]:[1760]: Player: 'chasnikk', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:38.977259]:[1760]: Player: 'fryingpan123', stack: '450' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:38.979259]:[1760]: Player: 'fryingpan123', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:44.387568]:[1760]: Player: 'pepe83333333', stack: '1320' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:44.389568]:[1760]: Player: 'pepe83333333', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:46.918713]:[1760]: Player: 'Will^^^^1957', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:49.979888]:[1760]: Player: 'chasnikk', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:50.619925]:[1760]: Cards received: ('King' of 'Spades')('Four' of 'Spades')('Ten' of 'Spades')('Eight' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:53:57.097295]:[1760]: Player: 'pepe83333333', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:59.112410]:[1760]: Player: 'fryingpan123', stack: '430' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:53:59.114411]:[1760]: Player: 'fryingpan123', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:03.659670]:[1760]: Player: 'pepe83333333', stack: '1300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:03.660671]:[1760]: Player: 'pepe83333333', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:04.287706]:[1760]: Cards received: ('King' of 'Spades')('Four' of 'Spades')('Ten' of 'Spades')('Eight' of 'Clubs')('Three' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:54:12.335167]:[1760]: Player: 'pepe83333333', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:15.005319]:[1760]: Player: 'fryingpan123', stack: '410' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:15.007320]:[1760]: Player: 'fryingpan123', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:22.714760]:[1760]: Player: 'pepe83333333', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:22.724761]:[1760]: Player: 'fryingpan123', stack: '430' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:22.726761]:[1760]: Player: 'fryingpan123', action: 'MoneyReturn', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:24.279850]:[1760]: Player: 'fryingpan123', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:26.263963]:[1760]: Player: 'Will^^^^1957', stack: '1220' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:54:26.264963]:[1760]: Player: 'chasnikk', stack: '1420' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:54:26.264963]:[1760]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:54:26.266964]:[1760]: Player: 'Will^^^^1957', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:54:26.284965]:[1760]: Player: 'chasnikk', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:54:26.305966]:[1760]: Player cards: ('Two' of 'Hearts')('Eight' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-15T16:54:29.248134]:[1760]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:32.893343]:[1760]: Player: 'dendi76', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:32.895343]:[1760]: Player: 'dendi76', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:36.214533]:[1760]: Player: 'shuriks', stack: '2470' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:36.216533]:[1760]: Player: 'shuriks', action: 'Raise', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:37.995634]:[1760]: Player: 'giuuu90', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:46.268108]:[1760]: Player: 'fryingpan123', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:49.611299]:[1760]: Player: 'fryingpan123', stack: '610' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:49.612299]:[1760]: Player: 'fryingpan123', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:54:57.889772]:[1760]: Player: 'CH/Ivan/M', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:13.015637]:[1760]: Player: 'CH/Ivan/M', action: 'Fold', amount: '1' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:14.171704]:[1760]: Player: 'pepe83333333', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:16.557840]:[1760]: Player: 'Will^^^^1957', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:18.506952]:[1760]: Player: 'chasnikk', stack: '1380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:18.508952]:[1760]: Player: 'chasnikk', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:21.423118]:[1760]: Player: 'dendi76', stack: '1300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:21.425118]:[1760]: Player: 'dendi76', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:22.324170]:[1760]: Cards received: ('King' of 'Hearts')('Nine' of 'Hearts')('Six' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:55:26.958435]:[1760]: Player: 'chasnikk', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:32.615758]:[1760]: Player: 'dendi76', stack: '1180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:32.618759]:[1760]: Player: 'dendi76', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:34.203849]:[1760]: Player: 'shuriks', stack: '2350' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:34.204849]:[1760]: Player: 'shuriks', action: 'Call', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:36.422976]:[1760]: Player: 'fryingpan123', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:45.889518]:[1760]: Player: 'chasnikk', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:46.502553]:[1760]: Cards received: ('King' of 'Hearts')('Nine' of 'Hearts')('Six' of 'Spades')('Nine' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:55:51.107816]:[1760]: Player: 'dendi76', stack: '1000' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:51.109816]:[1760]: Player: 'dendi76', action: 'Bet', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:52.663905]:[1760]: Player: 'shuriks', stack: '2170' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:52.665905]:[1760]: Player: 'shuriks', action: 'Call', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:53.286941]:[1760]: Cards received: ('King' of 'Hearts')('Nine' of 'Hearts')('Six' of 'Spades')('Nine' of 'Diamonds')('Queen' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:55:58.219223]:[1760]: Player: 'dendi76', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:58.220223]:[1760]: Player: 'dendi76', action: 'Bet', amount: '1000' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:59.750310]:[1760]: Player: 'shuriks', stack: '1170' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:55:59.752311]:[1760]: Player: 'shuriks', action: 'Call', amount: '1000' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:00.249339]:[1760]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:02.062443]:[1760]: Player: 'dendi76', action: 'ShowCards', cards: '8hKc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:02.071443]:[1760]: Player: 'shuriks', action: 'ShowCards', cards: 'TdKs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:09.070844]:[1760]: Player: 'chasnikk', stack: '1365' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:56:09.071844]:[1760]: Player: 'CLRN', stack: '1450' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:56:09.071844]:[1760]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:56:09.073844]:[1760]: Player: 'chasnikk', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:56:09.087845]:[1760]: Player: 'CLRN', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:56:09.092845]:[1760]: Player cards: ('King' of 'Spades')('Nine' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-15T16:56:11.541985]:[1760]: Player: 'dendi76', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:13.302086]:[1760]: Player: 'shuriks', stack: '2565' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:13.304086]:[1760]: Player: 'shuriks', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:13.597102]:[1760]: Player: 'giuuu90', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:13.599103]:[1760]: Player: 'giuuu90', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:13.613103]:[1760]: Player: 'fryingpan123', stack: '610' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:13.615104]:[1760]: Player: 'fryingpan123', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:21.733568]:[1760]: Player: 'CH/Ivan/M', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:22.641620]:[1760]: Player: 'CH/Ivan/M', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:31.278114]:[1760]: Player: 'pepe83333333', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:39.217568]:[1760]: Player: 'pepe83333333', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:41.584703]:[1760]: Player: 'Will^^^^1957', stack: '1190' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:41.586703]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:47.291030]:[1760]: Player: 'chasnikk', stack: '1350' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:47.292030]:[1760]: Player: 'chasnikk', action: 'Call', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:49.463154]:[1760]: Player: 'CLRN', stack: '1390' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:49.465154]:[1760]: Player: 'CLRN', action: 'Raise', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:55.410494]:[1760]: Player: 'shuriks', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:58.569675]:[1760]: Player: 'giuuu90', stack: '1360' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:56:58.571675]:[1760]: Player: 'giuuu90', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:00.894808]:[1760]: Player: 'Will^^^^1957', stack: '1130' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:00.896808]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:03.980984]:[1760]: Player: 'chasnikk', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:04.893036]:[1760]: Cards received: ('Six' of 'Clubs')('Five' of 'Clubs')('Three' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:57:11.350406]:[1760]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:12.653480]:[1760]: Player: 'giuuu90', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:15.805661]:[1760]: Player: 'Will^^^^1957', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:15.980671]:[1760]: Cards received: ('Six' of 'Clubs')('Five' of 'Clubs')('Three' of 'Spades')('Three' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:57:19.516873]:[1760]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:20.784945]:[1760]: Player: 'giuuu90', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:21.142966]:[1760]: Player: 'Will^^^^1957', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:21.320976]:[1760]: Cards received: ('Six' of 'Clubs')('Five' of 'Clubs')('Three' of 'Spades')('Three' of 'Hearts')('King' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:57:26.805290]:[1760]: Player: 'CLRN', stack: '1240' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:26.807290]:[1760]: Player: 'CLRN', action: 'Bet', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:29.621451]:[1760]: Player: 'giuuu90', stack: '1210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:29.623451]:[1760]: Player: 'giuuu90', action: 'Call', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:32.370608]:[1760]: Player: 'Will^^^^1957', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:33.128651]:[1760]: Player: 'CLRN', action: 'ShowCards', cards: 'Ks9s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:33.134652]:[1760]: Player: 'giuuu90', stack: '1240' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:33.135652]:[1760]: Player: 'giuuu90', action: 'ShowCards', cards: 'KhQc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:36.181826]:[1760]: Player: 'CLRN', stack: '1395' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:57:36.182826]:[1760]: Player: 'dendi76', stack: '1225' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:57:36.182826]:[1760]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:57:36.183826]:[1760]: Player: 'CLRN', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:57:36.190827]:[1760]: Player: 'dendi76', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:57:36.193827]:[1760]: Player cards: ('Four' of 'Clubs')('Nine' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-15T16:57:38.138938]:[1760]: Player: 'shuriks', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:39.311005]:[1760]: Player: 'giuuu90', stack: '1810' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:39.313005]:[1760]: Player: 'giuuu90', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:39.328006]:[1760]: Player: 'fryingpan123', stack: '610' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:39.330006]:[1760]: Player: 'fryingpan123', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:42.510188]:[1760]: Player: 'CH/Ivan/M', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:52.450757]:[1760]: Player: 'pepe83333333', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:58.011075]:[1760]: Player: 'pepe83333333', stack: '1270' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:58.013075]:[1760]: Player: 'pepe83333333', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:58.151083]:[1760]: Player: 'Will^^^^1957', stack: '1100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:57:58.153083]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:58:07.696629]:[1760]: Player: 'chasnikk', stack: '1320' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:58:07.697629]:[1760]: Player: 'chasnikk', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:58:15.814093]:[1760]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:58:18.513247]:[1760]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:58:20.080337]:[1760]: Player: 'dendi76', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:58:20.985389]:[1760]: Cards received: ('Three' of 'Spades')('Five' of 'Spades')('Four' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:58:25.019619]:[1760]: Player: 'dendi76', stack: '1335' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:58:25.021620]:[1760]: Player: 'dendi76', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:58:27.892784]:[1760]: Player: 'giuuu90', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:58:36.624283]:[1760]: Player: 'pepe83333333', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:58:39.847468]:[1760]: Player: 'pepe83333333', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:58:39.848468]:[1760]: Player: 'pepe83333333', action: 'Raise', amount: '1270' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:58:44.327724]:[1760]: Player: 'Will^^^^1957', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:58:56.218404]:[1760]: Player: 'chasnikk', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:58:59.861612]:[1760]: Player: 'chasnikk', stack: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:58:59.862612]:[1760]: Player: 'chasnikk', action: 'Call', amount: '1270' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:00.150629]:[1760]: Player: 'dendi76', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:00.611655]:[1760]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:02.714775]:[1760]: Cards received: ('Three' of 'Spades')('Five' of 'Spades')('Four' of 'Spades')('Nine' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:59:04.217861]:[1760]: Cards received: ('Three' of 'Spades')('Five' of 'Spades')('Four' of 'Spades')('Nine' of 'Hearts')('Six' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:59:05.870956]:[1760]: Player: 'pepe83333333', action: 'ShowCards', cards: '2dAd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:05.874956]:[1760]: Player: 'chasnikk', stack: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:05.875956]:[1760]: Player: 'chasnikk', action: 'ShowCards', cards: 'AsTd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:08.696118]:[1760]: Player: 'dendi76', stack: '1320' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:59:08.696118]:[1760]: Player: 'shuriks', stack: '2535' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:59:08.696118]:[1760]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:59:08.698118]:[1760]: Player: 'dendi76', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:59:08.709118]:[1760]: Player: 'shuriks', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T16:59:08.714119]:[1760]: Player cards: ('Nine' of 'Hearts')('Two' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-15T16:59:12.772351]:[1760]: Player: 'giuuu90', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:12.779351]:[1760]: Player: 'fryingpan123', stack: '1810' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:12.781351]:[1760]: Player: 'fryingpan123', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:15.290495]:[1760]: Player: 'CH/Ivan/M', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:19.191718]:[1760]: Player: 'pepe83333333', stack: '2735' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:19.192718]:[1760]: Player: 'pepe83333333', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:24.734035]:[1760]: Player: 'Will^^^^1957', stack: '1070' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:24.735035]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:33.773552]:[1760]: Player: 'chasnikk', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:33.775552]:[1760]: Player: 'chasnikk', action: 'Raise', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:34.061568]:[1760]: Player: 'CLRN', stack: '1225' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:34.062568]:[1760]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:35.371643]:[1760]: Player: 'dendi76', stack: '1285' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:35.373643]:[1760]: Player: 'dendi76', action: 'Call', amount: '35' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:38.314812]:[1760]: Player: 'shuriks', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:47.229322]:[1760]: Player: 'pepe83333333', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:47.518338]:[1760]: Player: 'pepe83333333', stack: '2715' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:47.519338]:[1760]: Player: 'pepe83333333', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:50.414504]:[1760]: Player: 'Will^^^^1957', stack: '1050' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:50.416504]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:51.039539]:[1760]: Cards received: ('Jack' of 'Spades')('Nine' of 'Clubs')('Three' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T16:59:55.224779]:[1760]: Player: 'dendi76', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T16:59:58.940991]:[1760]: Player: 'pepe83333333', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:01.804155]:[1760]: Player: 'Will^^^^1957', stack: '900' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:01.806155]:[1760]: Player: 'Will^^^^1957', action: 'Bet', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:05.960393]:[1760]: Player: 'dendi76', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:05.962393]:[1760]: Player: 'dendi76', action: 'Raise', amount: '1285' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:08.701550]:[1760]: Player: 'pepe83333333', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:08.992566]:[1760]: Player: 'Will^^^^1957', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:08.993566]:[1760]: Player: 'Will^^^^1957', action: 'Call', amount: '900' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:09.657604]:[1760]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:11.939735]:[1760]: Cards received: ('Jack' of 'Spades')('Nine' of 'Clubs')('Three' of 'Clubs')('Ten' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T17:00:13.169805]:[1760]: Cards received: ('Jack' of 'Spades')('Nine' of 'Clubs')('Three' of 'Clubs')('Ten' of 'Spades')('Three' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T17:00:14.806899]:[1760]: Player: 'dendi76', action: 'ShowCards', cards: '3s9s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:14.816899]:[1760]: Player: 'Will^^^^1957', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:14.818900]:[1760]: Player: 'Will^^^^1957', action: 'ShowCards', cards: 'Kc6c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:16.050970]:[1760]: Player: 'dendi76', stack: '2335' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:16.053970]:[1760]: Player: 'dendi76', action: 'WinCards', pot: '2100', cards: '3s3c3d9s9c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:16.058971]:[1760]: Player: 'chasnikk', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:16.060971]:[1760]: Player: 'chasnikk', action: 'ShowCards', cards: 'Ah8c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:17.082029]:[1760]: Player: 'Will^^^^1957', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:17.083029]:[1760]: Player: 'Will^^^^1957', action: 'Rank', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:18.830129]:[1760]: Player: 'shuriks', stack: '2520' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:00:18.830129]:[1760]: Player: 'giuuu90', stack: '1780' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:00:18.831129]:[1760]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:00:18.832129]:[1760]: Player: 'shuriks', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:00:18.845130]:[1760]: Player: 'giuuu90', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:00:18.848130]:[1760]: Player cards: ('Nine' of 'Clubs')('Five' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-15T17:00:19.782183]:[1760]: Player: 'fryingpan123', stack: '610' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:19.783184]:[1760]: Player: 'fryingpan123', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:22.790356]:[1760]: Player: 'CH/Ivan/M', stack: '2010' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:22.792356]:[1760]: Player: 'CH/Ivan/M', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:31.657863]:[1760]: Player: 'pepe83333333', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:48.125805]:[1760]: Player: 'pepe83333333', action: 'Fold', amount: '1' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:48.134805]:[1760]: Player: 'CLRN', stack: '2715' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:48.135805]:[1760]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:50.046915]:[1760]: Player: 'dendi76', stack: '2535' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:50.047915]:[1760]: Player: 'dendi76', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:50.055915]:[1760]: Player: 'shuriks', stack: '2505' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:50.056915]:[1760]: Player: 'shuriks', action: 'Call', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:52.710067]:[1760]: Player: 'giuuu90', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:53.322102]:[1760]: Cards received: ('Four' of 'Diamonds')('Two' of 'Hearts')('Five' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T17:00:55.037200]:[1760]: Player: 'shuriks', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:00:59.288443]:[1760]: Player: 'giuuu90', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:03.678694]:[1760]: Player: 'CH/Ivan/M', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:04.922765]:[1760]: Player: 'dendi76', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:05.088775]:[1760]: Cards received: ('Four' of 'Diamonds')('Two' of 'Hearts')('Five' of 'Clubs')('Six' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T17:01:09.172008]:[1760]: Player: 'shuriks', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:13.246241]:[1760]: Player: 'giuuu90', stack: '1690' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:13.247241]:[1760]: Player: 'giuuu90', action: 'Bet', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:21.356705]:[1760]: Player: 'CH/Ivan/M', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:21.665723]:[1760]: Player: 'CH/Ivan/M', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:26.726012]:[1760]: Player: 'dendi76', stack: '2085' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:26.728013]:[1760]: Player: 'dendi76', action: 'Raise', amount: '450' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:28.335104]:[1760]: Player: 'shuriks', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:35.546517]:[1760]: Player: 'giuuu90', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:39.326733]:[1760]: Player: 'giuuu90', stack: '1675' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:01:39.327733]:[1760]: Player: 'fryingpan123', stack: '580' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:01:39.327733]:[1760]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:01:39.328733]:[1760]: Player: 'giuuu90', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:01:39.336734]:[1760]: Player: 'fryingpan123', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:01:39.338734]:[1760]: Player cards: ('Three' of 'Clubs')('Six' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-15T17:01:48.376251]:[1760]: Player: 'CH/Ivan/M', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:50.308361]:[1760]: Player: 'CH/Ivan/M', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:50.324362]:[1760]: Player: 'pepe83333333', stack: '2010' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:50.325362]:[1760]: Player: 'pepe83333333', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:55.427654]:[1760]: Player: 'dendi76', stack: '2715' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:01:55.427654]:[1760]: Player: 'dendi76', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:13.361975]:[1760]: Player: 'fryingpan123', stack: '475' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:13.363975]:[1760]: Player: 'fryingpan123', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:14.296029]:[1760]: Player: 'shuriks', stack: '2490' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:14.297029]:[1760]: Player: 'shuriks', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:15.077073]:[1760]: Player: 'fryingpan123', action: 'ShowCards', cards: '6h4c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:16.927179]:[1760]: Player: 'shuriks', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:19.906350]:[1760]: Player: 'shuriks', stack: '2475' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:05:19.907350]:[1760]: Player: 'giuuu90', stack: '2085' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:05:19.907350]:[1760]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:05:19.909350]:[1760]: Player: 'shuriks', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:05:19.917350]:[1760]: Player: 'giuuu90', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:05:21.617447]:[1760]: Player cards: ('Queen' of 'Hearts')('Eight' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-15T17:05:24.411607]:[1760]: Player: 'fryingpan123', stack: '640' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:24.413607]:[1760]: Player: 'fryingpan123', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:27.505784]:[1760]: Player: 'CH/Ivan/M', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:31.115991]:[1760]: Player: 'pepe83333333', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:31.137992]:[1760]: Player: 'CLRN', stack: '2965' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:31.139992]:[1760]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:33.149107]:[1760]: Player: 'shuriks', stack: '2370' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:33.151107]:[1760]: Player: 'shuriks', action: 'Raise', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:35.464239]:[1760]: Player: 'giuuu90', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:38.405408]:[1760]: Player: 'fryingpan123', stack: '550' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:38.407408]:[1760]: Player: 'fryingpan123', action: 'Call', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:39.027443]:[1760]: Cards received: ('Five' of 'Diamonds')('Seven' of 'Spades')('Two' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T17:05:41.663594]:[1760]: Player: 'shuriks', stack: '2250' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:41.665594]:[1760]: Player: 'shuriks', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:47.637936]:[1760]: Player: 'fryingpan123', stack: '430' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:47.639936]:[1760]: Player: 'fryingpan123', action: 'Call', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:48.255971]:[1760]: Cards received: ('Five' of 'Diamonds')('Seven' of 'Spades')('Two' of 'Diamonds')('Nine' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T17:05:56.217426]:[1760]: Player: 'shuriks', stack: '1980' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:56.219427]:[1760]: Player: 'shuriks', action: 'Bet', amount: '270' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:59.606620]:[1760]: Player: 'fryingpan123', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:59.611621]:[1760]: Player: 'shuriks', stack: '2250' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:05:59.612621]:[1760]: Player: 'shuriks', action: 'MoneyReturn', amount: '270' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:06:01.089705]:[1760]: Player: 'shuriks', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:06:06.777030]:[1760]: Player: 'giuuu90', stack: '2060' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:06:06.778030]:[1760]: Player: 'fryingpan123', stack: '380' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:06:06.778030]:[1760]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:06:06.780031]:[1760]: Player: 'giuuu90', action: 'SmallBlind', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:06:06.786031]:[1760]: Player: 'fryingpan123', action: 'BigBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-15T17:06:06.792031]:[1760]: Player cards: ('Three' of 'Clubs')('Queen' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-15T17:06:16.015559]:[1760]: Player: 'CH/Ivan/M', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:06:16.307576]:[1760]: Player: 'CH/Ivan/M', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:06:18.561704]:[1760]: Player: 'pepe83333333', stack: '2915' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:06:18.563705]:[1760]: Player: 'pepe83333333', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:06:27.546218]:[1760]: Player: 'CLRN', stack: '1180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:06:27.546218]:[1760]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:06:27.549219]:[1760]: Player: 'shuriks', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:06:27.581220]:[1760]: Player: 'giuuu90', stack: '2035' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:06:27.582220]:[1760]: Player: 'giuuu90', action: 'Call', amount: '25' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:06:27.586221]:[1760]: Player: 'fryingpan123', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:06:28.212256]:[1760]: Cards received: ('Jack' of 'Spades')('Seven' of 'Hearts')('King' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-15T17:06:33.160539]:[1760]: Player: 'giuuu90', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:06:35.229658]:[1760]: Player: 'fryingpan123', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-15T17:06:37.379781]:[1760]: Player: 'pepe83333333', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */

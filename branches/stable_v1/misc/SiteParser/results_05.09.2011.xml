@@ -1,0 +1,4892 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>пер. А.Глушко</location>
+  <address>2/2-эт. дома</address>
+  <description>мебель, м/п окно, холодильник, в хор.</description>
+  <cost>сост. Оплата 3,5 тыс. руб. + свет.</cost>
+  <phone>89286132561.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>пер. А.Глушко</location>
+  <address>2/2-эт. дома</address>
+  <description>мебель, м/п окно, холодильник, в хор.</description>
+  <cost>сост. Оплата 4,5 тыс. руб. + свет.</cost>
+  <phone>89525671705.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>пер. А.Глушко</location>
+  <comfort>в/у</comfort>
+  <description>мебель, бытовая техника, для студентов или отдыхающих.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89043444355.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>пер. Гоголевский</location>
+  <address>1/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>мебель, телевизор, холодильник, стиральная машина-автомат.</description>
+  <cost>4 тыс. руб. + свет.</cost>
+  <phone>89526044843.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>пер. Гоголевский</location>
+  <address>2/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>мебель, телевизор, холодильник, кабельное ТВ, свой вход.</description>
+  <cost>4 тыс. руб. Без посредников.</cost>
+  <phone>89061824651.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>пер. Итальянский</location>
+  <address>1/1-эт. дома</address>
+  <comfort>ч/у</comfort>
+  <description>для девушки.</description>
+  <cost>1,5 тыс. руб. + коммунальные.</cost>
+  <phone>391127.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>пер. Украинский</location>
+  <address>1/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>необходимая мебель, холодильник, телевизор.</description>
+  <cost>3 тыс. руб. + коммунальные.</cost>
+  <phone>89287506707.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>пер. Украинский</location>
+  <address>2/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>мебель, телевизор, холодильник, стиральная машина-автомат, спутниковое ТВ.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89612941495.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>пер. Украинский</location>
+  <address>2/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>мебель, холодильник, кабельное ТВ, Интернет.</description>
+  <cost>3 тыс. руб. + свет + вода.</cost>
+  <phone>89888944290.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>р-н ТТИ ЮФУ</location>
+  <address>2/2-эт. дома</address>
+  <comfort>мебель, в/у</comfort>
+  <description>Интернет, кабельное ТВ, можно для студентов.</description>
+  <cost>3,5 тыс. руб. + свет.</cost>
+  <phone>89185936132.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>р-н ТТИ ЮФУ</location>
+  <comfort>в/у</comfort>
+  <cost>мебель.</cost>
+  <realtor>мебель.</realtor>
+  <phone>89185097742.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>р-н Центрального рынка</location>
+  <address>1/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>мебель, кабельное ТВ.</description>
+  <cost>2,5 тыс. руб. + коммунальные.</cost>
+  <phone>89889473108.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>р-н Центрального рынка</location>
+  <address>ул. Чехова, 1/1-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>мебель, холодильник, телевизор, ремонт, в хор.</description>
+  <cost>сост., место для а/м. Оплата 4 тыс. руб.</cost>
+  <realtor>сост., место для а/м. Оплата 4 тыс. руб.</realtor>
+  <phone>89185565126.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>р-н Центрального рынка</location>
+  <address>ул. Чехова/пер. Красный, 1/1-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>ремонт, мебель, холодильник, телевизор, в хор.</description>
+  <cost>сост., подвал, место для а/м. Оплата 4 тыс. руб. + свет.</cost>
+  <phone>89034301328.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>ул. Греческая</location>
+  <address>1/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>горячая вода, мебель, холодильник, Интернет, в хор.</description>
+  <cost>сост. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89604512169.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>ул. Греческая</location>
+  <address>15 кв. м, 2-й эт.</address>
+  <comfort>в/у</comfort>
+  <description>мебель.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89081932065;312541.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>ул. Греческая/пер. А.Глушко</location>
+  <address>1/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>с/у совм., мебель, холодильник, на длительный срок.</description>
+  <cost>5,5 тыс. руб. + коммунальные.</cost>
+  <phone>89889902970.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <address>1/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>мебель, косметич.</description>
+  <cost>ремонт, телевизор, Интернет. Оплата 3 тыс. руб. + коммунальные.</cost>
+  <phone>89198815767.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <address>1/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>мебель, телевизор, холодильник, м/п окна, в норм.</description>
+  <cost>сост. Оплата 4 тыс. руб. + свет + вода. Можно посуточно.</cost>
+  <phone>89185717347.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <address>18 кв. м, 1/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <cost>предоплата 6 мес.</cost>
+  <realtor>предоплата 6 мес.</realtor>
+  <phone>89515288338,АльбинаНиколаевна.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <address>1-й эт.</address>
+  <comfort>в/у</comfort>
+  <description>мебель.</description>
+  <cost>400 руб/сутки.</cost>
+  <realtor>400 руб/сутки.</realtor>
+  <phone>89508407538.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <address>2/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>телевизор, холодильник, Интернет, в хор.</description>
+  <cost>сост., на длительный срок. Оплата 3,5 тыс. руб. + коммунальные.</cost>
+  <phone>89185717347.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <address>36/29; 1/2-эт. дома</address>
+  <description>с/у на 2 хоз., газ, вода, h потолков 3,8 м, мебель, бытовая техника, на длительный срок.</description>
+  <cost>6 тыс. руб.</cost>
+  <realtor>6 тыс. руб.</realtor>
+  <phone>89034609914.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <comfort>без/у</comfort>
+  <cost>мебель.</cost>
+  <realtor>мебель.</realtor>
+  <phone>89185900650.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <comfort>в/у</comfort>
+  <description>телевизор, холодильник, в отл.</description>
+  <cost>сост. Оплата 400 руб/сутки.</cost>
+  <realtor>сост. Оплата 400 руб/сутки.</realtor>
+  <phone>89085151147;690488.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <address>р-н Старого вокзала, 1/1-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>мебель, бытовая техника, отдельный вход, для командированных.</description>
+  <realtor>посуточно. Без посредников.</realtor>
+  <phone>89604704412.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <address>р-н ТТИ ЮФУ, 1/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>мебель, телевизор, холодильник, рядом транспорт, для командированных, приезжих, заочников.</description>
+  <realtor>посуточно. Без посредников.</realtor>
+  <phone>624507;89515165828.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <address>ул. Фрунзе/пер. Итальянский, 27 кв. м, 2/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>мебель, бытовая техника, сплит-система, евроремонт, парковка, отдельный вход.</description>
+  <cost>посуточно.</cost>
+  <realtor>посуточно.</realtor>
+  <phone>89281677258.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <comfort>ул. Энгельса, в/у</comfort>
+  <description>мебель, свой двор, въезд.</description>
+  <cost>3 тыс. руб. + коммунальные.</cost>
+  <phone>89061828128.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Военный городок</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель частично, можно со всей мебелью, м/п окна, с/у разд., новая сантехника.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89889410057.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Военный городок</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель частично, с/у разд., м/п окна, новая сантехника.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89525671705.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Дубки</location>
+  <address>5/5-эт. дома</address>
+  <realtor>холодильник.</realtor>
+  <phone>317687.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, телевизор, холодильник, бытовая техника, Интернет, кабельное ТВ, сплит-система, в хор.</description>
+  <cost>сост. Оплата 4 тыс. руб. + свет + вода.</cost>
+  <phone>89034620937.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, телевизор, холодильник.</description>
+  <cost>4 тыс. руб. + свет + вода.</cost>
+  <phone>89286132478.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>2/5-эт. дома</address>
+  <description>необходимая мебель, холодильник, кабельное ТВ, Интернет, м/п окна, балкон застекл., в хор.</description>
+  <cost>сост., на длительный срок.</cost>
+  <realtor>сост., на длительный срок.</realtor>
+  <phone>89185410408.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>2/5-эт. кирп. дома</address>
+  <description>мебель, холодильник, телевизор, в хор.</description>
+  <cost>сост.</cost>
+  <realtor>сост.</realtor>
+  <phone>89054288432.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, новые обои, косметич.</description>
+  <realtor>ремонт, холодильник, телевизор, в хор. сост., на длительный срок. Оплата 5 тыс. руб.</realtor>
+  <phone>89287506707.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>4/9-эт. дома</address>
+  <description>косметич.</description>
+  <cost>ремонт, мебель частично, холодильник, в хор. сост. Оплата 4,5 тыс. руб. + свет, вода.</cost>
+  <phone>89604512169.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>р-н з-да &quot;Прибой&quot;, 4-й эт.</address>
+  <description>новая мебель, Интернет, сплит-система, кабельное ТВ, евроремонт.</description>
+  <cost>7,5 тыс. руб. + коммунальные.</cost>
+  <phone>89034301328.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>р-н з-да &quot;Прибой&quot;, 4-й эт.</address>
+  <description>новая мебель, сплит-система, кабельное ТВ, евроремонт.</description>
+  <cost>посуточно.</cost>
+  <realtor>посуточно.</realtor>
+  <phone>89185357929.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>р-н Николаевского переезда, 4/9-эт. дома</address>
+  <realtor>крупногаб., мебель, холодильник, балкон застекл., телефон, на длительный срок.</realtor>
+  <phone>89515117830.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>р-н Николаевского рынка, 1/5-эт. кирп. дома</address>
+  <description>без мебели, ремонт, м/п окна, новая входная дверь.</description>
+  <cost>5,5 тыс. руб. + коммунальные.</cost>
+  <realtor>Агентство.</realtor>
+  <phone>640766;89885832888.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>р-н Николаевского рынка, 3/5-эт. дома</address>
+  <description>мебель, стиральная машина-автомат, холодильник, новая сантехника, телефон, Интернет, ремонт.</description>
+  <cost>5 тыс. руб. + свет.</cost>
+  <phone>89526044843.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>р-н Николаевского рынка, ул. Яблочкина, 3/4-эт. дома</address>
+  <description>можно с необходимой мебелью, ремонт.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89515212836.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>ул. Котлостроительная, 4/9-эт. дома</address>
+  <description>мебель, бытовая техника, косметич.</description>
+  <cost>ремонт, ванная - кафель, телевизор, холодильник, DVD, два балкона, на длительный срок. Оплата 4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89094311562.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>ул. Менделеева, 4/5-эт. дома</address>
+  <description>без мебели, рядом транспорт, магазины.</description>
+  <cost>4,5 тыс. руб. + свет.</cost>
+  <phone>89043444355.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>ул. Театральная/Ломоносова, 3/5-эт. дома</address>
+  <realtor>мебель, холодильник, балкон застекл., на длительный срок.</realtor>
+  <phone>89515117830.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>ул. Транспортная, р-н БСМП, 2-й эт.</address>
+  <description>мебель, кухонный гарнитур, холодильник, телевизор, кабельное ТВ.</description>
+  <cost>4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89286289359.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>ул. Транспортная/Чехова, 2/5-эт. дома</address>
+  <description>мебель, бытовая техника, новая сантехника, м/п окна, с/у разд., косметич.</description>
+  <cost>ремонт. Оплата 4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89034620926.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>пер. А.Глушко</location>
+  <address>2-й эт.</address>
+  <description>новая мебель, с/у - кафель, м/п окна, ремонт, мебель, бытовая техника, для семьи.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89889473108.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>пер. Парковый</location>
+  <address>3/9-эт. дома</address>
+  <description>мебель, холодильник, телевизор, Интернет.</description>
+  <cost>4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89034361012.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>пер. Парковый</location>
+  <address>4/9-эт. дома</address>
+  <comfort>мебель, телевизор, холодильник, кабельное ТВ, ванная - кафель, балкон застекл., новый с/у</comfort>
+  <description>м/п окна.</description>
+  <cost>4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89094311562.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>пер. Парковый</location>
+  <address>5/9-эт. дома</address>
+  <description>мебель, телевизор, холодильник, кабельное ТВ, Интернет, м/п окна, косметич.</description>
+  <cost>ремонт, на длительный срок. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89888944290.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ПМК</location>
+  <address>1/9-эт. дома</address>
+  <description>мебель.</description>
+  <cost>6 тыс. руб. + коммунальные.</cost>
+  <phone>89896149738;89034320628.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ПМК</location>
+  <address>2/9-эт. дома</address>
+  <description>мебель, бытовая техника, косметич.</description>
+  <cost>ремонт, балкон застекл., встроенная кухня, Интернет, на длительный срок. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89185717347.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ПМК</location>
+  <address>4-й эт.</address>
+  <cost>необходимая мебель, телевизор, стиральная машина-автомат, кабельное ТВ, горячая и холодная вода.</cost>
+  <realtor>необходимая мебель, телевизор, стиральная машина-автомат, кабельное ТВ, горячая и холодная вода.</realtor>
+  <phone>89525762808.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ПМК</location>
+  <address>5/10-эт. пан. дома</address>
+  <description>3 спальных места, ремонт, мебель, бытовая техника, постельное белье, посуда, в отл.</description>
+  <cost>сост., рядом транспорт, магазины, для командированных. Оплата посуточно.</cost>
+  <realtor>сост., рядом транспорт, магазины, для командированных. Оплата посуточно.</realtor>
+  <phone>314451;89518245889.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ПМК</location>
+  <address>6-й эт.</address>
+  <cost>мебель.</cost>
+  <realtor>мебель.</realtor>
+  <phone>675092;89514915213.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, бытовая техника, кухонный гарнитур, кабельное ТВ, 2-камерный холодильник, м/п окна, телефон, в хор.</description>
+  <cost>сост. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89612941495.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>2/9-эт. дома</address>
+  <description>косметич.</description>
+  <cost>ремонт, мебель, бытовая техника, м/п окна, кабельное ТВ, сплит-система, Интернет. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89198815767.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>2/9-эт. дома</address>
+  <description>мебель, бытовая техника, кабельное ТВ.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89043444355.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>2/9-эт. дома</address>
+  <description>мебель, бытовая техника, холодильник, телевизор, Интернет, телефон, кабельное ТВ, в норм.</description>
+  <cost>сост. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89198815767.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>2/9-эт. дома</address>
+  <description>мебель, кабельное ТВ, м/п окна.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89034302693.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>2/9-эт. дома</address>
+  <description>мебель, кабельное ТВ, м/п окна.</description>
+  <cost>4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89618174916.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>2/9-эт. дома</address>
+  <description>с/у разд., мебель, в хор.</description>
+  <cost>сост. Оплата 4 тыс. руб. + свет + вода.</cost>
+  <phone>89613274290.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>2/9-эт. дома</address>
+  <description>с/у разд., мебель, в хор.</description>
+  <cost>сост. Оплата 4 тыс. руб. + свет + вода.</cost>
+  <phone>89613274285.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>2/9-эт. дома</address>
+  <description>с/у разд., мебель, в хор.</description>
+  <cost>сост. Оплата 4 тыс. руб. + свет + вода.</cost>
+  <phone>89613078144.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>2/9-эт. дома</address>
+  <description>с/у разд., мебель, в хор.</description>
+  <cost>сост. Оплата 4 тыс. руб. + свет + вода.</cost>
+  <phone>89618175048.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>2-й эт.</address>
+  <description>мебель, телевизор, холодильник, телефон, Интернет, м/п окна, ремонт.</description>
+  <cost>5 тыс. руб.</cost>
+  <realtor>5 тыс. руб.</realtor>
+  <phone>89286132478.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>2-й эт.</address>
+  <description>можно с мебелью, м/п окна, телефон, кабельное ТВ, в хор.</description>
+  <cost>сост. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89061828128.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, кабельное ТВ, Интернет, холодильник, м/п окна.</description>
+  <cost>4 тыс. руб. + коммунальные, торг.</cost>
+  <phone>89185936132.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>5/10-эт. пан. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., мебель частично, телевизор, холодильник. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89061824651.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>5/9-эт. дома</address>
+  <description>с/у и кухня - пластик, необходимая мебель, холодильник, лоджия, в хор.</description>
+  <cost>сост., на длительный срок.</cost>
+  <realtor>сост., на длительный срок.</realtor>
+  <phone>89043468768.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>7/9-эт. дома</address>
+  <description>м/п окна, балкон застекл., мебель, холодильник, в хор.</description>
+  <cost>сост., на длительный срок.</cost>
+  <realtor>сост., на длительный срок.</realtor>
+  <phone>89885396329.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>9/9-эт. пан. дома</address>
+  <description>мебель, холодильник, телевизор, для командированных, на короткий срок.</description>
+  <realtor>Без посредников.</realtor>
+  <phone>89525894499.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>о/п 30 кв. м, кухня 9 кв. м; 8-й эт.</address>
+  <description>косметич.</description>
+  <cost>ремонт. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89094293442.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н гост. &quot;Таганрог&quot;</location>
+  <address>2/5-эт. дома</address>
+  <description>с/у - кафель, линолеум, ремонт, мебель, бытовая техника, балкон застекл., на длительный срок.</description>
+  <cost>5,5 тыс. руб. + коммунальные.</cost>
+  <phone>89286289359.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н гост. &quot;Таганрог&quot;</location>
+  <address>2/5-эт. дома</address>
+  <description>с/у и кухня - кафель, можно без мебели, косметич.</description>
+  <cost>ремонт, в хор. сост., на длительный срок.</cost>
+  <realtor>ремонт, в хор. сост., на длительный срок.</realtor>
+  <phone>89043468768.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н гост. &quot;Таганрог&quot;</location>
+  <address>2/9-эт. дома</address>
+  <description>мебель, холодильник, м/п окна, балкон застекл., ремонт, на длительный срок.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89286132561.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н гост. &quot;Таганрог&quot;</location>
+  <address>3/5-эт. дома</address>
+  <description>м/п окна, мебель, холодильник.</description>
+  <cost>4,5 тыс. руб. + свет.</cost>
+  <phone>89286132141.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н гост. &quot;Таганрог&quot;</location>
+  <address>3/9-эт. дома</address>
+  <description>мебель, косметич.</description>
+  <cost>ремонт, бытовая техника, телевизор, холодильник, балкон застекл., кондиционер. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89888944290.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н ДК им. Димитрова</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, бытовая техника.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89081708794.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Кислородной площади</location>
+  <address>2/5-эт. дома</address>
+  <description>косметич.</description>
+  <cost>ремонт, мебель, телевизор, стиральная машина-автомат, холодильник. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89061824651.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Кислородной площади</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель частично, холодильник, стиральная машина, телефон, телевизор.</description>
+  <cost>4,5 тыс. руб. + свет.</cost>
+  <phone>89889473108.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Кислородной площади</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, колонка-автомат, кухня и с/у - кафель, холодильник, кабельное ТВ, телефон, Интернет, лоджия, сплит-система.</description>
+  <cost>4 тыс. руб. + свет, вода.</cost>
+  <phone>89034301328.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Кислородной площади</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, холодильник, СВЧ-печь, кухня - плитка, с/у - кафель, в хор.</description>
+  <cost>сост., на длительный срок. Оплата 4,5 тыс. руб. + свет, вода.</cost>
+  <phone>89034302693.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Кислородной площади</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, холодильник, стиральная машина-автомат, СВЧ-печь, с/у - кафель, в хор.</description>
+  <cost>сост., на длительный срок. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89061824651.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Кислородной площади</location>
+  <address>2/5-эт. дома</address>
+  <description>с/у - кафель, мебель, стиральная машина-автомат, кухонный гарнитур.</description>
+  <cost>4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89287506707.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Кислородной площади</location>
+  <address>3/5-эт. дома</address>
+  <description>балкон застекл., мебель, холодильник, в хор.</description>
+  <cost>сост., для молодой пары, на длительный срок. Недорого.</cost>
+  <realtor>сост., для молодой пары, на длительный срок. Недорого.</realtor>
+  <phone>89043468768.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Кислородной площади</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, холодильник, балкон застекл., линолеум, новая сантехника.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89286132561.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Кислородной площади</location>
+  <address>3/5-эт. дома</address>
+  <description>ремонт, мебель, холодильник.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89286132141.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Кислородной площади</location>
+  <address>3/9-эт. дома</address>
+  <description>мебель, бытовая техника, сплит-система, стиральная машина-автомат, Интернет, телевизор, холодильник.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89034620937.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Кислородной площади</location>
+  <address>4/5-эт. дома</address>
+  <description>мебель, холодильник, телевизор, стиральная машина-автомат, новая сантехника и линолеум, балкон застекл.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89034301328.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н маг. &quot;Электроника&quot;</location>
+  <address>1-й эт.</address>
+  <description>мебель, для командированных.</description>
+  <realtor>посуточно. Без посредников.</realtor>
+  <phone>89094098780.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н маг. &quot;Электроника&quot;</location>
+  <address>2/5-эт. дома</address>
+  <description>стиральная машина, телевизор, холодильник, сплит-система, СВЧ-печь, для командированных.</description>
+  <cost>350 руб/сутки с человека.</cost>
+  <realtor>350 руб/сутки с человека.</realtor>
+  <phone>623954.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н маг. &quot;Электроника&quot;</location>
+  <address>2/9-эт. дома</address>
+  <description>телевизор, холодильник, стиральная машина-автомат, м/п окна, метал.</description>
+  <cost>дверь, в хор. сост. Оплата 4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89094311562.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Николаевского рынка</location>
+  <address>3-й эт.</address>
+  <description>телевизор, мебель, сплит-система.</description>
+  <cost>4,5 тыс. руб. + свет.</cost>
+  <phone>89286132561.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>1/5-эт. дома</address>
+  <description>косметич.</description>
+  <cost>ремонт, мебель, бытовая техника, кабельное ТВ, Интернет. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89061828128.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>1/5-эт. дома</address>
+  <description>мебель, 4 спальных места, постельное белье, посуда, холодильник, телевизор, в отл.</description>
+  <realtor>сост., для командированных, заочников.</realtor>
+  <phone>89043496754.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>1/5-эт. дома</address>
+  <description>мебель, в хор.</description>
+  <cost>сост. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89526044843.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>1/5-эт. дома</address>
+  <description>мебель, телевизор, холодильник.</description>
+  <cost>посуточно.</cost>
+  <realtor>посуточно.</realtor>
+  <phone>89286212206.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>1/5-эт. дома</address>
+  <description>мебель, холодильник, телефон, телевизор, постельное белье, посуда, в отл.</description>
+  <cost>сост. Недорого. Оплата посуточно.</cost>
+  <realtor>сост. Недорого. Оплата посуточно.</realtor>
+  <phone>673817;89043496480.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>1-й эт.</address>
+  <description>мебель, 4 спальных места, для приезжих, командированных, рядом транспорт, рынок, магазины.</description>
+  <cost>посуточно.</cost>
+  <realtor>посуточно.</realtor>
+  <phone>89185459621.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, бытовая техника, сплит-система.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89889473108.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>2/5-эт. кирп. дома</address>
+  <description>стиральная машина, мебель, холодильник, в хор.</description>
+  <cost>сост. Оплата 5 тыс. руб.</cost>
+  <realtor>сост. Оплата 5 тыс. руб.</realtor>
+  <phone>89034302693.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>2/5-эт. кирп. дома</address>
+  <description>стиральная машина, мебель, холодильник, в хор.</description>
+  <cost>сост. Оплата 5 тыс. руб.</cost>
+  <realtor>сост. Оплата 5 тыс. руб.</realtor>
+  <phone>89198927028.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>2/9-эт. дома</address>
+  <description>м/п окна, необходимая мебель, ремонт, лоджия застекл.</description>
+  <cost>4 тыс. руб. + свет + вода.</cost>
+  <phone>89613078144.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>2/9-эт. дома</address>
+  <description>м/п окна, необходимая мебель, ремонт, лоджия застекл.</description>
+  <cost>4 тыс. руб. + свет + вода.</cost>
+  <phone>89618175048.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>2/9-эт. дома</address>
+  <description>м/п окна, необходимая мебель, ремонт, лоджия застекл.</description>
+  <cost>4 тыс. руб. + свет + вода.</cost>
+  <phone>89613274285.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>2/9-эт. дома</address>
+  <description>м/п окна, необходимая мебель, ремонт, лоджия застекл.</description>
+  <cost>4 тыс. руб. + свет + вода.</cost>
+  <phone>89613274290.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>2/9-эт. дома</address>
+  <description>мебель, бытовая техника, кухонный гарнитур, стиральная машина-автомат, ремонт.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <realtor>Без посредников.</realtor>
+  <phone>89185717347.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>3/5-эт. дома</address>
+  <description>с/у - пластик, мебель, холодильник, телевизор, в хор.</description>
+  <cost>сост., рядом рынок и транспорт. Оплата 4,5 тыс. руб. + свет, вода.</cost>
+  <phone>89612941495.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>3/9-эт. дома</address>
+  <description>косметич.</description>
+  <cost>ремонт, мебель, телевизор, холодильник, м/п окна, балкон застекл. Срочно. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89198815767.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>4/5-эт. дома</address>
+  <description>мебель, холодильник, телевизор, в хор.</description>
+  <cost>сост., на длительный срок. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89043444355.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>4/5-эт. дома</address>
+  <description>мебель, холодильник, телевизор, м/п окна, балкон застекл., ремонт, новая сантехника.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89061824651.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>4/9-эт. дома</address>
+  <description>мебель, холодильник, кухонный гарнитур, стиральная машина-автомат, Интернет, телевизор, ремонт.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89034620926.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>4/9-эт. дома</address>
+  <description>с/у - плитка, косметич.</description>
+  <realtor>ремонт, мебель, кухонный гарнитур, холодильник, телевизор, в хор. сост., на длительный срок. Срочно.</realtor>
+  <phone>89185410408.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>5/5-эт. дома</address>
+  <description>мебель, кабельное ТВ, рядом стоянка.</description>
+  <realtor>посуточно. Без посредников.</realtor>
+  <phone>89518494336;89515340646.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>5/9-эт. дома</address>
+  <description>ремонт, мебель, стиральная машина, холодильник, телевизор.</description>
+  <realtor>посуточно. Собственник.</realtor>
+  <phone>89514957617.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>ул. Москатова, 3/5-эт. дома</address>
+  <description>ремонт, кухонный гарнитур, кабельное ТВ, Интернет, телефон, новые сантехника и мебель, холодильник.</description>
+  <cost>6 тыс. руб. + свет, вода.</cost>
+  <phone>89604512169.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>ул. С.Лазо, 2/5-эт. дома</address>
+  <description>мебель частично, кабельное ТВ, Интернет, телевизор, в хор.</description>
+  <cost>сост. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89612941495.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н пер. Паркового/ул. Дзержинского</location>
+  <address>1-й эт.</address>
+  <description>мебель, бытовая техника, на длительный срок.</description>
+  <cost>6 тыс. руб. + коммунальные.</cost>
+  <realtor>Без посредников.</realtor>
+  <phone>89064142127.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Приморского парка</location>
+  <address>1/2-эт. нового дома</address>
+  <description>мебель, бытовая техника.</description>
+  <cost>Можно посуточно.</cost>
+  <realtor>Можно посуточно.</realtor>
+  <phone>376076;89064541208,Инна.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Приморского парка</location>
+  <address>1/5-эт. дома</address>
+  <cost>рядом кинотеатр, на длительный срок или посуточно.</cost>
+  <realtor>рядом кинотеатр, на длительный срок или посуточно.</realtor>
+  <phone>89034328955.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Приморского парка</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, кухонный гарнитур, ремонт.</description>
+  <cost>6 тыс. руб. + коммунальные.</cost>
+  <phone>89526044843.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Приморского парка</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, телевизор, холодильник, рядом пляж, транспорт, на длительный срок.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89604512169.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Приморского парка</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, телевизор, холодильник, вид на море, для зарегистрированной семейной пары, на длительный срок.</description>
+  <cost>Предоплата.</cost>
+  <realtor>Предоплата.</realtor>
+  <phone>89094321502.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Старого вокзала</location>
+  <address>2-й эт.</address>
+  <description>мебель, ремонт.</description>
+  <cost>Срочно. Оплата 4,5 тыс. руб. + свет.</cost>
+  <phone>89061828128.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н Старого вокзала</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, Интернет, в хор.</description>
+  <cost>сост. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89526044843.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н ТТИ ЮФУ</location>
+  <address>2/2-эт. дома</address>
+  <description>кухонный гарнитур, кабельное ТВ, Интернет, стиральная машина-автомат, можно на короткий срок.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89604512169.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н ТТИ ЮФУ</location>
+  <address>2/2-эт. дома</address>
+  <description>ремонт, мебель, бытовая техника, можно для студентов или отдыхающих.</description>
+  <cost>5 тыс. руб. + свет + вода.</cost>
+  <phone>89286289359.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н ТТИ ЮФУ</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, кухонный гарнитур, телевизор, кабельное ТВ, Интернет, можно для студентов.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89185936132.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н ул. Свободы</location>
+  <address>1/2-эт. дома</address>
+  <description>м/п окна, встроенная кухня, с/у - кафель, холодильник, стиральная машина, кабельное ТВ, ремонт, рядом транспорт, магазины, для семейной пары или одинокого человека.</description>
+  <cost>7 тыс. руб. + свет + вода по счетчикам, предоплата за 1-й и последний месяц.</cost>
+  <realtor>Без посредников.</realtor>
+  <phone>89054272721.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н ул. Свободы</location>
+  <address>1/5-эт. кирп. дома</address>
+  <description>мебель, холодильник.</description>
+  <cost>4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89526044843.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>р-н ул. Свободы</location>
+  <address>4/5-эт. кирп. дома</address>
+  <description>без мебели, на длительный срок.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89525657696.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>2/5-эт. дома</address>
+  <description>кухонный гарнитур, холодильник, ламинат, м/п окна, стиральная машина-автомат, кабельное ТВ, Интернет.</description>
+  <cost>6 тыс. руб. + свет.</cost>
+  <phone>89604512169.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>2/9-эт. дома</address>
+  <description>кухонная мебель, м/п окна, ремонт, новая сантехника.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89043444355.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>2/9-эт. дома</address>
+  <description>мебель, Интернет, кабельное ТВ, телевизор, встроенная кухня, холодильник.</description>
+  <cost>5 тыс. руб. + свет, вода.</cost>
+  <phone>89043444355.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>2/9-эт. дома</address>
+  <description>мебель, кабельное ТВ, Интернет, холодильник, м/п окна.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89287506707.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>2/9-эт. дома</address>
+  <description>мебель, кухонный гарнитур, холодильник, телевизор, Интернет, ванная - кафель, ремонт.</description>
+  <cost>4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89888944290.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, холодильник, телевизор, в хор.</description>
+  <cost>сост. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89034301328.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>3/9-эт. дома</address>
+  <description>кабельное ТВ, холодильник, мебель, м/п окна, стиральная машина-автомат.</description>
+  <cost>4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89185717347.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>3/9-эт. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., холодильник, новые мебель и сантехника, стиральная машина-автомат, м/п окна. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89888944290.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>3/9-эт. дома</address>
+  <description>мебель, бытовая техника, новая сантехника, м/п окна, в норм.</description>
+  <cost>сост. Срочно. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89094311562.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>3/9-эт. дома</address>
+  <description>мебель, бытовая техника, сплит-система, телевизор, холодильник, для семейной пары, на длительный срок.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89888944290.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>3/9-эт. дома</address>
+  <description>мебель, лоджия застекл., в отл.</description>
+  <cost>сост., на длительный срок. Срочно. Оплата 4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89613274290.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>3/9-эт. дома</address>
+  <description>мебель, лоджия застекл., в отл.</description>
+  <cost>сост., на длительный срок. Срочно. Оплата 4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89613274285.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>3/9-эт. дома</address>
+  <description>мебель, лоджия застекл., в отл.</description>
+  <cost>сост., на длительный срок. Срочно. Оплата 4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89618175048.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>3/9-эт. дома</address>
+  <description>мебель, лоджия застекл., в отл.</description>
+  <cost>сост., на длительный срок. Срочно. Оплата 4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89613078144.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>3/9-эт. дома</address>
+  <description>мебель, холодильник, телевизор, косметич.</description>
+  <cost>ремонт, рядом рынок, транспорт, магазины. Оплата 5 тыс. руб. + свет.</cost>
+  <phone>89612941495.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>3/9-эт. дома</address>
+  <description>с/у - плитка, мягкий уголок, холодильник, телевизор, в хор.</description>
+  <cost>сост. Оплата 5 тыс. руб. + свет + вода.</cost>
+  <phone>89286289359.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>38/18/9; 8-й эт.</address>
+  <description>необходимая мебель, встроенная кухня, в отл.</description>
+  <cost>сост. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89613258862.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>3-й эт.</address>
+  <description>мебель, ремонт, телевизор, холодильник.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89889473108.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>4/9-эт. дома</address>
+  <description>мебель, балкон застекл., Интернет, холодильник, телевизор, в хор.</description>
+  <cost>сост., желательно на длительный срок. Оплата 5,5 тыс. руб. + коммунальные.</cost>
+  <phone>89061824651.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>4/9-эт. дома</address>
+  <description>мебель, бытовая техника, окна ПВХ, косметич.</description>
+  <cost>ремонт, лифт, на длительный срок. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89198815767.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>4/9-эт. дома</address>
+  <description>мебель, холодильник, балкон застекл., м/п окна, с/у - кафель, косметич.</description>
+  <cost>ремонт, на длительный срок.</cost>
+  <realtor>ремонт, на длительный срок.</realtor>
+  <phone>89185601369.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>6/9-эт. дома</address>
+  <description>крупногаб., мебель, телефон, балкон застекл.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>338039;89094199909.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>9/9-эт. дома</address>
+  <cost>без мебели.</cost>
+  <realtor>без мебели.</realtor>
+  <phone>89081948901.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>р-н рынка, 1/5-эт. дома</address>
+  <description>телевизор, холодильник, косметич.</description>
+  <cost>ремонт. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89185936132.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>р-н рынка, 2/5-эт. дома</address>
+  <description>телевизор, мебель, холодильник, косметич.</description>
+  <cost>ремонт, с/у разд. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89889410057.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>р-н рынка, 4/9-эт. дома</address>
+  <description>мебель, телевизор, холодильник, кабельное ТВ, кондиционер, м/п окна, балкон застекл., в хор.</description>
+  <cost>сост. Оплата 6 тыс. руб. + коммунальные.</cost>
+  <phone>89198815767.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>р-н Центра занятости, 4/10-эт. дома</address>
+  <description>мебель, кабельное ТВ, телевизор, Интернет, холодильник.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89043444355.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>р-н Центра занятости, 4/9-эт. кирп. дома</address>
+  <description>ремонт, мебель, телевизор, холодильник, ванная и с/у - кафель, балкон застекл.</description>
+  <cost>5 тыс. руб.</cost>
+  <realtor>5 тыс. руб.</realtor>
+  <phone>89185565126.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>ул. Пархоменко/С.Шило, 2/9-эт. дома</address>
+  <description>мебель, бытовая техника, кондиционер, телевизор, холодильник, м/п окна, ванная - кафель.</description>
+  <cost>5 тыс. руб. + свет + вода по счетчикам.</cost>
+  <phone>89034620937.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>ул. С.Шило, 1-й эт. кирп. дома</address>
+  <description>кабельное ТВ, Интернет, ремонт, мебель, телевизор, холодильник.</description>
+  <cost>5 тыс. руб. + свет.</cost>
+  <phone>89034301328.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>ул. Сызранова, 2/9-эт. дома</address>
+  <description>мебель, холодильник, телевизор, стиральная машина, ремонт.</description>
+  <cost>4,5 тыс. руб. + свет + вода.</cost>
+  <phone>89286289359.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>ул. Чехова, 5/9-эт. дома</address>
+  <description>современная мебель, кабельное ТВ, сплит-система, ремонт, в хор.</description>
+  <realtor>сост. Оплата посуточно. Собственник.</realtor>
+  <phone>89281770585.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>1-й Новый, 2/2-эт. дома</address>
+  <description>без мебели, на длительный срок.</description>
+  <cost>Предоплата за 2 мес. Оплата помесячно.</cost>
+  <realtor>Предоплата за 2 мес. Оплата помесячно.</realtor>
+  <phone>89081881560.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>4/9-эт. дома</address>
+  <description>мебель, бытовая техника, телевизор, холодильник, сплит-система, евроремонт.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89034620926.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>р-н бакинского моста, 4/5-эт. кирп. дома</address>
+  <description>мебель частично, холодильник.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89054515506.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>р-н маг. &quot;Любимый&quot;, 2/5-эт. дома</address>
+  <description>мебель, кухонный гарнитур, холодильник, телевизор, Интернет, телефон, м/п окна, косметич.</description>
+  <cost>ремонт, на длительный срок. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89888944290.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>р-н маг. &quot;Фирли&quot;, 30/15/6; 4/5-эт. кирп. дома</address>
+  <description>необходимая мебель, на длительный срок.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <realtor>Агентство.</realtor>
+  <phone>373844;89043477533.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>ул. Инициативная, 2/5-эт. дома</address>
+  <description>ремонт, м/п окна, ламинат, с/у разд.</description>
+  <cost>и кухня - кафель, новая сантехника, мебель, бытовая техника, Интернет. Оплата 5 тыс. руб. + свет + вода + газ.</cost>
+  <phone>89043444355.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>ул. Инициативная, 4/5-эт. дома</address>
+  <description>м/п окна, стиральная машина, встроенная мебель, бытовая техника, телефон.</description>
+  <cost>5 тыс. руб.</cost>
+  <realtor>5 тыс. руб.</realtor>
+  <phone>89889410057.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>ул. Инициативная, 4/5-эт. дома</address>
+  <description>м/п окна, стиральная машина, встроенная мебель, бытовая техника, телефон.</description>
+  <cost>5 тыс. руб.</cost>
+  <realtor>5 тыс. руб.</realtor>
+  <phone>89094172815.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>ул. Л.Чайкиной, 1/5-эт. дома</address>
+  <description>мебель, холодильник, телевизор.</description>
+  <cost>5 тыс. руб. + свет + вода.</cost>
+  <phone>89612941495.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>ул. Л.Чайкиной, 6/9-эт. дома</address>
+  <description>косметич.</description>
+  <cost>ремонт, мебель, телевизор, холодильник, кухонный гарнитур, Интернет, телефон, на длительный срок. Оплата 4 тыс. руб. + свет + вода.</cost>
+  <phone>89185717347.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>ул. Маршала Жукова, 3-й эт.</address>
+  <description>м/п окна, мебель, в отл.</description>
+  <cost>сост. Оплата 5 тыс. руб. + свет.</cost>
+  <phone>89286132478.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>ул. С.Лазо, 3/5-эт. дома</address>
+  <description>кухонный гарнитур, холодильник, мебель, кабельное ТВ, Интернет, с/у - кафель.</description>
+  <cost>4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89185565126.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Водопроводная</location>
+  <address>2/5-эт. дома</address>
+  <description>сплит-система, мебель, балкон застекл.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89061828128.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Восточная</location>
+  <address>3-й эт.</address>
+  <description>мебель, телевизор, холодильник, для одного человека.</description>
+  <cost>4,5 тыс. руб. + коммунальные.</cost>
+  <phone>647469.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, холодильник, кабельное ТВ, Интернет, телевизор, в хор.</description>
+  <cost>сост., можно на короткий срок. Оплата 5,5 тыс. руб. + коммунальные.</cost>
+  <phone>89043444355.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского</location>
+  <address>3/5-эт. дома</address>
+  <description>без мебели, с/у - кафель, ремонт, балкон застекл., на длительный срок.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89525671705.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского</location>
+  <address>3/5-эт. дома</address>
+  <description>м/п окна, необходимая мебель, холодильник, ремонт.</description>
+  <cost>4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89613078144.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского</location>
+  <address>3/5-эт. дома</address>
+  <description>м/п окна, необходимая мебель, холодильник, ремонт.</description>
+  <cost>4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89618175048.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского</location>
+  <address>3/5-эт. дома</address>
+  <description>м/п окна, необходимая мебель, холодильник, ремонт.</description>
+  <cost>4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89613274285.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского</location>
+  <address>3/5-эт. дома</address>
+  <description>м/п окна, необходимая мебель, холодильник, ремонт.</description>
+  <cost>4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89613274290.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского</location>
+  <address>р-н гост. &quot;Таганрог&quot;, 3/5-эт. дома</address>
+  <description>без мебели, с/у - кафель, ремонт, балкон застекл., на длительный срок.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89287506707.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского</location>
+  <address>р-н Сбербанка, 2/5-эт. кооп. кирп. дома</address>
+  <realtor>мебель, холодильник.</realtor>
+  <phone>678063;89889515542.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского/И.Голубца</location>
+  <address>5/5-эт. дома</address>
+  <description>мебель, на длительный срок.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89045077660;89613076048.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Инструментальная</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, кухонный гарнитур, телевизор, кабельное ТВ, 2-камерный холодильник.</description>
+  <cost>Срочно. Оплата 5 тыс. руб. + свет.</cost>
+  <phone>89286132478.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Инструментальная</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, кабельное ТВ, Интернет, новые сантехника и линолеум, холодильник, в хор.</description>
+  <cost>сост. Оплата 5,5 тыс. руб. + свет.</cost>
+  <phone>89526044843.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Л.Чайкиной</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, кабельное ТВ, Интернет.</description>
+  <cost>4,5 тыс. руб.</cost>
+  <realtor>4,5 тыс. руб.</realtor>
+  <phone>89889473108.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Ломоносова</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, встроенные шкафы, кабельное ТВ, телефон, Интернет.</description>
+  <cost>4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89185936132.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Менделеева</location>
+  <address>ж/п 17 кв. м, 3/5-эт. дома</address>
+  <description>мебель, телевизор, холодильник, мебель, кондиционер.</description>
+  <cost>6 тыс. руб., предоплата 2 мес.</cost>
+  <phone>89185345722;341483.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Морозова</location>
+  <address>3/9-эт. дома</address>
+  <description>косметич.</description>
+  <cost>ремонт, мебель, шкафы, диван, двуспальная кровать. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89198815767.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Морозова</location>
+  <address>3-й эт.</address>
+  <description>мебель, в хор.</description>
+  <cost>сост., для русской семьи. Оплата 4,5 тыс. руб. + свет.</cost>
+  <phone>89061828128.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Москатова</location>
+  <address>1/5-эт. дома</address>
+  <description>с/у - кафель, необходимая мебель, холодильник, телевизор, Интернет, в хор.</description>
+  <cost>сост. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89889410057.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Москатова</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, телевизор, холодильник.</description>
+  <cost>4,5 тыс. руб. + свет.</cost>
+  <phone>89286132478.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Октябрьская</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, кабельное ТВ, телевизор, холодильник, ламинат, м/п окна.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89286132478.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. П.Тольятти</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, бытовая техника, м/п окна, косметич.</description>
+  <cost>ремонт, на длительный срок. Оплата 5 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89185717347.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. П.Тольятти</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, окна ПВХ, косметич.</description>
+  <cost>ремонт, встроенная кухня, Интернет, телефон, можно без мебели, на длительный срок. Срочно. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89888944290.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. П.Тольятти</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, холодильник, стиральная машина-автомат, м/п окна.</description>
+  <cost>5 тыс. руб. + свет + вода.</cost>
+  <phone>89526044843.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Пархоменко</location>
+  <address>2/5-эт. дома</address>
+  <description>новая мебель, кухонный гарнитур, кабельное ТВ, Интернет, холодильник.</description>
+  <cost>4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89889473108.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Пархоменко</location>
+  <address>2/9-эт. дома</address>
+  <description>мебель, м/п окна, телевизор, Интернет.</description>
+  <cost>Срочно. Оплата 5 тыс. руб.</cost>
+  <realtor>Срочно. Оплата 5 тыс. руб.</realtor>
+  <phone>89286132141.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Пархоменко</location>
+  <address>3/9-эт. дома</address>
+  <description>мебель, ванная - кафель, кухонный гарнитур, в хор.</description>
+  <cost>сост. Оплата 4,5 тыс. руб. + свет + вода.</cost>
+  <phone>89889410057.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. С.Лазо</location>
+  <address>4/9-эт. дома</address>
+  <description>мебель, новый кухонный гарнитур, с/у разд., телевизор, холодильник, стиральная машина-автомат, телефон.</description>
+  <cost>5 тыс. руб.</cost>
+  <realtor>5 тыс. руб.</realtor>
+  <phone>89286132141.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. С.Шило</location>
+  <address>2/9-эт. дома</address>
+  <description>с/у разд., мебель, Интернет, балкон застекл.</description>
+  <cost>5 тыс. руб.</cost>
+  <realtor>5 тыс. руб.</realtor>
+  <phone>89185565126.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель частично, телефон, Интернет, кабельное ТВ.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89889473108.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, косметич.</description>
+  <cost>ремонт, телевизор, холодильник, кондиционер, с/у разд., новая сантехника, на длительный срок. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89094311562.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>2/5-эт. дома</address>
+  <description>необходимая мебель, телефон, м/п окна, ремонт.</description>
+  <cost>4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89613274290.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>2/5-эт. дома</address>
+  <description>необходимая мебель, телефон, м/п окна, ремонт.</description>
+  <cost>4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89613274285.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>2/5-эт. дома</address>
+  <description>необходимая мебель, телефон, м/п окна, ремонт.</description>
+  <cost>4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89618175048.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>2/5-эт. дома</address>
+  <description>необходимая мебель, телефон, м/п окна, ремонт.</description>
+  <cost>4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89613078144.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>2/9-эт. дома</address>
+  <description>м/п окна, мебель, телевизор, холодильник, в хор.</description>
+  <cost>сост. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89889410057.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, бытовая техника, Интернет, телефон, холодильник, телевизор.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89034620926.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, холодильник, телевизор, встроенные кухня и шкафы, м/п окна, ремонт.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89034620937.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>3/5-эт. кирп. дома</address>
+  <description>мебель, косметич.</description>
+  <cost>ремонт, с/у - кафель, телевизор, холодильник. Оплата 4,5 тыс. руб. + свет.</cost>
+  <phone>89061824651.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>3/5-эт. кирп. дома</address>
+  <description>мебель, ремонт, телевизор, холодильник.</description>
+  <cost>5,5 тыс. руб. + свет.</cost>
+  <phone>89286289359.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>3/5-эт. кирп. дома</address>
+  <description>мебель, холодильник, телефон, кабельное ТВ, лоджия застекл., в хор.</description>
+  <cost>сост., рядом транспорт, на длительный срок. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89034301328.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>4/5-эт. дома</address>
+  <description>ремонт, с/у - кафель, необходимая мебель, стиральная машина-автомат, холодильник, телевизор, газ.</description>
+  <cost>колонка-автомат, в хор. сост. Срочно.</cost>
+  <realtor>колонка-автомат, в хор. сост. Срочно.</realtor>
+  <phone>89185410408.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>р-н рынка, 2/5-эт. дома</address>
+  <description>необходимая мебель, телефон, с/у разд., кухня - плитка, Интернет.</description>
+  <cost>4,5 тыс. руб. + свет.</cost>
+  <phone>89198927028.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>р-н рынка, 2/5-эт. дома</address>
+  <description>необходимая мебель, телефон, с/у разд., кухня - плитка, Интернет.</description>
+  <cost>4,5 тыс. руб. + свет.</cost>
+  <phone>89185565126.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы/Трудовых Резервов</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, кабельное ТВ, холодильник, телевизор, новая сантехника.</description>
+  <cost>4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89287506707.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Седова</location>
+  <address>д. 5; 2/2-эт. дома</address>
+  <description>мебель.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>647593.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Театральная</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, кухонный гарнитур, холодильник, кабельное ТВ, косметич.</description>
+  <cost>ремонт. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89286132141.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Трудовых Резервов</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, бытовая техника, в хор.</description>
+  <cost>сост. Оплата 4,5 тыс. руб. + свет.</cost>
+  <phone>89604512169.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Чехова</location>
+  <address>р-н Кислородной площади, 3/5-эт. дома</address>
+  <description>мебель, бытовая техника, косметич.</description>
+  <cost>ремонт, м/п окна, кухня и с/у - кафель, в хор. сост. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89198815767.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Чехова/Транспортная</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, телевизор, холодильник, кабельное ТВ, балкон застекл., в хор.</description>
+  <cost>сост. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89034620926.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Чехова/Транспортная</location>
+  <address>2/5-эт. дома</address>
+  <description>с/у - кафель, мебель, новый кухонный гарнитур, телефон.</description>
+  <cost>5 тыс. руб.</cost>
+  <realtor>5 тыс. руб.</realtor>
+  <phone>89061828128.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Шаумяна</location>
+  <address>д. 20/1; 7/16-эт. дома</address>
+  <cost>с 1 сентября.</cost>
+  <realtor>с 1 сентября.</realtor>
+  <phone>89042242342.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Щаденко</location>
+  <address>3/5-эт. дома</address>
+  <description>необходимая мебель, бытовая техника, телевизор, ванная и с/у - кафель, балкон застекл.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89185565126.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>ул. Щорса</location>
+  <address>д. 8; 1-й эт.</address>
+  <description>без мебели.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89185745789.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>1/5-эт. дома</address>
+  <description>мебель, кабельное ТВ, телевизор, холодильник, новая сантехника, м/п окна, косметич.</description>
+  <cost>ремонт, в норм. сост. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89888944290.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>1-й эт.</address>
+  <description>мебель, для командированных.</description>
+  <realtor>посуточно. Без посредников.</realtor>
+  <phone>89061820502.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>1-й эт.</address>
+  <realtor>мебель, холодильник, телевизор, можно посуточно.</realtor>
+  <phone>89286014340.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>2/5-эт. дома</address>
+  <description>лоджия застекл., необходимая мебель, м/п окна.</description>
+  <cost>5 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89613078144.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>2/5-эт. дома</address>
+  <description>необходимая мебель, м/п окна, лоджия застекл.</description>
+  <cost>5 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89618175048.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>2/5-эт. дома</address>
+  <description>необходимая мебель, м/п окна, лоджия застекл.</description>
+  <cost>5 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89613274285.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>2/5-эт. дома</address>
+  <description>необходимая мебель, м/п окна, лоджия застекл.</description>
+  <cost>5 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89613274290.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>2/5-эт. кирп. дома</address>
+  <description>встроенная кухня, 2-камерный холодильник, новая сантехника, кондиционер.</description>
+  <cost>5,5 тыс. руб. + коммунальные по счетчикам. Можно на короткий срок.</cost>
+  <phone>89094369133.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>2/5-эт. кирп. дома</address>
+  <description>мебель, бытовая техника, для командированных.</description>
+  <cost>посуточно.</cost>
+  <realtor>посуточно.</realtor>
+  <phone>89526070441.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>3/5-эт. дома</address>
+  <description>с/у совм., мебель, стиральная машина, холодильник, СВЧ-печь.</description>
+  <cost>Дорого.</cost>
+  <realtor>Дорого.</realtor>
+  <phone>89085176992.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>3/9-эт. дома</address>
+  <description>необходимая мебель, лоджия застекл., м/п окна, с/у разд.</description>
+  <cost>4 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89889410057.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>4/5-эт. дома</address>
+  <description>ламинат, с/у разд., м/п окна, мебель, холодильник, на длительный срок.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89043444355.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>6/9-эт. дома</address>
+  <description>мебель, в хор.</description>
+  <cost>сост.</cost>
+  <realtor>сост.</realtor>
+  <phone>89185563125;385125.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>пер. Гарибальди, 1/2-эт. дома</address>
+  <description>мебель частично, кабельное ТВ, Интернет, в хор.</description>
+  <cost>сост. Оплата 4,5 тыс. руб. + свет + вода.</cost>
+  <phone>89612941495.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>пер. Добролюбовский, 2/5-эт. дома</address>
+  <description>мебель, новая сантехника, стиральная машина-автомат, косметич.</description>
+  <cost>ремонт, на длительный срок. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89185717347.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <description>пер.</description>
+  <cost>Красный/Энгельса, мебель, новый холодильник, телевизор, в отл. сост., можно для одного-двух студентов. Оплата 5 тыс. руб. + коммунальные (500 руб.-1 тыс. руб.).</cost>
+  <phone>89043466862,Дарья.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>пер. Спартаковский, 3/5-эт. дома</address>
+  <description>мебель, телевизор, холодильник, утюг.</description>
+  <realtor>посуточно, от трех суток. Собственник.</realtor>
+  <phone>391478;89514987814.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н Банковской площади, 3/5-эт. дома</address>
+  <description>мебель, бытовая техника, кабельное ТВ.</description>
+  <cost>4,5 тыс. руб. + свет + вода.</cost>
+  <phone>89286289359.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н гост. &quot;Золотой берег&quot;, 5/9-эт. дома</address>
+  <description>квартира-студия, ремонт, мебель, стиральная машина-автомат, холодильник, сплит-система, кабельное ТВ, DVD, спуск на набережную.</description>
+  <cost>1 тыс. руб/сутки, посуточно.</cost>
+  <realtor>1 тыс. руб/сутки, посуточно.</realtor>
+  <phone>89081999818.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н Каменной лестницы, 1/1-эт. дома</address>
+  <description>новая мебель и бытовая техника, сплит-система, евроремонт, автономное отопление, горячая вода.</description>
+  <cost>посуточно.</cost>
+  <realtor>посуточно.</realtor>
+  <phone>89286093577.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н Каменной лестницы, 1-й эт.</address>
+  <description>мебель, сплит-система, стиральная машина, отдельный вход, ремонт, можно на длительный срок.</description>
+  <cost>посуточно. Дорого.</cost>
+  <realtor>посуточно. Дорого.</realtor>
+  <phone>89281134227.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н Октябрьской площади, 2/5-эт. дома</address>
+  <description>косметич.</description>
+  <cost>ремонт, мебель, бытовая техника, м/п окна, кабельное ТВ. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89185565126.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н ТТИ ЮФУ, 1/2-эт. дома</address>
+  <description>мебель, холодильник, телевизор, рядом транспорт, для командированных и приезжих.</description>
+  <cost>посуточно.</cost>
+  <realtor>посуточно.</realtor>
+  <phone>624507;89515165828.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н ТТИ ЮФУ, 1/5-эт. дома</address>
+  <description>ремонт, встроенная мебель, бытовая техника, балкон застекл., в хор.</description>
+  <cost>сост. Оплата 4 тыс. руб. + коммунальные.</cost>
+  <phone>89286132561.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н ТТИ ЮФУ, 2/5-эт. дома</address>
+  <description>кухонная мебель, бытовая техника, телефон, Интернет.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89034301328.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н ТТИ ЮФУ, 3/5-эт. дома</address>
+  <description>мебель, кухонный уголок, холодильник, встроенные шкафы, балкон застекл., Интернет.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89034302693.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н ТТИ ЮФУ, 3/5-эт. дома</address>
+  <description>мебель, кухонный уголок, холодильник, встроенные шкафы, Интернет, балкон застекл.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89618174916.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н ТТИ ЮФУ, 3/5-эт. дома</address>
+  <description>с/у разд., мебель, холодильник, Интернет, телефон, м/п окна, можно для студентов.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89094311562.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <description>р-н ТТИ ЮФУ, мебель.</description>
+  <cost>Недорого.</cost>
+  <realtor>Недорого.</realtor>
+  <phone>388862,с17до20час.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>ул. Александровская, 1/2-эт. дома</address>
+  <description>с/у разд., мебель частично, стиральная машина, холодильник, новая сантехника.</description>
+  <cost>5 тыс. руб. + свет.</cost>
+  <phone>89604512169.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>ул. Александровская, 2/9-эт. дома</address>
+  <description>мебель, бытовая техника, м/п окна, ремонт, с/у - кафель.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89612941495.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>ул. Греческая, р-н ТТИ ЮФУ, 9/9-эт. дома</address>
+  <description>лоджия 8 кв.</description>
+  <realtor>м, новая мебель, сплит-система, импортн. бытовая техника, кабельное ТВ, автостоянка, вид на море. Оплата посуточно.</realtor>
+  <phone>89043451004.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>ул. Октябрьская, 4/9-эт. дома</address>
+  <description>мебель, телевизор, холодильник, шкаф-купе, ванна и с/у - кафель, на длительный срок.</description>
+  <cost>5 тыс. руб.</cost>
+  <realtor>5 тыс. руб.</realtor>
+  <phone>89612718996.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>ул. Октябрьская, 4/9-эт. дома</address>
+  <description>мебель, телевизор, холодильник, шкаф-купе, ванная и с/у - кафель, на длительный срок.</description>
+  <cost>5 тыс. руб.</cost>
+  <realtor>5 тыс. руб.</realtor>
+  <phone>89287506707.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>ул. Петровская, 2/5-эт. дома</address>
+  <description>ремонт, новая мебель, холодильник, телевизор, стиральная машина-автомат, на длительный срок.</description>
+  <cost>4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89286132561.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>ул. Петровская, 2/5-эт. дома</address>
+  <description>ремонт, новая мебель, холодильник, телевизор, стиральная машина-автомат, на длительный срок.</description>
+  <cost>4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89897138793.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>ул. Фрунзе, 2/5-эт. дома</address>
+  <description>мебель, телевизор, кабельное ТВ, Интернет, холодильник, можно для студентов.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89612941495.</phone>
+ </item>
+ <item>
+  <rooms>1</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>ул. Фрунзе, 2-й эт.</address>
+  <description>телевизор, холодильник, мебель, м/п окна, в хор.</description>
+  <cost>сост. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89286132141.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>жакт</type>
+  <location>р-н ТТИ ЮФУ</location>
+  <address>1/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>м/п окна, мебель, холодильник, на длительный срок.</description>
+  <cost>4 тыс. руб. + свет.</cost>
+  <phone>89618175048.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>жакт</type>
+  <location>р-н ТТИ ЮФУ</location>
+  <address>1/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>м/п окна, мебель, холодильник, на длительный срок.</description>
+  <cost>4 тыс. руб. + свет.</cost>
+  <phone>89613274285.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>жакт</type>
+  <location>р-н ТТИ ЮФУ</location>
+  <address>1/2-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>м/п окна, мебель, холодильник, на длительный срок.</description>
+  <cost>4 тыс. руб. + свет.</cost>
+  <phone>89613274290.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>жакт</type>
+  <location>р-н ТТИ ЮФУ</location>
+  <address>1/2-эт. дома</address>
+  <comfort>м/п окна, в/у</comfort>
+  <description>мебель, холодильник, на длительный срок.</description>
+  <cost>4 тыс. руб. + свет.</cost>
+  <phone>89613078144.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>жакт</type>
+  <location>р-н ТТИ ЮФУ</location>
+  <address>40 кв. м, 1-2-й эт.</address>
+  <comfort>2 уровня, в/у</comfort>
+  <description>кухня-студия, с/у - кафель, новая сантехника, 2-контурный котел, новое отопление, м/п окна, метал.</description>
+  <cost>дверь, в отл. сост., отдельный вход. Оплата 10 тыс. руб. (коммунальные включены), торг.</cost>
+  <phone>89514965311.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <address>1/1-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>мебель, в отл.</description>
+  <cost>сост., въезд. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>361106;89281433847.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <address>1/1-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>необходимая мебель, бытовая техника, кухонный гарнитур, холодильник.</description>
+  <cost>3,5 тыс. руб. + коммунальные.</cost>
+  <phone>89889410057.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <address>1/1-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>необходимая мебель, бытовая техника, кухонный гарнитур, холодильник.</description>
+  <cost>4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89525671705.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <address>2/2-эт. дома</address>
+  <description>мебель частично, холодильник, удобства общие.</description>
+  <cost>3 тыс. руб. + коммунальные.</cost>
+  <realtor>Агентство.</realtor>
+  <phone>374020;89044485515;89198782778.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <description>мебель, стиральная машина-автомат, холодильник, в хор.</description>
+  <cost>сост. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>340638.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <address>пер. Итальянский, 2/2-эт. дома</address>
+  <description>необходимая мебель, м/п окна, холодильник, Интернет.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89286289359.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <comfort>р-н Старого вокзала, в/у</comfort>
+  <description>мебель, телевизор, свой вход.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89526044843.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <address>р-н ТТИ ЮФУ, 1/2-эт. дома</address>
+  <description>мебель, кабельное ТВ, Интернет.</description>
+  <cost>4,5 тыс. руб. + коммунальные. Агентствам просьба не беспокоить.</cost>
+  <phone>89034301328.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <address>р-н ТТИ ЮФУ, 57,7 кв. м, 1/1-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>необходимая мебель, холодильник, стиральная машина-автомат, телевизор, посуда, отдельный вход, можно для студентов, на длительный срок, с 7 сентября.</description>
+  <cost>8 тыс. руб. + свет.</cost>
+  <phone>89094377228.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <comfort>р-н ТТИ ЮФУ, в/у</comfort>
+  <description>мебель, телефон, Интернет, можно для студентов.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89612941495.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Безымянный проезд</location>
+  <address>2/5-эт. дома</address>
+  <description>крупногаб., мебель, м/п окна, сплит-система, кухонная мебель, ванная - кафель, на длительный срок.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89185717347.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Большой проспект</location>
+  <address>3-й эт.</address>
+  <description>без мебели, кухонный гарнитур, холодильник.</description>
+  <cost>5,5 тыс. руб. + свет.</cost>
+  <phone>89286132478.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Военный городок</location>
+  <address>крупногаб., 1/3-эт. дома</address>
+  <description>капремонт, м/п окна, новые входные и межкомн.</description>
+  <cost>двери, мебель частично, в отл. сост.</cost>
+  <realtor>двери, мебель частично, в отл. сост.</realtor>
+  <phone>89043468768.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Дубки</location>
+  <address>2/4-эт. дома</address>
+  <cost>мебель, телефон.</cost>
+  <realtor>мебель, телефон.</realtor>
+  <phone>89286084517;89286072242.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Дубки</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель частично, в среднем сост.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89043496038.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, бытовая техника, кухонный гарнитур, холодильник, телевизор, стиральная машина-автомат.</description>
+  <cost>Срочно. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89034620937.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>3/9-эт. дома</address>
+  <description>с/у разд., мебель, бытовая техника, кухонный и спальный гарнитуры, кондиционер, на длительный срок.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89034620926.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>4/9-эт. дома</address>
+  <description>мебель, телевизор, холодильник, сплит-система, новая сантехника.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <realtor>Без посредников.</realtor>
+  <phone>89888944290.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>ул. Транспортная, 3/5-эт. дома</address>
+  <description>косметич.</description>
+  <cost>ремонт, мебель, балкон застекл., м/п окна, на длительный срок. Оплата 6,5 тыс. руб. + свет.</cost>
+  <realtor>Без посредников.</realtor>
+  <phone>89094311562.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>ул. Щорса, 44 кв. м, 4/5-эт. кирп. дома</address>
+  <description>мебель частично, в хор.</description>
+  <cost>сост. Оплата 6 тыс. руб. + коммунальные.</cost>
+  <realtor>Агентство.</realtor>
+  <phone>89034731541.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ. 65 кв. м</location>
+  <address>1/3-эт. дома</address>
+  <description>евроремонт, подвесные потолки, встроенная кухня, м/п окна, холодильник, мебель частично: двуспальная кровать, два кресла, диван, шкафы.</description>
+  <cost>7 тыс. руб. + коммунальные.</cost>
+  <phone>89614039500;392288.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>пер. Гарибальди</location>
+  <address>3-й эт.</address>
+  <cost>мебель, рядом море, на короткий срок или посуточно.</cost>
+  <realtor>мебель, рядом море, на короткий срок или посуточно.</realtor>
+  <phone>89281011249;393841.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>пер. Парковый</location>
+  <address>3/9-эт. дома</address>
+  <description>балкон застекл., мебель, сплит-система, в хор.</description>
+  <cost>сост.</cost>
+  <realtor>сост.</realtor>
+  <phone>89081972541.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>пер. Смирновский</location>
+  <address>4/9-эт. дома</address>
+  <description>комн.</description>
+  <cost>разд., новая мебель, бытовая техника, евроремонт. Оплата 13 тыс. руб. + коммунальные.</cost>
+  <phone>89515209187.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ПМК</location>
+  <address>2/9-эт. дома</address>
+  <description>м/п окна, балкон застекл., мебель, телевизор, холодильник, новый с/у.</description>
+  <cost>4,5 тыс. руб. + коммунальные.</cost>
+  <realtor>Без посредников.</realtor>
+  <phone>89888944290.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ПМК</location>
+  <address>7/9-эт. кирп. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., м/п окна, балкон застекл., мебель, посуда, телевизор, холодильник, стиральная машина-автомат. Оплата 7 тыс. руб. + коммунальные.</cost>
+  <phone>89286174931;392323.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>2/5-эт. дома</address>
+  <description>комн.</description>
+  <cost>разд., бытовая техника, можно без мебели, м/п окна, новая сантехника. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89185717347.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>2/5-эт. дома</address>
+  <description>комн.</description>
+  <cost>разд., мебель. Оплата 5,5 тыс. руб. + коммунальные.</cost>
+  <phone>89185936132.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>2/9-эт. дома</address>
+  <description>комн.</description>
+  <cost>разд., мебель, бытовая техника, м/п окна, ремонт, кухня и с/у - кафель, на длительный срок. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89185717347.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>3/9-эт. дома</address>
+  <description>крупногаб., мебель, новая сантехника, м/п окна, два балкона, ниша, холодильник, телевизор, кабельное ТВ.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89034620937.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>7/10-эт. нового пан. дома</address>
+  <description>крупногаб., кухня 17 кв.</description>
+  <cost>м, комн. и с/у разд., м/п окна, ламинат, кафель, мебель частично, бытовая техника. Оплата 10 тыс. руб. + коммунальные.</cost>
+  <phone>89043471340.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н диагностического центра</location>
+  <address>2/5-эт. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., мебель, телефон, для семьи из двух человек. Оплата 6 тыс. руб. + коммунальные.</cost>
+  <realtor>Без посредников.</realtor>
+  <phone>371402.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н ДК з-да &quot;ТагМет&quot;</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, бытовая техника, кабельное ТВ, телефон, домофон, м/п окна.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89094311562.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н ДК им. Димитрова</location>
+  <address>5/5-эт. дома</address>
+  <realtor>мебель, бытовая техника, для русской семьи, на длительный срок.</realtor>
+  <phone>89054302147.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н з-да &quot;Красный котельщик&quot;</location>
+  <address>3-й эт.</address>
+  <description>мебель, холодильник, телевизор, СВЧ-печь, телефон.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89286132478.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Кислородной площади</location>
+  <address>3/5-эт. дома</address>
+  <description>новая сантехника, м/п окна, мебель, кабельное ТВ, на длительный срок.</description>
+  <cost>6,5 тыс. руб.</cost>
+  <realtor>6,5 тыс. руб.</realtor>
+  <phone>89889410057.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Кислородной площади</location>
+  <address>4/9-эт. дома</address>
+  <description>мебель, бытовая техника, косметич.</description>
+  <cost>ремонт, телевизор, холодильник, телефон, новая сантехника. Срочно. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89034620926.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н комбайнового з-да</location>
+  <address>1/9-эт. дома</address>
+  <cost>мебель, телефон, евроремонт.</cost>
+  <realtor>мебель, телефон, евроремонт.</realtor>
+  <phone>399812;89281911753.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н маг. &quot;Электроника&quot;</location>
+  <address>5/9-эт. дома</address>
+  <description>мебель, бытовая техника, новая сантехника, ванная и с/у - кафель, косметич.</description>
+  <cost>ремонт, м/п окна, на длительный срок. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89888944290.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н маг. &quot;Электроника&quot;</location>
+  <address>6/9-эт. дома</address>
+  <description>мебель.</description>
+  <realtor>Без посредников.</realtor>
+  <phone>89612967039.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Николаевского переезда</location>
+  <address>1/5-эт. дома</address>
+  <cost>балкон, без мебели.</cost>
+  <realtor>балкон, без мебели.</realtor>
+  <phone>89508628997.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Николаевского рынка</location>
+  <address>1/5-эт. кирп. дома</address>
+  <description>мебель, бытовая техника, для семьи.</description>
+  <cost>6,5 тыс. руб. + коммунальные.</cost>
+  <phone>89515108364.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Николаевского рынка</location>
+  <address>2/5-эт. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., мебель, в хор. сост. Оплата 5 тыс. руб. + свет + вода.</cost>
+  <phone>89613274290.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Николаевского рынка</location>
+  <address>2/5-эт. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., мебель, в хор. сост. Оплата 5 тыс. руб. + свет + вода.</cost>
+  <phone>89618175048.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Николаевского рынка</location>
+  <address>2/5-эт. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., мебель, в хор. сост. Оплата 5 тыс. руб. + свет + вода.</cost>
+  <phone>89613274285.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Николаевского рынка</location>
+  <address>2/5-эт. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., мебель, в хор. сост. Оплата 5 тыс. руб. + свет + вода.</cost>
+  <phone>89613078144.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Николаевского рынка</location>
+  <address>3/3-эт. дома</address>
+  <description>без мебели.</description>
+  <cost>6 тыс. руб. + коммунальные.</cost>
+  <phone>89525686980.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>2/5-эт. кирп. дома</address>
+  <description>мебель, телефон, холодильник, балкон застекл.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>338039;89045079249.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>2-й эт.</address>
+  <description>мебель частично, ремонт, м/п окна, автономное отопление.</description>
+  <cost>5,5 тыс. руб. + коммунальные.</cost>
+  <phone>89185624143.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, холодильник, в хор.</description>
+  <cost>сост.</cost>
+  <realtor>сост.</realtor>
+  <phone>89185027527.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>3/9-эт. дома</address>
+  <description>мебель, косметич.</description>
+  <cost>ремонт, новая сантехника, телевизор, холодильник, кабельное ТВ, телефон. Оплата 6,5 тыс. руб. + свет.</cost>
+  <phone>89185717347.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>3/9-эт. кирп. дома</address>
+  <description>с/у разд., м/п окна, новая сантехника, спальный гарнитур, мягкая мебель, телевизор, телефон, Интернет, встроенная кухня.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89287506707.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>3/9-эт. кирп. дома</address>
+  <description>с/у разд., м/п окна, новая сантехника, спальный гарнитур, мягкая мебель, телевизор, телефон, Интернет, встроенная кухня.</description>
+  <cost>6 тыс. руб. + коммунальные.</cost>
+  <phone>89198927028.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>4/9-эт. дома</address>
+  <description>без мебели.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89061828128.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>р-н Дома быта, 1-й эт. кирп. дома</address>
+  <description>евроремонт, комн.</description>
+  <realtor>и с/у разд., новая мебель, бытовая техника, сплит-система, стиральная машина-автомат, кабельное ТВ, телефон.</realtor>
+  <phone>366589.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>ул. Дзержинского, 2/5-эт. дома</address>
+  <description>косметич.</description>
+  <realtor>ремонт, мебель, холодильник, балкон застекл., в хор. сост., на длительный срок.</realtor>
+  <phone>89043468768.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н порта</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель.</description>
+  <cost>Срочно.</cost>
+  <realtor>Срочно.</realtor>
+  <phone>89281980584.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Приморского парка</location>
+  <address>2/9-эт. дома</address>
+  <description>мебель, новая сантехника, комн.</description>
+  <cost>и с/у разд., кабельное ТВ, холодильник, м/п окна. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89888944290.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Приморского парка</location>
+  <address>3/5-эт. дома</address>
+  <description>м/п окна, мебель.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89604512169.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Приморского парка</location>
+  <address>4/6-эт. кирп. дома</address>
+  <realtor>ремонт, мебель, стиральная машина-автомат, холодильник 2-камерный, встроенная кухня, сплит-система, на длительный срок.</realtor>
+  <phone>370419;89185562419.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Приморского парка</location>
+  <address>5/5-эт. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., мебель частично, ремонт. Оплата 6 тыс. руб. + коммунальные.</cost>
+  <phone>89081719800.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н Приморского парка</location>
+  <address>7/9-эт. дома</address>
+  <description>комн.</description>
+  <realtor>и с/у разд., балкон застекл., мебель, бытовая техника, в хор. сост. Срочно. Недорого.</realtor>
+  <phone>89061864300.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н ТТИ ЮФУ</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, стиральная машина, кухонный гарнитур, можно для студентов.</description>
+  <cost>5,5 тыс. руб. + коммунальные.</cost>
+  <phone>89889473108.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н ул. Дзержинского</location>
+  <address>2/5-эт. дома</address>
+  <realtor>мебель, холодильник, телевизор, СВЧ-печь, стиральная машина-автомат, кондиционер, телефон, кабельное ТВ.</realtor>
+  <phone>89518235321.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н ул. П.Тольятти</location>
+  <address>3-й эт.</address>
+  <description>мебель, бытовая техника.</description>
+  <cost>Дорого.</cost>
+  <realtor>Дорого.</realtor>
+  <phone>89198732277.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>р-н ул. Свободы</location>
+  <address>ул. Трудовых Резервов, 2/2-эт. дома</address>
+  <description>комн.</description>
+  <cost>разд., мебель, два телевизора, стиральная машина-автомат, бытовая техника, холодильник, Интернет, автономное отопление. Оплата 6,5 тыс. руб. + коммунальные.</cost>
+  <phone>335861;89281866500.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, бытовая техника, м/п окна.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89889473108.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>2/9-эт. дома</address>
+  <description>кабельное ТВ, мебель, в хор.</description>
+  <cost>сост. Оплата 5,5 тыс. руб. + коммунальные.</cost>
+  <phone>89286289359.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>2/9-эт. дома</address>
+  <description>комн.</description>
+  <realtor>и с/у разд., новая сантехника, холодильник, новая мебель, телевизор, стиральная машина-автомат, встроенная кухня, м/п окна, балкон застекл., в отл. сост. Оплата 6,5 тыс. руб.</realtor>
+  <phone>89185565126.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>2/9-эт. дома</address>
+  <description>м/п окна, ремонт, мебель частично.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89613274290.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>2/9-эт. дома</address>
+  <description>м/п окна, ремонт, мебель частично.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89613274285.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>2/9-эт. дома</address>
+  <description>м/п окна, ремонт, мебель частично.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89613078144.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>2/9-эт. дома</address>
+  <description>м/п окна, ремонт, мебель частично.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89618175048.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>2/9-эт. дома</address>
+  <description>с/у - кафель, можно без мебели, м/п окна, балкон застекл., метал.</description>
+  <cost>дверь, в хор. сост., на длительный срок. Оплата 6 тыс. руб. + коммунальные.</cost>
+  <phone>89185410408.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>3/9-эт. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., холодильник, новая мебель, стиральная машина-автомат, м/п окна, газ. колонка-автомат, на длительный срок. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89034620926.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>3/9-эт. дома</address>
+  <description>крупногаб., ремонт, мебель, бытовая техника.</description>
+  <cost>10 тыс. руб.</cost>
+  <realtor>10 тыс. руб.</realtor>
+  <phone>338039;89508643772.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>3/9-эт. дома</address>
+  <description>мебель, холодильник, стиральная машина-автомат, телевизор, в отл.</description>
+  <cost>сост., для семейной пары без детей. Оплата 6 тыс. руб. + коммунальные, помесячно.</cost>
+  <phone>381065;89185332793;89188915778.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>4/9-эт. дома</address>
+  <description>мебель, кухня и ванная - кафель, холодильник, телевизор, м/п окна, на длительный срок.</description>
+  <cost>6,5 тыс. руб. + свет.</cost>
+  <phone>89094311562.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>4/9-эт. дома</address>
+  <description>мебель, холодильник, кабельное ТВ, телефон, м/п окна, метал.</description>
+  <cost>дверь. Оплата 5,5 тыс. руб. + свет, вода.</cost>
+  <phone>89612941495.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>5/9-эт. дома</address>
+  <description>мебель, метал.</description>
+  <cost>дверь, домофон, телефон, Интернет, стиральная машина, на длительный срок. Оплата 5,5 тыс. руб. + коммунальные.</cost>
+  <phone>89061824651.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>р-н рынка, 3/5-эт. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., балкон застекл., мебель, холодильник, телевизор, в хор. сост., не угловая. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89889410057.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>р-н рынка, 4/9-эт. дома</address>
+  <description>комн.</description>
+  <cost>разд., мебель, новая сантехника, метал. дверь, телефон, Интернет, стиральная машина. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89034302693.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>р-н рынка, 4/9-эт. дома</address>
+  <description>комн.</description>
+  <cost>разд., мебель, новая сантехника, метал. дверь, телефон, Интернет, стиральная машина. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89198927028.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>р-н Центра занятости, 3/5-эт. дома</address>
+  <description>м/п окна, балкон застекл., мебель частично, косметич.</description>
+  <cost>ремонт, в отл. сост.</cost>
+  <realtor>ремонт, в отл. сост.</realtor>
+  <phone>89885396329.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>р-н Центра занятости, 5/9-эт. дома</address>
+  <description>мебель, бытовая техника.</description>
+  <cost>9 тыс. руб. + коммунальные.</cost>
+  <phone>89085188112.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>ул. Пархоменко, 2/5-эт. дома</address>
+  <description>мебель, кухонный гарнитур, мягкая мебель, м/п окна, бытовая техника, на длительный срок.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89185717347.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>ул. Сызранова, 2/5-эт. дома</address>
+  <description>косметич.</description>
+  <cost>ремонт, мебель, бытовая техника, новая сантехника, линолеум, кухонный гарнитур. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89888944290.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>10-й Новый, 2/5-эт. дома</address>
+  <description>мебель, телевизор, бытовая техника.</description>
+  <cost>5 тыс. руб. + свет.</cost>
+  <phone>89889473108.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>2/9-эт. дома</address>
+  <description>косметич.</description>
+  <cost>ремонт, кухонный гарнитур, м/п окна, телевизор, холодильник, телефон. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89034620937.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>3/5-эт. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., мебель, новая входная дверь, ремонт, телевизор, холодильник. Срочно. Оплата 4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89094311562.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, кабельное ТВ, телефон, бытовая техника, с/у разд.</description>
+  <cost>- кафель, в хор. сост. Оплата 4,5 тыс. руб. + свет, вода.</cost>
+  <phone>89612941495.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>4/5-эт. кирп. дома</address>
+  <description>мебель, бытовая техника, стиральная машина-автомат, холодильник, СВЧ-печь, сплит-системы, джакузи, в отл.</description>
+  <cost>сост. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>340638.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>9/9-эт. дома</address>
+  <realtor>мебель, бытовая техника, стиральная машина-автомат, Интернет, м/п окна.</realtor>
+  <phone>89044434061.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>ул. Металлургическая, 2/5-эт. кирп. дома</address>
+  <description>мебель, бытовая техника, встроенная кухня, холодильник, СВЧ-печь, сплит-система, в отл.</description>
+  <cost>сост. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89034302693.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>ул. Металлургическая, 2/5-эт. кирп. дома</address>
+  <description>мебель, бытовая техника, встроенная кухня, холодильник, СВЧ-печь, сплит-система, в отл.</description>
+  <cost>сост. Оплата 5,5 тыс. руб. + коммунальные.</cost>
+  <phone>89094172815.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. 1-я Котельная</location>
+  <address>60/32/9; 4/11-эт. монолит. дома</address>
+  <description>встроенная кухня, сплит-система, стиральная машина-автомат, большая лоджия.</description>
+  <cost>9 тыс. руб. + коммунальные.</cost>
+  <phone>89185505909.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, бытовая техника, новая сантехника, в хор.</description>
+  <cost>сост. Оплата 6 тыс. руб. + коммунальные.</cost>
+  <phone>89612941495.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, холодильник, телевизор, в отл.</description>
+  <cost>сост. Оплата 6 тыс. руб. + коммунальные.</cost>
+  <phone>89896220238.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского</location>
+  <address>49/29/9; 1/9-эт. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., мебель, Интернет, большая застекл. лоджия на две комнаты. Оплата 7 тыс. руб. + коммунальные.</cost>
+  <phone>89518456106.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского</location>
+  <address>5/9-эт. дома</address>
+  <description>мебель.</description>
+  <cost>5 тыс. руб. + коммунальные.</cost>
+  <phone>89286289359.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского</location>
+  <address>р-н 21-й школы, крупногаб., 3/5-эт. дома</address>
+  <cost>необходимая мебель, телефон, домофон, гараж рядом.</cost>
+  <realtor>необходимая мебель, телефон, домофон, гараж рядом.</realtor>
+  <phone>89044478587.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского</location>
+  <address>р-н Нового вокзала, 5/5-эт. дома</address>
+  <description>мебель, холодильник, телевизор, сплит-система, стиральная машина-автомат, м/п окна, в отл.</description>
+  <cost>сост. Оплата 11 тыс. руб. + коммунальные.</cost>
+  <realtor>Агентство.</realtor>
+  <phone>640766;89885832888.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского/пер. Парковый</location>
+  <address>3/9-эт. кирп. дома</address>
+  <description>комн.</description>
+  <cost>разд., лоджия, м/п окна, кухонный гарнитур, в хор. сост., на длительный срок. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89185565126.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского/пер. Парковый</location>
+  <address>3/9-эт. кирп. дома</address>
+  <description>комн.</description>
+  <cost>разд., лоджия, м/п окна, кухонный гарнитур, в хор. сост., на длительный срок. Оплата 5,5 тыс. руб. + коммунальные.</cost>
+  <phone>89612718996.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Инструментальная</location>
+  <address>5/5-эт. дома</address>
+  <description>комн.</description>
+  <realtor>разд., металлопластик, лоджия застекл., мебель, бытовая техника, в отл. сост., для русской семьи или студенток, на длительный срок.</realtor>
+  <phone>89185626803.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Ленина</location>
+  <address>2/10-эт. элитного кирп. дома</address>
+  <description>крупногаб., комн.</description>
+  <cost>разд. (17+21 кв. м), кухня 16 кв. м, ремонт, с/у - кафель, ламинат, новая сантехника, встроенная кухня, мебель, холодильник, стиральная машина-автомат, две эркерные лоджии, консьерж, парковка. Оплата 17 тыс. руб. + коммунальные.</cost>
+  <phone>89045079405.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Ломакина/пер. Смирновский</location>
+  <address>4/9-эт. дома</address>
+  <description>с/у и кухня - кафель, мебель, холодильник, сплит-система, стиральная машина, балкон застекл., стеклопакеты, новая входная дверь, изолир.</description>
+  <cost>тамбур, в отл. сост. Срочно.</cost>
+  <realtor>тамбур, в отл. сост. Срочно.</realtor>
+  <phone>89043468768.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Ломоносова</location>
+  <address>3/5-эт. дома</address>
+  <description>телевизор, холодильник, мебель, СВЧ-печь, посуда.</description>
+  <cost>5,5 тыс. руб. + коммунальные.</cost>
+  <phone>89889473108.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Менделеева</location>
+  <address>2/9-эт. дома</address>
+  <description>комн.</description>
+  <cost>разд., мебель, телефон, Интернет, стиральная машина, бытовая техника, метал. дверь. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89287506707.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. П.Тольятти</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, телевизор, кабельное ТВ, Интернет.</description>
+  <cost>5,5 тыс. руб. + коммунальные.</cost>
+  <phone>89286132478.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Пархоменко</location>
+  <address>2/5-эт. дома</address>
+  <comfort>новый с/у</comfort>
+  <description>косметич.</description>
+  <cost>ремонт, мебель. Оплата 5 тыс. руб.</cost>
+  <realtor>ремонт, мебель. Оплата 5 тыс. руб.</realtor>
+  <phone>89286132141.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. С.Лазо</location>
+  <address>3-й эт.</address>
+  <description>мебель, телевизор, холодильник, стиральная машина-автомат, для русской семьи, можно с детьми.</description>
+  <cost>6 тыс. руб. + коммунальные.</cost>
+  <phone>89185936132.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>1/9-эт. пан. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., мебель, большая лоджия застекл., холодильник. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89612941495.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>2/2-эт. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., h потолков 3,2 м, м/п окна, новая крыша, мебель, бытовая техника, стиральная машина. Оплата 11,5 тыс. руб. + свет.</cost>
+  <phone>89515013211.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>2/5-эт. дома</address>
+  <description>м/п окна, мебель, телевизор, холодильник, мягкая мебель, на длительный срок.</description>
+  <cost>4,5 тыс. руб. + коммунальные.</cost>
+  <phone>89198815767.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, телевизор, с/у разд., стиральная машина-автомат, м/п окна, Интернет.</description>
+  <cost>5,5 тыс. руб. + свет + вода.</cost>
+  <phone>89286132561.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, телевизор, с/у разд., стиральная машина-автомат, м/п окна, Интернет.</description>
+  <cost>5,5 тыс. руб. + свет + вода.</cost>
+  <phone>89618174916.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>3/5-эт. дома</address>
+  <description>комн.</description>
+  <cost>разд., мебель, новая сантехника, холодильник, на длительный срок. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89043444355.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, бытовая техника, м/п окна, кабельное ТВ, в хор.</description>
+  <cost>сост. Оплата 5,5 тыс. руб. + коммунальные.</cost>
+  <phone>89526044843.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>3-й эт.</address>
+  <description>мебель, бытовая техника, шкафы-купе, м/п окна.</description>
+  <cost>5,5 тыс. руб. + коммунальные.</cost>
+  <phone>89185936132.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы/10-й переулок</location>
+  <address>2-й эт.</address>
+  <description>комн.</description>
+  <cost>и с/у разд., мебель, два телевизора, стиральная машина-автомат, кухонная мебель, новая сантехника. Оплата 6,5 тыс. руб. + коммунальные.</cost>
+  <phone>340638.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы/10-й переулок</location>
+  <address>3/5-эт. дома</address>
+  <description>комн.</description>
+  <cost>разд., кухня и с/у - плитка, мебель, холодильник, колонка-автомат, кабельное ТВ, телефон, Интернет, балкон застекл. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89034302693.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Сызранова</location>
+  <address>5/9-эт. дома</address>
+  <description>косметич.</description>
+  <cost>ремонт, новая сантехника, кухонная мебель, спальный гарнитур, холодильник, сплит-система, м/п окна. Оплата 6,5 тыс. руб. + свет + вода.</cost>
+  <phone>89034301328.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Театральная</location>
+  <address>3/5-эт. дома</address>
+  <description>м/п окна, мебель, бытовая техника.</description>
+  <cost>6 тыс. руб.</cost>
+  <realtor>6 тыс. руб.</realtor>
+  <phone>89286132141.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>ул. Чехова</location>
+  <address>р-н рынка, 3-й эт.</address>
+  <description>мебель, холодильник, телевизор, Интернет, ламинат, кафель, в отл.</description>
+  <cost>сост. Срочно. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89286132478.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>1/2-эт. кирп. дома</address>
+  <description>комн.</description>
+  <realtor>разд., бытовая техника, в отл. сост., можно на короткий срок. Дорого.</realtor>
+  <phone>89286174931;392323.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>1-й эт.</address>
+  <description>мебель, холодильник, телевизор, телефон, с/у разд., отопление - котел, для семьи, можно с ребенком.</description>
+  <cost>7 тыс. руб. + коммунальные по счетчикам.</cost>
+  <phone>89525635965.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель, бытовая техника, сплит-система, стиральная машина-автомат, душевая кабина, ванна, дизайнерский ремонт, на длительный срок.</description>
+  <cost>Дорого.</cost>
+  <realtor>Дорого.</realtor>
+  <phone>89618175247.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>3/3-эт. нового кирп. дома</address>
+  <description>крупногаб., встроенная мебель, бытовая техника, в отл.</description>
+  <cost>сост., на длительный срок.</cost>
+  <realtor>сост., на длительный срок.</realtor>
+  <phone>89614038779.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, комн.</description>
+  <cost>и с/у разд., м/п окна, встроенная кухня, 2-камерный холодильник, новая сантехника, сплит-система. Оплата 8 тыс. руб. + коммунальные.</cost>
+  <phone>89081751987.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>4/9-эт. дома</address>
+  <description>мебель, косметич.</description>
+  <cost>ремонт, окна ПВХ, на длительный срок. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89034620937.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>5/5-эт. дома</address>
+  <realtor>мебель, холодильник, телевизор, кабельное ТВ, СВЧ-печь, стиральная машина-автомат, сплит-система, вид на море.</realtor>
+  <phone>89185604310.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>7/10-эт. нового кирп. дома</address>
+  <description>крупногаб., комн.</description>
+  <cost>и с/у разд., две лоджии, холодильник, телевизор, мебель. Оплата 12 тыс. руб. + коммунальные.</cost>
+  <phone>89286174931;392323.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>крупногаб., кухня 16 кв. м, 3-й эт. нового элитного дома</address>
+  <description>автономное отопление, новая мебель и бытовая техника, охраняемая парковка, вид на море.</description>
+  <cost>18 тыс. руб. + свет.</cost>
+  <phone>89508444341.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>кухня 14 кв. м, 3/5-эт. кирп. дома</address>
+  <description>мебель, телевизор, холодильник, для одного-двух человек.</description>
+  <cost>Не агентство.</cost>
+  <realtor>Не агентство.</realtor>
+  <phone>89198846792.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>о/п 78 кв. м, кухня 17,5 кв. м, 7/10-эт. элитного нового дома</address>
+  <description>улучш.</description>
+  <cost>планировки, две лоджии, мебель частично.</cost>
+  <realtor>планировки, две лоджии, мебель частично.</realtor>
+  <phone>89298200875.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>пер. Гарибальди, 5/5-эт. дома</address>
+  <realtor>мебель, телевизор, холодильник, стиральная машина-автомат, СВЧ-печь, кондиционер, телефон, кабельное ТВ.</realtor>
+  <phone>621612;89081752983.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н Банковской площади, 1/1-эт. дома</address>
+  <description>&quot;люкс&quot;, мебель, бытовая техника, ремонт, в хор.</description>
+  <realtor>сост. Оплата посуточно. Можно на длительный срок. Без посредников.</realtor>
+  <phone>89085168205.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н Банковской площади, 60 кв. м, 2-й эт.</address>
+  <description>кухня-студия 18 кв.</description>
+  <cost>м, мебель, бытовая техника, кабельное ТВ, Интернет. Оплата 15 тыс. руб. + коммунальные.</cost>
+  <phone>89508657469.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н Октябрьской площади, 2/4-эт. дома</address>
+  <description>комн.</description>
+  <cost>разд., мебель, холодильник, телевизор, стиральная машина-автомат, сплит-система, СВЧ-печь, в отл. сост. Оплата 17 тыс. руб. + коммунальные.</cost>
+  <realtor>Агентство.</realtor>
+  <phone>640766;89185820969.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н ТТИ ЮФУ, 2/5-эт. дома</address>
+  <description>телефон, Интернет, стиральная машина-автомат, телевизор, 2-камерный холодильник, в хор.</description>
+  <cost>сост. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89897138793.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н ТТИ ЮФУ, 2/5-эт. дома</address>
+  <description>телефон, Интернет, стиральная машина-автомат, телевизор, 2-камерный холодильник, в хор.</description>
+  <cost>сост. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89889410057.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>р-н ТТИ ЮФУ, 3-й эт.</address>
+  <description>мебель частично, холодильник, телевизор, Интернет, ремонт, в отл.</description>
+  <cost>сост. Оплата 6 тыс. руб. + свет.</cost>
+  <phone>89185936132.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>ул. Греческая, 2/5-эт. дома</address>
+  <description>мебель, бытовая техника, косметич.</description>
+  <cost>ремонт, новая сантехника. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89185565126.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>ул. Петровская, 3/5-эт. дома</address>
+  <description>комн.</description>
+  <cost>разд., мебель, холодильник, телевизор, стиральная машина, в хор. сост. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89034302693.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>ул. Петровская, 3/5-эт. дома</address>
+  <description>комн.</description>
+  <cost>разд., мебель, холодильник, телевизор, стиральная машина, в хор. сост. Оплата 5,5 тыс. руб. + коммунальные.</cost>
+  <phone>89525671705.</phone>
+ </item>
+ <item>
+  <rooms>2</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>ул. Фрунзе, 43/32/6,5; 3/5-эт. дома</address>
+  <description>евроремонт, новые мебель и бытовая техника.</description>
+  <cost>12 тыс. руб. + коммунальные.</cost>
+  <phone>89185031900.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>жакт</type>
+  <location>р-н Центрального рынка</location>
+  <description>о/п 90 кв.</description>
+  <cost>м, в/у.</cost>
+  <realtor>м, в/у.</realtor>
+  <phone>89518247174.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>жакт</type>
+  <location>Центр</location>
+  <comfort>ул. Фрунзе/пер. Гоголевский, 70/35, в/у</comfort>
+  <description>мебель, телефон, бытовая техника, въезд, 0,5 сотки.</description>
+  <cost>10 тыс. руб. + коммунальные.</cost>
+  <phone>89045069019.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>2/2-эт. дома</address>
+  <cost>с/у разд., м/п окна, можно без мебели.</cost>
+  <realtor>с/у разд., м/п окна, можно без мебели.</realtor>
+  <phone>89612979299.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>ЗЖМ</location>
+  <address>р-н НИИ связи, 3/5-эт. дома</address>
+  <description>евроотделка, мебель, новая бытовая техника.</description>
+  <cost>15 тыс. руб. + свет.</cost>
+  <phone>89508657462.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>Николаевский рынок</location>
+  <address>4/5-эт. дома</address>
+  <description>с/у - кафель, балкон застекл., в норм.</description>
+  <cost>сост., можно без мебели, на длительный срок. Оплата 5 тыс. руб. + коммунальные.</cost>
+  <phone>89043468768.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>Новые дома</location>
+  <address>ул. Бабушкина, 2/5-эт. дома</address>
+  <description>мебель, телефон, кабельное ТВ, сплит-система.</description>
+  <cost>10 тыс. руб. + коммунальные. Можно с кап. гаражом, оплата 1,5 тыс. руб.</cost>
+  <phone>672380.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>Новые дома</location>
+  <address>ул. Бабушкина, 2/6-эт. дома</address>
+  <description>мебель, телефон, кабельное ТВ, сплит-система, кап.</description>
+  <cost>гараж рядом. Оплата 15 тыс. руб. + свет.</cost>
+  <phone>605703.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>Новые дома</location>
+  <address>ул. Бабушкина, 3/5-эт. дома</address>
+  <description>мебель, телефон, сплит-система, балкон застекл., кабельное ТВ.</description>
+  <cost>10 тыс. руб. + коммунальные. Можно с кап. гаражом, оплата 1,5 тыс. руб.</cost>
+  <phone>89043436006.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>Простоквашино</location>
+  <address>2/9-эт. нового дома</address>
+  <cost>ремонт, мебель частично.</cost>
+  <realtor>ремонт, мебель частично.</realtor>
+  <phone>89882510293.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>2/5-эт. дома</address>
+  <description>мебель частично, в отл.</description>
+  <cost>сост., для семейной пары, на длительный срок. Оплата 7 тыс. руб. + коммунальные.</cost>
+  <phone>89287557555;682217.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>2/9-эт. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., мебель, холодильник, телевизор, в хор. сост., рядом рынок, транспорт, магазины. Оплата 6 тыс. руб. + коммунальные.</cost>
+  <phone>89612941495.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>р-н Нового вокзала</location>
+  <address>ул. С.Лазо, 3/5-эт. дома</address>
+  <realtor>ремонт, мебель, бытовая техника, два телевизора, сплит-система, посуда, кабельное ТВ, Интернет, телефон, на длительный срок.</realtor>
+  <phone>605195;89882537595.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>р-н пер. Смирновского/ул. Ломакина</location>
+  <address>5/9-эт. дома</address>
+  <description>мебель частично, в хор.</description>
+  <cost>сост., на длительный срок. Оплата 8,5 тыс. руб. + коммунальные.</cost>
+  <phone>89045035833.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>3/5-эт. дома</address>
+  <description>мебель, холодильник, телевизор.</description>
+  <cost>10 тыс. руб.</cost>
+  <realtor>10 тыс. руб.</realtor>
+  <phone>89045077660;89613076048.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>5/9-эт. дома</address>
+  <description>без мебели, для семьи.</description>
+  <realtor>Без посредников.</realtor>
+  <phone>89094376338.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>Русское поле</location>
+  <address>64/40/9; 1/9-эт. дома</address>
+  <description>комн.</description>
+  <cost>и с/у разд., лоджия застекл., новые сантехника, мебель, бытовая техника, стиральная машина-автомат, на длительный срок. Оплата 10 тыс. руб. + коммунальные.</cost>
+  <phone>89508660281.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>ул. Бабушкина</location>
+  <address>2/6-эт. дома</address>
+  <description>мебель, рядом гараж.</description>
+  <cost>15 тыс. руб. + свет.</cost>
+  <phone>89508448590.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>ул. Дзержинского</location>
+  <address>кухня 12 кв. м, 2/9-эт. нового кирп. дома</address>
+  <description>комн.</description>
+  <realtor>и с/у разд., лоджия застекл., новая мебель, встроенная кухня, бытовая техника, стиральная машина-автомат, евроремонт.</realtor>
+  <phone>89034381009.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>ул. Котлостроительная</location>
+  <address>2/5-эт. дома</address>
+  <description>с/у - кафель, необходимая мебель, холодильник, телевизор, стиральная машина-автомат, в норм.</description>
+  <cost>сост.</cost>
+  <realtor>сост.</realtor>
+  <phone>89185410408.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>ул. Морозова</location>
+  <address>5/5-эт. дома</address>
+  <description>мебель, телефон.</description>
+  <realtor>Без посредников.</realtor>
+  <phone>89043462573.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>ул. Свободы</location>
+  <address>3/5-эт. кирп. дома</address>
+  <description>мебель, холодильник, телефон, кабельное ТВ, лоджия застекл., в хор.</description>
+  <cost>сост., на длительный срок, рядом транспорт, рынок. Оплата 6,5 тыс. руб. + свет + вода.</cost>
+  <phone>89526044843.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>3/4-эт. дома</address>
+  <description>на длительный срок.</description>
+  <cost>18 тыс. руб. + коммунальные.</cost>
+  <phone>89185565761;365761.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>ул. Петровская, 2/5-эт. дома</address>
+  <description>с/у разд., м/п окна, новая сантехника, спальный гарнитур, мягкая мебель, телевизор, телефон, Интернет, встроенная кухня.</description>
+  <cost>6,5 тыс. руб. + коммунальные.</cost>
+  <phone>89897138793.</phone>
+ </item>
+ <item>
+  <rooms>3</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>ул. Петровская, 2/5-эт. дома</address>
+  <description>с/у разд., м/п окна, новая сантехника, спальный гарнитур, мягкая мебель, телевизор.</description>
+  <cost>телефон, Интернет, встроенная кухня. Оплата 6 тыс. руб. + коммунальные.</cost>
+  <phone>89889410057.</phone>
+ </item>
+ <item>
+  <rooms>4</rooms>
+  <type>кв.</type>
+  <location>СЖМ</location>
+  <address>ул. Инициативная, 1/5-эт. кирп. дома</address>
+  <description>с/у разд., мебель частично, м/п окна, стиральная машина-автомат, в норм.</description>
+  <cost>сост. Оплата 7 тыс. руб. + коммунальные.</cost>
+  <phone>89081818866.</phone>
+ </item>
+ <item>
+  <rooms>4</rooms>
+  <type>кв.</type>
+  <location>Центр</location>
+  <address>ул. Чехова/пер. Некрасовский, 2/4-эт. дома</address>
+  <description>евроремонт, встроенная итал.</description>
+  <cost>кухня, бытовая техника, сплит-система, мебель частично. Оплата 11 тыс. руб. + коммунальные.</cost>
+  <phone>89085187909.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>10-й переулок</location>
+  <address>4-й эт.</address>
+  <description>удобства общие, горячая вода, мебель частично, холодильник, желательно для семьи без в/п.</description>
+  <cost>4 тыс. руб.</cost>
+  <realtor>4 тыс. руб.</realtor>
+  <phone>89525715088.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>17-й Новый</location>
+  <address>5/7-эт. дома</address>
+  <description>удобства на 3 хоз.</description>
+  <realtor>Недорого. Без посредников.</realtor>
+  <phone>89043496935.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>Дубки</location>
+  <address>12 кв. м, 1-й эт.</address>
+  <description>мебель, телевизор, холодильник.</description>
+  <cost>4,5 тыс. руб.</cost>
+  <realtor>4,5 тыс. руб.</realtor>
+  <phone>89085196675.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>Дубки</location>
+  <address>17 кв. м, 3-й эт.</address>
+  <description>душ., горячая вода.</description>
+  <cost>3,5 тыс. руб. + свет.</cost>
+  <phone>89081736209.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>Дубки</location>
+  <address>1-комн., 4/5-эт. дома</address>
+  <description>удобства на 4 хоз., горячая вода, душ, мебель.</description>
+  <cost>3 тыс. руб., можно посуточно.</cost>
+  <phone>89618170266.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>Дубки</location>
+  <address>1-комн., 9 кв. м, 2/5-эт. дома</address>
+  <description>без мебели, в хор.</description>
+  <cost>сост., на длительный срок. Оплата 3 тыс. руб. + свет. Агентствам просьба не беспокоить.</cost>
+  <phone>89526042201.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ЗЖМ</location>
+  <address>12 кв. м, 2-й эт.</address>
+  <description>удобства на 4 хоз., мебель.</description>
+  <cost>3 тыс. руб. + коммунальные.</cost>
+  <phone>89281172862.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ЗЖМ</location>
+  <address>18 кв. м, 2/5-эт. дома</address>
+  <description>в/у свои, мебель, холодильник, телевизор, на длительный срок.</description>
+  <cost>3 тыс. руб. + свет.</cost>
+  <phone>89034620926.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ЗЖМ</location>
+  <address>1-комн., 4-й эт.</address>
+  <description>изолир., мебель частично, на длительный срок.</description>
+  <cost>4 тыс. руб. + коммунальные, желательно предоплата.</cost>
+  <phone>89188922810.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ЗЖМ</location>
+  <address>1-комн., 5/5-эт. дома</address>
+  <description>удобства на 2 хоз., мебель, холодильник, для жильцов без детей.</description>
+  <cost>4 тыс. руб. (коммунальные включены).</cost>
+  <phone>89508643549,после18час.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ЗЖМ</location>
+  <address>2/5-эт. дома</address>
+  <comfort>изолир., в/у</comfort>
+  <description>м/п окна, мебель, бытовая техника.</description>
+  <cost>3 тыс. руб. + свет + вода.</cost>
+  <phone>89613274285.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ЗЖМ</location>
+  <address>2/5-эт. дома</address>
+  <comfort>изолир., в/у</comfort>
+  <description>м/п окна, мебель, бытовая техника.</description>
+  <cost>3 тыс. руб. + свет + вода.</cost>
+  <phone>89613078144.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ЗЖМ</location>
+  <address>2/5-эт. дома</address>
+  <comfort>изолир., в/у</comfort>
+  <description>м/п окна, мебель, бытовая техника.</description>
+  <cost>3 тыс. руб. + свет + вода.</cost>
+  <phone>89613274290.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ЗЖМ</location>
+  <address>2/5-эт. дома</address>
+  <comfort>изолир., в/у</comfort>
+  <description>м/п окна, мебель, бытовая техника.</description>
+  <cost>3 тыс. руб. + свет + вода.</cost>
+  <phone>89618175048.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ЗЖМ</location>
+  <address>2-й эт.</address>
+  <comfort>косметич. ремонт, в/у</comfort>
+  <description>мебель, в хор.</description>
+  <cost>сост.</cost>
+  <realtor>сост.</realtor>
+  <phone>89034302693.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н гост. &quot;Таганрог&quot;</location>
+  <address>19 кв. м, 3/5-эт. дома</address>
+  <description>мебель, ремонт, м/п окно, бытовая техника.</description>
+  <cost>3 тыс. руб.</cost>
+  <realtor>3 тыс. руб.</realtor>
+  <phone>89889410057.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н гост. &quot;Таганрог&quot;</location>
+  <address>19 кв. м, 3/5-эт. дома</address>
+  <description>мебель, ремонт, м/п окно, бытовая техника.</description>
+  <cost>4 тыс. руб.</cost>
+  <realtor>4 тыс. руб.</realtor>
+  <phone>89525671705.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н гост. &quot;Таганрог&quot;</location>
+  <address>3-й эт.</address>
+  <description>изолир., мебель, ремонт.</description>
+  <cost>3 тыс. руб. + свет.</cost>
+  <phone>89061828128.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н гост. &quot;Таганрог&quot;</location>
+  <address>ул. П.Тольятти, 4/5-эт. дома</address>
+  <description>мебель, холодильник, телевизор.</description>
+  <cost>4 тыс. руб. + коммунальные.</cost>
+  <phone>89612941495.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н Николаевского рынка</location>
+  <address>1-комн., 17,5 кв. м, 4/9-эт. дома</address>
+  <cost>без мебели.</cost>
+  <realtor>без мебели.</realtor>
+  <phone>89044463642.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н Нового вокзала</location>
+  <address>18 кв. м, 2/9-эт. дома</address>
+  <description>в/у свои, мебель, холодильник, телевизор, Интернет, кабельное ТВ, телефон.</description>
+  <cost>4 тыс. руб. Агентствам просьба не беспокоить.</cost>
+  <phone>89888944290.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н Нового вокзала</location>
+  <address>18 кв. м, 2-й эт.</address>
+  <description>без мебели, вода в комнате, холодильник, ремонт, в хор.</description>
+  <cost>сост. Оплата 3,5 тыс. руб.</cost>
+  <realtor>сост. Оплата 3,5 тыс. руб.</realtor>
+  <phone>89287718000.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н Нового вокзала</location>
+  <address>18 кв. м, 4-й эт.</address>
+  <description>мебель, телевизор, холодильник, ремонт, в хор.</description>
+  <cost>сост. Оплата 3,5 тыс. руб.</cost>
+  <realtor>сост. Оплата 3,5 тыс. руб.</realtor>
+  <phone>89286132478.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н Нового вокзала</location>
+  <address>1-й эт.</address>
+  <description>изолир., необходимая мебель, бытовая техника, ремонт, в хор.</description>
+  <cost>сост. Оплата 4 тыс. руб.</cost>
+  <realtor>сост. Оплата 4 тыс. руб.</realtor>
+  <phone>89618175048.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н Нового вокзала</location>
+  <address>1-й эт.</address>
+  <description>изолир., необходимая мебель, бытовая техника, ремонт, в хор.</description>
+  <cost>сост. Оплата 4 тыс. руб.</cost>
+  <realtor>сост. Оплата 4 тыс. руб.</realtor>
+  <phone>89613078144.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н Нового вокзала</location>
+  <address>1-й эт.</address>
+  <description>изолир., необходимая мебель, бытовая техника, ремонт, в хор.</description>
+  <cost>сост. Оплата 4 тыс. руб.</cost>
+  <realtor>сост. Оплата 4 тыс. руб.</realtor>
+  <phone>89613274290.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н Нового вокзала</location>
+  <address>1-й эт.</address>
+  <description>изолир., необходимая мебель, бытовая техника, ремонт, в хор.</description>
+  <cost>сост. Оплата 4 тыс. руб.</cost>
+  <realtor>сост. Оплата 4 тыс. руб.</realtor>
+  <phone>89613274285.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н Нового вокзала</location>
+  <address>1-комн., 18 кв. м, 2/5-эт. дома</address>
+  <description>изолир., мебель, телефон, кабельное ТВ, ремонт.</description>
+  <cost>4,5 тыс. руб. (коммунальные включены).</cost>
+  <phone>89061824651.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н Нового вокзала</location>
+  <address>3/9-эт. дома</address>
+  <description>необходимая мебель, телевизор, холодильник, кабельное ТВ.</description>
+  <cost>2,5 тыс. руб. + коммунальные.</cost>
+  <phone>89185565126.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н Нового вокзала</location>
+  <address>3/9-эт. дома</address>
+  <description>необходимая мебель, телевизор, холодильник, кабельное ТВ.</description>
+  <cost>2,5 тыс. руб. + коммунальные.</cost>
+  <phone>89094172815.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н Нового вокзала</location>
+  <address>ул. Инициативная, 13,5 кв. м, 2-й эт.</address>
+  <cost>мебель.</cost>
+  <realtor>мебель.</realtor>
+  <phone>89043495916.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н ост. &quot;Стальконструкция&quot;</location>
+  <address>18 кв. м, 3/9-эт. дома</address>
+  <description>изолир., мебель, телевизор, холодильник, м/п окна, в хор.</description>
+  <cost>сост. Срочно. Оплата 3 тыс. руб. + свет.</cost>
+  <phone>89185717347.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н ост. &quot;Стальконструкция&quot;</location>
+  <address>1-комн., 20 кв. м, 4/5-эт. дома</address>
+  <realtor>удобства общие, мебель, холодильник.</realtor>
+  <phone>89604664870.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н ул. Свободы</location>
+  <address>18/12/4; 2/5-эт. кирп. дома</address>
+  <comfort>изолир., в/у</comfort>
+  <description>с/у - кафель, без мебели, м/п окно.</description>
+  <cost>3,5 тыс. руб. + коммунальные.</cost>
+  <phone>89612735098.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>р-н ул. Свободы</location>
+  <address>2/5-эт. дома</address>
+  <description>изолир., мебель, холодильник, телевизор, м/п окна, ламинат, в хор.</description>
+  <cost>сост. Оплата 4 тыс. руб. + свет + вода.</cost>
+  <phone>89034301328.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>Русское поле</location>
+  <address>1-комн., 12 кв. м, 3-й эт.</address>
+  <description>изолир., мебель.</description>
+  <cost>4 тыс. руб. + свет.</cost>
+  <phone>89286289359.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>Русское поле</location>
+  <address>1-комн., 17 кв. м, 9-й эт.</address>
+  <description>мебель, удобства общие, лифт работает.</description>
+  <cost>Агентствам просьба не беспокоить.</cost>
+  <realtor>Агентствам просьба не беспокоить.</realtor>
+  <phone>89185900258.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>Русское поле</location>
+  <address>2/9-эт. дома</address>
+  <description>мебель, холодильник, кабельное ТВ, Интернет.</description>
+  <cost>3 тыс. руб.</cost>
+  <realtor>3 тыс. руб.</realtor>
+  <phone>89286132561.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>Русское поле</location>
+  <address>ул. С.Шило, 20 кв. м, 3/9-эт. дома</address>
+  <description>изолир., мебель, телевизор, холодильник, кабельное ТВ, косметич.</description>
+  <cost>ремонт. Оплата 2,5 тыс. руб. + свет + вода.</cost>
+  <phone>89198815767.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>СЖМ</location>
+  <address>17-й Новый, 13 кв. м, 3/5-эт. дома</address>
+  <description>удобства на 4 хоз., мебель, холодильник, душ, горячая вода, эл.</description>
+  <cost>плита, без кухни. Оплата 3 тыс. руб. (коммунальные включены), предоплата 2 мес.</cost>
+  <phone>89515275929.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>СЖМ</location>
+  <address>4/5-эт. дома</address>
+  <description>удобства на 3 хоз., мебель частично, в хор.</description>
+  <realtor>сост. Недорого. Без посредников.</realtor>
+  <phone>89514916939.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>СЖМ</location>
+  <address>р-н ул. Бакинской, 1-комн., 12 кв. м, 3/9-эт. дома</address>
+  <description>пристройка 4,5 кв.</description>
+  <realtor>м, удобства на 2 хоз., мебель, холодильник, в отл. сост.</realtor>
+  <phone>89515221794.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. Бабушкина</location>
+  <address>1-комн., 14 кв. м, 2/2-эт. дома</address>
+  <description>удобства общие.</description>
+  <realtor>Без посредников.</realtor>
+  <phone>89045047034.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. Москатова</location>
+  <address>3/5-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>мебель, телевизор, холодильник.</description>
+  <cost>3 тыс. руб.</cost>
+  <realtor>3 тыс. руб.</realtor>
+  <phone>89889473108.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. П.Тольятти</location>
+  <address>1-комн., 3/5-эт. дома</address>
+  <description>мебель, телевизор, в хор.</description>
+  <cost>сост. Оплата 3,5 тыс. руб. + свет.</cost>
+  <phone>89081734717.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. П.Тольятти</location>
+  <address>20 кв. м, 2/5-эт. дома</address>
+  <description>изолир., в/у свои, мебель, ремонт, телевизор, холодильник.</description>
+  <cost>4 тыс. руб.</cost>
+  <realtor>4 тыс. руб.</realtor>
+  <phone>89287506707.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. П.Тольятти</location>
+  <address>2-комн., 2/5-эт. дома</address>
+  <cost>удобства на 3 хоз., горячая вода, мебель частично, рядом рынок, школа, д/с.</cost>
+  <realtor>удобства на 3 хоз., горячая вода, мебель частично, рядом рынок, школа, д/с.</realtor>
+  <phone>89054869128.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. П.Тольятти</location>
+  <address>3-й эт.</address>
+  <description>без мебели.</description>
+  <cost>3 тыс. руб. + свет.</cost>
+  <phone>614695.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. С.Шило</location>
+  <address>3/9-эт. дома</address>
+  <comfort>изолир., в/у</comfort>
+  <description>м/п окна, мебель, на длительный срок.</description>
+  <cost>3 тыс. руб. + свет.</cost>
+  <phone>89287506707.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. С.Шило</location>
+  <address>3/9-эт. дома</address>
+  <comfort>изолир., в/у</comfort>
+  <description>м/п окна, мебель, на длительный срок.</description>
+  <cost>3 тыс. руб. + свет.</cost>
+  <phone>89618174916.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. Свободы</location>
+  <address>д. 100 Б, 17 кв. м, 2/5-эт. дома</address>
+  <comfort>изолир., в/у</comfort>
+  <realtor>ремонт, новая мебель, бытовая техника.</realtor>
+  <phone>89282122372.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. Свободы/Водопроводная</location>
+  <address>1-комн., 17 кв. м, 5/5-эт. дома</address>
+  <description>м/п окно, холодильник, телевизор, удобства общие, для студентки.</description>
+  <cost>Срочно. Оплата 4,5 тыс. руб. (коммунальные включены).</cost>
+  <phone>89081946739.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. Сызранова</location>
+  <address>2/9-эт. дома</address>
+  <description>изолир., мебель, телевизор.</description>
+  <cost>2,8 тыс. руб. + свет.</cost>
+  <phone>89061828128.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. Толбухина</location>
+  <address>1-комн., 20 кв. м. 2/5-эт. дома</address>
+  <description>удобства общие, мебель.</description>
+  <cost>4 тыс. руб. (коммунальные включены).</cost>
+  <phone>89518487717.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. Толбухина</location>
+  <address>2-й эт.</address>
+  <description>мебель, м/п окна.</description>
+  <cost>2,5 тыс. руб. + коммунальные.</cost>
+  <phone>89286132141.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. Толбухина</location>
+  <address>д. 1, 21 кв. м, 4/5-эт. дома</address>
+  <description>удобства общие.</description>
+  <cost>2 тыс. руб. + коммунальные.</cost>
+  <phone>89185677685.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. Толбухина</location>
+  <address>д. 1/2; 1-комн., 1/9-эт. дома</address>
+  <description>с/у на 2 хоз., кухня на 2 секции, душ на 4 хоз., без мебели, Оплата 3,3 тыс.</description>
+  <cost>руб. + свет.</cost>
+  <phone>89045066802.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. Толбухина</location>
+  <address>р-н ост. &quot;Стальконструкция&quot;, 4/9-эт. дома</address>
+  <description>с/у на 2 хоз., кухня на 4 хоз.</description>
+  <cost>3,5 тыс. руб. + свет.</cost>
+  <realtor>Без посредников.</realtor>
+  <phone>89885333675.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. Трудовых Резервов</location>
+  <address>2/4-эт. дома</address>
+  <realtor>мебель, холодильник, удобства на 2 хоз.</realtor>
+  <phone>318146;89508569742.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. Чехова</location>
+  <address>р-н авиационного колледжа, 1-комн., 10 кв. м, 3/4-эт. дома</address>
+  <cost>шкаф, удобства на 8 хоз., без горячей воды.</cost>
+  <realtor>шкаф, удобства на 8 хоз., без горячей воды.</realtor>
+  <phone>89185722763.</phone>
+ </item>
+ <item>
+  <type>Гостинка</type>
+  <location>ул. Шаумяна</location>
+  <address>18 кв. м, 5/5-эт. дома</address>
+  <description>с/у и ванна свои, кухня общая, мебель частично, на длительный срок.</description>
+  <cost>5 тыс. руб. + свет, предоплата 2 мес.</cost>
+  <phone>89508556718.</phone>
+ </item>
+ <item>
+  <type>Жакт</type>
+  <location>Центр</location>
+  <address>1/1-эт. дома</address>
+  <comfort>в/у</comfort>
+  <description>без мебели, для молодого человека.</description>
+  <cost>Недорого.</cost>
+  <realtor>Недорого.</realtor>
+  <phone>89508480848.</phone>
+ </item>
+ <item>
+  <type>Квартира</type>
+  <location>ул. Бабушкина</location>
+  <address>122 кв. м, 2/2-эт. дома</address>
+  <description>улучш.</description>
+  <cost>планировки, 3 спальни, большие зал и кухня, с/у совм. Дорого.</cost>
+  <realtor>планировки, 3 спальни, большие зал и кухня, с/у совм. Дорого.</realtor>
+  <phone>89282890106.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 2-комн. жакте</location>
+  <address>Центр, Октябрьская площадь, 1/1-эт. дома</address>
+  <comfort>в/у</comfort>
+  <cost>для женщины, на длительный срок.</cost>
+  <realtor>для женщины, на длительный срок.</realtor>
+  <phone>89515064735.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 2-комн. кв.</location>
+  <address>ЗЖМ, ул. Котлостроительная, 3/5-эт. дома</address>
+  <cost>мебель, для девушки без в/п.</cost>
+  <realtor>мебель, для девушки без в/п.</realtor>
+  <phone>89518419179.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 2-комн. кв.</location>
+  <address>Простоквашино, 1/9-эт. дома</address>
+  <description>большая жилая лоджия, мебель, холодильник, сплит-система, СВЧ-печь, ремонт, для семьи, одной женщины или девушки.</description>
+  <cost>Посуточно.</cost>
+  <realtor>Посуточно.</realtor>
+  <phone>389394.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 2-комн. кв.</location>
+  <address>р-н маг. &quot;М-Видео&quot;, 19 кв. м, 1/3-эт. дома</address>
+  <description>мебель частично, телефон, на длительный срок.</description>
+  <cost>помесячно.</cost>
+  <realtor>помесячно.</realtor>
+  <phone>89515141286.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 2-комн. кв.</location>
+  <address>р-н Николаевского рынка, 1-й эт.</address>
+  <cost>проживание с хоз., для девушек.</cost>
+  <realtor>проживание с хоз., для девушек.</realtor>
+  <phone>647847,с9до14ис19до22час.;89064191966.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 2-комн. кв.</location>
+  <address>р-н Нового вокзала, 4/5-эт. дома</address>
+  <cost>мебель, для двух девушек или юношей.</cost>
+  <realtor>мебель, для двух девушек или юношей.</realtor>
+  <phone>674089;89281578728.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 2-комн. кв.</location>
+  <address>р-н ул. Дзержинского, ул. Заводская, д. 4, кв. 19; 5/5-эт. кирп. дома</address>
+  <description>мебель, рядом транспорт, для студентки, проживание с хоз.</description>
+  <cost>2,5 тыс. руб. (коммунальные включены).</cost>
+  <phone>89508632269.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 2-комн. кв.</location>
+  <address>Русское поле, 1/5-эт. дома</address>
+  <description>для двух девушек, проживание с хоз.</description>
+  <cost>2,5 тыс. руб. с человека. Ул. С.Шило, д. 190-2, кв. 4, р-н д/с &quot;Рябинушка&quot;.</cost>
+  <phone>89618177590.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 2-комн. кв.</location>
+  <address>СЖМ, р-н ДОСААФа, 1/2-эт. дома</address>
+  <realtor>мебель, холодильник, телевизор, для двух девушек.</realtor>
+  <phone>675712.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 2-комн. кв.</location>
+  <address>ул. Ломоносова, 19 кв. м, кухня 9 кв. м, 9/17-эт. дома</address>
+  <cost>без мебели, телефон, лоджия, для семьи, на длительный срок.</cost>
+  <realtor>без мебели, телефон, лоджия, для семьи, на длительный срок.</realtor>
+  <phone>331727.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 2-комн. кв.</location>
+  <address>ул. Свободы, 4/4-эт. дома</address>
+  <cost>мебель, телефон, для работающего мужчины без в/п.</cost>
+  <realtor>мебель, телефон, для работающего мужчины без в/п.</realtor>
+  <phone>643450.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 2-комн. кв.</location>
+  <address>Центр, 3/5-эт. кирп. дома</address>
+  <realtor>мебель, холодильник, телевизор, для мужчины или женщины, проживание без хоз.</realtor>
+  <phone>89198846792.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 2-комн. кв.</location>
+  <address>Центр, 3-й эт.</address>
+  <description>рядом пляж, рынок, транспорт, для заочников или командированных.</description>
+  <cost>посуточно.</cost>
+  <realtor>посуточно.</realtor>
+  <phone>89185740038.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 2-комн. коммунальной кв.</location>
+  <address>ЗЖМ, 2-й эт.</address>
+  <cost>мебель.</cost>
+  <realtor>мебель.</realtor>
+  <phone>89034609689.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 3-комн. жакте</location>
+  <address>р-н Центрального рынка, 1/1-эт. дома</address>
+  <comfort>в/у</comfort>
+  <cost>мебель, для девушки.</cost>
+  <realtor>мебель, для девушки.</realtor>
+  <phone>89081961789.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 3-комн. кв.</location>
+  <address>4/4-эт. дома</address>
+  <description>в норм.</description>
+  <cost>сост.</cost>
+  <realtor>сост.</realtor>
+  <phone>89045068618.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 3-комн. кв.</location>
+  <address>ЗЖМ, 1/5-эт. дома</address>
+  <cost>для работающей девушки или студентки, проживание с хоз.</cost>
+  <realtor>для работающей девушки или студентки, проживание с хоз.</realtor>
+  <phone>645751.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 3-комн. кв.</location>
+  <description>ЗЖМ, ул.</description>
+  <cost>Циолковского, д. 30; 18 кв. м, можно без мебели, с подселением. Недорого.</cost>
+  <realtor>Циолковского, д. 30; 18 кв. м, можно без мебели, с подселением. Недорого.</realtor>
+  <phone>388653;89525642207.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 3-комн. кв.</location>
+  <address>р-н гост. &quot;Таганрог&quot;, 6/10-эт. дома</address>
+  <description>мебель, на длительный срок.</description>
+  <cost>помесячно. Можно на короткий срок, оплата посуточно.</cost>
+  <realtor>помесячно. Можно на короткий срок, оплата посуточно.</realtor>
+  <phone>89508651799.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 3-комн. кв.</location>
+  <address>р-н Нового вокзала, 3/9-эт. дома</address>
+  <description>мебель, для работающего человека, без в/п, можно на короткий срок.</description>
+  <realtor>Без посредников.</realtor>
+  <phone>651875;89045080536.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 3-комн. кв.</location>
+  <address>Русское поле, 2-й эт.</address>
+  <cost>проживание с хоз., для девушки.</cost>
+  <realtor>проживание с хоз., для девушки.</realtor>
+  <phone>331725;89286123987.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 3-комн. кв.</location>
+  <address>Русское поле, р-н Центра занятости, 1/9-эт. дома</address>
+  <cost>мебель, телевизор, для двух девушек.</cost>
+  <realtor>мебель, телевизор, для двух девушек.</realtor>
+  <phone>89094405840.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 3-комн. кв.</location>
+  <address>ул. Дзержинского, 18 кв. м, 2/5-эт. кирп. дома</address>
+  <cost>мебель, телевизор.</cost>
+  <realtor>мебель, телевизор.</realtor>
+  <phone>89198994941.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 3-комн. кв.</location>
+  <address>ул. Морозова, 5/5-эт. дома</address>
+  <cost>мебель, для девушки.</cost>
+  <realtor>мебель, для девушки.</realtor>
+  <phone>89515206831.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 3-комн. кв.</location>
+  <address>Центр, р-н Банковской площади, 2/2-эт. дома</address>
+  <cost>необходимая мебель, для юношей.</cost>
+  <realtor>необходимая мебель, для юношей.</realtor>
+  <phone>89043471485.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в 4-комн. кв.</location>
+  <address>пер. Каркасный, 6/9-эт. дома</address>
+  <cost>мебель, для двух девушек или юношей.</cost>
+  <realtor>мебель, для двух девушек или юношей.</realtor>
+  <phone>621201;89525715234.</phone>
+ </item>
+ <item>
+  <type>Комната</type>
+  <location>в коммунальной кв.</location>
+  <address>ЗЖМ, ул. Калинина, д. 1 А, 1/2-эт. дома</address>
+  <cost>мебель, удобства на 2 хоз.</cost>
+  <realtor>мебель, удобства на 2 хоз.</realtor>
+  <phone>333773.</phone>
+ </item>
+ <item>
+  <type>Одна-две</type>
+  <location>комнаты в 3-комн. кв.</location>
+  <address>р-н ДК им. Димитрова, 2/3-эт. кирп. дома</address>
+  <realtor>мебель, стиральная машина-автомат, холодильник.</realtor>
+  <phone>89508619976.</phone>
+ </item>
+</data>

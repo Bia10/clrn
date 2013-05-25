@@ -1,0 +1,332 @@
+[NONE   ][0][2013-04-11T22:45:19.295127]:[6664]: Logger started, module: [0], level: [3], source: [logs/messages.txt].
+[TRACE  ][0][2013-04-11T22:45:52.732040]:[2332]: Ante: '0' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-11T22:45:52.758041]:[2332]: Player: 'davespot777', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-11T22:45:52.758041]:[2332]: Player: 'Andrea6300', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-11T22:45:52.758041]:[2332]: Player: 'CLRN', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-11T22:45:52.758041]:[2332]: Player: 'chusa205', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-11T22:45:52.758041]:[2332]: Player: 'Captain msu', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-11T22:45:52.759041]:[2332]: Player: 'charlyrodri', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-11T22:45:52.759041]:[2332]: Player: 'leones40', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-11T22:45:52.759041]:[2332]: Player: 'quintum78', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-11T22:46:50.752358]:[2332]: Player: 'davespot777', stack: '1490' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:46:50.752358]:[2332]: Player: 'Andrea6300', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:46:50.753358]:[2332]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:46:50.755358]:[2332]: Player: 'davespot777', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:46:50.763359]:[2332]: Player: 'Andrea6300', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:46:50.767359]:[2332]: Player cards: ('Three' of 'Spades')('Six' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-11T22:47:00.097893]:[2332]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:02.769046]:[2332]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:10.966514]:[2332]: Player: 'chusa205', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:10.974515]:[2332]: Player: 'chusa205', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:10.976515]:[2332]: Player: 'chusa205', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:11.695556]:[2332]: Player: 'Captain msu', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:12.267589]:[2332]: Player: 'charlyrodri', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:12.269589]:[2332]: Player: 'charlyrodri', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:13.554662]:[2332]: Player: 'leones40', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:13.556663]:[2332]: Player: 'leones40', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:16.856851]:[2332]: Player: 'quintum78', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:20.318049]:[2332]: Player: 'clown-face33', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:20.319049]:[2332]: Player: 'clown-face33', action: 'Raise', amount: '1500' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:23.127210]:[2332]: Player: 'davespot777', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:23.598237]:[2332]: Player: 'Andrea6300', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:23.599237]:[2332]: Player: 'Andrea6300', action: 'Call', amount: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:25.687356]:[2332]: Player: 'chusa205', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:25.689357]:[2332]: Player: 'chusa205', action: 'Call', amount: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:33.960830]:[2332]: Player: 'charlyrodri', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:43.794392]:[2332]: Player: 'charlyrodri', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:44.674442]:[2332]: Player: 'leones40', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:44.676443]:[2332]: Player: 'leones40', action: 'Call', amount: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:45.136469]:[2332]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:46.651555]:[2332]: Cards received: ('Three' of 'Hearts')('Eight' of 'Spades')('Ace' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:47:48.663671]:[2332]: Cards received: ('Three' of 'Hearts')('Eight' of 'Spades')('Ace' of 'Spades')('Jack' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:47:50.166757]:[2332]: Cards received: ('Three' of 'Hearts')('Eight' of 'Spades')('Ace' of 'Spades')('Jack' of 'Hearts')('Eight' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:47:51.796850]:[2332]: Player: 'Andrea6300', action: 'ShowCards', cards: '4d4h' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:51.803850]:[2332]: Player: 'chusa205', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:51.805850]:[2332]: Player: 'chusa205', action: 'ShowCards', cards: 'QhQd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:51.813851]:[2332]: Player: 'leones40', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:51.814851]:[2332]: Player: 'leones40', action: 'ShowCards', cards: 'AcTh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:51.818851]:[2332]: Player: 'clown-face33', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:51.819851]:[2332]: Player: 'clown-face33', action: 'ShowCards', cards: 'Ks9c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:52.856910]:[2332]: Player: 'clown-face33', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:52.858911]:[2332]: Player: 'clown-face33', action: 'Rank', amount: '7' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:47:58.835252]:[2332]: Player: 'CLRN', stack: '1490' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:47:58.836252]:[2332]: Player: 'Captain msu', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:47:58.836252]:[2332]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:47:58.838253]:[2332]: Player: 'CLRN', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:47:58.865254]:[2332]: Player: 'Captain msu', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:47:58.886255]:[2332]: Player cards: ('Queen' of 'Clubs')('Ten' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-11T22:48:01.723418]:[2332]: Player: 'charlyrodri', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:01.724418]:[2332]: Player: 'charlyrodri', action: 'Raise', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:07.075724]:[2332]: Player: 'leones40', stack: '5970' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:07.076724]:[2332]: Player: 'leones40', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:09.290850]:[2332]: Player: 'quintum78', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:10.623927]:[2332]: Player: 'davespot777', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:18.757392]:[2332]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:21.626556]:[2332]: Player: 'CLRN', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:21.627556]:[2332]: Player: 'CLRN', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:21.957575]:[2332]: Player: 'Captain msu', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:21.958575]:[2332]: Player: 'Captain msu', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:22.864627]:[2332]: Cards received: ('Six' of 'Hearts')('Two' of 'Spades')('Six' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:48:25.404772]:[2332]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:29.442003]:[2332]: Player: 'Captain msu', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:33.077211]:[2332]: Player: 'charlyrodri', stack: '1260' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:33.079211]:[2332]: Player: 'charlyrodri', action: 'Bet', amount: '160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:38.774537]:[2332]: Player: 'leones40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:45.406916]:[2332]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:45.699933]:[2332]: Player: 'Captain msu', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:45.709933]:[2332]: Player: 'charlyrodri', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:45.712934]:[2332]: Player: 'charlyrodri', action: 'MoneyReturn', amount: '160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:49.378143]:[2332]: Player: 'Captain msu', stack: '1430' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:48:49.378143]:[2332]: Player: 'charlyrodri', stack: '1640' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:48:49.378143]:[2332]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:48:49.379143]:[2332]: Player: 'Captain msu', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:48:49.383144]:[2332]: Player: 'charlyrodri', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:48:49.386144]:[2332]: Player cards: ('Six' of 'Clubs')('Jack' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-11T22:48:55.573498]:[2332]: Player: 'leones40', stack: '5950' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:55.573498]:[2332]: Player: 'leones40', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:57.541610]:[2332]: Player: 'quintum78', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:48:57.542610]:[2332]: Player: 'quintum78', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:00.366772]:[2332]: Player: 'davespot777', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:08.744251]:[2332]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:11.352400]:[2332]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:12.212449]:[2332]: Player: 'Captain msu', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:12.213449]:[2332]: Player: 'Captain msu', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:12.634473]:[2332]: Player: 'charlyrodri', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:13.523524]:[2332]: Cards received: ('Eight' of 'Diamonds')('Two' of 'Hearts')('Ace' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:49:17.366744]:[2332]: Player: 'Captain msu', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:18.109787]:[2332]: Player: 'charlyrodri', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:21.112958]:[2332]: Player: 'leones40', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:25.078185]:[2332]: Player: 'quintum78', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:25.239194]:[2332]: Cards received: ('Eight' of 'Diamonds')('Two' of 'Hearts')('Ace' of 'Hearts')('Two' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:49:27.276311]:[2332]: Player: 'Captain msu', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:36.088815]:[2332]: Player: 'charlyrodri', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:42.122160]:[2332]: Player: 'charlyrodri', stack: '1620' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:42.124160]:[2332]: Player: 'charlyrodri', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:45.091330]:[2332]: Player: 'leones40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:46.373403]:[2332]: Player: 'quintum78', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:46.374403]:[2332]: Player: 'quintum78', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:49.304571]:[2332]: Player: 'Captain msu', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:49.306571]:[2332]: Player: 'Captain msu', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:50.201622]:[2332]: Cards received: ('Eight' of 'Diamonds')('Two' of 'Hearts')('Ace' of 'Hearts')('Two' of 'Diamonds')('King' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:49:52.124732]:[2332]: Player: 'Captain msu', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:49:58.394091]:[2332]: Player: 'charlyrodri', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:01.525270]:[2332]: Player: 'quintum78', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:01.526270]:[2332]: Player: 'quintum78', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:09.829745]:[2332]: Player: 'Captain msu', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:10.255769]:[2332]: Player: 'Captain msu', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:18.541243]:[2332]: Player: 'charlyrodri', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:25.439638]:[2332]: Player: 'charlyrodri', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:25.725654]:[2332]: Player: 'quintum78', stack: '1620' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:25.726654]:[2332]: Player: 'quintum78', action: 'MoneyReturn', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:27.804773]:[2332]: Player: 'quintum78', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:29.222854]:[2332]: Player: 'charlyrodri', stack: '1610' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:50:29.223854]:[2332]: Player: 'leones40', stack: '5930' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:50:29.223854]:[2332]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:50:29.225854]:[2332]: Player: 'charlyrodri', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:50:29.240855]:[2332]: Player: 'leones40', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:50:29.248856]:[2332]: Player cards: ('Four' of 'Diamonds')('Six' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-11T22:50:30.877949]:[2332]: Player: 'quintum78', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:39.636450]:[2332]: Player: 'davespot777', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:42.482612]:[2332]: Player: 'davespot777', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:45.029758]:[2332]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:45.053760]:[2332]: Player: 'Captain msu', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:48.187939]:[2332]: Player: 'charlyrodri', stack: '1600' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:48.189939]:[2332]: Player: 'charlyrodri', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:53.944268]:[2332]: Player: 'leones40', stack: '2690' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:50:53.946268]:[2332]: Player: 'leones40', action: 'Raise', amount: '3260' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:02.826776]:[2332]: Player: 'charlyrodri', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:05.399923]:[2332]: Player: 'charlyrodri', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:09.185140]:[2332]: Player: 'leones40', stack: '5960' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:51:09.185140]:[2332]: Player: 'quintum78', stack: '1580' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:51:09.186140]:[2332]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:51:09.187140]:[2332]: Player: 'leones40', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:51:09.218142]:[2332]: Player: 'quintum78', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:51:09.237143]:[2332]: Player cards: ('King' of 'Clubs')('Nine' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-11T22:51:18.013645]:[2332]: Player: 'davespot777', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:22.290889]:[2332]: Player: 'davespot777', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:24.718028]:[2332]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:25.021046]:[2332]: Player: 'Captain msu', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:25.507073]:[2332]: Player: 'charlyrodri', stack: '1580' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:25.510073]:[2332]: Player: 'charlyrodri', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:27.303176]:[2332]: Player: 'leones40', stack: '5950' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:27.305176]:[2332]: Player: 'leones40', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:30.710371]:[2332]: Player: 'quintum78', stack: '1560' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:30.711371]:[2332]: Player: 'quintum78', action: 'Raise', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:33.667540]:[2332]: Player: 'charlyrodri', stack: '1560' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:33.669540]:[2332]: Player: 'charlyrodri', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:35.944670]:[2332]: Player: 'leones40', stack: '5930' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:35.946670]:[2332]: Player: 'leones40', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:36.843722]:[2332]: Cards received: ('Ace' of 'Clubs')('Eight' of 'Spades')('Queen' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:51:43.574107]:[2332]: Player: 'leones40', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:45.050191]:[2332]: Player: 'quintum78', stack: '1520' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:45.051191]:[2332]: Player: 'quintum78', action: 'Bet', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:46.563278]:[2332]: Player: 'charlyrodri', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:54.370724]:[2332]: Player: 'leones40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:54.379725]:[2332]: Player: 'quintum78', stack: '5930' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:54.381725]:[2332]: Player: 'quintum78', action: 'MoneyReturn', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:56.382839]:[2332]: Player: 'quintum78', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:51:58.103938]:[2332]: Player: 'quintum78', stack: '1470' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:51:58.104938]:[2332]: Player: 'davespot777', stack: '1670' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:51:58.104938]:[2332]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:51:58.106938]:[2332]: Player: 'quintum78', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:51:58.117939]:[2332]: Player: 'davespot777', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:51:58.120939]:[2332]: Player cards: ('Two' of 'Hearts')('King' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-11T22:52:00.610081]:[2332]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:05.049335]:[2332]: Player: 'Captain msu', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:05.831380]:[2332]: Player: 'charlyrodri', stack: '1540' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:05.832380]:[2332]: Player: 'charlyrodri', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:08.299521]:[2332]: Player: 'leones40', stack: '5890' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:08.300521]:[2332]: Player: 'leones40', action: 'Raise', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:16.424986]:[2332]: Player: 'quintum78', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:27.459617]:[2332]: Player: 'quintum78', stack: '1640' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:27.461617]:[2332]: Player: 'quintum78', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:35.697088]:[2332]: Player: 'davespot777', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:37.307180]:[2332]: Player: 'davespot777', stack: '1450' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:37.309180]:[2332]: Player: 'davespot777', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:37.607197]:[2332]: Player: 'charlyrodri', stack: '1520' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:37.609197]:[2332]: Player: 'charlyrodri', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:38.230233]:[2332]: Cards received: ('Jack' of 'Hearts')('Eight' of 'Hearts')('Ten' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:52:45.031622]:[2332]: Player: 'quintum78', stack: '1600' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:45.033622]:[2332]: Player: 'quintum78', action: 'Bet', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:53.345097]:[2332]: Player: 'davespot777', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:57.152315]:[2332]: Player: 'davespot777', stack: '1410' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:57.154315]:[2332]: Player: 'davespot777', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:57.447332]:[2332]: Player: 'charlyrodri', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:59.726462]:[2332]: Player: 'leones40', stack: '5810' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:52:59.728462]:[2332]: Player: 'leones40', action: 'Raise', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:01.225548]:[2332]: Player: 'quintum78', stack: '1560' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:01.227548]:[2332]: Player: 'quintum78', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:03.802695]:[2332]: Player: 'davespot777', stack: '1370' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:03.804696]:[2332]: Player: 'davespot777', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:04.707747]:[2332]: Cards received: ('Jack' of 'Hearts')('Eight' of 'Hearts')('Ten' of 'Spades')('King' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:53:06.963876]:[2332]: Player: 'quintum78', stack: '1520' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:06.965876]:[2332]: Player: 'quintum78', action: 'Bet', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:09.841041]:[2332]: Player: 'davespot777', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:13.465248]:[2332]: Player: 'leones40', stack: '5730' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:13.466248]:[2332]: Player: 'leones40', action: 'Raise', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:14.459305]:[2332]: Player: 'quintum78', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:14.461305]:[2332]: Player: 'quintum78', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:15.358356]:[2332]: Cards received: ('Jack' of 'Hearts')('Eight' of 'Hearts')('Ten' of 'Spades')('King' of 'Spades')('Six' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:53:16.862442]:[2332]: Player: 'quintum78', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:24.837899]:[2332]: Player: 'leones40', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:26.480993]:[2332]: Player: 'leones40', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:27.175032]:[2332]: Player: 'quintum78', action: 'ShowCards', cards: 'TcQd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:29.248151]:[2332]: Player: 'leones40', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:32.555340]:[2332]: Player: 'davespot777', stack: '1360' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:53:32.556340]:[2332]: Player: 'CLRN', stack: '1420' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:53:32.556340]:[2332]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:53:32.558340]:[2332]: Player: 'davespot777', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:53:32.585342]:[2332]: Player: 'CLRN', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:53:32.588342]:[2332]: Player cards: ('Ace' of 'Diamonds')('Five' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-11T22:53:37.025596]:[2332]: Player: 'Captain msu', stack: '1380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:37.026596]:[2332]: Player: 'Captain msu', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:37.593628]:[2332]: Player: 'charlyrodri', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:41.272839]:[2332]: Player: 'leones40', stack: '5710' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:41.274839]:[2332]: Player: 'leones40', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:41.592857]:[2332]: Player: 'quintum78', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:44.877045]:[2332]: Player: 'davespot777', stack: '1350' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:44.879045]:[2332]: Player: 'davespot777', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:47.782211]:[2332]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:48.484251]:[2332]: Cards received: ('Ten' of 'Hearts')('Three' of 'Hearts')('Four' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:53:51.831443]:[2332]: Player: 'davespot777', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:54.481594]:[2332]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:53:57.583772]:[2332]: Player: 'Captain msu', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:01.175977]:[2332]: Player: 'leones40', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:01.625003]:[2332]: Cards received: ('Ten' of 'Hearts')('Three' of 'Hearts')('Four' of 'Clubs')('Nine' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:54:06.428277]:[2332]: Player: 'davespot777', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:09.175435]:[2332]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:12.925649]:[2332]: Player: 'Captain msu', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:15.221780]:[2332]: Player: 'leones40', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:15.658805]:[2332]: Cards received: ('Ten' of 'Hearts')('Three' of 'Hearts')('Four' of 'Clubs')('Nine' of 'Spades')('Eight' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:54:19.902048]:[2332]: Player: 'davespot777', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:22.287185]:[2332]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:24.984339]:[2332]: Player: 'Captain msu', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:26.340416]:[2332]: Player: 'leones40', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:27.115461]:[2332]: Player: 'davespot777', action: 'ShowCards', cards: '8sQs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:29.256583]:[2332]: Player: 'CLRN', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:29.276584]:[2332]: Player: 'Captain msu', stack: '1350' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:29.277584]:[2332]: Player: 'Captain msu', action: 'ShowCards', cards: 'KcKs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:31.588717]:[2332]: Player: 'leones40', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:34.894906]:[2332]: Player: 'CLRN', stack: '1410' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:54:34.894906]:[2332]: Player: 'Captain msu', stack: '1440' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:54:34.894906]:[2332]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:54:34.895906]:[2332]: Player: 'CLRN', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:54:34.913907]:[2332]: Player: 'Captain msu', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:54:34.934908]:[2332]: Player cards: ('Ace' of 'Clubs')('Four' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-11T22:54:37.178036]:[2332]: Player: 'charlyrodri', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:45.519513]:[2332]: Player: 'leones40', stack: '5690' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:45.520513]:[2332]: Player: 'leones40', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:45.808530]:[2332]: Player: 'quintum78', stack: '2020' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:45.808530]:[2332]: Player: 'quintum78', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:46.383563]:[2332]: Player: 'davespot777', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:50.684809]:[2332]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:51.250841]:[2332]: Player: 'Captain msu', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:51.873877]:[2332]: Cards received: ('Queen' of 'Diamonds')('Five' of 'Spades')('Jack' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:54:56.060116]:[2332]: Player: 'Captain msu', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:54:58.989284]:[2332]: Player: 'leones40', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:02.608491]:[2332]: Player: 'quintum78', stack: '1900' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:02.610491]:[2332]: Player: 'quintum78', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:05.661665]:[2332]: Player: 'Captain msu', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:08.868849]:[2332]: Player: 'leones40', stack: '5450' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:08.870849]:[2332]: Player: 'leones40', action: 'Raise', amount: '240' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:11.325989]:[2332]: Player: 'quintum78', stack: '1640' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:11.327990]:[2332]: Player: 'quintum78', action: 'Raise', amount: '380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:15.215212]:[2332]: Player: 'leones40', stack: '5170' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:15.217212]:[2332]: Player: 'leones40', action: 'Raise', amount: '520' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:17.542345]:[2332]: Player: 'quintum78', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:17.543345]:[2332]: Player: 'quintum78', action: 'Raise', amount: '2020' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:20.841534]:[2332]: Player: 'leones40', stack: '3670' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:20.842534]:[2332]: Player: 'leones40', action: 'Call', amount: '1500' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:21.591577]:[2332]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:23.723699]:[2332]: Cards received: ('Queen' of 'Diamonds')('Five' of 'Spades')('Jack' of 'Hearts')('Five' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:55:24.992771]:[2332]: Cards received: ('Queen' of 'Diamonds')('Five' of 'Spades')('Jack' of 'Hearts')('Five' of 'Clubs')('Ace' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:55:26.627865]:[2332]: Player: 'leones40', action: 'ShowCards', cards: '7sQs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:26.637865]:[2332]: Player: 'quintum78', stack: '3670' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:26.639865]:[2332]: Player: 'quintum78', action: 'ShowCards', cards: 'JsQh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:29.651038]:[2332]: Player: 'Captain msu', stack: '1430' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:55:29.652038]:[2332]: Player: 'charlyrodri', stack: '1500' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:55:29.652038]:[2332]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:55:29.653038]:[2332]: Player: 'Captain msu', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:55:29.672039]:[2332]: Player: 'charlyrodri', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-11T22:55:29.674039]:[2332]: Player cards: ('Jack' of 'Hearts')('King' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-11T22:55:35.511373]:[2332]: Player: 'leones40', stack: '3650' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:35.513373]:[2332]: Player: 'leones40', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:37.017459]:[2332]: Player: 'quintum78', stack: '4090' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:37.019459]:[2332]: Player: 'quintum78', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:38.963570]:[2332]: Player: 'davespot777', stack: '1330' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:38.966570]:[2332]: Player: 'davespot777', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:41.127694]:[2332]: Player: 'CLRN', stack: '1390' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:41.129694]:[2332]: Player: 'CLRN', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:41.411710]:[2332]: Player: 'Captain msu', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:41.413710]:[2332]: Player: 'Captain msu', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:41.910739]:[2332]: Player: 'charlyrodri', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:42.608779]:[2332]: Cards received: ('Ten' of 'Spades')('Four' of 'Hearts')('King' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:55:47.792075]:[2332]: Player: 'Captain msu', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:47.794075]:[2332]: Player: 'Captain msu', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:55:56.040547]:[2332]: Player: 'charlyrodri', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:00.627809]:[2332]: Player: 'charlyrodri', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:00.629809]:[2332]: Player: 'charlyrodri', action: 'Raise', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:01.283847]:[2332]: Player: 'leones40', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:01.846879]:[2332]: Player: 'quintum78', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:05.696099]:[2332]: Player: 'davespot777', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:08.896282]:[2332]: Player: 'CLRN', stack: '1090' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:08.898282]:[2332]: Player: 'CLRN', action: 'Raise', amount: '300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:11.498431]:[2332]: Player: 'Captain msu', stack: '1120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:11.500431]:[2332]: Player: 'Captain msu', action: 'Call', amount: '280' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:11.782447]:[2332]: Player: 'charlyrodri', stack: '1200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:11.784447]:[2332]: Player: 'charlyrodri', action: 'Call', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:12.396482]:[2332]: Cards received: ('Ten' of 'Spades')('Four' of 'Hearts')('King' of 'Diamonds')('Two' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:56:13.949571]:[2332]: Player: 'Captain msu', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:14.673613]:[2332]: Player: 'charlyrodri', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:17.512775]:[2332]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:17.514775]:[2332]: Player: 'CLRN', action: 'Bet', amount: '1090' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:22.961087]:[2332]: Player: 'Captain msu', stack: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:22.963087]:[2332]: Player: 'Captain msu', action: 'Call', amount: '1090' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:23.246103]:[2332]: Player: 'charlyrodri', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:23.816136]:[2332]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:25.246217]:[2332]: Cards received: ('Ten' of 'Spades')('Four' of 'Hearts')('King' of 'Diamonds')('Two' of 'Diamonds')('Four' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-11T22:56:26.775305]:[2332]: Player: 'Captain msu', action: 'ShowCards', cards: 'Kh4d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:26.784305]:[2332]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:26.785305]:[2332]: Player: 'CLRN', action: 'ShowCards', cards: 'JhKs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:28.008375]:[2332]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-11T22:56:28.010376]:[2332]: Player: 'CLRN', action: 'Rank', amount: '6' /* clnt::ps::msg::PlayerAction::Process */

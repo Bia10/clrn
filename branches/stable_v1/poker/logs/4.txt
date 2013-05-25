@@ -1,0 +1,1366 @@
+[NONE   ][0][2013-03-18T15:53:06.363246]:[5056]: Logger started, module: [0], level: [3], source: [logs/messages.txt].
+[TRACE  ][0][2013-03-18T16:08:12.749089]:[2272]: Player: 'csabi1790930', stack: '500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-03-18T16:08:12.750089]:[2272]: Player: 'CLRN', stack: '500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-03-18T16:08:12.750089]:[2272]: Player: 'londrax', stack: '500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-03-18T16:08:12.750089]:[2272]: Player: 'dysik61', stack: '500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-03-18T16:08:12.750089]:[2272]: Player: 'nevskij777', stack: '500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-03-18T16:08:12.750089]:[2272]: Player: 'BIGG__FISHYY', stack: '500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-03-18T16:08:12.751089]:[2272]: Player: 'finito2601', stack: '500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-03-18T16:08:12.751089]:[2272]: Player: 'dinosaur25', stack: '500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-03-18T16:09:12.355498]:[2272]: Player: 'csabi1790930', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.355498]:[2272]: Player: 'CLRN', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.355498]:[2272]: Player: 'londrax', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.356498]:[2272]: Player: 'dysik61', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.356498]:[2272]: Player: 'e.poppi', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.356498]:[2272]: Player: 'nevskij777', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.356498]:[2272]: Player: 'BIGG__FISHYY', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.357498]:[2272]: Player: 'finito2601', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.357498]:[2272]: Player: 'dinosaur25', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.357498]:[2272]: Ante: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.358498]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.358498]:[2272]: Player: 'CLRN', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.359498]:[2272]: Player: 'londrax', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.360498]:[2272]: Player: 'dysik61', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.360498]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.361498]:[2272]: Player: 'nevskij777', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.362498]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.362498]:[2272]: Player: 'finito2601', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.363499]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:09:12.367499]:[2272]: Player: 'CLRN', stack: '488' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:09:12.368499]:[2272]: Player: 'CLRN', stack: '478' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:09:12.368499]:[2272]: Player: 'CLRN', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:09:12.371499]:[2272]: Player cards: ('Three' of 'Hearts')('Three' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:09:16.112713]:[2272]: Player: 'dysik61', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:09:19.627914]:[2272]: Player: 'e.poppi', stack: '478' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:09:19.628914]:[2272]: Player: 'e.poppi', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:09:23.129114]:[2272]: Player: 'nevskij777', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:09:23.130114]:[2272]: Player: 'nevskij777', action: 'Raise', amount: '498' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:09:23.477134]:[2272]: Player: 'BIGG__FISHYY', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:09:26.181289]:[2272]: Player: 'finito2601', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:09:26.182289]:[2272]: Player: 'finito2601', action: 'Call', amount: '498' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:09:27.172346]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:09:34.454762]:[2272]: Player: 'csabi1790930', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:09:42.467220]:[2272]: Player: 'csabi1790930', action: 'SecondsLeft', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:09:44.449334]:[2272]: Player: 'csabi1790930', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:09:53.753866]:[2272]: Player: 'csabi1790930', action: 'Fold', amount: '1' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:09:59.942220]:[2272]: Player: 'CLRN', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:05.258524]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:05.544540]:[2272]: Player: 'londrax', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:06.456592]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:07.189634]:[2272]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:08.363702]:[2272]: Cards received: ('Ten' of 'Diamonds')('Queen' of 'Spades')('Eight' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:10:10.378817]:[2272]: Cards received: ('Ten' of 'Diamonds')('Queen' of 'Spades')('Eight' of 'Diamonds')('Four' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:10:11.960907]:[2272]: Cards received: ('Ten' of 'Diamonds')('Queen' of 'Spades')('Eight' of 'Diamonds')('Four' of 'Clubs')('Nine' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:10:13.486995]:[2272]: Player: 'nevskij777', action: 'ShowCards', cards: '7c7s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:13.490995]:[2272]: Player: 'finito2601', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:13.492995]:[2272]: Player: 'finito2601', action: 'ShowCards', cards: 'AhJd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:14.081029]:[2272]: Player: 'nevskij777', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:14.082029]:[2272]: Player: 'nevskij777', action: 'Rank', amount: '9' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:19.448336]:[2272]: Player: 'csabi1790930', stack: '496' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.448336]:[2272]: Player: 'CLRN', stack: '486' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.448336]:[2272]: Player: 'londrax', stack: '476' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.448336]:[2272]: Player: 'dysik61', stack: '496' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.449336]:[2272]: Player: 'e.poppi', stack: '476' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.449336]:[2272]: Player: 'BIGG__FISHYY', stack: '496' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.449336]:[2272]: Player: 'finito2601', stack: '1062' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.449336]:[2272]: Player: 'dinosaur25', stack: '496' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.450336]:[2272]: Ante: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.450336]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.450336]:[2272]: Player: 'CLRN', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.451336]:[2272]: Player: 'londrax', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.452336]:[2272]: Player: 'dysik61', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.452336]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.453336]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.453336]:[2272]: Player: 'finito2601', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.454336]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:19.460336]:[2272]: Player: 'londrax', stack: '466' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:19.461336]:[2272]: Player: 'londrax', stack: '476' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:19.461336]:[2272]: Player: 'londrax', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:19.462336]:[2272]: Player cards: ('Six' of 'Diamonds')('Ace' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:10:21.509453]:[2272]: Player: 'e.poppi', stack: '456' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:21.509453]:[2272]: Player: 'e.poppi', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:24.304613]:[2272]: Player: 'BIGG__FISHYY', stack: '476' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:24.305613]:[2272]: Player: 'BIGG__FISHYY', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:30.751982]:[2272]: Player: 'finito2601', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:32.367074]:[2272]: Player: 'finito2601', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:32.368075]:[2272]: Player: 'finito2601', action: 'Raise', amount: '1062' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:34.881218]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:35.162234]:[2272]: Player: 'csabi1790930', stack: '496' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:35.163234]:[2272]: Player: 'csabi1790930', stack: '496' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:35.163234]:[2272]: Player: 'csabi1790930', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:38.426421]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:38.714438]:[2272]: Player: 'londrax', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:41.753611]:[2272]: Player: 'dysik61', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:42.911678]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:43.192694]:[2272]: Player: 'BIGG__FISHYY', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:43.193694]:[2272]: Player: 'BIGG__FISHYY', action: 'Call', amount: '476' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:43.654720]:[2272]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:44.947794]:[2272]: Cards received: ('King' of 'Spades')('Six' of 'Spades')('Four' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:10:46.952909]:[2272]: Cards received: ('King' of 'Spades')('Six' of 'Spades')('Four' of 'Spades')('Ten' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:10:48.516998]:[2272]: Cards received: ('King' of 'Spades')('Six' of 'Spades')('Four' of 'Spades')('Ten' of 'Clubs')('Three' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:10:50.098089]:[2272]: Player: 'BIGG__FISHYY', action: 'ShowCards', cards: 'Td9h' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:50.102089]:[2272]: Player: 'finito2601', stack: '566' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:50.103089]:[2272]: Player: 'finito2601', action: 'ShowCards', cards: '7d7s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:51.858189]:[2272]: Player: 'csabi1790930', stack: '494' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.858189]:[2272]: Player: 'CLRN', stack: '484' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.858189]:[2272]: Player: 'londrax', stack: '464' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.859189]:[2272]: Player: 'dysik61', stack: '474' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.859189]:[2272]: Player: 'e.poppi', stack: '454' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.859189]:[2272]: Player: 'BIGG__FISHYY', stack: '1056' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.859189]:[2272]: Player: 'finito2601', stack: '564' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.859189]:[2272]: Player: 'dinosaur25', stack: '494' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.860189]:[2272]: Ante: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.860189]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.860189]:[2272]: Player: 'CLRN', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.861189]:[2272]: Player: 'londrax', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.861189]:[2272]: Player: 'dysik61', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.862190]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.862190]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.862190]:[2272]: Player: 'finito2601', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.863190]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:10:51.866190]:[2272]: Player: 'dysik61', stack: '464' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:51.866190]:[2272]: Player: 'dysik61', stack: '434' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:51.866190]:[2272]: Player: 'dysik61', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:51.868190]:[2272]: Player cards: ('Queen' of 'Spades')('Eight' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:10:55.309387]:[2272]: Player: 'BIGG__FISHYY', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:55.878419]:[2272]: Player: 'finito2601', stack: '544' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:55.878419]:[2272]: Player: 'finito2601', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:59.585631]:[2272]: Player: 'dinosaur25', stack: '474' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:59.585631]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:59.593632]:[2272]: Player: 'csabi1790930', stack: '494' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:10:59.593632]:[2272]: Player: 'csabi1790930', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:02.643806]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:03.201838]:[2272]: Player: 'londrax', stack: '444' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:03.201838]:[2272]: Player: 'londrax', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:05.908993]:[2272]: Player: 'dysik61', stack: '454' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:05.909993]:[2272]: Player: 'dysik61', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:08.248127]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:08.861162]:[2272]: Cards received: ('Jack' of 'Clubs')('Nine' of 'Diamonds')('Queen' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:11:12.072345]:[2272]: Player: 'dysik61', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:13.489427]:[2272]: Player: 'e.poppi', stack: '414' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:13.489427]:[2272]: Player: 'e.poppi', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:13.847447]:[2272]: Player: 'finito2601', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:14.955510]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:17.032629]:[2272]: Player: 'londrax', stack: '424' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:17.032629]:[2272]: Player: 'londrax', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:23.130978]:[2272]: Player: 'dysik61', stack: '434' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:23.130978]:[2272]: Player: 'dysik61', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:23.745013]:[2272]: Cards received: ('Jack' of 'Clubs')('Nine' of 'Diamonds')('Queen' of 'Clubs')('Jack' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:11:25.314103]:[2272]: Player: 'dysik61', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:27.695239]:[2272]: Player: 'e.poppi', stack: '374' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:27.696239]:[2272]: Player: 'e.poppi', action: 'Bet', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:31.741470]:[2272]: Player: 'londrax', stack: '384' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:31.742471]:[2272]: Player: 'londrax', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:33.687582]:[2272]: Player: 'dysik61', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:34.299617]:[2272]: Cards received: ('Jack' of 'Clubs')('Nine' of 'Diamonds')('Queen' of 'Clubs')('Jack' of 'Diamonds')('Ten' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:11:39.141894]:[2272]: Player: 'e.poppi', stack: '314' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:39.142894]:[2272]: Player: 'e.poppi', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:41.435025]:[2272]: Player: 'londrax', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:41.721041]:[2272]: Player: 'e.poppi', stack: '384' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:41.721041]:[2272]: Player: 'e.poppi', stack: '374' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:41.722041]:[2272]: Player: 'e.poppi', action: 'MoneyReturn', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:47.727385]:[2272]: Player: 'csabi1790930', stack: '491' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.727385]:[2272]: Player: 'CLRN', stack: '481' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.727385]:[2272]: Player: 'londrax', stack: '381' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.728385]:[2272]: Player: 'dysik61', stack: '431' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.728385]:[2272]: Player: 'e.poppi', stack: '627' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.728385]:[2272]: Player: 'BIGG__FISHYY', stack: '1053' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.728385]:[2272]: Player: 'finito2601', stack: '541' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.728385]:[2272]: Player: 'dinosaur25', stack: '471' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.729385]:[2272]: Ante: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.729385]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.729385]:[2272]: Player: 'CLRN', action: 'Ante', amount: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.730385]:[2272]: Player: 'londrax', action: 'Ante', amount: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.730385]:[2272]: Player: 'dysik61', action: 'Ante', amount: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.731385]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.731385]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.732385]:[2272]: Player: 'finito2601', action: 'Ante', amount: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.732385]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:11:47.735385]:[2272]: Player: 'e.poppi', stack: '612' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:47.736385]:[2272]: Player: 'e.poppi', stack: '1023' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:47.736385]:[2272]: Player: 'e.poppi', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:47.738385]:[2272]: Player cards: ('King' of 'Diamonds')('Ten' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:11:50.538546]:[2272]: Player: 'finito2601', stack: '511' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:50.539546]:[2272]: Player: 'finito2601', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:53.244700]:[2272]: Player: 'dinosaur25', stack: '441' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:53.245700]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:56.975914]:[2272]: Player: 'csabi1790930', stack: '461' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:11:56.975914]:[2272]: Player: 'csabi1790930', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:00.661125]:[2272]: Player: 'CLRN', stack: '391' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:00.662125]:[2272]: Player: 'CLRN', action: 'Raise', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:05.474400]:[2272]: Player: 'londrax', stack: '291' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:05.474400]:[2272]: Player: 'londrax', action: 'Call', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:05.604407]:[2272]: Player: 'dysik61', stack: '341' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:05.605407]:[2272]: Player: 'dysik61', action: 'Call', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:09.458628]:[2272]: Player: 'e.poppi', stack: '537' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:09.458628]:[2272]: Player: 'e.poppi', action: 'Call', amount: '75' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:12.721814]:[2272]: Player: 'BIGG__FISHYY', stack: '963' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:12.721814]:[2272]: Player: 'BIGG__FISHYY', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:13.285847]:[2272]: Player: 'finito2601', stack: '451' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:13.286847]:[2272]: Player: 'finito2601', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:14.577921]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:15.589978]:[2272]: Player: 'csabi1790930', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:16.477029]:[2272]: Cards received: ('Two' of 'Spades')('Six' of 'Hearts')('King' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:12:18.729158]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:20.121238]:[2272]: Player: 'BIGG__FISHYY', stack: '933' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:20.122238]:[2272]: Player: 'BIGG__FISHYY', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:24.771504]:[2272]: Player: 'finito2601', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:28.602723]:[2272]: Player: 'CLRN', stack: '301' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:28.602723]:[2272]: Player: 'CLRN', action: 'Raise', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:33.181985]:[2272]: Player: 'londrax', stack: '201' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:33.181985]:[2272]: Player: 'londrax', action: 'Call', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:36.709186]:[2272]: Player: 'dysik61', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:36.715187]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:37.925256]:[2272]: Player: 'BIGG__FISHYY', stack: '873' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:37.925256]:[2272]: Player: 'BIGG__FISHYY', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:38.826308]:[2272]: Cards received: ('Two' of 'Spades')('Six' of 'Hearts')('King' of 'Spades')('Ace' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:12:39.846366]:[2272]: Player: 'BIGG__FISHYY', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:42.990546]:[2272]: Player: 'CLRN', stack: '151' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:42.990546]:[2272]: Player: 'CLRN', action: 'Bet', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:46.435743]:[2272]: Player: 'londrax', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:47.454801]:[2272]: Player: 'BIGG__FISHYY', stack: '723' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:47.455801]:[2272]: Player: 'BIGG__FISHYY', action: 'Call', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:48.348852]:[2272]: Cards received: ('Two' of 'Spades')('Six' of 'Hearts')('King' of 'Spades')('Ace' of 'Diamonds')('Ten' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:12:49.041892]:[2272]: Player: 'BIGG__FISHYY', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:52.115068]:[2272]: Player: 'CLRN', stack: '1' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:52.115068]:[2272]: Player: 'CLRN', action: 'Bet', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:52.697101]:[2272]: Player: 'BIGG__FISHYY', stack: '573' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:52.697101]:[2272]: Player: 'BIGG__FISHYY', action: 'Call', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:53.167128]:[2272]: Player: 'CLRN', action: 'ShowCards', cards: 'KdTh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:54.483203]:[2272]: Player: 'BIGG__FISHYY', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:56.641326]:[2272]: Player: 'csabi1790930', stack: '458' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.641326]:[2272]: Player: 'CLRN', stack: '1492' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.641326]:[2272]: Player: 'londrax', stack: '198' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.641326]:[2272]: Player: 'dysik61', stack: '338' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.642327]:[2272]: Player: 'e.poppi', stack: '534' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.642327]:[2272]: Player: 'BIGG__FISHYY', stack: '570' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.642327]:[2272]: Player: 'finito2601', stack: '448' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.642327]:[2272]: Player: 'dinosaur25', stack: '438' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.642327]:[2272]: Ante: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.643327]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.644327]:[2272]: Player: 'CLRN', action: 'Ante', amount: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.644327]:[2272]: Player: 'londrax', action: 'Ante', amount: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.644327]:[2272]: Player: 'dysik61', action: 'Ante', amount: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.645327]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.645327]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.646327]:[2272]: Player: 'finito2601', action: 'Ante', amount: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.646327]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '3' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:12:56.650327]:[2272]: Player: 'BIGG__FISHYY', stack: '555' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:56.650327]:[2272]: Player: 'BIGG__FISHYY', stack: '418' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:56.650327]:[2272]: Player: 'BIGG__FISHYY', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:12:56.671328]:[2272]: Player cards: ('Two' of 'Spades')('Seven' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:13:03.068694]:[2272]: Player: 'dinosaur25', stack: '408' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:03.068694]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:05.611840]:[2272]: Player: 'csabi1790930', stack: '428' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:05.611840]:[2272]: Player: 'csabi1790930', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:08.250991]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:12.456231]:[2272]: Player: 'londrax', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:12.457231]:[2272]: Player: 'londrax', action: 'Raise', amount: '198' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:12.745248]:[2272]: Player: 'dysik61', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:14.864369]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:15.405400]:[2272]: Player: 'BIGG__FISHYY', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:17.944545]:[2272]: Player: 'finito2601', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:20.808709]:[2272]: Player: 'dinosaur25', stack: '240' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:20.809709]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '168' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:26.618041]:[2272]: Player: 'csabi1790930', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:27.080067]:[2272]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:28.622156]:[2272]: Cards received: ('Queen' of 'Diamonds')('King' of 'Clubs')('Ace' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:13:30.641271]:[2272]: Cards received: ('Queen' of 'Diamonds')('King' of 'Clubs')('Ace' of 'Hearts')('Nine' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:13:31.860341]:[2272]: Cards received: ('Queen' of 'Diamonds')('King' of 'Clubs')('Ace' of 'Hearts')('Nine' of 'Clubs')('Ace' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:13:33.225419]:[2272]: Player: 'dinosaur25', action: 'ShowCards', cards: '2hJh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:33.226419]:[2272]: Player: 'londrax', stack: '240' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:33.227419]:[2272]: Player: 'londrax', action: 'ShowCards', cards: 'Ad6h' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:39.256764]:[2272]: Player: 'csabi1790930', stack: '424' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.256764]:[2272]: Player: 'CLRN', stack: '1488' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.256764]:[2272]: Player: 'londrax', stack: '491' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.256764]:[2272]: Player: 'dysik61', stack: '334' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.256764]:[2272]: Player: 'e.poppi', stack: '530' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.257764]:[2272]: Player: 'BIGG__FISHYY', stack: '551' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.257764]:[2272]: Player: 'finito2601', stack: '414' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.257764]:[2272]: Player: 'dinosaur25', stack: '236' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.257764]:[2272]: Ante: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.257764]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.258764]:[2272]: Player: 'CLRN', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.258764]:[2272]: Player: 'londrax', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.259764]:[2272]: Player: 'dysik61', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.259764]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.259764]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.260764]:[2272]: Player: 'finito2601', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.260764]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:13:39.263764]:[2272]: Player: 'finito2601', stack: '394' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:39.263764]:[2272]: Player: 'finito2601', stack: '196' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:39.264764]:[2272]: Player: 'finito2601', action: 'SmallBlind', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:39.266765]:[2272]: Player cards: ('Four' of 'Clubs')('Jack' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:13:41.948918]:[2272]: Player: 'csabi1790930', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:45.086097]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:48.549295]:[2272]: Player: 'londrax', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:48.832312]:[2272]: Player: 'dysik61', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:49.113328]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:50.920431]:[2272]: Player: 'BIGG__FISHYY', stack: '511' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:50.921431]:[2272]: Player: 'BIGG__FISHYY', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:57.177789]:[2272]: Player: 'finito2601', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:58.585869]:[2272]: Player: 'finito2601', stack: '374' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:13:58.585869]:[2272]: Player: 'finito2601', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:01.465034]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:02.081069]:[2272]: Cards received: ('Three' of 'Hearts')('Queen' of 'Hearts')('Two' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:14:06.748336]:[2272]: Player: 'finito2601', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:06.749336]:[2272]: Player: 'finito2601', action: 'Bet', amount: '374' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:08.900459]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:09.180475]:[2272]: Player: 'BIGG__FISHYY', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:09.187476]:[2272]: Player: 'finito2601', stack: '511' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:09.188476]:[2272]: Player: 'finito2601', stack: '374' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:09.188476]:[2272]: Player: 'finito2601', action: 'MoneyReturn', amount: '374' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:11.234593]:[2272]: Player: 'csabi1790930', stack: '420' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.235593]:[2272]: Player: 'CLRN', stack: '1484' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.235593]:[2272]: Player: 'londrax', stack: '487' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.235593]:[2272]: Player: 'dysik61', stack: '330' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.236593]:[2272]: Player: 'e.poppi', stack: '526' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.236593]:[2272]: Player: 'BIGG__FISHYY', stack: '507' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.236593]:[2272]: Player: 'finito2601', stack: '522' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.236593]:[2272]: Player: 'dinosaur25', stack: '192' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.236593]:[2272]: Ante: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.236593]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.237593]:[2272]: Player: 'CLRN', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.237593]:[2272]: Player: 'londrax', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.238593]:[2272]: Player: 'dysik61', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.238593]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.238593]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.239593]:[2272]: Player: 'finito2601', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.239593]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:14:11.241593]:[2272]: Player: 'dinosaur25', stack: '380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:11.242593]:[2272]: Player: 'dinosaur25', stack: '172' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:11.242593]:[2272]: Player: 'dinosaur25', action: 'SmallBlind', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:11.244594]:[2272]: Player cards: ('Nine' of 'Clubs')('Four' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:14:14.245765]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:14.809797]:[2272]: Player: 'londrax', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:15.093814]:[2272]: Player: 'dysik61', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:15.867858]:[2272]: Player: 'e.poppi', stack: '486' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:15.867858]:[2272]: Player: 'e.poppi', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:16.847914]:[2272]: Player: 'BIGG__FISHYY', stack: '467' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:16.847914]:[2272]: Player: 'BIGG__FISHYY', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:19.905089]:[2272]: Player: 'finito2601', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:22.119216]:[2272]: Player: 'dinosaur25', stack: '152' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:22.119216]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:23.068270]:[2272]: Player: 'csabi1790930', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:23.754309]:[2272]: Cards received: ('Two' of 'Spades')('Ace' of 'Diamonds')('Eight' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:14:27.464521]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:27.741537]:[2272]: Player: 'csabi1790930', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:28.982608]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:29.265624]:[2272]: Player: 'BIGG__FISHYY', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:29.424633]:[2272]: Cards received: ('Two' of 'Spades')('Ace' of 'Diamonds')('Eight' of 'Hearts')('Two' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:14:33.268853]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:39.493209]:[2272]: Player: 'csabi1790930', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:49.004753]:[2272]: Player: 'csabi1790930', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:51.219880]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:51.503896]:[2272]: Player: 'BIGG__FISHYY', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:51.661905]:[2272]: Cards received: ('Two' of 'Spades')('Ace' of 'Diamonds')('Eight' of 'Hearts')('Two' of 'Diamonds')('Three' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:14:58.819315]:[2272]: Player: 'dinosaur25', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:59.096330]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:14:59.469352]:[2272]: Player: 'csabi1790930', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:00.875432]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:01.159448]:[2272]: Player: 'BIGG__FISHYY', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:01.447465]:[2272]: Player: 'dinosaur25', action: 'ShowCards', cards: '3hQs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:01.452465]:[2272]: Player: 'csabi1790930', stack: '152' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:01.453465]:[2272]: Player: 'csabi1790930', action: 'ShowCards', cards: '4h8d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:02.463523]:[2272]: Player: 'e.poppi', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:03.624589]:[2272]: Player: 'BIGG__FISHYY', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:05.640705]:[2272]: Player: 'csabi1790930', stack: '568' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.641705]:[2272]: Player: 'CLRN', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.641705]:[2272]: Player: 'londrax', stack: '483' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.641705]:[2272]: Player: 'dysik61', stack: '326' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.642705]:[2272]: Player: 'e.poppi', stack: '482' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.642705]:[2272]: Player: 'BIGG__FISHYY', stack: '463' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.642705]:[2272]: Player: 'finito2601', stack: '518' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.643705]:[2272]: Player: 'dinosaur25', stack: '148' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.643705]:[2272]: Ante: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.643705]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.644705]:[2272]: Player: 'CLRN', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.645705]:[2272]: Player: 'londrax', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.646705]:[2272]: Player: 'dysik61', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.646705]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.647705]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.648705]:[2272]: Player: 'finito2601', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.649705]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '4' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:15:05.654706]:[2272]: Player: 'csabi1790930', stack: '548' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:05.654706]:[2272]: Player: 'csabi1790930', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:05.655706]:[2272]: Player: 'csabi1790930', action: 'SmallBlind', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:05.657706]:[2272]: Player cards: ('King' of 'Hearts')('Four' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:15:10.696994]:[2272]: Player: 'londrax', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:12.306086]:[2272]: Player: 'dysik61', stack: '286' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:12.307086]:[2272]: Player: 'dysik61', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:13.976182]:[2272]: Player: 'e.poppi', stack: '442' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:13.977182]:[2272]: Player: 'e.poppi', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:14.261198]:[2272]: Player: 'BIGG__FISHYY', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:15.940294]:[2272]: Player: 'finito2601', stack: '478' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:15.941294]:[2272]: Player: 'finito2601', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:17.600389]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:19.333488]:[2272]: Player: 'csabi1790930', stack: '528' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:19.333488]:[2272]: Player: 'csabi1790930', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:22.710681]:[2272]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:23.600732]:[2272]: Cards received: ('Nine' of 'Hearts')('Eight' of 'Hearts')('King' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:15:29.288057]:[2272]: Player: 'csabi1790930', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:33.019271]:[2272]: Player: 'CLRN', stack: '1240' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:33.019271]:[2272]: Player: 'CLRN', action: 'Bet', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:34.783372]:[2272]: Player: 'dysik61', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:35.281400]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:38.584589]:[2272]: Player: 'finito2601', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:39.148621]:[2272]: Player: 'csabi1790930', stack: '328' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:39.148621]:[2272]: Player: 'csabi1790930', action: 'Call', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:39.761656]:[2272]: Cards received: ('Nine' of 'Hearts')('Eight' of 'Hearts')('King' of 'Spades')('Queen' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:15:45.758999]:[2272]: Player: 'csabi1790930', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:49.243199]:[2272]: Player: 'CLRN', stack: '1040' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:49.243199]:[2272]: Player: 'CLRN', action: 'Bet', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:52.318375]:[2272]: Player: 'csabi1790930', stack: '128' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:52.319375]:[2272]: Player: 'csabi1790930', action: 'Call', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:52.938410]:[2272]: Cards received: ('Nine' of 'Hearts')('Eight' of 'Hearts')('King' of 'Spades')('Queen' of 'Spades')('Four' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:15:58.962755]:[2272]: Player: 'csabi1790930', action: 'ShowCards', cards: '7hTh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:59.239771]:[2272]: Player: 'csabi1790930', stack: '128' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:15:59.241771]:[2272]: Player: 'csabi1790930', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:05.570133]:[2272]: Player: 'csabi1790930', stack: '122' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.570133]:[2272]: Player: 'CLRN', stack: '2066' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.571133]:[2272]: Player: 'londrax', stack: '477' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.571133]:[2272]: Player: 'dysik61', stack: '280' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.571133]:[2272]: Player: 'e.poppi', stack: '436' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.572133]:[2272]: Player: 'BIGG__FISHYY', stack: '457' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.572133]:[2272]: Player: 'finito2601', stack: '472' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.572133]:[2272]: Player: 'dinosaur25', stack: '142' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.573133]:[2272]: Ante: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.573133]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.574133]:[2272]: Player: 'CLRN', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.575133]:[2272]: Player: 'londrax', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.575133]:[2272]: Player: 'dysik61', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.576133]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.577133]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.578133]:[2272]: Player: 'finito2601', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.579133]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:05.584133]:[2272]: Player: 'CLRN', stack: '2036' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:05.584133]:[2272]: Player: 'CLRN', stack: '417' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:05.584133]:[2272]: Player: 'CLRN', action: 'SmallBlind', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:05.588134]:[2272]: Player cards: ('Queen' of 'Clubs')('Five' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:16:09.767373]:[2272]: Player: 'dysik61', stack: '220' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:09.768373]:[2272]: Player: 'dysik61', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:11.252458]:[2272]: Player: 'e.poppi', stack: '376' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:11.253458]:[2272]: Player: 'e.poppi', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:11.612478]:[2272]: Player: 'BIGG__FISHYY', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:12.509529]:[2272]: Player: 'finito2601', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:15.159681]:[2272]: Player: 'dinosaur25', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:15.160681]:[2272]: Player: 'dinosaur25', action: 'Raise', amount: '142' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:15.442697]:[2272]: Player: 'csabi1790930', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:17.809833]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:23.421154]:[2272]: Player: 'londrax', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:25.275260]:[2272]: Player: 'dysik61', stack: '56' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:25.276260]:[2272]: Player: 'dysik61', action: 'Raise', amount: '224' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:27.536389]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:27.993415]:[2272]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:29.410496]:[2272]: Cards received: ('King' of 'Hearts')('Eight' of 'Clubs')('Jack' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:16:31.408610]:[2272]: Cards received: ('King' of 'Hearts')('Eight' of 'Clubs')('Jack' of 'Diamonds')('Seven' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:16:32.917697]:[2272]: Cards received: ('King' of 'Hearts')('Eight' of 'Clubs')('Jack' of 'Diamonds')('Seven' of 'Spades')('Three' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:16:34.493787]:[2272]: Player: 'dysik61', action: 'ShowCards', cards: '9s5s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:34.498787]:[2272]: Player: 'dinosaur25', stack: '138' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:34.499787]:[2272]: Player: 'dinosaur25', action: 'ShowCards', cards: 'Kd7d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:36.311891]:[2272]: Player: 'csabi1790930', stack: '116' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.311891]:[2272]: Player: 'CLRN', stack: '2030' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.311891]:[2272]: Player: 'londrax', stack: '411' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.312891]:[2272]: Player: 'dysik61', stack: '132' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.312891]:[2272]: Player: 'e.poppi', stack: '370' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.312891]:[2272]: Player: 'BIGG__FISHYY', stack: '451' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.312891]:[2272]: Player: 'finito2601', stack: '466' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.313891]:[2272]: Player: 'dinosaur25', stack: '476' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.313891]:[2272]: Ante: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.313891]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.314891]:[2272]: Player: 'CLRN', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.314891]:[2272]: Player: 'londrax', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.315891]:[2272]: Player: 'dysik61', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.315891]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.316891]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.316891]:[2272]: Player: 'finito2601', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.316891]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:16:36.319891]:[2272]: Player: 'londrax', stack: '381' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:36.320891]:[2272]: Player: 'londrax', stack: '72' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:36.320891]:[2272]: Player: 'londrax', action: 'SmallBlind', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:36.322892]:[2272]: Player cards: ('Three' of 'Spades')('Three' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:16:39.465071]:[2272]: Player: 'e.poppi', stack: '310' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:39.466071]:[2272]: Player: 'e.poppi', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:39.742087]:[2272]: Player: 'BIGG__FISHYY', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:40.020103]:[2272]: Player: 'finito2601', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:40.967157]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:42.526246]:[2272]: Player: 'csabi1790930', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:42.526246]:[2272]: Player: 'csabi1790930', action: 'Raise', amount: '116' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:45.968443]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:47.095508]:[2272]: Player: 'londrax', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:49.545648]:[2272]: Player: 'dysik61', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:49.545648]:[2272]: Player: 'dysik61', action: 'Raise', amount: '132' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:51.316749]:[2272]: Player: 'e.poppi', stack: '238' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:51.316749]:[2272]: Player: 'e.poppi', action: 'Call', amount: '72' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:52.515818]:[2272]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:53.209857]:[2272]: Cards received: ('Two' of 'Spades')('Ace' of 'Diamonds')('Jack' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:16:55.206972]:[2272]: Cards received: ('Two' of 'Spades')('Ace' of 'Diamonds')('Jack' of 'Hearts')('Seven' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:16:56.862066]:[2272]: Cards received: ('Two' of 'Spades')('Ace' of 'Diamonds')('Jack' of 'Hearts')('Seven' of 'Spades')('Nine' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:16:58.057135]:[2272]: Player: 'dysik61', action: 'ShowCards', cards: 'Js4h' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:58.328150]:[2272]: Player: 'e.poppi', action: 'ShowCards', cards: '6dJd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:58.918184]:[2272]: Player: 'dysik61', stack: '16' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:58.920184]:[2272]: Player: 'dysik61', stack: '254' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:58.920184]:[2272]: Player: 'dysik61', action: 'WinCards', pot: '16', cards: 'JsJhAd9s7s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:58.933185]:[2272]: Player: 'csabi1790930', stack: '16' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:58.933185]:[2272]: Player: 'csabi1790930', stack: '254' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:16:58.934185]:[2272]: Player: 'csabi1790930', action: 'ShowCards', cards: '7h7c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:00.831293]:[2272]: Player: 'csabi1790930', stack: '420' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.831293]:[2272]: Player: 'CLRN', stack: '2024' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.832293]:[2272]: Player: 'londrax', stack: '375' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.832293]:[2272]: Player: 'dysik61', stack: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.832293]:[2272]: Player: 'e.poppi', stack: '248' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.832293]:[2272]: Player: 'BIGG__FISHYY', stack: '445' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.832293]:[2272]: Player: 'finito2601', stack: '460' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.833293]:[2272]: Player: 'dinosaur25', stack: '470' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.833293]:[2272]: Ante: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.833293]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.833293]:[2272]: Player: 'CLRN', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.834294]:[2272]: Player: 'londrax', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.834294]:[2272]: Player: 'dysik61', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.835294]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.835294]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.836294]:[2272]: Player: 'finito2601', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.836294]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '6' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:00.840294]:[2272]: Player: 'dysik61', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:00.843294]:[2272]: Player: 'dysik61', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:00.846294]:[2272]: Player cards: ('Two' of 'Hearts')('Three' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:17:03.357438]:[2272]: Player: 'BIGG__FISHYY', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:06.629625]:[2272]: Player: 'finito2601', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:06.629625]:[2272]: Player: 'finito2601', action: 'Raise', amount: '460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:07.677685]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:15.500132]:[2272]: Player: 'csabi1790930', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:15.501132]:[2272]: Player: 'csabi1790930', action: 'Call', amount: '420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:18.674314]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:18.962330]:[2272]: Player: 'londrax', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:20.364411]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:21.286463]:[2272]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:22.033506]:[2272]: Cards received: ('Ten' of 'Clubs')('Ace' of 'Clubs')('Two' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:17:24.035621]:[2272]: Cards received: ('Ten' of 'Clubs')('Ace' of 'Clubs')('Two' of 'Clubs')('Seven' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:17:25.662714]:[2272]: Cards received: ('Ten' of 'Clubs')('Ace' of 'Clubs')('Two' of 'Clubs')('Seven' of 'Hearts')('Six' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:17:27.157799]:[2272]: Player: 'finito2601', action: 'ShowCards', cards: '8d8c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:27.161799]:[2272]: Player: 'csabi1790930', stack: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:27.162799]:[2272]: Player: 'csabi1790930', action: 'ShowCards', cards: '6sAs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:27.732832]:[2272]: Player: 'csabi1790930', stack: '870' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:27.733832]:[2272]: Player: 'csabi1790930', action: 'WinCards', pot: '870', cards: 'AsAc6s6dTc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:27.734832]:[2272]: Player: 'dysik61', stack: '870' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:27.734832]:[2272]: Player: 'dysik61', action: 'ShowCards', cards: '4cKc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:33.483161]:[2272]: Player: 'csabi1790930', stack: '862' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.484161]:[2272]: Player: 'CLRN', stack: '2016' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.484161]:[2272]: Player: 'londrax', stack: '367' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.484161]:[2272]: Player: 'dysik61', stack: '80' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.484161]:[2272]: Player: 'e.poppi', stack: '180' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.484161]:[2272]: Player: 'BIGG__FISHYY', stack: '437' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.484161]:[2272]: Player: 'finito2601', stack: '32' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.484161]:[2272]: Player: 'dinosaur25', stack: '462' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.484161]:[2272]: Ante: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.485161]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.485161]:[2272]: Player: 'CLRN', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.485161]:[2272]: Player: 'londrax', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.486161]:[2272]: Player: 'dysik61', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.486161]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.486161]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.487161]:[2272]: Player: 'finito2601', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.487161]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:17:33.489161]:[2272]: Player: 'e.poppi', stack: '140' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:33.489161]:[2272]: Player: 'e.poppi', stack: '357' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:33.489161]:[2272]: Player: 'e.poppi', action: 'SmallBlind', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:33.491161]:[2272]: Player cards: ('Six' of 'Clubs')('Five' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:17:37.321380]:[2272]: Player: 'finito2601', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:37.321380]:[2272]: Player: 'finito2601', action: 'Call', amount: '32' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:40.558566]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:40.850582]:[2272]: Player: 'csabi1790930', stack: '782' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:40.850582]:[2272]: Player: 'csabi1790930', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:47.254949]:[2272]: Player: 'CLRN', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:50.572138]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:52.877270]:[2272]: Player: 'londrax', stack: '287' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:52.878270]:[2272]: Player: 'londrax', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:53.170287]:[2272]: Player: 'dysik61', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:53.171287]:[2272]: Player: 'dysik61', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:54.002335]:[2272]: Player: 'e.poppi', stack: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:54.003335]:[2272]: Player: 'e.poppi', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:54.855383]:[2272]: Player: 'BIGG__FISHYY', stack: '277' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:17:54.855383]:[2272]: Player: 'BIGG__FISHYY', action: 'Raise', amount: '160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:01.244749]:[2272]: Player: 'csabi1790930', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:01.761778]:[2272]: Player: 'csabi1790930', stack: '702' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:01.761778]:[2272]: Player: 'csabi1790930', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:04.654944]:[2272]: Player: 'londrax', stack: '207' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:04.655944]:[2272]: Player: 'londrax', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:05.978020]:[2272]: Player: 'e.poppi', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:05.978020]:[2272]: Player: 'e.poppi', action: 'Raise', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:07.506107]:[2272]: Player: 'BIGG__FISHYY', stack: '257' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:07.506107]:[2272]: Player: 'BIGG__FISHYY', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:10.064253]:[2272]: Player: 'csabi1790930', stack: '682' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:10.064253]:[2272]: Player: 'csabi1790930', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:14.159487]:[2272]: Player: 'londrax', stack: '187' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:14.159487]:[2272]: Player: 'londrax', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:15.678574]:[2272]: Cards received: ('Queen' of 'Diamonds')('Four' of 'Hearts')('Three' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:18:17.523680]:[2272]: Player: 'BIGG__FISHYY', stack: '97' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:17.524680]:[2272]: Player: 'BIGG__FISHYY', action: 'Bet', amount: '160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:22.792981]:[2272]: Player: 'csabi1790930', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:24.677089]:[2272]: Player: 'londrax', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:24.683089]:[2272]: Player: 'BIGG__FISHYY', stack: '187' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:24.683089]:[2272]: Player: 'BIGG__FISHYY', stack: '257' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:24.684089]:[2272]: Player: 'BIGG__FISHYY', action: 'MoneyReturn', amount: '160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:24.953105]:[2272]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:27.258237]:[2272]: Cards received: ('Queen' of 'Diamonds')('Four' of 'Hearts')('Three' of 'Spades')('Four' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:18:28.490307]:[2272]: Cards received: ('Queen' of 'Diamonds')('Four' of 'Hearts')('Three' of 'Spades')('Four' of 'Spades')('Five' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:18:29.916389]:[2272]: Player: 'e.poppi', action: 'ShowCards', cards: '2cAd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:29.920389]:[2272]: Player: 'BIGG__FISHYY', stack: '257' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:29.920389]:[2272]: Player: 'BIGG__FISHYY', action: 'ShowCards', cards: 'AhKd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:30.892445]:[2272]: Player: 'e.poppi', stack: '400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:30.893445]:[2272]: Player: 'e.poppi', action: 'WinCards', pot: '400', cards: '5s4h3s2cAd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:30.897445]:[2272]: Player: 'dysik61', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:30.897445]:[2272]: Player: 'dysik61', action: 'ShowCards', cards: '9c9s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:31.216463]:[2272]: Player: 'e.poppi', stack: '640' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:31.216463]:[2272]: Player: 'e.poppi', action: 'WinCards', pot: '240', cards: '5s4h3s2cAd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:31.218463]:[2272]: Player: 'finito2601', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:31.219463]:[2272]: Player: 'finito2601', action: 'ShowCards', cards: 'KhQh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:31.661489]:[2272]: Player: 'dysik61', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:31.662489]:[2272]: Player: 'dysik61', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:31.663489]:[2272]: Player: 'dysik61', action: 'Rank', amount: '7' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:33.082570]:[2272]: Player: 'csabi1790930', stack: '674' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:18:33.082570]:[2272]: Player: 'CLRN', stack: '2008' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:18:33.082570]:[2272]: Player: 'londrax', stack: '179' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:18:33.082570]:[2272]: Player: 'e.poppi', stack: '888' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:18:33.082570]:[2272]: Player: 'BIGG__FISHYY', stack: '249' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:18:33.083570]:[2272]: Player: 'dinosaur25', stack: '454' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:18:33.083570]:[2272]: Ante: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:18:33.083570]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:18:33.083570]:[2272]: Player: 'CLRN', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:18:33.084570]:[2272]: Player: 'londrax', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:18:33.084570]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:18:33.084570]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:18:33.084570]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:18:33.087570]:[2272]: Player: 'BIGG__FISHYY', stack: '209' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:33.087570]:[2272]: Player: 'BIGG__FISHYY', stack: '374' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:33.087570]:[2272]: Player: 'BIGG__FISHYY', action: 'SmallBlind', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:33.088570]:[2272]: Player cards: ('Ten' of 'Hearts')('Ace' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:18:39.252923]:[2272]: Player: 'csabi1790930', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:41.235036]:[2272]: Player: 'CLRN', stack: '1768' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:41.236036]:[2272]: Player: 'CLRN', action: 'Raise', amount: '240' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:43.748180]:[2272]: Player: 'londrax', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:43.749180]:[2272]: Player: 'londrax', action: 'Call', amount: '179' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:44.773238]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:48.934476]:[2272]: Player: 'BIGG__FISHYY', stack: '9' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:48.934476]:[2272]: Player: 'BIGG__FISHYY', action: 'Call', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:50.861587]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:52.200663]:[2272]: Cards received: ('Six' of 'Clubs')('Eight' of 'Diamonds')('Queen' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:18:53.720750]:[2272]: Player: 'BIGG__FISHYY', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:53.720750]:[2272]: Player: 'BIGG__FISHYY', action: 'Bet', amount: '9' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:55.799869]:[2272]: Player: 'CLRN', stack: '1759' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:55.800869]:[2272]: Player: 'CLRN', action: 'Call', amount: '9' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:56.532911]:[2272]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:18:58.197006]:[2272]: Cards received: ('Six' of 'Clubs')('Eight' of 'Diamonds')('Queen' of 'Clubs')('Two' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:18:59.706093]:[2272]: Cards received: ('Six' of 'Clubs')('Eight' of 'Diamonds')('Queen' of 'Clubs')('Two' of 'Hearts')('Jack' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:19:01.059170]:[2272]: Player: 'BIGG__FISHYY', action: 'ShowCards', cards: 'JhAd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:01.063170]:[2272]: Player: 'CLRN', stack: '1759' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:01.064170]:[2272]: Player: 'CLRN', action: 'ShowCards', cards: 'ThAs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:01.859216]:[2272]: Player: 'BIGG__FISHYY', stack: '140' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:01.860216]:[2272]: Player: 'BIGG__FISHYY', action: 'WinCards', pot: '140', cards: 'JhJcAdQc8d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:01.861216]:[2272]: Player: 'londrax', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:01.861216]:[2272]: Player: 'londrax', action: 'ShowCards', cards: '4sAh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:02.384246]:[2272]: Player: 'londrax', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:02.384246]:[2272]: Player: 'londrax', action: 'Rank', amount: '6' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:03.809327]:[2272]: Player: 'csabi1790930', stack: '666' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:03.809327]:[2272]: Player: 'CLRN', stack: '1751' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:03.809327]:[2272]: Player: 'e.poppi', stack: '880' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:03.809327]:[2272]: Player: 'BIGG__FISHYY', stack: '797' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:03.810327]:[2272]: Player: 'dinosaur25', stack: '366' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:03.810327]:[2272]: Ante: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:03.810327]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:03.811327]:[2272]: Player: 'CLRN', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:03.811327]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:03.812327]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:03.812327]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '8' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:03.816328]:[2272]: Player: 'dinosaur25', stack: '586' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:03.816328]:[2272]: Player: 'dinosaur25', stack: '326' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:03.817328]:[2272]: Player: 'dinosaur25', action: 'SmallBlind', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:03.820328]:[2272]: Player cards: ('Eight' of 'Spades')('Jack' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:19:06.826500]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:10.307699]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:12.331815]:[2272]: Player: 'BIGG__FISHYY', stack: '637' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:12.331815]:[2272]: Player: 'BIGG__FISHYY', action: 'Raise', amount: '160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:18.480166]:[2272]: Player: 'dinosaur25', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:18.480166]:[2272]: Player: 'dinosaur25', action: 'Raise', amount: '366' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:24.960537]:[2272]: Player: 'csabi1790930', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:34.649091]:[2272]: Player: 'csabi1790930', action: 'Fold', amount: '1' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:34.931107]:[2272]: Player: 'BIGG__FISHYY', stack: '431' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:34.932107]:[2272]: Player: 'BIGG__FISHYY', action: 'Call', amount: '206' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:35.391134]:[2272]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:36.850217]:[2272]: Cards received: ('Six' of 'Diamonds')('Nine' of 'Hearts')('Four' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:19:38.779327]:[2272]: Cards received: ('Six' of 'Diamonds')('Nine' of 'Hearts')('Four' of 'Hearts')('Six' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:19:40.455423]:[2272]: Cards received: ('Six' of 'Diamonds')('Nine' of 'Hearts')('Four' of 'Hearts')('Six' of 'Hearts')('Ace' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:19:41.633491]:[2272]: Player: 'dinosaur25', action: 'ShowCards', cards: 'AcQc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:41.637491]:[2272]: Player: 'BIGG__FISHYY', stack: '431' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:41.638491]:[2272]: Player: 'BIGG__FISHYY', action: 'ShowCards', cards: 'AhTd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:47.610833]:[2272]: Player: 'csabi1790930', stack: '576' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:47.610833]:[2272]: Player: 'CLRN', stack: '1741' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:47.611833]:[2272]: Player: 'e.poppi', stack: '870' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:47.611833]:[2272]: Player: 'BIGG__FISHYY', stack: '421' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:47.611833]:[2272]: Player: 'dinosaur25', stack: '842' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:47.612833]:[2272]: Ante: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:47.612833]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:47.613833]:[2272]: Player: 'CLRN', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:47.614833]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:47.615833]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:47.616833]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:19:47.621833]:[2272]: Player: 'csabi1790930', stack: '526' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:47.622833]:[2272]: Player: 'csabi1790930', stack: '1641' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:47.622833]:[2272]: Player: 'csabi1790930', action: 'SmallBlind', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:47.627834]:[2272]: Player cards: ('Nine' of 'Spades')('Six' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:19:49.527942]:[2272]: Player: 'e.poppi', stack: '770' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:49.527942]:[2272]: Player: 'e.poppi', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:52.216096]:[2272]: Player: 'BIGG__FISHYY', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:52.217096]:[2272]: Player: 'BIGG__FISHYY', action: 'Raise', amount: '421' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:54.287214]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:55.742298]:[2272]: Player: 'csabi1790930', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:19:59.471511]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:00.583575]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:01.662636]:[2272]: Player: 'BIGG__FISHYY', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:03.078717]:[2272]: Player: 'csabi1790930', stack: '516' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:03.078717]:[2272]: Player: 'CLRN', stack: '1631' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:03.079717]:[2272]: Player: 'e.poppi', stack: '760' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:03.079717]:[2272]: Player: 'BIGG__FISHYY', stack: '711' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:03.079717]:[2272]: Player: 'dinosaur25', stack: '832' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:03.080717]:[2272]: Ante: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:03.080717]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:03.081717]:[2272]: Player: 'CLRN', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:03.081717]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:03.082718]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:03.083718]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:03.088718]:[2272]: Player: 'CLRN', stack: '1581' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:03.088718]:[2272]: Player: 'CLRN', stack: '660' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:03.089718]:[2272]: Player: 'CLRN', action: 'SmallBlind', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:03.093718]:[2272]: Player cards: ('Jack' of 'Spades')('Ace' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:20:04.535801]:[2272]: Player: 'BIGG__FISHYY', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:06.395907]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:06.918937]:[2272]: Player: 'csabi1790930', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:09.316074]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:11.037172]:[2272]: Player: 'e.poppi', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:11.595204]:[2272]: Player: 'csabi1790930', stack: '506' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:11.595204]:[2272]: Player: 'CLRN', stack: '1571' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:11.595204]:[2272]: Player: 'e.poppi', stack: '850' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:11.595204]:[2272]: Player: 'BIGG__FISHYY', stack: '701' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:11.596204]:[2272]: Player: 'dinosaur25', stack: '822' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:11.596204]:[2272]: Ante: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:11.596204]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:11.596204]:[2272]: Player: 'CLRN', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:11.597205]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:11.597205]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:11.598205]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:11.601205]:[2272]: Player: 'e.poppi', stack: '800' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:11.601205]:[2272]: Player: 'e.poppi', stack: '601' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:11.602205]:[2272]: Player: 'e.poppi', action: 'SmallBlind', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:11.619206]:[2272]: Player cards: ('Eight' of 'Diamonds')('Four' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:20:15.135407]:[2272]: Player: 'dinosaur25', stack: '722' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:15.136407]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:18.651608]:[2272]: Player: 'csabi1790930', stack: '406' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:18.651608]:[2272]: Player: 'csabi1790930', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:20.741728]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:21.788787]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:22.509829]:[2272]: Player: 'BIGG__FISHYY', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:23.401880]:[2272]: Cards received: ('Eight' of 'Hearts')('Jack' of 'Hearts')('King' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:20:24.442939]:[2272]: Player: 'BIGG__FISHYY', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:26.409052]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:28.371164]:[2272]: Player: 'csabi1790930', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:28.803189]:[2272]: Cards received: ('Eight' of 'Hearts')('Jack' of 'Hearts')('King' of 'Diamonds')('Three' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:20:29.585233]:[2272]: Player: 'BIGG__FISHYY', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:33.335448]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:39.204784]:[2272]: Player: 'csabi1790930', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:45.071119]:[2272]: Player: 'csabi1790930', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:45.229128]:[2272]: Cards received: ('Eight' of 'Hearts')('Jack' of 'Hearts')('King' of 'Diamonds')('Three' of 'Clubs')('Queen' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:20:47.528260]:[2272]: Player: 'BIGG__FISHYY', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:54.299647]:[2272]: Player: 'dinosaur25', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:54.580663]:[2272]: Player: 'dinosaur25', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:54.580663]:[2272]: Player: 'dinosaur25', action: 'Bet', amount: '722' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:56.640781]:[2272]: Player: 'csabi1790930', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:56.918797]:[2272]: Player: 'BIGG__FISHYY', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:56.923797]:[2272]: Player: 'dinosaur25', stack: '601' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:56.924797]:[2272]: Player: 'dinosaur25', stack: '722' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:56.924797]:[2272]: Player: 'dinosaur25', action: 'MoneyReturn', amount: '722' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:59.247930]:[2272]: Player: 'csabi1790930', stack: '396' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:59.248930]:[2272]: Player: 'CLRN', stack: '1561' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:59.248930]:[2272]: Player: 'e.poppi', stack: '790' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:59.248930]:[2272]: Player: 'BIGG__FISHYY', stack: '591' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:59.249930]:[2272]: Player: 'dinosaur25', stack: '1112' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:59.249930]:[2272]: Ante: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:59.249930]:[2272]: Player: 'csabi1790930', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:59.250930]:[2272]: Player: 'CLRN', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:59.251930]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:59.252930]:[2272]: Player: 'BIGG__FISHYY', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:59.252930]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:20:59.257931]:[2272]: Player: 'BIGG__FISHYY', stack: '541' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:59.258931]:[2272]: Player: 'BIGG__FISHYY', stack: '1012' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:59.258931]:[2272]: Player: 'BIGG__FISHYY', action: 'SmallBlind', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:20:59.262931]:[2272]: Player cards: ('Eight' of 'Diamonds')('Eight' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:21:00.724014]:[2272]: Player: 'csabi1790930', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:04.227215]:[2272]: Player: 'CLRN', stack: '1261' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:04.228215]:[2272]: Player: 'CLRN', action: 'Raise', amount: '300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:04.507231]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:06.644353]:[2272]: Player: 'BIGG__FISHYY', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:08.504459]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:10.563577]:[2272]: Player: 'dinosaur25', stack: '286' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:10.563577]:[2272]: Player: 'dinosaur25', stack: '952' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:10.564577]:[2272]: Player: 'dinosaur25', action: 'SmallBlind', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:10.583578]:[2272]: Player cards: ('Six' of 'Clubs')('Seven' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:21:14.031776]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:14.329793]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:17.411969]:[2272]: Player: 'BIGG__FISHYY', stack: '131' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:17.412969]:[2272]: Player: 'BIGG__FISHYY', action: 'Raise', amount: '400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:22.687271]:[2272]: Player: 'dinosaur25', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:22.687271]:[2272]: Player: 'dinosaur25', action: 'Raise', amount: '1002' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:28.491603]:[2272]: Player: 'csabi1790930', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:28.492603]:[2272]: Player: 'csabi1790930', action: 'Call', amount: '286' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:28.769619]:[2272]: Player: 'BIGG__FISHYY', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:28.769619]:[2272]: Player: 'BIGG__FISHYY', action: 'Call', amount: '131' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:29.683671]:[2272]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:30.531719]:[2272]: Cards received: ('Three' of 'Diamonds')('Ace' of 'Diamonds')('Four' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:21:32.531834]:[2272]: Cards received: ('Three' of 'Diamonds')('Ace' of 'Diamonds')('Four' of 'Hearts')('Jack' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:21:34.123925]:[2272]: Cards received: ('Three' of 'Diamonds')('Ace' of 'Diamonds')('Four' of 'Hearts')('Jack' of 'Diamonds')('Five' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:21:35.457001]:[2272]: Player: 'dinosaur25', action: 'ShowCards', cards: 'AcAs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:35.459001]:[2272]: Player: 'BIGG__FISHYY', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:35.460001]:[2272]: Player: 'BIGG__FISHYY', action: 'ShowCards', cards: 'KsQs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:36.192043]:[2272]: Player: 'dinosaur25', stack: '761' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:36.193043]:[2272]: Player: 'dinosaur25', action: 'WinCards', pot: '290', cards: 'AcAsAdJd5d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:36.197043]:[2272]: Player: 'csabi1790930', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:36.197043]:[2272]: Player: 'csabi1790930', action: 'ShowCards', cards: 'QcTs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:36.760076]:[2272]: Player: 'BIGG__FISHYY', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:36.760076]:[2272]: Player: 'BIGG__FISHYY', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:36.761076]:[2272]: Player: 'BIGG__FISHYY', action: 'Rank', amount: '4' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:41.921371]:[2272]: Player: 'CLRN', stack: '1739' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:21:41.922371]:[2272]: Player: 'e.poppi', stack: '768' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:21:41.922371]:[2272]: Player: 'dinosaur25', stack: '1957' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:21:41.922371]:[2272]: Ante: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:21:41.922371]:[2272]: Player: 'CLRN', action: 'Ante', amount: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:21:41.923371]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:21:41.923371]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:21:41.926371]:[2272]: Player: 'CLRN', stack: '1679' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:41.927371]:[2272]: Player: 'CLRN', stack: '648' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:41.927371]:[2272]: Player: 'CLRN', action: 'SmallBlind', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:41.929371]:[2272]: Player cards: ('Five' of 'Clubs')('King' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:21:45.109553]:[2272]: Player: 'dinosaur25', stack: '1837' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:45.110553]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:47.417685]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:49.314794]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:49.926829]:[2272]: Cards received: ('Two' of 'Spades')('Eight' of 'Diamonds')('Queen' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:21:52.819994]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:54.516091]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:54.675100]:[2272]: Cards received: ('Two' of 'Spades')('Eight' of 'Diamonds')('Queen' of 'Diamonds')('Nine' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:21:56.280192]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:58.272306]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:21:58.430315]:[2272]: Cards received: ('Two' of 'Spades')('Eight' of 'Diamonds')('Queen' of 'Diamonds')('Nine' of 'Spades')('Four' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:21:59.977404]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:02.037521]:[2272]: Player: 'dinosaur25', stack: '1717' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:02.037521]:[2272]: Player: 'dinosaur25', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:03.223589]:[2272]: Player: 'e.poppi', stack: '528' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:03.223589]:[2272]: Player: 'e.poppi', action: 'Call', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:03.982633]:[2272]: Player: 'dinosaur25', action: 'ShowCards', cards: 'KdJc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:03.985633]:[2272]: Player: 'e.poppi', stack: '1717' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:03.986633]:[2272]: Player: 'e.poppi', action: 'ShowCards', cards: 'Ks8s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:05.701731]:[2272]: Player: 'CLRN', stack: '1667' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:05.702731]:[2272]: Player: 'e.poppi', stack: '1092' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:05.702731]:[2272]: Player: 'dinosaur25', stack: '1705' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:05.702731]:[2272]: Ante: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:05.703731]:[2272]: Player: 'CLRN', action: 'Ante', amount: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:05.704731]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:05.704731]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:05.709731]:[2272]: Player: 'e.poppi', stack: '1032' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:05.710731]:[2272]: Player: 'e.poppi', stack: '1585' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:05.710731]:[2272]: Player: 'e.poppi', action: 'SmallBlind', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:05.714732]:[2272]: Player cards: ('Two' of 'Diamonds')('Ace' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:22:08.108869]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:09.300937]:[2272]: Player: 'e.poppi', stack: '972' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:09.300937]:[2272]: Player: 'e.poppi', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:11.146042]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:11.836082]:[2272]: Cards received: ('Nine' of 'Spades')('Eight' of 'Clubs')('Three' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:22:14.068209]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:15.847311]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:16.272336]:[2272]: Cards received: ('Nine' of 'Spades')('Eight' of 'Clubs')('Three' of 'Diamonds')('Ten' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:22:17.572410]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:19.320510]:[2272]: Player: 'dinosaur25', stack: '1465' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:19.321510]:[2272]: Player: 'dinosaur25', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:25.457861]:[2272]: Player: 'e.poppi', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:31.584211]:[2272]: Player: 'e.poppi', stack: '852' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:31.585211]:[2272]: Player: 'e.poppi', action: 'Call', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:32.471262]:[2272]: Cards received: ('Nine' of 'Spades')('Eight' of 'Clubs')('Three' of 'Diamonds')('Ten' of 'Spades')('Queen' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:22:33.752335]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:36.239478]:[2272]: Player: 'dinosaur25', stack: '1345' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:36.240478]:[2272]: Player: 'dinosaur25', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:39.938689]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:40.215705]:[2272]: Player: 'dinosaur25', stack: '852' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:40.215705]:[2272]: Player: 'dinosaur25', stack: '1465' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:40.216705]:[2272]: Player: 'dinosaur25', action: 'MoneyReturn', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:42.222820]:[2272]: Player: 'CLRN', stack: '1655' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:42.223820]:[2272]: Player: 'e.poppi', stack: '840' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:42.223820]:[2272]: Player: 'dinosaur25', stack: '1969' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:42.223820]:[2272]: Ante: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:42.224820]:[2272]: Player: 'CLRN', action: 'Ante', amount: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:42.225820]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:42.225820]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:42.228820]:[2272]: Player: 'dinosaur25', stack: '1535' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:42.229820]:[2272]: Player: 'dinosaur25', stack: '1909' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:42.229820]:[2272]: Player: 'dinosaur25', action: 'SmallBlind', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:42.231820]:[2272]: Player cards: ('Nine' of 'Clubs')('Jack' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:22:44.766965]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:47.424117]:[2272]: Player: 'dinosaur25', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:47.424117]:[2272]: Player: 'dinosaur25', action: 'Raise', amount: '1969' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:50.502293]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:52.990436]:[2272]: Player: 'CLRN', stack: '1523' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:52.990436]:[2272]: Player: 'e.poppi', stack: '828' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:52.990436]:[2272]: Player: 'dinosaur25', stack: '2113' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:52.990436]:[2272]: Ante: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:52.991436]:[2272]: Player: 'CLRN', action: 'Ante', amount: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:52.991436]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:52.991436]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:22:52.994436]:[2272]: Player: 'CLRN', stack: '1463' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:52.995436]:[2272]: Player: 'CLRN', stack: '708' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:52.995436]:[2272]: Player: 'CLRN', action: 'SmallBlind', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:52.997436]:[2272]: Player cards: ('Six' of 'Clubs')('Ace' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:22:56.848656]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:22:59.962834]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:02.450977]:[2272]: Player: 'CLRN', stack: '1451' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:02.451977]:[2272]: Player: 'e.poppi', stack: '912' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:02.451977]:[2272]: Player: 'dinosaur25', stack: '2101' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:02.451977]:[2272]: Ante: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:02.452977]:[2272]: Player: 'CLRN', action: 'Ante', amount: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:02.453977]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:02.453977]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '12' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:02.459977]:[2272]: Player: 'e.poppi', stack: '852' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:02.459977]:[2272]: Player: 'e.poppi', stack: '1981' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:02.459977]:[2272]: Player: 'e.poppi', action: 'SmallBlind', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:02.463978]:[2272]: Player cards: ('Nine' of 'Spades')('Queen' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:23:06.132187]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:12.381545]:[2272]: Player: 'e.poppi', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:14.164647]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:20.665019]:[2272]: Player: 'CLRN', stack: '1436' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:20.665019]:[2272]: Player: 'e.poppi', stack: '837' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:20.666019]:[2272]: Player: 'dinosaur25', stack: '2182' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:20.666019]:[2272]: Ante: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:20.666019]:[2272]: Player: 'CLRN', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:20.667019]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:20.668019]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:20.673019]:[2272]: Player: 'dinosaur25', stack: '1286' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:20.674019]:[2272]: Player: 'dinosaur25', stack: '2107' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:20.674019]:[2272]: Player: 'dinosaur25', action: 'SmallBlind', amount: '75' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:20.678019]:[2272]: Player cards: ('King' of 'Spades')('Six' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:23:24.407233]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:26.347344]:[2272]: Player: 'dinosaur25', stack: '2032' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:26.347344]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '75' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:27.494409]:[2272]: Player: 'CLRN', stack: '1136' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:27.495409]:[2272]: Player: 'CLRN', action: 'Raise', amount: '300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:31.097615]:[2272]: Player: 'dinosaur25', stack: '1882' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:31.098615]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:31.996667]:[2272]: Cards received: ('Jack' of 'Clubs')('King' of 'Diamonds')('Nine' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:23:35.000839]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:38.360031]:[2272]: Player: 'CLRN', stack: '386' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:38.360031]:[2272]: Player: 'CLRN', action: 'Bet', amount: '750' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:41.529212]:[2272]: Player: 'dinosaur25', stack: '382' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:41.529212]:[2272]: Player: 'dinosaur25', action: 'Raise', amount: '1500' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:43.816343]:[2272]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:43.816343]:[2272]: Player: 'CLRN', action: 'Call', amount: '386' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:44.275369]:[2272]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:46.211480]:[2272]: Cards received: ('Jack' of 'Clubs')('King' of 'Diamonds')('Nine' of 'Diamonds')('Nine' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:23:47.925578]:[2272]: Cards received: ('Jack' of 'Clubs')('King' of 'Diamonds')('Nine' of 'Diamonds')('Nine' of 'Clubs')('Eight' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:23:49.172649]:[2272]: Player: 'dinosaur25', action: 'ShowCards', cards: 'Kc6d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:49.176649]:[2272]: Player: 'CLRN', action: 'ShowCards', cards: 'Ks6h' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:51.295771]:[2272]: Player: 'CLRN', stack: '1443' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:51.295771]:[2272]: Player: 'e.poppi', stack: '822' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:51.295771]:[2272]: Player: 'dinosaur25', stack: '2190' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:51.296771]:[2272]: Ante: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:51.297771]:[2272]: Player: 'CLRN', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:51.297771]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:51.298771]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:51.303771]:[2272]: Player: 'CLRN', stack: '1368' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:51.304771]:[2272]: Player: 'CLRN', stack: '672' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:51.304771]:[2272]: Player: 'CLRN', action: 'SmallBlind', amount: '75' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:51.308771]:[2272]: Player cards: ('Two' of 'Clubs')('Four' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:23:54.231938]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:57.343116]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:59.627247]:[2272]: Player: 'CLRN', stack: '1353' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:59.627247]:[2272]: Player: 'e.poppi', stack: '927' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:59.628247]:[2272]: Player: 'dinosaur25', stack: '2175' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:59.628247]:[2272]: Ante: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:59.629247]:[2272]: Player: 'CLRN', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:59.629247]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:59.630247]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:23:59.638248]:[2272]: Player: 'e.poppi', stack: '852' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:59.639248]:[2272]: Player: 'e.poppi', stack: '2025' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:59.639248]:[2272]: Player: 'e.poppi', action: 'SmallBlind', amount: '75' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:23:59.643248]:[2272]: Player cards: ('Queen' of 'Spades')('Queen' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:24:03.102446]:[2272]: Player: 'CLRN', stack: '903' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:03.102446]:[2272]: Player: 'CLRN', action: 'Raise', amount: '450' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:04.946551]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:06.559644]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:09.061787]:[2272]: Player: 'CLRN', stack: '1608' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:24:09.062787]:[2272]: Player: 'e.poppi', stack: '837' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:24:09.062787]:[2272]: Player: 'dinosaur25', stack: '2010' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:24:09.062787]:[2272]: Ante: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:24:09.063787]:[2272]: Player: 'CLRN', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:24:09.064787]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:24:09.064787]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:24:09.069787]:[2272]: Player: 'dinosaur25', stack: '1458' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:09.070787]:[2272]: Player: 'dinosaur25', stack: '1935' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:09.070787]:[2272]: Player: 'dinosaur25', action: 'SmallBlind', amount: '75' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:09.074787]:[2272]: Player cards: ('Ace' of 'Diamonds')('Two' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:24:11.775942]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:14.678108]:[2272]: Player: 'dinosaur25', stack: '1860' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:14.678108]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '75' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:17.257255]:[2272]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:17.953295]:[2272]: Cards received: ('Four' of 'Clubs')('Ten' of 'Clubs')('Queen' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:24:21.450495]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:25.324717]:[2272]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:25.767742]:[2272]: Cards received: ('Four' of 'Clubs')('Ten' of 'Clubs')('Queen' of 'Clubs')('Four' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:24:31.091047]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:34.191224]:[2272]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:34.353233]:[2272]: Cards received: ('Four' of 'Clubs')('Ten' of 'Clubs')('Queen' of 'Clubs')('Four' of 'Spades')('Ace' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:24:37.268400]:[2272]: Player: 'dinosaur25', stack: '1710' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:37.268400]:[2272]: Player: 'dinosaur25', action: 'Bet', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:37.974440]:[2272]: Player: 'CLRN', stack: '1158' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:37.974440]:[2272]: Player: 'CLRN', action: 'Raise', amount: '300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:41.238627]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:43.618763]:[2272]: Player: 'CLRN', stack: '1938' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:24:43.618763]:[2272]: Player: 'e.poppi', stack: '822' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:24:43.619763]:[2272]: Player: 'dinosaur25', stack: '1695' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:24:43.619763]:[2272]: Ante: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:24:43.619763]:[2272]: Player: 'CLRN', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:24:43.620763]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:24:43.621763]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:24:43.627764]:[2272]: Player: 'CLRN', stack: '1863' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:43.627764]:[2272]: Player: 'CLRN', stack: '672' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:43.628764]:[2272]: Player: 'CLRN', action: 'SmallBlind', amount: '75' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:43.632764]:[2272]: Player cards: ('Three' of 'Diamonds')('Three' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:24:48.599048]:[2272]: Player: 'dinosaur25', stack: '1545' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:48.599048]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:50.634165]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:51.882236]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:52.772287]:[2272]: Cards received: ('Seven' of 'Hearts')('Six' of 'Spades')('Seven' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:24:54.741399]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:56.162481]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:56.598506]:[2272]: Cards received: ('Seven' of 'Hearts')('Six' of 'Spades')('Seven' of 'Clubs')('Nine' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:24:57.640565]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:59.569676]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:24:59.806689]:[2272]: Cards received: ('Seven' of 'Hearts')('Six' of 'Spades')('Seven' of 'Clubs')('Nine' of 'Clubs')('Nine' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:25:03.493900]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:06.640080]:[2272]: Player: 'dinosaur25', stack: '1395' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:06.640080]:[2272]: Player: 'dinosaur25', action: 'Bet', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:08.067162]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:08.353178]:[2272]: Player: 'dinosaur25', stack: '672' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:08.353178]:[2272]: Player: 'dinosaur25', stack: '1545' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:08.354178]:[2272]: Player: 'dinosaur25', action: 'MoneyReturn', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:10.548304]:[2272]: Player: 'CLRN', stack: '1848' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:25:10.548304]:[2272]: Player: 'e.poppi', stack: '657' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:25:10.549304]:[2272]: Player: 'dinosaur25', stack: '1950' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:25:10.549304]:[2272]: Ante: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:25:10.549304]:[2272]: Player: 'CLRN', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:25:10.549304]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:25:10.550304]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:25:10.552304]:[2272]: Player: 'e.poppi', stack: '582' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:10.553304]:[2272]: Player: 'e.poppi', stack: '1800' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:10.553304]:[2272]: Player: 'e.poppi', action: 'SmallBlind', amount: '75' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:10.554304]:[2272]: Player cards: ('Seven' of 'Spades')('Six' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:25:14.150510]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:15.060562]:[2272]: Player: 'e.poppi', stack: '507' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:15.061562]:[2272]: Player: 'e.poppi', action: 'Call', amount: '75' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:17.099678]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:17.786718]:[2272]: Cards received: ('Ace' of 'Hearts')('Four' of 'Hearts')('King' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:25:24.306090]:[2272]: Player: 'e.poppi', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:24.978129]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:27.385267]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:27.544276]:[2272]: Cards received: ('Ace' of 'Hearts')('Four' of 'Hearts')('King' of 'Clubs')('King' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:25:29.686398]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:31.592507]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:32.025532]:[2272]: Cards received: ('Ace' of 'Hearts')('Four' of 'Hearts')('King' of 'Clubs')('King' of 'Spades')('Nine' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:25:33.704628]:[2272]: Player: 'e.poppi', stack: '357' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:33.705628]:[2272]: Player: 'e.poppi', action: 'Bet', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:36.237773]:[2272]: Player: 'dinosaur25', stack: '1650' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:36.237773]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:36.703800]:[2272]: Player: 'e.poppi', action: 'ShowCards', cards: 'Jd9c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:37.597851]:[2272]: Player: 'dinosaur25', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:43.504189]:[2272]: Player: 'CLRN', stack: '1830' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:25:43.504189]:[2272]: Player: 'e.poppi', stack: '984' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:25:43.505189]:[2272]: Player: 'dinosaur25', stack: '1632' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:25:43.505189]:[2272]: Ante: '18' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:25:43.506189]:[2272]: Player: 'CLRN', action: 'Ante', amount: '18' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:25:43.507189]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '18' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:25:43.508189]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '18' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:25:43.530190]:[2272]: Player: 'dinosaur25', stack: '1650' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:43.530190]:[2272]: Player: 'dinosaur25', stack: '1542' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:43.530190]:[2272]: Player: 'dinosaur25', action: 'SmallBlind', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:43.543191]:[2272]: Player cards: ('Seven' of 'Diamonds')('Eight' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:25:46.194342]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:51.363638]:[2272]: Player: 'dinosaur25', stack: '1452' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:51.364638]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:55.320864]:[2272]: Player: 'CLRN', stack: '1290' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:25:55.321864]:[2272]: Player: 'CLRN', action: 'Raise', amount: '540' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:01.723231]:[2272]: Player: 'dinosaur25', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:01.723231]:[2272]: Player: 'dinosaur25', action: 'Raise', amount: '1632' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:04.226374]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:06.462502]:[2272]: Player: 'CLRN', stack: '1272' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:26:06.462502]:[2272]: Player: 'e.poppi', stack: '966' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:26:06.463502]:[2272]: Player: 'dinosaur25', stack: '2208' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:26:06.463502]:[2272]: Ante: '18' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:26:06.463502]:[2272]: Player: 'CLRN', action: 'Ante', amount: '18' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:26:06.464502]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '18' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:26:06.465502]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '18' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:26:06.468502]:[2272]: Player: 'CLRN', stack: '1182' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:06.468502]:[2272]: Player: 'CLRN', stack: '786' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:06.468502]:[2272]: Player: 'CLRN', action: 'SmallBlind', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:06.470502]:[2272]: Player cards: ('Six' of 'Spades')('Three' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:26:09.087652]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:11.260776]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:13.781920]:[2272]: Player: 'CLRN', stack: '1164' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:26:13.782920]:[2272]: Player: 'e.poppi', stack: '1092' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:26:13.782920]:[2272]: Player: 'dinosaur25', stack: '2190' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:26:13.782920]:[2272]: Ante: '18' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:26:13.783920]:[2272]: Player: 'CLRN', action: 'Ante', amount: '18' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:26:13.783920]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '18' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:26:13.784920]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '18' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:26:13.789921]:[2272]: Player: 'e.poppi', stack: '1002' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:13.790921]:[2272]: Player: 'e.poppi', stack: '2010' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:13.790921]:[2272]: Player: 'e.poppi', action: 'SmallBlind', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:13.794921]:[2272]: Player cards: ('Eight' of 'Diamonds')('Eight' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:26:16.932100]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:23.218460]:[2272]: Player: 'e.poppi', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:31.411929]:[2272]: Player: 'e.poppi', action: 'SecondsLeft', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:33.220032]:[2272]: Player: 'e.poppi', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:37.105254]:[2272]: Player: 'e.poppi', stack: '912' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:37.105254]:[2272]: Player: 'e.poppi', action: 'Call', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:39.311381]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:39.927416]:[2272]: Cards received: ('Queen' of 'Hearts')('Seven' of 'Diamonds')('Jack' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:26:45.812752]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:48.097883]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:48.541908]:[2272]: Cards received: ('Queen' of 'Hearts')('Seven' of 'Diamonds')('Jack' of 'Clubs')('King' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:26:53.389186]:[2272]: Player: 'e.poppi', stack: '732' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:53.390186]:[2272]: Player: 'e.poppi', action: 'Bet', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:55.492306]:[2272]: Player: 'dinosaur25', stack: '1830' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:55.492306]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:56.110341]:[2272]: Cards received: ('Queen' of 'Hearts')('Seven' of 'Diamonds')('Jack' of 'Clubs')('King' of 'Hearts')('Four' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:26:57.731434]:[2272]: Player: 'e.poppi', stack: '552' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:26:57.731434]:[2272]: Player: 'e.poppi', action: 'Bet', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:00.294581]:[2272]: Player: 'dinosaur25', stack: '1650' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:00.295581]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:00.758607]:[2272]: Player: 'e.poppi', action: 'ShowCards', cards: '3hKs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:00.760607]:[2272]: Player: 'dinosaur25', stack: '552' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:00.761607]:[2272]: Player: 'dinosaur25', action: 'ShowCards', cards: '8sKd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:02.809725]:[2272]: Player: 'CLRN', stack: '1146' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:02.809725]:[2272]: Player: 'e.poppi', stack: '534' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:02.809725]:[2272]: Player: 'dinosaur25', stack: '2766' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:02.809725]:[2272]: Ante: '18' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:02.810725]:[2272]: Player: 'CLRN', action: 'Ante', amount: '18' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:02.810725]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '18' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:02.811725]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '18' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:02.814725]:[2272]: Player: 'dinosaur25', stack: '966' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:02.815725]:[2272]: Player: 'dinosaur25', stack: '2676' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:02.815725]:[2272]: Player: 'dinosaur25', action: 'SmallBlind', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:02.819725]:[2272]: Player cards: ('Five' of 'Diamonds')('Four' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:27:04.901844]:[2272]: Player: 'e.poppi', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:07.592998]:[2272]: Player: 'dinosaur25', stack: '2586' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:07.592998]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:11.555225]:[2272]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:12.244264]:[2272]: Cards received: ('Five' of 'Spades')('Ace' of 'Clubs')('Jack' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:27:15.125429]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:19.080655]:[2272]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:19.236664]:[2272]: Cards received: ('Five' of 'Spades')('Ace' of 'Clubs')('Jack' of 'Diamonds')('Three' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:27:22.195833]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:24.501965]:[2272]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:24.936990]:[2272]: Cards received: ('Five' of 'Spades')('Ace' of 'Clubs')('Jack' of 'Diamonds')('Three' of 'Clubs')('Six' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:27:26.471078]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:28.675204]:[2272]: Player: 'CLRN', stack: '786' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:28.676204]:[2272]: Player: 'CLRN', action: 'Bet', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:35.145574]:[2272]: Player: 'dinosaur25', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:36.273639]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:36.278639]:[2272]: Player: 'CLRN', stack: '966' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:36.279639]:[2272]: Player: 'CLRN', stack: '2586' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:36.279639]:[2272]: Player: 'CLRN', action: 'MoneyReturn', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:42.514996]:[2272]: Player: 'CLRN', stack: '1359' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:42.514996]:[2272]: Player: 'e.poppi', stack: '513' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:42.514996]:[2272]: Player: 'dinosaur25', stack: '2565' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:42.514996]:[2272]: Ante: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:42.515996]:[2272]: Player: 'CLRN', action: 'Ante', amount: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:42.516996]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:42.516996]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:42.521996]:[2272]: Player: 'CLRN', stack: '1254' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:42.522996]:[2272]: Player: 'CLRN', stack: '303' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:42.522996]:[2272]: Player: 'CLRN', action: 'SmallBlind', amount: '105' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:42.526996]:[2272]: Player cards: ('Jack' of 'Hearts')('Five' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:27:45.214150]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:48.286326]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:50.511453]:[2272]: Player: 'CLRN', stack: '1233' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:50.512453]:[2272]: Player: 'e.poppi', stack: '660' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:50.512453]:[2272]: Player: 'dinosaur25', stack: '2544' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:50.512453]:[2272]: Ante: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:50.513453]:[2272]: Player: 'CLRN', action: 'Ante', amount: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:50.513453]:[2272]: Player: 'e.poppi', action: 'Ante', amount: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:50.514453]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:27:50.520453]:[2272]: Player: 'e.poppi', stack: '555' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:50.520453]:[2272]: Player: 'e.poppi', stack: '2334' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:50.520453]:[2272]: Player: 'e.poppi', action: 'SmallBlind', amount: '105' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:50.524454]:[2272]: Player cards: ('Nine' of 'Clubs')('Nine' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:27:53.360616]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:57.883875]:[2272]: Player: 'e.poppi', stack: '450' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:57.883875]:[2272]: Player: 'e.poppi', action: 'Call', amount: '105' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:27:59.916991]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:00.809042]:[2272]: Cards received: ('King' of 'Diamonds')('Five' of 'Diamonds')('Five' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:28:02.738152]:[2272]: Player: 'e.poppi', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:04.536255]:[2272]: Player: 'dinosaur25', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:04.694264]:[2272]: Cards received: ('King' of 'Diamonds')('Five' of 'Diamonds')('Five' of 'Hearts')('Three' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:28:08.334472]:[2272]: Player: 'e.poppi', stack: '240' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:08.335472]:[2272]: Player: 'e.poppi', action: 'Bet', amount: '210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:11.874675]:[2272]: Player: 'dinosaur25', stack: '2124' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:11.875675]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:12.562714]:[2272]: Cards received: ('King' of 'Diamonds')('Five' of 'Diamonds')('Five' of 'Hearts')('Three' of 'Hearts')('Ten' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:28:14.102802]:[2272]: Player: 'e.poppi', stack: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:14.102802]:[2272]: Player: 'e.poppi', action: 'Bet', amount: '210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:17.624004]:[2272]: Player: 'dinosaur25', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:17.624004]:[2272]: Player: 'dinosaur25', action: 'Raise', amount: '2124' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:19.312100]:[2272]: Player: 'e.poppi', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:19.312100]:[2272]: Player: 'e.poppi', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:19.769126]:[2272]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:21.082201]:[2272]: Player: 'dinosaur25', action: 'ShowCards', cards: '5cTs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:21.086202]:[2272]: Player: 'e.poppi', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:21.087202]:[2272]: Player: 'e.poppi', action: 'ShowCards', cards: 'Jc3d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:21.669235]:[2272]: Player: 'e.poppi', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:21.669235]:[2272]: Player: 'e.poppi', action: 'Rank', amount: '3' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:27.047543]:[2272]: Player: 'CLRN', stack: '1212' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:27.047543]:[2272]: Player: 'dinosaur25', stack: '3246' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:27.047543]:[2272]: Ante: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:27.048543]:[2272]: Player: 'CLRN', action: 'Ante', amount: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:27.048543]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:27.054543]:[2272]: Player: 'dinosaur25', stack: '1002' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:27.054543]:[2272]: Player: 'dinosaur25', stack: '3141' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:27.054543]:[2272]: Player: 'dinosaur25', action: 'SmallBlind', amount: '105' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:27.058543]:[2272]: Player cards: ('Two' of 'Hearts')('Queen' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:28:30.598746]:[2272]: Player: 'dinosaur25', stack: '3036' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:30.599746]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '105' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:32.242840]:[2272]: Player: 'CLRN', stack: '792' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:32.243840]:[2272]: Player: 'CLRN', action: 'Raise', amount: '420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:34.415964]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:36.556087]:[2272]: Player: 'CLRN', stack: '1443' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:36.556087]:[2272]: Player: 'dinosaur25', stack: '3015' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:36.556087]:[2272]: Ante: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:36.556087]:[2272]: Player: 'CLRN', action: 'Ante', amount: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:36.556087]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:36.559087]:[2272]: Player: 'CLRN', stack: '1338' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:36.559087]:[2272]: Player: 'CLRN', stack: '2805' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:36.561087]:[2272]: Player: 'CLRN', action: 'SmallBlind', amount: '105' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:36.563087]:[2272]: Player cards: ('Two' of 'Hearts')('Seven' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:28:39.206238]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:41.712381]:[2272]: Player: 'CLRN', stack: '1317' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:41.712381]:[2272]: Player: 'dinosaur25', stack: '3141' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:41.712381]:[2272]: Ante: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:41.713381]:[2272]: Player: 'CLRN', action: 'Ante', amount: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:41.713381]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:41.718382]:[2272]: Player: 'dinosaur25', stack: '1107' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:41.718382]:[2272]: Player: 'dinosaur25', stack: '3036' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:41.718382]:[2272]: Player: 'dinosaur25', action: 'SmallBlind', amount: '105' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:41.721382]:[2272]: Player cards: ('Queen' of 'Clubs')('Jack' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:28:48.705781]:[2272]: Player: 'dinosaur25', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:51.680952]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:54.049087]:[2272]: Player: 'CLRN', stack: '1443' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:54.050087]:[2272]: Player: 'dinosaur25', stack: '3015' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:54.050087]:[2272]: Ante: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:54.050087]:[2272]: Player: 'CLRN', action: 'Ante', amount: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:54.052087]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '21' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:28:54.077089]:[2272]: Player: 'CLRN', stack: '1338' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:54.077089]:[2272]: Player: 'CLRN', stack: '2805' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:54.078089]:[2272]: Player: 'CLRN', action: 'SmallBlind', amount: '105' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:54.079089]:[2272]: Player cards: ('King' of 'Hearts')('Two' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:28:55.141150]:[2272]: Player: 'CLRN', stack: '1023' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:55.142150]:[2272]: Player: 'CLRN', action: 'Raise', amount: '420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:57.680295]:[2272]: Player: 'dinosaur25', stack: '2595' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:57.680295]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:28:58.587347]:[2272]: Cards received: ('Six' of 'Spades')('Four' of 'Diamonds')('Three' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:29:02.656579]:[2272]: Player: 'dinosaur25', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:02.656579]:[2272]: Player: 'dinosaur25', action: 'Bet', amount: '2595' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:08.815932]:[2272]: Player: 'CLRN', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:13.354191]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:13.650208]:[2272]: Player: 'dinosaur25', stack: '1023' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:13.650208]:[2272]: Player: 'dinosaur25', stack: '2595' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:13.651208]:[2272]: Player: 'dinosaur25', action: 'MoneyReturn', amount: '2595' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:19.621550]:[2272]: Player: 'CLRN', stack: '998' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:19.622550]:[2272]: Player: 'dinosaur25', stack: '3452' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:19.622550]:[2272]: Ante: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:19.622550]:[2272]: Player: 'CLRN', action: 'Ante', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:19.623550]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:19.628550]:[2272]: Player: 'dinosaur25', stack: '748' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:19.629550]:[2272]: Player: 'dinosaur25', stack: '3327' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:19.629550]:[2272]: Player: 'dinosaur25', action: 'SmallBlind', amount: '125' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:19.633550]:[2272]: Player cards: ('Five' of 'Diamonds')('Queen' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:29:22.301703]:[2272]: Player: 'dinosaur25', stack: '3202' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:22.302703]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '125' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:25.217870]:[2272]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:26.117921]:[2272]: Cards received: ('Jack' of 'Hearts')('Eight' of 'Clubs')('Three' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:29:27.754015]:[2272]: Player: 'CLRN', stack: '498' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:27.755015]:[2272]: Player: 'CLRN', action: 'Bet', amount: '250' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:29.276102]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:29.280102]:[2272]: Player: 'CLRN', stack: '748' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:29.280102]:[2272]: Player: 'CLRN', stack: '3202' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:29.280102]:[2272]: Player: 'CLRN', action: 'MoneyReturn', amount: '250' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:31.769245]:[2272]: Player: 'CLRN', stack: '1273' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:31.770245]:[2272]: Player: 'dinosaur25', stack: '3177' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:31.770245]:[2272]: Ante: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:31.771245]:[2272]: Player: 'CLRN', action: 'Ante', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:31.771245]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:31.781245]:[2272]: Player: 'CLRN', stack: '1148' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:31.781245]:[2272]: Player: 'CLRN', stack: '2927' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:31.782245]:[2272]: Player: 'CLRN', action: 'SmallBlind', amount: '125' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:31.786246]:[2272]: Player cards: ('Eight' of 'Clubs')('Queen' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:29:35.671468]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:38.173611]:[2272]: Player: 'CLRN', stack: '1123' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:38.174611]:[2272]: Player: 'dinosaur25', stack: '3327' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:38.174611]:[2272]: Ante: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:38.175611]:[2272]: Player: 'CLRN', action: 'Ante', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:38.175611]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:38.181611]:[2272]: Player: 'dinosaur25', stack: '873' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:38.181611]:[2272]: Player: 'dinosaur25', stack: '3202' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:38.181611]:[2272]: Player: 'dinosaur25', action: 'SmallBlind', amount: '125' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:38.185612]:[2272]: Player cards: ('Four' of 'Spades')('Seven' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:29:41.348792]:[2272]: Player: 'dinosaur25', stack: '3077' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:41.348792]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '125' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:43.435912]:[2272]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:44.326963]:[2272]: Cards received: ('Six' of 'Hearts')('King' of 'Hearts')('Two' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:29:47.935169]:[2272]: Player: 'CLRN', stack: '623' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:47.936169]:[2272]: Player: 'CLRN', action: 'Bet', amount: '250' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:49.860279]:[2272]: Player: 'dinosaur25', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:49.865280]:[2272]: Player: 'CLRN', stack: '873' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:49.865280]:[2272]: Player: 'CLRN', stack: '3077' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:49.866280]:[2272]: Player: 'CLRN', action: 'MoneyReturn', amount: '250' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:52.222414]:[2272]: Player: 'CLRN', stack: '1398' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:52.222414]:[2272]: Player: 'dinosaur25', stack: '3052' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:52.222414]:[2272]: Ante: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:52.222414]:[2272]: Player: 'CLRN', action: 'Ante', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:52.223414]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:52.226415]:[2272]: Player: 'CLRN', stack: '1273' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:52.226415]:[2272]: Player: 'CLRN', stack: '2802' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:52.226415]:[2272]: Player: 'CLRN', action: 'SmallBlind', amount: '125' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:52.229415]:[2272]: Player cards: ('Six' of 'Hearts')('Three' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:29:54.557548]:[2272]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:56.922683]:[2272]: Player: 'CLRN', stack: '1248' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:56.923683]:[2272]: Player: 'dinosaur25', stack: '3202' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:56.924683]:[2272]: Ante: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:56.924683]:[2272]: Player: 'CLRN', action: 'Ante', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:56.925683]:[2272]: Player: 'dinosaur25', action: 'Ante', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-03-18T16:29:56.940684]:[2272]: Player: 'dinosaur25', stack: '998' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:56.940684]:[2272]: Player: 'dinosaur25', stack: '3077' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:56.941684]:[2272]: Player: 'dinosaur25', action: 'SmallBlind', amount: '125' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:56.945685]:[2272]: Player cards: ('Ten' of 'Diamonds')('Jack' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-03-18T16:29:59.497831]:[2272]: Player: 'dinosaur25', stack: '2952' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:29:59.498831]:[2272]: Player: 'dinosaur25', action: 'Call', amount: '125' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:30:02.175984]:[2272]: Player: 'CLRN', stack: '498' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:30:02.175984]:[2272]: Player: 'CLRN', action: 'Raise', amount: '750' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:30:08.640353]:[2272]: Player: 'dinosaur25', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:30:12.314564]:[2272]: Player: 'dinosaur25', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:30:12.314564]:[2272]: Player: 'dinosaur25', action: 'Raise', amount: '3202' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:30:14.709701]:[2272]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:30:14.710701]:[2272]: Player: 'CLRN', action: 'Call', amount: '498' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:30:15.172727]:[2272]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:30:16.612809]:[2272]: Cards received: ('Six' of 'Clubs')('Nine' of 'Diamonds')('Three' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:30:18.733931]:[2272]: Cards received: ('Six' of 'Clubs')('Nine' of 'Diamonds')('Three' of 'Diamonds')('Eight' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:30:20.114010]:[2272]: Cards received: ('Six' of 'Clubs')('Nine' of 'Diamonds')('Three' of 'Diamonds')('Eight' of 'Hearts')('King' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-03-18T16:30:21.531091]:[2272]: Player: 'CLRN', action: 'ShowCards', cards: 'TdJc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:30:21.535091]:[2272]: Player: 'dinosaur25', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:30:21.536091]:[2272]: Player: 'dinosaur25', action: 'ShowCards', cards: '8d9c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:30:22.413141]:[2272]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:30:22.414141]:[2272]: Player: 'CLRN', action: 'Rank', amount: '2' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:30:22.420142]:[2272]: Player: 'dinosaur25', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-03-18T16:30:22.421142]:[2272]: Player: 'dinosaur25', action: 'Rank', amount: '1' /* clnt::ps::msg::PlayerAction::Process */

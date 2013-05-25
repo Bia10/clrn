@@ -1,0 +1,33 @@
+cmake_minimum_required(VERSION 2.8)
+
+project(Projects)			# Название солюшна
+
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+set(COMMON_INC "${CMAKE_CURRENT_LIST_DIR}/common/common/inc/")
+set(DB_INC "${CMAKE_CURRENT_LIST_DIR}/common/db/inc/")
+set(NET_INC "${CMAKE_CURRENT_LIST_DIR}/common/net/inc/")
+
+add_definitions(
+	-D_VARIADIC_MAX=10
+	-D_WIN32_WINNT=0x0501
+	-D_CRT_SECURE_NO_WARNINGS
+	-D_SCL_SECURE_NO_WARNINGS
+)
+
+set(TOOLSET "vc110")
+set(THIRD_PARTY "d:/svn/trunk/ThirdParty/")
+link_directories(
+	"${THIRD_PARTY}/lib"
+	"${THIRD_PARTY}/lib/${CMAKE_CFG_INTDIR}"
+	"${LIBRARY_OUTPUT_PATH}"
+)
+include_directories(
+	"${THIRD_PARTY}"
+	"${COMMON_INC}"
+)
+
+add_subdirectory(common)
+if (POKER_BOT)
+	add_subdirectory(poker)
+endif()

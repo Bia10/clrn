@@ -1,0 +1,991 @@
+[NONE   ][0][2013-04-22T22:57:16.235611]:[6436]: Logger started, module: [0], level: [3], source: [logs/messages.txt].
+[TRACE  ][0][2013-04-22T22:57:51.519629]:[4992]: Ante: '0' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:57:51.535630]:[4992]: Player: 'alacrangor', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:57:51.535630]:[4992]: Player: 'sreklofevets', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:57:51.536630]:[4992]: Player: 'dtcone', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:57:51.536630]:[4992]: Player: '79bomber', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:57:51.536630]:[4992]: Player: 'Bonvenon', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:57:51.536630]:[4992]: Player: 'CLRN', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:57:51.536630]:[4992]: Player: 'gYorgYo300', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:57:51.536630]:[4992]: Player: 'cryingork', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:57:51.537630]:[4992]: Player: 'corvette2012', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T22:58:48.842908]:[4992]: Player: 'sreklofevets', stack: '1490' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T22:58:48.842908]:[4992]: Player: 'dtcone', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T22:58:48.843908]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T22:58:48.845908]:[4992]: Player: 'sreklofevets', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T22:58:48.848908]:[4992]: Player: 'dtcone', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T22:58:48.853908]:[4992]: Player cards: ('Ace' of 'Hearts')('Seven' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T22:58:58.324450]:[4992]: Player: '79bomber', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:58:59.961544]:[4992]: Player: '79bomber', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:58:59.963544]:[4992]: Player: '79bomber', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:00.038548]:[4992]: Player: 'Bonvenon', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:08.406027]:[4992]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:11.406198]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:16.540492]:[4992]: Player: 'gYorgYo300', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:16.542492]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:19.603667]:[4992]: Player: 'cryingork', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:19.605667]:[4992]: Player: 'cryingork', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:19.880683]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:20.465716]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:20.748732]:[4992]: Player: 'sreklofevets', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:20.750733]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:29.186215]:[4992]: Player: 'dtcone', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:31.290335]:[4992]: Player: 'dtcone', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:31.903370]:[4992]: Cards received: ('Nine' of 'Clubs')('Queen' of 'Hearts')('Seven' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T22:59:34.402513]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:39.129784]:[4992]: Player: 'dtcone', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:40.913886]:[4992]: Player: '79bomber', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:41.345911]:[4992]: Player: 'gYorgYo300', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:42.485976]:[4992]: Player: 'cryingork', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:42.650985]:[4992]: Cards received: ('Nine' of 'Clubs')('Queen' of 'Hearts')('Seven' of 'Clubs')('Six' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T22:59:46.175187]:[4992]: Player: 'sreklofevets', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:46.177187]:[4992]: Player: 'sreklofevets', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:50.550437]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:54.134642]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:57.098812]:[4992]: Player: 'gYorgYo300', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:58.681902]:[4992]: Player: 'cryingork', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:58.683902]:[4992]: Player: 'cryingork', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T22:59:59.296937]:[4992]: Cards received: ('Nine' of 'Clubs')('Queen' of 'Hearts')('Seven' of 'Clubs')('Six' of 'Diamonds')('King' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:00:06.086326]:[4992]: Player: 'sreklofevets', stack: '1320' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:06.088326]:[4992]: Player: 'sreklofevets', action: 'Bet', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:07.302395]:[4992]: Player: 'cryingork', stack: '1320' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:07.304395]:[4992]: Player: 'cryingork', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:07.872428]:[4992]: Player: 'sreklofevets', action: 'ShowCards', cards: 'KcKh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:08.137443]:[4992]: Player: 'cryingork', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:15.342855]:[4992]: Player: 'dtcone', stack: '1470' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:00:15.342855]:[4992]: Player: '79bomber', stack: '1460' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:00:15.342855]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:00:15.344855]:[4992]: Player: 'dtcone', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:00:15.352856]:[4992]: Player: '79bomber', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:00:15.374857]:[4992]: Player cards: ('King' of 'Clubs')('Five' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:00:19.705105]:[4992]: Player: 'Bonvenon', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:22.337255]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:27.214534]:[4992]: Player: 'gYorgYo300', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:27.216534]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:28.728621]:[4992]: Player: 'cryingork', stack: '1300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:28.730621]:[4992]: Player: 'cryingork', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:29.008637]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:29.465663]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:29.750679]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:33.162874]:[4992]: Player: 'dtcone', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:33.164874]:[4992]: Player: 'dtcone', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:35.462006]:[4992]: Player: '79bomber', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:36.353057]:[4992]: Cards received: ('Queen' of 'Spades')('Two' of 'Clubs')('King' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:00:40.244279]:[4992]: Player: 'dtcone', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:43.397460]:[4992]: Player: '79bomber', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:43.399460]:[4992]: Player: '79bomber', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:45.790597]:[4992]: Player: 'gYorgYo300', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:47.770710]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:49.824827]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:49.834828]:[4992]: Player: '79bomber', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:49.836828]:[4992]: Player: '79bomber', action: 'MoneyReturn', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:00:53.621044]:[4992]: Player cards: ('Six' of 'Spades')('Seven' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:01:03.021582]:[4992]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:08.295884]:[4992]: Player: 'CLRN', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:08.297884]:[4992]: Player: 'CLRN', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:12.734138]:[4992]: Player: 'gYorgYo300', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:12.735138]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:13.824200]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:17.504411]:[4992]: Player: 'corvette2012', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:17.505411]:[4992]: Player: 'corvette2012', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:17.830429]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:19.353516]:[4992]: Player: 'sreklofevets', stack: '1720' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:19.355516]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:20.193564]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:21.876661]:[4992]: Player: '79bomber', stack: '1520' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:21.878661]:[4992]: Player: '79bomber', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:24.430807]:[4992]: Player: 'Bonvenon', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:25.044842]:[4992]: Cards received: ('Six' of 'Clubs')('King' of 'Clubs')('Two' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:01:27.964009]:[4992]: Player: '79bomber', stack: '1500' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:27.966009]:[4992]: Player: '79bomber', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:30.650162]:[4992]: Player: 'Bonvenon', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:35.035413]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:42.292828]:[4992]: Player: 'gYorgYo300', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:44.088931]:[4992]: Player: 'corvette2012', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:44.090931]:[4992]: Player: 'corvette2012', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:44.368947]:[4992]: Player: 'sreklofevets', stack: '1700' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:44.370947]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:44.983982]:[4992]: Cards received: ('Six' of 'Clubs')('King' of 'Clubs')('Two' of 'Hearts')('Six' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:01:48.411178]:[4992]: Player: '79bomber', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:48.413178]:[4992]: Player: '79bomber', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:53.582474]:[4992]: Player: 'corvette2012', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:53.584474]:[4992]: Player: 'corvette2012', action: 'Raise', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:56.399635]:[4992]: Player: 'sreklofevets', stack: '1640' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:56.401635]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:58.102733]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:01:58.990783]:[4992]: Cards received: ('Six' of 'Clubs')('King' of 'Clubs')('Two' of 'Hearts')('Six' of 'Diamonds')('Four' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:02:05.542158]:[4992]: Player: 'corvette2012', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:06.874234]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:07.289258]:[4992]: Player: 'corvette2012', action: 'ShowCards', cards: 'TcKd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:09.610391]:[4992]: Player: 'sreklofevets', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:12.652565]:[4992]: Player: 'Bonvenon', stack: '1470' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:02:12.653565]:[4992]: Player: 'CLRN', stack: '1460' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:02:12.653565]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:02:12.654565]:[4992]: Player: 'Bonvenon', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:02:12.659565]:[4992]: Player: 'CLRN', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:02:12.754571]:[4992]: Player cards: ('Three' of 'Spades')('Three' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:02:15.267714]:[4992]: Player: 'gYorgYo300', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:15.269715]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:18.247885]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:18.526901]:[4992]: Player: 'corvette2012', stack: '1700' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:18.528901]:[4992]: Player: 'corvette2012', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:24.947268]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:25.228284]:[4992]: Player: 'sreklofevets', stack: '1620' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:25.230284]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:28.421467]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:30.742600]:[4992]: Player: '79bomber', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:30.744600]:[4992]: Player: '79bomber', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:32.987728]:[4992]: Player: 'Bonvenon', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:32.988728]:[4992]: Player: 'Bonvenon', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:36.396923]:[4992]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:37.009958]:[4992]: Cards received: ('Seven' of 'Hearts')('Six' of 'Spades')('Ace' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:02:43.065304]:[4992]: Player: 'Bonvenon', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:46.058476]:[4992]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:54.043932]:[4992]: Player: 'gYorgYo300', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:56.621080]:[4992]: Player: 'gYorgYo300', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:02:56.623080]:[4992]: Player: 'gYorgYo300', action: 'Bet', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:01.869380]:[4992]: Player: 'corvette2012', stack: '1620' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:01.871380]:[4992]: Player: 'corvette2012', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:04.923555]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:07.143682]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:13.518046]:[4992]: Player: 'Bonvenon', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:17.098251]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:17.721287]:[4992]: Cards received: ('Seven' of 'Hearts')('Six' of 'Spades')('Ace' of 'Spades')('King' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:03:22.701571]:[4992]: Player: 'gYorgYo300', stack: '1260' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:22.703572]:[4992]: Player: 'gYorgYo300', action: 'Bet', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:26.347780]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:26.357781]:[4992]: Player: 'gYorgYo300', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:26.359781]:[4992]: Player: 'gYorgYo300', action: 'MoneyReturn', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:29.942986]:[4992]: Player: 'CLRN', stack: '1450' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:03:29.942986]:[4992]: Player: 'gYorgYo300', stack: '1600' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:03:29.942986]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:03:29.944986]:[4992]: Player: 'CLRN', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:03:29.950986]:[4992]: Player: 'gYorgYo300', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:03:29.953986]:[4992]: Player cards: ('Eight' of 'Spades')('Ten' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:03:36.516362]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:38.695486]:[4992]: Player: 'corvette2012', stack: '1580' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:38.697486]:[4992]: Player: 'corvette2012', action: 'Raise', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:40.378582]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:42.944729]:[4992]: Player: 'sreklofevets', stack: '1580' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:42.946729]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:44.934843]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:45.214859]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:49.250090]:[4992]: Player: 'Bonvenon', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:03:51.761234]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:04:00.004705]:[4992]: Player: 'gYorgYo300', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:04:12.508420]:[4992]: Player: 'gYorgYo300', stack: '1580' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:04:12.510420]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:04:13.397471]:[4992]: Cards received: ('Four' of 'Clubs')('Three' of 'Diamonds')('Six' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:04:19.350812]:[4992]: Player: 'gYorgYo300', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:04:24.691117]:[4992]: Player: 'corvette2012', stack: '1405' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:04:24.693117]:[4992]: Player: 'corvette2012', action: 'Bet', amount: '175' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:04:25.250149]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:04:33.226605]:[4992]: Player: 'gYorgYo300', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:04:47.465420]:[4992]: Player: 'gYorgYo300', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:04:47.746436]:[4992]: Player: 'corvette2012', stack: '1580' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:04:47.748436]:[4992]: Player: 'corvette2012', action: 'MoneyReturn', amount: '175' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:04:49.297524]:[4992]: Player: 'corvette2012', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:04:51.002622]:[4992]: Player: 'gYorgYo300', stack: '1570' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:04:51.002622]:[4992]: Player: 'cryingork', stack: '1280' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:04:51.003622]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:04:51.005622]:[4992]: Player: 'gYorgYo300', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:04:51.012622]:[4992]: Player: 'cryingork', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:04:51.016623]:[4992]: Player cards: ('Ace' of 'Diamonds')('Three' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:04:53.396759]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:04:57.660003]:[4992]: Player: 'alacrangor', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:04:57.662003]:[4992]: Player: 'alacrangor', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:00.167146]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:06.045482]:[4992]: Player: 'dtcone', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:06.047482]:[4992]: Player: 'dtcone', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:08.142602]:[4992]: Player: '79bomber', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:08.144602]:[4992]: Player: '79bomber', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:12.862872]:[4992]: Player: 'Bonvenon', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:15.519024]:[4992]: Player: 'CLRN', stack: '1430' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:15.521024]:[4992]: Player: 'CLRN', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:17.322127]:[4992]: Player: 'gYorgYo300', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:17.324127]:[4992]: Player: 'gYorgYo300', action: 'Raise', amount: '1580' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:18.727208]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:23.047455]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:27.386703]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:27.666719]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:36.057199]:[4992]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:38.873360]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:42.623574]:[4992]: Player: 'cryingork', stack: '1270' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:05:42.623574]:[4992]: Player: 'corvette2012', stack: '1690' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:05:42.624575]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:05:42.626575]:[4992]: Player: 'cryingork', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:05:42.633575]:[4992]: Player: 'corvette2012', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:05:42.656576]:[4992]: Player cards: ('Nine' of 'Diamonds')('Eight' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:05:50.417020]:[4992]: Player: 'alacrangor', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:50.419020]:[4992]: Player: 'alacrangor', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:50.433021]:[4992]: Player: 'sreklofevets', stack: '1560' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:50.435021]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:05:58.743496]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:06.893963]:[4992]: Player: '79bomber', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:06.895963]:[4992]: Player: '79bomber', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:09.134091]:[4992]: Player: 'Bonvenon', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:09.136091]:[4992]: Player: 'Bonvenon', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:12.583288]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:16.083488]:[4992]: Player: 'gYorgYo300', stack: '1660' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:16.085488]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:17.703581]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:23.328903]:[4992]: Player: 'corvette2012', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:24.221954]:[4992]: Cards received: ('Nine' of 'Clubs')('Four' of 'Hearts')('Four' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:06:26.863105]:[4992]: Player: 'corvette2012', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:32.090404]:[4992]: Player: 'alacrangor', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:33.694496]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:36.240641]:[4992]: Player: '79bomber', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:40.353876]:[4992]: Player: 'Bonvenon', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:48.290330]:[4992]: Player: 'gYorgYo300', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:48.455340]:[4992]: Cards received: ('Nine' of 'Clubs')('Four' of 'Hearts')('Four' of 'Clubs')('Ace' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:06:54.585690]:[4992]: Player: 'corvette2012', stack: '1590' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:54.587691]:[4992]: Player: 'corvette2012', action: 'Bet', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:06:58.699926]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:00.938054]:[4992]: Player: 'sreklofevets', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:00.940054]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:02.802160]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:05.065290]:[4992]: Player: 'Bonvenon', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:07.022402]:[4992]: Player: 'gYorgYo300', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:07.910453]:[4992]: Cards received: ('Nine' of 'Clubs')('Four' of 'Hearts')('Four' of 'Clubs')('Ace' of 'Hearts')('Eight' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:07:10.342592]:[4992]: Player: 'corvette2012', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:15.901910]:[4992]: Player: 'sreklofevets', stack: '1260' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:15.903910]:[4992]: Player: 'sreklofevets', action: 'Bet', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:17.246987]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:17.256987]:[4992]: Player: 'sreklofevets', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:17.258987]:[4992]: Player: 'sreklofevets', action: 'MoneyReturn', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:19.555119]:[4992]: Player: 'sreklofevets', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:21.046204]:[4992]: Player: 'corvette2012', stack: '1440' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:07:21.046204]:[4992]: Player: 'alacrangor', stack: '1580' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:07:21.047204]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:07:21.048204]:[4992]: Player: 'corvette2012', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:07:21.058205]:[4992]: Player: 'alacrangor', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:07:21.083206]:[4992]: Player cards: ('Five' of 'Spades')('Nine' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:07:24.289389]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:26.815534]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:29.911711]:[4992]: Player: '79bomber', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:29.913711]:[4992]: Player: '79bomber', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:34.781990]:[4992]: Player: 'Bonvenon', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:37.809163]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:41.278361]:[4992]: Player: 'gYorgYo300', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:41.280361]:[4992]: Player: 'gYorgYo300', action: 'Raise', amount: '1660' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:42.546434]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:43.693499]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:46.487659]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:50.811906]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:07:54.614124]:[4992]: Player: 'alacrangor', stack: '1430' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:07:54.614124]:[4992]: Player: 'sreklofevets', stack: '1770' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:07:54.614124]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:07:54.615124]:[4992]: Player: 'alacrangor', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:07:54.619124]:[4992]: Player: 'sreklofevets', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:07:54.625125]:[4992]: Player cards: ('Three' of 'Diamonds')('Six' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:08:04.231674]:[4992]: Player: 'dtcone', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:04.693700]:[4992]: Player: 'dtcone', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:04.695701]:[4992]: Player: 'dtcone', action: 'Raise', amount: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:06.902827]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:09.969002]:[4992]: Player: 'Bonvenon', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:09.971002]:[4992]: Player: 'Bonvenon', action: 'Call', amount: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:12.531149]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:12.827166]:[4992]: Player: 'gYorgYo300', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:14.305250]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:17.365425]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:21.671672]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:21.952688]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:22.419714]:[4992]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:23.983804]:[4992]: Cards received: ('Two' of 'Diamonds')('Four' of 'Spades')('Jack' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:08:25.981918]:[4992]: Cards received: ('Two' of 'Diamonds')('Four' of 'Spades')('Jack' of 'Diamonds')('Nine' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:08:27.479004]:[4992]: Cards received: ('Two' of 'Diamonds')('Four' of 'Spades')('Jack' of 'Diamonds')('Nine' of 'Hearts')('Ten' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:08:29.111097]:[4992]: Player: 'dtcone', action: 'ShowCards', cards: '9s9c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:29.119097]:[4992]: Player: 'Bonvenon', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:29.122098]:[4992]: Player: 'Bonvenon', action: 'ShowCards', cards: 'QcAs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:30.161157]:[4992]: Player: 'Bonvenon', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:30.162157]:[4992]: Player: 'Bonvenon', action: 'Rank', amount: '9' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:31.912257]:[4992]: Player: 'sreklofevets', stack: '1760' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:08:31.912257]:[4992]: Player: 'dtcone', stack: '2890' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:08:31.912257]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:08:31.913257]:[4992]: Player: 'sreklofevets', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:08:31.918258]:[4992]: Player: 'dtcone', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:08:31.921258]:[4992]: Player cards: ('Seven' of 'Clubs')('Four' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:08:34.769421]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:37.552580]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:38.998663]:[4992]: Player: 'gYorgYo300', stack: '1690' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:39.000663]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:39.279679]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:41.054780]:[4992]: Player: 'corvette2012', stack: '1560' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:41.056780]:[4992]: Player: 'corvette2012', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:42.612869]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:42.889885]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:50.713333]:[4992]: Player: 'dtcone', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:08:51.329368]:[4992]: Cards received: ('Eight' of 'Diamonds')('Two' of 'Clubs')('Seven' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:08:59.747849]:[4992]: Player: 'dtcone', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:09:04.059096]:[4992]: Player: 'dtcone', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:09:13.326626]:[4992]: Player: 'gYorgYo300', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:09:18.697933]:[4992]: Player: 'gYorgYo300', stack: '1630' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:09:18.699933]:[4992]: Player: 'gYorgYo300', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:09:22.043125]:[4992]: Player: 'corvette2012', stack: '1500' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:09:22.044125]:[4992]: Player: 'corvette2012', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:09:24.797282]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:09:25.687333]:[4992]: Cards received: ('Eight' of 'Diamonds')('Two' of 'Clubs')('Seven' of 'Spades')('Eight' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:09:30.197591]:[4992]: Player: 'gYorgYo300', stack: '1510' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:09:30.199591]:[4992]: Player: 'gYorgYo300', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:09:38.409061]:[4992]: Player: 'corvette2012', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:09:43.907375]:[4992]: Player: 'corvette2012', stack: '1380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:09:43.908375]:[4992]: Player: 'corvette2012', action: 'Call', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:09:44.526411]:[4992]: Cards received: ('Eight' of 'Diamonds')('Two' of 'Clubs')('Seven' of 'Spades')('Eight' of 'Hearts')('Jack' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:09:52.256853]:[4992]: Player: 'gYorgYo300', stack: '1250' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:09:52.258853]:[4992]: Player: 'gYorgYo300', action: 'Bet', amount: '260' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:00.665334]:[4992]: Player: 'corvette2012', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:01.772397]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:01.780397]:[4992]: Player: 'gYorgYo300', stack: '1510' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:01.782398]:[4992]: Player: 'gYorgYo300', action: 'MoneyReturn', amount: '260' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:09.592844]:[4992]: Player: 'dtcone', stack: '2875' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:10:09.592844]:[4992]: Player: '79bomber', stack: '1370' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:10:09.593844]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:10:09.594844]:[4992]: Player: 'dtcone', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:10:09.604845]:[4992]: Player: '79bomber', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:10:09.612845]:[4992]: Player cards: ('Jack' of 'Diamonds')('Queen' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:10:12.601016]:[4992]: Player: 'CLRN', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:12.603016]:[4992]: Player: 'CLRN', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:14.169106]:[4992]: Player: 'gYorgYo300', stack: '1910' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:14.171106]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:16.765254]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:17.051271]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:21.120504]:[4992]: Player: 'alacrangor', stack: '1400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:21.122504]:[4992]: Player: 'alacrangor', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:24.372690]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:27.871890]:[4992]: Player: 'dtcone', stack: '2860' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:27.873890]:[4992]: Player: 'dtcone', action: 'Call', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:30.000011]:[4992]: Player: '79bomber', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:30.892062]:[4992]: Cards received: ('Three' of 'Hearts')('Jack' of 'Hearts')('Two' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:10:39.622562]:[4992]: Player: 'dtcone', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:41.038643]:[4992]: Player: 'dtcone', stack: '2800' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:41.040643]:[4992]: Player: 'dtcone', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:43.138763]:[4992]: Player: '79bomber', stack: '1310' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:43.140763]:[4992]: Player: '79bomber', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:46.822974]:[4992]: Player: 'CLRN', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:46.824974]:[4992]: Player: 'CLRN', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:48.719082]:[4992]: Player: 'gYorgYo300', stack: '1850' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:48.721082]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:49.025100]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:49.646135]:[4992]: Cards received: ('Three' of 'Hearts')('Jack' of 'Hearts')('Two' of 'Hearts')('Two' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:10:52.890321]:[4992]: Player: 'dtcone', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:52.892321]:[4992]: Player: 'dtcone', action: 'Bet', amount: '2800' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:55.401464]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:10:59.250685]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:01.208797]:[4992]: Player: 'gYorgYo300', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:01.210797]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '1850' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:01.677823]:[4992]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:03.231912]:[4992]: Cards received: ('Three' of 'Hearts')('Jack' of 'Hearts')('Two' of 'Hearts')('Two' of 'Clubs')('Jack' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:11:04.502985]:[4992]: Player: 'dtcone', action: 'ShowCards', cards: 'Kh7d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:04.511985]:[4992]: Player: 'gYorgYo300', stack: '950' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:04.512985]:[4992]: Player: 'gYorgYo300', action: 'ShowCards', cards: 'Qh3d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:07.821175]:[4992]: Player: '79bomber', stack: '1295' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:11:07.822175]:[4992]: Player: 'CLRN', stack: '1310' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:11:07.822175]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:11:07.824175]:[4992]: Player: '79bomber', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:11:07.833175]:[4992]: Player: 'CLRN', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:11:07.840176]:[4992]: Player cards: ('Four' of 'Clubs')('Jack' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:11:11.048359]:[4992]: Player: 'gYorgYo300', stack: '4060' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:11.049359]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:14.645565]:[4992]: Player: 'cryingork', stack: '1180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:14.647565]:[4992]: Player: 'cryingork', action: 'Raise', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:15.857634]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:23.123050]:[4992]: Player: 'alacrangor', stack: '1310' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:23.124050]:[4992]: Player: 'alacrangor', action: 'Call', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:25.805203]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:30.677482]:[4992]: Player: 'dtcone', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:30.679482]:[4992]: Player: 'dtcone', action: 'Raise', amount: '950' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:31.235514]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:33.966670]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:42.266145]:[4992]: Player: 'gYorgYo300', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:44.453270]:[4992]: Player: 'gYorgYo300', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:11:52.544733]:[4992]: Player: 'cryingork', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:00.731201]:[4992]: Player: 'cryingork', stack: '320' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:00.733201]:[4992]: Player: 'cryingork', action: 'Call', amount: '860' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:05.570478]:[4992]: Player: 'alacrangor', stack: '450' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:05.571478]:[4992]: Player: 'alacrangor', action: 'Call', amount: '860' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:06.467529]:[4992]: Cards received: ('Two' of 'Spades')('Jack' of 'Clubs')('Four' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:12:08.438642]:[4992]: Player: 'cryingork', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:12.287862]:[4992]: Player: 'alacrangor', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:12.449871]:[4992]: Cards received: ('Two' of 'Spades')('Jack' of 'Clubs')('Four' of 'Diamonds')('Eight' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:12:13.838951]:[4992]: Player: 'cryingork', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:16.449100]:[4992]: Player: 'alacrangor', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:16.611109]:[4992]: Cards received: ('Two' of 'Spades')('Jack' of 'Clubs')('Four' of 'Diamonds')('Eight' of 'Spades')('Seven' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:12:18.171199]:[4992]: Player: 'cryingork', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:20.341323]:[4992]: Player: 'alacrangor', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:21.112367]:[4992]: Player: 'cryingork', action: 'ShowCards', cards: 'KdQd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:23.578508]:[4992]: Player: 'alacrangor', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:23.590508]:[4992]: Player: 'dtcone', stack: '320' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:23.591509]:[4992]: Player: 'dtcone', action: 'ShowCards', cards: '8c2h' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:26.599681]:[4992]: Player: 'CLRN', stack: '1295' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:12:26.599681]:[4992]: Player: 'gYorgYo300', stack: '4030' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:12:26.599681]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:12:26.600681]:[4992]: Player: 'CLRN', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:12:26.605681]:[4992]: Player: 'gYorgYo300', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:12:26.607681]:[4992]: Player cards: ('Five' of 'Spades')('Two' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:12:28.849809]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:31.376954]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:38.039335]:[4992]: Player: 'alacrangor', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:38.041335]:[4992]: Player: 'alacrangor', action: 'Raise', amount: '450' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:39.054393]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:41.764548]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:44.376697]:[4992]: Player: '79bomber', stack: '845' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:44.378697]:[4992]: Player: '79bomber', action: 'Call', amount: '450' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:46.817837]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:48.836952]:[4992]: Player: 'gYorgYo300', stack: '3610' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:48.838953]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:49.724003]:[4992]: Cards received: ('Four' of 'Hearts')('King' of 'Clubs')('King' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:12:52.762177]:[4992]: Player: 'gYorgYo300', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:54.585281]:[4992]: Player: '79bomber', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:54.747291]:[4992]: Cards received: ('Four' of 'Hearts')('King' of 'Clubs')('King' of 'Diamonds')('Seven' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:12:56.825409]:[4992]: Player: 'gYorgYo300', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:59.258549]:[4992]: Player: '79bomber', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:12:59.417558]:[4992]: Cards received: ('Four' of 'Hearts')('King' of 'Clubs')('King' of 'Diamonds')('Seven' of 'Clubs')('Ace' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:13:04.075824]:[4992]: Player: 'gYorgYo300', stack: '3430' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:04.077824]:[4992]: Player: 'gYorgYo300', action: 'Bet', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:06.007935]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:06.289951]:[4992]: Player: 'gYorgYo300', stack: '845' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:06.291951]:[4992]: Player: 'gYorgYo300', action: 'MoneyReturn', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:06.568967]:[4992]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:08.285065]:[4992]: Player: 'gYorgYo300', action: 'ShowCards', cards: 'Jc9d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:08.293065]:[4992]: Player: 'alacrangor', stack: '3610' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:08.294065]:[4992]: Player: 'alacrangor', action: 'ShowCards', cards: 'Ks2h' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:11.265235]:[4992]: Player: 'gYorgYo300', stack: '3595' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:13:11.266235]:[4992]: Player: 'cryingork', stack: '290' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:13:11.266235]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:13:11.267235]:[4992]: Player: 'gYorgYo300', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:13:11.273236]:[4992]: Player: 'cryingork', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:13:11.277236]:[4992]: Player cards: ('Jack' of 'Hearts')('Seven' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:13:14.340411]:[4992]: Player: 'corvette2012', stack: '1350' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:14.340411]:[4992]: Player: 'corvette2012', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:22.887900]:[4992]: Player: 'alacrangor', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:23.168916]:[4992]: Player: 'alacrangor', stack: '1335' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:23.170916]:[4992]: Player: 'alacrangor', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:25.095026]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:27.498164]:[4992]: Player: 'dtcone', stack: '2895' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:27.500164]:[4992]: Player: 'dtcone', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:29.103256]:[4992]: Player: '79bomber', stack: '815' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:29.105256]:[4992]: Player: '79bomber', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:31.950418]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:34.554567]:[4992]: Player: 'gYorgYo300', stack: '3580' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:34.557568]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:35.530623]:[4992]: Player: 'cryingork', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:36.423674]:[4992]: Cards received: ('Two' of 'Spades')('Seven' of 'Clubs')('Six' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:13:46.041224]:[4992]: Player: 'gYorgYo300', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:53.076627]:[4992]: Player: 'gYorgYo300', stack: '3550' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:53.078627]:[4992]: Player: 'gYorgYo300', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:55.285753]:[4992]: Player: 'cryingork', stack: '260' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:13:55.287753]:[4992]: Player: 'cryingork', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:00.535053]:[4992]: Player: 'corvette2012', stack: '1250' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:00.537053]:[4992]: Player: 'corvette2012', action: 'Raise', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:06.717407]:[4992]: Player: 'alacrangor', stack: '1235' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:06.719407]:[4992]: Player: 'alacrangor', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:09.516567]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:09.835585]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:12.842757]:[4992]: Player: 'gYorgYo300', stack: '3480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:12.844757]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '70' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:13.126774]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:13.755810]:[4992]: Cards received: ('Two' of 'Spades')('Seven' of 'Clubs')('Six' of 'Hearts')('Four' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:14:15.924934]:[4992]: Player: 'gYorgYo300', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:20.143175]:[4992]: Player: 'corvette2012', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:22.100287]:[4992]: Player: 'alacrangor', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:22.335300]:[4992]: Cards received: ('Two' of 'Spades')('Seven' of 'Clubs')('Six' of 'Hearts')('Four' of 'Diamonds')('Six' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:14:25.101458]:[4992]: Player: 'gYorgYo300', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:33.310928]:[4992]: Player: 'corvette2012', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:34.991024]:[4992]: Player: 'corvette2012', stack: '875' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:34.993024]:[4992]: Player: 'corvette2012', action: 'Bet', amount: '375' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:37.660177]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:38.591230]:[4992]: Player: 'gYorgYo300', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:38.594230]:[4992]: Player: 'corvette2012', stack: '3480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:38.595230]:[4992]: Player: 'corvette2012', action: 'MoneyReturn', amount: '375' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:40.467337]:[4992]: Player: 'corvette2012', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:42.311443]:[4992]: Player: 'cryingork', stack: '245' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:14:42.311443]:[4992]: Player: 'corvette2012', stack: '1730' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:14:42.312443]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:14:42.313443]:[4992]: Player: 'cryingork', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:14:42.317443]:[4992]: Player: 'corvette2012', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:14:42.321443]:[4992]: Player cards: ('Two' of 'Hearts')('Two' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:14:45.728638]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:46.619689]:[4992]: Player: 'sreklofevets', stack: '1730' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:46.621689]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:49.038828]:[4992]: Player: 'dtcone', stack: '2865' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:49.040828]:[4992]: Player: 'dtcone', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:57.299300]:[4992]: Player: '79bomber', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:58.060344]:[4992]: Player: '79bomber', stack: '785' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:14:58.062344]:[4992]: Player: '79bomber', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:01.251526]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:03.056629]:[4992]: Player: 'gYorgYo300', stack: '3450' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:03.058630]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:03.335645]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:03.692666]:[4992]: Player: 'corvette2012', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:04.380705]:[4992]: Cards received: ('Ten' of 'Clubs')('Ace' of 'Clubs')('Four' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:15:07.322873]:[4992]: Player: 'corvette2012', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:07.602889]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:11.099089]:[4992]: Player: 'dtcone', stack: '2835' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:11.101090]:[4992]: Player: 'dtcone', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:14.467282]:[4992]: Player: '79bomber', stack: '755' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:14.469282]:[4992]: Player: '79bomber', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:16.453396]:[4992]: Player: 'gYorgYo300', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:16.944424]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:20.862648]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:21.757699]:[4992]: Cards received: ('Ten' of 'Clubs')('Ace' of 'Clubs')('Four' of 'Hearts')('Six' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:15:24.713868]:[4992]: Player: 'dtcone', stack: '2745' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:24.714868]:[4992]: Player: 'dtcone', action: 'Bet', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:27.947053]:[4992]: Player: '79bomber', stack: '665' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:27.949053]:[4992]: Player: '79bomber', action: 'Call', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:28.561088]:[4992]: Cards received: ('Ten' of 'Clubs')('Ace' of 'Clubs')('Four' of 'Hearts')('Six' of 'Spades')('King' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:15:34.575432]:[4992]: Player: 'dtcone', stack: '2535' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:34.577432]:[4992]: Player: 'dtcone', action: 'Bet', amount: '210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:38.333647]:[4992]: Player: '79bomber', stack: '455' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:38.335647]:[4992]: Player: '79bomber', action: 'Call', amount: '210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:39.114692]:[4992]: Player: 'dtcone', action: 'ShowCards', cards: '5c6c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:41.546831]:[4992]: Player: '79bomber', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:44.751014]:[4992]: Player: 'corvette2012', stack: '1205' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:15:44.751014]:[4992]: Player: 'alacrangor', stack: '1715' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:15:44.752014]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:15:44.753014]:[4992]: Player: 'corvette2012', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:15:44.762015]:[4992]: Player: 'alacrangor', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:15:44.768015]:[4992]: Player cards: ('Ten' of 'Hearts')('Two' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:15:49.151266]:[4992]: Player: 'sreklofevets', stack: '1700' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:49.153266]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:52.933482]:[4992]: Player: 'dtcone', stack: '3330' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:52.935482]:[4992]: Player: 'dtcone', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:53.494514]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:15:56.859707]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:03.735100]:[4992]: Player: 'gYorgYo300', stack: '3420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:03.737100]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:03.824105]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:06.393252]:[4992]: Player: 'corvette2012', stack: '1700' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:06.395252]:[4992]: Player: 'corvette2012', action: 'Call', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:11.199527]:[4992]: Player: 'alacrangor', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:11.818562]:[4992]: Cards received: ('Queen' of 'Spades')('Queen' of 'Clubs')('Jack' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:16:16.153810]:[4992]: Player: 'corvette2012', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:23.390224]:[4992]: Player: 'alacrangor', stack: '1175' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:23.392224]:[4992]: Player: 'alacrangor', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:26.207385]:[4992]: Player: 'sreklofevets', stack: '1670' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:26.209385]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:32.416741]:[4992]: Player: 'dtcone', stack: '3300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:32.418741]:[4992]: Player: 'dtcone', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:33.563806]:[4992]: Player: 'gYorgYo300', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:33.840822]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:34.451857]:[4992]: Cards received: ('Queen' of 'Spades')('Queen' of 'Clubs')('Jack' of 'Clubs')('Six' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:16:40.721216]:[4992]: Player: 'alacrangor', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:43.086351]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:49.454715]:[4992]: Player: 'dtcone', stack: '3090' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:49.456715]:[4992]: Player: 'dtcone', action: 'Bet', amount: '210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:52.283877]:[4992]: Player: 'alacrangor', stack: '965' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:52.285877]:[4992]: Player: 'alacrangor', action: 'Call', amount: '210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:52.563893]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:53.182928]:[4992]: Cards received: ('Queen' of 'Spades')('Queen' of 'Clubs')('Jack' of 'Clubs')('Six' of 'Diamonds')('Seven' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:16:59.269276]:[4992]: Player: 'alacrangor', stack: '845' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:16:59.271277]:[4992]: Player: 'alacrangor', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:07.575751]:[4992]: Player: 'dtcone', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:11.312965]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:11.593981]:[4992]: Player: 'alacrangor', stack: '965' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:11.595981]:[4992]: Player: 'alacrangor', action: 'MoneyReturn', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:15.104182]:[4992]: Player: 'alacrangor', stack: '1610' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:17:15.104182]:[4992]: Player: 'sreklofevets', stack: '1640' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:17:15.104182]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:17:15.105182]:[4992]: Player: 'alacrangor', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:17:15.110182]:[4992]: Player: 'sreklofevets', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:17:15.113183]:[4992]: Player cards: ('Ace' of 'Spades')('Eight' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:17:17.297308]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:18.349368]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:21.436544]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:23.369655]:[4992]: Player: 'gYorgYo300', stack: '3390' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:23.371655]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:24.954746]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:25.386770]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:32.815195]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:33.369227]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:33.986262]:[4992]: Cards received: ('Four' of 'Spades')('Ten' of 'Spades')('Six' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:17:36.788422]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:38.481519]:[4992]: Player: 'gYorgYo300', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:38.716533]:[4992]: Cards received: ('Four' of 'Spades')('Ten' of 'Spades')('Six' of 'Spades')('Four' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:17:41.235677]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:43.624813]:[4992]: Player: 'gYorgYo300', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:43.785823]:[4992]: Cards received: ('Four' of 'Spades')('Ten' of 'Spades')('Six' of 'Spades')('Four' of 'Hearts')('Three' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:17:50.639215]:[4992]: Player: 'sreklofevets', stack: '1520' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:50.641215]:[4992]: Player: 'sreklofevets', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:55.814511]:[4992]: Player: 'gYorgYo300', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:56.096527]:[4992]: Player: 'sreklofevets', stack: '1640' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:56.098527]:[4992]: Player: 'sreklofevets', action: 'MoneyReturn', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:58.199647]:[4992]: Player: 'sreklofevets', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:17:59.540724]:[4992]: Player: 'sreklofevets', stack: '1700' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:17:59.540724]:[4992]: Player: 'dtcone', stack: '3060' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:17:59.540724]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:17:59.541724]:[4992]: Player: 'sreklofevets', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:17:59.546724]:[4992]: Player: 'dtcone', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:17:59.549724]:[4992]: Player cards: ('Ace' of 'Clubs')('King' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:18:08.721249]:[4992]: Player: '79bomber', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:12.599471]:[4992]: Player: '79bomber', stack: '425' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:12.601471]:[4992]: Player: '79bomber', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:15.543639]:[4992]: Player: 'CLRN', stack: '1265' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:15.545639]:[4992]: Player: 'CLRN', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:17.563755]:[4992]: Player: 'gYorgYo300', stack: '3210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:17.565755]:[4992]: Player: 'gYorgYo300', action: 'Raise', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:18.766823]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:19.054840]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:19.607871]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:20.300911]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:27.895346]:[4992]: Player: 'dtcone', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:27.897346]:[4992]: Player: 'dtcone', action: 'Raise', amount: '3090' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:28.292368]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:31.523553]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:35.975808]:[4992]: Player: 'gYorgYo300', action: 'ShowCards', cards: '5d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:37.425891]:[4992]: Player: 'gYorgYo300', stack: '1700' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:37.427891]:[4992]: Player: 'gYorgYo300', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:40.770082]:[4992]: Player: 'dtcone', stack: '3330' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:18:40.771082]:[4992]: Player: '79bomber', stack: '395' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:18:40.771082]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:18:40.773082]:[4992]: Player: 'dtcone', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:18:40.780082]:[4992]: Player: '79bomber', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:18:40.783083]:[4992]: Player cards: ('Ten' of 'Hearts')('Eight' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:18:44.083271]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:46.720422]:[4992]: Player: 'gYorgYo300', stack: '3030' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:46.722422]:[4992]: Player: 'gYorgYo300', action: 'Raise', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:50.118617]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:50.409633]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:54.828886]:[4992]: Player: 'alacrangor', stack: '1430' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:54.830886]:[4992]: Player: 'alacrangor', action: 'Call', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:55.388918]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:57.094016]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:58.629103]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:18:59.537155]:[4992]: Cards received: ('Seven' of 'Clubs')('Two' of 'Hearts')('Nine' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:19:03.332372]:[4992]: Player: 'gYorgYo300', stack: '2850' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:03.333372]:[4992]: Player: 'gYorgYo300', action: 'Bet', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:09.794742]:[4992]: Player: 'alacrangor', stack: '1250' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:09.796742]:[4992]: Player: 'alacrangor', action: 'Call', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:10.691793]:[4992]: Cards received: ('Seven' of 'Clubs')('Two' of 'Hearts')('Nine' of 'Spades')('Three' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:19:12.182879]:[4992]: Player: 'gYorgYo300', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:12.184879]:[4992]: Player: 'gYorgYo300', action: 'Bet', amount: '2850' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:20.447351]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:20.456352]:[4992]: Player: 'gYorgYo300', stack: '1250' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:20.458352]:[4992]: Player: 'gYorgYo300', action: 'MoneyReturn', amount: '2850' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:27.779771]:[4992]: Player: '79bomber', stack: '370' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:19:27.779771]:[4992]: Player: 'CLRN', stack: '1215' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:19:27.780771]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:19:27.781771]:[4992]: Player: '79bomber', action: 'SmallBlind', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:19:27.789771]:[4992]: Player: 'CLRN', action: 'BigBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:19:27.815773]:[4992]: Player cards: ('Two' of 'Clubs')('Five' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:19:31.578988]:[4992]: Player: 'gYorgYo300', stack: '3415' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:31.580988]:[4992]: Player: 'gYorgYo300', action: 'Raise', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:33.279085]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:33.558101]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:35.652221]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:35.937237]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:36.493269]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:37.029300]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:40.016471]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:43.611676]:[4992]: Player: 'CLRN', stack: '1190' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:19:43.611676]:[4992]: Player: 'gYorgYo300', stack: '3640' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:19:43.611676]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:19:43.612676]:[4992]: Player: 'CLRN', action: 'SmallBlind', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:19:43.625677]:[4992]: Player: 'gYorgYo300', action: 'BigBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:19:43.633678]:[4992]: Player cards: ('King' of 'Clubs')('Ace' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:19:46.210825]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:47.616905]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:48.728969]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:51.234112]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:52.009157]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:54.984327]:[4992]: Player: '79bomber', stack: '320' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:54.986327]:[4992]: Player: '79bomber', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:57.962497]:[4992]: Player: 'CLRN', stack: '1065' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:19:57.964497]:[4992]: Player: 'CLRN', action: 'Raise', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:05.615935]:[4992]: Player: 'gYorgYo300', stack: '3540' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:05.617935]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:13.702397]:[4992]: Player: '79bomber', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:13.704397]:[4992]: Player: '79bomber', action: 'Raise', amount: '370' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:16.321547]:[4992]: Player: 'CLRN', stack: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:16.323547]:[4992]: Player: 'CLRN', action: 'Raise', amount: '1065' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:21.845863]:[4992]: Player: 'gYorgYo300', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:22.333891]:[4992]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:23.975985]:[4992]: Cards received: ('Seven' of 'Clubs')('Two' of 'Diamonds')('Ten' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:20:25.969099]:[4992]: Cards received: ('Seven' of 'Clubs')('Two' of 'Diamonds')('Ten' of 'Hearts')('Five' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:20:27.652195]:[4992]: Cards received: ('Seven' of 'Clubs')('Two' of 'Diamonds')('Ten' of 'Hearts')('Five' of 'Diamonds')('Four' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:20:28.958270]:[4992]: Player: 'CLRN', action: 'ShowCards', cards: 'KcAc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:28.964270]:[4992]: Player: '79bomber', stack: '845' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:28.965270]:[4992]: Player: '79bomber', action: 'ShowCards', cards: '8dKd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:32.126451]:[4992]: Player: 'gYorgYo300', stack: '3515' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:20:32.126451]:[4992]: Player: 'cryingork', stack: '195' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:20:32.127451]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:20:32.128451]:[4992]: Player: 'gYorgYo300', action: 'SmallBlind', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:20:32.134452]:[4992]: Player: 'cryingork', action: 'BigBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:20:32.137452]:[4992]: Player cards: ('Ten' of 'Clubs')('Nine' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:20:34.519588]:[4992]: Player: 'corvette2012', stack: '1650' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:34.520588]:[4992]: Player: 'corvette2012', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:39.747887]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:39.760888]:[4992]: Player: 'sreklofevets', stack: '1650' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:39.761888]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:41.131966]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:41.412982]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:44.360151]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:46.990301]:[4992]: Player: 'gYorgYo300', stack: '3490' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:46.992301]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '25' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:48.176369]:[4992]: Player: 'cryingork', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:48.790404]:[4992]: Cards received: ('Six' of 'Hearts')('Queen' of 'Clubs')('Eight' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:20:51.508560]:[4992]: Player: 'gYorgYo300', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:52.812634]:[4992]: Player: 'cryingork', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:55.233773]:[4992]: Player: 'corvette2012', stack: '1600' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:55.234773]:[4992]: Player: 'corvette2012', action: 'Bet', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:20:59.763032]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:02.907212]:[4992]: Player: 'gYorgYo300', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:04.516304]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:04.796320]:[4992]: Player: 'corvette2012', stack: '195' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:04.798320]:[4992]: Player: 'corvette2012', action: 'MoneyReturn', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:06.347408]:[4992]: Player: 'corvette2012', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:08.343523]:[4992]: Player: 'cryingork', stack: '170' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:21:08.344523]:[4992]: Player: 'corvette2012', stack: '1800' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:21:08.344523]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:21:08.346523]:[4992]: Player: 'cryingork', action: 'SmallBlind', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:21:08.352523]:[4992]: Player: 'corvette2012', action: 'BigBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:21:08.355523]:[4992]: Player cards: ('Queen' of 'Hearts')('Seven' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:21:14.430871]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:14.711887]:[4992]: Player: 'sreklofevets', stack: '1600' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:14.713887]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:21.750289]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:23.691400]:[4992]: Player: '79bomber', stack: '840' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:23.693401]:[4992]: Player: '79bomber', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:27.346610]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:30.357782]:[4992]: Player: 'gYorgYo300', stack: '3440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:30.358782]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:32.752919]:[4992]: Player: 'cryingork', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:37.154171]:[4992]: Player: 'corvette2012', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:38.042221]:[4992]: Cards received: ('Three' of 'Diamonds')('Jack' of 'Hearts')('Two' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:21:43.150513]:[4992]: Player: 'corvette2012', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:45.042622]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:46.601711]:[4992]: Player: '79bomber', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:48.287807]:[4992]: Player: 'gYorgYo300', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:48.722832]:[4992]: Cards received: ('Three' of 'Diamonds')('Jack' of 'Hearts')('Two' of 'Hearts')('Three' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:21:51.564995]:[4992]: Player: 'corvette2012', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:53.503106]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:21:58.098368]:[4992]: Player: '79bomber', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:01.151543]:[4992]: Player: 'gYorgYo300', stack: '3340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:01.153543]:[4992]: Player: 'gYorgYo300', action: 'Bet', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:04.352726]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:04.635742]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:06.569853]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:06.577853]:[4992]: Player: 'gYorgYo300', stack: '840' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:06.581854]:[4992]: Player: 'gYorgYo300', action: 'MoneyReturn', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:10.027051]:[4992]: Player: 'corvette2012', stack: '1200' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:22:10.028051]:[4992]: Player: 'alacrangor', stack: '1775' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:22:10.028051]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:22:10.030051]:[4992]: Player: 'corvette2012', action: 'SmallBlind', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:22:10.036051]:[4992]: Player: 'alacrangor', action: 'BigBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:22:10.039051]:[4992]: Player cards: ('Ace' of 'Spades')('Two' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:22:13.360241]:[4992]: Player: 'sreklofevets', stack: '1550' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:13.362241]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:18.090512]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:18.370528]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:20.934675]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:22.752779]:[4992]: Player: 'gYorgYo300', stack: '3615' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:22.753779]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:25.399930]:[4992]: Player: 'cryingork', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:25.401930]:[4992]: Player: 'cryingork', action: 'Raise', amount: '170' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:27.157031]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:32.942361]:[4992]: Player: 'alacrangor', stack: '1080' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:32.944362]:[4992]: Player: 'alacrangor', action: 'Call', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:33.232378]:[4992]: Player: 'sreklofevets', stack: '1430' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:33.234378]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:41.287839]:[4992]: Player: 'gYorgYo300', stack: '3495' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:41.289839]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:41.907874]:[4992]: Cards received: ('Three' of 'Diamonds')('Six' of 'Diamonds')('Three' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:22:50.834385]:[4992]: Player: 'alacrangor', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:51.781439]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:55.620659]:[4992]: Player: 'gYorgYo300', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:22:55.782668]:[4992]: Cards received: ('Three' of 'Diamonds')('Six' of 'Diamonds')('Three' of 'Hearts')('Two' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:23:01.219979]:[4992]: Player: 'alacrangor', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:02.025025]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:04.472165]:[4992]: Player: 'gYorgYo300', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:04.633174]:[4992]: Cards received: ('Three' of 'Diamonds')('Six' of 'Diamonds')('Three' of 'Hearts')('Two' of 'Hearts')('Two' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:23:08.547398]:[4992]: Player: 'alacrangor', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:11.166548]:[4992]: Player: 'sreklofevets', stack: '1330' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:11.168548]:[4992]: Player: 'sreklofevets', action: 'Bet', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:12.804641]:[4992]: Player: 'gYorgYo300', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:17.296898]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:17.578914]:[4992]: Player: 'sreklofevets', stack: '1080' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:17.580915]:[4992]: Player: 'sreklofevets', action: 'MoneyReturn', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:17.857930]:[4992]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:19.382018]:[4992]: Player: 'sreklofevets', action: 'ShowCards', cards: 'AhTc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:19.390018]:[4992]: Player: 'cryingork', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:19.391018]:[4992]: Player: 'cryingork', action: 'ShowCards', cards: 'QdKc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:20.785098]:[4992]: Player: 'cryingork', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:20.786098]:[4992]: Player: 'cryingork', action: 'Rank', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:22.602202]:[4992]: Player: 'alacrangor', stack: '1055' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:23:22.602202]:[4992]: Player: 'sreklofevets', stack: '2085' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:23:22.602202]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:23:22.603202]:[4992]: Player: 'alacrangor', action: 'SmallBlind', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:23:22.610202]:[4992]: Player: 'sreklofevets', action: 'BigBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:23:22.615203]:[4992]: Player cards: ('Jack' of 'Spades')('Four' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:23:30.947679]:[4992]: Player: 'dtcone', stack: '3280' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:30.949679]:[4992]: Player: 'dtcone', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:31.517712]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:34.798899]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:37.249040]:[4992]: Player: 'gYorgYo300', stack: '3445' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:37.250040]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:39.105146]:[4992]: Player: 'corvette2012', stack: '1725' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:39.107146]:[4992]: Player: 'corvette2012', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:40.851246]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:41.139262]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:41.757297]:[4992]: Cards received: ('Seven' of 'Diamonds')('Jack' of 'Diamonds')('Four' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:23:44.512455]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:48.992711]:[4992]: Player: 'dtcone', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:51.954881]:[4992]: Player: 'gYorgYo300', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:53.563973]:[4992]: Player: 'corvette2012', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:23:53.995997]:[4992]: Cards received: ('Seven' of 'Diamonds')('Jack' of 'Diamonds')('Four' of 'Spades')('Nine' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:23:59.296301]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:02.175465]:[4992]: Player: 'dtcone', stack: '3180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:02.177465]:[4992]: Player: 'dtcone', action: 'Bet', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:03.979568]:[4992]: Player: 'gYorgYo300', stack: '3345' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:03.981569]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:05.060630]:[4992]: Player: 'corvette2012', stack: '1625' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:05.062630]:[4992]: Player: 'corvette2012', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:08.149807]:[4992]: Player: 'sreklofevets', stack: '1985' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:08.150807]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:09.038858]:[4992]: Cards received: ('Seven' of 'Diamonds')('Jack' of 'Diamonds')('Four' of 'Spades')('Nine' of 'Clubs')('Ace' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:24:14.299159]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:22.500628]:[4992]: Player: 'dtcone', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:26.549859]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:30.072061]:[4992]: Player: 'gYorgYo300', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:35.641379]:[4992]: Player: 'corvette2012', stack: '1250' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:35.644380]:[4992]: Player: 'corvette2012', action: 'Bet', amount: '375' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:38.225527]:[4992]: Player: 'sreklofevets', stack: '1235' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:38.227527]:[4992]: Player: 'sreklofevets', action: 'Raise', amount: '750' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:39.717613]:[4992]: Player: 'gYorgYo300', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:48.294103]:[4992]: Player: 'corvette2012', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:56.279560]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:24:58.472685]:[4992]: Player: 'sreklofevets', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:00.007773]:[4992]: Player: 'sreklofevets', stack: '2960' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:25:00.007773]:[4992]: Player: 'dtcone', stack: '3130' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:25:00.008773]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:25:00.009773]:[4992]: Player: 'sreklofevets', action: 'SmallBlind', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:25:00.015774]:[4992]: Player: 'dtcone', action: 'BigBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:25:00.018774]:[4992]: Player cards: ('Eight' of 'Spades')('Ten' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:25:02.796933]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:06.062119]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:06.623151]:[4992]: Player: 'gYorgYo300', stack: '3295' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:06.625152]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:06.903167]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:07.182183]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:07.463199]:[4992]: Player: 'sreklofevets', stack: '2935' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:07.465200]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '25' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:12.959514]:[4992]: Player: 'dtcone', stack: '2980' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:12.960514]:[4992]: Player: 'dtcone', action: 'Raise', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:16.119695]:[4992]: Player: 'gYorgYo300', stack: '3145' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:16.121695]:[4992]: Player: 'gYorgYo300', action: 'Call', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:17.043747]:[4992]: Player: 'sreklofevets', stack: '2785' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:17.045748]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:17.663783]:[4992]: Cards received: ('Ten' of 'Spades')('Jack' of 'Diamonds')('Two' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:25:19.202871]:[4992]: Player: 'sreklofevets', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:21.689013]:[4992]: Player: 'dtcone', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:21.691013]:[4992]: Player: 'dtcone', action: 'Bet', amount: '2980' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:23.563120]:[4992]: Player: 'gYorgYo300', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:23.565120]:[4992]: Player: 'gYorgYo300', action: 'Raise', amount: '3145' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:30.431513]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:31.003546]:[4992]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:33.299677]:[4992]: Cards received: ('Ten' of 'Spades')('Jack' of 'Diamonds')('Two' of 'Clubs')('Queen' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:25:34.577750]:[4992]: Cards received: ('Ten' of 'Spades')('Jack' of 'Diamonds')('Two' of 'Clubs')('Queen' of 'Spades')('Eight' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:25:35.927828]:[4992]: Player: 'dtcone', action: 'ShowCards', cards: '9cAs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:36.005832]:[4992]: Player: 'gYorgYo300', stack: '165' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:36.006832]:[4992]: Player: 'gYorgYo300', action: 'ShowCards', cards: 'QdKd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:39.037005]:[4992]: Player: 'dtcone', stack: '6535' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:25:39.037005]:[4992]: Player: '79bomber', stack: '790' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:25:39.037005]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:25:39.038005]:[4992]: Player: 'dtcone', action: 'SmallBlind', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:25:39.041006]:[4992]: Player: '79bomber', action: 'BigBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:25:39.043006]:[4992]: Player cards: ('Four' of 'Hearts')('Seven' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:25:42.295192]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:48.100524]:[4992]: Player: 'gYorgYo300', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:48.102524]:[4992]: Player: 'gYorgYo300', action: 'Raise', amount: '165' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:50.659670]:[4992]: Player: 'corvette2012', stack: '1085' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:50.661670]:[4992]: Player: 'corvette2012', action: 'Call', amount: '165' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:56.083980]:[4992]: Player: 'alacrangor', stack: '890' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:56.085981]:[4992]: Player: 'alacrangor', action: 'Call', amount: '165' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:25:56.365997]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:01.008262]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:01.290278]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:01.908314]:[4992]: Cards received: ('Six' of 'Spades')('Ten' of 'Clubs')('Eight' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:26:04.355454]:[4992]: Player: 'corvette2012', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:10.106782]:[4992]: Player: 'alacrangor', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:10.268792]:[4992]: Cards received: ('Six' of 'Spades')('Ten' of 'Clubs')('Eight' of 'Diamonds')('Nine' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:26:14.764049]:[4992]: Player: 'corvette2012', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:16.329138]:[4992]: Player: 'alacrangor', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:16.489148]:[4992]: Cards received: ('Six' of 'Spades')('Ten' of 'Clubs')('Eight' of 'Diamonds')('Nine' of 'Spades')('Five' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:26:24.673616]:[4992]: Player: 'corvette2012', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:24.954632]:[4992]: Player: 'corvette2012', stack: '685' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:24.956632]:[4992]: Player: 'corvette2012', action: 'Bet', amount: '400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:33.583125]:[4992]: Player: 'alacrangor', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:38.895429]:[4992]: Player: 'alacrangor', stack: '490' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:38.897429]:[4992]: Player: 'alacrangor', action: 'Call', amount: '400' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:39.469462]:[4992]: Player: 'corvette2012', action: 'ShowCards', cards: '7hAc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:42.206619]:[4992]: Player: 'alacrangor', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:43.679703]:[4992]: Player: 'corvette2012', stack: '1485' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:43.680703]:[4992]: Player: 'corvette2012', action: 'WinCards', pot: '800', cards: 'Tc9s8d7h6s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:46.127843]:[4992]: Player: 'gYorgYo300', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:47.712933]:[4992]: Player: 'gYorgYo300', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:47.713934]:[4992]: Player: 'gYorgYo300', action: 'Rank', amount: '7' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:49.266022]:[4992]: Player: '79bomber', stack: '765' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:26:49.266022]:[4992]: Player: 'CLRN', stack: '795' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:26:49.267022]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:26:49.268022]:[4992]: Player: '79bomber', action: 'SmallBlind', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:26:49.274023]:[4992]: Player: 'CLRN', action: 'BigBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:26:49.276023]:[4992]: Player cards: ('Seven' of 'Hearts')('Five' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:26:51.913174]:[4992]: Player: 'corvette2012', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:54.432318]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:26:54.445319]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:02.876801]:[4992]: Player: 'dtcone', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:03.155817]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:05.338942]:[4992]: Player: '79bomber', stack: '740' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:05.340942]:[4992]: Player: '79bomber', action: 'Call', amount: '25' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:07.862086]:[4992]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:08.754137]:[4992]: Cards received: ('Six' of 'Diamonds')('Jack' of 'Spades')('Ten' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:27:15.695534]:[4992]: Player: '79bomber', stack: '690' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:15.697534]:[4992]: Player: '79bomber', action: 'Bet', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:19.199734]:[4992]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:19.494751]:[4992]: Player: '79bomber', stack: '740' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:19.496751]:[4992]: Player: '79bomber', action: 'MoneyReturn', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:22.998952]:[4992]: Player: 'CLRN', stack: '770' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:27:22.999952]:[4992]: Player: 'corvette2012', stack: '2005' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:27:22.999952]:[4992]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:27:23.001952]:[4992]: Player: 'CLRN', action: 'SmallBlind', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:27:23.008952]:[4992]: Player: 'corvette2012', action: 'BigBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T23:27:23.017953]:[4992]: Player cards: ('Jack' of 'Diamonds')('Nine' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T23:27:26.578156]:[4992]: Player: 'alacrangor', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:28.713279]:[4992]: Player: 'sreklofevets', stack: '2735' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:28.714279]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:30.625388]:[4992]: Player: 'dtcone', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:33.504553]:[4992]: Player: '79bomber', stack: '790' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:33.506553]:[4992]: Player: '79bomber', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:36.346715]:[4992]: Player: 'CLRN', stack: '745' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:36.348715]:[4992]: Player: 'CLRN', action: 'Call', amount: '25' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:38.504839]:[4992]: Player: 'corvette2012', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:39.129874]:[4992]: Cards received: ('Queen' of 'Clubs')('Ten' of 'Hearts')('Six' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:27:42.204050]:[4992]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:45.240224]:[4992]: Player: 'corvette2012', stack: '1955' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:45.242224]:[4992]: Player: 'corvette2012', action: 'Bet', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:49.486467]:[4992]: Player: 'sreklofevets', stack: '2685' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:49.488467]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:51.233567]:[4992]: Player: '79bomber', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:54.449751]:[4992]: Player: 'CLRN', stack: '695' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:54.451751]:[4992]: Player: 'CLRN', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:27:55.086787]:[4992]: Cards received: ('Queen' of 'Clubs')('Ten' of 'Hearts')('Six' of 'Spades')('Jack' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:27:58.351974]:[4992]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:03.354260]:[4992]: Player: 'corvette2012', stack: '1680' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:03.355260]:[4992]: Player: 'corvette2012', action: 'Bet', amount: '275' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:07.370490]:[4992]: Player: 'sreklofevets', stack: '2410' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:07.372490]:[4992]: Player: 'sreklofevets', action: 'Call', amount: '275' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:11.409721]:[4992]: Player: 'CLRN', stack: '420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:11.411721]:[4992]: Player: 'CLRN', action: 'Call', amount: '275' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:12.054758]:[4992]: Cards received: ('Queen' of 'Clubs')('Ten' of 'Hearts')('Six' of 'Spades')('Jack' of 'Clubs')('Queen' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T23:28:15.689965]:[4992]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:23.855432]:[4992]: Player: 'corvette2012', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:31.674880]:[4992]: Player: 'corvette2012', stack: '680' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:31.676880]:[4992]: Player: 'corvette2012', action: 'Bet', amount: '1000' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:31.954896]:[4992]: Player: 'sreklofevets', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:36.033129]:[4992]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:36.034129]:[4992]: Player: 'CLRN', action: 'Call', amount: '420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:36.768171]:[4992]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:38.176252]:[4992]: Player: 'corvette2012', action: 'ShowCards', cards: 'TdQs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:38.184252]:[4992]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:38.186252]:[4992]: Player: 'CLRN', action: 'ShowCards', cards: 'Jd9s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:39.374320]:[4992]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T23:28:39.375320]:[4992]: Player: 'CLRN', action: 'Rank', amount: '6' /* clnt::ps::msg::PlayerAction::Process */

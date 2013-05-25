@@ -1,0 +1,139 @@
+#include "Cards.h"
+#include "Exception.h"
+
+#include <cassert>
+
+std::string pcmn::Card::ToString(Value value)
+{
+#define CASE(x) case x: return #x;
+	switch (value)
+	{
+		CASE(Two)
+		CASE(Three)
+		CASE(Four)
+		CASE(Five)
+		CASE(Six)
+		CASE(Seven)
+		CASE(Eight)
+		CASE(Nine)
+		CASE(Ten)
+		CASE(Jack)
+		CASE(Queen)
+		CASE(King)
+		CASE(Ace)
+	default: CHECK(false, "Invalid value", value);
+	}
+#undef CASE
+	return "";
+}
+
+pcmn::Card::Value pcmn::Card::FromString(const char value)
+{
+	switch (value)
+	{
+		case '2': return Two;
+		case '3': return Three;
+		case '4': return Four;
+		case '5': return Five;
+		case '6': return Six;
+		case '7': return Seven;
+		case '8': return Eight;
+		case '9': return Nine;
+		case 'T': return Ten;
+		case 'J': return Jack;
+		case 'Q': return Queen;
+		case 'K': return King;
+		case 'A': return Ace;
+		default: CHECK(false, "Invalid value", value);
+	}
+}
+
+pcmn::Card pcmn::Card::FromString(const std::string& value, const std::string& suit)
+{
+	Card result;
+#define CASE(x) if (value == #x) result.m_Value = x;
+	{
+		CASE(Two)
+		CASE(Three)
+		CASE(Four)
+		CASE(Five)
+		CASE(Six)
+		CASE(Seven)
+		CASE(Eight)
+		CASE(Nine)
+		CASE(Ten)
+		CASE(Jack)
+		CASE(Queen)
+		CASE(King)
+		CASE(Ace)
+	}
+#undef CASE
+#define CASE(x) if (suit == #x) result.m_Suit = Suit::x;
+	{
+		CASE(Hearts)
+		CASE(Clubs)
+		CASE(Spades)
+		CASE(Diamonds)
+	}
+#undef CASE
+	return result;
+}
+
+short pcmn::Card::ToEvalFormat() const
+{
+	const int result = (Ace - m_Value) * 4;
+	switch (m_Suit)
+	{
+		case Suit::Spades: return result;
+		case Suit::Hearts: return result + 1;
+		case Suit::Diamonds: return result + 2;
+		case Suit::Clubs: return result + 3;
+	}
+	CHECK(false, "Invalid suit", m_Suit);
+	return 0;
+}
+
+const pcmn::Card& pcmn::Card::FromEvalFormat(short value)
+{
+	m_Value = static_cast<Value>(Ace - value / 4);
+	int rest = value % 4;
+	switch (rest)
+	{
+	case 0: m_Suit = Suit::Spades; break;
+	case 1: m_Suit =  Suit::Hearts; break;
+	case 2: m_Suit =  Suit::Diamonds; break;
+	case 3: m_Suit =  Suit::Clubs; break;
+	}
+	return *this;
+}
+
+bool pcmn::Card::IsValid() const
+{
+	return m_Value >= Two && m_Value <= Ace && (m_Suit == Suit::Hearts || m_Suit == Suit::Clubs || m_Suit == Suit::Spades || m_Suit == Suit::Diamonds);
+}
+
+bool pcmn::Card::operator==(const Card& other) const
+{
+    return m_Value == other.m_Value && m_Suit == other.m_Suit;
+}
+
+std::string pcmn::Suit::ToString(Value value)
+{
+#define CASE(x) case x: return #x;
+	switch (value)
+	{
+		CASE(Hearts)
+		CASE(Clubs)
+		CASE(Spades)
+		CASE(Diamonds)
+	default: CHECK(false, "Invalid card", value);
+	}
+#undef CASE
+	return "";
+}
+
+std::ostream& pcmn::operator<<(std::ostream& s, const Card& c)
+{
+    s << Card::ToString(c.m_Value) << " " << Suit::ToString(c.m_Suit);
+    return s;
+}

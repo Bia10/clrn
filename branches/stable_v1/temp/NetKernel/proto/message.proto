@@ -1,0 +1,22 @@
+package net;
+
+message Packet 
+{
+	optional int64 id 			= 1;        	// Unique ID number for this packet. Optional. If value is empty the batch size is 1 packet.
+	optional int64 next 		= 2;			// Optional value for next packet in batch.
+
+	enum PacketType 
+	{
+		DATA 		= 0;
+		REPLY 		= 1;
+		REQUEST 	= 2;
+	}
+
+	required PacketType	type 	= 3  [default = DATA];
+	optional bytes data			= 4;
+}
+
+message Batch
+{
+	repeated Packet packets 	= 1;
+}

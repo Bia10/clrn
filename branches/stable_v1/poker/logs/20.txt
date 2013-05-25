@@ -1,0 +1,59 @@
+[NONE   ][0][2013-05-17T11:09:47.983660]:[4596]: Logger started, module: [0], level: [3], source: [logs/messages.txt].
+[TRACE  ][0][2013-05-17T11:10:37.265479]:[6036]: Ante: '0' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-17T11:10:37.278479]:[6036]: Player: 'redSentinal', stack: '500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-17T11:10:37.278479]:[6036]: Player: 'rehabusrab', stack: '500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-17T11:10:37.278479]:[6036]: Player: 'nocoolingoff', stack: '500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-17T11:10:37.278479]:[6036]: Player: 'chavo0810', stack: '500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-17T11:10:37.279480]:[6036]: Player: 'seatownstorm', stack: '500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-17T11:10:37.279480]:[6036]: Player: 'CLRN', stack: '500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-17T11:10:37.279480]:[6036]: Player: 'gbobbylee', stack: '500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-17T11:10:37.279480]:[6036]: Player: 'TXchiptaker1', stack: '500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-17T11:11:36.389860]:[6036]: Player: 'redSentinal', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.389860]:[6036]: Player: 'rehabusrab', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.390861]:[6036]: Player: 'nocoolingoff', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.390861]:[6036]: Player: 'chavo0810', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.390861]:[6036]: Player: 'seatownstorm', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.390861]:[6036]: Player: '-Monty-Nash-', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.391861]:[6036]: Player: 'CLRN', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.391861]:[6036]: Player: 'gbobbylee', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.391861]:[6036]: Player: 'TXchiptaker1', stack: '498' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.392861]:[6036]: Ante: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.392861]:[6036]: Player: 'redSentinal', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.393861]:[6036]: Player: 'rehabusrab', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.394861]:[6036]: Player: 'nocoolingoff', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.396861]:[6036]: Player: 'chavo0810', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.397861]:[6036]: Player: 'seatownstorm', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.398861]:[6036]: Player: '-Monty-Nash-', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.399861]:[6036]: Player: 'CLRN', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.400861]:[6036]: Player: 'gbobbylee', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.401861]:[6036]: Player: 'TXchiptaker1', action: 'Ante', amount: '2' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-05-17T11:11:36.404861]:[6036]: Player: 'rehabusrab', stack: '488' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:11:36.405861]:[6036]: Player: 'rehabusrab', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:11:36.410862]:[6036]: Player cards: ('Nine' of 'Clubs')('Nine' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-17T11:11:41.087129]:[6036]: Player: 'chavo0810', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:11:41.375146]:[6036]: Player: 'seatownstorm', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:11:43.982295]:[6036]: Player: '-Monty-Nash-', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:11:46.909462]:[6036]: Player: 'CLRN', stack: '478' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:11:46.911462]:[6036]: Player: 'CLRN', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:11:51.747739]:[6036]: Player: 'gbobbylee', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:11:51.749739]:[6036]: Player: 'gbobbylee', action: 'Raise', amount: '498' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:11:57.589073]:[6036]: Player: 'TXchiptaker1', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:12:00.442236]:[6036]: Player: 'redSentinal', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:12:06.651591]:[6036]: Player: 'rehabusrab', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:12:14.651049]:[6036]: Player: 'rehabusrab', action: 'SecondsLeft', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:12:16.668164]:[6036]: Player: 'rehabusrab', action: 'SecondsLeft', amount: '8' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:12:17.991240]:[6036]: Player: 'rehabusrab', stack: '488' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:12:17.992240]:[6036]: Player: 'rehabusrab', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:12:18.278256]:[6036]: Player: 'nocoolingoff', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:12:20.219367]:[6036]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:12:20.221367]:[6036]: Player: 'CLRN', action: 'Call', amount: '478' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:12:20.684394]:[6036]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:12:22.074473]:[6036]: Cards received: ('Two' of 'Spades')('King' of 'Spades')('Ace' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-17T11:12:24.065587]:[6036]: Cards received: ('Two' of 'Spades')('King' of 'Spades')('Ace' of 'Spades')('Six' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-17T11:12:25.573674]:[6036]: Cards received: ('Two' of 'Spades')('King' of 'Spades')('Ace' of 'Spades')('Six' of 'Hearts')('Four' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-17T11:12:26.937752]:[6036]: Player: 'CLRN', action: 'ShowCards', cards: '9c9s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:12:26.948752]:[6036]: Player: 'gbobbylee', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:12:26.950752]:[6036]: Player: 'gbobbylee', action: 'ShowCards', cards: 'QsAh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:12:27.750798]:[6036]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:12:27.751798]:[6036]: Player: 'CLRN', action: 'Rank', amount: '9' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-17T11:12:55.308374]:[5432]: Ante: '0' /* clnt::ps::msg::TableInfo::Process */

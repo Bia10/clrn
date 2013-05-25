@@ -1,0 +1,18 @@
+<Settings>
+ <ACPFrequency>1840000</ACPFrequency>
+ <CAPFrequency>1370000</CAPFrequency>
+ <MinimumPeriodSize>5000</MinimumPeriodSize>
+ <PeriodsPerBuffer>10</PeriodsPerBuffer>
+ <IterationCoefficient>100</IterationCoefficient>
+ <MinIterations>10</MinIterations>
+ <MaxIterations>1000</MaxIterations>
+ <FindZeroCoefficient>1000</FindZeroCoefficient>
+ <ApproximatePoints>5</ApproximatePoints>
+ <RShunt>10000</RShunt>
+ <CalibrationFileName>calibration.xml</CalibrationFileName>
+ <MeasurementFileName>measurement.xml</MeasurementFileName>
+ <AmplitudesFileName>amplitudes.xml</AmplitudesFileName>
+ <CoefficientsFileName>coefficients.txt</CoefficientsFileName>
+ <LoggerFileName>CypressGUILog.txt</LoggerFileName>
+ <LogLevel>2</LogLevel>
+</Settings>

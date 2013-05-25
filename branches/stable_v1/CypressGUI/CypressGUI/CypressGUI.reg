@@ -1,0 +1,17 @@
+REGEDIT
+; This .REG file may be used by your SETUP program.
+;   If a SETUP program is not available, the entries below will be
+;   registered in your InitInstance automatically with a call to
+;   CWinApp::RegisterShellFileTypes and COleObjectFactory::UpdateRegistryAll.
+
+
+HKEY_CLASSES_ROOT\CypressGUI.Application = CypressGUI Application
+
+
+HKEY_CLASSES_ROOT\CypressGUI.Application\CLSID = {DD78B3DA-BE77-4222-B04D-5D775F5730D4}
+
+HKEY_CLASSES_ROOT\CLSID\{DD78B3DA-BE77-4222-B04D-5D775F5730D4} = CypressGUI Application
+HKEY_CLASSES_ROOT\CLSID\{DD78B3DA-BE77-4222-B04D-5D775F5730D4}\ProgId = CypressGUI.Application
+
+
+HKEY_CLASSES_ROOT\CLSID\{DD78B3DA-BE77-4222-B04D-5D775F5730D4}\LocalServer32 = CypressGUI.EXE

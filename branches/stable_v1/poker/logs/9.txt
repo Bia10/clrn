@@ -1,0 +1,819 @@
+[NONE   ][0][2013-04-22T21:20:43.354277]:[5124]: Logger started, module: [0], level: [3], source: [logs/messages.txt].
+[TRACE  ][0][2013-04-22T21:23:49.419919]:[6104]: Ante: '0' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T21:23:49.432920]:[6104]: Player: 'CLRN', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T21:23:49.432920]:[6104]: Player: 'TrashPlayer1', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T21:23:49.433920]:[6104]: Player: 'bojnican1411', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T21:23:49.433920]:[6104]: Player: 'MIAU50', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T21:23:49.433920]:[6104]: Player: 'JoeBlanck', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T21:23:49.434920]:[6104]: Player: '2L84H8', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T21:23:49.434920]:[6104]: Player: 'peyo123823', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T21:23:49.434920]:[6104]: Player: 'YakkeMontez7', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T21:23:49.434920]:[6104]: Player: 'psolemporos', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-04-22T21:24:46.304173]:[6104]: Player: 'TrashPlayer1', stack: '1490' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:24:46.304173]:[6104]: Player: 'bojnican1411', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:24:46.305173]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:24:46.306173]:[6104]: Player: 'TrashPlayer1', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:24:46.307173]:[6104]: Player: 'bojnican1411', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:24:46.310173]:[6104]: Player cards: ('Five' of 'Diamonds')('Four' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:24:51.585475]:[6104]: Player: 'MIAU50', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:24:51.587475]:[6104]: Player: 'MIAU50', action: 'Raise', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:24:53.677595]:[6104]: Player: 'JoeBlanck', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:24:57.542816]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:24:59.879949]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:05.365263]:[6104]: Player: 'YakkeMontez7', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:05.367263]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:05.668280]:[6104]: Player: 'psolemporos', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:14.068761]:[6104]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:26.371465]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:34.755944]:[6104]: Player: 'TrashPlayer1', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:39.076191]:[6104]: Player: 'TrashPlayer1', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:41.695341]:[6104]: Player: 'bojnican1411', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:41.695341]:[6104]: Player: 'bojnican1411', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:42.348378]:[6104]: Cards received: ('Five' of 'Clubs')('Six' of 'Diamonds')('Ten' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:25:46.003587]:[6104]: Player: 'bojnican1411', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:47.637681]:[6104]: Player: 'MIAU50', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:51.442899]:[6104]: Player: 'YakkeMontez7', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:51.444899]:[6104]: Player: 'YakkeMontez7', action: 'Bet', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:54.412068]:[6104]: Player: 'bojnican1411', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:54.413068]:[6104]: Player: 'bojnican1411', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:59.389353]:[6104]: Player: 'MIAU50', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:25:59.391353]:[6104]: Player: 'MIAU50', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:00.010389]:[6104]: Cards received: ('Five' of 'Clubs')('Six' of 'Diamonds')('Ten' of 'Hearts')('Ten' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:26:01.882496]:[6104]: Player: 'bojnican1411', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:03.958614]:[6104]: Player: 'MIAU50', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:08.886896]:[6104]: Player: 'YakkeMontez7', stack: '1140' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:08.888896]:[6104]: Player: 'YakkeMontez7', action: 'Bet', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:13.756175]:[6104]: Player: 'bojnican1411', stack: '1140' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:13.758175]:[6104]: Player: 'bojnican1411', action: 'Call', amount: '200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:15.289262]:[6104]: Player: 'MIAU50', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:15.986302]:[6104]: Cards received: ('Five' of 'Clubs')('Six' of 'Diamonds')('Ten' of 'Hearts')('Ten' of 'Clubs')('Three' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:26:19.438500]:[6104]: Player: 'bojnican1411', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:19.440500]:[6104]: Player: 'bojnican1411', action: 'Bet', amount: '1140' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:20.685571]:[6104]: Player: 'YakkeMontez7', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:20.687571]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '1140' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:21.145597]:[6104]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:22.727688]:[6104]: Player: 'bojnican1411', action: 'ShowCards', cards: 'Ks7s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:22.735688]:[6104]: Player: 'YakkeMontez7', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:22.737689]:[6104]: Player: 'YakkeMontez7', action: 'ShowCards', cards: 'JcTs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:23.967759]:[6104]: Player: 'bojnican1411', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:23.967759]:[6104]: Player: 'bojnican1411', action: 'Rank', amount: '9' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:29.960102]:[6104]: Player: 'MIAU50', stack: '1330' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:26:29.961102]:[6104]: Player: 'JoeBlanck', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:26:29.961102]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:26:29.963102]:[6104]: Player: 'MIAU50', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:26:29.973102]:[6104]: Player: 'JoeBlanck', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:26:29.979103]:[6104]: Player cards: ('Ten' of 'Hearts')('Four' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:26:35.641427]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:41.698773]:[6104]: Player: 'peyo123823', stack: '1140' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:41.700773]:[6104]: Player: 'peyo123823', action: 'Raise', amount: '360' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:46.563051]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:52.523392]:[6104]: Player: 'psolemporos', stack: '1140' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:52.525392]:[6104]: Player: 'psolemporos', action: 'Call', amount: '360' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:26:55.402557]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:03.487019]:[6104]: Player: 'TrashPlayer1', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:03.773036]:[6104]: Player: 'TrashPlayer1', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:03.774036]:[6104]: Player: 'TrashPlayer1', action: 'Raise', amount: '1490' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:07.578253]:[6104]: Player: 'MIAU50', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:11.900500]:[6104]: Player: 'JoeBlanck', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:12.186517]:[6104]: Player: 'peyo123823', stack: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:12.188517]:[6104]: Player: 'peyo123823', action: 'Call', amount: '1130' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:13.783608]:[6104]: Player: 'psolemporos', stack: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:13.785608]:[6104]: Player: 'psolemporos', action: 'Call', amount: '1130' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:14.405644]:[6104]: Cards received: ('Five' of 'Diamonds')('Five' of 'Hearts')('Two' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:27:16.530765]:[6104]: Player: 'peyo123823', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:16.532765]:[6104]: Player: 'peyo123823', action: 'Bet', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:17.873842]:[6104]: Player: 'psolemporos', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:17.877842]:[6104]: Player: 'psolemporos', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:18.447875]:[6104]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:20.700004]:[6104]: Cards received: ('Five' of 'Diamonds')('Five' of 'Hearts')('Two' of 'Hearts')('Queen' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:27:22.017079]:[6104]: Cards received: ('Five' of 'Diamonds')('Five' of 'Hearts')('Two' of 'Hearts')('Queen' of 'Clubs')('Two' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:27:23.654173]:[6104]: Player: 'peyo123823', action: 'ShowCards', cards: 'AsAd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:23.662173]:[6104]: Player: 'psolemporos', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:23.664173]:[6104]: Player: 'psolemporos', action: 'ShowCards', cards: '3c3h' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:24.870242]:[6104]: Player: 'peyo123823', stack: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:24.872242]:[6104]: Player: 'peyo123823', action: 'WinCards', pot: '20', cards: 'AsAd5d5hQc' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:24.876243]:[6104]: Player: 'TrashPlayer1', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:24.878243]:[6104]: Player: 'TrashPlayer1', action: 'ShowCards', cards: 'KsAh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:25.811296]:[6104]: Player: 'psolemporos', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:25.812296]:[6104]: Player: 'psolemporos', action: 'Rank', amount: '7' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:27.640401]:[6104]: Player: 'JoeBlanck', stack: '1470' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:27:27.641401]:[6104]: Player: '2L84H8', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:27:27.641401]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:27:27.644401]:[6104]: Player: 'JoeBlanck', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:27:27.647401]:[6104]: Player: '2L84H8', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:27:27.665402]:[6104]: Player cards: ('Ten' of 'Hearts')('Four' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:27:31.028595]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:33.618743]:[6104]: Player: 'YakkeMontez7', stack: '3150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:33.619743]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:36.846927]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:36.871929]:[6104]: Player: 'MIAU50', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:44.940390]:[6104]: Player: 'JoeBlanck', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:45.028395]:[6104]: Player: 'JoeBlanck', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:45.030395]:[6104]: Player: 'JoeBlanck', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:45.317412]:[6104]: Player: '2L84H8', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:27:45.936447]:[6104]: Cards received: ('Eight' of 'Clubs')('Ten' of 'Diamonds')('Queen' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:27:54.314926]:[6104]: Player: 'JoeBlanck', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:07.565684]:[6104]: Player: 'JoeBlanck', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:10.386846]:[6104]: Player: '2L84H8', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:15.958164]:[6104]: Player: 'YakkeMontez7', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:16.119174]:[6104]: Cards received: ('Eight' of 'Clubs')('Ten' of 'Diamonds')('Queen' of 'Spades')('King' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:28:20.127403]:[6104]: Player: 'JoeBlanck', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:20.417419]:[6104]: Player: '2L84H8', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:21.549484]:[6104]: Player: 'YakkeMontez7', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:21.711493]:[6104]: Cards received: ('Eight' of 'Clubs')('Ten' of 'Diamonds')('Queen' of 'Spades')('King' of 'Clubs')('Five' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:28:29.830958]:[6104]: Player: 'JoeBlanck', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:32.114088]:[6104]: Player: 'JoeBlanck', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:37.049371]:[6104]: Player: '2L84H8', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:40.668578]:[6104]: Player: 'YakkeMontez7', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:41.449622]:[6104]: Player: 'JoeBlanck', action: 'ShowCards', cards: 'Js8h' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:43.486739]:[6104]: Player: '2L84H8', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:45.016826]:[6104]: Player: 'YakkeMontez7', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:48.185008]:[6104]: Player: '2L84H8', stack: '1470' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:28:48.186008]:[6104]: Player: 'peyo123823', stack: '4500' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:28:48.186008]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:28:48.188008]:[6104]: Player: '2L84H8', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:28:48.194008]:[6104]: Player: 'peyo123823', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:28:48.198008]:[6104]: Player cards: ('Four' of 'Diamonds')('King' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:28:50.636148]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:53.822330]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:55.802443]:[6104]: Player: 'MIAU50', stack: '1310' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:55.804443]:[6104]: Player: 'MIAU50', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:58.540600]:[6104]: Player: 'JoeBlanck', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:28:58.542600]:[6104]: Player: 'JoeBlanck', action: 'Raise', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:06.789072]:[6104]: Player: '2L84H8', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:15.128549]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:15.407565]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:17.922709]:[6104]: Player: 'MIAU50', stack: '1230' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:17.924709]:[6104]: Player: 'MIAU50', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:18.542744]:[6104]: Cards received: ('Queen' of 'Hearts')('Ten' of 'Diamonds')('Eight' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:29:23.040001]:[6104]: Player: 'MIAU50', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:26.118177]:[6104]: Player: 'JoeBlanck', stack: '1300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:26.119177]:[6104]: Player: 'JoeBlanck', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:32.899565]:[6104]: Player: 'MIAU50', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:32.901565]:[6104]: Player: 'MIAU50', action: 'Raise', amount: '1230' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:36.644779]:[6104]: Player: 'JoeBlanck', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:40.256986]:[6104]: Player: 'peyo123823', stack: '4490' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:29:40.256986]:[6104]: Player: 'YakkeMontez7', stack: '3130' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:29:40.256986]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:29:40.258986]:[6104]: Player: 'peyo123823', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:29:40.262986]:[6104]: Player: 'YakkeMontez7', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:29:40.266987]:[6104]: Player cards: ('Ten' of 'Hearts')('King' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:29:44.001200]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:44.023201]:[6104]: Player: 'MIAU50', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:46.983371]:[6104]: Player: 'JoeBlanck', stack: '1180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:46.985371]:[6104]: Player: 'JoeBlanck', action: 'Raise', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:47.273387]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:47.567404]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:50.921596]:[6104]: Player: 'YakkeMontez7', stack: '3030' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:50.923596]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:51.541631]:[6104]: Cards received: ('Five' of 'Hearts')('Two' of 'Clubs')('Jack' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:29:54.605807]:[6104]: Player: 'YakkeMontez7', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:57.649981]:[6104]: Player: 'JoeBlanck', stack: '1000' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:29:57.651981]:[6104]: Player: 'JoeBlanck', action: 'Bet', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:00.080120]:[6104]: Player: 'YakkeMontez7', stack: '2850' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:00.082120]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:00.980171]:[6104]: Cards received: ('Five' of 'Hearts')('Two' of 'Clubs')('Jack' of 'Diamonds')('Jack' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:30:02.193241]:[6104]: Player: 'YakkeMontez7', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:06.835506]:[6104]: Player: 'JoeBlanck', stack: '640' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:06.837506]:[6104]: Player: 'JoeBlanck', action: 'Bet', amount: '360' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:11.905796]:[6104]: Player: 'YakkeMontez7', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:11.907796]:[6104]: Player: 'YakkeMontez7', action: 'Raise', amount: '2850' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:12.910854]:[6104]: Player: 'JoeBlanck', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:12.912854]:[6104]: Player: 'JoeBlanck', action: 'Call', amount: '640' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:13.407882]:[6104]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:15.259988]:[6104]: Cards received: ('Five' of 'Hearts')('Two' of 'Clubs')('Jack' of 'Diamonds')('Jack' of 'Hearts')('Five' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:30:16.611065]:[6104]: Player: 'YakkeMontez7', action: 'ShowCards', cards: 'Js5d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:16.619066]:[6104]: Player: 'JoeBlanck', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:16.621066]:[6104]: Player: 'JoeBlanck', action: 'ShowCards', cards: 'QsAs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:17.879138]:[6104]: Player: 'JoeBlanck', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:17.881138]:[6104]: Player: 'JoeBlanck', action: 'Rank', amount: '6' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:19.451228]:[6104]: Player: 'YakkeMontez7', stack: '1480' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:30:19.451228]:[6104]: Player: 'CLRN', stack: '4450' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:30:19.452228]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:30:19.453228]:[6104]: Player: 'YakkeMontez7', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:30:19.456228]:[6104]: Player: 'CLRN', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:30:19.563234]:[6104]: Player cards: ('Nine' of 'Clubs')('Six' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:30:26.000602]:[6104]: Player: 'MIAU50', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:28.175727]:[6104]: Player: '2L84H8', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:28.177727]:[6104]: Player: '2L84H8', action: 'Raise', amount: '1470' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:33.423027]:[6104]: Player: 'peyo123823', stack: '3020' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:33.425027]:[6104]: Player: 'peyo123823', action: 'Call', amount: '1470' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:34.855109]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:38.104295]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:38.861338]:[6104]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:40.286419]:[6104]: Cards received: ('Ten' of 'Spades')('Queen' of 'Clubs')('Four' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:30:42.446543]:[6104]: Cards received: ('Ten' of 'Spades')('Queen' of 'Clubs')('Four' of 'Hearts')('Eight' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:30:43.907627]:[6104]: Cards received: ('Ten' of 'Spades')('Queen' of 'Clubs')('Four' of 'Hearts')('Eight' of 'Hearts')('Eight' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:30:45.153698]:[6104]: Player: '2L84H8', action: 'ShowCards', cards: '9h8d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:45.229702]:[6104]: Player: 'peyo123823', stack: '3020' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:45.230702]:[6104]: Player: 'peyo123823', action: 'ShowCards', cards: 'AhQd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:48.342880]:[6104]: Player: 'CLRN', stack: '1470' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:30:48.342880]:[6104]: Player: 'MIAU50', stack: '1560' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:30:48.342880]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:30:48.343880]:[6104]: Player: 'CLRN', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:30:48.346880]:[6104]: Player: 'MIAU50', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:30:48.349881]:[6104]: Player cards: ('Seven' of 'Diamonds')('Nine' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:30:52.289106]:[6104]: Player: '2L84H8', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:52.291106]:[6104]: Player: '2L84H8', action: 'Raise', amount: '2970' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:55.024262]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:55.310279]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:30:58.829480]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:00.580580]:[6104]: Player: 'MIAU50', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:04.211788]:[6104]: Player: 'MIAU50', stack: '1550' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:31:04.212788]:[6104]: Player: '2L84H8', stack: '2980' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:31:04.212788]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:31:04.213788]:[6104]: Player: 'MIAU50', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:31:04.217788]:[6104]: Player: '2L84H8', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:31:04.223789]:[6104]: Player cards: ('Five' of 'Hearts')('Two' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:31:06.140898]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:10.441144]:[6104]: Player: 'YakkeMontez7', stack: '4430' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:10.443144]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:13.393313]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:15.862454]:[6104]: Player: 'MIAU50', stack: '1540' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:15.864454]:[6104]: Player: 'MIAU50', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:19.396656]:[6104]: Player: '2L84H8', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:19.398657]:[6104]: Player: '2L84H8', action: 'Raise', amount: '3000' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:26.195045]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:26.768078]:[6104]: Player: 'MIAU50', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:30.254277]:[6104]: Player: '2L84H8', stack: '3030' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:31:30.254277]:[6104]: Player: 'peyo123823', stack: '3000' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:31:30.255278]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:31:30.255278]:[6104]: Player: '2L84H8', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:31:30.258278]:[6104]: Player: 'peyo123823', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:31:30.262278]:[6104]: Player cards: ('Queen' of 'Hearts')('Nine' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:31:32.520407]:[6104]: Player: 'YakkeMontez7', stack: '4410' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:32.521407]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:35.970604]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:38.815767]:[6104]: Player: 'MIAU50', stack: '1520' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:38.816767]:[6104]: Player: 'MIAU50', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:38.829768]:[6104]: Player: '2L84H8', stack: '3020' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:38.831768]:[6104]: Player: '2L84H8', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:40.494863]:[6104]: Player: 'peyo123823', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:41.108898]:[6104]: Cards received: ('Four' of 'Spades')('Three' of 'Clubs')('Five' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:31:49.581383]:[6104]: Player: '2L84H8', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:50.154416]:[6104]: Player: '2L84H8', stack: '3000' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:50.156416]:[6104]: Player: '2L84H8', action: 'Bet', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:52.340541]:[6104]: Player: 'peyo123823', stack: '2980' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:52.342541]:[6104]: Player: 'peyo123823', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:57.503836]:[6104]: Player: 'YakkeMontez7', stack: '4390' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:57.505836]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:59.152930]:[6104]: Player: 'MIAU50', stack: '1500' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:59.153930]:[6104]: Player: 'MIAU50', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:31:59.772966]:[6104]: Cards received: ('Four' of 'Spades')('Three' of 'Clubs')('Five' of 'Spades')('Seven' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:32:02.430118]:[6104]: Player: '2L84H8', stack: '2960' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:02.432118]:[6104]: Player: '2L84H8', action: 'Bet', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:05.166274]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:13.517752]:[6104]: Player: 'YakkeMontez7', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:13.804768]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:16.939948]:[6104]: Player: 'MIAU50', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:16.941948]:[6104]: Player: 'MIAU50', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:17.553983]:[6104]: Cards received: ('Four' of 'Spades')('Three' of 'Clubs')('Five' of 'Spades')('Seven' of 'Hearts')('Queen' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:32:22.231250]:[6104]: Player: '2L84H8', stack: '2880' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:22.233250]:[6104]: Player: '2L84H8', action: 'Bet', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:27.519553]:[6104]: Player: 'MIAU50', stack: '1380' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:27.521553]:[6104]: Player: 'MIAU50', action: 'Call', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:28.263595]:[6104]: Player: '2L84H8', action: 'ShowCards', cards: '2cAs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:28.379602]:[6104]: Player: 'MIAU50', action: 'Loose', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:31.277768]:[6104]: Player: 'peyo123823', stack: '2970' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:32:31.277768]:[6104]: Player: 'YakkeMontez7', stack: '4370' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:32:31.278768]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:32:31.278768]:[6104]: Player: 'peyo123823', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:32:31.284768]:[6104]: Player: 'YakkeMontez7', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:32:31.390774]:[6104]: Player cards: ('Eight' of 'Hearts')('Ten' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:32:34.506952]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:37.990152]:[6104]: Player: 'MIAU50', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:46.076614]:[6104]: Player: '2L84H8', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:47.921720]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:50.423863]:[6104]: Player: 'peyo123823', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:50.424863]:[6104]: Player: 'peyo123823', action: 'Raise', amount: '2980' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:52.612988]:[6104]: Player: 'YakkeMontez7', stack: '1410' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:52.614988]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '2960' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:53.186021]:[6104]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:54.767111]:[6104]: Cards received: ('Seven' of 'Hearts')('Ace' of 'Clubs')('Six' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:32:56.770226]:[6104]: Cards received: ('Seven' of 'Hearts')('Ace' of 'Clubs')('Six' of 'Diamonds')('Four' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:32:58.268312]:[6104]: Cards received: ('Seven' of 'Hearts')('Ace' of 'Clubs')('Six' of 'Diamonds')('Four' of 'Spades')('Two' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:32:59.900405]:[6104]: Player: 'peyo123823', action: 'ShowCards', cards: '7d7c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:59.904405]:[6104]: Player: 'YakkeMontez7', stack: '1410' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:32:59.904405]:[6104]: Player: 'YakkeMontez7', action: 'ShowCards', cards: 'AsKs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:02.841573]:[6104]: Player: 'YakkeMontez7', stack: '1450' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:33:02.841573]:[6104]: Player: 'CLRN', stack: '1400' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:33:02.841573]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:33:02.842573]:[6104]: Player: 'YakkeMontez7', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:33:02.846573]:[6104]: Player: 'CLRN', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:33:02.849574]:[6104]: Player cards: ('Jack' of 'Spades')('Nine' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:33:05.308714]:[6104]: Player: 'MIAU50', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:08.013869]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:09.688965]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:14.468238]:[6104]: Player: 'YakkeMontez7', stack: '1390' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:14.470238]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:17.796429]:[6104]: Player: 'CLRN', stack: '1410' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:17.798429]:[6104]: Player: 'CLRN', action: 'Raise', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:25.947895]:[6104]: Player: 'YakkeMontez7', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:31.009184]:[6104]: Player: 'YakkeMontez7', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:31.010184]:[6104]: Player: 'YakkeMontez7', action: 'Raise', amount: '1410' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:39.410665]:[6104]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:44.250942]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:47.156108]:[6104]: Player: 'YakkeMontez7', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:47.715140]:[6104]: Player: 'CLRN', stack: '1400' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:33:47.715140]:[6104]: Player: 'MIAU50', stack: '1360' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:33:47.715140]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:33:47.716140]:[6104]: Player: 'CLRN', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:33:47.743141]:[6104]: Player: 'MIAU50', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:33:47.748142]:[6104]: Player cards: ('Six' of 'Hearts')('Two' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:33:50.746313]:[6104]: Player: '2L84H8', stack: '3200' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:50.748313]:[6104]: Player: '2L84H8', action: 'Raise', amount: '80' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:53.056445]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:56.050617]:[6104]: Player: 'YakkeMontez7', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:56.052617]:[6104]: Player: 'YakkeMontez7', action: 'Raise', amount: '1470' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:33:59.410809]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:01.585933]:[6104]: Player: 'MIAU50', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:02.564989]:[6104]: Player: '2L84H8', stack: '1810' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:02.566989]:[6104]: Player: '2L84H8', action: 'Call', amount: '1390' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:03.241028]:[6104]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:04.718112]:[6104]: Cards received: ('Three' of 'Diamonds')('Ace' of 'Spades')('King' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:34:06.707226]:[6104]: Cards received: ('Three' of 'Diamonds')('Ace' of 'Spades')('King' of 'Spades')('Three' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:34:08.221313]:[6104]: Cards received: ('Three' of 'Diamonds')('Ace' of 'Spades')('King' of 'Spades')('Three' of 'Hearts')('Ten' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:34:09.574390]:[6104]: Player: '2L84H8', action: 'ShowCards', cards: '7d7c' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:09.853406]:[6104]: Player: 'YakkeMontez7', stack: '1810' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:09.854406]:[6104]: Player: 'YakkeMontez7', action: 'ShowCards', cards: '2sAd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:12.866578]:[6104]: Player: 'MIAU50', stack: '1350' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:34:12.867578]:[6104]: Player: '2L84H8', stack: '1790' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:34:12.867578]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:34:12.869579]:[6104]: Player: 'MIAU50', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:34:12.875579]:[6104]: Player: '2L84H8', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:34:12.881579]:[6104]: Player cards: ('Ten' of 'Clubs')('Eight' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:34:14.785688]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:23.046161]:[6104]: Player: 'YakkeMontez7', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:26.037332]:[6104]: Player: 'YakkeMontez7', stack: '2950' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:26.039332]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:29.015502]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:31.038618]:[6104]: Player: 'MIAU50', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:31.040618]:[6104]: Player: 'MIAU50', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:33.330749]:[6104]: Player: '2L84H8', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:33.332749]:[6104]: Player: '2L84H8', action: 'Raise', amount: '1810' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:37.218971]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:39.155082]:[6104]: Player: 'MIAU50', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:42.968300]:[6104]: Player: '2L84H8', stack: '1840' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:34:42.968300]:[6104]: Player: 'peyo123823', stack: '5940' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:34:42.969300]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:34:42.971300]:[6104]: Player: '2L84H8', action: 'SmallBlind', amount: '10' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:34:42.975300]:[6104]: Player: 'peyo123823', action: 'BigBlind', amount: '20' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:34:42.981301]:[6104]: Player cards: ('Nine' of 'Diamonds')('King' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:34:48.325606]:[6104]: Player: 'YakkeMontez7', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:48.326607]:[6104]: Player: 'YakkeMontez7', action: 'Raise', amount: '2950' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:51.513789]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:51.804805]:[6104]: Player: 'MIAU50', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:52.696856]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:53.276890]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:34:55.888039]:[6104]: Player: 'YakkeMontez7', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:00.869324]:[6104]: Player: 'peyo123823', stack: '5925' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:35:00.870324]:[6104]: Player: 'YakkeMontez7', stack: '2950' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:35:00.870324]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:35:00.872324]:[6104]: Player: 'peyo123823', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:35:00.879325]:[6104]: Player: 'YakkeMontez7', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:35:00.885325]:[6104]: Player cards: ('Ace' of 'Clubs')('Two' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:35:04.457529]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:09.149798]:[6104]: Player: 'MIAU50', stack: '1310' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:09.150798]:[6104]: Player: 'MIAU50', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:10.781891]:[6104]: Player: '2L84H8', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:10.783891]:[6104]: Player: '2L84H8', action: 'Raise', amount: '1840' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:13.024019]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:16.607224]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:17.607281]:[6104]: Player: 'MIAU50', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:21.420499]:[6104]: Player: 'YakkeMontez7', stack: '1370' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:35:21.420499]:[6104]: Player: 'CLRN', stack: '2935' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:35:21.421499]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:35:21.422500]:[6104]: Player: 'YakkeMontez7', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:35:21.428500]:[6104]: Player: 'CLRN', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:35:21.434500]:[6104]: Player cards: ('Nine' of 'Diamonds')('Queen' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:35:23.721631]:[6104]: Player: 'MIAU50', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:25.085709]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:25.959759]:[6104]: Player: 'peyo123823', stack: '5895' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:25.961759]:[6104]: Player: 'peyo123823', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:36.386355]:[6104]: Player: 'YakkeMontez7', stack: '2920' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:36.388356]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:39.030507]:[6104]: Player: 'CLRN', stack: '1310' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:39.032507]:[6104]: Player: 'CLRN', action: 'Raise', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:41.045622]:[6104]: Player: 'peyo123823', stack: '5835' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:41.047622]:[6104]: Player: 'peyo123823', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:42.525707]:[6104]: Player: 'YakkeMontez7', stack: '2860' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:42.527707]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:43.420758]:[6104]: Cards received: ('King' of 'Spades')('Four' of 'Diamonds')('Seven' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:35:45.581881]:[6104]: Player: 'YakkeMontez7', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:48.393042]:[6104]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:51.220204]:[6104]: Player: 'peyo123823', stack: '2175' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:51.222204]:[6104]: Player: 'peyo123823', action: 'Bet', amount: '3660' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:35:57.839582]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:01.101769]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:01.395786]:[6104]: Player: 'peyo123823', stack: '1310' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:01.396786]:[6104]: Player: 'peyo123823', action: 'MoneyReturn', amount: '3660' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:04.917987]:[6104]: Player: 'CLRN', stack: '1295' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:36:04.917987]:[6104]: Player: 'MIAU50', stack: '1280' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:36:04.918987]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:36:04.919987]:[6104]: Player: 'CLRN', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:36:04.926988]:[6104]: Player: 'MIAU50', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:36:04.947989]:[6104]: Player cards: ('Three' of 'Hearts')('Three' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:36:07.621142]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:08.637200]:[6104]: Player: 'peyo123823', stack: '6075' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:08.639200]:[6104]: Player: 'peyo123823', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:16.690661]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:19.460819]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:21.386929]:[6104]: Player: 'MIAU50', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:22.287981]:[6104]: Cards received: ('Ten' of 'Clubs')('Six' of 'Spades')('Five' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:36:24.361099]:[6104]: Player: 'MIAU50', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:26.812240]:[6104]: Player: 'peyo123823', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:26.973249]:[6104]: Cards received: ('Ten' of 'Clubs')('Six' of 'Spades')('Five' of 'Spades')('Five' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:36:33.953648]:[6104]: Player: 'MIAU50', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:36.682804]:[6104]: Player: 'peyo123823', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:37.123829]:[6104]: Cards received: ('Ten' of 'Clubs')('Six' of 'Spades')('Five' of 'Spades')('Five' of 'Hearts')('Nine' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:36:42.229121]:[6104]: Player: 'MIAU50', stack: '1190' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:42.231121]:[6104]: Player: 'MIAU50', action: 'Bet', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:44.756266]:[6104]: Player: 'peyo123823', stack: '5985' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:44.758266]:[6104]: Player: 'peyo123823', action: 'Call', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:45.246294]:[6104]: Player: 'MIAU50', action: 'ShowCards', cards: 'Qc9h' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:45.252294]:[6104]: Player: 'peyo123823', stack: '1190' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:45.253294]:[6104]: Player: 'peyo123823', action: 'ShowCards', cards: 'Kc9s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:48.466478]:[6104]: Player: 'MIAU50', stack: '1175' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:36:48.466478]:[6104]: Player: '2L84H8', stack: '1885' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:36:48.467478]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:36:48.468478]:[6104]: Player: 'MIAU50', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:36:48.471478]:[6104]: Player: '2L84H8', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:36:48.475479]:[6104]: Player cards: ('Seven' of 'Hearts')('Ten' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:36:50.711607]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:36:59.363101]:[6104]: Player: 'YakkeMontez7', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:00.277154]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:03.097315]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:08.629631]:[6104]: Player: 'MIAU50', stack: '1160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:08.630631]:[6104]: Player: 'MIAU50', action: 'Call', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:08.914648]:[6104]: Player: '2L84H8', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:09.534683]:[6104]: Cards received: ('Five' of 'Spades')('Ace' of 'Clubs')('King' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:37:13.731923]:[6104]: Player: 'MIAU50', stack: '1130' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:13.733923]:[6104]: Player: 'MIAU50', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:16.571086]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:16.581086]:[6104]: Player: 'MIAU50', stack: '1160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:16.583086]:[6104]: Player: 'MIAU50', action: 'MoneyReturn', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:20.335301]:[6104]: Player: '2L84H8', stack: '1870' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:37:20.335301]:[6104]: Player: 'peyo123823', stack: '6210' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:37:20.335301]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:37:20.336301]:[6104]: Player: '2L84H8', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:37:20.340301]:[6104]: Player: 'peyo123823', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:37:20.344301]:[6104]: Player cards: ('Three' of 'Hearts')('Ten' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:37:25.441593]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:28.865789]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:30.723895]:[6104]: Player: 'MIAU50', stack: '1160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:30.725895]:[6104]: Player: 'MIAU50', action: 'Raise', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:38.247325]:[6104]: Player: '2L84H8', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:38.249326]:[6104]: Player: '2L84H8', action: 'Raise', amount: '1885' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:41.891534]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:48.579916]:[6104]: Player: 'MIAU50', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:48.581917]:[6104]: Player: 'MIAU50', action: 'Call', amount: '1160' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:49.047943]:[6104]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:50.566030]:[6104]: Cards received: ('Eight' of 'Hearts')('Nine' of 'Diamonds')('Jack' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:37:52.473139]:[6104]: Cards received: ('Eight' of 'Hearts')('Nine' of 'Diamonds')('Jack' of 'Spades')('Five' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:37:53.972225]:[6104]: Cards received: ('Eight' of 'Hearts')('Nine' of 'Diamonds')('Jack' of 'Spades')('Five' of 'Diamonds')('King' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:37:55.592318]:[6104]: Player: '2L84H8', action: 'ShowCards', cards: '9sTh' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:55.601318]:[6104]: Player: 'MIAU50', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:55.602318]:[6104]: Player: 'MIAU50', action: 'ShowCards', cards: '6cAd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:56.839389]:[6104]: Player: 'MIAU50', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:56.841389]:[6104]: Player: 'MIAU50', action: 'Rank', amount: '5' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:37:58.543486]:[6104]: Player: 'peyo123823', stack: '6195' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:37:58.543486]:[6104]: Player: 'YakkeMontez7', stack: '2830' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:37:58.543486]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:37:58.544486]:[6104]: Player: 'peyo123823', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:37:58.548487]:[6104]: Player: 'YakkeMontez7', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:37:58.552487]:[6104]: Player cards: ('King' of 'Hearts')('Six' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:38:01.919679]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:05.632892]:[6104]: Player: '2L84H8', stack: '3045' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:05.634892]:[6104]: Player: '2L84H8', action: 'Raise', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:10.472169]:[6104]: Player: 'peyo123823', stack: '6120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:10.474169]:[6104]: Player: 'peyo123823', action: 'Call', amount: '75' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:14.906422]:[6104]: Player: 'YakkeMontez7', stack: '2770' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:14.908422]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:15.525458]:[6104]: Cards received: ('Jack' of 'Spades')('Three' of 'Hearts')('Ten' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:38:19.427681]:[6104]: Player: 'peyo123823', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:19.428681]:[6104]: Player: 'peyo123823', action: 'Bet', amount: '6120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:25.011000]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:26.479084]:[6104]: Player: '2L84H8', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:26.481084]:[6104]: Player: '2L84H8', action: 'Call', amount: '3045' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:27.219126]:[6104]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:29.134236]:[6104]: Cards received: ('Jack' of 'Spades')('Three' of 'Hearts')('Ten' of 'Diamonds')('Four' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:38:30.638322]:[6104]: Cards received: ('Jack' of 'Spades')('Three' of 'Hearts')('Ten' of 'Diamonds')('Four' of 'Hearts')('Ace' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:38:32.148408]:[6104]: Player: 'peyo123823', action: 'ShowCards', cards: 'Jc7h' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:32.156409]:[6104]: Player: '2L84H8', stack: '3075' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:32.158409]:[6104]: Player: '2L84H8', action: 'ShowCards', cards: 'KcAd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:35.296588]:[6104]: Player: 'YakkeMontez7', stack: '1265' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:38:35.296588]:[6104]: Player: 'CLRN', stack: '2755' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:38:35.297589]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:38:35.299589]:[6104]: Player: 'YakkeMontez7', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:38:35.305589]:[6104]: Player: 'CLRN', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:38:35.311589]:[6104]: Player cards: ('Five' of 'Diamonds')('King' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:38:38.267758]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:41.273930]:[6104]: Player: 'peyo123823', stack: '2955' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:41.275930]:[6104]: Player: 'peyo123823', action: 'Raise', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:42.986028]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:46.065204]:[6104]: Player: 'CLRN', stack: '1175' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:46.067205]:[6104]: Player: 'CLRN', action: 'Call', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:46.958255]:[6104]: Cards received: ('Five' of 'Clubs')('Two' of 'Clubs')('Eight' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:38:49.008373]:[6104]: Player: 'CLRN', stack: '1145' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:49.010373]:[6104]: Player: 'CLRN', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:51.058490]:[6104]: Player: 'peyo123823', stack: '2925' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:51.060490]:[6104]: Player: 'peyo123823', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:51.678525]:[6104]: Cards received: ('Five' of 'Clubs')('Two' of 'Clubs')('Eight' of 'Clubs')('Nine' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:38:52.878594]:[6104]: Player: 'CLRN', stack: '1115' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:52.878594]:[6104]: Player: 'CLRN', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:54.561690]:[6104]: Player: 'peyo123823', stack: '2895' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:54.563690]:[6104]: Player: 'peyo123823', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:55.451741]:[6104]: Cards received: ('Five' of 'Clubs')('Two' of 'Clubs')('Eight' of 'Clubs')('Nine' of 'Diamonds')('Ace' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:38:57.486858]:[6104]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:59.892995]:[6104]: Player: 'peyo123823', stack: '2775' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:38:59.894995]:[6104]: Player: 'peyo123823', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:00.653039]:[6104]: Player: 'CLRN', stack: '875' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:00.654039]:[6104]: Player: 'CLRN', action: 'Raise', amount: '240' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:02.432141]:[6104]: Player: 'peyo123823', stack: '2655' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:02.433141]:[6104]: Player: 'peyo123823', action: 'Call', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:03.109179]:[6104]: Player: 'CLRN', action: 'ShowCards', cards: '5dKs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:03.113179]:[6104]: Player: 'peyo123823', stack: '875' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:03.114180]:[6104]: Player: 'peyo123823', action: 'ShowCards', cards: 'AsQs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:06.254359]:[6104]: Player: 'CLRN', stack: '860' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:39:06.255359]:[6104]: Player: '2L84H8', stack: '6330' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:39:06.255359]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:39:06.256359]:[6104]: Player: 'CLRN', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:39:06.259359]:[6104]: Player: '2L84H8', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:39:06.279361]:[6104]: Player cards: ('Seven' of 'Hearts')('Eight' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:39:09.721557]:[6104]: Player: 'peyo123823', stack: '840' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:09.723558]:[6104]: Player: 'peyo123823', action: 'Raise', amount: '2670' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:10.012574]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:12.563720]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:13.716786]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:17.524004]:[6104]: Player: '2L84H8', stack: '6315' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:39:17.524004]:[6104]: Player: 'peyo123823', stack: '3525' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:39:17.525004]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:39:17.526004]:[6104]: Player: '2L84H8', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:39:17.532004]:[6104]: Player: 'peyo123823', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:39:17.535004]:[6104]: Player cards: ('Four' of 'Hearts')('Ace' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:39:20.955200]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:23.664355]:[6104]: Player: 'CLRN', stack: '830' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:23.666355]:[6104]: Player: 'CLRN', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:30.260732]:[6104]: Player: '2L84H8', stack: '6300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:30.262732]:[6104]: Player: '2L84H8', action: 'Call', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:33.416913]:[6104]: Player: 'peyo123823', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:33.418913]:[6104]: Player: 'peyo123823', action: 'Raise', amount: '3555' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:36.826108]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:37.137126]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:40.782334]:[6104]: Player: 'peyo123823', stack: '3600' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:39:40.782334]:[6104]: Player: 'YakkeMontez7', stack: '2725' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:39:40.782334]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:39:40.783334]:[6104]: Player: 'peyo123823', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:39:40.787334]:[6104]: Player: 'YakkeMontez7', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:39:40.811336]:[6104]: Player cards: ('Ace' of 'Diamonds')('Three' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:39:43.899512]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:45.800621]:[6104]: Player: '2L84H8', stack: '6210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:45.802621]:[6104]: Player: '2L84H8', action: 'Raise', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:47.119697]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:49.786849]:[6104]: Player: 'YakkeMontez7', stack: '2665' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:49.788849]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:50.406885]:[6104]: Cards received: ('Five' of 'Clubs')('Seven' of 'Diamonds')('King' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:39:53.821080]:[6104]: Player: 'YakkeMontez7', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:57.594296]:[6104]: Player: '2L84H8', stack: '6120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:39:57.596296]:[6104]: Player: '2L84H8', action: 'Bet', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:03.239619]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:03.249619]:[6104]: Player: '2L84H8', stack: '6210' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:03.251619]:[6104]: Player: '2L84H8', action: 'MoneyReturn', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:06.875827]:[6104]: Player: 'YakkeMontez7', stack: '800' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:40:06.876827]:[6104]: Player: 'CLRN', stack: '2650' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:40:06.876827]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:40:06.878827]:[6104]: Player: 'YakkeMontez7', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:40:06.883827]:[6104]: Player: 'CLRN', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:40:06.886827]:[6104]: Player cards: ('Eight' of 'Diamonds')('Queen' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:40:09.985004]:[6104]: Player: '2L84H8', stack: '6315' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:09.987004]:[6104]: Player: '2L84H8', action: 'Raise', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:11.870112]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:14.307252]:[6104]: Player: 'YakkeMontez7', stack: '2575' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:14.309252]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '75' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:16.783393]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:17.685445]:[6104]: Cards received: ('Six' of 'Hearts')('Jack' of 'Diamonds')('Five' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:40:22.373713]:[6104]: Player: 'YakkeMontez7', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:24.347826]:[6104]: Player: '2L84H8', stack: '6225' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:24.349826]:[6104]: Player: '2L84H8', action: 'Bet', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:25.319881]:[6104]: Player: 'YakkeMontez7', stack: '2485' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:25.321882]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:26.217933]:[6104]: Cards received: ('Six' of 'Hearts')('Jack' of 'Diamonds')('Five' of 'Diamonds')('King' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:40:27.544009]:[6104]: Player: 'YakkeMontez7', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:29.246106]:[6104]: Player: '2L84H8', stack: '6135' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:29.248106]:[6104]: Player: '2L84H8', action: 'Bet', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:30.550181]:[6104]: Player: 'YakkeMontez7', stack: '2395' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:30.552181]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:31.165216]:[6104]: Cards received: ('Six' of 'Hearts')('Jack' of 'Diamonds')('Five' of 'Diamonds')('King' of 'Diamonds')('Jack' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:40:34.937432]:[6104]: Player: 'YakkeMontez7', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:34.939432]:[6104]: Player: 'YakkeMontez7', action: 'Bet', amount: '2395' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:36.059496]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:36.069496]:[6104]: Player: 'YakkeMontez7', stack: '6135' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:36.071496]:[6104]: Player: 'YakkeMontez7', action: 'MoneyReturn', amount: '2395' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:38.645644]:[6104]: Player: 'YakkeMontez7', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:39.630700]:[6104]: Player: 'CLRN', stack: '785' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:40:39.630700]:[6104]: Player: '2L84H8', stack: '6105' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:40:39.631700]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:40:39.632700]:[6104]: Player: 'CLRN', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:40:39.639700]:[6104]: Player: '2L84H8', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:40:39.646701]:[6104]: Player cards: ('Four' of 'Clubs')('Ace' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:40:44.753993]:[6104]: Player: 'peyo123823', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:44.755993]:[6104]: Player: 'peyo123823', action: 'Raise', amount: '3600' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:44.769994]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:47.378143]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:48.831226]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:52.259422]:[6104]: Player: '2L84H8', stack: '6090' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:40:52.260422]:[6104]: Player: 'peyo123823', stack: '3615' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:40:52.260422]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:40:52.262422]:[6104]: Player: '2L84H8', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:40:52.268423]:[6104]: Player: 'peyo123823', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:40:52.275423]:[6104]: Player cards: ('Six' of 'Spades')('Queen' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:40:59.840856]:[6104]: Player: 'YakkeMontez7', stack: '2935' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:40:59.842856]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:02.298997]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:03.835084]:[6104]: Player: '2L84H8', stack: '6015' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:03.837085]:[6104]: Player: '2L84H8', action: 'Raise', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:06.347228]:[6104]: Player: 'peyo123823', stack: '3555' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:06.349228]:[6104]: Player: 'peyo123823', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:07.564298]:[6104]: Player: 'YakkeMontez7', stack: '2875' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:07.566298]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:08.188333]:[6104]: Cards received: ('Ace' of 'Spades')('Eight' of 'Clubs')('Six' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:41:10.717478]:[6104]: Player: '2L84H8', stack: '5865' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:10.719478]:[6104]: Player: '2L84H8', action: 'Bet', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:11.910546]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:13.287625]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:13.296626]:[6104]: Player: '2L84H8', stack: '6015' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:13.298626]:[6104]: Player: '2L84H8', action: 'MoneyReturn', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:16.967836]:[6104]: Player: 'peyo123823', stack: '3540' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:41:16.967836]:[6104]: Player: 'YakkeMontez7', stack: '2845' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:41:16.967836]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:41:16.968836]:[6104]: Player: 'peyo123823', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:41:16.971836]:[6104]: Player: 'YakkeMontez7', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:41:16.973836]:[6104]: Player cards: ('Three' of 'Diamonds')('Ten' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:41:20.507038]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:28.660504]:[6104]: Player: '2L84H8', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:34.640846]:[6104]: Player: '2L84H8', stack: '6195' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:34.642846]:[6104]: Player: '2L84H8', action: 'Raise', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:36.742967]:[6104]: Player: 'peyo123823', stack: '3465' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:36.744967]:[6104]: Player: 'peyo123823', action: 'Call', amount: '75' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:44.222394]:[6104]: Player: 'YakkeMontez7', stack: '2785' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:44.222394]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:44.921434]:[6104]: Cards received: ('Queen' of 'Clubs')('Queen' of 'Diamonds')('Five' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:41:49.730709]:[6104]: Player: 'peyo123823', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:54.366975]:[6104]: Player: 'YakkeMontez7', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:57.516155]:[6104]: Player: '2L84H8', stack: '6045' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:57.518155]:[6104]: Player: '2L84H8', action: 'Bet', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:58.932236]:[6104]: Player: 'peyo123823', stack: '3315' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:41:58.933236]:[6104]: Player: 'peyo123823', action: 'Call', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:00.799343]:[6104]: Player: 'YakkeMontez7', stack: '2635' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:00.801343]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:01.699394]:[6104]: Cards received: ('Queen' of 'Clubs')('Queen' of 'Diamonds')('Five' of 'Clubs')('Four' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:42:03.520498]:[6104]: Player: 'peyo123823', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:05.212595]:[6104]: Player: 'YakkeMontez7', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:06.007640]:[6104]: Player: '2L84H8', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:06.166650]:[6104]: Cards received: ('Queen' of 'Clubs')('Queen' of 'Diamonds')('Five' of 'Clubs')('Four' of 'Clubs')('King' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:42:08.954809]:[6104]: Player: 'peyo123823', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:12.411007]:[6104]: Player: 'YakkeMontez7', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:12.413007]:[6104]: Player: 'YakkeMontez7', action: 'Bet', amount: '2635' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:16.692252]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:16.979268]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:16.988269]:[6104]: Player: 'YakkeMontez7', stack: '3315' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:16.990269]:[6104]: Player: 'YakkeMontez7', action: 'MoneyReturn', amount: '2635' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:19.816430]:[6104]: Player: 'YakkeMontez7', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:20.609476]:[6104]: Player: 'YakkeMontez7', stack: '755' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:42:20.610476]:[6104]: Player: 'CLRN', stack: '3340' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:42:20.610476]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:42:20.612476]:[6104]: Player: 'YakkeMontez7', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:42:20.620476]:[6104]: Player: 'CLRN', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:42:20.623476]:[6104]: Player cards: ('Nine' of 'Hearts')('King' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:42:27.460868]:[6104]: Player: '2L84H8', stack: '5955' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:27.462868]:[6104]: Player: '2L84H8', action: 'Raise', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:30.665051]:[6104]: Player: 'peyo123823', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:30.667051]:[6104]: Player: 'peyo123823', action: 'Raise', amount: '3315' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:38.785515]:[6104]: Player: 'YakkeMontez7', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:38.876520]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:42.151708]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:42.454725]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:45.829918]:[6104]: Player: 'CLRN', stack: '740' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:42:45.829918]:[6104]: Player: '2L84H8', stack: '5925' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:42:45.830918]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:42:45.831918]:[6104]: Player: 'CLRN', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:42:45.834918]:[6104]: Player: '2L84H8', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:42:45.854920]:[6104]: Player cards: ('Eight' of 'Hearts')('Ten' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:42:47.985041]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:55.894494]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:59.228685]:[6104]: Player: 'CLRN', stack: '725' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:42:59.230685]:[6104]: Player: 'CLRN', action: 'Call', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:07.539160]:[6104]: Player: '2L84H8', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:10.709341]:[6104]: Player: '2L84H8', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:11.346378]:[6104]: Cards received: ('Seven' of 'Diamonds')('Seven' of 'Hearts')('Jack' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:43:14.312547]:[6104]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:16.278660]:[6104]: Player: '2L84H8', stack: '5895' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:16.280660]:[6104]: Player: '2L84H8', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:16.629680]:[6104]: Player: 'CLRN', stack: '695' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:16.629680]:[6104]: Player: 'CLRN', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:17.530731]:[6104]: Cards received: ('Seven' of 'Diamonds')('Seven' of 'Hearts')('Jack' of 'Clubs')('Two' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:43:19.675854]:[6104]: Player: 'CLRN', stack: '665' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:19.676854]:[6104]: Player: 'CLRN', action: 'Bet', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:22.163996]:[6104]: Player: '2L84H8', stack: '5865' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:22.166997]:[6104]: Player: '2L84H8', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:23.056047]:[6104]: Cards received: ('Seven' of 'Diamonds')('Seven' of 'Hearts')('Jack' of 'Clubs')('Two' of 'Clubs')('Seven' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:43:26.404239]:[6104]: Player: 'CLRN', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:34.489701]:[6104]: Player: '2L84H8', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:45.892354]:[6104]: Player: '2L84H8', stack: '5805' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:45.894354]:[6104]: Player: '2L84H8', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:49.088536]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:49.380553]:[6104]: Player: '2L84H8', stack: '665' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:49.382553]:[6104]: Player: '2L84H8', action: 'MoneyReturn', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:52.888754]:[6104]: Player: '2L84H8', stack: '6030' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:43:52.889754]:[6104]: Player: 'peyo123823', stack: '3420' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:43:52.889754]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:43:52.891754]:[6104]: Player: '2L84H8', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:43:52.897754]:[6104]: Player: 'peyo123823', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:43:52.916755]:[6104]: Player cards: ('Ten' of 'Diamonds')('Nine' of 'Spades') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:43:57.394011]:[6104]: Player: 'YakkeMontez7', stack: '3310' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:43:57.396012]:[6104]: Player: 'YakkeMontez7', action: 'Call', amount: '30' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:00.024162]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:01.712258]:[6104]: Player: '2L84H8', stack: '6015' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:01.714258]:[6104]: Player: '2L84H8', action: 'Call', amount: '15' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:02.001275]:[6104]: Player: 'peyo123823', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:02.635311]:[6104]: Cards received: ('Seven' of 'Spades')('Three' of 'Hearts')('Three' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:44:05.403470]:[6104]: Player: '2L84H8', stack: '5955' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:05.405470]:[6104]: Player: '2L84H8', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:08.119625]:[6104]: Player: 'peyo123823', stack: '3360' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:08.121625]:[6104]: Player: 'peyo123823', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:14.546992]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:15.163028]:[6104]: Cards received: ('Seven' of 'Spades')('Three' of 'Hearts')('Three' of 'Clubs')('Jack' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:44:18.785235]:[6104]: Player: '2L84H8', stack: '5895' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:18.787235]:[6104]: Player: '2L84H8', action: 'Bet', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:23.535507]:[6104]: Player: 'peyo123823', stack: '3300' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:23.537507]:[6104]: Player: 'peyo123823', action: 'Call', amount: '60' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:24.156542]:[6104]: Cards received: ('Seven' of 'Spades')('Three' of 'Hearts')('Three' of 'Clubs')('Jack' of 'Diamonds')('Two' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:44:26.513677]:[6104]: Player: '2L84H8', stack: '5715' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:26.515677]:[6104]: Player: '2L84H8', action: 'Bet', amount: '180' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:31.504962]:[6104]: Player: 'peyo123823', stack: '1830' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:31.506963]:[6104]: Player: 'peyo123823', action: 'Raise', amount: '1470' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:33.680087]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:37.486305]:[6104]: Player: 'peyo123823', stack: '3795' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:44:37.486305]:[6104]: Player: 'YakkeMontez7', stack: '3280' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:44:37.486305]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:44:37.487305]:[6104]: Player: 'peyo123823', action: 'SmallBlind', amount: '15' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:44:37.490305]:[6104]: Player: 'YakkeMontez7', action: 'BigBlind', amount: '30' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:44:37.493305]:[6104]: Player cards: ('Ten' of 'Spades')('Jack' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:44:41.161515]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:42.534593]:[6104]: Player: '2L84H8', stack: '5625' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:42.536593]:[6104]: Player: '2L84H8', action: 'Raise', amount: '90' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:44.415701]:[6104]: Player: 'peyo123823', stack: '3720' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:44.417701]:[6104]: Player: 'peyo123823', action: 'Call', amount: '75' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:53.129199]:[6104]: Player: 'YakkeMontez7', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:53.555224]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:54.464276]:[6104]: Cards received: ('Eight' of 'Clubs')('Ace' of 'Hearts')('Ace' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:44:58.249492]:[6104]: Player: 'peyo123823', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:44:58.251492]:[6104]: Player: 'peyo123823', action: 'Bet', amount: '3720' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:02.337726]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:02.348727]:[6104]: Player: 'peyo123823', stack: '5625' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:02.350727]:[6104]: Player: 'peyo123823', action: 'MoneyReturn', amount: '3720' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:09.927160]:[6104]: Player: 'YakkeMontez7', stack: '615' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:45:09.928160]:[6104]: Player: 'CLRN', stack: '3255' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:45:09.928160]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:45:09.930160]:[6104]: Player: 'YakkeMontez7', action: 'SmallBlind', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:45:09.936161]:[6104]: Player: 'CLRN', action: 'BigBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:45:09.942161]:[6104]: Player cards: ('Eight' of 'Diamonds')('Queen' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:45:17.086570]:[6104]: Player: '2L84H8', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:25.255037]:[6104]: Player: 'peyo123823', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:30.245322]:[6104]: Player: 'peyo123823', stack: '3880' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:30.246322]:[6104]: Player: 'peyo123823', action: 'Call', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:36.273667]:[6104]: Player: 'YakkeMontez7', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:36.275667]:[6104]: Player: 'YakkeMontez7', action: 'Raise', amount: '3280' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:39.519853]:[6104]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:40.096886]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:42.782039]:[6104]: Player: 'YakkeMontez7', action: 'Win', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:43.719093]:[6104]: Player: 'CLRN', stack: '590' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:45:43.719093]:[6104]: Player: '2L84H8', stack: '5575' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:45:43.720093]:[6104]: Ante: '0' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:45:43.722093]:[6104]: Player: 'CLRN', action: 'SmallBlind', amount: '25' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:45:43.724093]:[6104]: Player: '2L84H8', action: 'BigBlind', amount: '50' /* clnt::ps::msg::BeforePreflopActions::Process */
+[TRACE  ][0][2013-04-22T21:45:43.727093]:[6104]: Player cards: ('King' of 'Clubs')('Queen' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-04-22T21:45:46.184234]:[6104]: Player: 'peyo123823', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:46.604258]:[6104]: Player: 'YakkeMontez7', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:49.432420]:[6104]: Player: 'CLRN', stack: '565' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:49.434420]:[6104]: Player: 'CLRN', action: 'Call', amount: '25' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:45:57.589886]:[6104]: Player: '2L84H8', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:46:08.588515]:[6104]: Player: '2L84H8', stack: '5475' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:46:08.590515]:[6104]: Player: '2L84H8', action: 'Raise', amount: '150' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:46:11.364674]:[6104]: Player: 'CLRN', stack: '465' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:46:11.366674]:[6104]: Player: 'CLRN', action: 'Call', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:46:11.982709]:[6104]: Cards received: ('Five' of 'Hearts')('Two' of 'Spades')('Jack' of 'Clubs') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:46:14.303842]:[6104]: Player: 'CLRN', stack: '415' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:46:14.305842]:[6104]: Player: 'CLRN', action: 'Bet', amount: '50' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:46:17.693036]:[6104]: Player: '2L84H8', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:46:17.694036]:[6104]: Player: '2L84H8', action: 'Raise', amount: '5475' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:46:19.674149]:[6104]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:46:19.675149]:[6104]: Player: 'CLRN', action: 'Call', amount: '415' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:46:20.415192]:[6104]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:46:22.323301]:[6104]: Cards received: ('Five' of 'Hearts')('Two' of 'Spades')('Jack' of 'Clubs')('Ten' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:46:23.816386]:[6104]: Cards received: ('Five' of 'Hearts')('Two' of 'Spades')('Jack' of 'Clubs')('Ten' of 'Spades')('Eight' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-04-22T21:46:25.451480]:[6104]: Player: 'CLRN', action: 'ShowCards', cards: 'KcQd' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:46:25.458480]:[6104]: Player: '2L84H8', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:46:25.460480]:[6104]: Player: '2L84H8', action: 'ShowCards', cards: 'Ks2d' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:46:26.490539]:[6104]: Player: 'CLRN', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-04-22T21:46:26.492539]:[6104]: Player: 'CLRN', action: 'Rank', amount: '4' /* clnt::ps::msg::PlayerAction::Process */

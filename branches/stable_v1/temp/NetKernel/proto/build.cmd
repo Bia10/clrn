@@ -1,0 +1,1 @@
+protoc.exe message.proto --cpp_out=./

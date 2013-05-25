@@ -1,0 +1,125 @@
+pending:
+
+подумать, возможно тут стоит делать фолд(если повторится - переделать на фолд Huge bets)
+[TRACE  ][6][2013-05-23T20:48:43.561228]:[7580]: Win: [0.61293298], bet: [0], max bet: [1020], pot: [2010], bot stack: [1020], cards: [Cards: ('King' of 'Diamonds')('Five' of 'Diamonds'), Flop: ('Four' of 'Spades')('Six' of 'Clubs')('King' of 'Spades')('Seven' of 'Hearts')] /* srv::DecisionMaker::MakeDecision */
+Decision >>>>: [win: [VeryGood], pos: [Later], bet: [Huge], players: [One], danger: [High], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Big], decision: [Not set]]
+Decision <<<<: [Action: 2 Amount: 1020] /* srv::DecisionMaker::MakeDecision */
+
+fixed:
+[TRACE  ][6][2013-04-10T23:32:23.594577]:[4752]: Decision input: win: [Normal]:[29], pos: [Later], pot: [Normal], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */
+[TRACE  ][6][2013-04-10T23:37:54.535506]:[5988]: Decision input: win: [Normal]:[31], pos: [Later], pot: [High], stack: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal] /* srv::DecisionMaker::MakeDecision */
+[TRACE  ][6][2013-04-21T23:39:11.065292]:[6252]: Decision input: [win: [Normal], pos: [Later], bet: [Normal], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]], output: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
+
+не заходил в пот из поздней позиции с неплохими картами при маленьком стеке
+Decision >>>>: [win: [Normal], pos: [Later], bet: [Low], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Small], decision: [Not set]]
+Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
+
+флешдро скинул: (все отлично, у оппонента при таких ставках в среднем было 40%)
+Decision >>>>: [win: [Good], pos: [Early], bet: [Normal], players: [Two], danger: [High], bot avg style: [Normal], bot style: [Normal], bot stack: [Normal], decision: [Not set]]
+Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
+
+добавлен колл для случаев ниже с bet: Very low
+Decision >>>>: [win: [Low], pos: [Later], bet: [Normal], players: [One], danger: [Low], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+Decision >>>>: [win: [Low], pos: [Later], bet: [Normal], players: [Two], danger: [High], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+
+скинул туз даму на префлопе
+Decision >>>>: [win: [Normal], pos: [Later], bet: [High], players: [ThreeOrMore], danger: [Low], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+
+скинул туз-валет
+Decision >>>>: [win: [Normal], pos: [Early], bet: [Low], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Small], decision: [Not set]]
+
+испугался:
+Decision >>>>: [win: [Good], pos: [Later], bet: [Normal], players: [One], danger: [High], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+
+скинул АК на рейз:
+Decision >>>>: [win: [Good], pos: [Later], bet: [Huge], players: [One], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+
+при хедсапе колирует/рейзит на младшей паре:
+Decision >>>>: [win: [Good], pos: [Later], bet: [High], players: [One], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+Decision >>>>: [win: [Good], pos: [Later], bet: [Normal], players: [One], danger: [Normal], bot avg style: [Normal], bot style: [Normal], bot stack: [Normal], decision: [Not set]]
+
+тут надо ссс
+Decision >>>>: [win: [Normal], pos: [Later], bet: [Huge], players: [ThreeOrMore], danger: [Normal], bot avg style: [Passive], bot style: [Passive], bot stack: [Small], decision: [Not set]]
+
+тут надо конбет:
+Decision >>>>: [win: [Normal], pos: [Later], bet: [VeryLow], players: [One], danger: [Low], bot avg style: [Aggressive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+
+тут олл ин - решилось в плюсовом коде (олл ин вместо рейза при маленьком стеке):
+Decision >>>>: [win: [Normal], pos: [Later], bet: [Huge], players: [Two], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+Decision >>>>: [win: [Good], pos: [Later], bet: [VeryLow], players: [One], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Small], decision: [Not set]]
+Decision >>>>: [win: [VeryGood], pos: [Early], bet: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Small], decision: [Not set]]
+
+АК скинул:
+Decision >>>>: [win: [Good], pos: [Early], bet: [Low], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Passive], bot stack: [Small], decision: [Not set]]
+
+конбеты нужны:
+Decision >>>>: [win: [Normal], pos: [Later], bet: [Low], players: [Two], danger: [Normal], bot avg style: [Passive], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+Decision <<<<: [Action: 4 Amount: 90] /* srv::DecisionMaker::MakeDecision */
+Decision >>>>: [win: [Low], pos: [Later], bet: [VeryLow], players: [One], danger: [Low], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+Decision >>>>: [win: [Low], pos: [Later], bet: [VeryLow], players: [One], danger: [Low], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+
+тут тоже:
+Decision >>>>: [win: [Normal], pos: [Early], bet: [Normal], players: [One], danger: [Low], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+Decision <<<<: [Action: 2 Amount: 90] /* srv::DecisionMaker::MakeDecision */
+Decision >>>>: [win: [VeryLow], pos: [Early], bet: [Normal], players: [One], danger: [Low], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+Decision >>>>: [win: [VeryLow], pos: [Early], bet: [VeryLow], players: [One], danger: [Low], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+
+олл ин:
+Decision >>>>: [win: [Good], pos: [Later], bet: [Huge], players: [One], danger: [Normal], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Small], decision: [Not set]]
+
+КК скинул:
+Decision >>>>: [win: [Good], pos: [Early], bet: [High], players: [ThreeOrMore], danger: [Normal], bot avg style: [Passive], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+
+конбет: неверно определился bet size!
+Decision >>>>: [win: [Low], pos: [Early], bet: [Normal], players: [One], danger: [Low], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+
+АК скинул:
+Decision >>>>: [win: [Normal], pos: [Middle], bet: [High], players: [ThreeOrMore], danger: [Normal], bot avg style: [Aggressive], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+
+скинул:
+Decision >>>>: [win: [Good], pos: [Later], bet: [VeryLow], players: [Two], danger: [Low], bot avg style: [Aggressive], bot style: [Passive], bot stack: [Small], decision: [Not set]]
+Decision <<<<: [Action: 0 Amount: 0] /* srv::DecisionMaker::MakeDecision */
+
+проиграл тут:
+Decision >>>>: [win: [VeryGood], pos: [Later], bet: [VeryLow], players: [One], danger: [High], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Small], decision: [Not set]]
+Decision <<<<: [Action: 4 Amount: 900] /* srv::DecisionMaker::MakeDecision */
+Decision >>>>: [win: [Good], pos: [Later], bet: [VeryLow], players: [One], danger: [High], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Small], decision: [Not set]]
+Decision <<<<: [Action: 4 Amount: 900] /* srv::DecisionMaker::MakeDecision */
+
+скинул пару:
+Decision >>>>: [win: [Normal], pos: [Later], bet: [VeryLow], players: [ThreeOrMore], danger: [High], bot avg style: [Passive], bot style: [Passive], bot stack: [Big], decision: [Not set]]
+
+очень жесткий рейз оллин:
+Decision >>>>: [win: [VeryGood], pos: [Later], bet: [VeryLow], players: [One], danger: [Normal], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Small], decision: [Not set]]
+
+тут надо было скидывать:
+Decision >>>>: [win: [VeryGood], pos: [Middle], bet: [High], players: [Two], danger: [High], bot avg style: [Aggressive], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+Decision >>>>: [win: [VeryGood], pos: [Later], bet: [Huge], players: [Two], danger: [High], bot avg style: [Aggressive], bot style: [Normal], bot stack: [Small], decision: [Not set]]
+
+скинул АА:
+Decision >>>>: [win: [Normal], pos: [Middle], bet: [VeryLow], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Big], decision: [Not set]]
+Decision >>>>: [win: [Normal], pos: [Later], bet: [High], players: [ThreeOrMore], danger: [Normal], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Big], decision: [Not set]]
+
+тут надо рейзить:
+Decision >>>>: [win: [Good], pos: [Middle], bet: [VeryLow], players: [ThreeOrMore], danger: [Low], bot avg style: [Passive], bot style: [Normal], bot stack: [Small], decision: [Not set]]
+Decision >>>>: [win: [Good], pos: [Middle], bet: [VeryLow], players: [ThreeOrMore], danger: [Low], bot avg style: [Passive], bot style: [Normal], bot stack: [Small], decision: [Not set]]
+
+конбет с нормал стеком:
+Decision >>>>: [win: [Low], pos: [Middle], bet: [VeryLow], players: [Two], danger: [Low], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+
+скинул топ пару:
+Decision >>>>: [win: [Normal], pos: [Middle], bet: [VeryLow], players: [Two], danger: [High], bot avg style: [Aggressive], bot style: [Normal], bot stack: [Normal], decision: [Not set]]
+
+рейз не в тему, позиция и стек не те:
+Decision >>>>: [win: [Normal], pos: [Middle], bet: [VeryLow], players: [Two], danger: [Low], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+
+кривой рейз:
+Decision >>>>: [win: [VeryLow], pos: [Middle], bet: [VeryLow], players: [One], danger: [Low], bot avg style: [Passive], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]
+Decision <<<<: [Action: 4 Amount: 1700] /* srv::DecisionMaker::MakeDecision */
+
+здесь оллин:
+Decision >>>>: [win: [Normal], pos: [Later], bet: [High], players: [Two], danger: [Low], bot avg style: [Passive], bot style: [Passive], bot stack: [Normal], decision: [Not set]]
+Decision <<<<: [Action: 2 Amount: 525] /* srv::DecisionMaker::MakeDecision */
+
+блеф без большого стека:
+Decision >>>>: [win: [VeryLow], pos: [Middle], bet: [VeryLow], players: [One], danger: [Low], bot avg style: [Normal], bot style: [Aggressive], bot stack: [Normal], decision: [Not set]]

@@ -1,0 +1,556 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\CypressGUI.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "1 TYPELIB ""CypressGUI.tlb""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\CypressGUI.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_FI                  BITMAP                  "res\\FI.bmp"
+IDB_SCHEME1             BITMAP                  "res\\Scheme1.bmp"
+IDB_DEVICE              BITMAP                  "res\\device.bmp"
+IDB_AIR                 BITMAP                  "..//недписи\\Air.bmp"
+IDB_INPUT_VALUES        BITMAP                  "..//недписи\\Input values.bmp"
+IDB_PARAMETERS          BITMAP                  "..//недписи\\parameters.bmp"
+IDB_DEVICE_CONTROL      BITMAP                  "..//недписи\\Device control.bmp"
+IDB_SCHEME              BITMAP                  "..//недписи\\Scheme.bmp"
+IDB_RESULT              BITMAP                  "..//недписи\\Result.bmp"
+IDB_HODOGRAPH           BITMAP                  "..//недписи\\Hodograph.bmp"
+IDB_RUNCONTROL          BITMAP                  "..//недписи\\Run control.bmp"
+IDB_GENERATED_CIRCUIT   BITMAP                  "..//недписи\\Generated circuit.bmp"
+IDB_ELEMENT_VALUES      BITMAP                  "..//недписи\\Elements values.bmp"
+IDB_TUPPER              BITMAP                  "..//недписи\\t.bmp"
+IDB_UOUT                BITMAP                  "..//недписи\\Uout.bmp"
+IDB_UIN                 BITMAP                  "..//недписи\\Uin.bmp"
+IDB_F                   BITMAP                  "..//недписи\\f.bmp"
+IDB_TLOWER              BITMAP                  "..//недписи\\t0.bmp"
+IDB_RE                  BITMAP                  "..//недписи\\Re.bmp"
+IDB_IM                  BITMAP                  "..//недписи\\Im.bmp"
+IDB_F1                  BITMAP                  "..//недписи\\f1.bmp"
+IDB_F2                  BITMAP                  "..//недписи\\f2.bmp"
+IDB_GAS                 BITMAP                  "..//недписи\\Gas.bmp"
+IDB_FLOW                BITMAP                  "..//недписи\\Flow.bmp"
+IDB_MIX                 BITMAP                  "..//недписи\\Mix.bmp"
+IDB_DEVICE_2            BITMAP                  "..//недписи\\структура.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_LOGDLG DIALOGEX 0, 0, 266, 321
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Logger"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+IDD_RANGE_DLG DIALOGEX 0, 0, 226, 105
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Ranges"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,174,60,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,174,78,50,14
+    LISTBOX         IDC_LIST_RANGES,7,7,162,91,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Remove",IDC_REMOVE_BTN,174,24,50,14
+    PUSHBUTTON      "Add",IDC_ADD_BTN,174,6,50,14
+    DEFPUSHBUTTON   "Default",IDDEFAULT,174,42,50,14
+END
+
+IDD_SETTINGS_DLG DIALOGEX 0, 0, 328, 169
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,204,150,57,14
+    PUSHBUTTON      "Cancel",IDCANCEL,270,150,54,14
+    EDITTEXT        IDC_EDIT1,6,24,60,14,ES_AUTOHSCROLL
+    LTEXT           "ACP frequency:",IDC_STATIC,6,12,52,8
+    LTEXT           "CAP frequency:",IDC_STATIC,6,42,52,8
+    LTEXT           "Minimum period size:",IDC_STATIC,6,72,66,8
+    LTEXT           "Periods per buffer:",IDC_STATIC,6,102,62,8
+    LTEXT           "Iterations coefficient:",IDC_STATIC,78,12,70,8
+    LTEXT           "Minimum iterations:",IDC_STATIC,78,42,62,8
+    LTEXT           "Maximum iterations:",IDC_STATIC,78,72,65,8
+    LTEXT           "Calibration file name:",IDC_STATIC,156,12,68,8
+    LTEXT           "Measurement file name:",IDC_STATIC,156,42,78,8
+    LTEXT           "Amplitudes file name:",IDC_STATIC,156,72,69,8
+    LTEXT           "Coefficients file name:",IDC_STATIC,156,102,72,8
+    LTEXT           "Log file name:",IDC_STATIC,240,12,46,8
+    LTEXT           "Log level:",IDC_STATIC,240,42,32,8
+    GROUPBOX        "Device",IDC_STATIC,0,0,150,162
+    EDITTEXT        IDC_EDIT2,6,54,60,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,6,84,60,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT4,6,114,60,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT5,78,24,60,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT6,78,54,60,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT7,78,84,60,14,ES_AUTOHSCROLL
+    GROUPBOX        "Files",IDC_STATIC,150,0,84,132
+    EDITTEXT        IDC_EDIT8,156,24,72,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT9,156,54,72,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT10,156,84,72,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT11,156,114,72,14,ES_AUTOHSCROLL
+    GROUPBOX        "Log",IDC_STATIC,234,0,90,72
+    EDITTEXT        IDC_EDIT12,240,24,78,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO1,240,54,78,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Find zero coefficient:",IDC_STATIC,78,102,68,8
+    EDITTEXT        IDC_EDIT13,78,114,60,14,ES_AUTOHSCROLL
+    GROUPBOX        "Approximation points",IDC_STATIC,234,72,90,36
+    EDITTEXT        IDC_EDIT14,240,84,78,14,ES_AUTOHSCROLL
+    LTEXT           "Shunt resistance:",IDC_STATIC,6,132,57,8
+    EDITTEXT        IDC_EDIT15,6,144,60,14,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_LOGDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 259
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 314
+    END
+
+    IDD_RANGE_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 219
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 98
+    END
+
+    IDD_SETTINGS_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 321
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 162
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU MENU 
+BEGIN
+    POPUP "Application"
+    BEGIN
+        MENUITEM "Settings",                    ID_APPLICATION_SETTINGS
+        MENUITEM "Exit",                        ID_APPLICATION_EXIT
+    END
+    POPUP "Data"
+    BEGIN
+        MENUITEM "Save",                        ID_DATA_SAVE32782
+        MENUITEM "Clear",                       ID_DATA_CLEAR
+        MENUITEM SEPARATOR
+        MENUITEM "Approximate",                 ID_SAVE_APPROXIMATE
+        MENUITEM "Merge",                       ID_DATA_MERGE
+    END
+    POPUP "Chart"
+    BEGIN
+        MENUITEM "Start",                       ID_CHART_START
+        MENUITEM "Stop",                        ID_CHART_STOP
+        MENUITEM "Clear",                       ID_CHART_CLEAR
+        MENUITEM SEPARATOR
+        MENUITEM "Show hodohraph",              ID_CHART_SHOWHODOHRAPH
+        MENUITEM "Approximate hodohraph",       ID_CHART_APPROXIMATEHODOHRAPH
+        MENUITEM "Show phase",                  ID_CHART_SHOWPHASE, CHECKED
+        MENUITEM "Start hodograph from (0,0)",  ID_CHART_STARTCHARTFROM, CHECKED
+        MENUITEM "Show negative part",          ID_CHART_SHOWNEGATIVEPART, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "Save hodograph",              ID_CHART_SAVEHODOGRAPH
+        MENUITEM "Calculate hodohraph",         ID_CHART_HODOHRAPH
+        MENUITEM "Plot file",                   ID_CHART_PLOTFILE
+        MENUITEM "Plot current data",           ID_CHART_PLOTCURRENTDATA
+    END
+    POPUP "Log"
+    BEGIN
+        MENUITEM "Show",                        ID_LOG_SHOW
+        MENUITEM "Hide",                        ID_LOG_HIDE
+        MENUITEM "Clear",                       ID_LOG_CLEAR
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_SETTINGS_DLG DLGINIT
+BEGIN
+    IDC_COMBO1, 0x403, 4, 0
+0x664f, 0x0066, 
+    IDC_COMBO1, 0x403, 14, 0
+0x654d, 0x7373, 0x6761, 0x7365, 0x6f20, 0x6c6e, 0x0079, 
+    IDC_COMBO1, 0x403, 4, 0
+0x6c41, 0x006c, 
+    IDC_COMBO1, 0x403, 12, 0
+0x6c41, 0x206c, 0x6576, 0x6272, 0x736f, 0x0065, 
+    0
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About CypressGUI"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,21,20
+    LTEXT           "CypressGUI, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2011",IDC_STATIC,42,26,114,8
+    DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP
+END
+
+IDD_CYPRESSGUI_DIALOG DIALOGEX 0, 0, 689, 474
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "CypressGUI"
+MENU IDR_MENU
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "",IDC_STATIC,12,18,90,173,0,WS_EX_CLIENTEDGE
+    GROUPBOX        "",IDC_STATIC,418,19,264,234,0,WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_TABCIRCUIT,"SysTabControl32",0x0,418,264,264,102,WS_EX_CLIENTEDGE
+    GROUPBOX        "",IDC_STATIC,418,372,264,78,0,WS_EX_CLIENTEDGE
+    GROUPBOX        "Current values",IDC_STATIC,12,192,192,54,0,WS_EX_CLIENTEDGE
+    GROUPBOX        "",IDC_STATIC,12,246,192,169,0,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "Calibrate",IDC_BUTTONSTART,78,433,54,14
+    PUSHBUTTON      "Measurement",IDC_BUTTONSTOP,138,433,54,14
+    CONTROL         "",IDC_TABFREQ,"SysTabControl32",TCS_RAGGEDRIGHT,102,18,102,172,WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SLIDERTEMPERATURE,"msctls_trackbar32",TBS_VERT | TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,30,60,19,98
+    CONTROL         "",IDC_SLIDERVOLTAGEEXIT,"msctls_trackbar32",TBS_VERT | TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,60,60,19,98
+    CONTROL         "",IDC_SLIDERGAS,"msctls_trackbar32",TBS_VERT | TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,24,276,19,98
+    CONTROL         "",IDC_SLIDERAIR,"msctls_trackbar32",TBS_VERT | TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,72,276,19,98
+    CONTROL         "",IDC_SLIDERMIX,"msctls_trackbar32",TBS_VERT | TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,120,276,19,98
+    CONTROL         "",IDC_SLIDERFLOW,"msctls_trackbar32",TBS_VERT | TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,168,276,19,98
+    EDITTEXT        IDC_EDITTEMPERATURE,150,217,40,15,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    EDITTEXT        IDC_EDITVOLTAGE,18,216,40,14,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    EDITTEXT        IDC_EDITFREQ,84,217,40,14,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    EDITTEXT        IDC_INDICATOR_TEMP,29,168,25,15,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_INDICATOR_VOLTAGE,59,168,25,15,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_INDICATOR_GAS,19,379,25,15,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_INDICATOR_AIR,66,378,25,15,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_INDICATOR_MIX,114,378,25,15,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_INDICATOR_FLOW,162,378,25,15,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_NUMBER
+    PUSHBUTTON      "Start",IDC_BUTTONSTART2,18,396,24,14
+    PUSHBUTTON      "Start",IDC_BUTTONSTART3,66,396,24,14
+    PUSHBUTTON      "Start",IDC_BUTTONSTART4,114,396,24,14
+    PUSHBUTTON      "Start",IDC_BUTTONSTART5,162,396,24,14
+    EDITTEXT        IDC_EDIT_Z,445,233,40,15,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    EDITTEXT        IDC_EDIT_FI,505,233,40,15,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    GROUPBOX        "",IDC_STATIC,12,414,192,36,0,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "Connect",IDC_BUTTONCONNECT,18,433,54,14
+    GROUPBOX        "",IDC_STATIC,408,0,276,456
+    GROUPBOX        "",IDC_STATIC,6,0,204,456
+    GROUPBOX        "",IDC_STATIC,210,0,198,456
+    EDITTEXT        IDC_EDIT_R0,438,396,40,14,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    EDITTEXT        IDC_EDIT_R1,438,418,40,14,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    EDITTEXT        IDC_EDIT_C0,504,396,40,14,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    EDITTEXT        IDC_EDIT_C1,504,418,40,14,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    EDITTEXT        IDC_EDITFREQ6,570,396,40,14,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    EDITTEXT        IDC_EDITFREQ7,570,418,40,14,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    EDITTEXT        IDC_EDITFREQ8,630,396,40,14,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    EDITTEXT        IDC_EDITFREQ9,630,418,40,14,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    CONTROL         139,IDC_STATIC,"Static",SS_BITMAP,68,263,30,16
+    CONTROL         140,IDC_STATIC,"Static",SS_BITMAP,22,25,55,12
+    CONTROL         141,IDC_STATIC,"Static",SS_BITMAP,14,7,53,10
+    CONTROL         144,IDC_STATIC,"Static",SS_BITMAP,22,252,71,10
+    CONTROL         145,IDC_STATIC,"Static",SS_BITMAP,217,7,38,10
+    CONTROL         146,IDC_STATIC,"Static",SS_BITMAP,415,7,31,12
+    CONTROL         147,IDC_STATIC,"Static",SS_BITMAP,417,24,51,12
+    CONTROL         148,IDC_STATIC,"Static",SS_BITMAP,19,420,56,11
+    CONTROL         149,IDC_STATIC,"Static",SS_BITMAP,415,252,82,12
+    CONTROL         150,IDC_STATIC,"Static",SS_BITMAP,419,378,75,11
+    CONTROL         151,IDC_STATIC,"Static",SS_BITMAP,36,48,8,12
+    CONTROL         152,IDC_STATIC,"Static",SS_BITMAP,56,48,24,12
+    CONTROL         153,IDC_STATIC,"Static",SS_BITMAP,27,202,19,12
+    CONTROL         154,IDC_STATIC,"Static",SS_BITMAP,101,202,6,12
+    CONTROL         155,IDC_STATIC,"Static",SS_BITMAP,167,203,9,11
+    CONTROL         156,IDC_STATIC,"Static",SS_BITMAP,427,234,15,11
+    CONTROL         157,IDC_STATIC,"Static",SS_BITMAP,489,234,13,11
+    EDITTEXT        IDC_EDIT_HODOGRAPH_FREQUENCY,564,234,40,15,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    LTEXT           "R0",IDC_STATIC,426,396,10,8
+    LTEXT           "R1",IDC_STATIC,426,420,10,8
+    LTEXT           "C0",IDC_STATIC,486,396,10,8
+    LTEXT           "C1",IDC_STATIC,486,420,10,8
+    CONTROL         166,IDC_STATIC,"Static",SS_BITMAP,20,263,30,16
+    CONTROL         170,IDC_STATIC,"Static",SS_BITMAP,113,262,30,16
+    CONTROL         169,IDC_STATIC,"Static",SS_BITMAP,163,262,30,16
+    CONTROL         171,IDC_STATIC,"Static",SS_BITMAP,217,17,38,10
+END
+
+IDD_DIALOGWITHTWO DIALOGEX 0, 0, 130, 181
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_SLIDERF1,"msctls_trackbar32",TBS_VERT | TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,18,30,19,98
+    CONTROL         "",IDC_SLIDERF2,"msctls_trackbar32",TBS_VERT | TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,66,30,19,98
+    EDITTEXT        IDC_INDICATOR_F1,6,137,42,15,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_INDICATOR_F2,54,137,42,15,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         158,IDC_STATIC,"Static",SS_BITMAP,21,15,10,12
+    CONTROL         159,IDC_STATIC,"Static",SS_BITMAP,69,16,11,12
+    EDITTEXT        IDC_STEP,35,15,30,14,ES_CENTER | ES_AUTOHSCROLL
+END
+
+IDD_ONECONTROL DIALOGEX 0, 0, 155, 193
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_SLIDERF,"msctls_trackbar32",TBS_VERT | TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,43,30,19,98
+    EDITTEXT        IDC_INDICATOR_F,32,137,38,15,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "f",IDC_STATIC,49,18,8,8
+END
+
+IDD_CIRCUITPAGE1 DIALOGEX 0, 0, 339, 179
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    CONTROL         134,IDC_STATIC,"Static",SS_BITMAP,0,0,338,177
+END
+
+IDD_CIRCUITPAGE2 DIALOGEX 0, 0, 351, 213
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    LTEXT           "2",IDC_STATIC,55,42,74,8
+END
+
+IDD_CIRCUITPAGE3 DIALOGEX 0, 0, 357, 194
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    LTEXT           "3",IDC_STATIC,55,42,74,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 163
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+
+    IDD_CYPRESSGUI_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 682
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 467
+    END
+
+    IDD_DIALOGWITHTWO, DIALOG
+    BEGIN
+        RIGHTMARGIN, 127
+    END
+
+    IDD_ONECONTROL, DIALOG
+    BEGIN
+        RIGHTMARGIN, 116
+    END
+
+    IDD_CIRCUITPAGE2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 344
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 206
+    END
+
+    IDD_CIRCUITPAGE3, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 350
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 187
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "CLRN production"
+            VALUE "FileDescription", "Cypress API wrapper"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "CypressGUI.exe"
+            VALUE "LegalCopyright", "(c) CLRN production.  All rights reserved."
+            VALUE "OriginalFilename", "CypressGUI.exe"
+            VALUE "ProductName", "Cypress based USB device"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDP_OLE_INIT_FAILED     "OLE initialization failed.  Make sure that the OLE libraries are the correct version."
+    IDS_ABOUTBOX            "&About CypressGUI..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\CypressGUI.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+1 TYPELIB "CypressGUI.tlb"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

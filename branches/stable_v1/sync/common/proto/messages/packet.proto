@@ -1,0 +1,46 @@
+package packets;
+
+// import jobs
+import "job.proto";
+
+// data packet
+message Packet 
+{
+	// packet type
+	enum PacketType 
+	{
+		REQUEST 		= 1;	// this packets stores request
+		REPLY 			= 2;	// this is reply to request
+		ERR				= 3;	// this is error reply
+		PING			= 4;	// ping packet
+		ACK				= 5;	// acknowledge packet
+		CONNECT			= 6;	// packet containing connect with third host job 
+		RECONNECT		= 7;	// reconnect packet, if after start host finds out that it have active sessions it sends this packet to all active hosts
+	}
+	
+	// packet destination description
+	message Destination
+	{
+		// address type
+		enum Type
+		{
+			ONE		= 1;	// packet should be sent to one destination
+			RANGE	= 2;	// packet should be sent to range of destinations
+			ALL		= 3;	// packet should be sent to all available nodes
+		}
+		
+		required Type		type			= 1  [default = ONE];	// destination type
+		optional uint32		from			= 2;					// destination IP
+		optional int32		to				= 3;					// end of the range
+		optional bytes		filter			= 4;					// specific filter
+	}
+	
+	required PacketType		type 			= 1;					// data packet type
+	optional jobs.Job		job				= 2;					// packet job
+	optional Destination	destination		= 3;					// packet destination
+	required bytes			guid			= 4;					// packet guid
+	optional uint32			timeout			= 5;					// packet reply wait timeout(milliseconds)
+	required bytes			from			= 6;					// sender instance guid
+	optional bytes			ep				= 7;					// sender endpoint
+	repeated bytes			trace			= 8;					// packet trace records
+}

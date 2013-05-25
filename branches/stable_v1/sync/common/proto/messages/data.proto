@@ -1,0 +1,35 @@
+package data;
+
+// table contains rows with data
+message Table
+{
+	// table row contains repeated fields with data
+	message Row
+	{
+		repeated bytes 	data = 1;		// cells data
+	}
+	
+	// table action 
+	enum Action
+	{
+		Insert			= 0;
+		Delete			= 1;
+	}
+	
+	// table id
+	enum Id
+	{
+		None			= 0;
+		Modules			= 1;
+		Settings		= 2;
+		Hosts			= 3;
+		HostMap			= 4;
+		HostMapEvent	= 5;
+		HostStatusEvent	= 6;
+	}
+
+	repeated Row	rows	= 1;					// table rows
+	optional Id		id		= 2;					// table id
+	optional Action action  = 3 [default = Insert];	// table data action
+}
+
