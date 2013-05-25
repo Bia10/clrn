@@ -1,3 +1,0 @@
-[1321297557] [error] [client 127.0.0.1] GET /examples/direct/direct.php: spawn_process: execle(direct.php): Exec format error
-[1321297569] [error] [client 127.0.0.1] GET /examples/direct/direct-form.php: spawn_process: execle(direct-form.php): Exec format error
-[1321297763] [error] [client 127.0.0.1] GET /examples/direct/direct-tree.php: spawn_process: execle(direct-tree.php): Exec format error

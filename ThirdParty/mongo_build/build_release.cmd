@@ -1,1 +1,0 @@
-scons mongoclient --extrapath d:\svn\trunk\ThirdParty\ --release --32 --libpath d:\svn\trunk\ThirdParty\lib\
