@@ -1,0 +1,102 @@
+[NONE   ][0][2013-05-21T18:07:36.975127]:[644]: Logger started, module: [0], level: [3], source: [logs/messages.txt].
+[TRACE  ][0][2013-05-21T18:08:40.806778]:[4884]: Ante: '0' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-21T18:08:40.810778]:[4884]: Player: 'xmike54x', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-21T18:08:40.810778]:[4884]: Player: 'silviazgz', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-21T18:08:40.810778]:[4884]: Player: 'commandable', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-21T18:08:40.811778]:[4884]: Player: 'marnayla', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-21T18:08:40.811778]:[4884]: Player: 'caniche61', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-21T18:08:40.811778]:[4884]: Player: 'madad2424', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-21T18:08:40.811778]:[4884]: Player: 'beby Ellye', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-21T18:08:40.811778]:[4884]: Player: 'gando60', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-21T18:08:40.811778]:[4884]: Player: 'CLRN', stack: '1500' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-21T18:08:41.387811]:[4884]: Ante: '0' /* clnt::ps::msg::TableInfo::Process */
+[TRACE  ][0][2013-05-21T18:09:39.764150]:[4884]: Player cards: ('Six' of 'Hearts')('Ten' of 'Clubs') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-21T18:09:46.282523]:[4884]: Player: 'marnayla', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:09:46.282523]:[4884]: Player: 'marnayla', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:09:48.237635]:[4884]: Player: 'caniche61', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:09:48.237635]:[4884]: Player: 'caniche61', action: 'Raise', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:09:51.853841]:[4884]: Player: 'madad2424', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:09:51.853841]:[4884]: Player: 'madad2424', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:09:53.401930]:[4884]: Player: 'beby Ellye', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:09:54.589998]:[4884]: Player: 'gando60', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:02.885472]:[4884]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:06.152659]:[4884]: Player: 'CLRN', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:06.152659]:[4884]: Player: 'CLRN', action: 'Call', amount: '40' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:06.525681]:[4884]: Player: 'xmike54x', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:14.991165]:[4884]: Player: 'silviazgz', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:16.824270]:[4884]: Player: 'commandable', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:16.824270]:[4884]: Player: 'commandable', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:18.894388]:[4884]: Player: 'marnayla', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:18.895388]:[4884]: Player: 'marnayla', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:19.788439]:[4884]: Cards received: ('King' of 'Diamonds')('Jack' of 'Diamonds')('Jack' of 'Spades') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-21T18:10:21.916561]:[4884]: Player: 'commandable', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:27.456878]:[4884]: Player: 'marnayla', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:34.801298]:[4884]: Player: 'caniche61', stack: '1360' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:34.801298]:[4884]: Player: 'caniche61', action: 'Bet', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:38.787526]:[4884]: Player: 'madad2424', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:47.288012]:[4884]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:50.098173]:[4884]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:50.101173]:[4884]: Player: 'commandable', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:52.016283]:[4884]: Player: 'marnayla', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:52.017283]:[4884]: Player: 'caniche61', stack: '1460' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:52.017283]:[4884]: Player: 'caniche61', action: 'MoneyReturn', amount: '100' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:10:59.709723]:[4884]: Player cards: ('Two' of 'Spades')('Two' of 'Diamonds') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-21T18:11:03.975967]:[4884]: Player: 'caniche61', stack: '1650' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:03.975967]:[4884]: Player: 'caniche61', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:07.566172]:[4884]: Player: 'madad2424', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:07.566172]:[4884]: Player: 'madad2424', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:09.511283]:[4884]: Player: 'beby Ellye', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:09.512283]:[4884]: Player: 'beby Ellye', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:10.527341]:[4884]: Player: 'gando60', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:10.527341]:[4884]: Player: 'gando60', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:18.605803]:[4884]: Player: 'CLRN', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:20.523913]:[4884]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:20.807929]:[4884]: Player: 'xmike54x', stack: '1480' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:20.807929]:[4884]: Player: 'xmike54x', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:21.096946]:[4884]: Player: 'silviazgz', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:22.441023]:[4884]: Player: 'commandable', stack: '1440' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:22.442023]:[4884]: Player: 'commandable', action: 'Call', amount: '10' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:24.559144]:[4884]: Player: 'marnayla', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:25.167179]:[4884]: Cards received: ('Two' of 'Hearts')('Seven' of 'Hearts')('Six' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-21T18:11:28.123348]:[4884]: Player: 'commandable', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:32.077574]:[4884]: Player: 'marnayla', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:37.573888]:[4884]: Player: 'caniche61', stack: '1510' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:37.573888]:[4884]: Player: 'caniche61', action: 'Bet', amount: '140' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:40.203039]:[4884]: Player: 'madad2424', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:40.480055]:[4884]: Player: 'beby Ellye', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:41.760128]:[4884]: Player: 'gando60', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:41.760128]:[4884]: Player: 'gando60', action: 'Call', amount: '140' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:42.040144]:[4884]: Player: 'xmike54x', stack: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:42.040144]:[4884]: Player: 'xmike54x', action: 'Call', amount: '140' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:43.656236]:[4884]: Player: 'commandable', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:45.789358]:[4884]: Player: 'marnayla', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:46.397393]:[4884]: Cards received: ('Two' of 'Hearts')('Seven' of 'Hearts')('Six' of 'Diamonds')('Five' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-21T18:11:54.604862]:[4884]: Player: 'caniche61', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:56.517972]:[4884]: Player: 'caniche61', stack: '1390' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:56.518972]:[4884]: Player: 'caniche61', action: 'Bet', amount: '120' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:58.967112]:[4884]: Player: 'gando60', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:11:58.967112]:[4884]: Player: 'gando60', action: 'Raise', amount: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:03.394365]:[4884]: Player: 'xmike54x', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:03.394365]:[4884]: Player: 'xmike54x', action: 'Call', amount: '1340' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:11.854849]:[4884]: Player: 'caniche61', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:15.886080]:[4884]: Player: 'caniche61', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:16.342106]:[4884]: Player: '', action: 'ShowCards', cards: '' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:18.186211]:[4884]: Cards received: ('Two' of 'Hearts')('Seven' of 'Hearts')('Six' of 'Diamonds')('Five' of 'Diamonds')('Ten' of 'Hearts') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-21T18:12:19.313276]:[4884]: Player: 'gando60', action: 'ShowCards', cards: '8c9s' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:19.314276]:[4884]: Player: 'xmike54x', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:19.314276]:[4884]: Player: 'xmike54x', action: 'ShowCards', cards: 'JcJs' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:20.755358]:[4884]: Player: 'xmike54x', stack: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:20.755358]:[4884]: Player: 'xmike54x', action: 'Rank', amount: '9' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:22.414453]:[4884]: Player cards: ('Four' of 'Diamonds')('Seven' of 'Hearts') /* clnt::ps::msg::PlayerCards::Process */
+[TRACE  ][0][2013-05-21T18:12:27.074720]:[4884]: Player: 'madad2424', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:27.074720]:[4884]: Player: 'madad2424', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:32.116008]:[4884]: Player: 'beby Ellye', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:32.397024]:[4884]: Player: 'gando60', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:33.912111]:[4884]: Player: 'CLRN', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:36.035232]:[4884]: Player: 'silviazgz', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:39.970457]:[4884]: Player: 'commandable', stack: '1420' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:39.970457]:[4884]: Player: 'commandable', action: 'Call', amount: '20' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:42.429598]:[4884]: Player: 'marnayla', action: 'Fold', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:44.863737]:[4884]: Player: 'caniche61', action: 'Check', amount: '0' /* clnt::ps::msg::PlayerAction::Process */
+[TRACE  ][0][2013-05-21T18:12:45.788790]:[4884]: Cards received: ('Ace' of 'Hearts')('Ten' of 'Diamonds')('Eight' of 'Diamonds') /* clnt::ps::msg::FlopCards::Process */
+[TRACE  ][0][2013-05-21T18:12:53.965258]:[4884]: Player: 'caniche61', action: 'SecondsLeft', amount: '14' /* clnt::ps::msg::PlayerAction::Process */
