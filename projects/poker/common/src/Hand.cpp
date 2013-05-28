@@ -20,9 +20,18 @@ bool IsSuited(const Card::List& cards)
     return cards.begin()->m_Suit == (cards.begin() + 1)->m_Suit;
 }
 
-bool IsTrash(const Card::List& cards)
+bool IsOneHigh(const Card::List& cards)
 {
-    return cards.front().m_Value < Card::Jack && cards.back().m_Value < Card::Jack;
+    const pcmn::Card first = *cards.begin();
+    const pcmn::Card second = *(cards.begin() + 1);
+    return first.m_Value >= Card::Jack && second.m_Value < Card::Jack || second.m_Value >= Card::Jack && first.m_Value < Card::Jack;
+}
+
+bool IsBothHigh(const Card::List& cards)
+{
+    const pcmn::Card first = *cards.begin();
+    const pcmn::Card second = *(cards.begin() + 1);
+    return first.m_Value >= Card::Jack && second.m_Value >= Card::Jack;
 }
 
 bool IsAce(const Card::List& cards)
@@ -39,93 +48,149 @@ bool IsPocketPair(const Card::List& cards)
     return first.m_Value == second.m_Value;
 }
 
-void CountOrdered(const Card::List& cards, std::vector<unsigned>& counters)
+void ExtractOrdered(const Card::List& input, std::vector<pcmn::Card::List>& result)
 {
+    Card::List cards;
+    std::unique_copy(input.begin(), input.end(), std::back_inserter(cards), [](const Card& lhs, const Card& rhs) { return lhs.m_Value == rhs.m_Value; });
+
+    result.push_back(Card::List());
+
     const bool aceExists = cards.back().m_Value == Card::Ace;
-    counters.push_back(0);
     unsigned cardsBetween = 0;
 
-    for (unsigned i = 0 ; i < cards.size() - 1; ++i)
+    Card current;
+    Card next;
+    for (unsigned i = 0 ; i < (aceExists ? cards.size() : cards.size() - 1); ++i)
     {
         const bool compareWithAce = (!i && aceExists);
 
-        const Card current = compareWithAce ? cards.back() : cards[i];
-        const Card next = compareWithAce ? cards.front() : cards[i + 1];
+        current = aceExists ? (i ? cards[i - 1] : cards.back()) : cards[i];
+        next = aceExists ? (i ? cards[i] : cards.front()) : cards[i + 1];
 
         if (compareWithAce && next.m_Value == Card::Two || abs(current.m_Value - next.m_Value) == 1)
         {
-            ++counters.back();
+            if (result.back().empty())
+                result.back().push_back(current);
+            result.back().push_back(next);
             cardsBetween = 0;
         }
         else
         {
             if (!cardsBetween)
-                counters.push_back(0);
+                result.push_back(Card::List());
             else
-                counters.back() = 0;
+                result.back().clear();
 
             ++cardsBetween;
         }
     }
 }
 
-bool IsStraightDraw(const Card::List& cards)
+bool IsStraight(const Card::List& cards, Hand::Value& highCard, const Card::List& player, bool& draw)
 {
-    std::vector<unsigned> counters;
-    CountOrdered(cards, counters);
+    std::vector<Card::List> sequences;
+    ExtractOrdered(cards, sequences);
 
-    for (const unsigned c : counters)
+    for (unsigned i = 0 ; i < sequences.size(); ++i)
     {
-        if (c == 4)
+        const pcmn::Card::List& sequence = sequences[i];
+        if (sequence.size() < 4)
+            continue;
+
+        if (sequence.size() == 4 && sequence.front().m_Value != Card::Ace && sequence.back().m_Value != Card::Ace)
+            draw = true;
+        else
+            draw = false;
+
+        const Card::List::const_iterator itFirst = std::find(sequence.begin(), sequence.end(), player.front());
+        const Card::List::const_iterator itSecond = std::find(sequence.begin(), sequence.end(), player.back());
+        if (itFirst == sequence.end() && itSecond == sequence.end())
+            continue; // draw on the board
+            
+        const Card::List::const_iterator highCardInSequence = sequence.end() - 1;
+        const Card::List::const_iterator lowCardInSequence = sequence.begin();
+
+        if (highCardInSequence == itFirst || highCardInSequence == itSecond)
+            highCard = Hand::TopKicker;
+        else
+        if (lowCardInSequence == itFirst || lowCardInSequence == itSecond)
+            highCard = Hand::LowKicker;
+        return true;      
+    }
+
+    return false;
+}
+
+bool IsGodShot(const Card::List& cards, const Card::List& player)
+{
+    std::vector<Card::List> sequences;
+    ExtractOrdered(cards, sequences);
+
+    for (unsigned i = 0 ; i < sequences.size() - 1; ++i)
+    {
+        const Card::List& current = sequences[i];
+        const Card::List& next = sequences[i + 1];
+
+        if 
+        (
+            std::find(current.begin(), current.end(), player.front()) == current.end() 
+            && 
+            std::find(current.begin(), current.end(), player.back()) == current.end()
+            &&
+            std::find(next.begin(), next.end(), player.front()) == next.end() 
+            && 
+            std::find(next.begin(), next.end(), player.back()) == next.end()
+         )
+            continue; // god shot on board
+
+        if (current.size() + next.size() >= 4 && next.front().m_Value - current.back().m_Value == 2)
             return true;
     }
 
     return false;
 }
 
-bool IsStraight(const Card::List& cards)
-{
-    std::vector<unsigned> counters;
-    CountOrdered(cards, counters);
-
-    for (const unsigned c : counters)
-    {
-        if (c >= 5)
-            return true;
-    }
-
-    return false;
-}
-
-bool IsGodShot(const Card::List& cards)
-{
-    std::vector<unsigned> counters;
-    CountOrdered(cards, counters);
-
-    std::sort(counters.begin(), counters.end());
-    std::unique(counters.begin(), counters.end());
-
-    return counters.size() > 1 && counters.front() + counters.back() == 4;
-}
-
-void CountSuites(const Card::List& cards, std::map<Suit::Value, unsigned>& counters)
+void CountSuites(const Card::List& cards, std::map<Suit::Value, unsigned>& counters, std::map<Suit::Value, Card>& highCards)
 {
     for (const Card& c : cards)
+    {
         ++counters[c.m_Suit];
+        if (highCards[c.m_Suit].m_Value < c.m_Value)
+            highCards[c.m_Suit] = c;
+    }
 }
 
-bool IsFlush(const Card::List& cards)
+bool IsFlush(const Card::List& cards, Card& high, const Card::List& player)
 {
     std::map<Suit::Value, unsigned> counters;
-    CountSuites(cards, counters);
-    return counters[Suit::Hearts] >= 5 || counters[Suit::Clubs] >= 5 || counters[Suit::Spades] >= 5 || counters[Suit::Diamonds] >= 5;
+    std::map<Suit::Value, Card> highCards;
+    CountSuites(cards, counters, highCards);
+
+    for (const auto& pair : counters)
+    {
+        if (pair.second >= 5)
+        {
+            high = highCards[pair.first];
+            return true;
+        }
+    }
+    return false;
 }
 
-bool IsFlushDraw(const Card::List& cards)
+bool IsFlushDraw(const Card::List& cards, Card& high, const Card::List& player)
 {
     std::map<Suit::Value, unsigned> counters;
-    CountSuites(cards, counters);
-    return counters[Suit::Hearts] == 4 || counters[Suit::Clubs] == 4 || counters[Suit::Spades] == 4 || counters[Suit::Diamonds] == 4;
+    std::map<Suit::Value, Card> highCards;
+    CountSuites(cards, counters, highCards);
+    for (const auto& pair : counters)
+    {
+        if (pair.second == 4)
+        {
+            high = highCards[pair.first];
+            return true;
+        }
+    }
+    return false;
 }
 
 Hand::Hand() : m_Value(Unknown)
@@ -133,25 +198,24 @@ Hand::Hand() : m_Value(Unknown)
 
 }
 
-void Hand::Parse(const pcmn::Card::List& player, const pcmn::Card::List& board)
+void Hand::Parse(const pcmn::Card::List& player, const pcmn::Card::List& boardInput)
 {
     CHECK(player.size() == 2, "Invalid hand must be two cards", player.size());
     
     m_Value = Unknown;
 
     // parse player hand first
-    const bool connectors = IsConnectors(player);
-    const bool suited = IsSuited(player);
+    if (IsSuited(player))
+        Add(Suited);
 
-    if (!suited && !connectors && IsTrash(player))
-        Add(Trash);
-    else
-    {
-        if (suited)
-            Add(Suited);
-        if (connectors)
-            Add(Connectors);
-    }
+    if (IsConnectors(player))
+        Add(Connectors);
+    
+    if (IsOneHigh(player))
+        Add(OneHigh);
+
+    if (IsBothHigh(player))
+        Add(BothHigh);
 
     if (IsAce(player))
         Add(Ace);
@@ -159,42 +223,73 @@ void Hand::Parse(const pcmn::Card::List& player, const pcmn::Card::List& board)
     if (IsPocketPair(player))
         Add(PoketPair);
 
-    if (board.empty())
+    if (boardInput.empty())
         return;
 
-    CHECK(board.size() >= 3 && board.size() <= 5, "Invalid board must be 3, 4 or 5 cards", board.size());
+    CHECK(boardInput.size() >= 3 && boardInput.size() <= 5, "Invalid board must be 3, 4 or 5 cards", boardInput.size());
 
     // now parse hands with board
     pcmn::Card::List hand(player.begin(), player.end());
-    std::copy(board.begin(), board.end(), std::back_inserter(hand));
+    std::copy(boardInput.begin(), boardInput.end(), std::back_inserter(hand));
+
+    //pcmn::Card::List board(boardInput);
+    //std::sort(board.begin(), board.end(), [](const Card& lhs, const Card& rhs) { return lhs.m_Value < rhs.m_Value; });
 
     // sort by value
     std::sort(hand.begin(), hand.end(), [](const Card& lhs, const Card& rhs) { return lhs.m_Value < rhs.m_Value; });
 
     // check hand
-    if (IsFlush(hand))
+    Card highFlush;
+    Value highStraight = Unknown;
+    bool straightDraw = false;
+    const bool isFlush = IsFlush(hand, highFlush, player);
+    const bool isStraight = IsStraight(hand, highStraight, player, straightDraw);
+
+    if (isFlush && isStraight && !straightDraw)
+    {
+        Add(StraightFlush);
+        Add(highStraight);
+    }
+    else
+    if (isFlush)
+    {
         Add(Flush);
+        AddKicker(highFlush);
+    }
     else
-    if (IsFlushDraw(hand))
-        Add(FlushDraw);
-
-    if (IsStraight(hand))
+    if (isStraight && !straightDraw)
+    {
         Add(Straight);
-    else
-    if (IsStraightDraw(hand))
+        Add(highStraight);
+    }
+
+    if (!isFlush && IsFlushDraw(hand, highFlush, player))
+    {
+        Add(FlushDraw);
+        AddKicker(highFlush);
+    }
+
+    if (!isFlush && isStraight && straightDraw)
+    {
         Add(StraightDraw);
-    else
-    if (IsGodShot(hand))
-        Add(GodShot);
-
-
-
-
+        Add(highStraight);
+    }
 }
 
 void Hand::Add(Value prop)
 {
     m_Value = static_cast<pcmn::Hand::Value>(int(m_Value) | prop);
+}
+
+void Hand::AddKicker(const Card& card)
+{
+    if (card.m_Value == Card::Ace)
+        Add(TopKicker);
+    else
+    if (card.m_Value >= Card::Jack)
+        Add(GoodKicker);
+    else
+        Add(LowKicker);
 }
 
 }
