@@ -16,34 +16,35 @@ public:
     {
         // player hand description
         Unknown         = 0,        //!< really unknown
-        Trash           = 1 << 1,   //!< something small like 3-6 or 2-7
-        Suited          = 1 << 2,   //!< any suited cards
-        Connectors      = 1 << 3,   //!< connectors or gub connectors
-        Ace             = 1 << 4,   //!< hand with any ace
-        PoketPair       = 1 << 5,   //!< pocket pair, used only on preflop(becames one of the pairs on flop+)
+        Suited          = 1 << 1,   //!< any suited cards
+        Connectors      = 1 << 2,   //!< connectors or gub connectors
+        OneHigh         = 1 << 3,   //!< one high card, more then ten        
+        BothHigh        = 1 << 4,   //!< two cards more than ten
+        Ace             = 1 << 5,   //!< hand with any ace
+        PoketPair       = 1 << 6,   //!< pocket pair, used only on preflop(becames one of the pairs on flop+)
 
         // draws
-        StraightDraw    = 1 << 6,   //!< two-way straight draw
-        GodShot         = 1 << 7,   //!< straight godshot draw
-        FlushDraw       = 1 << 8,   //!< flush draw
+        StraightDraw    = 1 << 7,   //!< two-way straight draw
+        GodShot         = 1 << 8,   //!< straight godshot draw
+        FlushDraw       = 1 << 9,   //!< flush draw
         
         // some ready hands
-        HighCard        = 1 << 9,   //!< only high card
-        LowPair         = 1 << 10,  //!< some of the pair that lower than top and middle
-        MiddlePair      = 1 << 11,  //!< pair after top(or pocket pair lower than top card on the board)
-        TopPair         = 1 << 12,  //!< top pair on the board(or pocket pair that higher than board)
-        TwoPairs        = 1 << 13,
-        ThreeOfKind     = 1 << 14,
-        Straight        = 1 << 15,
-        Flush           = 1 << 16,
-        FullHouse       = 1 << 17,
-        FourOfKind      = 1 << 18,
-        StraightFlush   = 1 << 19,
+        HighCard        = 1 << 10,   //!< only high card
+        LowPair         = 1 << 11,  //!< some of the pair that lower than top and middle
+        MiddlePair      = 1 << 12,  //!< pair after top(or pocket pair lower than top card on the board)
+        TopPair         = 1 << 13,  //!< top pair on the board(or pocket pair that higher than board)
+        TwoPairs        = 1 << 14,
+        ThreeOfKind     = 1 << 15,
+        Straight        = 1 << 16,
+        Flush           = 1 << 17,
+        FullHouse       = 1 << 18,
+        FourOfKind      = 1 << 19,
+        StraightFlush   = 1 << 20,
 
         // kickers
-        TopKicker       = 1 << 20,  //!< ace
-        GoodKicker      = 1 << 21,  //!< picture lower then ace
-        LowKicker       = 1 << 22,  //!< card le than ten
+        TopKicker       = 1 << 21,  //!< ace
+        GoodKicker      = 1 << 22,  //!< picture lower then ace
+        LowKicker       = 1 << 23,  //!< card le than ten
     };
    
 
@@ -59,6 +60,9 @@ private:
 
     //! Add property to the hand
     void Add(Value prop);
+
+    //! Add kicker to the hand
+    void AddKicker(const Card& card);
 
 private:
 
