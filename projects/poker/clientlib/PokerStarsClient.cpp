@@ -85,7 +85,7 @@ Client::Client() : m_Server(new net::UDPHost(m_Log, 1)), m_Cfg(new Config(m_Log)
         m_Log.Open("logs/logic.txt", Modules::TableLogic, ILog::Level::Debug);
 
 		// player name
-		pcmn::Player::ThisPlayer().Name("clrntest");
+		pcmn::Player::ThisPlayer().Name("CLRN");
 	}
 	CATCH_PASS_EXCEPTIONS("Failed to construct client")
 }

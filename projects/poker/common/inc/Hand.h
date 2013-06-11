@@ -29,7 +29,7 @@ public:
         FlushDraw       = 1 << 9,   //!< flush draw
         
         // some ready hands
-        HighCard        = 1 << 10,   //!< only high card
+        HighCard        = 1 << 10,  //!< only high card
         LowPair         = 1 << 11,  //!< some of the pair that lower than top and middle
         MiddlePair      = 1 << 12,  //!< pair after top(or pocket pair lower than top card on the board)
         TopPair         = 1 << 13,  //!< top pair on the board(or pocket pair that higher than board)

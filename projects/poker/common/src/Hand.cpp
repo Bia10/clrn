@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <map>
 
+#include <boost/assign/list_of.hpp>
+
 namespace pcmn
 {
     
@@ -77,7 +79,7 @@ void ExtractOrdered(const Card::List& input, std::vector<pcmn::Card::List>& resu
         else
         {
             if (!cardsBetween)
-                result.push_back(Card::List());
+                result.push_back(boost::assign::list_of(next));
             else
                 result.back().clear();
 
@@ -91,16 +93,20 @@ bool IsStraight(const Card::List& cards, Hand::Value& highCard, const Card::List
     std::vector<Card::List> sequences;
     ExtractOrdered(cards, sequences);
 
+    draw = false;
     for (unsigned i = 0 ; i < sequences.size(); ++i)
     {
         const pcmn::Card::List& sequence = sequences[i];
         if (sequence.size() < 4)
             continue;
 
-        if (sequence.size() == 4 && sequence.front().m_Value != Card::Ace && sequence.back().m_Value != Card::Ace)
-            draw = true;
-        else
-            draw = false;
+        if (sequence.size() == 4)
+        {
+            if (sequence.front().m_Value != Card::Ace && sequence.back().m_Value != Card::Ace)
+                draw = true;
+            else
+                continue;
+        }
 
         const Card::List::const_iterator itFirst = std::find(sequence.begin(), sequence.end(), player.front());
         const Card::List::const_iterator itSecond = std::find(sequence.begin(), sequence.end(), player.back());
@@ -123,6 +129,7 @@ bool IsStraight(const Card::List& cards, Hand::Value& highCard, const Card::List
 
 bool IsGodShot(const Card::List& cards, const Card::List& player)
 {
+    // TODO: add high card calculation
     std::vector<Card::List> sequences;
     ExtractOrdered(cards, sequences);
 
@@ -143,8 +150,14 @@ bool IsGodShot(const Card::List& cards, const Card::List& player)
          )
             continue; // god shot on board
 
-        if (current.size() + next.size() >= 4 && next.front().m_Value - current.back().m_Value == 2)
-            return true;
+        if (current.size() + next.size() >= 4 && !current.empty() && !next.empty() && next.front().m_Value - current.back().m_Value == 2)
+            return true; // god shot in the middle
+
+        if (current.size() == 4 && (current.back().m_Value == Card::Ace || current.front().m_Value == Card::Ace))
+            return true; // god shot from the beginning or the end
+
+        if (next.size() == 4 && (next.back().m_Value == Card::Ace || next.front().m_Value == Card::Ace))
+            return true; // god shot from the beginning or the end
     }
 
     return false;
@@ -261,6 +274,11 @@ void Hand::Parse(const pcmn::Card::List& player, const pcmn::Card::List& boardIn
     {
         Add(Straight);
         Add(highStraight);
+    }
+    else
+    if (IsGodShot(hand, player))
+    {
+        Add(GodShot);
     }
 
     if (!isFlush && IsFlushDraw(hand, highFlush, player))
