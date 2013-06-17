@@ -61,6 +61,9 @@ namespace pcmn
 
     //! Stream operator
     std::ostream& operator << (std::ostream& s, const pcmn::Card& c);
+
+    //! Stream operator
+    std::ostream& operator << (std::ostream& s, const pcmn::Card::List& list);
 }
 
 #endif // Cards_h__
