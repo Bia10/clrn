@@ -27,12 +27,12 @@ public:
         StraightDraw    = 1 << 7,   //!< two-way straight draw
         GodShot         = 1 << 8,   //!< straight godshot draw
         FlushDraw       = 1 << 9,   //!< flush draw
+        GoodDraw        = 1 << 10,  //!< this is a good draw but not the best
+        TopDraw         = 1 << 11,  //!< hand will be nuts if draw succeed
         
         // some ready hands
-        HighCard        = 1 << 10,  //!< only high card
-        LowPair         = 1 << 11,  //!< some of the pair that lower than top and middle
-        MiddlePair      = 1 << 12,  //!< pair after top(or pocket pair lower than top card on the board)
-        TopPair         = 1 << 13,  //!< top pair on the board(or pocket pair that higher than board)
+        HighCard        = 1 << 12,
+        Pair            = 1 << 13, 
         TwoPairs        = 1 << 14,
         ThreeOfKind     = 1 << 15,
         Straight        = 1 << 16,
@@ -41,10 +41,15 @@ public:
         FourOfKind      = 1 << 19,
         StraightFlush   = 1 << 20,
 
+        // hand strength(applicable to all hands lower than full house)
+        Low             = 1 << 21,
+        Middle          = 1 << 22,
+        Top             = 1 << 23,
+
         // kickers
-        TopKicker       = 1 << 21,  //!< ace
-        GoodKicker      = 1 << 22,  //!< picture lower then ace
-        LowKicker       = 1 << 23,  //!< card le than ten
+        LowKicker       = 1 << 24,  //!< card le than ten
+        GoodKicker      = 1 << 25,  //!< picture lower then ace
+        TopKicker       = 1 << 26,  //!< ace
     };
    
 
@@ -55,6 +60,8 @@ public:
 
     void Parse(const pcmn::Card::List& player, const pcmn::Card::List& board);
 
+    static std::string ToString(Value v);
+
 
 private:
 
@@ -62,13 +69,16 @@ private:
     void Add(Value prop);
 
     //! Add kicker to the hand
-    void AddKicker(const Card& card);
+    void AddKicker(const Card::Value card, bool draw);
 
 private:
 
     //! Hand type
     Value m_Value; 
 };
+
+//! Stream operator
+std::ostream& operator << (std::ostream& s, pcmn::Hand::Value h);
 
 }
 

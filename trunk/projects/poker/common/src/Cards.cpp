@@ -137,3 +137,10 @@ std::ostream& pcmn::operator<<(std::ostream& s, const Card& c)
     s << Card::ToString(c.m_Value) << " " << Suit::ToString(c.m_Suit);
     return s;
 }
+
+std::ostream& pcmn::operator<<(std::ostream& s, const Card::List& list)
+{
+    for (const Card& c : list)
+        s << "(" << c << ")";
+    return s;
+}
