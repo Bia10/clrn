@@ -69,7 +69,7 @@ private:
     void Add(Value prop);
 
     //! Add kicker to the hand
-    void AddKicker(const Card::Value card, bool draw);
+    void AddKicker(const Card::Value card);
 
 private:
 
