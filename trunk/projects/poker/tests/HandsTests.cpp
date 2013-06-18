@@ -536,7 +536,7 @@ const Card::List straight1 = boost::assign::list_of // with 2 5
 const Card::List straight2 = boost::assign::list_of // with 3 9
     (Card(Card::Seven, Suit::Spades))
     (Card(Card::Eight, Suit::Clubs))
-    (Card(Card::Three, Suit::Hearts))
+    (Card(Card::Three, Suit::Diamonds))
     (Card(Card::Ten, Suit::Clubs))
     (Card(Card::Jack, Suit::Diamonds));
 
@@ -569,7 +569,7 @@ const Card::List notAStraight2 = boost::assign::list_of // with aces
 
 // flush
 const Card::List flush1 = boost::assign::list_of // with 2 5
-    (Card(Card::Ace, Suit::Clubs))
+    (Card(Card::Ten, Suit::Clubs))
     (Card(Card::Three, Suit::Clubs))
     (Card(Card::Four, Suit::Clubs));
 
@@ -584,7 +584,7 @@ const Card::List flush3 = boost::assign::list_of // with aces
     (Card(Card::King, Suit::Spades))
     (Card(Card::Queen, Suit::Spades))
     (Card(Card::Jack, Suit::Spades))
-    (Card(Card::Ten, Suit::Spades));
+    (Card(Card::Three, Suit::Spades));
 
 // not a flush
 const Card::List notAFlush1 = boost::assign::list_of // with 2 5
@@ -615,10 +615,10 @@ const Card::List fullhouse2 = boost::assign::list_of // with 3 9
     (Card(Card::Three, Suit::Hearts));
 
 const Card::List fullhouse3 = boost::assign::list_of // with aces
-    (Card(Card::Ace, Suit::Spades))
+    (Card(Card::Ace, Suit::Diamonds))
     (Card(Card::Ten, Suit::Spades))
     (Card(Card::Jack, Suit::Spades))
-    (Card(Card::Ten, Suit::Spades));
+    (Card(Card::Ten, Suit::Clubs));
 
 // not a full house
 const Card::List notAfullhouse1 = boost::assign::list_of // with 2 5
@@ -630,7 +630,7 @@ const Card::List notAfullhouse1 = boost::assign::list_of // with 2 5
 
 const Card::List notAfullhouse2 = boost::assign::list_of // with aces
     (Card(Card::Jack, Suit::Spades))
-    (Card(Card::Jack, Suit::Spades))
+    (Card(Card::Jack, Suit::Clubs))
     (Card(Card::Queen, Suit::Spades))
     (Card(Card::Two, Suit::Clubs))
     (Card(Card::Queen, Suit::Hearts));
@@ -649,8 +649,7 @@ const Card::List fourOfKind2 = boost::assign::list_of // with 3 9
     (Card(Card::Three, Suit::Hearts));
 
 const Card::List fourOfKind3 = boost::assign::list_of // with aces
-    (Card(Card::Ace, Suit::Spades))
-    (Card(Card::Ace, Suit::Clubs))
+    (Card(Card::Ace, Suit::Hearts))
     (Card(Card::Ace, Suit::Diamonds))
     (Card(Card::Ten, Suit::Spades));
 
@@ -711,29 +710,36 @@ const Card::List topKicker1 = boost::assign::list_of // with A 2 notConnectors1
     (Card(Card::Five, Suit::Clubs))
     (Card(Card::Two, Suit::Hearts))
     (Card(Card::Five, Suit::Diamonds))
-    (Card(Card::Three, Suit::Clubs))
+    (Card(Card::Seven, Suit::Clubs))
     (Card(Card::Four, Suit::Clubs));
 
 const Card::List topKicker2 = boost::assign::list_of // with A K notConnectors2
-    (Card(Card::King, Suit::Spades))
-    (Card(Card::Ten, Suit::Spades))
+    (Card(Card::King, Suit::Clubs))
+    (Card(Card::Ten, Suit::Clubs))
     (Card(Card::Two, Suit::Spades))
     (Card(Card::Queen, Suit::Spades))
-    (Card(Card::Three, Suit::Spades));
+    (Card(Card::Three, Suit::Diamonds));
 
 const Card::List topKicker3 = boost::assign::list_of // with A K notConnectors2
-    (Card(Card::Ace, Suit::Spades))
-    (Card(Card::Two, Suit::Spades))
+    (Card(Card::Ace, Suit::Clubs))
+    (Card(Card::Two, Suit::Hearts))
     (Card(Card::Five, Suit::Spades))
     (Card(Card::Queen, Suit::Spades))
-    (Card(Card::Three, Suit::Spades));
+    (Card(Card::Three, Suit::Diamonds));
 
 const Card::List topKicker4 = boost::assign::list_of // with A 3 aceAndSmall
-    (Card(Card::King, Suit::Spades))
-    (Card(Card::Queen, Suit::Spades))
+    (Card(Card::King, Suit::Clubs))
+    (Card(Card::Queen, Suit::Diamonds))
     (Card(Card::Jack, Suit::Spades))
     (Card(Card::Three, Suit::Diamonds))
-    (Card(Card::Ten, Suit::Spades));
+    (Card(Card::Six, Suit::Hearts));
+
+const Card::List topKicker5 = boost::assign::list_of // with A K notConnectors2
+    (Card(Card::King, Suit::Clubs))
+    (Card(Card::King, Suit::Diamonds))
+    (Card(Card::Jack, Suit::Spades))
+    (Card(Card::Three, Suit::Diamonds))
+    (Card(Card::Six, Suit::Hearts));
 
 // good kicker
 const Card::List goodKicker1 = boost::assign::list_of // with Q J connectors2
@@ -741,25 +747,25 @@ const Card::List goodKicker1 = boost::assign::list_of // with Q J connectors2
     (Card(Card::Two, Suit::Hearts))
     (Card(Card::Five, Suit::Diamonds))
     (Card(Card::Four, Suit::Clubs))
-    (Card(Card::Four, Suit::Clubs));
+    (Card(Card::Four, Suit::Hearts));
 
 const Card::List goodKicker2 = boost::assign::list_of // with 2 J oneHigh1
-    (Card(Card::Queen, Suit::Spades))
+    (Card(Card::Queen, Suit::Clubs))
     (Card(Card::Ten, Suit::Spades))
-    (Card(Card::Two, Suit::Spades))
-    (Card(Card::Queen, Suit::Spades))
+    (Card(Card::Two, Suit::Diamonds))
+    (Card(Card::Queen, Suit::Diamonds))
     (Card(Card::Three, Suit::Spades));
 
 const Card::List goodKicker3 = boost::assign::list_of // with Q 3 oneHigh2
     (Card(Card::Ace, Suit::Spades))
-    (Card(Card::Two, Suit::Spades))
-    (Card(Card::Five, Suit::Spades))
+    (Card(Card::Two, Suit::Hearts))
+    (Card(Card::Five, Suit::Diamonds))
     (Card(Card::Jack, Suit::Spades))
-    (Card(Card::Three, Suit::Spades));
+    (Card(Card::Three, Suit::Diamonds));
 
 const Card::List goodKicker4 = boost::assign::list_of // with A J bothHigh1
     (Card(Card::Ace, Suit::Spades))
-    (Card(Card::Queen, Suit::Spades))
+    (Card(Card::Queen, Suit::Hearts))
     (Card(Card::Five, Suit::Spades))
     (Card(Card::Three, Suit::Diamonds))
     (Card(Card::Ten, Suit::Spades));
@@ -782,11 +788,11 @@ const Card::List lowKicker3 = boost::assign::list_of // with Q 3 oneHigh2
     (Card(Card::Queen, Suit::Spades))
     (Card(Card::Three, Suit::Spades));
 
-const Card::List lowKicker4 = boost::assign::list_of //  // with 2 5
+const Card::List lowKicker4 = boost::assign::list_of // with 2 5
     (Card(Card::Ace, Suit::Spades))
     (Card(Card::Queen, Suit::Spades))
     (Card(Card::Two, Suit::Diamonds))
-    (Card(Card::Ten, Suit::Spades));
+    (Card(Card::Ten, Suit::Diamonds));
 
 
 INSTANTIATE_TEST_CASE_P
@@ -1019,7 +1025,7 @@ INSTANTIATE_TEST_CASE_P
         HandsTestParams(notSuited2, fullhouse2, Hand::FullHouse, true),
         HandsTestParams(aces, fullhouse3, Hand::FullHouse, true),
         HandsTestParams(suited1, notAfullhouse1, Hand::FullHouse, false),
-        HandsTestParams(aces, notAfullhouse1, Hand::FullHouse, false),
+        HandsTestParams(aces, notAfullhouse2, Hand::FullHouse, false),
 
         // four of a kind
         HandsTestParams(suited1, fourOfKind1, Hand::FourOfKind, true),
@@ -1040,7 +1046,7 @@ INSTANTIATE_TEST_CASE_P
         HandsTestParams(notConnectors2, topKicker2, Hand::TopKicker, true),
         HandsTestParams(notConnectors2, topKicker3, Hand::TopKicker, true),
         HandsTestParams(aceAndSmall, topKicker4, Hand::TopKicker, true),
-        HandsTestParams(aces, threeOfKind3, Hand::TopKicker, true), // top kicker
+        HandsTestParams(notConnectors2, topKicker5, Hand::TopKicker, true), // top kicker
         HandsTestParams(connectors2, goodKicker1, Hand::TopKicker, false),
         HandsTestParams(oneHigh1, goodKicker2, Hand::TopKicker, false),
         HandsTestParams(notConnectors1, lowKicker1, Hand::TopKicker, false),
@@ -1055,13 +1061,13 @@ INSTANTIATE_TEST_CASE_P
         HandsTestParams(notConnectors1, topKicker1, Hand::GoodKicker, false),
         HandsTestParams(notConnectors2, topKicker2, Hand::GoodKicker, false),
         HandsTestParams(oneHigh2, lowKicker3, Hand::GoodKicker, false),
-        HandsTestParams(lowKicker4, lowKicker4, Hand::GoodKicker, false),
+        HandsTestParams(trash, lowKicker4, Hand::GoodKicker, false),
 
         // low kicker
         HandsTestParams(notConnectors1, lowKicker1, Hand::LowKicker, true),
         HandsTestParams(oneHigh1, lowKicker2, Hand::LowKicker, true),
         HandsTestParams(oneHigh2, lowKicker3, Hand::LowKicker, true),
-        HandsTestParams(lowKicker4, lowKicker4, Hand::LowKicker, true),
+        HandsTestParams(trash, lowKicker4, Hand::LowKicker, true),
         HandsTestParams(suited1, threeOfKind1, Hand::LowKicker, true), // low kicker
         HandsTestParams(oneHigh2, goodKicker3, Hand::LowKicker, false),
         HandsTestParams(bothHigh1, goodKicker4, Hand::LowKicker, false),
