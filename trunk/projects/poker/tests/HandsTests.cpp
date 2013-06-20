@@ -1,9 +1,13 @@
 #include "Hand.h"
 #include "Cards.h"
+#include "Config.h"
+#include "Evaluator.h"
 
 #include <gtest/gtest.h>
 
 #include <boost/assign.hpp>
+#include <boost/date_time/posix_time/ptime.hpp>
+#include <boost/date_time/posix_time/time_formatters.hpp>
 
 using testing::Range;
 using testing::Combine;
@@ -11,6 +15,7 @@ using testing::Values;
 using namespace pcmn;
 
 typedef std::tuple<pcmn::Card::List, pcmn::Card::List, pcmn::Hand::Value, bool> HandsTestParams;
+typedef std::tuple<pcmn::Card::List, pcmn::Card::List, Hand::Value, float> PercentsTestParams;
 unsigned g_CaseCounter = 0;
 
 class HandsTest : public testing::TestWithParam<HandsTestParams>
@@ -36,8 +41,35 @@ public:
     }
 };
 
+class HandsPercentsTest : public testing::TestWithParam<PercentsTestParams>
+{
+public:
+
+    HandsPercentsTest() : m_Calc() {}
+
+    void Do()
+    {
+        ++g_CaseCounter;
+
+        const Card::List& player = std::get<0>(GetParam());
+        const Card::List& table = std::get<1>(GetParam());
+        const Hand::Value opponent = std::get<2>(GetParam());
+        const float etalon = std::get<3>(GetParam());
+
+        const float percents =  m_Calc.GetEquity(player.front().ToEvalFormat(), player.back().ToEvalFormat(), table, opponent);
+
+        EXPECT_TRUE(fabs(percents - etalon) < 2.0f) << percents << " must be: " << etalon;
+    }
+private:
+    Evaluator m_Calc;
+};
 
 TEST_P(HandsTest, Parse)
+{
+    Do();
+}
+
+TEST_P(HandsPercentsTest, Calculate)
 {
     Do();
 }
@@ -1073,5 +1105,32 @@ INSTANTIATE_TEST_CASE_P
         HandsTestParams(bothHigh1, goodKicker4, Hand::LowKicker, false),
         HandsTestParams(notConnectors2, topKicker3, Hand::LowKicker, false),
         HandsTestParams(aceAndSmall, topKicker4, Hand::LowKicker, false)     
+    )
+);
+
+TEST(Hands, Speed)
+{
+    const boost::posix_time::ptime start = boost::posix_time::microsec_clock().local_time();
+    for (unsigned i = 0 ; i < cfg::NUMBER_OF_REPITITIONS; ++i)
+    {
+        Hand h;
+        h.Parse(suited1, emptyBoard);
+        if (!(h.GetValue() & Hand::Suited))
+            FAIL();
+    }
+
+    const boost::posix_time::ptime end = boost::posix_time::microsec_clock().local_time();
+    std::cout << boost::posix_time::time_duration(end - start).total_milliseconds() << std::endl;
+}
+
+
+INSTANTIATE_TEST_CASE_P
+(
+    Preflop,
+    HandsPercentsTest,
+    Values
+    (
+        std::make_tuple(suited1, emptyBoard, Hand::Value(Hand::BothHigh), 33.947f),
+        std::make_tuple(suited1, straightDraw3, Hand::Value(Hand::BothHigh), 19.054f)
     )
 );
