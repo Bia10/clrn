@@ -30,7 +30,7 @@ public:
 		const float percents =  m_Calc.GetEquity(std::tr1::get<0>(GetParam()), std::tr1::get<1>(GetParam()), flop, ranges);
         const float param = std::tr1::get<3>(GetParam());
 
-		ASSERT_TRUE(fabs(percents - param) < 1.0f) << percents << " must be: " << param;
+		ASSERT_TRUE(fabs(percents - param) < 2.0f) << percents << " must be: " << param;
 	}
 private:
 	Evaluator m_Calc;
