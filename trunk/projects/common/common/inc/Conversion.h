@@ -12,7 +12,7 @@
 #pragma warning(disable:4244) // 'argument' : conversion from 'boost::locale::utf::code_point' to 'const wchar_t', possible loss of data
 #include <boost/locale/encoding.hpp>
 #pragma warning(pop)
-
+#undef max
 
 namespace conv
 {
@@ -94,6 +94,47 @@ namespace conv
 				return boost::locale::conv::utf_to_utf<wchar_t, char>(src);
 			}
 		};
+
+        //! Specialized help struct - conversion bits from integer to vector
+        template<>
+        struct Caster<std::vector<unsigned>, unsigned>
+        {
+            std::vector<unsigned> operator () (const unsigned src)
+            {
+                std::vector<unsigned> result;
+
+                if (!src)
+                    return result;
+
+                unsigned mask = 1;
+                unsigned counter = 0;
+                for (; mask; mask <<= 1, ++counter)
+                {
+                    if (src & mask)
+                        result.push_back(counter);
+                }
+
+                return result;
+            }
+        };
+
+        //! Specialized help struct - conversion vector of values to bits
+        template<>
+        struct Caster<unsigned, std::vector<unsigned>>
+        {
+            unsigned operator () (const std::vector<unsigned>& src)
+            {
+                unsigned result = 0;
+
+                if (src.empty())
+                    return result;
+
+                for (const unsigned bit : src)
+                    result |= 1 << bit;
+
+                return result;
+            }
+        };
 	} // namespace detail
 
 	//! Cast function

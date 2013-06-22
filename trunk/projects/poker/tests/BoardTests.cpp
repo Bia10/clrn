@@ -1,4 +1,5 @@
 #include "Board.h"
+#include "Conversion.h"
 
 #include <gtest/gtest.h>
 
@@ -59,6 +60,11 @@ public:
         b.Parse();
 
         const Board::Value result = b.GetValue();
+
+        const std::vector<unsigned> toStore = conv::cast<std::vector<unsigned>>(static_cast<unsigned>(result));
+        const Board::Value restored = static_cast<Board::Value>(conv::cast<unsigned>(toStore));
+
+        EXPECT_EQ(result, restored);
 
         if (value == Board::Unknown)
         {
