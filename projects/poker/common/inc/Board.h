@@ -27,12 +27,15 @@ public:
     Board(const Card::List& cards = Card::List());
 
     //! Get all possible cards combinations for concrete hand
-    const HandsList& GetCardsByHand(const Hand::Value hand);
+    HandsList GetCardsByHand(const Hand::Value hand);
 
 private:
 
     //! Generate possible hands
     void GeneratePossibleHands(HandsList& result, const Hand::Value hand) const;
+
+    //! Filter cards by board cards and hand description
+    HandsList FilterCards(const HandsList& src, const Hand::Value hand);
 
 private:
 
