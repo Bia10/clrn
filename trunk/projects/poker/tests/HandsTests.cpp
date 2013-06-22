@@ -1131,6 +1131,31 @@ INSTANTIATE_TEST_CASE_P
     Values
     (
         std::make_tuple(suited1, emptyBoard, Hand::Value(Hand::BothHigh), 33.947f),
-        std::make_tuple(suited1, straightDraw3, Hand::Value(Hand::BothHigh), 19.054f)
+        std::make_tuple(aces, emptyBoard, Hand::Value(Hand::BothHigh), 85.689f),
+        std::make_tuple(sevens, emptyBoard, Hand::Value(Hand::BothHigh), 46.510f),
+
+        std::make_tuple(sevens, emptyBoard, Hand::Value(Hand::PoketPair), 45.053f),
+        std::make_tuple(suited1, emptyBoard, Hand::Value(Hand::PoketPair), 21.939f),
+        std::make_tuple(aces, emptyBoard, Hand::Value(Hand::PoketPair), 80.699f),
+
+        std::make_tuple(sevens, emptyBoard, Hand::Value(Hand::Suited), 65.040f),
+        std::make_tuple(suited1, emptyBoard, Hand::Value(Hand::Suited), 34.165f),
+        std::make_tuple(aces, emptyBoard, Hand::Value(Hand::Suited), 82.365f)
+    )
+);
+
+
+INSTANTIATE_TEST_CASE_P
+(
+    Flop,
+    HandsPercentsTest,
+    Values
+    (
+        std::make_tuple(suited1, straightDraw3, Hand::Value(Hand::BothHigh), 19.054f),
+        std::make_tuple(suited1, straightDraw3, Hand::Value(Hand::BothHigh | Hand::Pair | Hand::Top | Hand::TopKicker), 10.0f),
+        std::make_tuple(suited1, straightDraw3, Hand::Value(Hand::Pair), 10.0f),
+        std::make_tuple(suited1, flushDraw2, Hand::Value(Hand::Pair), 47.34f),
+        std::make_tuple(suited1, flushDraw2, Hand::Value(Hand::TwoPairs), 42.34f),
+        std::make_tuple(suited1, flushDraw2, Hand::Value(Hand::ThreeOfKind | Hand::Ace | Hand::PoketPair | Hand::BothHigh), 32.925f)
     )
 );

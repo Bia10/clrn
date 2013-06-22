@@ -123,7 +123,7 @@ float Evaluator::GetEquity(const short player1, const short player2, const Card:
     Board board(flop);
 
     // get all possible cards for opponents hand description
-    const Board::HandsList& hands = board.GetCardsByHand(opponent);
+    const Board::HandsList hands = board.GetCardsByHand(opponent);
 
     CHECK(!hands.empty(), "Failed to get cards by hand", opponent, flop, player1, player2);
 

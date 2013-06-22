@@ -8,17 +8,15 @@ namespace pcmn
 
 Board::CachedHands Board::s_HandsCache;
 boost::mutex Board::s_CacheMutex;
+static const unsigned POCKET_HAND_MASK = Hand::Suited | Hand::Connectors | Hand::OneHigh | Hand::BothHigh | Hand::Ace | Hand::PoketPair;
+
 
 Board::Board(const Card::List& cards /*= Card::List()*/) : m_Board(cards)
 {
 
 }
 
-// TODO: подумать как кэшировать значения для готовых рук и доски.
-// сейчас это не работает т.к. закешировав пару для конкретной доски мы будем ее отдавать для других досок
-// один из вариантов - получать кэшированные руки для префлопа и уже их фильтровать по готовоым рукам и флопу
-
-const Board::HandsList& Board::GetCardsByHand(const Hand::Value hand)
+Board::HandsList Board::GetCardsByHand(const Hand::Value hand)
 {
     boost::unique_lock<boost::mutex> lock(s_CacheMutex);
 
@@ -35,16 +33,16 @@ const Board::HandsList& Board::GetCardsByHand(const Hand::Value hand)
         it = s_HandsCache.insert(it, std::make_pair(hand, generated));
     }
 
-    return it->second;
+    return FilterCards(it->second, hand);
 }
 
-void Board::GeneratePossibleHands(HandsList& result, const Hand::Value hand) const
+void Board::GeneratePossibleHands(HandsList& result, Hand::Value hand) const
 {
-    bool dead[cfg::CARD_DECK_SIZE] = {false};
     static const std::size_t maxSize = static_cast<std::size_t>(std::pow(cfg::CARD_DECK_SIZE, 2)) / 2;
+    static const Card::List emptyBoard;
 
-    for (const Card& card : m_Board)
-        dead[card.ToEvalFormat()] = true;
+    // use only preflop hand description
+    hand = static_cast<Hand::Value>(hand & POCKET_HAND_MASK);
 
     result.reserve(maxSize);
 
@@ -54,16 +52,39 @@ void Board::GeneratePossibleHands(HandsList& result, const Hand::Value hand) con
     {
         for (short second = first + 1 ; second < cfg::CARD_DECK_SIZE; ++second)
         {
-            if (second == first || dead[first] || dead[second])
-                continue;
+            assert(second != first);
 
-            Card::List possibleCards = boost::assign::list_of(Card().FromEvalFormat(first))(Card().FromEvalFormat(second));
-            parser.Parse(possibleCards, m_Board);
+            const Card::List possibleCards = boost::assign::list_of(Card().FromEvalFormat(first))(Card().FromEvalFormat(second));
+            parser.Parse(possibleCards, emptyBoard);
 
             if ((parser.GetValue() & hand) == hand)
                 result.push_back(possibleCards);
         }
     }
+}
+
+Board::HandsList Board::FilterCards(const HandsList& src, const Hand::Value hand)
+{
+    // can't filter without board cards or without any flop description
+    if (m_Board.empty() || !(~POCKET_HAND_MASK & hand))
+        return src;
+
+    Hand parser;
+
+    HandsList result;
+    result.reserve(src.size());
+    std::copy_if(src.begin(), src.end(), std::back_inserter(result), [&](const Card::List& cards) 
+        {
+            // check for dead cards in the player hand
+            if (std::find_if(m_Board.begin(), m_Board.end(), [&](const Card& c){ return c == cards.front() || c == cards.back(); }) != m_Board.end())
+                return false;
+
+            parser.Parse(cards, m_Board);
+
+            return (parser.GetValue() & hand) == hand;
+        }
+    );
+    return result;
 }
 
 }
