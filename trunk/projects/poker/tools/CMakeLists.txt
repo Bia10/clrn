@@ -1,1 +1,2 @@
 add_subdirectory(logsparser)
+add_subdirectory(dbconverter)

@@ -4,7 +4,7 @@ file(GLOB SOURCES "*.cpp")
 file(GLOB HEADERS "*.h" "*.rc" "*.def")
 
 add_executable(db_tests ${SOURCES} ${HEADERS} ${CLIENT_SRC})
-set_target_properties(db_tests PROPERTIES FOLDER "poker")
+set_target_properties(db_tests PROPERTIES FOLDER "common")
 target_link_libraries(db_tests
 	common
 	db

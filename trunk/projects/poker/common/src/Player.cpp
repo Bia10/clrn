@@ -2,8 +2,6 @@
 #include "TableContext.h"
 #include "Exception.h"
 
-//#include <mongo/bson/bson.h>
-
 namespace pcmn
 {
 	std::string Player::Style::ToString(Value value)

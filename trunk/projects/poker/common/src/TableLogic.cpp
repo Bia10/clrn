@@ -656,10 +656,10 @@ void TableLogic::Parse(const net::Packet& packet)
             m_Callback.WriteStatistics(m_Context.m_Data);
         }
     }
-    CATCH_PASS_EXCEPTIONS("Failed to parse packet")
+    CATCH_PASS_EXCEPTIONS("Failed to parse packet", packet.DebugString())
 }
 
-void TableLogic::SendRequest(bool statistics)
+void TableLogic::SendRequest(const bool statistics)
 {
     TRY 
     {
@@ -745,7 +745,7 @@ void TableLogic::SendRequest(bool statistics)
     CATCH_PASS_EXCEPTIONS("Failed to send request by table logic")
 }
 
-void TableLogic::SetPhase(Phase::Value phase)
+void TableLogic::SetPhase(const Phase::Value phase)
 {
     m_Phase = phase;
     m_Queue.clear();

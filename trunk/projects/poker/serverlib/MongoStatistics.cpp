@@ -53,9 +53,6 @@ unsigned GetRanges(PlayerInfo::List& players)
         // get all games with specified actions on preflop
         SCOPED_LOG(m_Log);
 
-        // return projection
-        static const bson::bo returnProjection = bson::bob().append("players.$", 1).append("_id", 0).obj();
-
         unsigned count = 0;
         for (PlayerInfo& info : players)
         {
@@ -460,7 +457,7 @@ bson::bo BuildPlayer(const pcmn::Player& player) const
     {
         std::vector<bson::bo> actions;
         for (const pcmn::Player::ActionDesc& action : street)
-            actions.push_back(bson::bob().append("id", action.m_Id).append("amount", action.m_Amount).obj());
+            actions.push_back(bson::bob().append("id", action.m_Id).append("amount", action.m_Amount).append("position", action.m_Position).obj());
 
         streets.push_back(bson::bob().append("actions", actions).obj());
     }
