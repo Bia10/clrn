@@ -180,7 +180,7 @@ private:
 	std::size_t m_Bet;				//!< player bet on this street
 	Card::List m_Cards;				//!< player cards
 	State::Value m_State;			//!< player state
-    std::size_t m_TotalBet;         //! player total bet
+    std::size_t m_TotalBet;         //!< player total bet
 
     Actions m_Actions;				//!< player actions
 	std::string m_Country;	
