@@ -2,6 +2,10 @@
 #include "Actions.h"
 #include "BetSize.h"
 #include "Player.h"
+#include "TableContext.h"
+#include "../../serverlib/MongoStatistics.h"
+#include "Log.h"
+#include "Modules.h"
 
 #include <mongo/client/dbclient.h>
 #include <mongo/bson/bsonelement.h>
@@ -22,6 +26,34 @@ struct ActionDsc
 };
 
 typedef std::vector<ActionDsc::List> Actions;
+
+pcmn::Player::Position::Value GetPlayerPosition(const unsigned phase, const std::list<std::string>& sequence, const std::list<std::string>& queue)
+{
+    const unsigned totalPlayers = sequence.size();
+    unsigned leftInQueue = queue.size();
+
+    if (!phase && sequence.size() > 3)
+    {
+        if (leftInQueue <= 2)
+            leftInQueue = 0;
+        else
+            leftInQueue -= 2; // don't calculate blinds
+    }
+
+    pcmn::Player::Position::Value result = pcmn::Player::Position::Middle;
+
+    float step = static_cast<float>(sequence.size()) / 3;
+    if (step < 1)
+        step = 1;
+
+    if (leftInQueue <= step)
+        result = pcmn::Player::Position::Later;
+    else
+        if (leftInQueue >= step * 2.5f)
+            result = pcmn::Player::Position::Early;
+
+    return result;
+}
 
 bool ExtractAction(const bson::bo& game, const std::string& name, const unsigned street, const unsigned actionCount, ActionDsc& result)
 {
@@ -44,14 +76,14 @@ bool ExtractAction(const bson::bo& game, const std::string& name, const unsigned
                 continue;
 
             const bson::be& street = streets[streetIndex];
-            const std::vector<bson::be> actions = street.Obj().getField("actions").Array();
+            std::vector<bson::be> actions = street.Obj().getField("actions").Array();
 
             for (unsigned i = 0 ; i < actions.size(); ++i)
             {
                 if (i != actionCount)
                     continue;
 
-                const bson::be& action = actions[i];
+                bson::be& action = actions[i];
                 const pcmn::Action::Value id = static_cast<pcmn::Action::Value>(action["id"].Int());
                 const pcmn::BetSize::Value amount = static_cast<pcmn::BetSize::Value>(action["amount"].Int());
 
@@ -73,20 +105,72 @@ int main(int argc, char* argv[])
         mongo::DBClientConnection c;
         c.connect("localhost");
 
+        Log log;
+        log.Open("1", Modules::Server, ILog::Level::Error);
+        log.Open("1", Modules::DataBase, ILog::Level::Error);
+
+        srv::MongoStatistics stats(log);
+
         // fetch all games
-        const std::auto_ptr<mongo::DBClientCursor> cursor = c.query("stat.games", bson::bo());
+        unsigned counter = 0;
+        const std::auto_ptr<mongo::DBClientCursor> cursor = c.query("stat.input", bson::bo());
         while (cursor->more()) 
         {
+            ++counter;
             const bson::bo game = cursor->next();
 
             Actions actionsData;
-
+            pcmn::TableContext::Data gameData;
             std::list<std::string> sequence;
+
+            // parse flop cards
+            const std::vector<bson::be> cardsElements = game["flop"].Array();
+            for (const bson::be& card : cardsElements)
+                gameData.m_Flop.push_back(card.Int());
+
+            if (gameData.m_Flop.size() >= 3)
+            {
+                for (unsigned i = 3; i <= gameData.m_Flop.size(); ++i)
+                {
+                    const std::vector<int> cards(gameData.m_Flop.begin(), gameData.m_Flop.begin() + i);
+                    pcmn::Card::List board;
+                    for (const int card : cards)
+                        board.push_back(pcmn::Card().FromEvalFormat(card));
+
+                    pcmn::Board parser(board);
+                    parser.Parse();
+                    gameData.m_Board.push_back(parser.GetValue());
+                }
+            }
 
             // get all players
             const std::vector<bson::be> players = game.getField("players").Array();
             for (const bson::be& player : players)
+            {
                 sequence.push_back(player.Obj()["name"].String());
+                gameData.m_PlayersData.push_back(pcmn::Player(sequence.back(), player.Obj()["stack"].Int()));
+
+                pcmn::Player& current = gameData.m_PlayersData.back();
+
+                pcmn::Card::List cards;
+                const std::vector<bson::be> cardsElements = player.Obj()["cards"].Array();
+                for (const bson::be& card : cardsElements)
+                    cards.push_back(pcmn::Card().FromEvalFormat(card.Int()));
+
+                if (!cards.empty())
+                {
+                    pcmn::Hand hand;
+                    static const pcmn::Card::List board;
+                    hand.Parse(cards, board);
+
+                    current.Cards(cards);
+                    current.Hand(hand.GetValue());
+                }
+
+                const std::vector<bson::be> equitiesElements = player.Obj()["equities"].Array();
+                for (const bson::be& eq : equitiesElements)
+                    current.PushEquity(static_cast<float>(eq.Double()));
+            }
 
             for (unsigned street = 0; street < 4; ++street)
             {
@@ -123,6 +207,9 @@ int main(int argc, char* argv[])
                 std::map<std::string, unsigned> actionsCounters;
                 auto it = queue.begin();
 
+                pcmn::Action::Value lastAction = street ? pcmn::Action::Unknown : pcmn::Action::BigBlind;
+                pcmn::BetSize::Value lastAmount = pcmn::BetSize::VeryLow;
+
                 for (; ; )
                 {
                     if (queue.empty())
@@ -139,6 +226,11 @@ int main(int argc, char* argv[])
                         continue;
                     }
 
+                    const pcmn::Player::Position::Value position = GetPlayerPosition(street, sequence, queue);
+
+                    const pcmn::Player::List::iterator resultPlayer = std::find_if(gameData.m_PlayersData.begin(), gameData.m_PlayersData.end(), [&](const pcmn::Player& p){ return p.Name() == *it; });
+                    assert(resultPlayer != gameData.m_PlayersData.end());
+                    resultPlayer->PushAction(street, action.m_Id, action.m_Amount, position, lastAction, lastAmount);
                     actions.push_back(action);
 
                     if (action.m_Id == pcmn::Action::Fold)
@@ -148,6 +240,12 @@ int main(int argc, char* argv[])
                     else
                     if (action.m_Id == pcmn::Action::Bet || action.m_Id == pcmn::Action::Raise)
                     {
+                        if (action.m_Id > lastAction || action.m_Amount > lastAmount || !pcmn::Action::IsActive(lastAction))
+                        {
+                            lastAction = action.m_Id;
+                            lastAmount = action.m_Amount;
+                        }
+
                         for (const std::string& name : called)
                             queue.push_back(name);
                         called.clear();
@@ -163,6 +261,11 @@ int main(int argc, char* argv[])
 
                 actionsData.push_back(actions);
             }
+
+            stats.Write(gameData);
+
+            if (!(counter % 100))
+                std::cout << "Iteration: " << counter << std::endl;
         }
 	}
 	catch (const std::exception& e)

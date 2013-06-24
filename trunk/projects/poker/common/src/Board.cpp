@@ -172,7 +172,7 @@ void Board::Parse()
     }
 
     // check for flush draw
-    if (!(m_Value & Straight))
+    if (!(m_Value & Flush))
     {
         for (const auto& pair : counters)
         {

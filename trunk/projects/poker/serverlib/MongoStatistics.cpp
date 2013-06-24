@@ -37,11 +37,19 @@ void Write(pcmn::TableContext::Data& data)
 	{
 		SCOPED_LOG(m_Log);
 
+        // generate board description
+        std::vector<bson::bo> board;
+        for (const pcmn::Board::Value current : data.m_Board)
+        {
+            const std::vector<unsigned> street = conv::cast<std::vector<unsigned>>(static_cast<unsigned>(current));
+            board.push_back(bson::bob().append("street", street).obj());
+        }
+
         std::vector<bson::bo> players;
         for (const pcmn::Player& player : data.m_PlayersData)
             players.push_back(BuildPlayer(player));
 
-        m_Connection.insert(STAT_COLLECTION_NAME, BSON("players" << players << "flop" << data.m_Flop));
+        m_Connection.insert(STAT_COLLECTION_NAME, BSON("players" << players << "flop" << data.m_Flop << "board" << board));
 	}
 	CATCH_IGNORE_EXCEPTIONS(m_Log, "Failed to write data to database")
 }
@@ -457,7 +465,17 @@ bson::bo BuildPlayer(const pcmn::Player& player) const
     {
         std::vector<bson::bo> actions;
         for (const pcmn::Player::ActionDesc& action : street)
-            actions.push_back(bson::bob().append("id", action.m_Id).append("amount", action.m_Amount).append("position", action.m_Position).obj());
+        {
+            actions.push_back
+            (
+                bson::bob()
+                    .append("id", action.m_Id)
+                    .append("amount", action.m_Amount)
+                    .append("position", action.m_Position)
+                    .append("reason", action.m_ReasonId)
+                    .append("bet", action.m_ReasonAmount).obj()
+            );
+        }
 
         streets.push_back(bson::bob().append("actions", actions).obj());
     }
@@ -466,12 +484,15 @@ bson::bo BuildPlayer(const pcmn::Player& player) const
     for (const pcmn::Card& card : player.Cards())
         cards.push_back(card.ToEvalFormat());
 
+    const std::vector<unsigned> hand = conv::cast<std::vector<unsigned>>(static_cast<unsigned>(player.Hand()));
+
     builder
         .append("name", player.Name())
         .append("stack", player.Stack())
         .append("streets", streets)
         .append("cards", cards)
-        .append("equities", player.Equities());
+        .append("equities", player.Equities())
+        .append("hand", hand);
 
     return builder.obj();
 }

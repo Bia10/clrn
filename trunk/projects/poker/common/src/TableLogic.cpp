@@ -256,6 +256,18 @@ void TableLogic::ParseFlopCards(const net::Packet& packet)
     {
         m_Context.m_Data.m_Flop.push_back(packet.info().cards(i));
         m_Flop.push_back(Card().FromEvalFormat(packet.info().cards(i)));
+
+        if (m_Flop.size() >= 3)
+        {
+            for (unsigned i = 3; i <= m_Flop.size(); ++i)
+            {
+                pcmn::Card::List board(m_Flop.begin(), m_Flop.begin() + i);
+
+                pcmn::Board parser(board);
+                parser.Parse();
+                m_Context.m_Data.m_Board.push_back(parser.GetValue());
+            }
+        }
     }
 }
 
@@ -286,6 +298,14 @@ void TableLogic::ParsePlayers(const net::Packet& packet)
             p.m_Percents = GetPlayerEquities(player.cards(0), player.cards(1), packet, m_Context);
             inserted.first->second.Cards(boost::assign::list_of(Card().FromEvalFormat(player.cards(0)))(Card().FromEvalFormat(player.cards(1))));
             
+            static const Card::List board;
+
+            Hand parser;
+            if (!hand.m_Cards.empty())
+                parser.Parse(inserted.first->second.Cards(), board);
+
+            inserted.first->second.Hand(parser.GetValue());
+
             for (const float eq : p.m_Percents)
                 inserted.first->second.PushEquity(eq);
         }
@@ -578,6 +598,9 @@ void TableLogic::Parse(const net::Packet& packet)
 
             BetSize::Value lastBigBet = BetSize::VeryLow;
             m_Context.m_MaxBet = 0;
+            pcmn::Action::Value lastAction = phase != Phase::Preflop ? pcmn::Action::Unknown : pcmn::Action::BigBlind;
+            pcmn::BetSize::Value lastAmount = pcmn::BetSize::VeryLow;
+
             for (int i = 0; i < packet.phases(phase).actions_size(); ++i)
             {
                 m_Context.m_Street = phase;
@@ -617,7 +640,14 @@ void TableLogic::Parse(const net::Packet& packet)
                 ParsePlayerLoose(current, lastBigBet, action);
 
                 if (isUseful)
-                    current.PushAction(phase, action, betValue, position);
+                {
+                    current.PushAction(phase, action, betValue, position, lastAction, lastAmount);
+                    if ((action == pcmn::Action::Bet || action == pcmn::Action::Raise) && action > lastAction || betValue > lastAmount || !pcmn::Action::IsActive(lastAction))
+                    {
+                        lastAction = action;
+                        lastAmount = betValue;
+                    }
+                }
             }
         }
 
