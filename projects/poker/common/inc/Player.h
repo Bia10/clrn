@@ -104,6 +104,7 @@ public:
 	typedef std::vector<Style::Value> Styles;
 	typedef std::vector<ActionDesc::List> Actions;
     typedef std::deque<Player> Queue;
+    typedef std::vector<Hand::Value> Hands;
 
 	Player()
 		: m_Name()
@@ -113,7 +114,7 @@ public:
 		, m_State(State::Called)
         , m_TotalBet(0)
         , m_Afk(false)
-        , m_Hand()
+        , m_Hands()
 	{
 		m_Styles.resize(4, Style::Normal);
 	}
@@ -126,7 +127,7 @@ public:
 		, m_State(State::Called)
 		, m_TotalBet(0)
         , m_Afk(false)
-        , m_Hand()
+        , m_Hands()
 	{
 		m_Styles.resize(4, Style::Normal);
 	}
@@ -149,8 +150,8 @@ public:
     void TotalBet(std::size_t val)          { m_TotalBet = val; }
     bool Afk() const                        { return m_Afk; }
     void Afk(bool val)                      { m_Afk = val; }
-    Hand::Value Hand() const                { return m_Hand; }
-    void Hand(Hand::Value val)              { m_Hand = val; }
+    const Hands& GetHands() const           { return m_Hands; }
+    void PushHand(Hand::Value val)          { m_Hands.push_back(val); }
 
     const std::vector<float>& Equities() const { return m_Equities; }
 
@@ -198,7 +199,7 @@ private:
     std::size_t m_TotalBet;         //!< player total bet
 
     Actions m_Actions;				//!< player actions
-    Hand::Value m_Hand;             //!< player hand description
+    Hands m_Hands;                  //!< player hands description
     std::string m_Country;	
 	Styles m_Styles;				//!< player styles during this game
     std::vector<float> m_Equities;  //!< player equities on streets

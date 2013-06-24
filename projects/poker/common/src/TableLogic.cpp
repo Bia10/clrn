@@ -298,13 +298,25 @@ void TableLogic::ParsePlayers(const net::Packet& packet)
             p.m_Percents = GetPlayerEquities(player.cards(0), player.cards(1), packet, m_Context);
             inserted.first->second.Cards(boost::assign::list_of(Card().FromEvalFormat(player.cards(0)))(Card().FromEvalFormat(player.cards(1))));
             
-            static const Card::List board;
-
             Hand parser;
-            if (!hand.m_Cards.empty())
-                parser.Parse(inserted.first->second.Cards(), board);
+            if (!inserted.first->second.Cards().empty())
+            {
+                pcmn::Hand hand;
+                static const pcmn::Card::List empty;
+                hand.Parse(inserted.first->second.Cards(), empty);
 
-            inserted.first->second.Hand(parser.GetValue());
+                inserted.first->second.PushHand(hand.GetValue());
+
+                if (m_Flop.size() >= 3)
+                {
+                    for (unsigned i = 3; i <= m_Flop.size(); ++i)
+                    {
+                        const pcmn::Card::List board(m_Flop.begin(), m_Flop.begin() + i);
+                        hand.Parse(inserted.first->second.Cards(), board);
+                        inserted.first->second.PushHand(hand.GetValue());
+                    }
+                }
+            }
 
             for (const float eq : p.m_Percents)
                 inserted.first->second.PushEquity(eq);
@@ -599,7 +611,7 @@ void TableLogic::Parse(const net::Packet& packet)
             BetSize::Value lastBigBet = BetSize::VeryLow;
             m_Context.m_MaxBet = 0;
             pcmn::Action::Value lastAction = phase != Phase::Preflop ? pcmn::Action::Unknown : pcmn::Action::BigBlind;
-            pcmn::BetSize::Value lastAmount = pcmn::BetSize::VeryLow;
+            pcmn::BetSize::Value lastAmount = phase != Phase::Preflop ? pcmn::BetSize::VeryLow : BetSize::Low;
 
             for (int i = 0; i < packet.phases(phase).actions_size(); ++i)
             {
@@ -642,7 +654,7 @@ void TableLogic::Parse(const net::Packet& packet)
                 if (isUseful)
                 {
                     current.PushAction(phase, action, betValue, position, lastAction, lastAmount);
-                    if ((action == pcmn::Action::Bet || action == pcmn::Action::Raise) && action > lastAction || betValue > lastAmount || !pcmn::Action::IsActive(lastAction))
+                    if ((action == pcmn::Action::Bet || action == pcmn::Action::Raise) && (action > lastAction || betValue > lastAmount))
                     {
                         lastAction = action;
                         lastAmount = betValue;

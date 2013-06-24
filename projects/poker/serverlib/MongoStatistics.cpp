@@ -460,6 +460,9 @@ bson::bo BuildPlayer(const pcmn::Player& player) const
 {
     bson::bob builder;
 
+    // player hand description on different streets
+    const pcmn::Player::Hands& hands = player.GetHands();
+
     std::vector<bson::bo> streets;
     for (const pcmn::Player::ActionDesc::List& street : player.GetActions())
     {
@@ -477,22 +480,23 @@ bson::bo BuildPlayer(const pcmn::Player& player) const
             );
         }
 
-        streets.push_back(bson::bob().append("actions", actions).obj());
+        std::vector<unsigned> hand;
+        if (hands.size() > streets.size()) 
+            hand = conv::cast<std::vector<unsigned>>(static_cast<unsigned>(hands[streets.size()]));
+
+        streets.push_back(bson::bob().append("actions", actions).append("hand", hand).obj());
     }
 
     std::vector<int> cards;
     for (const pcmn::Card& card : player.Cards())
         cards.push_back(card.ToEvalFormat());
 
-    const std::vector<unsigned> hand = conv::cast<std::vector<unsigned>>(static_cast<unsigned>(player.Hand()));
-
     builder
         .append("name", player.Name())
         .append("stack", player.Stack())
         .append("streets", streets)
         .append("cards", cards)
-        .append("equities", player.Equities())
-        .append("hand", hand);
+        .append("equities", player.Equities());
 
     return builder.obj();
 }
