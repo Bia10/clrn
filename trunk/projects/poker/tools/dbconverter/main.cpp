@@ -122,20 +122,21 @@ int main(int argc, char* argv[])
             Actions actionsData;
             pcmn::TableContext::Data gameData;
             std::list<std::string> sequence;
+            pcmn::Card::List flop;
 
             // parse flop cards
             const std::vector<bson::be> cardsElements = game["flop"].Array();
             for (const bson::be& card : cardsElements)
-                gameData.m_Flop.push_back(card.Int());
-
-            if (gameData.m_Flop.size() >= 3)
             {
-                for (unsigned i = 3; i <= gameData.m_Flop.size(); ++i)
+                gameData.m_Flop.push_back(static_cast<int>(card.Double()));
+                flop.push_back(pcmn::Card().FromEvalFormat(gameData.m_Flop.back()));
+            }
+
+            if (flop.size() >= 3)
+            {
+                for (unsigned i = 3; i <= flop.size(); ++i)
                 {
-                    const std::vector<int> cards(gameData.m_Flop.begin(), gameData.m_Flop.begin() + i);
-                    pcmn::Card::List board;
-                    for (const int card : cards)
-                        board.push_back(pcmn::Card().FromEvalFormat(card));
+                    const pcmn::Card::List board(flop.begin(), flop.begin() + i);
 
                     pcmn::Board parser(board);
                     parser.Parse();
@@ -155,16 +156,26 @@ int main(int argc, char* argv[])
                 pcmn::Card::List cards;
                 const std::vector<bson::be> cardsElements = player.Obj()["cards"].Array();
                 for (const bson::be& card : cardsElements)
-                    cards.push_back(pcmn::Card().FromEvalFormat(card.Int()));
+                    cards.push_back(pcmn::Card().FromEvalFormat(static_cast<int>(card.Double())));
 
                 if (!cards.empty())
                 {
                     pcmn::Hand hand;
-                    static const pcmn::Card::List board;
-                    hand.Parse(cards, board);
+                    static const pcmn::Card::List empty;
+                    hand.Parse(cards, empty);
 
                     current.Cards(cards);
-                    current.Hand(hand.GetValue());
+                    current.PushHand(hand.GetValue());
+
+                    if (flop.size() >= 3)
+                    {
+                        for (unsigned i = 3; i <= flop.size(); ++i)
+                        {
+                            const pcmn::Card::List board(flop.begin(), flop.begin() + i);
+                            hand.Parse(cards, board);
+                            current.PushHand(hand.GetValue());
+                        }
+                    }
                 }
 
                 const std::vector<bson::be> equitiesElements = player.Obj()["equities"].Array();
@@ -208,7 +219,7 @@ int main(int argc, char* argv[])
                 auto it = queue.begin();
 
                 pcmn::Action::Value lastAction = street ? pcmn::Action::Unknown : pcmn::Action::BigBlind;
-                pcmn::BetSize::Value lastAmount = pcmn::BetSize::VeryLow;
+                pcmn::BetSize::Value lastAmount = street ? pcmn::BetSize::VeryLow : pcmn::BetSize::Low;
 
                 for (; ; )
                 {
@@ -240,7 +251,7 @@ int main(int argc, char* argv[])
                     else
                     if (action.m_Id == pcmn::Action::Bet || action.m_Id == pcmn::Action::Raise)
                     {
-                        if (action.m_Id > lastAction || action.m_Amount > lastAmount || !pcmn::Action::IsActive(lastAction))
+                        if (action.m_Id > lastAction || action.m_Amount > lastAmount)
                         {
                             lastAction = action.m_Id;
                             lastAmount = action.m_Amount;
