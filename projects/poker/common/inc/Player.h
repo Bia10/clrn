@@ -4,6 +4,7 @@
 #include "Cards.h"
 #include "Actions.h"
 #include "BetSize.h"
+#include "Hand.h"
 
 #include <string>
 #include <vector>
@@ -93,6 +94,8 @@ public:
 		Action::Value m_Id;
 		BetSize::Value m_Amount;
         Position::Value m_Position;
+        Action::Value m_ReasonId;
+        BetSize::Value m_ReasonAmount;
 
         bool operator == (const ActionDesc& other) const;
 	};
@@ -110,6 +113,7 @@ public:
 		, m_State(State::Called)
         , m_TotalBet(0)
         , m_Afk(false)
+        , m_Hand()
 	{
 		m_Styles.resize(4, Style::Normal);
 	}
@@ -122,6 +126,7 @@ public:
 		, m_State(State::Called)
 		, m_TotalBet(0)
         , m_Afk(false)
+        , m_Hand()
 	{
 		m_Styles.resize(4, Style::Normal);
 	}
@@ -144,6 +149,8 @@ public:
     void TotalBet(std::size_t val)          { m_TotalBet = val; }
     bool Afk() const                        { return m_Afk; }
     void Afk(bool val)                      { m_Afk = val; }
+    Hand::Value Hand() const                { return m_Hand; }
+    void Hand(Hand::Value val)              { m_Hand = val; }
 
     const std::vector<float>& Equities() const { return m_Equities; }
 
@@ -169,7 +176,15 @@ public:
 	bool operator == (const Player& other) const;
 
 	//! Add player action
-	void PushAction(unsigned street, Action::Value action, BetSize::Value value, Position::Value pos);
+	void PushAction
+    (
+        unsigned street, 
+        Action::Value action, 
+        BetSize::Value value, 
+        Position::Value pos,
+        Action::Value reasonAction,
+        BetSize::Value reasonAmount
+    );
 
     //! Add player equity
     void PushEquity(float val) { m_Equities.push_back(val); }
@@ -183,7 +198,8 @@ private:
     std::size_t m_TotalBet;         //!< player total bet
 
     Actions m_Actions;				//!< player actions
-	std::string m_Country;	
+    Hand::Value m_Hand;             //!< player hand description
+    std::string m_Country;	
 	Styles m_Styles;				//!< player styles during this game
     std::vector<float> m_Equities;  //!< player equities on streets
     bool m_Afk;                     //!< is player away from keyboard

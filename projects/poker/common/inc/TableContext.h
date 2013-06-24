@@ -3,6 +3,7 @@
 
 #include "Actions.h"
 #include "Player.h"
+#include "Board.h"
 
 namespace pcmn
 {
@@ -47,6 +48,9 @@ struct TableContext
 
         //! List of players with complete actions and hands
         pcmn::Player::List m_PlayersData;
+
+        //! Board description on different streets
+        std::vector<pcmn::Board::Value> m_Board;
 	};
 
 	TableContext()

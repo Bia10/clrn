@@ -64,20 +64,22 @@ namespace pcmn
 	{
 	}
 
-	void Player::PushAction(unsigned street, Action::Value action, BetSize::Value value, Position::Value pos)
-	{
+    void Player::PushAction(unsigned street, Action::Value action, BetSize::Value value, Position::Value pos, Action::Value reasonAction, BetSize::Value reasonAmount)
+    {
         if (!Action::IsActive(action))
-			return; // don't collect useless for statistics actions
+            return; // don't collect useless for statistics actions
 
         if (m_Actions.size() <= street)
             m_Actions.resize(street + 1);
 
-		m_Actions[street].push_back(ActionDesc());
+        m_Actions[street].push_back(ActionDesc());
         ActionDesc& actionDesc = m_Actions[street].back();
         actionDesc.m_Id = action;
         actionDesc.m_Amount = value;
         actionDesc.m_Position = pos;
-	}
+        actionDesc.m_ReasonId = reasonAction;
+        actionDesc.m_ReasonAmount = reasonAmount;
+    }
 
     void Player::Reset()
     {
