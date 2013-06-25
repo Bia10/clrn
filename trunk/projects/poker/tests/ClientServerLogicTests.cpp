@@ -62,10 +62,10 @@ public:
 
 };
 
-class TestReadWriteStatistics : public srv::MongoStatistics
+class TestReadOnlyStatistics : public srv::MongoStatistics
 {
 public:
-	TestReadWriteStatistics(ILog& logger) : srv::MongoStatistics(logger)
+	TestReadOnlyStatistics(ILog& logger) : srv::MongoStatistics(logger)
 	{
 
 	}
@@ -144,7 +144,7 @@ public:
 
 private:
 	Log m_Log;
-	TestReadWriteStatistics m_Statistics;
+	TestReadOnlyStatistics m_Statistics;
     //EmptyTestStatistics m_Statistics;
 	pcmn::Evaluator	m_Evaluator;
 	neuro::DatabaseReader m_Network;

@@ -22,6 +22,24 @@ actions: { $elemMatch: { id: 1} }
 	}
 }
 
+// все игры в которых CLRN ставил на флопе
+{
+	players: {
+		$elemMatch: {
+			name: "CLRN",
+			"streets.1.actions": {
+				$elemMatch: {
+					id: 3, 
+					amount: 1,
+					position: 1,
+					reason: 7,
+					bet: 1
+				}
+			}
+		}
+	}
+}
+
 // игра, в которой CLRN имеет бет с размером 4 на любой улице и известны его карты
 {
 	players: {
@@ -77,5 +95,80 @@ actions: { $elemMatch: { id: 1} }
 				name: "2L84H8"
 			}
 		}]
+	}
+}
+
+// все игры где на флопе CLRN ставил, а потом рейзил
+{
+	players: {
+		$elemMatch: {
+			name: "CLRN",
+			"cards.0": {
+				$exists: 1
+			},			
+			"streets.1.actions": {
+				"$all" : [{
+					$elemMatch: {
+						id: 3, 
+						amount: 3,
+						position: 1
+					}
+				},
+				{
+					$elemMatch: {
+						id: 4, 
+						amount: 3,
+						position: 2
+					}
+				}]
+			}
+		}
+	}
+}
+
+{
+	players: {
+		$elemMatch: {
+			name: "CLRN",
+			cards.0: {
+				$exists: 1
+			},
+			streets.0.actions: {
+				$all: [{
+					$elemMatch: {
+						id: 2,
+						amount: 1,
+						position: 1
+					}
+				}]
+			}
+		}
+	}
+}
+
+{
+	players: {
+		$elemMatch: {
+			name: "CLRN",
+			"cards.0": {
+				$exists: 1
+			},
+			"streets.1.actions": {
+				$all: [{
+					$elemMatch: {
+						id: 3,
+						amount: 3,
+						position: 1
+					}
+				},
+				{
+					$elemMatch: {
+						id: 4,
+						amount: 3,
+						position: 2
+					}
+				}]
+			}
+		}
 	}
 }

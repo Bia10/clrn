@@ -76,6 +76,19 @@ TEST_P(HandsPercentsTest, Calculate)
 
 const Card::List emptyBoard;
 
+TEST(HandsTest, Special)
+{
+    // pair of eights
+    Card::List cards;
+    cards.push_back(Card().FromEvalFormat(25)); 
+    cards.push_back(Card().FromEvalFormat(27));
+
+    Hand h;
+    h.Parse(cards, emptyBoard);
+
+    EXPECT_TRUE(!(h.GetValue() & Hand::Connectors));
+}
+
 // pocket hands
 const Card::List trash = boost::assign::list_of
     (Card(Card::Two, Suit::Clubs))
