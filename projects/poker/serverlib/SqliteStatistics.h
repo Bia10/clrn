@@ -17,7 +17,8 @@ public:
 	virtual void Write(pcmn::TableContext::Data& data) override;
 	virtual unsigned GetRanges(PlayerInfo::List& players) const override;
     virtual pcmn::Player::Style::Value GetAverageStyle(const std::string& target, const std::string& opponent) const override;
-	virtual unsigned GetEquities(PlayerInfo::List& players, unsigned) const override;
+	virtual void GetEquities(PlayerInfo::List& players, unsigned) const override;
+    virtual void GetHands(PlayerInfo::List& players, unsigned street) const override;
 
 private:
 	class Impl;

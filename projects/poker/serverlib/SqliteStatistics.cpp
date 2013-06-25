@@ -458,9 +458,9 @@ unsigned SqliteStatistics::GetRanges(PlayerInfo::List& players) const
 	return m_Impl->GetRanges(players);
 }
 
-unsigned SqliteStatistics::GetEquities(PlayerInfo::List& players, unsigned) const
+void SqliteStatistics::GetEquities(PlayerInfo::List& players, unsigned) const
 {
-	return m_Impl->GetEquities(players);
+	m_Impl->GetEquities(players);
 }
 
 pcmn::Player::Style::Value srv::SqliteStatistics::GetAverageStyle(const std::string& target, const std::string& opponent) const 
@@ -481,6 +481,11 @@ pcmn::Player::Style::Value srv::SqliteStatistics::GetAverageStyle(const std::str
         return pcmn::Player::Style::Normal;
 
     return pcmn::Player::Style::Passive;
+}
+
+void SqliteStatistics::GetHands(PlayerInfo::List& players, unsigned street) const 
+{
+
 }
 
 }

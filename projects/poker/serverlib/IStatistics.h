@@ -6,6 +6,7 @@
 #include "Actions.h"
 #include "Config.h"
 #include "Player.h"
+#include "Hand.h"
 
 #include <vector>
 #include <string>
@@ -22,7 +23,8 @@ public:
 	//! Player equities
 	struct PlayerInfo
 	{
-		typedef std::vector<pcmn::Player::ActionDesc> Actions;
+		typedef pcmn::Player::ActionDesc::List Actions;
+        typedef std::map<pcmn::Hand::Value, float> Hands;
 		typedef std::vector<PlayerInfo> List;
 
 		PlayerInfo() : m_Bet(0), m_WinRate(0), m_CardRange(cfg::CARD_DECK_SIZE)
@@ -35,6 +37,7 @@ public:
         int m_Bet;
 		float m_WinRate;
 		int m_CardRange;
+        Hands m_Hands;
 	};
 
 	virtual ~IStatistics() {}
@@ -55,9 +58,10 @@ public:
 	virtual pcmn::Player::Style::Value GetAverageStyle(const std::string& target, const std::string& opponent) const = 0;
 
 	//! Get equities
-	virtual unsigned GetEquities(PlayerInfo::List& players, unsigned street) const = 0;
+	virtual void GetEquities(PlayerInfo::List& players, unsigned street) const = 0;
 
-
+    //! Get possible hands by actions
+    virtual void GetHands(PlayerInfo::List& players, unsigned street) const = 0;
 };
 
 } // namespace srv

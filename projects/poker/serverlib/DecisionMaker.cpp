@@ -310,9 +310,7 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
 		return pcmn::Danger::Normal;
 
 	// fetch statistics
-	const unsigned count = m_Stat.GetEquities(equities, street);
-    if (!count)
-        return pcmn::Danger::Normal;
+	m_Stat.GetEquities(equities, street);
 
 	// compare equities
     bool onlyLow = true;
@@ -343,10 +341,6 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
                 return pcmn::Danger::High;
         }
 	}
-
-	// player list empty - unknown value(normal) - else all players have less than bot
-	if ((activePlayers.size() - 1) / 2 > count)
-		return pcmn::Danger::Normal;
 
 	return onlyLow ? pcmn::Danger::Low : pcmn::Danger::Normal;
 }
