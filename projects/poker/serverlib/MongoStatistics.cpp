@@ -229,34 +229,27 @@ bool GetHand(PlayerInfo& info, unsigned streetId, const std::string& name)
         static const bson::bo returnProjection = bson::bob().append("players.$", 1).append("_id", 0).obj();
 
         std::map<pcmn::Hand::Value, unsigned> counters;
-
+         
         // prepare list of actions
-        std::vector<bson::bo> actions;
-        for (const pcmn::Player::ActionDesc& actionDsc : info.m_Actions)
-        {
-            const bson::bo object = BSON("id" << actionDsc.m_Id << "amount" << actionDsc.m_Amount << "position" << actionDsc.m_Position);
-            LOG_TRACE("Fetching player hands: [%s], actions: [%s]") % name % object.toString();
-            actions.push_back(object);
-        }
+        const std::vector<bson::bo> actions = GetActions(info.m_Actions);
 
-        // prepare query
-        mongo::Query query = 
+        const std::string streetsAndActions = std::string("streets.") + conv::cast<std::string>(streetId) + std::string(".actions");
+        mongo::Query query =
         BSON("players" << BSON("$elemMatch" 
-                                << BSON("name" << name
-                                        << "cards.0" << BSON("$exists" << 1)
-                                        << "streets" << BSON("$elemMatch" 
-                                                        << BSON("actions" << BSON("$all"
-                                                                << actions))))));
+                            << BSON("name" << name
+                            << "cards.0" << BSON("$exists" << 1)
+                            << streetsAndActions << BSON("$all" << actions))));
 
-        query.sort("_id", 0);
-        
+        query.sort("_id", 0);       
+
+        LOG_TRACE("Fetching player hands: [%s]") % query.toString();
 
         // fetch 
         const std::auto_ptr<mongo::DBClientCursor> cursor = m_Connection.query
         (
             STAT_COLLECTION_NAME, 
             query,
-            10, // ten last games
+            100,
             0, 
             &returnProjection
         );
@@ -265,34 +258,16 @@ bool GetHand(PlayerInfo& info, unsigned streetId, const std::string& name)
         while (cursor->more()) 
         {
             const bson::bo data = cursor->next();
-            LOG_TRACE("Fetched player hands: [%s], data: [%s]") % name % data.toString();
+            LOG_DEBUG("Fetched player hands: [%s], data: [%s]") % name % data.toString();
 
             // found target player, enum all actions
             const std::vector<bson::be> streets = data.getFieldDotted("players.0.streets").Array();
+            CHECK(streets.size() > streetId, "Bad statistics, returned less streets than expected", streetId, data.toString());
 
-            if (!streetId) // preflop
-            {
-                if (IsActionsMatch(streets.front().Obj(), info.m_Actions))
-                {
-                    const pcmn::Hand::Value hand = GetHandFromStreet(streets.front());
-                    LOG_TRACE("Player hand: [%s]") % hand;
-                    ++counters[hand];
-                    ++total;
-                }
-            }
-            else
-            {
-                for (unsigned i = 0; i < streets.size(); ++i)
-                {
-                    if (IsActionsMatch(streets[i].Obj(), info.m_Actions))
-                    {
-                        const pcmn::Hand::Value hand = GetHandFromStreet(streets[i]);
-                        LOG_TRACE("Player hand: [%s]") % hand;
-                        ++counters[hand];
-                        ++total;
-                    }
-                }
-            }
+            const pcmn::Hand::Value hand = GetHandFromStreet(streets[streetId]);
+            LOG_TRACE("Player: [%s], hand: [%s]") % name % hand;
+            ++counters[hand];
+            ++total;
         }
 
         for (const auto& pair : counters)
@@ -319,13 +294,7 @@ void GetHand(PlayerInfo& info, unsigned streetId)
         // query all games with equity info about this player
 
         // prepare list of actions
-        std::vector<bson::bo> actions;
-        for (const pcmn::Player::ActionDesc& actionDsc : info.m_Actions)
-        {
-            const bson::bo object = BSON("id" << actionDsc.m_Id << "amount" << actionDsc.m_Amount << "position" << actionDsc.m_Position);
-            LOG_TRACE("Fetching hands from all stats, actions: [%s]") % object.toString();
-            actions.push_back(object);
-        }
+        const std::vector<bson::bo> actions = GetActions(info.m_Actions);
 
         // prepare query
         const std::string streetsAndActions = std::string("streets.") + conv::cast<std::string>(streetId) + std::string(".actions");
@@ -336,6 +305,7 @@ void GetHand(PlayerInfo& info, unsigned streetId)
                                                             << actions))));
         query.sort("_id", 0);
 
+        LOG_TRACE("Fetching player hands: [%s]") % query.toString();
 
         // fetch 
         const std::auto_ptr<mongo::DBClientCursor> cursor = m_Connection.query
@@ -352,13 +322,13 @@ void GetHand(PlayerInfo& info, unsigned streetId)
         while (cursor->more()) 
         {
             const bson::bo data = cursor->next();
-            LOG_TRACE("Fetched all stats equities, data: [%s]") % data.toString();
+            LOG_DEBUG("Fetched all stats equities, data: [%s]") % data.toString();
 
             const std::vector<bson::be> streets = data.getFieldDotted("players.0.streets").Array();
-            CHECK(streets.size() > streetId, "Bad statistics returned less streets than expected", streetId, data.toString());
+            CHECK(streets.size() > streetId, "Bad, statistics returned less streets than expected", streetId, data.toString());
 
             const pcmn::Hand::Value hand = GetHandFromStreet(streets[streetId]);
-            LOG_TRACE("Player hand: [%s]") % hand;
+            LOG_TRACE("Player: [%s], hand: [%s]") % data.getFieldDotted("players.0.name").String() % hand;
             ++counters[hand];
             ++total;
         }
@@ -388,13 +358,7 @@ unsigned GetRange(const pcmn::Player::ActionDesc::List& actionDescs, const std::
         // query all games with cards info about this player or for all stats
 
         // prepare list of actions
-        std::vector<bson::bo> actions;
-        for (const pcmn::Player::ActionDesc& actionDsc : actionDescs)
-        {
-            const bson::bo object = BSON("id" << actionDsc.m_Id << "amount" << actionDsc.m_Amount);
-            LOG_TRACE("Fetching player range: [%s], actions: [%s]") % name % object.toString();
-            actions.push_back(object);
-        }
+        const std::vector<bson::bo> actions = GetActions(actionDescs);
 
         mongo::Query query = 
             name.empty() ? 
@@ -486,13 +450,7 @@ float GetEquity(const PlayerInfo::Actions& actionDescs, unsigned streetId, const
         // query all games with equity info about this player
 
         // prepare list of actions
-        std::vector<bson::bo> actions;
-        for (const pcmn::Player::ActionDesc& actionDsc : actionDescs)
-        {
-            const bson::bo object = BSON("id" << actionDsc.m_Id << "amount" << actionDsc.m_Amount);
-            LOG_TRACE("Fetching player equities: [%s], actions: [%s]") % name % object.toString();
-            actions.push_back(object);
-        }
+        const std::vector<bson::bo> actions = GetActions(actionDescs);
 
         // prepare query
         mongo::Query query = 
@@ -575,13 +533,7 @@ float GetEquity(const PlayerInfo::Actions& actionDescs, unsigned street)
         // query all games with equity info about this player
 
         // prepare list of actions
-        std::vector<bson::bo> actions;
-        for (const pcmn::Player::ActionDesc& actionDsc : actionDescs)
-        {
-            const bson::bo object = BSON("id" << actionDsc.m_Id << "amount" << actionDsc.m_Amount);
-            LOG_TRACE("Fetching equities from all stats, actions: [%s]") % object.toString();
-            actions.push_back(object);
-        }
+        const std::vector<bson::bo> actions = GetActions(actionDescs);
 
         // prepare query
         const std::string streetsAndActions = std::string("streets.") + conv::cast<std::string>(street) + std::string(".actions");
@@ -677,6 +629,18 @@ pcmn::Hand::Value GetHandFromStreet(const bson::be& street)
         bits.push_back(element.Int());
 
     return static_cast<pcmn::Hand::Value>(conv::cast<unsigned>(bits));   
+}
+
+std::vector<bson::bo> GetActions(const pcmn::Player::ActionDesc::List& actionsDscs)
+{
+    std::vector<bson::bo> actions;
+    for (const pcmn::Player::ActionDesc& actionDsc : actionsDscs)
+    {
+        const bson::bo object = BSON("id" << actionDsc.m_Id << "amount" << actionDsc.m_Amount << "position" << actionDsc.m_Position);
+        const bson::bo match = BSON("$elemMatch" << object);
+        actions.push_back(match);
+    }
+    return actions;
 }
 
 private:

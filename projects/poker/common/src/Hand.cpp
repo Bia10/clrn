@@ -48,7 +48,7 @@ bool IsConnectors(const Card::List& cards)
 {
     const pcmn::Card first = cards.front();
     const pcmn::Card second = cards.back();
-    return first.m_Value != Card::Ace && second.m_Value != Card::Ace && abs(second.m_Value - first.m_Value) <= 2;
+    return first.m_Value != second.m_Value && first.m_Value != Card::Ace && second.m_Value != Card::Ace && abs(second.m_Value - first.m_Value) <= 2;
 }
 
 bool IsSuited(const Card::List& cards)
