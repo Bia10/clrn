@@ -483,7 +483,7 @@ pcmn::Player::Style::Value srv::SqliteStatistics::GetAverageStyle(const std::str
     return pcmn::Player::Style::Passive;
 }
 
-void SqliteStatistics::GetHands(PlayerInfo::List& players, unsigned street) const 
+void SqliteStatistics::GetHands(PlayerInfo& player, unsigned street, unsigned count) const 
 {
 
 }
