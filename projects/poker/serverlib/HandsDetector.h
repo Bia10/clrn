@@ -24,7 +24,7 @@ public:
     HandsDetector(ILog& log, IStatistics& stats);
 
     //! Detect player hand
-    void DetectHand(const pcmn::Card::List& board, const pcmn::Player& player, Result& result);
+    void DetectHand(const pcmn::Card::List& board, const pcmn::Player& player, Result& result, unsigned totalPlayers);
 
 private:
 

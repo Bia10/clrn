@@ -61,7 +61,7 @@ public:
 	virtual void GetEquities(PlayerInfo::List& players, unsigned street) const = 0;
 
     //! Get possible hands by actions
-    virtual void GetHands(PlayerInfo::List& players, unsigned street) const = 0;
+    virtual void GetHands(PlayerInfo& player, unsigned street, unsigned count) const = 0;
 };
 
 } // namespace srv

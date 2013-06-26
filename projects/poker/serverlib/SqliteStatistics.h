@@ -18,7 +18,7 @@ public:
 	virtual unsigned GetRanges(PlayerInfo::List& players) const override;
     virtual pcmn::Player::Style::Value GetAverageStyle(const std::string& target, const std::string& opponent) const override;
 	virtual void GetEquities(PlayerInfo::List& players, unsigned) const override;
-    virtual void GetHands(PlayerInfo::List& players, unsigned street) const override;
+    virtual void GetHands(PlayerInfo& player, unsigned street, unsigned count) const override;
 
 private:
 	class Impl;

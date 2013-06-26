@@ -49,7 +49,12 @@ void Write(pcmn::TableContext::Data& data)
         for (const pcmn::Player& player : data.m_PlayersData)
             players.push_back(BuildPlayer(player));
 
-        m_Connection.insert(STAT_COLLECTION_NAME, BSON("players" << players << "flop" << data.m_Flop << "board" << board));
+        // get active players count
+        const pcmn::Player::Count::Value count = pcmn::Player::Count::FromValue(data.m_PlayersData.size());
+        m_Connection.insert(STAT_COLLECTION_NAME, BSON( "players" << players << 
+                                                        "flop" << data.m_Flop << 
+                                                        "board" << board <<
+                                                        "count" << count));
 	}
 	CATCH_IGNORE_EXCEPTIONS(m_Log, "Failed to write data to database")
 }
@@ -199,19 +204,17 @@ void GetEquities(PlayerInfo::List& players, unsigned street)
 }
 
 
-void GetHands(PlayerInfo::List& players, unsigned street)
+void GetHands(PlayerInfo& player, unsigned street, unsigned playersCount)
 {
     TRY
     {
         SCOPED_LOG(m_Log);
 
-        for (PlayerInfo& info : players)
+        const pcmn::Player::Count::Value count = pcmn::Player::Count::FromValue(playersCount);
+        if (!GetHand(player, street, player.m_Name, count))
         {
-            if (!GetHand(info, street, info.m_Name))
-            {
-                LOG_TRACE("Failed to find hand by player name: [%s], getting from all statistics") % info.m_Name;
-                GetHand(info, street);
-            }
+            LOG_TRACE("Failed to find hand by player name: [%s], getting from all statistics") % player.m_Name;
+            GetHand(player, street, count);
         }
     }
     CATCH_PASS_EXCEPTIONS("GetHands failed")
@@ -219,7 +222,7 @@ void GetHands(PlayerInfo::List& players, unsigned street)
 
 private:
 
-bool GetHand(PlayerInfo& info, unsigned streetId, const std::string& name)
+bool GetHand(PlayerInfo& info, unsigned streetId, const std::string& name, const pcmn::Player::Count::Value count)
 {
     SCOPED_LOG(m_Log);
 
@@ -235,7 +238,8 @@ bool GetHand(PlayerInfo& info, unsigned streetId, const std::string& name)
 
         const std::string streetsAndActions = std::string("streets.") + conv::cast<std::string>(streetId) + std::string(".actions");
         mongo::Query query =
-        BSON("players" << BSON("$elemMatch" 
+        BSON("count" << count << 
+             "players" << BSON("$elemMatch" 
                             << BSON("name" << name
                             << "cards.0" << BSON("$exists" << 1)
                             << streetsAndActions << BSON("$all" << actions))));
@@ -265,7 +269,15 @@ bool GetHand(PlayerInfo& info, unsigned streetId, const std::string& name)
             CHECK(streets.size() > streetId, "Bad statistics, returned less streets than expected", streetId, data.toString());
 
             const pcmn::Hand::Value hand = GetHandFromStreet(streets[streetId]);
-            LOG_TRACE("Player: [%s], hand: [%s]") % name % hand;
+            if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Trace))
+            {
+                pcmn::Card::List cards;
+                const std::vector<bson::be> cardsArray = data.getFieldDotted("players.0.cards").Array();
+                for (const bson::be& elem : cardsArray)
+                    cards.push_back(pcmn::Card().FromEvalFormat(elem.Int()));
+
+                LOG_TRACE("Player: [%s], hand: [%s], with cards: [%s]") % name % hand % cards;
+            }
             ++counters[hand];
             ++total;
         }
@@ -277,12 +289,12 @@ bool GetHand(PlayerInfo& info, unsigned streetId, const std::string& name)
             info.m_Hands[pair.first] = avg;
         }
 
-        return total > 2;       
+        return total > 2 && counters.size() > 2;       
     }
     CATCH_PASS_EXCEPTIONS("GetHand failed", name)
 }
 
-void GetHand(PlayerInfo& info, unsigned streetId)
+void GetHand(PlayerInfo& info, unsigned streetId, const pcmn::Player::Count::Value count)
 {
     try
     {
@@ -299,7 +311,8 @@ void GetHand(PlayerInfo& info, unsigned streetId)
         // prepare query
         const std::string streetsAndActions = std::string("streets.") + conv::cast<std::string>(streetId) + std::string(".actions");
         mongo::Query query =
-        BSON("players" << BSON("$elemMatch" 
+        BSON("count" << count << 
+             "players" << BSON("$elemMatch" 
                             << BSON("cards.0" << BSON("$exists" << 1)
                                     << streetsAndActions << BSON("$all"
                                                             << actions))));
@@ -331,6 +344,17 @@ void GetHand(PlayerInfo& info, unsigned streetId)
             LOG_TRACE("Player: [%s], hand: [%s]") % data.getFieldDotted("players.0.name").String() % hand;
             ++counters[hand];
             ++total;
+        }
+
+        for (const auto& pair : info.m_Hands)
+        {
+            // detect average count of the detected hand
+            const unsigned count = static_cast<unsigned>(pair.second * total);
+            if (count > counters[pair.first])
+            {
+                total += count - counters[pair.first];
+                counters[pair.first] = count;
+            }
         }
 
         for (const auto& pair : counters)
@@ -678,9 +702,9 @@ pcmn::Player::Style::Value srv::MongoStatistics::GetAverageStyle(const std::stri
     return m_Impl->GetAverageStyle(target, opponent);
 }
 
-void MongoStatistics::GetHands(PlayerInfo::List& players, unsigned street) const 
+void MongoStatistics::GetHands(PlayerInfo& player, unsigned street, unsigned count) const 
 {
-    m_Impl->GetHands(players, street);
+    m_Impl->GetHands(player, street, count);
 }
 
 }
