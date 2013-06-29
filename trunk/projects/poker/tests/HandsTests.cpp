@@ -792,7 +792,7 @@ const Card::List goodKicker1 = boost::assign::list_of // with Q J connectors2
     (Card(Card::Two, Suit::Hearts))
     (Card(Card::Five, Suit::Diamonds))
     (Card(Card::Four, Suit::Clubs))
-    (Card(Card::Four, Suit::Hearts));
+    (Card(Card::Jack, Suit::Diamonds));
 
 const Card::List goodKicker2 = boost::assign::list_of // with 2 J oneHigh1
     (Card(Card::Queen, Suit::Clubs))
@@ -846,6 +846,18 @@ INSTANTIATE_TEST_CASE_P
     HandsTest,
     Values
     (
+        // one low
+        HandsTestParams(oneHigh1, emptyBoard, Hand::OneLow, true),
+        HandsTestParams(oneHigh2, emptyBoard, Hand::OneLow, true),
+        HandsTestParams(oneHigh3, emptyBoard, Hand::OneLow, false),
+
+        // both low
+        HandsTestParams(trash, emptyBoard, Hand::BothLow, true),
+        HandsTestParams(connectors1, emptyBoard, Hand::BothLow, true),
+        HandsTestParams(noBothHigh2, emptyBoard, Hand::BothLow, true),
+        HandsTestParams(noBothHigh1, emptyBoard, Hand::BothLow, false),
+        HandsTestParams(noBothHigh3, emptyBoard, Hand::BothLow, false),
+
         // suited
         HandsTestParams(suited1, emptyBoard, Hand::Suited, true),
         HandsTestParams(suited2, emptyBoard, Hand::Suited, true),

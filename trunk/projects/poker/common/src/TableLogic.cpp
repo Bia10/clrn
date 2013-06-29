@@ -256,17 +256,17 @@ void TableLogic::ParseFlopCards(const net::Packet& packet)
     {
         m_Context.m_Data.m_Flop.push_back(packet.info().cards(i));
         m_Flop.push_back(Card().FromEvalFormat(packet.info().cards(i)));
+    }
 
-        if (m_Flop.size() >= 3)
+    if (m_Flop.size() >= 3)
+    {
+        for (unsigned i = 3; i <= m_Flop.size(); ++i)
         {
-            for (unsigned i = 3; i <= m_Flop.size(); ++i)
-            {
-                pcmn::Card::List board(m_Flop.begin(), m_Flop.begin() + i);
+            pcmn::Card::List board(m_Flop.begin(), m_Flop.begin() + i);
 
-                pcmn::Board parser(board);
-                parser.Parse();
-                m_Context.m_Data.m_Board.push_back(parser.GetValue());
-            }
+            pcmn::Board parser(board);
+            parser.Parse();
+            m_Context.m_Data.m_Board.push_back(parser.GetValue());
         }
     }
 }

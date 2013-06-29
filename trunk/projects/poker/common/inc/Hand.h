@@ -16,43 +16,50 @@ public:
     {
         // player hand description
         Unknown         = 0,        //!< really unknown
-        Suited          = 1 << 1,   //!< any suited cards
-        Connectors      = 1 << 2,   //!< connectors or gub connectors
-        OneHigh         = 1 << 3,   //!< one high card, more then ten        
-        BothHigh        = 1 << 4,   //!< two cards more than ten
-        Ace             = 1 << 5,   //!< hand with any ace
-        PoketPair       = 1 << 6,   //!< pocket pair, used only on preflop(becames one of the pairs on flop+)
+        OneLow          = 1 << 1,   //!< one card is low (lower than 6)
+        BothLow         = 1 << 2,   //!, both cards low
+        Suited          = 1 << 3,   //!< any suited cards
+        Connectors      = 1 << 4,   //!< connectors or gub connectors
+        OneHigh         = 1 << 5,   //!< one high card, more then ten        
+        BothHigh        = 1 << 6,   //!< two cards more than ten
+        Ace             = 1 << 7,   //!< hand with any ace
+        PoketPair       = 1 << 8,   //!< pocket pair, used only on preflop(becames one of the pairs on flop+)
 
         // draws
-        StraightDraw    = 1 << 7,   //!< two-way straight draw
-        GodShot         = 1 << 8,   //!< straight godshot draw
-        FlushDraw       = 1 << 9,   //!< flush draw
-        GoodDraw        = 1 << 10,  //!< this is a good draw but not the best
-        TopDraw         = 1 << 11,  //!< hand will be nuts if draw succeed
+        StraightDraw    = 1 << 9,   //!< two-way straight draw
+        GodShot         = 1 << 10,   //!< straight godshot draw
+        FlushDraw       = 1 << 11,   //!< flush draw
+        GoodDraw        = 1 << 12,  //!< this is a good draw but not the best
+        TopDraw         = 1 << 13,  //!< hand will be nuts if draw succeed
         
         // some ready hands
-        HighCard        = 1 << 12,
-        Pair            = 1 << 13, 
-        TwoPairs        = 1 << 14,
-        ThreeOfKind     = 1 << 15,
-        Straight        = 1 << 16,
-        Flush           = 1 << 17,
-        FullHouse       = 1 << 18,
-        FourOfKind      = 1 << 19,
-        StraightFlush   = 1 << 20,
+        HighCard        = 1 << 14,  //!< means overcard only
+        Pair            = 1 << 15,
+        TwoPairs        = 1 << 16,
+        ThreeOfKind     = 1 << 17,
+        Straight        = 1 << 18,
+        Flush           = 1 << 19,
+        FullHouse       = 1 << 20,
+        FourOfKind      = 1 << 21,
+        StraightFlush   = 1 << 22,
 
         // hand strength(applicable to all hands lower than full house)
-        Low             = 1 << 21,
-        Middle          = 1 << 22,
-        Top             = 1 << 23,
+        Low             = 1 << 23,
+        Middle          = 1 << 24,
+        Top             = 1 << 25,
 
         // kickers
-        LowKicker       = 1 << 24,  //!< card le than ten
-        GoodKicker      = 1 << 25,  //!< picture lower then ace
-        TopKicker       = 1 << 26,  //!< ace
+        LowKicker       = 1 << 26,  //!< card le than ten
+        GoodKicker      = 1 << 27,  //!< picture lower then ace
+        TopKicker       = 1 << 28,  //!< ace
     };
-   
 
+    static const unsigned POCKET_HAND_MASK;
+    static const unsigned FLOP_HAND_MASK;
+    static const unsigned KICKERS_MASK;
+    static const unsigned DRAWS_MASK;
+    static const unsigned POWER_MASK;
+   
     Hand();
 
     pcmn::Hand::Value GetValue() const { return m_Value; }

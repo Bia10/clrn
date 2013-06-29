@@ -15,6 +15,12 @@ namespace srv
 //! Hands recognizer
 class HandsDetector
 {
+    //! List of hands
+    typedef std::vector<pcmn::Card::List> Hands;
+
+    //! Hands cache
+    typedef std::map<pcmn::Hand::Value, Hands> Cache;
+
 public:
 
     //! Detection result type
@@ -28,11 +34,16 @@ public:
 
 private:
 
-    float GetHandChance(pcmn::Hand::Value preflopHand, const pcmn::Card::List& board, pcmn::Hand::Value possibleHand);
+    //! Get chance of the specified by characteristics preflop hand became a specified flop hand
+    float GetFlopHandChanceByPreflopHand(pcmn::Hand::Value preflopHand, const pcmn::Card::List& board, pcmn::Hand::Value possibleHand);
+
+    //! Get chance of the specified preflop hand with determined flop hand
+    float GetPreflopHandChanceByFlopHand(pcmn::Hand::Value preflopHand, const pcmn::Card::List& board, pcmn::Hand::Value flopHand);
 
 private:
     ILog& m_Log;
     IStatistics& m_Statistic;
+    Cache m_Cache;
 };
 
 }

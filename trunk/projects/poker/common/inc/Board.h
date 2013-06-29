@@ -43,6 +43,9 @@ public:
     //! Get all possible cards combinations for concrete hand
     HandsList GetCardsByHand(const Hand::Value hand);
 
+    //! Get all possible hand cards
+    const HandsList& GetAllPocketCards();
+
     //! Parse board
     void Parse();
 

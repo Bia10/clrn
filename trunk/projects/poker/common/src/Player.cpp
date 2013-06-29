@@ -91,10 +91,26 @@ namespace pcmn
         m_Styles.clear();
     }
 
-
-    bool Player::ActionDesc::operator==(const ActionDesc& other) const
+    bool Player::ActionDesc::operator == (const ActionDesc& other) const
     {
         return m_Id == other.m_Id && m_Amount == other.m_Amount;
+    }
+
+    bool Player::ActionDesc::operator < (const ActionDesc& other) const
+    {
+        if (m_Id == other.m_Id)
+            return m_Amount < other.m_Amount;
+
+        return m_Id < other.m_Id;
+    }
+
+    Player::ActionDesc::ActionDesc()
+        : m_Id()
+        , m_Amount()
+        , m_Position()
+        , m_ReasonId()
+        , m_ReasonAmount()
+    {
     }
 
     std::ostream& operator<<(std::ostream& s, const Player& p)

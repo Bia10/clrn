@@ -172,3 +172,25 @@ actions: { $elemMatch: { id: 1} }
 		}
 	}
 }
+
+// найти все игры по руке игрока и позиции
+{
+	players: {
+		$elemMatch: {
+			name: "CLRN",
+			"cards.0": {
+				$exists: 1
+			},
+			"streets.1.hand": {
+				$all: [1]
+			},
+			"streets.1.actions": {
+				$all: [{
+					$elemMatch: {
+						position: 1
+					}
+				}]
+			}			
+		}
+	}
+}

@@ -36,6 +36,34 @@ Board::HandsList Board::GetCardsByHand(const Hand::Value hand)
     return FilterCards(it->second, hand);
 }
 
+const Board::HandsList& Board::GetAllPocketCards()
+{
+    boost::unique_lock<boost::mutex> lock(s_CacheMutex);
+
+    static HandsList result;
+    if (!result.empty())
+        return result;
+
+    static const std::size_t maxSize = static_cast<std::size_t>(std::pow(cfg::CARD_DECK_SIZE, 2)) / 2;
+    result.reserve(maxSize);
+
+    Card::List buffer(2);
+    for (short first = 0 ; first < cfg::CARD_DECK_SIZE; ++first)
+    {
+        for (short second = first + 1 ; second < cfg::CARD_DECK_SIZE; ++second)
+        {
+            assert(second != first);
+
+            buffer.front().FromEvalFormat(first);
+            buffer.back().FromEvalFormat(second);
+
+            result.push_back(buffer);
+        }
+    }
+
+    return result;
+}
+
 void Board::GeneratePossibleHands(HandsList& result, Hand::Value hand) const
 {
     static const std::size_t maxSize = static_cast<std::size_t>(std::pow(cfg::CARD_DECK_SIZE, 2)) / 2;
@@ -48,17 +76,21 @@ void Board::GeneratePossibleHands(HandsList& result, Hand::Value hand) const
 
     Hand parser;
 
+    Card::List buffer(2);
+    
     for (short first = 0 ; first < cfg::CARD_DECK_SIZE; ++first)
     {
         for (short second = first + 1 ; second < cfg::CARD_DECK_SIZE; ++second)
         {
             assert(second != first);
 
-            const Card::List possibleCards = boost::assign::list_of(Card().FromEvalFormat(first))(Card().FromEvalFormat(second));
-            parser.Parse(possibleCards, emptyBoard);
+            buffer.front().FromEvalFormat(first);
+            buffer.back().FromEvalFormat(second);
+
+            parser.Parse(buffer, emptyBoard);
 
             if ((parser.GetValue() & hand) == hand)
-                result.push_back(possibleCards);
+                result.push_back(buffer);
         }
     }
 }
