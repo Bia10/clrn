@@ -97,7 +97,9 @@ public:
         Action::Value m_ReasonId;
         BetSize::Value m_ReasonAmount;
 
+        ActionDesc();
         bool operator == (const ActionDesc& other) const;
+        bool operator < (const ActionDesc& other) const;
 	};
 
 	typedef std::vector<Player> List;
