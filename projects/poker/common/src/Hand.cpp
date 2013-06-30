@@ -719,8 +719,12 @@ std::string Hand::ToString(Value v)
 {
     std::string result;
 
+    if (v == Unknown)
+        result = "Unknown";
+
 #define CASE(x) if (v & x) if (result.empty()) result += #x; else result += " | ", result += #x;
-    CASE(Unknown);
+    CASE(OneLow);
+    CASE(BothLow);
     CASE(Suited);
     CASE(Connectors);
     CASE(OneHigh);
@@ -730,7 +734,10 @@ std::string Hand::ToString(Value v)
     CASE(StraightDraw);
     CASE(GodShot);
     CASE(FlushDraw);
+    CASE(GoodDraw);
+    CASE(TopDraw);
     CASE(HighCard);
+    CASE(Pair);
     CASE(TwoPairs);
     CASE(ThreeOfKind);
     CASE(Straight);
@@ -745,6 +752,7 @@ std::string Hand::ToString(Value v)
     CASE(GoodKicker);
     CASE(LowKicker);
 #undef CASE
+    assert(!result.empty());
     return result;
 }
 

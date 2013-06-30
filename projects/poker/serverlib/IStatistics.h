@@ -24,20 +24,12 @@ public:
 	struct PlayerInfo
 	{
 		typedef pcmn::Player::ActionDesc::List Actions;
-        typedef std::map<pcmn::Player::ActionDesc, float> PossibleActions;
-
-        struct PossibleHand
-        {
-            PossibleHand() : m_Rate() {}
-            float m_Rate;
-            PossibleActions m_Actions;
-        };
-
-        typedef std::map<pcmn::Hand::Value, PossibleHand> Hands;
+        typedef std::map<pcmn::Hand::Value, float> Hands;
 		typedef std::vector<PlayerInfo> List;
 
 		PlayerInfo() : m_Bet(0), m_WinRate(0), m_CardRange(cfg::CARD_DECK_SIZE)
 		{
+
 		}
 
 		std::string m_Name;

@@ -54,6 +54,45 @@ void NormalizeByFunctor(Arg& map, Func func)
     }
 }
 
+void HandsDetector::FilterCardsByPossibleHands(const std::vector<pcmn::Hand::Value>& hands, unsigned street)
+{
+    Hands result;
+    pcmn::Hand parser;
+    static const pcmn::Card::List empty;
+
+    for (const pcmn::Card::List& currentHand : m_PossibleCards)
+    {
+        // check for dead cards in the player hand
+        if (std::find_if(m_Board.begin(), m_Board.end(), [&](const pcmn::Card& c){ return c == currentHand.front() || c == currentHand.back(); }) != m_Board.end())
+            continue;
+
+        // check all possible hands
+        for (const pcmn::Hand::Value hand : hands)
+        {
+            parser.Parse(currentHand, street ? m_Board : empty);
+
+            if (hand == pcmn::Hand::Unknown || !street)
+            {
+                if (parser.GetValue() == hand)
+                {
+                    result.push_back(currentHand);
+                    break;
+                }
+            }
+            else
+            {
+                if ((parser.GetValue() & hand) == hand)
+                {
+                    result.push_back(currentHand);
+                    break;
+                }
+            }
+        }
+    }
+
+    result.swap(m_PossibleCards);
+}
+
 float HandsDetector::GetFlopHandChanceByPreflopHand(pcmn::Hand::Value preflopHand, const pcmn::Card::List& board, pcmn::Hand::Value possibleHand)
 {
     // get all possible cards for this preflop hand description
@@ -118,12 +157,131 @@ float HandsDetector::GetPreflopHandChanceByFlopHand(pcmn::Hand::Value preflopHan
     return static_cast<float>(count) / it->second.size();
 }
 
-void HandsDetector::DetectHand(const pcmn::Card::List& board, const pcmn::Player& player, Result& result, unsigned totalPlayers)
+bool HandsDetector::IsHandPossible(pcmn::Hand::Value inputHand, pcmn::Board::Value board) const
+{
+    assert(!m_Board.empty());
+    assert(!m_PossibleCards.empty());
+
+    for (const pcmn::Card::List& cards : m_PossibleCards)
+    {
+        pcmn::Hand parser;
+        parser.Parse(cards, m_Board);
+
+        if ((parser.GetValue() & inputHand) == inputHand)
+            return true;
+    }
+    
+    return false;
+}
+
+float HandsDetector::GetHandChance(pcmn::Hand::Value hand) const
+{
+    unsigned counter = 0;
+    for (const pcmn::Card::List& cards : m_PossibleCards)
+    {
+        pcmn::Hand parser;
+        parser.Parse(cards, m_Board);
+
+        if ((parser.GetValue() & hand) == hand)
+            ++counter;
+    }
+    return static_cast<float>(counter) / m_PossibleCards.size();
+}
+
+void HandsDetector::DetectHand(const pcmn::Card::List& boardInput, const pcmn::Player& player, Result& result, unsigned totalPlayers)
 {
     SCOPED_LOG(m_Log);
 
     TRY 
     {
+        result.clear();
+
+        CHECK(!player.GetActions().empty(), "Can't detect hand without actions");
+
+        // player actions on all streets
+        const pcmn::Player::Actions& streets = player.GetActions();
+
+        // all possible cards
+        m_PossibleCards = pcmn::Board().GetAllPocketCards();
+
+        for (unsigned street = 0; street < streets.size(); ++street)
+        {
+            m_Board = boardInput;
+            switch (street)
+            {
+            case 0: m_Board.clear(); break;
+            case 1: m_Board.resize(3); break;
+            case 2: m_Board.resize(4); break;
+            case 3: m_Board.resize(5); break;
+            default: assert(false);
+            }
+
+            std::sort(m_Board.begin(), m_Board.end(), [](const pcmn::Card& lhs, const pcmn::Card& rhs) { return lhs.m_Value < rhs.m_Value; });
+
+            // get flop description
+            pcmn::Board parser(m_Board);
+            parser.Parse();
+            const pcmn::Board::Value boardDescription = parser.GetValue();
+
+            m_Cache.clear();
+            const pcmn::Player::ActionDesc::List& actions = streets[street];
+
+            // fetch possible hands for this street
+            IStatistics::PlayerInfo playerInfo;
+            playerInfo.m_Actions = actions;
+            playerInfo.m_Name = player.Name();
+
+            m_Statistic.GetHands(playerInfo, street, totalPlayers);
+
+            if (!street)
+            {
+                // generate list of hands
+                std::vector<pcmn::Hand::Value> hands;
+
+                for (const IStatistics::PlayerInfo::Hands::value_type& pair : playerInfo.m_Hands)
+                {
+                    LOG_TRACE("Preflop hand for player: [%s] is: [%s]:[%s]") % player.Name() % pair.first % pair.second;
+                    hands.push_back(pair.first);
+                }
+
+                // filter all possible cards by all possible hands
+                pcmn::Card::List tempBoard(boardInput);
+                m_Board.swap(tempBoard); // use all known cards for filtering
+                FilterCardsByPossibleHands(hands, street);
+                m_Board.swap(tempBoard);
+                continue;
+            }
+
+            std::vector<pcmn::Hand::Value> hands;
+
+            // check all possible hands
+            for (const IStatistics::PlayerInfo::Hands::value_type& flopHandPair : playerInfo.m_Hands)
+            {
+                // basic checks with flop description
+                const bool possibility = IsHandPossible(flopHandPair.first, boardDescription);
+
+                LOG_TRACE("Hand: [%s]:[%s] is %s") % flopHandPair.first % flopHandPair.second % (possibility ? "possible" : "impossible");
+
+                if (!possibility)
+                    continue;
+
+                hands.push_back(flopHandPair.first);
+            }
+
+            // filter cards by hands
+            FilterCardsByPossibleHands(hands, street);
+
+            // recalculate percentages
+            for (const pcmn::Hand::Value hand : hands)
+            {
+                const float percent = GetHandChance(hand);
+                result.insert(std::make_pair(hand, percent));
+            }
+        }
+
+        
+
+/*
         result.clear();
 
         CHECK(!player.GetActions().empty(), "Can't detect hand without actions");
@@ -264,6 +422,8 @@ void HandsDetector::DetectHand(const pcmn::Card::List& board, const pcmn::Player
 
         // remove preflop characteristics
         NormalizeByMask(result, ~pcmn::Hand::POCKET_HAND_MASK);
+
+        */
     }
     CATCH_PASS_EXCEPTIONS("Failed to detect hand", player.Name())
 }
