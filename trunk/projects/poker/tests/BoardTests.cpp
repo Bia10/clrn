@@ -15,35 +15,6 @@ using namespace pcmn;
 typedef std::tuple<pcmn::Board::Value, bool, pcmn::Card::List> BoardTestParams;
 unsigned g_Cnt = 0;
 
-Card::List& Append(Card::List& l, const Card& c)
-{
-    l.push_back(c);
-    return l;
-}
-
-class CardListHolder
-{
-public:
-    CardListHolder(const Card& c) : m_List() 
-    {
-        m_List.push_back(c);
-    }
-
-    CardListHolder& operator () (const Card& c)
-    {
-        m_List.push_back(c);
-        return *this;
-    }
-
-    operator const Card::List& () const
-    {
-        return m_List;
-    }
-
-private:
-    Card::List m_List;
-};
-
 class BoardTest : public testing::TestWithParam<BoardTestParams>
 {
 public:
@@ -89,7 +60,7 @@ TEST_P(BoardTest, Parse)
 }
 
 typedef BoardTestParams P;
-typedef CardListHolder L;
+typedef pcmn::CardListHolder L;
 typedef Card C;
 typedef Suit S;
 

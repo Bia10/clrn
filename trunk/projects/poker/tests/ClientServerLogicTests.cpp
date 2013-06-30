@@ -14,6 +14,7 @@
 #include "Evaluator.h"
 #include "../neuro/NeuroNetwork.h"
 #include "Config.h"
+#include "Utils.h"
 
 #include <fstream>
 #include <algorithm>
@@ -151,143 +152,6 @@ private:
 };
 
 
-void ParseCards(const std::string& text, Card::List& result)
-{
-	static const boost::regex cards("\\('(.+?)' of '(.+?)'\\)");
-	boost::sregex_iterator it(text.begin(), text.end(), cards);		
-	boost::sregex_iterator end;
-
-	if (it != end)
-	{
-		while (it != end)
-		{
-			const std::string& card = (*it)[1];
-			const std::string& suit = (*it)[2];
-			result.push_back(Card::FromString(card, suit));
-			++it;
-		}
-	}
-}
-
-void ParseData(const std::string& data, ITable& table)
-{
-
-	static const boost::regex line("\\[.*?\\]\\:(.*?)/\\*");
-
-	boost::sregex_iterator itLine(data.begin(), data.end(), line);
-	boost::sregex_iterator end;
-
-	pcmn::Player::List players;
-	unsigned count = 0;
-	for (; itLine != end; ++itLine, ++count)
-	{
-		boost::sregex_iterator itNext = itLine;
-		++itNext;
-		if (itNext != end)
-			++itNext;
-		if (itNext != end)
-		{
-			const std::string& nextLine = (*itNext)[0];
-			if (nextLine.find("SecondsLeft") != std::string::npos && nextLine.find("CLRN") != std::string::npos)
-				++itNext;
-		}
-
-		const std::string& fullLine = (*itLine)[0];
-		const std::string& lineText = (*itLine)[1];
-
-		// info
-		{
-			static const boost::regex info(".*'(.+)'.*stack.*'(\\d+)'");
-			boost::sregex_iterator it(lineText.begin(), lineText.end(), info);
-
-			while (it != end)
-			{
-				const std::string& name = (*it)[1];
-				const unsigned stack = boost::lexical_cast<unsigned>((*it)[2]);
-
-				players.push_back(Player(name, stack));
-				++it;
-			}
-		}
-
-		// actions
-		{
-			static const boost::regex action(".*'(.+)'.*action.*'(.+)',.*?(('(\\d+)')|(cards.*'(\\S+)'))");
-			boost::sregex_iterator it(lineText.begin(), lineText.end(), action);		
-
-			while (it != end)
-			{
-				if (!players.empty())
-				{
-					table.PlayersInfo(players);
-					players.clear();
-				}
-
-				const std::string& name = (*it)[1];
-				const std::string& action = (*it)[2];
-				const std::string& cards = (*it)[7];
-
-				if (cards.empty())
-				{
-					const unsigned amount = boost::lexical_cast<unsigned>((*it)[5]);
-                    const pcmn::Action::Value actionValue = Action::FromString(action);
-                    if (actionValue == pcmn::Action::SmallBlind)
-                        std::cout << "small blind" << std::endl;
-					table.PlayerAction(name, actionValue, amount);
-				}
-				else
-				if (cards.size() == 4)
-				{
-					Card::List cardsList;
-
-					Card tmp(Card::FromString(cards[0]), static_cast<Suit::Value>(cards[1]));
-					cardsList.push_back(tmp);
-
-					tmp.m_Value = Card::FromString(cards[2]);
-					tmp.m_Suit = static_cast<Suit::Value>(cards[3]);
-					cardsList.push_back(tmp);
-
-					table.PlayerCards(name, cardsList);
-					table.PlayerAction(name, Action::ShowCards, 0);
-				}
-				
-				++it;
-			}
-		}		
-
-		// flop cards
-		{
-			static const boost::regex cards("Cards\\sreceived(.*?)");
-			boost::sregex_iterator it(lineText.begin(), lineText.end(), cards);		
-
-			if (it != end)
-			{
-				while (it != end)
-				{
-					Card::List cards;
-					ParseCards(lineText, cards);
-					table.FlopCards(cards);
-					++it;
-				}
-			}
-		}
-
-		// player cards
-		{
-			static const boost::regex action("Player\\scards(.*?)");
-			boost::sregex_iterator it(lineText.begin(), lineText.end(), action);		
-
-			while (it != end)
-			{
-				Card::List cards;
-				ParseCards(lineText, cards);
-				table.BotCards(cards[0], cards[1]);
-				++it;
-			}
-		}	
-	}
-}
-
 void RunTest()
 {
     boost::filesystem::directory_iterator it("../../../poker/logs/");
@@ -318,7 +182,7 @@ void RunTest()
 
         clnt::ITableControl* ctrl = new FakeControl();
         ps::Table table(log, NULL, connection, evaluator, ctrl);
-        ParseData(content, table);
+        tests::ParseData(content, table);
     }
 }
 

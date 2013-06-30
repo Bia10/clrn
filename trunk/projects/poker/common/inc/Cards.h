@@ -59,6 +59,18 @@ namespace pcmn
 		Suit::Value m_Suit;
 	};
 
+    //! Cards list holder/appender
+    class CardListHolder
+    {
+    public:
+        CardListHolder(const Card& c);
+        CardListHolder& operator () (const Card& c);
+        operator const Card::List& () const;
+    private:
+        Card::List m_List;
+    };
+
+
     //! Stream operator
     std::ostream& operator << (std::ostream& s, const pcmn::Card& c);
 
