@@ -270,7 +270,10 @@ bool GetHand(PlayerInfo& info, unsigned streetId, const std::string& name, const
 
             pcmn::Hand::Value hand = GetHandFromStreet(streets[streetId]);
             if (streetId)
-                hand = static_cast<pcmn::Hand::Value>(hand & ~pcmn::Hand::POCKET_HAND_MASK);
+                hand = static_cast<pcmn::Hand::Value>(hand & (pcmn::Hand::FLOP_HAND_MASK | pcmn::Hand::POWER_MASK));
+            if (streetId == 3) // remove draws from river
+                hand = static_cast<pcmn::Hand::Value>(hand & ~pcmn::Hand::DRAWS_MASK);
+
             if (m_Log.IsEnabled(CURRENT_MODULE_ID, ILog::Level::Trace))
             {
                 pcmn::Card::List cards;
@@ -344,7 +347,9 @@ void GetHand(PlayerInfo& info, unsigned streetId, const pcmn::Player::Count::Val
 
             pcmn::Hand::Value hand = GetHandFromStreet(streets[streetId]);
             if (streetId)
-                hand = static_cast<pcmn::Hand::Value>(hand & ~pcmn::Hand::POCKET_HAND_MASK);
+                hand = static_cast<pcmn::Hand::Value>(hand & (pcmn::Hand::FLOP_HAND_MASK | pcmn::Hand::POWER_MASK));
+            if (streetId == 3) // remove draws from river
+                hand = static_cast<pcmn::Hand::Value>(hand & ~pcmn::Hand::DRAWS_MASK);
 
             LOG_TRACE("Player: [%s], hand: [%s]") % data.getFieldDotted("players.0.name").String() % hand;
             ++counters[hand];

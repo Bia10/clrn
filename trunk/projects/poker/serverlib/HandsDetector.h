@@ -15,11 +15,20 @@ namespace srv
 //! Hands recognizer
 class HandsDetector
 {
-    //! List of hands
-    typedef std::vector<pcmn::Card::List> Hands;
+    //! Hand description
+    struct HandDesc
+    {
+        typedef std::vector<HandDesc> List;
+        HandDesc(const pcmn::Card::List& list = pcmn::Card::List()) 
+            : m_Weight()
+            , m_Cards(list)
+        {}
+        pcmn::Card::List m_Cards;
+        float m_Weight;
+    };
 
-    //! Hands cache
-    typedef std::map<pcmn::Hand::Value, Hands> Cache;
+    //! Possible hands type
+    typedef std::map<pcmn::Hand::Value, float> HandsMap;
 
 public:
 
@@ -34,26 +43,16 @@ public:
 
 private:
 
-    //! Get chance of the specified by characteristics preflop hand became a specified flop hand
-    float GetFlopHandChanceByPreflopHand(pcmn::Hand::Value preflopHand, const pcmn::Card::List& board, pcmn::Hand::Value possibleHand);
-
-    //! Get chance of the specified preflop hand with determined flop hand
-    float GetPreflopHandChanceByFlopHand(pcmn::Hand::Value preflopHand, const pcmn::Card::List& board, pcmn::Hand::Value flopHand);
-
     //! Filter cards by hands
-    void FilterCardsByPossibleHands(const std::vector<pcmn::Hand::Value>& hands, unsigned street);
+    void CalculateWeightsByPossibleHands(const HandsMap& hands, unsigned street);
 
-    //! Check if hand is possible
-    bool IsHandPossible(pcmn::Hand::Value hand, pcmn::Board::Value board) const;
-
-    //! Get hand chance by cards and board
-    float GetHandChance(pcmn::Hand::Value hand) const;
+    //! Get all possible hands by cards weights
+    void GetAllPossibleHands(Result& result, unsigned street);
 
 private:
     ILog& m_Log;
     IStatistics& m_Statistic;
-    Cache m_Cache;
-    Hands m_PossibleCards;
+    HandDesc::List m_PossibleCards;
     pcmn::Card::List m_Board;
 };
 
