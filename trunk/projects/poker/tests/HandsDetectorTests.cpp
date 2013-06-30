@@ -33,34 +33,49 @@ void Do()
     TestReadOnlyStatistics stats(log);
     srv::HandsDetector detector(log, stats);
     
-    const std::vector<int> boardCards = boost::assign::list_of(39)(30)(18);//(5)(29)(26)(17);
-    Card::List board;
-    for (const int c : boardCards)
-        board.push_back(Card().FromEvalFormat(c));
+    srv::HandsDetector::Result result;
 
-    srv::HandsDetector::Result result1;
-    srv::HandsDetector::Result result2;
-
-/*
     {
+        srv::HandsDetector::Result result;
+        const Card::List board = boost::assign::list_of(Card(Card::Five, Suit::Diamonds))(Card(Card::Jack, Suit::Hearts))(Card(Card::Eight, Suit::Hearts))(Card(Card::Six, Suit::Spades))(Card(Card::Six, Suit::Diamonds));
+
+        pcmn::Player testPlayer("Eskitex2013", 0);
+        testPlayer.PushAction(0, Action::Call, BetSize::Low, Player::Position::Later, Action::BigBlind, BetSize::Low);
+        testPlayer.PushAction(1, Action::Bet, BetSize::High, Player::Position::Early, Action::Unknown, BetSize::VeryLow);
+        //testPlayer.PushAction(1, Action::Raise, BetSize::High, Player::Position::Later, Action::Raise, BetSize::High);
+
+        detector.DetectHand(board, testPlayer, result, 9);
+    }
+
+    {
+        srv::HandsDetector::Result result;
+
+        const std::vector<int> boardCards = boost::assign::list_of/*(39)(30)(18);*/(5)(29)(26)(17);
+        Card::List board;
+        for (const int c : boardCards)
+            board.push_back(Card().FromEvalFormat(c));
+
         pcmn::Player testPlayer("CLRN", 0);
-        testPlayer.PushAction(0, Action::Call, BetSize::Low, Player::Position::Middle, Action::Call, BetSize::Low);
-        testPlayer.PushAction(1, Action::Bet, BetSize::High, Player::Position::Middle, Action::Call, BetSize::Low);
-        testPlayer.PushAction(1, Action::Raise, BetSize::High, Player::Position::Later, Action::Call, BetSize::Low);
+        testPlayer.PushAction(0, Action::Call, BetSize::High, Player::Position::Later, Action::Raise, BetSize::High);
+        testPlayer.PushAction(1, Action::Bet, BetSize::High, Player::Position::Middle, Action::Unknown, BetSize::VeryLow);
+        testPlayer.PushAction(1, Action::Raise, BetSize::High, Player::Position::Later, Action::Raise, BetSize::High);
 
-        Card::List board1 = board;
-        board1.resize(3);
-        detector.DetectHand(board1, testPlayer, result1, 9);
-    }*/
+        detector.DetectHand(board, testPlayer, result, 9);
+    }
 
     {
+        srv::HandsDetector::Result result;
+
+        const std::vector<int> boardCards = boost::assign::list_of/*(39)(30)(18);*/(5)(29)(26)(17);
+        Card::List board;
+        for (const int c : boardCards)
+            board.push_back(Card().FromEvalFormat(c));
+
         pcmn::Player testPlayer("CLRN", 0);
         testPlayer.PushAction(0, Action::Call, BetSize::High, Player::Position::Later, Action::Raise, BetSize::High);
         testPlayer.PushAction(1, Action::Bet, BetSize::High, Player::Position::Middle, Action::Unknown, BetSize::VeryLow);
 
-        Card::List board2 = board;
-        board2.resize(3);
-        detector.DetectHand(board2, testPlayer, result2, 9);
+        detector.DetectHand(board, testPlayer, result, 9);
     }
 }
 

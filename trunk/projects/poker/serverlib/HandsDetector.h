@@ -40,10 +40,21 @@ private:
     //! Get chance of the specified preflop hand with determined flop hand
     float GetPreflopHandChanceByFlopHand(pcmn::Hand::Value preflopHand, const pcmn::Card::List& board, pcmn::Hand::Value flopHand);
 
+    //! Filter cards by hands
+    void FilterCardsByPossibleHands(const std::vector<pcmn::Hand::Value>& hands, unsigned street);
+
+    //! Check if hand is possible
+    bool IsHandPossible(pcmn::Hand::Value hand, pcmn::Board::Value board) const;
+
+    //! Get hand chance by cards and board
+    float GetHandChance(pcmn::Hand::Value hand) const;
+
 private:
     ILog& m_Log;
     IStatistics& m_Statistic;
     Cache m_Cache;
+    Hands m_PossibleCards;
+    pcmn::Card::List m_Board;
 };
 
 }
