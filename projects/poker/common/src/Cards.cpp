@@ -144,3 +144,19 @@ std::ostream& pcmn::operator<<(std::ostream& s, const Card::List& list)
         s << "(" << c << ")";
     return s;
 }
+
+pcmn::CardListHolder::CardListHolder(const Card& c) : m_List()
+{
+    m_List.push_back(c);
+}
+
+pcmn::CardListHolder& pcmn::CardListHolder::operator()(const Card& c)
+{
+    m_List.push_back(c);
+    return *this;
+}
+
+pcmn::CardListHolder::operator const pcmn::Card::List& () const
+{
+    return m_List;
+}

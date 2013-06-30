@@ -42,9 +42,6 @@ void HandsDetector::CalculateWeightsByPossibleHands(const HandsMap& hands, unsig
         if (street == 3) // remove draws from river
             parsed = static_cast<pcmn::Hand::Value>(parsed & ~pcmn::Hand::DRAWS_MASK);
 
-        if (currentHand.m_Cards.front().m_Value == pcmn::Card::King && currentHand.m_Cards.back().m_Value == pcmn::Card::Queen)
-            counter = counter;
-
         const HandsMap::const_iterator it = hands.find(parsed);
         if (it != hands.end())
             currentHand.m_Weight += it->second;
@@ -73,13 +70,13 @@ void HandsDetector::GetAllPossibleHands(Result& result, unsigned street)
     // remove without weight
     m_PossibleCards.erase(std::remove_if(m_PossibleCards.begin(), m_PossibleCards.end(), [](const HandDesc& h) { return !h.m_Weight; }), m_PossibleCards.end());
 
-    if (m_PossibleCards.size() > 70)
+    if (street && m_PossibleCards.size() > 100)
     {
         // sort by weight
         std::sort(m_PossibleCards.begin(), m_PossibleCards.end(), [](const HandDesc& lhs, const HandDesc& rhs) { return lhs.m_Weight > rhs.m_Weight; });
 
         // remove lowest
-        m_PossibleCards.resize(70);
+        m_PossibleCards.resize(m_PossibleCards.size() / 5);
     }
 
     // parse all cards and save with weights

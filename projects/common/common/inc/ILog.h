@@ -5,6 +5,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 #include <boost/shared_ptr.hpp>
 
@@ -121,6 +122,19 @@ public:
         std::ostringstream oss;
         for (const T& val : arg)
             oss << val << ",";
+
+        m_Buffer = oss.str().substr(0, std::size_t(oss.tellp()) - 1);
+    }
+
+    template<typename K, typename V, typename A>
+    LogAnyHolder(const std::map<K, V, A>& arg)
+    {
+        if (arg.empty())
+            return;
+
+        std::ostringstream oss;
+        for (const auto& val : arg)
+            oss << val.first << ":" << val.second << ",";
 
         m_Buffer = oss.str().substr(0, std::size_t(oss.tellp()) - 1);
     }
