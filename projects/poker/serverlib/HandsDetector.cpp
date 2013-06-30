@@ -61,7 +61,7 @@ void HandsDetector::CalculateWeightsByPossibleHands(const HandsMap& hands, unsig
     assert(thisStreetWeights.size() == m_PossibleCards.size());
 
     for (std::size_t i = 0 ; i < m_PossibleCards.size(); ++i)
-        m_PossibleCards[i].m_Weight *= (thisStreetWeights[i].m_Weight * street * 10);
+        m_PossibleCards[i].m_Weight *= (thisStreetWeights[i].m_Weight * street);
 }
 
 void HandsDetector::GetAllPossibleHands(Result& result, unsigned street)
@@ -73,13 +73,13 @@ void HandsDetector::GetAllPossibleHands(Result& result, unsigned street)
     // remove without weight
     m_PossibleCards.erase(std::remove_if(m_PossibleCards.begin(), m_PossibleCards.end(), [](const HandDesc& h) { return !h.m_Weight; }), m_PossibleCards.end());
 
-    if (m_PossibleCards.size() > 100)
+    if (m_PossibleCards.size() > 70)
     {
         // sort by weight
         std::sort(m_PossibleCards.begin(), m_PossibleCards.end(), [](const HandDesc& lhs, const HandDesc& rhs) { return lhs.m_Weight > rhs.m_Weight; });
 
         // remove lowest
-        m_PossibleCards.resize(100);
+        m_PossibleCards.resize(70);
     }
 
     // parse all cards and save with weights
