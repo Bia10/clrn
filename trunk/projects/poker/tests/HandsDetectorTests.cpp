@@ -53,6 +53,11 @@ public:
         player.m_Hands = m_Hands[street];
     }
 
+    virtual void GetActions(PlayerInfo& player, pcmn::Board::Value board, unsigned street, unsigned count) const
+    {
+        throw std::exception("The method or operation is not implemented.");
+    }
+
 private:
     DBHands m_Hands;
 };

@@ -194,3 +194,23 @@ actions: { $elemMatch: { id: 1} }
 		}
 	}
 }
+
+// найти все игры по доске и позиции игрока
+{
+	players: {
+		$elemMatch: {
+			name: "CLRN",
+			"streets.1.actions": {
+				$all: [{
+					$elemMatch: {
+						position: 1
+					}
+				}]
+			}
+		}
+	},
+	"board.1.street": {
+		$all: [1]
+	}
+}
+

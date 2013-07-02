@@ -36,7 +36,7 @@ public:
     typedef std::map<pcmn::Hand::Value, float> Result;
 
     //! Ctor
-    HandsDetector(ILog& log, IStatistics& stats);
+    HandsDetector(ILog& log, const IStatistics& stats);
 
     //! Detect player hand
     void DetectHand(const pcmn::Card::List& board, const pcmn::Player& player, Result& result, unsigned totalPlayers);
@@ -51,7 +51,7 @@ private:
 
 private:
     ILog& m_Log;
-    IStatistics& m_Statistic;
+    const IStatistics& m_Statistic;
     HandDesc::List m_PossibleCards;
     pcmn::Card::List m_Board;
 };

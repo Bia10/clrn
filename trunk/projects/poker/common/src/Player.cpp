@@ -119,4 +119,10 @@ namespace pcmn
         return s;
     }
 
+    std::ostream& operator<<(std::ostream& s, Player::Position::Value p)
+    {
+        s << Player::Position::ToString(p);
+        return s;
+    }
+
 }

@@ -211,6 +211,9 @@ private:
 //! Stream operator
 std::ostream& operator << (std::ostream& s, const pcmn::Player& p);
 
+//! Stream operator
+std::ostream& operator << (std::ostream& s, pcmn::Player::Position::Value p);
+
 }
 
 #endif // Player_h__
