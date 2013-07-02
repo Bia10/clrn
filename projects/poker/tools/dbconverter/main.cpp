@@ -27,6 +27,89 @@ struct ActionDsc
 
 typedef std::vector<ActionDsc::List> Actions;
 
+std::string g_BigBlind;
+std::list<std::string> g_LastSequence;
+
+void MakeValidSequence(std::list<std::string>& sequence, ActionDsc::List& actions)
+{
+    // find out if any aggression exists
+    const ActionDsc::List::const_iterator it = std::find_if
+    (
+        actions.begin(),
+        actions.end(),
+        [](const ActionDsc& action) { return action.m_Id == pcmn::Action::Raise; }
+    );
+
+    if (it == actions.end())
+    {
+        // ok, preflop contains only passive actions
+        // let's find out last 'check', that will be a big blind
+        const auto lastCheck = std::find_if
+        (
+            actions.rbegin(),
+            actions.rend(),
+            [](const ActionDsc& action) { return action.m_Id == pcmn::Action::Check; }
+        );   
+
+        if (lastCheck == actions.rend())
+            return; // this round completes without any action(big blind win)
+
+        g_BigBlind = lastCheck->m_Name;
+
+        // small bind is next after the button, so small blind must be first in sequence
+        // make player on big blind second to complete this condition
+        while (*(++sequence.begin()) != g_BigBlind)
+        {
+            const std::string temp = sequence.front();
+            sequence.pop_front();
+            sequence.push_back(temp);
+        }
+
+        // ok, now sequence is valid
+        g_LastSequence = sequence;
+    }
+    else
+    {
+        // preflop contains some aggression
+        auto lastBigBlind = std::find(g_LastSequence.begin(), g_LastSequence.end(), g_BigBlind);
+        auto player = std::find(sequence.begin(), sequence.end(), g_BigBlind);
+
+        if (player == sequence.end())
+        {
+            if (lastBigBlind != g_LastSequence.end())
+            {
+                ++lastBigBlind;
+                if (lastBigBlind == g_LastSequence.end())
+                    lastBigBlind = g_LastSequence.begin();
+
+                player = std::find(sequence.begin(), sequence.end(), *lastBigBlind);
+            }
+        }
+        else
+        {
+            ++player;
+            if (player == sequence.end())
+                player = sequence.begin();
+        }
+
+        if (player == sequence.end())
+        {
+            // failed to find next big blind
+        }
+        else
+        {
+            g_BigBlind = *player;
+
+            while (*(++sequence.begin()) != g_BigBlind)
+            {
+                const std::string temp = sequence.front();
+                sequence.pop_front();
+                sequence.push_back(temp);
+            }
+        }
+    }
+}
+
 pcmn::Player::Position::Value GetPlayerPosition(const unsigned phase, const std::list<std::string>& sequence, const std::list<std::string>& queue)
 {
     const unsigned totalPlayers = sequence.size();
@@ -183,8 +266,17 @@ int main(int argc, char* argv[])
                     current.PushEquity(static_cast<float>(eq.Double()));
             }
 
+            std::list<std::string> backup = sequence;
+            bool valid = false;
             for (unsigned street = 0; street < 4; ++street)
             {
+                if (!valid && street)
+                {
+                    // rerun preflop
+                    valid = true;
+                    street = 0;
+                }
+
                 // all action on this street
                 ActionDsc::List actions;
 
@@ -193,26 +285,28 @@ int main(int argc, char* argv[])
 
                 std::list<std::string> queue = sequence;
 
-                if (!street)
+                if (!street && valid)
                 {
                     actions.resize(2);
+
+                    // remove blinds
+                    const std::string smallBlind = queue.front();
+                    queue.pop_front();
+                    const std::string bigBlind = queue.front();
+                    queue.pop_front();
 
                     // small and big blinds
                     actions[0].m_Id = pcmn::Action::SmallBlind;
                     actions[0].m_Amount = pcmn::BetSize::Low;
-                    actions[0].m_Name = sequence.front();
+                    actions[0].m_Name = smallBlind;
 
                     actions[1].m_Id = pcmn::Action::BigBlind;
                     actions[1].m_Amount = pcmn::BetSize::Low;
-                    actions[1].m_Name = *(++sequence.begin());
+                    actions[1].m_Name = bigBlind;
 
                     // add blinds to the end
-                    queue.push_back(actions[0].m_Name);
-                    queue.push_back(actions[1].m_Name);
-
-                    // remove blinds from begin because we just made blinds actions
-                    queue.pop_front();
-                    queue.pop_front();
+                    queue.push_back(smallBlind);
+                    queue.push_back(bigBlind);
                 }
 
                 std::map<std::string, unsigned> actionsCounters;
@@ -241,7 +335,12 @@ int main(int argc, char* argv[])
 
                     const pcmn::Player::List::iterator resultPlayer = std::find_if(gameData.m_PlayersData.begin(), gameData.m_PlayersData.end(), [&](const pcmn::Player& p){ return p.Name() == *it; });
                     assert(resultPlayer != gameData.m_PlayersData.end());
-                    resultPlayer->PushAction(street, action.m_Id, action.m_Amount, position, lastAction, lastAmount);
+
+                    if (action.m_Id == pcmn::Action::Check && (lastAction == pcmn::Action::Bet || lastAction == pcmn::Action::Raise))
+                        resultPlayer->PushAction(street, action.m_Id, action.m_Amount, position, street ? pcmn::Action::Unknown : pcmn::Action::BigBlind, pcmn::BetSize::VeryLow);
+                    else
+                        resultPlayer->PushAction(street, action.m_Id, action.m_Amount, position, lastAction, lastAmount);
+
                     actions.push_back(action);
 
                     if (action.m_Id == pcmn::Action::Fold)
@@ -270,7 +369,13 @@ int main(int argc, char* argv[])
                     it = queue.erase(it);
                 }
 
-                actionsData.push_back(actions);
+                if (!street && !valid)
+                {
+                    MakeValidSequence(backup, actions);
+                    sequence = backup;
+                }
+                else
+                    actionsData.push_back(actions);
             }
 
             stats.Write(gameData);

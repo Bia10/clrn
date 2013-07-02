@@ -220,6 +220,86 @@ void GetHands(PlayerInfo& player, unsigned street, unsigned playersCount)
     CATCH_PASS_EXCEPTIONS("GetHands failed")
 }
 
+void GetActions(PlayerInfo& player, pcmn::Board::Value board, unsigned streetId, unsigned count) 
+{
+    TRY
+    {
+        SCOPED_LOG(m_Log);
+
+        // return projection
+        static const bson::bo returnProjection = bson::bob().append("players.$", 1).append("_id", 0).obj();
+         
+        // prepare list of actions
+        std::vector<bson::bo> actions;
+        actions.push_back(BSON("$elemMatch" << BSON("position" << player.m_Position)));
+
+        const std::string boardAndStreet = std::string("board.") + conv::cast<std::string>(streetId) + std::string(".street");
+        const std::string streetsAndActions = std::string("streets.") + conv::cast<std::string>(streetId) + std::string(".actions");
+
+        std::vector<unsigned> boardArray = conv::cast<std::vector<unsigned>>(static_cast<unsigned>(board));
+        if (boardArray.empty())
+            boardArray.push_back(0); // unknown by default
+
+        mongo::Query query =
+        BSON("count" << pcmn::Player::Count::FromValue(count) << 
+              boardAndStreet << BSON("$all" << boardArray) <<
+             "players" << BSON("$elemMatch" 
+                                << BSON("name" << player.m_Name <<
+                                        streetsAndActions << BSON("$all" << actions))));
+
+        query.sort("_id", 0);       
+
+        LOG_TRACE("Fetching player: [%s], actions: [%s] by board: [%s]") % player.m_Name % query.toString() % board;
+
+        // fetch 
+        const std::auto_ptr<mongo::DBClientCursor> cursor = m_Connection.query
+        (
+            STAT_COLLECTION_NAME, 
+            query,
+            0,
+            0, 
+            &returnProjection
+        );
+
+        while (cursor->more()) 
+        {
+            const bson::bo data = cursor->next();
+            LOG_DEBUG("Fetched player actions: [%s], data: [%s]") % player.m_Name % data.toString();
+
+            // found target player, enum all actions
+            const std::vector<bson::be> streets = data.getFieldDotted("players.0.streets").Array();
+            CHECK(streets.size() > streetId, "Bad statistics, returned less streets than expected", streetId, data.toString());
+
+            // get actions from this street
+            const std::vector<bson::be> actions = streets[streetId]["actions"].Array();
+            for (const bson::be& action : actions)
+            {
+                const pcmn::Player::Position::Value position = static_cast<pcmn::Player::Position::Value>(action["position"].Int());
+                if (position != player.m_Position)
+                    continue;
+
+                const pcmn::Action::Value actionId = static_cast<pcmn::Action::Value>(action["id"].Int());
+                const pcmn::BetSize::Value betSize = static_cast<pcmn::BetSize::Value>(action["bet"].Int());
+                LOG_TRACE("Player: [%s], board: [%s], action: [%s], bet size: [%s]") % player.m_Name % board % actionId % betSize;
+
+                ++player.m_Bets[betSize][actionId];
+            }
+        }
+
+        // convert counters to percents
+        for (auto& betAndActions : player.m_Bets)
+        {
+            float total = 0;
+            for (const auto& action : betAndActions.second)
+                total += action.second;
+
+            for (auto& action : betAndActions.second)
+                action.second = action.second / total;
+        }
+    }
+    CATCH_PASS_EXCEPTIONS("GetActions failed", player.m_Name, player.m_Position, board, streetId, count)
+}
+
 private:
 
 bool GetHand(PlayerInfo& info, unsigned streetId, const std::string& name, const pcmn::Player::Count::Value count)
@@ -731,6 +811,11 @@ pcmn::Player::Style::Value srv::MongoStatistics::GetAverageStyle(const std::stri
 void MongoStatistics::GetHands(PlayerInfo& player, unsigned street, unsigned count) const 
 {
     m_Impl->GetHands(player, street, count);
+}
+
+void MongoStatistics::GetActions(IStatistics::PlayerInfo& player, pcmn::Board::Value board, unsigned street, unsigned count) const 
+{
+    m_Impl->GetActions(player, board, street, count);
 }
 
 }

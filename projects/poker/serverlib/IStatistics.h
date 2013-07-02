@@ -20,16 +20,21 @@ class IStatistics
 {
 public:
 
-	//! Player equities
+	//! Player info
 	struct PlayerInfo
 	{
 		typedef pcmn::Player::ActionDesc::List Actions;
         typedef std::map<pcmn::Hand::Value, float> Hands;
+        typedef std::map<pcmn::Action::Value, float> ActionsMap;
+        typedef std::map<pcmn::BetSize::Value, ActionsMap> BetsMap;
 		typedef std::vector<PlayerInfo> List;
 
-		PlayerInfo() : m_Bet(0), m_WinRate(0), m_CardRange(cfg::CARD_DECK_SIZE)
+		PlayerInfo() 
+            : m_Bet(0)
+            , m_WinRate(0)
+            , m_CardRange(cfg::CARD_DECK_SIZE)
+            , m_Position()
 		{
-
 		}
 
 		std::string m_Name;
@@ -38,6 +43,8 @@ public:
 		float m_WinRate;
 		int m_CardRange;
         Hands m_Hands;
+        pcmn::Player::Position::Value m_Position;
+        BetsMap m_Bets;
 	};
 
 	virtual ~IStatistics() {}
@@ -56,6 +63,9 @@ public:
 
     //! Get possible hands by actions
     virtual void GetHands(PlayerInfo& player, unsigned street, unsigned count) const = 0;
+
+    //! Get actions by board description and player info
+    virtual void GetActions(PlayerInfo& player, pcmn::Board::Value board, unsigned street, unsigned count) const = 0;
 };
 
 } // namespace srv

@@ -1087,8 +1087,7 @@ bool TableLogic::ParseActionsIfNeeded()
     if (m_State != State::Uninited)
         return true;
 
-    const auto it =
-    std::find_if
+    const auto it = std::find_if
     (
         m_Actions[Phase::Preflop].begin(), 
         m_Actions[Phase::Preflop].end(),

@@ -8,7 +8,7 @@ namespace srv
 
 const unsigned CURRENT_MODULE_ID = Modules::Server;
 
-HandsDetector::HandsDetector(ILog& log, IStatistics& stats)
+HandsDetector::HandsDetector(ILog& log, const IStatistics& stats)
     : m_Log(log)
     , m_Statistic(stats)
 {
@@ -19,7 +19,7 @@ void HandsDetector::CalculateWeightsByPossibleHands(const HandsMap& hands, unsig
 {
     SCOPED_LOG(m_Log);
 
-    HandDesc::List thisStreetWeights;
+    HandDesc::List thisStreetWeights; 
     if (street)
     {
         thisStreetWeights = m_PossibleCards;
