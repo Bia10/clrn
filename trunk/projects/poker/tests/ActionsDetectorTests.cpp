@@ -23,9 +23,41 @@ void DoActionsDetect()
     srv::MongoStatistics stats(log);
     srv::ActionsDetector detector(log, stats);
 
-    srv::HandsDetector::Result hands;
-    srv::ActionsDetector::OutputActions actions;
-    detector.DetectAtions("CLRN", pcmn::Player::Position::Middle, hands, 1, 8, pcmn::Board::Unknown, actions);
+    {
+        srv::HandsDetector::Result hands;
+        srv::ActionsDetector::Chances actions;
+        detector.GetFoldChance("CLRN", pcmn::Player::Position::Middle, hands, 1, 8, pcmn::Board::Unknown, actions);
+    }
+    {
+        srv::HandsDetector::Result hands;
+        srv::ActionsDetector::Chances actions;
+        detector.GetFoldChance("CLRN", pcmn::Player::Position::Middle, hands, 1, 8, pcmn::Board::StraightDraw, actions);
+    }
+    {
+        srv::HandsDetector::Result hands;
+        srv::ActionsDetector::Chances actions;
+        detector.GetFoldChance("CLRN", pcmn::Player::Position::Middle, hands, 2, 8, pcmn::Board::Pair, actions);
+    }
+    {
+        srv::HandsDetector::Result hands;
+        srv::ActionsDetector::Chances actions;
+        detector.GetFoldChance("CLRN", pcmn::Player::Position::Later, hands, 1, 8, pcmn::Board::Unknown, actions);
+    }
+    {
+        srv::HandsDetector::Result hands;
+        srv::ActionsDetector::Chances actions;
+        detector.GetFoldChance("CLRN", pcmn::Player::Position::Later, hands, 1, 8, pcmn::Board::StraightDraw, actions);
+    }
+    {
+        srv::HandsDetector::Result hands;
+        srv::ActionsDetector::Chances actions;
+        detector.GetFoldChance("CLRN", pcmn::Player::Position::Later, hands, 2, 8, pcmn::Board::Pair, actions);
+    }
+    {
+        srv::HandsDetector::Result hands;
+        srv::ActionsDetector::Chances actions;
+        detector.GetFoldChance("Eskitex2013", pcmn::Player::Position::Later, hands, 1, 8, pcmn::Board::Unknown, actions);
+    }
 }
 
 TEST(ActionsDetector, Simple)
