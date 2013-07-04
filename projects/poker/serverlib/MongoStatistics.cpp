@@ -220,7 +220,100 @@ void GetHands(PlayerInfo& player, unsigned street, unsigned playersCount)
     CATCH_PASS_EXCEPTIONS("GetHands failed")
 }
 
-void GetActions(PlayerInfo& player, pcmn::Board::Value board, unsigned streetId, unsigned count) 
+void GetActions(PlayerInfo& player, pcmn::Board::Value board, unsigned streetId, unsigned playersCount) 
+{
+    TRY
+    {
+        SCOPED_LOG(m_Log);
+        if (!GetActionsByName(player, board, streetId, playersCount))
+        {
+            LOG_TRACE("Failed to find actions by player name: [%s], getting from all statistics") % player.m_Name;
+            GetActionsFromAll(player, board, streetId, playersCount);
+        }
+    }
+    CATCH_PASS_EXCEPTIONS("GetActions failed", player.m_Name, player.m_Position, board, streetId, playersCount)
+}
+
+void GetActionsFromAll(PlayerInfo& player, pcmn::Board::Value board, unsigned streetId, unsigned count) 
+{
+    TRY
+    {
+        SCOPED_LOG(m_Log);
+
+        // return projection
+        static const bson::bo returnProjection = bson::bob().append("players.$", 1).append("_id", 0).obj();
+         
+        // prepare list of actions
+        std::vector<bson::bo> actions;
+        actions.push_back(BSON("$elemMatch" << BSON("position" << player.m_Position)));
+
+        const std::string boardAndStreet = std::string("board.") + conv::cast<std::string>(streetId) + std::string(".street");
+        const std::string streetsAndActions = std::string("streets.") + conv::cast<std::string>(streetId) + std::string(".actions");
+
+        std::vector<unsigned> boardArray = conv::cast<std::vector<unsigned>>(static_cast<unsigned>(board));
+        if (boardArray.empty())
+            boardArray.push_back(0); // unknown by default
+
+        mongo::Query query =
+        BSON("count" << pcmn::Player::Count::FromValue(count) << 
+              boardAndStreet << BSON("$all" << boardArray) <<
+             "players" << BSON("$elemMatch" 
+                                << BSON(streetsAndActions << BSON("$all" << actions))));
+
+        query.sort("_id", 0);       
+
+        LOG_TRACE("Fetching all players actions: [%s] by board: [%s]") % query.toString() % board;
+
+        // fetch 
+        const std::auto_ptr<mongo::DBClientCursor> cursor = m_Connection.query
+        (
+            STAT_COLLECTION_NAME, 
+            query,
+            200,
+            0, 
+            &returnProjection
+        );
+
+        while (cursor->more()) 
+        {
+            const bson::bo data = cursor->next();
+            LOG_DEBUG("Fetched players actions, data: [%s]") % player.m_Name % data.toString();
+
+            // found target player, enum all actions
+            const std::vector<bson::be> streets = data.getFieldDotted("players.0.streets").Array();
+            CHECK(streets.size() > streetId, "Bad statistics, returned less streets than expected", streetId, data.toString());
+
+            // get actions from this street
+            const std::vector<bson::be> actions = streets[streetId]["actions"].Array();
+            for (const bson::be& action : actions)
+            {
+                const pcmn::Player::Position::Value position = static_cast<pcmn::Player::Position::Value>(action["position"].Int());
+                if (position != player.m_Position)
+                    continue;
+
+                const pcmn::Action::Value actionId = static_cast<pcmn::Action::Value>(action["id"].Int());
+                const pcmn::BetSize::Value betSize = static_cast<pcmn::BetSize::Value>(action["bet"].Int());
+                LOG_TRACE("Player: [%s], board: [%s], action: [%s], bet size: [%s]") % data.getFieldDotted("players.0.name").String()  % board % actionId % betSize;
+
+                ++player.m_Bets[betSize][actionId];
+            }
+        }
+
+        // convert counters to percents
+        for (auto& betAndActions : player.m_Bets)
+        {
+            float total = 0;
+            for (const auto& action : betAndActions.second)
+                total += action.second;
+
+            for (auto& action : betAndActions.second)
+                action.second = action.second / total;
+        }
+    }
+    CATCH_PASS_EXCEPTIONS("GetActions failed", player.m_Name, player.m_Position, board, streetId, count)
+}
+
+bool GetActionsByName(PlayerInfo& player, pcmn::Board::Value board, unsigned streetId, unsigned count) 
 {
     TRY
     {
@@ -256,11 +349,12 @@ void GetActions(PlayerInfo& player, pcmn::Board::Value board, unsigned streetId,
         (
             STAT_COLLECTION_NAME, 
             query,
-            0,
+            100,
             0, 
             &returnProjection
         );
 
+        unsigned total = 0;
         while (cursor->more()) 
         {
             const bson::bo data = cursor->next();
@@ -284,7 +378,11 @@ void GetActions(PlayerInfo& player, pcmn::Board::Value board, unsigned streetId,
 
                 ++player.m_Bets[betSize][actionId];
             }
+            ++total;
         }
+
+        if (total < 3)
+            return false;
 
         // convert counters to percents
         for (auto& betAndActions : player.m_Bets)
@@ -296,8 +394,10 @@ void GetActions(PlayerInfo& player, pcmn::Board::Value board, unsigned streetId,
             for (auto& action : betAndActions.second)
                 action.second = action.second / total;
         }
+
+        return true;
     }
-    CATCH_PASS_EXCEPTIONS("GetActions failed", player.m_Name, player.m_Position, board, streetId, count)
+    CATCH_PASS_EXCEPTIONS("GetActionsByName failed", player.m_Name, player.m_Position, board, streetId, count)
 }
 
 private:

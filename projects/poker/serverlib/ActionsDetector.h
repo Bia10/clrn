@@ -22,11 +22,11 @@ public:
     typedef std::map<pcmn::Hand::Value, float> InputHands;
 
     //! Output data type
-    typedef std::map<pcmn::BetSize::Value, float> OutputActions;
+    typedef std::map<pcmn::BetSize::Value, float> Chances;
 
     ActionsDetector(ILog& logger, const IStatistics& stats);
 
-    void DetectAtions
+    void GetFoldChance
     (
         const std::string& name, 
         pcmn::Player::Position::Value pos, 
@@ -34,7 +34,7 @@ public:
         unsigned street,
         unsigned playersCount,
         pcmn::Board::Value board,
-        OutputActions& result
+        Chances& result
     );
 
 private:
