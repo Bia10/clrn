@@ -1,4 +1,4 @@
-#include "DecisionMaker.h"
+#include "NeuroDecisionMaker.h"
 #include "Evaluator.h"
 #include "TableContext.h"
 #include "Config.h"
@@ -22,7 +22,7 @@ namespace srv
 
 const int CURRENT_MODULE_ID = Modules::Server;
 
-DecisionMaker::DecisionMaker
+NeuroDecisionMaker::NeuroDecisionMaker
 (
 	ILog& logger, 
 	const pcmn::Evaluator& evaluator, 
@@ -39,17 +39,17 @@ DecisionMaker::DecisionMaker
 	 SCOPED_LOG(m_Log);
 }
 
-void DecisionMaker::SendRequest(const net::Packet& /*packet*/, bool /*statistics*/)
+void NeuroDecisionMaker::SendRequest(const net::Packet& /*packet*/, bool /*statistics*/)
 {
     throw std::exception("The method or operation is not implemented.");
 }
 
-void DecisionMaker::WriteStatistics(pcmn::TableContext::Data& data)
+void NeuroDecisionMaker::WriteStatistics(pcmn::TableContext::Data& data)
 {
     m_Stat.Write(data);
 }
 
-void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player::Queue& activePlayers, const pcmn::TableContext& context, const pcmn::Player::Position::Value position)
+void NeuroDecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player::Queue& activePlayers, const pcmn::TableContext& context, const pcmn::Player::Position::Value position)
 {
 	SCOPED_LOG(m_Log);
 
@@ -180,7 +180,7 @@ void DecisionMaker::MakeDecision(const pcmn::Player& player, const pcmn::Player:
 	CATCH_PASS_EXCEPTIONS("Failed to make a dicision");
 }	
 
-float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::TableContext& context, const pcmn::Player::Queue& activePlayers) const
+float NeuroDecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::TableContext& context, const pcmn::Player::Queue& activePlayers) const
 {
 	SCOPED_LOG(m_Log);
 
@@ -261,7 +261,7 @@ float DecisionMaker::GetPlayerWinRate(const pcmn::Player& bot, const pcmn::Table
 	return percents / 100;
 }
 
-pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn::Player::Queue& activePlayers, float botRate, unsigned street) const
+pcmn::Danger::Value NeuroDecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn::Player::Queue& activePlayers, float botRate, unsigned street) const
 {
 	SCOPED_LOG(m_Log);
 
@@ -345,7 +345,7 @@ pcmn::Danger::Value DecisionMaker::GetDanger(const pcmn::Player& bot, const pcmn
 	return onlyLow ? pcmn::Danger::Low : pcmn::Danger::Normal;
 }
 
-pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const pcmn::Player& player, const pcmn::Player::Queue& activePlayers, unsigned totalPlayers) const
+pcmn::Player::Style::Value NeuroDecisionMaker::GetBotAverageStyle(const pcmn::Player& player, const pcmn::Player::Queue& activePlayers, unsigned totalPlayers) const
 {
 	SCOPED_LOG(m_Log);
 
@@ -367,7 +367,7 @@ pcmn::Player::Style::Value DecisionMaker::GetBotAverageStyle(const pcmn::Player&
 	return m_Stat.GetAverageStyle(player.Name(), it->Name());
 }
 
-pcmn::Player::Style::Value DecisionMaker::GetBotStyle(const pcmn::Player& bot, unsigned street) const
+pcmn::Player::Style::Value NeuroDecisionMaker::GetBotStyle(const pcmn::Player& bot, unsigned street) const
 {
 	SCOPED_LOG(m_Log);
 
@@ -394,7 +394,7 @@ pcmn::Player::Style::Value DecisionMaker::GetBotStyle(const pcmn::Player& bot, u
     return result;
 }
 
-unsigned DecisionMaker::GetMaxStack(const  pcmn::Player::Queue& activePlayers) const
+unsigned NeuroDecisionMaker::GetMaxStack(const  pcmn::Player::Queue& activePlayers) const
 {
 	SCOPED_LOG(m_Log);
 	unsigned max = 0;
@@ -407,7 +407,7 @@ unsigned DecisionMaker::GetMaxStack(const  pcmn::Player::Queue& activePlayers) c
 	return max;
 }
 
-unsigned DecisionMaker::GetMinStack(const pcmn::Player::Queue& activePlayers) const
+unsigned NeuroDecisionMaker::GetMinStack(const pcmn::Player::Queue& activePlayers) const
 {
     SCOPED_LOG(m_Log);
     unsigned min = std::numeric_limits<unsigned>::max();
@@ -420,7 +420,7 @@ unsigned DecisionMaker::GetMinStack(const pcmn::Player::Queue& activePlayers) co
     return min;
 }
 
-const pcmn::Player& DecisionMaker::GetPlayer(const  pcmn::Player::Queue& activePlayers, const std::string& name) const
+const pcmn::Player& NeuroDecisionMaker::GetPlayer(const  pcmn::Player::Queue& activePlayers, const std::string& name) const
 {
 	const  pcmn::Player::Queue::const_iterator it = std::find_if
 	(

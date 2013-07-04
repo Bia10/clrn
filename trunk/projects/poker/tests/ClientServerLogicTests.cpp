@@ -7,7 +7,7 @@
 #include "Log.h"
 #include "IConnection.h"
 #include "../serverlib/IStatistics.h"
-#include "../serverlib/DecisionMaker.h"
+#include "../serverlib/NeuroDecisionMaker.h"
 #include "../serverlib/SqliteStatistics.h"
 #include "../serverlib/MongoStatistics.h"
 #include "../neuro/DatabaseReader.h"
@@ -130,7 +130,7 @@ public:
         g_Answers = 0;
         net::IConnection::Ptr connection(new TestClient());
         neuro::DatabaseReader net(m_Log, cfg::NETWORK_FILE_NAME);
-        srv::DecisionMaker maker(m_Log, m_Evaluator, m_Statistics, net, *connection);
+        srv::NeuroDecisionMaker maker(m_Log, m_Evaluator, m_Statistics, net, *connection);
         TableLogic logic(m_Log, maker, m_Evaluator);
         logic.Parse(static_cast<const net::Packet&>(message));
 

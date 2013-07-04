@@ -20,10 +20,10 @@ namespace pcmn
 namespace srv
 {
 
-class DecisionMaker : public pcmn::ITableLogicCallback, boost::noncopyable
+class NeuroDecisionMaker : public pcmn::ITableLogicCallback, boost::noncopyable
 {
 public:
-	DecisionMaker
+	NeuroDecisionMaker
 	(
 		ILog& logger, 
 		const pcmn::Evaluator& evaluator, 

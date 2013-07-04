@@ -5,7 +5,7 @@
 #include "UDPHost.h"
 #include "Modules.h"
 #include "MongoStatistics.h"
-#include "DecisionMaker.h"
+#include "NeuroDecisionMaker.h"
 #include "Evaluator.h"
 #include "../neuro/DatabaseReader.h"
 #include "TableLogic.h"
@@ -75,7 +75,7 @@ private:
                 stats = it->second.get();
             }
 
-			DecisionMaker decisionMaker(m_Log, m_Evaluator, *stats, m_Network, *connection);
+			NeuroDecisionMaker decisionMaker(m_Log, m_Evaluator, *stats, m_Network, *connection);
             pcmn::TableLogic logic(m_Log, decisionMaker, m_Evaluator);
             logic.Parse(static_cast<const net::Packet&>(message));
 
