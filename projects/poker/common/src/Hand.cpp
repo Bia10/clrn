@@ -176,7 +176,7 @@ bool IsStraight(const Card::List& cards, Hand::Value& strength, const Card::List
     return false;
 }
 
-bool IsGodShot(const Card::List& cards, const Card::List& player, const std::vector<Card::List>& sequences)
+bool IsGutShot(const Card::List& cards, const Card::List& player, const std::vector<Card::List>& sequences)
 {
     for (unsigned i = 0 ; i < sequences.size() - 1; ++i)
     {
@@ -651,9 +651,9 @@ void Hand::Parse(const Card::List& player, const Card::List& boardInput)
         Add(straightStrength);
         return;
     }
-    if (IsGodShot(hand, player, sequences))
+    if (IsGutShot(hand, player, sequences))
     {
-        Add(GodShot);
+        Add(GutShot);
     }
 
     if (IsXOfKind(hand, player, 3, strength, kicker, cardCounters))
@@ -732,7 +732,7 @@ std::string Hand::ToString(Value v)
     CASE(Ace);
     CASE(PoketPair);
     CASE(StraightDraw);
-    CASE(GodShot);
+    CASE(GutShot);
     CASE(FlushDraw);
     CASE(GoodDraw);
     CASE(TopDraw);
@@ -757,7 +757,7 @@ std::string Hand::ToString(Value v)
 }
 
 const unsigned Hand::POWER_MASK = Hand::Low | Hand::Middle | Hand::Top;
-const unsigned Hand::DRAWS_MASK = Hand::StraightDraw | Hand::GodShot | Hand::FlushDraw | Hand::GoodDraw | Hand::TopDraw;
+const unsigned Hand::DRAWS_MASK = Hand::StraightDraw | Hand::GutShot | Hand::FlushDraw | Hand::GoodDraw | Hand::TopDraw;
 const unsigned Hand::KICKERS_MASK = Hand::LowKicker | Hand::GoodKicker | Hand::TopKicker;
 const unsigned Hand::FLOP_HAND_MASK = Hand::HighCard | Hand::Pair | Hand::TwoPairs | Hand::ThreeOfKind | Hand::Straight | Hand::Flush | Hand::FullHouse | Hand::FourOfKind | Hand::StraightFlush;
 const unsigned Hand::POCKET_HAND_MASK = Hand::OneLow | Hand::BothLow | Hand::Suited | Hand::Connectors | Hand::OneHigh | Hand::BothHigh | Hand::Ace | Hand::PoketPair;
