@@ -653,7 +653,7 @@ void TableLogic::Parse(const net::Packet& packet)
 
                 if (isUseful)
                 {
-                    current.PushAction(phase, action, betValue, position, lastAction, lastAmount);
+                    current.PushAction(phase, action, betValue, position, lastAction, lastAmount, Player::Count::FromValue(m_Queue.size()));
                     if ((action == pcmn::Action::Bet || action == pcmn::Action::Raise) && (action > lastAction || betValue > lastAmount))
                     {
                         lastAction = action;

@@ -53,8 +53,7 @@ void Write(pcmn::TableContext::Data& data)
         const pcmn::Player::Count::Value count = pcmn::Player::Count::FromValue(data.m_PlayersData.size());
         m_Connection.insert(STAT_COLLECTION_NAME, BSON( "players" << players << 
                                                         "flop" << data.m_Flop << 
-                                                        "board" << board <<
-                                                        "count" << count));
+                                                        "board" << board));
 	}
 	CATCH_IGNORE_EXCEPTIONS(m_Log, "Failed to write data to database")
 }
@@ -245,7 +244,7 @@ void GetActionsFromAll(PlayerInfo& player, pcmn::Board::Value board, unsigned st
          
         // prepare list of actions
         std::vector<bson::bo> actions;
-        actions.push_back(BSON("$elemMatch" << BSON("position" << player.m_Position)));
+        actions.push_back(BSON("$elemMatch" << BSON("position" << player.m_Position << "count" << pcmn::Player::Count::FromValue(count))));
 
         const std::string boardAndStreet = std::string("board.") + conv::cast<std::string>(streetId) + std::string(".street");
         const std::string streetsAndActions = std::string("streets.") + conv::cast<std::string>(streetId) + std::string(".actions");
@@ -255,8 +254,7 @@ void GetActionsFromAll(PlayerInfo& player, pcmn::Board::Value board, unsigned st
             boardArray.push_back(0); // unknown by default
 
         mongo::Query query =
-        BSON("count" << pcmn::Player::Count::FromValue(count) << 
-              boardAndStreet << BSON("$all" << boardArray) <<
+        BSON(boardAndStreet << BSON("$all" << boardArray) <<
              "players" << BSON("$elemMatch" 
                                 << BSON(streetsAndActions << BSON("$all" << actions))));
 
@@ -324,7 +322,7 @@ bool GetActionsByName(PlayerInfo& player, pcmn::Board::Value board, unsigned str
          
         // prepare list of actions
         std::vector<bson::bo> actions;
-        actions.push_back(BSON("$elemMatch" << BSON("position" << player.m_Position)));
+        actions.push_back(BSON("$elemMatch" << BSON("position" << player.m_Position << "count" << pcmn::Player::Count::FromValue(count))));
 
         const std::string boardAndStreet = std::string("board.") + conv::cast<std::string>(streetId) + std::string(".street");
         const std::string streetsAndActions = std::string("streets.") + conv::cast<std::string>(streetId) + std::string(".actions");
@@ -334,8 +332,7 @@ bool GetActionsByName(PlayerInfo& player, pcmn::Board::Value board, unsigned str
             boardArray.push_back(0); // unknown by default
 
         mongo::Query query =
-        BSON("count" << pcmn::Player::Count::FromValue(count) << 
-              boardAndStreet << BSON("$all" << boardArray) <<
+        BSON(boardAndStreet << BSON("$all" << boardArray) <<
              "players" << BSON("$elemMatch" 
                                 << BSON("name" << player.m_Name <<
                                         streetsAndActions << BSON("$all" << actions))));
@@ -418,8 +415,7 @@ bool GetHand(PlayerInfo& info, unsigned streetId, const std::string& name, const
 
         const std::string streetsAndActions = std::string("streets.") + conv::cast<std::string>(streetId) + std::string(".actions");
         mongo::Query query =
-        BSON("count" << count << 
-             "players" << BSON("$elemMatch" 
+        BSON("players" << BSON("$elemMatch" 
                             << BSON("name" << name
                             << "cards.0" << BSON("$exists" << 1)
                             << streetsAndActions << BSON("$all" << actions))));
@@ -496,8 +492,7 @@ void GetHand(PlayerInfo& info, unsigned streetId, const pcmn::Player::Count::Val
         // prepare query
         const std::string streetsAndActions = std::string("streets.") + conv::cast<std::string>(streetId) + std::string(".actions");
         mongo::Query query =
-        BSON("count" << count << 
-             "players" << BSON("$elemMatch" 
+        BSON("players" << BSON("$elemMatch" 
                             << BSON("cards.0" << BSON("$exists" << 1)
                                     << streetsAndActions << BSON("$all"
                                                             << actions))));
@@ -812,7 +807,8 @@ bson::bo BuildPlayer(const pcmn::Player& player) const
                     .append("amount", action.m_Amount)
                     .append("position", action.m_Position)
                     .append("reason", action.m_ReasonId)
-                    .append("bet", action.m_ReasonAmount).obj()
+                    .append("bet", action.m_ReasonAmount)
+                    .append("count", action.m_Count).obj()
             );
         }
 
@@ -859,7 +855,8 @@ std::vector<bson::bo> GetActionsFilter(const pcmn::Player::ActionDesc::List& act
                                             "amount" << actionDsc.m_Amount << 
                                             "position" << actionDsc.m_Position <<
                                             "reason" << actionDsc.m_ReasonId << 
-                                            "bet" << actionDsc.m_ReasonAmount);
+                                            "bet" << actionDsc.m_ReasonAmount << 
+                                            "count" << actionDsc.m_Count);
         }
         else
         {
