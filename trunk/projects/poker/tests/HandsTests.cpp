@@ -272,68 +272,68 @@ const Card::List notAStraightDraw6 = boost::assign::list_of
     (Card(Card::Seven, Suit::Hearts));
 
 // god shot
-const Card::List godShot1 = boost::assign::list_of // with 2 5
+const Card::List gutShot1 = boost::assign::list_of // with 2 5
     (Card(Card::Six, Suit::Spades))
     (Card(Card::Three, Suit::Clubs))
     (Card(Card::Ace, Suit::Hearts))
     (Card(Card::King, Suit::Diamonds))
     (Card(Card::Queen, Suit::Clubs));
 
-const Card::List godShot2 = boost::assign::list_of // with 3 9
+const Card::List gutShot2 = boost::assign::list_of // with 3 9
     (Card(Card::Three, Suit::Spades))
     (Card(Card::Five, Suit::Clubs))
     (Card(Card::Six, Suit::Hearts))
     (Card(Card::Five, Suit::Diamonds))
     (Card(Card::Seven, Suit::Clubs));
 
-const Card::List godShot3 = boost::assign::list_of // with aces
+const Card::List gutShot3 = boost::assign::list_of // with aces
     (Card(Card::King, Suit::Spades))
     (Card(Card::Jack, Suit::Clubs))
     (Card(Card::Ten, Suit::Hearts))
     (Card(Card::Five, Suit::Diamonds))
     (Card(Card::Seven, Suit::Clubs));
 
-const Card::List godShot4 = boost::assign::list_of // with aces
+const Card::List gutShot4 = boost::assign::list_of // with aces
     (Card(Card::King, Suit::Spades))
     (Card(Card::Jack, Suit::Clubs))
     (Card(Card::Queen, Suit::Hearts))
     (Card(Card::Five, Suit::Diamonds))
     (Card(Card::Six, Suit::Clubs));
 
-const Card::List godShot5 = boost::assign::list_of // with aces
+const Card::List gutShot5 = boost::assign::list_of // with aces
     (Card(Card::Two, Suit::Spades))
     (Card(Card::Three, Suit::Clubs))
     (Card(Card::Four, Suit::Hearts));
 
 // not a god shot
-const Card::List notAGodShot1 = boost::assign::list_of // with 2 5
+const Card::List notAGutShot1 = boost::assign::list_of // with 2 5
     (Card(Card::Four, Suit::Spades))
     (Card(Card::Three, Suit::Clubs))
     (Card(Card::Jack, Suit::Hearts))
     (Card(Card::King, Suit::Diamonds))
     (Card(Card::Queen, Suit::Clubs));
 
-const Card::List notAGodShot2 = boost::assign::list_of // with 3 9
+const Card::List notAGutShot2 = boost::assign::list_of // with 3 9
     (Card(Card::Three, Suit::Spades))
     (Card(Card::Five, Suit::Clubs))
     (Card(Card::Jack, Suit::Hearts))
     (Card(Card::Five, Suit::Diamonds))
     (Card(Card::Seven, Suit::Clubs));
 
-const Card::List notAGodShot3 = boost::assign::list_of // with aces
+const Card::List notAGutShot3 = boost::assign::list_of // with aces
     (Card(Card::King, Suit::Spades))
     (Card(Card::Jack, Suit::Clubs))
     (Card(Card::Ten, Suit::Hearts))
     (Card(Card::Queen, Suit::Diamonds))
     (Card(Card::Seven, Suit::Clubs));
 
-const Card::List notAGodShot4 = boost::assign::list_of // with aces
+const Card::List notAGutShot4 = boost::assign::list_of // with aces
     (Card(Card::Eight, Suit::Clubs))
     (Card(Card::Seven, Suit::Hearts))
     (Card(Card::Five, Suit::Diamonds))
     (Card(Card::Six, Suit::Clubs));
 
-const Card::List notAGodShot5 = boost::assign::list_of // with aces
+const Card::List notAGutShot5 = boost::assign::list_of // with aces
     (Card(Card::Two, Suit::Spades))
     (Card(Card::Three, Suit::Clubs))
     (Card(Card::Six, Suit::Hearts));
@@ -926,19 +926,19 @@ INSTANTIATE_TEST_CASE_P
         HandsTestParams(aceKing, notAStraightDraw5, Hand::StraightDraw, false),
         HandsTestParams(aceKing, notAStraightDraw6, Hand::StraightDraw, false),
 
-        // god shot
-        HandsTestParams(trash, godShot1, Hand::GodShot, true),
-        HandsTestParams(suited2, godShot2, Hand::GodShot, true),
-        HandsTestParams(aces, godShot3, Hand::GodShot, true),
-        HandsTestParams(aces, godShot4, Hand::GodShot, true),
-        HandsTestParams(aces, godShot5, Hand::GodShot, true),
+        // gut shot
+        HandsTestParams(trash, gutShot1, Hand::GutShot, true),
+        HandsTestParams(suited2, gutShot2, Hand::GutShot, true),
+        HandsTestParams(aces, gutShot3, Hand::GutShot, true),
+        HandsTestParams(aces, gutShot4, Hand::GutShot, true),
+        HandsTestParams(aces, gutShot5, Hand::GutShot, true),
 
-        // god shot
-        HandsTestParams(trash, notAGodShot1, Hand::GodShot, false),
-        HandsTestParams(suited2, notAGodShot2, Hand::GodShot, false),
-        HandsTestParams(aces, notAGodShot3, Hand::GodShot, false),
-        HandsTestParams(aces, notAGodShot4, Hand::GodShot, false),
-        HandsTestParams(aces, notAGodShot5, Hand::GodShot, false),
+        // gut shot
+        HandsTestParams(trash, notAGutShot1, Hand::GutShot, false),
+        HandsTestParams(suited2, notAGutShot2, Hand::GutShot, false),
+        HandsTestParams(aces, notAGutShot3, Hand::GutShot, false),
+        HandsTestParams(aces, notAGutShot4, Hand::GutShot, false),
+        HandsTestParams(aces, notAGutShot5, Hand::GutShot, false),
 
         // flush draw
         HandsTestParams(suited1, flushDraw1, Hand::FlushDraw, true), // low

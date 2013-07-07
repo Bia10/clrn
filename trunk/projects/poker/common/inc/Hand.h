@@ -27,7 +27,7 @@ public:
 
         // draws
         StraightDraw    = 1 << 9,   //!< two-way straight draw
-        GodShot         = 1 << 10,   //!< straight godshot draw
+        GutShot         = 1 << 10,   //!< straight gutshot draw
         FlushDraw       = 1 << 11,   //!< flush draw
         GoodDraw        = 1 << 12,  //!< this is a good draw but not the best
         TopDraw         = 1 << 13,  //!< hand will be nuts if draw succeed
