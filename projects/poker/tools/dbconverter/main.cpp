@@ -336,11 +336,6 @@ int main(int argc, char* argv[])
                     const pcmn::Player::List::iterator resultPlayer = std::find_if(gameData.m_PlayersData.begin(), gameData.m_PlayersData.end(), [&](const pcmn::Player& p){ return p.Name() == *it; });
                     assert(resultPlayer != gameData.m_PlayersData.end());
 
-                    if (action.m_Id == pcmn::Action::Check && (lastAction == pcmn::Action::Bet || lastAction == pcmn::Action::Raise))
-                        resultPlayer->PushAction(street, action.m_Id, action.m_Amount, position, street ? pcmn::Action::Unknown : pcmn::Action::BigBlind, pcmn::BetSize::VeryLow);
-                    else
-                        resultPlayer->PushAction(street, action.m_Id, action.m_Amount, position, lastAction, lastAmount);
-
                     actions.push_back(action);
 
                     if (action.m_Id == pcmn::Action::Fold)
@@ -367,6 +362,13 @@ int main(int argc, char* argv[])
                     }
 
                     it = queue.erase(it);
+
+                    const pcmn::Player::Count::Value count = pcmn::Player::Count::FromValue(queue.size());
+
+                    if (action.m_Id == pcmn::Action::Check && (lastAction == pcmn::Action::Bet || lastAction == pcmn::Action::Raise))
+                        resultPlayer->PushAction(street, action.m_Id, action.m_Amount, position, street ? pcmn::Action::Unknown : pcmn::Action::BigBlind, pcmn::BetSize::VeryLow, count);
+                    else
+                        resultPlayer->PushAction(street, action.m_Id, action.m_Amount, position, lastAction, lastAmount, count);
                 }
 
                 if (!street && !valid)

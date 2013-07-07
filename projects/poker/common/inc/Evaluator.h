@@ -1,5 +1,5 @@
-#ifndef CombinationsCalculator_h__
-#define CombinationsCalculator_h__
+#ifndef Evaluator_h__
+#define Evaluator_h__
 
 #include "Cards.h"
 #include "Combinations.h"
@@ -29,4 +29,4 @@ private:
     unsigned m_Repititions;
 };
 }
-#endif // CombinationsCalculator_h__
+#endif // Evaluator_h__

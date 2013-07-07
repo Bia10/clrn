@@ -75,27 +75,16 @@ public:
 		static Value FromValue(unsigned value);
 	};
 
-	//! Bad index exception
-	class BadIndex : public std::exception
-	{
-	public:
-		BadIndex(unsigned expected, unsigned got) : m_Expected(expected), m_Got(got) {}
-		const unsigned Got() const { return m_Got; }
-		const unsigned Expected() const { return m_Expected; }
-	private:
-		const unsigned m_Expected;
-		const unsigned m_Got;
-	};
-
 	//! Player action descriptor
 	struct ActionDesc
 	{
         typedef std::vector<ActionDesc> List;
-		Action::Value m_Id;
-		BetSize::Value m_Amount;
-        Position::Value m_Position;
-        Action::Value m_ReasonId;
-        BetSize::Value m_ReasonAmount;
+		Action::Value m_Id;             //!< action id
+		BetSize::Value m_Amount;        //!< actions amount
+        Position::Value m_Position;     //!< player position at action moment
+        Action::Value m_ReasonId;       //!< previous another player action
+        BetSize::Value m_ReasonAmount;  //!< previous bet size
+        Count::Value m_Count;           //!< players in queue at action moment
 
         ActionDesc();
         bool operator == (const ActionDesc& other) const;
@@ -186,7 +175,8 @@ public:
         BetSize::Value value, 
         Position::Value pos,
         Action::Value reasonAction,
-        BetSize::Value reasonAmount
+        BetSize::Value reasonAmount,
+        Count::Value count
     );
 
     //! Add player equity

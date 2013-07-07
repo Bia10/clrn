@@ -92,7 +92,7 @@ public:
         pcmn::Player testPlayer("test", 0);
 
         for (unsigned i = 0; i < dbHands.size(); ++i)
-            testPlayer.PushAction(i, Action::Fold, BetSize::VeryLow, Player::Position::Early, Action::Fold, BetSize::VeryLow); // fake
+            testPlayer.PushAction(i, Action::Fold, BetSize::VeryLow, Player::Position::Early, Action::Fold, BetSize::VeryLow, pcmn::Player::Count::ThreeOrMore); // fake
         const unsigned street = dbHands.size() - 1;
 
         MockedStats stats(dbHands);
@@ -200,9 +200,9 @@ void Do()
         const Card::List board = boost::assign::list_of(Card(Card::Five, Suit::Diamonds))(Card(Card::Jack, Suit::Hearts))(Card(Card::Eight, Suit::Hearts))(Card(Card::Six, Suit::Spades))(Card(Card::Six, Suit::Diamonds));
 
         pcmn::Player testPlayer("Eskitex2013", 0);
-        testPlayer.PushAction(0, Action::Call, BetSize::Low, Player::Position::Later, Action::BigBlind, BetSize::Low);
-        testPlayer.PushAction(1, Action::Bet, BetSize::High, Player::Position::Early, Action::Unknown, BetSize::VeryLow);
-        //testPlayer.PushAction(1, Action::Raise, BetSize::High, Player::Position::Later, Action::Raise, BetSize::High);
+        testPlayer.PushAction(0, Action::Call, BetSize::Low, Player::Position::Later, Action::BigBlind, BetSize::Low, pcmn::Player::Count::ThreeOrMore);
+        testPlayer.PushAction(1, Action::Bet, BetSize::High, Player::Position::Early, Action::Unknown, BetSize::VeryLow, pcmn::Player::Count::ThreeOrMore);
+        //testPlayer.PushAction(1, Action::Raise, BetSize::High, Player::Position::Later, Action::Raise, BetSize::High, pcmn::Player::Count::ThreeOrMore);
 
         detector.DetectHand(board, testPlayer, result, 9);
     }
@@ -217,9 +217,9 @@ void Do()
             board.push_back(Card().FromEvalFormat(c));
 
         pcmn::Player testPlayer("CLRN", 0);
-        testPlayer.PushAction(0, Action::Call, BetSize::High, Player::Position::Later, Action::Raise, BetSize::High);
-        testPlayer.PushAction(1, Action::Bet, BetSize::High, Player::Position::Middle, Action::Unknown, BetSize::VeryLow);
-        testPlayer.PushAction(1, Action::Raise, BetSize::High, Player::Position::Later, Action::Raise, BetSize::High);
+        testPlayer.PushAction(0, Action::Call, BetSize::High, Player::Position::Later, Action::Raise, BetSize::High, pcmn::Player::Count::ThreeOrMore);
+        testPlayer.PushAction(1, Action::Bet, BetSize::High, Player::Position::Middle, Action::Unknown, BetSize::VeryLow, pcmn::Player::Count::ThreeOrMore);
+        testPlayer.PushAction(1, Action::Raise, BetSize::High, Player::Position::Later, Action::Raise, BetSize::High, pcmn::Player::Count::ThreeOrMore);
 
         detector.DetectHand(board, testPlayer, result, 9);
     }
@@ -233,9 +233,9 @@ void Do()
             board.push_back(Card().FromEvalFormat(c));
 
         pcmn::Player testPlayer("CLRN", 0);
-        testPlayer.PushAction(0, Action::Raise, BetSize::High, Player::Position::Later, Action::BigBlind, BetSize::Low);
-        testPlayer.PushAction(1, Action::Bet, BetSize::High, Player::Position::Middle, Action::Unknown, BetSize::VeryLow);
-        testPlayer.PushAction(2, Action::Bet, BetSize::High, Player::Position::Later, Action::Unknown, BetSize::VeryLow);
+        testPlayer.PushAction(0, Action::Raise, BetSize::High, Player::Position::Later, Action::BigBlind, BetSize::Low, pcmn::Player::Count::ThreeOrMore);
+        testPlayer.PushAction(1, Action::Bet, BetSize::High, Player::Position::Middle, Action::Unknown, BetSize::VeryLow, pcmn::Player::Count::ThreeOrMore);
+        testPlayer.PushAction(2, Action::Bet, BetSize::High, Player::Position::Later, Action::Unknown, BetSize::VeryLow, pcmn::Player::Count::ThreeOrMore);
 
         detector.DetectHand(board, testPlayer, result, 9);
     }
@@ -254,10 +254,10 @@ void Do()
             player.push_back(Card().FromEvalFormat(c));
 
         pcmn::Player testPlayer("CLRN", 0);
-        testPlayer.PushAction(0, Action::Call, BetSize::Low, Player::Position::Middle, Action::BigBlind, BetSize::Low);
-        testPlayer.PushAction(1, Action::Check, BetSize::VeryLow, Player::Position::Early, Action::Unknown, BetSize::VeryLow);
-        testPlayer.PushAction(2, Action::Check, BetSize::VeryLow, Player::Position::Early, Action::Unknown, BetSize::VeryLow);
-        testPlayer.PushAction(3, Action::Bet, BetSize::High, Player::Position::Middle, Action::Unknown, BetSize::VeryLow);
+        testPlayer.PushAction(0, Action::Call, BetSize::Low, Player::Position::Middle, Action::BigBlind, BetSize::Low, pcmn::Player::Count::ThreeOrMore);
+        testPlayer.PushAction(1, Action::Check, BetSize::VeryLow, Player::Position::Early, Action::Unknown, BetSize::VeryLow, pcmn::Player::Count::ThreeOrMore);
+        testPlayer.PushAction(2, Action::Check, BetSize::VeryLow, Player::Position::Early, Action::Unknown, BetSize::VeryLow, pcmn::Player::Count::ThreeOrMore);
+        testPlayer.PushAction(3, Action::Bet, BetSize::High, Player::Position::Middle, Action::Unknown, BetSize::VeryLow, pcmn::Player::Count::ThreeOrMore);
 
         detector.DetectHand(board, testPlayer, result, 9);
     }
@@ -270,8 +270,8 @@ void Do()
             board.push_back(Card().FromEvalFormat(c));
 
         pcmn::Player testPlayer("CLRN", 0);
-        testPlayer.PushAction(0, Action::Call, BetSize::High, Player::Position::Later, Action::Raise, BetSize::High);
-        testPlayer.PushAction(1, Action::Bet, BetSize::High, Player::Position::Middle, Action::Unknown, BetSize::VeryLow);
+        testPlayer.PushAction(0, Action::Call, BetSize::High, Player::Position::Later, Action::Raise, BetSize::High, pcmn::Player::Count::ThreeOrMore);
+        testPlayer.PushAction(1, Action::Bet, BetSize::High, Player::Position::Middle, Action::Unknown, BetSize::VeryLow, pcmn::Player::Count::ThreeOrMore);
 
         detector.DetectHand(board, testPlayer, result, 9);
     }

@@ -64,7 +64,7 @@ namespace pcmn
 	{
 	}
 
-    void Player::PushAction(unsigned street, Action::Value action, BetSize::Value value, Position::Value pos, Action::Value reasonAction, BetSize::Value reasonAmount)
+    void Player::PushAction(unsigned street, Action::Value action, BetSize::Value value, Position::Value pos, Action::Value reasonAction, BetSize::Value reasonAmount, Count::Value count)
     {
         if (!Action::IsActive(action))
             return; // don't collect useless for statistics actions
@@ -79,6 +79,7 @@ namespace pcmn
         actionDesc.m_Position = pos;
         actionDesc.m_ReasonId = reasonAction;
         actionDesc.m_ReasonAmount = reasonAmount;
+        actionDesc.m_Count = count;
     }
 
     void Player::Reset()
@@ -110,6 +111,7 @@ namespace pcmn
         , m_Position()
         , m_ReasonId()
         , m_ReasonAmount()
+        , m_Count()
     {
     }
 
