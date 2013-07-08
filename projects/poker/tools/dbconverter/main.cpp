@@ -313,7 +313,7 @@ int main(int argc, char* argv[])
                 auto it = queue.begin();
 
                 pcmn::Action::Value lastAction = street ? pcmn::Action::Unknown : pcmn::Action::BigBlind;
-                pcmn::BetSize::Value lastAmount = street ? pcmn::BetSize::VeryLow : pcmn::BetSize::Low;
+                pcmn::BetSize::Value lastAmount = street ? pcmn::BetSize::NoBet : pcmn::BetSize::Low;
 
                 for (; ; )
                 {
@@ -366,7 +366,7 @@ int main(int argc, char* argv[])
                     const pcmn::Player::Count::Value count = pcmn::Player::Count::FromValue(sequence.size());
 
                     if (action.m_Id == pcmn::Action::Check && (lastAction == pcmn::Action::Bet || lastAction == pcmn::Action::Raise))
-                        resultPlayer->PushAction(street, action.m_Id, action.m_Amount, position, street ? pcmn::Action::Unknown : pcmn::Action::BigBlind, pcmn::BetSize::VeryLow, count);
+                        resultPlayer->PushAction(street, action.m_Id, action.m_Amount, position, street ? pcmn::Action::Unknown : pcmn::Action::BigBlind, pcmn::BetSize::NoBet, count);
                     else
                         resultPlayer->PushAction(street, action.m_Id, action.m_Amount, position, lastAction, lastAmount, count);
                 }

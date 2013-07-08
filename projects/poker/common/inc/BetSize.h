@@ -9,7 +9,7 @@ namespace pcmn
 	{
 		enum Value
 		{
-			VeryLow		= 0,
+			NoBet		= 0,
 			Low			= 1,
 			Normal		= 2,
 			High		= 3,
@@ -34,6 +34,15 @@ namespace pcmn
             unsigned stack, 
             unsigned bigBlind
         );
+
+        static unsigned FromValue
+        (
+            Value v, 
+            unsigned pot, 
+            unsigned stack, 
+            unsigned alreadyBet,
+            unsigned bigBlind
+         );
 	};
 
 };

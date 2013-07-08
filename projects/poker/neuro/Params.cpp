@@ -11,7 +11,7 @@ namespace neuro
 	Params::Params()
 		: m_WinRate(pcmn::WinRate::VeryLow)
 		, m_Position(pcmn::Player::Position::Early)
-		, m_BetSize(pcmn::BetSize::VeryLow)
+		, m_BetSize(pcmn::BetSize::NoBet)
 		, m_ActivePlayers(pcmn::Player::Count::One)
 		, m_Danger(pcmn::Danger::Low)
 		, m_BotAverageStyle(pcmn::Player::Style::Passive)

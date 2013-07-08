@@ -124,7 +124,7 @@ TEST(Neuro, Database)
         neuro::Params params;
         params.m_WinRate = pcmn::WinRate::Nuts;
         params.m_Position = pcmn::Player::Position::Early;
-        params.m_BetSize = pcmn::BetSize::VeryLow;
+        params.m_BetSize = pcmn::BetSize::NoBet;
         params.m_ActivePlayers = pcmn::Player::Count::ThreeOrMore;
         params.m_Danger = pcmn::Danger::High;
         params.m_BotAverageStyle = pcmn::Player::Style::Aggressive;

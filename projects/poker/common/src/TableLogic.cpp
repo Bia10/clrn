@@ -527,7 +527,7 @@ void TableLogic::ParsePlayerLoose(Player& current, BetSize::Value lastBigBet, Ac
         float eq = 0;
         switch (lastBigBet)
         {
-        case BetSize::VeryLow: eq = 5.0f; break;
+        case BetSize::NoBet: eq = 5.0f; break;
         case BetSize::Low: eq = 15.0f; break;
         case BetSize::Normal: eq = 20.0f; break;
         }
@@ -568,7 +568,7 @@ void TableLogic::ParsePlayerLoose(Player& current, BetSize::Value lastBigBet, Ac
         float ratio = 0.1f;
         switch (lastBigBet)
         {
-        case BetSize::VeryLow: ratio = 0.3f; break;
+        case BetSize::NoBet: ratio = 0.3f; break;
         case BetSize::Low: ratio = 0.4f; break;
         case BetSize::Normal: ratio = 0.6f; break;
         case BetSize::High: ratio = 0.8f; break;
@@ -608,10 +608,10 @@ void TableLogic::Parse(const net::Packet& packet)
         {
             SetPhase(phase);
 
-            BetSize::Value lastBigBet = BetSize::VeryLow;
+            BetSize::Value lastBigBet = BetSize::NoBet;
             m_Context.m_MaxBet = 0;
             pcmn::Action::Value lastAction = phase != Phase::Preflop ? pcmn::Action::Unknown : pcmn::Action::BigBlind;
-            pcmn::BetSize::Value lastAmount = phase != Phase::Preflop ? pcmn::BetSize::VeryLow : BetSize::Low;
+            pcmn::BetSize::Value lastAmount = phase != Phase::Preflop ? pcmn::BetSize::NoBet : BetSize::Low;
 
             for (int i = 0; i < packet.phases(phase).actions_size(); ++i)
             {
