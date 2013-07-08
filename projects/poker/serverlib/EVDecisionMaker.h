@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "IConnection.h"
 #include "IStatistics.h"
+#include "HandsDetector.h"
 
 #include <boost/noncopyable.hpp>
 
@@ -38,6 +39,11 @@ private:
 
     virtual void SendRequest(const net::Packet& packet, bool statistics) override;
     virtual void WriteStatistics(pcmn::TableContext::Data& data) override;
+
+private:
+
+    //! Calculate call EV
+    float CalculateCallEV(unsigned pot, unsigned bet);
 
 private:
 

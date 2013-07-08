@@ -363,7 +363,7 @@ int main(int argc, char* argv[])
 
                     it = queue.erase(it);
 
-                    const pcmn::Player::Count::Value count = pcmn::Player::Count::FromValue(queue.size());
+                    const pcmn::Player::Count::Value count = pcmn::Player::Count::FromValue(sequence.size());
 
                     if (action.m_Id == pcmn::Action::Check && (lastAction == pcmn::Action::Bet || lastAction == pcmn::Action::Raise))
                         resultPlayer->PushAction(street, action.m_Id, action.m_Amount, position, street ? pcmn::Action::Unknown : pcmn::Action::BigBlind, pcmn::BetSize::VeryLow, count);
