@@ -375,7 +375,7 @@ void Teacher::IncrementChecked()
 	{
 		if (m_CurrentParams.m_BetSize == pcmn::BetSize::Max)
 		{
-			m_CurrentParams.m_BetSize = pcmn::BetSize::VeryLow;
+			m_CurrentParams.m_BetSize = pcmn::BetSize::NoBet;
 			m_BetSizeChoice->SetSelection(0);
 		}
 		else
